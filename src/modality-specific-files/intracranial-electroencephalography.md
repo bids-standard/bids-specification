@@ -133,7 +133,7 @@ A guide for using macros can be found at
 {{ MACROS___make_sidecar_table("ieeg.iEEGOptional") }}
 
 Note that the date and time information SHOULD be stored in the study key file
-([`scans.tsv`](../modality-agnostic-files.md#scans-file)).
+([`scans.tsv`](../modality-agnostic-files/data-summary-files.md#scans-file)).
 Date time information MUST be expressed as indicated in [Units](../common-principles.md#units)
 
 #### Hardware information
@@ -275,13 +275,13 @@ Examples of free-form text for field `description`:
 
 ### Example `*_channels.tsv`
 
-```Text
-name  type  units low_cutoff  high_cutoff status  status_description
-LT01  ECOG  uV    300         0.11        good    n/a
-LT02  ECOG  uV    300         0.11        bad     broken
-H01   SEEG  uV    300         0.11        bad     line_noise
-ECG1  ECG   uV    n/a         0.11        good    n/a
-TR1   TRIG  n/a   n/a         n/a         good    n/a
+```tsv
+name	type	units	low_cutoff	high_cutoff	status	status_description
+LT01	ECOG	uV	300	0.11	good	n/a
+LT02	ECOG	uV	300	0.11	bad	broken
+H01	SEEG	uV	300	0.11	bad	line_noise
+ECG1	ECG	uV	n/a	0.11	good	n/a
+TR1	TRIG	n/a	n/a	n/a	good	n/a
 ```
 
 ## Electrode description (`*_electrodes.tsv`)
@@ -295,15 +295,15 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_filename_template("raw", datatypes=["ieeg"], suffixes=["electrodes"]) }}
 
-File that gives the location, size and other properties of iEEG electrodes. Note
-that coordinates are expected in cartesian coordinates according to the
-`iEEGCoordinateSystem` and `iEEGCoordinateUnits` fields in
-`*_coordsystem.json`. If an `*_electrodes.tsv` file is specified, a
-`*_coordsystem.json` file MUST be specified as well.
+This REQUIRED file gives the location, size and other properties of iEEG electrodes.
+Note that coordinates are expected in cartesian coordinates according to the
+`iEEGCoordinateSystem` and `iEEGCoordinateUnits` fields in `*_coordsystem.json`.
+For each `*_electrodes.tsv` file specified,
+a `*_coordsystem.json` file MUST be specified as well.
 
 The optional [`space-<label>`](../appendices/entities.md#space) entity (`*[_space-<label>]_electrodes.tsv`) can be used to
 indicate the way in which electrode positions are interpreted.
-The space `<label>` MUST be taken from one of the modality specific lists in
+The space `<label>` MUST be taken from one of the modality-specific lists in
 the [Coordinate Systems Appendix](../appendices/coordinate-systems.md).
 For example for iEEG data, the restricted keywords listed under
 [iEEG Specific Coordinate Systems](../appendices/coordinate-systems.md#ieeg-specific-coordinate-systems)
@@ -349,13 +349,19 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_columns_table("ieeg.iEEGElectrodes") }}
 
+`*_electrodes.tsv` files SHOULD NOT be duplicated for each data file,
+for example, during multiple runs of a task.
+The [inheritance principle](../common-principles.md#the-inheritance-principle) MUST
+be used to find the appropriate electrode positions for a given data file.
+If electrodes are repositioned, it is RECOMMENDED to use multiple sessions to indicate this.
+
 ### Example `*_electrodes.tsv`
 
-```Text
-name  x   y    z    size   manufacturer
-LT01  19  -39  -16  2.3    Integra
-LT02  23  -40  -19  2.3    Integra
-H01   27  -42  -21  5      AdTech
+```tsv
+name	x	y	z	size	manufacturer
+LT01	19	-39	-16	2.3	Integra
+LT02	23	-40	-19	2.3	Integra
+H01	27	-42	-21	5	AdTech
 ```
 
 ## Coordinate System JSON (`*_coordsystem.json`)
@@ -383,7 +389,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("ieeg.iEEGCoordsystemGeneral") }}
+{{ MACROS___make_json_table("json.ieeg.iEEGCoordsystemGeneral") }}
 
 Fields relating to the iEEG electrode positions:
 
@@ -395,7 +401,13 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("ieeg.iEEGCoordsystemPositions") }}
+{{ MACROS___make_json_table("json.ieeg.iEEGCoordsystemPositions") }}
+
+`*_coordsystem.json` files SHOULD NOT be duplicated for each data file,
+for example, across multiple tasks.
+The [inheritance principle](../common-principles.md#the-inheritance-principle) MUST
+be used to find the appropriate coordinate system description for a given data file.
+If electrodes are repositioned, it is RECOMMENDED to use multiple sessions to indicate this.
 
 ### Recommended 3D coordinate systems
 
@@ -482,11 +494,13 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_filetree_example(
    {
-   "sub-01": {
-      "ses-0001": {
-         "sub-0001_ses-01_acq-photo1_photo.jpg": "",
-         "sub-0001_ses-01_acq-photo2_photo.jpg": "",
-         "...": "",
+   "sub-0001": {
+      "ses-01": {
+         "ieeg": {
+            "sub-0001_ses-01_acq-photo1_photo.jpg": "",
+            "sub-0001_ses-01_acq-photo2_photo.jpg": "",
+            "...": "",
+            },
          },
       },
    }
@@ -496,7 +510,6 @@ A guide for using macros can be found at
 
 Below is an example of a volume rendering of the cortical surface with a
 superimposed subdural electrode implantation. This map is often provided by the
-
 EEG technician and provided to the epileptologists (for example, see Burneo JG et al.
 2014. [doi:10.1016/j.clineuro.2014.03.020](https://doi.org/10.1016/j.clineuro.2014.03.020)).
 
@@ -521,13 +534,13 @@ For example: `/stimuli/electrical_stimulation_functions/biphasic.tsv`
 
 ### Example `*_events.tsv`
 
-```Text
-onset duration trial_type             electrical_stimulation_type electrical_stimulation_site electrical_stimulation_current
-1.2   0.001    electrical_stimulation biphasic                    LT01-LT02                   0.005
-1.3   0.001    electrical_stimulation biphasic                    LT01-LT02                   0.005
-2.2   0.001    electrical_stimulation biphasic                    LT02-LT03                   0.005
-4.2   1        electrical_stimulation complex                     LT02-LT03                   n/a
-15.2  3        auditory_stimulus      n/a                         n/a                         n/a
+```tsv
+onset	duration	trial_type	electrical_stimulation_type	electrical_stimulation_site	electrical_stimulation_current
+1.2	0.001	electrical_stimulation	biphasic	LT01-LT02	0.005
+1.3	0.001	electrical_stimulation	biphasic	LT01-LT02	0.005
+2.2	0.001	electrical_stimulation	biphasic	LT02-LT03	0.005
+4.2	1	electrical_stimulation	complex	LT02-LT03	n/a
+15.2	3	auditory_stimulus	n/a	n/a	n/a
 ```
 
 <!-- Link Definitions -->

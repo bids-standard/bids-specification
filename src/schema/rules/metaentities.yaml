@@ -1,0 +1,5 @@
+---
+# This file simply defines the order in which the meta-entities and placeholders are presented in the specification.
+# The actual term definitions appear in `objects/metaentities.yaml`.
+- matches
+- source-entities

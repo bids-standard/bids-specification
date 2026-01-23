@@ -1,5 +1,6 @@
 ---
 eeg:
+  $ref: meta.templates.raw.task
   suffixes:
     - eeg
   extensions:
@@ -13,9 +14,3 @@ eeg:
     - .bdf
   datatypes:
     - eeg
-  entities:
-    subject: required
-    session: optional
-    task: required
-    acquisition: optional
-    run: optional

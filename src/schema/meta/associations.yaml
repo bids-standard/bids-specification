@@ -1,4 +1,4 @@
-# These rules indicate whether an association (defined in meta.context.context.associations)
+# These rules indicate whether an association (defined in meta.context.associations)
 # applies to a given file. These are hints to allow implementations to avoid unnecessary
 # directory and file reads.
 #
@@ -14,7 +14,6 @@
 ---
 events:
   selectors:
-    - 'task in entities'
     - extension != '.json'
   target:
     suffix: events
@@ -59,7 +58,7 @@ magnitude1:
 
 bval:
   selectors:
-    - suffix == 'dwi'
+    - intersects([suffix], ['dwi', 'epi'])
     - match(extension, '\.nii(\.gz)?$')
   target:
     extension: .bval
@@ -67,7 +66,7 @@ bval:
 
 bvec:
   selectors:
-    - suffix == 'dwi'
+    - intersects([suffix], ['dwi', 'epi'])
     - match(extension, '\.nii(\.gz)?$')
   target:
     extension: .bvec
@@ -75,7 +74,7 @@ bvec:
 
 channels:
   selectors:
-    - intersects([suffix], ['eeg', 'ieeg', 'meg', 'nirs', 'motion', 'optodes'])
+    - intersects([suffix], ['eeg', 'emg', 'ieeg', 'meg', 'nirs', 'motion', 'optodes'])
     - extension != '.json'
   target:
     suffix: channels
@@ -90,3 +89,42 @@ coordsystem:
     suffix: coordsystem
     extension: .json
   inherit: true
+
+electrodes:
+  selectors:
+    - intersects([suffix], ['eeg', 'emg', 'ieeg', 'meg'])
+    - extension != '.json'
+  target:
+    suffix: electrodes
+    extension: .tsv
+    entities:
+      - space
+  inherit: true
+
+physio:
+  selectors:
+    - extension != '.json'
+  target:
+    suffix: physio
+    extension: .tsv.gz
+  inherit: false
+
+coordsystems:
+  selectors:
+    - datatype == 'emg'
+    - intersects([suffix], ['emg', 'electrodes'])
+    - extension != '.json'
+  target:
+    suffix: coordsystem
+    extension: .json
+    entities:
+      - space
+  inherit: true
+
+atlas_description:
+  selectors:
+    - entities.atlas
+    - extension != '.json'
+  target:
+    suffix: description
+    extension: .json

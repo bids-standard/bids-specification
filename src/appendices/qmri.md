@@ -133,10 +133,13 @@ A guide for using macros can be found at
 
 Please visit the [file collections appendix](./file-collections.md#magnetic-resonance-imaging) to see the list of currently supported qMRI applications.
 
-### Quantitative maps are derivatives
+### Outputs are quantitative maps
 
-Regardless of how they are obtained (pre- or post-generated), qMRI maps are stored in the `derivatives` directory.
-For example a `T1map` can be generated from an `MP2RAGE` file collection using either options.
+qMRI maps are stored differently depending on the process that generated them.
+Pre-generated qMRI maps MAY be stored as part of a raw BIDS dataset,
+whereas they MUST be stored in a derivative BIDS dataset if they were post-generated.
+
+See the example below of a `T1map` generated from an `MP2RAGE` file collection using either option.
 
 If the map is post-generated:
 
@@ -151,15 +154,25 @@ A guide for using macros can be found at
             "qMRI-software-name": {
                 "sub-01": {
                     "anat": {
-                        "sub-01_T1map.nii.gz": "",
+                        "sub-01_T1map.nii.gz": " # --> T1 map in a derivative dataset",
                         "sub-01_T1map.json": "",
-                        "sub-01_UNIT1.nii.gz": "",
+                        "sub-01_UNIT1.nii.gz": " # --> UNI T1 in a derivative dataset",
                         "sub-01_UNIT1.json": "",
-                        },
                     },
                 },
             },
         },
+        "sub-01": {
+            "anat": {
+                "sub-01_inv-1_part-mag_MP2RAGE.nii.gz":"",
+                "sub-01_inv-1_part-phase_MP2RAGE.nii.gz":"",
+                "sub-01_inv-1_MP2RAGE.json":"",
+                "sub-01_inv-2_part-mag_MP2RAGE.nii.gz":"",
+                "sub-01_inv-2_part-phase_MP2RAGE.nii.gz":"",
+                "sub-01_inv-2_MP2RAGE.json":"",
+            },
+        },
+    },
    }
 ) }}
 
@@ -172,25 +185,30 @@ A guide for using macros can be found at
 {{ MACROS___make_filetree_example(
    {
     "ds-example": {
-        "derivatives": {
-            "Siemens": {
-                "sub-01": {
-                    "anat": {
-                        "sub-01_T1map.nii.gz": "",
-                        "sub-01_T1map.json": "",
-                        "sub-01_UNIT1.nii.gz": "",
-                        "sub-01_UNIT1.json": "",
-                        },
-                    },
-                },
+        "sub-01": {
+            "anat": {
+                "sub-01_inv-1_part-mag_MP2RAGE.nii.gz":"",
+                "sub-01_inv-1_part-phase_MP2RAGE.nii.gz":"",
+                "sub-01_inv-1_MP2RAGE.json":"",
+                "sub-01_inv-2_part-mag_MP2RAGE.nii.gz":"",
+                "sub-01_inv-2_part-phase_MP2RAGE.nii.gz":"",
+                "sub-01_inv-2_MP2RAGE.json":"",
+                "sub-01_T1map.nii.gz": " # --> T1 map in a raw dataset",
+                "sub-01_T1map.json": "",
+                "sub-01_UNIT1.nii.gz": " # --> UNI T1 in a raw dataset",
+                "sub-01_UNIT1.json": "",
             },
         },
+    }
    }
 ) }}
 
-Note: Even though the process from which pre-generated qMRI maps are obtained (vendor pipelines) is not known,
-vendors generally allow exporting of the corresponding input data.
-It is RECOMMENDED to share them along with the vendor outputs, whenever possible for a qMRI method supported by BIDS.
+!!! note "Sharing of vendor outputs"
+
+    Even though the process from which pre-generated qMRI maps are obtained (vendor pipelines) is not known,
+    vendors generally allow exporting of the corresponding input data.
+    It is RECOMMENDED to share them along with the vendor outputs,
+    whenever possible for a qMRI method supported by BIDS.
 
 ### Example datasets
 
@@ -208,10 +226,10 @@ but also by which metadata fields are provided in accompanying json files.
 #### Anatomy imaging data
 
 | **File collection**  | **REQUIRED metadata**                                                                                                        | **OPTIONAL metadata**      |
-|----------------------|------------------------------------------------------------------------------------------------------------------------------|----------------------------|
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------------- | -------------------------- |
 | VFA                  | `FlipAngle`, `PulseSequenceType`, `RepetitionTimeExcitation`                                                                 | `SpoilingRFPhaseIncrement` |
 | IRT1                 | `InversionTime`                                                                                                              |                            |
-| MP2RAGE<sup>\*</sup> | `FlipAngle`, `InversionTime`, `RepetitionTimeExcitation`, `RepetitionTimePreperation`, `NumberShots`,`MagneticFieldStrength` | `EchoTime`                 |
+| MP2RAGE<sup>\*</sup> | `FlipAngle`, `InversionTime`, `RepetitionTimeExcitation`, `RepetitionTimePreparation`, `NumberShots`,`MagneticFieldStrength` | `EchoTime`                 |
 | MESE                 | `EchoTime`                                                                                                                   |                            |
 | MEGRE                | `EchoTime`                                                                                                                   |                            |
 | MTR                  | `MTState`                                                                                                                    |                            |
@@ -234,69 +252,10 @@ Explanation of the table:
     See [deriving the intended qMRI application from an ambiguous file collection](#deriving-the-intended-qmri-application-from-an-ambiguous-file-collection)
     for details.
 
-#### Field maps
-
-<!--
-This block generates a suffix table.
-The definitions of these fields can be found in
-  src/schema/rules/files/raw
-and a guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_suffix_table(
-      [
-        "TB1DAM",
-        "TB1EPI",
-        "TB1AFI",
-        "TB1TFL",
-        "TB1RFM",
-        "RB1COR",
-        "TB1SRGE",
-        "TB1map",
-        "RB1map",
-      ]
-   )
-}}
-
-<!--
-This block generates a filename templates.
-The inputs for this macro can be found in the directory
-  src/schema/rules/files/raw
-and a guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_filename_template(
-   "raw",
-   datatypes=["fmap"],
-   suffixes=[
-    "TB1DAM",
-    "TB1EPI",
-    "TB1AFI",
-    "TB1TFL",
-    "TB1RFM",
-    "RB1COR",
-    "TB1SRGE",
-    "TB1map",
-    "RB1map",
-    ])
-}}
-
-| **File collection**  | **REQUIRED metadata**                                                                                |
-|----------------------|------------------------------------------------------------------------------------------------------|
-| TB1DAM               | `FlipAngle`                                                                                          |
-| TB1EPI               | `EchoTime`, `FlipAngle`, `TotalReadoutTime`, `MixingTime`                                            |
-| TB1AFI               | `RepetitionTime`                                                                                     |
-| TB1TFL               |                                                                                                      |
-| TB1RFM               |                                                                                                      |
-| TB1SRGE<sup>\*</sup> | `FlipAngle`, `InversionTime`, `RepetitionTimeExcitation`, `RepetitionTimePreperation`, `NumberShots` |
-| RB1COR               |                                                                                                      |
-
-<sup>\*</sup> Please see TB1SRGE-specific notes for the calculation of `NumberShots`.
-
 ### Metadata requirements for qMRI maps
 
 As qMRI maps are stored as derivatives, they are subjected to the metadata requirements of
-[derived datasets](../modality-agnostic-files.md#derived-dataset-and-pipeline-description).
+[derived datasets](../modality-agnostic-files/dataset-description.md#derived-dataset-and-pipeline-description).
 
 An example `dataset_description.json` for a qMRI map derivatives directory:
 
@@ -326,7 +285,7 @@ A guide for using macros can be found at
 
 `dataset_description.json`:
 
-```text
+```json
 {
   "Name": "qMRLab Outputs",
   "BIDSVersion": "1.5.0",
@@ -447,7 +406,7 @@ This approach aims at:
 -   keeping an inheritance track of the qMRI methods described within the specification.
 
 | **File-collection suffix** | **If REQUIRED metadata == Value** | **OPTIONAL metadata (`entity`/`fixed`)** | **Derived application name (NOT a suffix)** |
-|----------------------------|-----------------------------------|------------------------------------------|---------------------------------------------|
+| -------------------------- | --------------------------------- | ---------------------------------------- | ------------------------------------------- |
 | VFA                        | `PulseSequenceType` == `SPGR`     |                                          | DESPOT1                                     |
 | VFA                        | `PulseSequenceType` == `SSFP`     | `SpoilingRFPhaseIncrement` (`fixed`)     | DESPOT2                                     |
 | MP2RAGE                    |                                   | `EchoTime` (`echo`)                      | MP2RAGE-ME                                  |
@@ -526,12 +485,13 @@ as an input to offline calculation of a `T1map` using a dictionary lookup approa
 provided by the stock sequence. Instead, the `magnitude` and `phase` images are exported. Please
 see the relevant discussion at [qMRLab issue #255](https://github.com/qMRLab/qMRLab/issues/255).
 
-Therefore, the `UNIT1` image provided by the scanner is RECOMMENDED to be stored under the `anat`
-raw dataset directory along with the `MP2RAGE` file collection and to be used as the primary input
-for quantifying a `T1map`.
+Therefore, the `UNIT1` image provided by the scanner
+SHOULD be stored under the `anat` in a raw BIDS dataset
+along with the `MP2RAGE` file collection
+and to be used as the primary input for quantifying a `T1map`.
 
-If an additional `UNIT1` image is calculated offline, then the output is to be stored in the
-`derivatives` directory with necessary provenance information.
+If an additional `UNIT1` image is calculated offline,
+then the output MUST be stored in a derivative BIDS dataset with necessary provenance information.
 
 ##### `NumberShots` metadata field
 
@@ -565,178 +525,3 @@ When not accessible, `2 X EchoTime` can be used as a surrogate.
 
 Further information about other `MP2RAGE` qMRI protocol fields can be found in the
 [qMRLab documentation](https://qmrlab.readthedocs.io/en/master/protocols.html#mp2rage).
-
-#### `TB1SRGE` specific notes
-
-Calculation of `before` and `after` entries for `NumberShots` metadata field of `TB1SRGE` is more involved than that of `MP2RAGE`.
-The formula can be found in a
-[reference implementation](https://github.com/JosePMarques/MP2RAGE-related-scripts/blob/a405df30ac2c617d29d8b1b16025aaa911e86370/DemoForR1Correction.m#L17),
-which requires information about `BaseResolution` (that is, image matrix size in PE direction),
-partial Fourier fraction in the PE direction, number of reference lines for parallel imaging acceleration,
-and the parallel imaging acceleration factor in PE direction.
-
-### Radiofrequency (RF) field mapping
-
-Some RF file collections call for the use of special notations that cannot be resolved by
-by entities that can generalize to other applications.
-Instead of introducing an entity that is exclusive to a single application,
-method developers who commonly use these file collections for the `MPM` application reached
-the consensus on the use of `acq` entity to distinguish individual files.
-These suffixes include: `TB1AFI`, `TB1TFL`, `TB1RFM`, and `RB1COR`.
-
-#### `TB1EPI` specific notes
-
-The `flip` and `echo` entities MUST be used to distinguish images with this suffix.
-The use of `flip` follows the default convention. However, this suffix defines a
-specific use case for the `echo` entity:
-
-| **`echo-1`**         | **`echo-2`**                |
-| -------------------- | --------------------------- |
-| Lower `EchoTime`     | Higher `EchoTime`           |
-| Spin Echo (SE) image | Stimulated Echo (STE) image |
-
-At each `FlipAngle`, the `TB1EPI` suffix lists two images acquired at two echo times.
-The first echo is a spin echo (SE) formed by the pulses alpha-2alpha. However, the
-second echo in this method is generated in a different fashion compared to a typical
-MESE acquisition. The second echo is a stimulated echo (STE) that is formed by an
-additional alpha pulse (that is, alpha-2alpha-alpha).
-
-The `FlipAngle` value corresponds to the nominal flip angle value of the STE pulse.
-The nominal FA value of the SE pulse is twice this value.
-
-Note that the following metadata fields MUST be defined in the accompanying JSON
-files:
-
-| **Field name**     | **Definition**                                                                                                                                 |
-| ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| `TotalReadoutTime` | The effective readout length defined as `EffectiveEchoSpacing * PEReconMatrix`, with `EffectiveEchoSpacing = TrueEchoSpacing / PEacceleration` |
-| `MixingTime`       | Time interval between the SE and STE pulses                                                                                                    |
-
-To properly identify constituents of this particular method, values of the `echo`
-entity MUST index the images as follows:
-
-<!-- This block generates a file tree.
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_filetree_example(
-   {
-    "sub-01": {
-        "fmap": {
-            "sub-01_echo-1_flip-1_TB1EPI.nii.gz": "# SE",
-            "sub-01_echo-1_flip-1_TB1EPI.json":   "",
-            "sub-01_echo-2_flip-1_TB1EPI.nii.gz": "# STE",
-            "sub-01_echo-2_flip-1_TB1EPI.json":   "",
-            "sub-01_echo-1_flip-2_TB1EPI.nii.gz": "# SE",
-            "sub-01_echo-1_flip_2_TB1EPI.json":   "",
-            "sub-01_echo-2_flip-2_TB1EPI.nii.gz": "# STE",
-            "sub-01_echo-2_flip-2_TB1EPI.json":   "",
-            },
-        },
-   }
-) }}
-
-#### `TB1AFI` specific notes
-
-This method calculates a B1<sup>+</sup> map from two images acquired at two interleaved excitation repetition times (TR).
-Note that there is no entity for the TR that can be used to label the files corresponding to the two
-repetition times and the definition of repetition time depends on the modality
-(`functional` or `anatomical`) in the specification.
-
-Therefore, to properly identify constituents of this particular method,
-values of the `acq` entity SHOULD begin with either `tr1` (lower TR) or `tr2` (higher TR)
-and MAY be followed by freeform entries:
-
-| **First `TR`**   | **Second `TR`**  | **Use case**         |
-| ---------------- | ---------------- | -------------------- |
-| `_acq-tr1`       | `_acq-tr2`       | Single acquisition   |
-| `_acq-tr1Test`   | `_acq-tr2Test`   | Acquisition `Test`   |
-| `_acq-tr1Retest` | `_acq-tr2Retest` | Acquisition `Retest` |
-
-<!-- This block generates a file tree.
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_filetree_example(
-   {
-    "sub-01": {
-        "fmap": {
-            "sub-01_acq-tr1_TB1AFI.nii.gz": "",
-            "sub-01_acq-tr1_TB1AFI.json": "",
-            "sub-01_acq-tr2_TB1AFI.nii.gz": "",
-            "sub-01_acq-tr2_TB1AFI.json": "",
-            },
-        },
-   }
-) }}
-
-#### `TB1TFL` and `TB1RFM` specific notes
-
-These suffixes describe two outputs generated by Siemens `tfl_b1_map` and `rf_map` product sequences, respectively.
-Both sequences output two images.
-The first image appears like an anatomical image and the second output is a scaled flip angle map.
-
-To properly identify files of this particular file collection,
-values of the `acq` entity SHOULD begin with either `anat` or `famp` and MAY be followed by freeform entries:
-
-| **Anatomical (like) image** | **Scaled flip angle map** | **Use case**         |
-| --------------------------- | ------------------------- | -------------------- |
-| `_acq-anat`                 | `_acq-famp`               | Single acquisition   |
-| `_acq-anatTest`             | `_acq-fampTest`           | Acquisition `Test`   |
-| `_acq-anatRetest`           | `_acq-fampRetest`         | Acquisition `Retest` |
-
-<!-- This block generates a file tree.
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_filetree_example(
-   {
-    "sub-01": {
-        "fmap": {
-            "sub-01_acq-anat_TB1TFL.nii.gz": "",
-            "sub-01_acq-anat_TB1TFL.json": "",
-            "sub-01_acq-famp_TB1TFL.nii.gz": "",
-            "sub-01_acq-famp_TB1TFL.json": "",
-            },
-        },
-   }
-) }}
-
-The example above applies to the `TB1RFM` suffix as well.
-
-#### `RB1COR` specific notes
-
-This method generates a receive sensitivity map by combining two low resolution images
-collected sequentially by two different RF coils in receive mode (the body and the head coil)
-with otherwise identical acquisition parameters.
-To correct for dynamic changes in the receive sensitivity over time due to, for example,
-subject motion, separate receive sensitivity maps may be acquired for each anatomical
-acquisition in a file collection.
-
-To properly identify constituents of this particular method, values of the `acq`
-entity SHOULD begin with either `body` or `head` and MAY be followed by freeform
-entries:
-
-| **Body coil**  | **Head coil**  | **Use case**       |
-| -------------- | -------------- | ------------------ |
-| `_acq-body`    | `_acq-head`    | Single acquisition |
-| `_acq-bodyMTw` | `_acq-headMTw` | `MTw` for `MPM`    |
-| `_acq-bodyPDw` | `_acq-headPDw` | `PDw` for `MPM`    |
-| `_acq-bodyT1w` | `_acq-headT1w` | `T1w` for `MPM`    |
-
-<!-- This block generates a file tree.
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_filetree_example(
-   {
-    "sub-01": {
-        "fmap": {
-            "sub-01_acq-body_RB1COR.nii.gz": "# Body coil",
-            "sub-01_acq-body_RB1COR.json": "",
-            "sub-01_acq-head_RB1COR.nii.gz": "# Head coil",
-            "sub-01_acq-head_RB1COR.json": "",
-            },
-        },
-   }
-) }}

@@ -47,7 +47,7 @@ ASLFlipAngleNiftiLength:
     message: |
       The number of values for 'FlipAngle' for this file does not match the 4th dimension of the NIfTI header.
       'FlipAngle' is the flip angle (FA) for the acquisition, specified in degrees.
-      Corresponds to: DICOM Tag 0018, 1314 `Flip Angle`.
+      Corresponds to: [DICOM Tag 0018, 1314](https://dicomlookup.com/dicomtags/(0018,1314)) `Flip Angle`.
       The data type number may apply to files from any MRI modality concerned with a single value for this field,
       or to the files in a file collection where the value of this field is iterated using the flip entity.
       The data type array provides a value for each volume in a 4D dataset and should only be used when the
@@ -70,7 +70,7 @@ ASLFlipAngleASLContextLength:
       The number of values for 'FlipAngle' for this file does not match the number of volumes in the
       associated 'aslcontext.tsv'.
       'FlipAngle' is the flip angle (FA) for the acquisition, specified in degrees.
-      Corresponds to: DICOM Tag 0018, 1314 `Flip Angle`.
+      Corresponds to: [DICOM Tag 0018, 1314](https://dicomlookup.com/dicomtags/(0018,1314)) `Flip Angle`.
       The data type number may apply to files from any MRI modality concerned with a single value for this field,
       or to the files in a file collection where the value of this field is iterated using the flip entity.
       The data type array provides a value for each volume in a 4D dataset and should only be used when the volume
@@ -196,21 +196,23 @@ ASLBackgroundSuppressionNumberPulses:
     - length(sidecar.BackgroundSuppressionPulseTime) == sidecar.BackgroundSuppressionNumberPulses
 
 # 181
-ASLTotalAcquiredVolumesASLContextLength:
+ASLTotalAcquiredPairsASLContextLength:
   issue:
     code: TOTAL_ACQUIRED_VOLUMES_NOT_CONSISTENT
     message: |
-      The number of values for 'TotalAcquiredVolumes' for this file does not match number of
-      volumes in the associated 'aslcontext.tsv'.
-      'TotalAcquiredVolumes' is the original number of 3D volumes acquired for each volume defined in the
-      associated 'aslcontext.tsv'.
+      The number of values for 'TotalAcquiredPairs' for this file does not match number of
+      control-label pairs in the associated 'aslcontext.tsv'.
+      'TotalAcquiredPairs' is the original number of control-label pairs
+      defined in the associated 'aslcontext.tsv'.
     level: warning
   selectors:
     - suffix == "asl"
     - type(associations.aslcontext) != "null"
-    - '"TotalAcquiredVolumes" in sidecar'
+    - '"TotalAcquiredPairs" in sidecar'
+    - count(associations.aslcontext.volume_type, "control") > 0
   checks:
-    - aslcontext.n_rows == sidecar.TotalAcquiredVolumes
+    - count(associations.aslcontext.volume_type, "control") == sidecar.TotalAcquiredPairs
+    - count(associations.aslcontext.volume_type, "label") == sidecar.TotalAcquiredPairs
 
 # 184
 PostLabelingDelayGreater:
@@ -223,7 +225,7 @@ PostLabelingDelayGreater:
     - suffix == "asl"
     - sidecar.PostLabelingDelay != null
   checks:
-    - sidecar.PostLabelingDelay <= 10
+    - max(sidecar.PostLabelingDelay) <= 10
 
 # 186
 BolusCutOffDelayTimeGreater:
@@ -235,7 +237,7 @@ BolusCutOffDelayTimeGreater:
   selectors:
     - sidecar.BolusCutOffDelayTime != null
   checks:
-    - sidecar.BolusCutOffDelayTime <= 10
+    - max(sidecar.BolusCutOffDelayTime) <= 10
 
 # 187
 LabelingDurationGreater:
@@ -247,7 +249,7 @@ LabelingDurationGreater:
   selectors:
     - sidecar.LabelingDuration != null
   checks:
-    - sidecar.LabelingDuration <= 10
+    - max(sidecar.LabelingDuration) <= 10
 
 # 196
 ASLEchoTimeASLContextLength:

@@ -4,6 +4,21 @@
 
 ### Dataset level
 
+# 101
+# This check should probably be replaced by making sure rules.files.common.core.README is
+# hit, but this is the short path forward.
+ReadmeFileMissing:
+  issue:
+    code: README_FILE_MISSING
+    message: |
+      The recommended file /README is missing.
+      See Section 03 (Modality agnostic files) of the BIDS specification.
+    level: warning
+  selectors:
+    - path == '/dataset_description.json'
+  checks:
+    - exists(["README", "README.txt", "README.md", "README.rst"], "dataset") > 0
+
 # 102
 TooFewAuthors:
   issue:
@@ -18,6 +33,19 @@ TooFewAuthors:
     - path == '/dataset_description.json'
   checks:
     - length(json.Authors) > 1
+
+# 115
+EmptyDatasetName:
+  issue:
+    code: EMPTY_DATASET_NAME
+    message: |
+      The Name field of dataset_description.json is present but empty of visible characters.
+    level: warning
+  selectors:
+    - path == '/dataset_description.json'
+    - type(json.Name) != 'null'
+  checks:
+    - match(json.Name, '\S')
 
 ### Functional files
 

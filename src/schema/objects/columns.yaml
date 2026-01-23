@@ -1,9 +1,9 @@
 ---
 HED:
   name: HED
-  display_name: HED Tag
+  display_name: HED
   description: |
-    Hierarchical Event Descriptor (HED) Tag.
+    Hierarchical Event Descriptor (HED) tags.
     See the [HED Appendix](SPEC_ROOT/appendices/hed.md) for details.
   type: string
 abbreviation:
@@ -19,7 +19,7 @@ acq_time__scans:
     Acquisition time refers to when the first data point in each run was acquired.
     Furthermore, if this header is provided, the acquisition times of all files
     from the same recording MUST be identical.
-    Datetime format and their anonymization are described in
+    Datetime format and their deidentification are described in
     [Units](SPEC_ROOT/common-principles.md#units).
   type: string
   format: datetime
@@ -28,7 +28,7 @@ acq_time__sessions:
   display_name: Session acquisition time
   description: |
     Acquisition time refers to when the first data point of the first run was acquired.
-    Datetime format and their anonymization are described in
+    Datetime format and their deidentification are described in
     [Units](SPEC_ROOT/common-principles.md#units).
   type: string
   format: datetime
@@ -38,16 +38,25 @@ age:
   description: |
     Numeric value in years (float or integer value).
 
-    It is recommended to tag participant ages that are 89 or higher as 89+,
-    for privacy purposes.
-  type: number
-  unit: year
+    For privacy purposes, participant ages should be capped at 89.
+    Using "89+" for ages above 88 is DEPRECATED.
+  definition: {
+    "LongName": "Subject age",
+    "Description": "Subject age in postnatal years",
+    "Format": "number",
+    "Units": "year",
+    "Maximum": 89,
+  }
 cardiac:
   name: cardiac
   display_name: Cardiac measurement
   description: |
     continuous pulse measurement
-  type: number
+  definition: {
+    "Description": "continuous pulse measurement",
+    "Format": "number",
+    "Units": "mV"
+  }
 channel:
   name: channel
   display_name: Channel
@@ -83,25 +92,26 @@ component:
     - $ref: objects.enums.quat_y.value
     - $ref: objects.enums.quat_z.value
     - $ref: objects.enums.quat_w.value
-    - n/a
+coordinate_system:
+  name: coordinate_system
+  display_name: Coordinate System
+  description: |
+    Name of the coordinate system defined in `coordsystem.json` in which the electrode's
+    `x`, `y`, and (optionally) `z` coordinates are given.
+  type: string
 detector__channels:
   name: detector
   display_name: Detector Name
   description: |
     Name of the detector as specified in the `*_optodes.tsv` file.
     `n/a` for channels that do not contain NIRS signals (for example, acceleration).
-  anyOf:
-    - type: string
-    - type: string
-      enum:
-        - n/a
+  type: string
 detector_type:
   name: detector_type
   display_name: Detector Type
   description: |
     The type of detector. Only to be used if the field `DetectorType` in `*_nirs.json` is set to `mixed`.
-  anyOf:
-    - type: string
+  type: string
 derived_from:
   name: derived_from
   display_name: Derived from
@@ -109,7 +119,22 @@ derived_from:
     `sample-<label>` entity from which a sample is derived,
     for example a slice of tissue (`sample-02`) derived from a block of tissue (`sample-01`).
   type: string
-  pattern: ^sample-[0-9a-zA-Z]+$
+  pattern: ^sample-[0-9a-zA-Z+]+$
+desc_id:
+  name: desc_id
+  display_name: Description Label
+  description: |
+    A `desc-<label>` entity present in the derivatives dataset.
+
+    The `desc_id` column contains the labels used with the
+    [`desc` entity](SPEC_ROOT/appendices/entities.md#desc),
+    within the particular nesting that the `descriptions.tsv` file is placed.
+
+    For example, if the `descriptions.tsv` file is placed at the root of the derivative dataset,
+    its `desc_id` column SHOULD contain all labels of the `desc` entity)
+    used across the entire derivative dataset.
+  type: string
+  pattern: ^desc-[0-9a-zA-Z+]+$
 description:
   name: description
   display_name: Description
@@ -121,6 +146,12 @@ description__optode:
   display_name: Description
   description: |
     Free-form text description of the optode, or other information of interest.
+  type: string
+description__entities:
+  name: description
+  display_name: Description
+  description: |
+    Free-form text description of the entity's label (defined in `<entity>_id` column).
   type: string
 dimension:
   name: dimension
@@ -137,13 +168,40 @@ duration:
     Must always be either zero or positive (or `n/a` if unavailable).
     A "duration" value of zero implies that the delta function or event is so
     short as to be effectively modeled as an impulse.
-  anyOf:
-    - type: number
-      unit: s
-      minimum: 0
-    - type: string
-      enum:
-        - n/a
+  type: number
+  unit: s
+  minimum: 0
+x_coordinate:
+  name: x_coordinate
+  display_name: Gaze x-coordinate
+  description: |
+    Gaze position x-coordinate of the recorded eye, in the coordinate
+    units specified in the corresponding metadata sidecar.
+  type: number
+y_coordinate:
+  name: y_coordinate
+  display_name: Gaze y-coordinate
+  description: |
+    Gaze position y-coordinate of the recorded eye, in the coordinate
+    units specified in the corresponding metadata sidecar.
+  type: number
+pupil_size:
+  name: pupil_size
+  display_name: Pupil size
+  description: |
+    Pupil size, as area or diameter, of the recorded eye, in the
+    units specified in the corresponding metadata sidecar.
+    It is RECOMMENDED to indicate the particular type of pupil size that is
+    being recorded in the `Description` field of this column.
+    It is RECOMMENDED to specify the `Units` field corresponding to this column.
+  type: number
+timestamp__eyetrack:
+  name: timestamp
+  display_name: Eye-tracking recording timestamp
+  description: |
+    Timestamp issued by the eye-tracker indexing the continuous recordings corresponding to
+    the sampled eye.
+  type: number
 filename:
   name: filename
   display_name: Filename
@@ -158,12 +216,41 @@ group__channel:
     Which group of channels (grid/strip/seeg/depth) this channel belongs to.
     This is relevant because one group has one cable-bundle and noise can be shared.
     This can be a name or number.
+  type: string
+group__emg:
+  name: group
+  display_name: Electrode or channel group
+  description: |
+    Which group the electrode or channel belongs to (typically this indicates electrodes
+    or bipolar channels on the same grid, strip, or other device).
   anyOf:
     - type: string
     - type: number
 handedness:
   name: handedness
   display_name: Subject handedness
+  definition: {
+    "LongName": "Subject handedness",
+    "Description": "String value indicating one of \"left\", \"right\", or \"ambidextrous\".",
+    "Format": "string",
+    "Levels": {
+      "left": "Left-handed",
+      "l": "Left-handed",
+      "L": "Left-handed",
+      "LEFT": "Left-handed",
+      "Left": "Left-handed",
+      "right": "Right-handed",
+      "r": "Right-handed",
+      "R": "Right-handed",
+      "RIGHT": "Right-handed",
+      "Right": "Right-handed",
+      "ambidextrous": "Ambidextrous",
+      "a": "Ambidextrous",
+      "A": "Ambidextrous",
+      "AMBIDEXTROUS": "Ambidextrous",
+      "Ambidextrous": "Ambidextrous",
+    }
+  }
   description: |
     String value indicating one of "left", "right", "ambidextrous".
 
@@ -173,25 +260,6 @@ handedness:
 
     For "ambidextrous", use one of these values: `ambidextrous`, `a`, `A`, `AMBIDEXTROUS`,
     `Ambidextrous`.
-  type: string
-  # TODO: Add definitions for these values. (perhaps don't specify)
-  enum:
-    - left
-    - l
-    - L
-    - LEFT
-    - Left
-    - right
-    - r
-    - R
-    - RIGHT
-    - Right
-    - ambidextrous
-    - a
-    - A
-    - AMBIDEXTROUS
-    - Ambidextrous
-    - n/a
 hemisphere:
   name: hemisphere
   display_name: Electrode hemisphere
@@ -207,15 +275,11 @@ high_cutoff:
   description: |
     Frequencies used for the low-pass filter applied to the channel in Hz.
     If no low-pass filter applied, use `n/a`.
-    Note that hardware anti-aliasing in A/D conversion of all MEG/EEG electronics
+    Note that hardware anti-aliasing in A/D conversion of all MEG/EEG/EMG electronics
     applies a low-pass filter; specify its frequency here if applicable.
-  anyOf:
-    - type: number
-      unit: Hz
-      minimum: 0
-    - type: string
-      enum:
-        - n/a
+  type: number
+  unit: Hz
+  minimum: 0
 hplc_recovery_fractions:
   name: hplc_recovery_fractions
   display_name: HPLC recovery fractions
@@ -236,18 +300,23 @@ index:
   description: |
     The label integer index.
   type: integer
+interelectrode_distance:
+  name: interelectrode_distance
+  display_name: Interelectrode Distance
+  description: |
+    Distance between adjacent electrodes (in a pair or grid) that are rigidly attached to
+    the same sensor device, or between the `signal_electrode` and its `reference`
+    when each is independently placed.
+  type: number
+  unit: mm
 low_cutoff:
   name: low_cutoff
   display_name: Low cutoff
   description: |
     Frequencies used for the high-pass filter applied to the channel in Hz.
     If no high-pass filter applied, use `n/a`.
-  anyOf:
-    - type: number
-      unit: Hz
-    - type: string
-      enum:
-        - n/a
+  type: number
+  unit: Hz
 manufacturer:
   name: manufacturer
   display_name: Manufacturer
@@ -261,6 +330,13 @@ mapping:
   description: |
     Corresponding integer label in the standard BIDS label lookup.
   type: integer
+message:
+  name: message
+  display_name: Message
+  description: |
+    Brief free-text description of a message (for example in a log generated
+    by a device), or other information of interest.
+  type: string
 material:
   name: material
   display_name: Electrode material
@@ -337,6 +413,8 @@ onset:
     (for example, "dummy volumes" in BOLD fMRI),
     a time of 0 corresponds to the first stored data point and not the first
     acquired data point.
+
+    A value of `n/a` value indicates the onset time is unknown or unavailable.
   type: number
   unit: s
 pathology:
@@ -347,7 +425,10 @@ pathology:
     When different from `healthy`, pathology SHOULD be specified.
     The pathology may be specified in either `samples.tsv` or
     `sessions.tsv`, depending on whether the pathology changes over time.
-  type: string
+  definition: {
+    "Description": "Description of the pathology of the sample or type of control.",
+    "Format": "string",
+  }
 participant_id:
   name: participant_id
   display_name: Participant ID
@@ -355,7 +436,33 @@ participant_id:
     A participant identifier of the form `sub-<label>`,
     matching a participant entity found in the dataset.
   type: string
-  pattern: ^sub-[0-9a-zA-Z]+$
+  pattern: ^sub-[0-9a-zA-Z+]+$
+onset__physioevents:
+  name: onset
+  display_name: Onset of events in physiological recordings
+  description: |
+    Onset of the event relative to the timeline defined by the corresponding
+    physiological recording file.
+
+    Typically, it will correspond to a timestamp issued by the recording device.
+  type: number
+placement_description:
+  name: placement_description
+  display_name: Placement Scheme Description
+  description: |
+    Additional details of the approach to EMG sensor placement.
+    See description of the `EMGPlacementSchemeDescription` field in `*_emg.json`.
+  type: string
+placement_scheme:
+  name: placement_scheme
+  display_name: Placement Scheme
+  description: |
+    A description of the electrode placement procedure used.
+    See description of the `EMGPlacementScheme` field in `*_emg.json`.
+  type: string
+  enum:
+    - measured
+    - other
 placement__motion:
   name: placement
   display_name: Placement
@@ -379,6 +486,16 @@ reference__eeg:
     This column is not needed when it is common to all channels.
     In that case the reference electrode(s) can be specified in `*_eeg.json` as `EEGReference`).
   type: string
+# reference column for channels.tsv files for EMG data
+reference__emg:
+  name: reference
+  display_name: Reference electrode
+  description: |
+    The reference for the given channel.
+    When the reference is an electrode in `*_electrodes.tsv`, use the name of that electrode.
+    For channels originating from bipolar devices, use `"bipolar"`.
+    For non-EMG channels (for example, trigger channels, microphones) use `"n/a"`.
+  type: string
 # reference column for channels.tsv files for iEEG data
 reference__ieeg:
   name: reference
@@ -386,11 +503,7 @@ reference__ieeg:
   description: |
     Specification of the reference (for example, `mastoid`, `ElectrodeName01`, `intracranial`, `CAR`, `other`, `n/a`).
     If the channel is not an electrode channel (for example, a microphone channel) use `n/a`.
-  anyOf:
-    - type: string
-    - type: string
-      enum:
-        - n/a
+  type: string
 reference_frame:
   name: reference_frame
   display_name: Reference frame
@@ -398,17 +511,17 @@ reference_frame:
     Specification of a reference frame in which the motion data are to be interpreted.
     The description of the levels in `*_channels.json` SHOULD use `RotationRule`,
     `RotationOrder`, and `SpatialAxes`, and MAY use `Description` for the specification.
-  anyOf:
-    - type: string
-    - type: string
-      enum:
-        - n/a
+  type: string
 respiratory:
   name: respiratory
   display_name: Respiratory measurement
   description: |
     continuous breathing measurement
-  type: number
+  definition: {
+    "Description": "continuous measurements by respiration belt",
+    "Format": "number",
+    "Units": "mV"
+  }
 response_time:
   name: response_time
   display_name: Response time
@@ -416,12 +529,8 @@ response_time:
     Response time measured in seconds.
     A negative response time can be used to represent preemptive responses and
     `n/a` denotes a missed response.
-  anyOf:
-    - type: number
-      unit: s
-    - type: string
-      enum:
-        - n/a
+  type: number
+  unit: s
 sample_id:
   name: sample_id
   display_name: Sample ID
@@ -429,7 +538,7 @@ sample_id:
     A sample identifier of the form `sample-<label>`,
     matching a sample entity found in the dataset.
   type: string
-  pattern: ^sample-[0-9a-zA-Z]+$
+  pattern: ^sample-[0-9a-zA-Z+]+$
 sample_type:
   name: sample_type
   display_name: Sample type
@@ -461,7 +570,7 @@ session_id:
     A session identifier of the form `ses-<label>`,
     matching a session found in the dataset.
   type: string
-  pattern: ^ses-[0-9a-zA-Z]+$
+  pattern: ^ses-[0-9a-zA-Z+]+$
 sex:
   name: sex
   display_name: Sex
@@ -473,25 +582,28 @@ sex:
     For "female", use one of these values: `female`, `f`, `F`, `FEMALE`, `Female`.
 
     For "other", use one of these values: `other`, `o`, `O`, `OTHER`, `Other`.
-  type: string
-  # TODO: Add definitions for these values. (perhaps don't specify)
-  enum:
-    - male
-    - m
-    - M
-    - MALE
-    - Male
-    - female
-    - f
-    - F
-    - FEMALE
-    - Female
-    - other
-    - o
-    - O
-    - OTHER
-    - Other
-    - n/a
+  definition: {
+    "LongName": "sex",
+    "Description": "String value indicating phenotypical sex.",
+    "Format": "string",
+    "Levels": {
+      "F": "Female",
+      "FEMALE": "Female",
+      "Female": "Female",
+      "f": "Female",
+      "female": "Female",
+      "M": "Male",
+      "MALE": "Male",
+      "Male": "Male",
+      "m": "Male",
+      "male": "Male",
+      "O": "Other",
+      "OTHER": "Other",
+      "Other": "Other",
+      "o": "Other",
+      "other": "Other",
+    }
+  }
 short_channel:
   name: short_channel
   display_name: Short Channel
@@ -500,6 +612,13 @@ short_channel:
     The total number of channels listed as short channels
     SHOULD be stored in `ShortChannelCount` in `*_nirs.json`.
   type: boolean
+signal_electrode:
+  name: signal_electrode
+  display_name: Signal electrode
+  description: |
+    The name of the electrode from which the `reference`'s signal is subtracted to yield the channel's data.
+    For channels originating from bipolar devices, the `signal_electrode` MAY be the same as the channel `name`.
+  type: string
 size:
   name: size
   display_name: Electrode size
@@ -515,29 +634,20 @@ software_filters:
     (for example, `SSS`, `SpatialCompensation`).
     Note that parameters should be defined in the general MEG sidecar .json file.
     Indicate `n/a` in the absence of software filters applied.
-  anyOf:
-    - type: string
-    - type: string
-      enum:
-        - n/a
+  type: string
 source__channels:
   name: source
   display_name: Source name
   description: |
     Name of the source as specified in the `*_optodes.tsv` file.
     `n/a` for channels that do not contain fNIRS signals (for example, acceleration).
-  anyOf:
-    - type: string
-    - type: string
-      enum:
-        - n/a
+  type: string
 source__optodes:
   name: source_type
   display_name: Source type
   description: |
     The type of source. Only to be used if the field `SourceType` in `*_nirs.json` is set to `mixed`.
-  anyOf:
-    - type: string
+  type: string
 species:
   name: species
   display_name: Species
@@ -547,7 +657,11 @@ species:
     (for example, `homo sapiens`, `mus musculus`, `rattus norvegicus`).
     For backwards compatibility, if `species` is absent, the participant is assumed to be
     `homo sapiens`.
-  type: string
+  definition: {
+    "Description":
+      "Latin binomial species name from the NCBI Taxonomy (https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi).",
+    "Format": "string",
+  }
 status:
   name: status
   display_name: Channel status
@@ -560,7 +674,6 @@ status:
   enum:
     - $ref: objects.enums.good.value
     - $ref: objects.enums.bad.value
-    - n/a
 status_description:
   name: status_description
   display_name: Channel status description
@@ -575,7 +688,7 @@ stim_file:
     Represents the location of the stimulus file (such as an image, video, or
     audio file) presented at the given onset time.
     There are no restrictions on the file formats of the stimuli files,
-    but they should be stored in the `/stimuli` directory
+    but they should be stored in the `/stimuli/` directory
     (under the root directory of the dataset; with optional subdirectories).
     The values under the `stim_file` column correspond to a path relative to
     `/stimuli`.
@@ -588,16 +701,27 @@ strain:
   description: |
     For species different from `homo sapiens`, string value indicating
     the strain of the species, for example: `C57BL/6J`.
-  type: string
+  definition: {
+    "Description": "Name of the strain of the species.",
+    "Format": "string",
+  }
 strain_rrid:
   name: strain_rrid
   display_name: Strain RRID
   description: |
     For species different from `homo sapiens`, research resource identifier
-    ([RRID](https://scicrunch.org/resources/data/source/nlx_154697-1/search))
+    ([RRID](https://rrid.site/data/source/nlx_154697-1/search))
     of the strain of the species, for example: `RRID:IMSR_JAX:000664`.
   type: string
   format: rrid
+target_muscle:
+  name: target_muscle
+  display_name: Target muscle
+  description: |
+    Name of the muscle(s) from which the EMG signal in this channel is believed to originate.
+    When exact muscle is unknown (such as when using electrode grids that cover multiple muscles),
+    groups of muscles may be named instead (for example "flexors of the left forearm").
+  type: string
 time:
   name: time
   display_name: Time
@@ -628,7 +752,11 @@ trigger:
   display_name: Trigger
   description: |
     continuous measurement of the scanner trigger signal
-  type: number
+  definition: {
+    "Description": "continuous measurement of the scanner trigger signal",
+    "Format": "number",
+    "Units": "arbitrary"
+  }
 # type column in channels.tsv files
 type__channels:
   name: type
@@ -702,7 +830,6 @@ type__optodes:
   enum:
     - $ref: objects.enums.source.value
     - $ref: objects.enums.detector.value
-    - n/a
 units:
   name: units
   display_name: Units
@@ -750,6 +877,7 @@ volume_type:
     - $ref: objects.enums.m0scan.value
     - $ref: objects.enums.deltam.value
     - $ref: objects.enums.cbf.value
+    - $ref: objects.enums.noRF.value
 wavelength_nominal:
   name: wavelength_nominal
   display_name: Wavelength nominal
@@ -757,11 +885,7 @@ wavelength_nominal:
     Specified wavelength of light in nm.
     `n/a` for channels that do not contain raw NIRS signals (for example, acceleration).
     This field is equivalent to `/nirs(i)/probe/wavelengths` in the SNIRF specification.
-  anyOf:
-    - type: number
-    - type: string
-      enum:
-        - n/a
+  type: number
 wavelength_actual:
   name: wavelength_actual
   display_name: Wavelength actual
@@ -802,71 +926,43 @@ z:
   display_name: Z position
   description: |
     Recorded position along the z-axis.
-  anyOf:
-    - type: number
-    - type: string
-      enum:
-        - n/a
+  type: number
 x__optodes:
   name: x
   display_name: X position
   description: |
     Recorded position along the x-axis.
     `"n/a"` if not available.
-  anyOf:
-    - type: number
-    - type: string
-      enum:
-        - n/a
+  type: number
 y__optodes:
   name: y
   display_name: Y position
   description: |
     Recorded position along the y-axis.
     `"n/a"` if not available.
-  anyOf:
-    - type: number
-    - type: string
-      enum:
-        - n/a
+  type: number
 z__optodes:
   name: z
   display_name: Z position
   description: |
     Recorded position along the z-axis.
     `"n/a"` if not available.
-  anyOf:
-    - type: number
-    - type: string
-      enum:
-        - n/a
+  type: number
 template_x:
   name: template_x
   display_name: X template position
   description: |
     Assumed or ideal position along the x axis.
-  anyOf:
-    - type: number
-    - type: string
-      enum:
-        - n/a
+  type: number
 template_y:
   name: template_y
   display_name: Y template position
   description: |
     Assumed or ideal position along the y axis.
-  anyOf:
-    - type: number
-    - type: string
-      enum:
-        - n/a
+  type: number
 template_z:
   name: template_z
   display_name: Z template position
   description: |
     Assumed or ideal position along the z axis.
-  anyOf:
-    - type: number
-    - type: string
-      enum:
-        - n/a
+  type: number

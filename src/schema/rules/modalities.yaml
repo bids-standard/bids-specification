@@ -10,6 +10,9 @@ mri:
 eeg:
   datatypes:
     - eeg
+emg:
+  datatypes:
+    - emg
 ieeg:
   datatypes:
     - ieeg
@@ -31,3 +34,6 @@ motion:
 nirs:
   datatypes:
     - nirs
+mrs:
+  datatypes:
+    - mrs

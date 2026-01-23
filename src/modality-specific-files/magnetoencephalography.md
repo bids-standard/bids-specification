@@ -66,7 +66,7 @@ with split files.
 If there are multiple parts of a recording and the optional `scans.tsv` is provided,
 remember to list all files separately in `scans.tsv` and that the entries for the
 `acq_time` column in `scans.tsv` MUST all be identical, as described in
-[Scans file](../modality-agnostic-files.md#scans-file).
+[Scans file](../modality-agnostic-files/data-summary-files.md#scans-file).
 
 The Neuromag/Elekta/Megin system may also produce datasets that require a set of
 `crosstalk` and `calibration` files to be used properly (see also filename templates above).
@@ -187,7 +187,7 @@ A guide for using macros can be found at
 
 #### Specific EEG fields
 
-If recorded with MEG, see [Recording EEG simultaneously with MEG](#recording-eeg-simultaneously-with-meg)
+If recorded with MEG, see [Recording EEG simultaneously with MEG](#recording-ieeg-simultaneously-with-meg)
 SHOULD be present:
 
 <!-- This block generates a metadata table.
@@ -234,7 +234,7 @@ A guide for using macros can be found at
 ```
 
 Note that the date and time information SHOULD be stored in the Study key file
-(`scans.tsv`), see [Scans file](../modality-agnostic-files.md#scans-file).
+(`scans.tsv`), see [Scans file](../modality-agnostic-files/data-summary-files.md#scans-file).
 Date time information MUST be expressed as indicated in [Units](../common-principles.md#units)
 
 ## Channels description (`*_channels.tsv`)
@@ -311,12 +311,12 @@ Examples of free text for field `description`:
 
 ### Example `*_channels.tsv`
 
-```Text
-name type units description
-VEOG VEOG V vertical EOG
-FDI EMG V left first dorsal interosseous
-UDIO001 TRIG V analog trigger signal
-UADC001 AUDIO V envelope of audio signal presented to participant
+```tsv
+name	type	units	description
+VEOG	VEOG	V	vertical EOG
+FDI	EMG	V	left first dorsal interosseous
+UDIO001	TRIG	V	analog trigger signal
+UADC001	AUDIO	V	envelope of audio signal presented to participant
 ```
 
 ## Coordinate System JSON (`*_coordsystem.json`)
@@ -343,7 +343,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("meg.MEGCoordsystemWithEEG") }}
+{{ MACROS___make_json_table("json.meg.MEGCoordsystemWithEEG") }}
 
 Head localization coils:
 
@@ -355,7 +355,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("meg.MEGCoordsystemHeadLocalizationCoils") }}
+{{ MACROS___make_json_table("json.meg.MEGCoordsystemHeadLocalizationCoils") }}
 
 Digitized head points:
 
@@ -367,7 +367,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("meg.MEGCoordsystemDigitizedHeadPoints") }}
+{{ MACROS___make_json_table("json.meg.MEGCoordsystemDigitizedHeadPoints") }}
 
 Anatomical MRI:
 
@@ -379,7 +379,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("meg.MEGCoordsystemAnatomicalMRI") }}
+{{ MACROS___make_json_table("json.meg.MEGCoordsystemAnatomicalMRI") }}
 
 Anatomical landmarks:
 
@@ -391,7 +391,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("meg.MEGCoordsystemAnatomicalLandmarks") }}
+{{ MACROS___make_json_table("json.meg.MEGCoordsystemAnatomicalLandmarks") }}
 
 It is also RECOMMENDED that the MRI voxel coordinates of the actual anatomical
 landmarks for co-registration of MEG with structural MRI are stored in the
@@ -419,7 +419,7 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("meg.MEGCoordsystemFiducialsInformation") }}
+{{ MACROS___make_json_table("json.meg.MEGCoordsystemFiducialsInformation") }}
 
 For more information on the definition of anatomical landmarks, please visit:
     [How are the Left and Right Pre-Auricular (LPA and RPA) points defined? - FieldTrip Toolbox](https://www.fieldtriptoolbox.org/faq/how_are_the_lpa_and_rpa_points_defined/)
@@ -428,6 +428,11 @@ For more information on typical coordinate systems for MEG-MRI coregistration:
     [How are the different head and MRI coordinate systems defined? - FieldTrip Toolbox](https://www.fieldtriptoolbox.org/faq/coordsys/)
 or:
 [Coordinate Systems - Brainstorm toolbox](https://neuroimage.usc.edu/brainstorm/CoordinateSystems)
+
+`*_coordsystem.json` files SHOULD NOT be duplicated for each data file,
+for example, across multiple tasks.
+The [inheritance principle](../common-principles.md#the-inheritance-principle) MUST
+be used to find the appropriate coordinate system description for a given data file.
 
 ## Landmark photos (`*_photo.<extension>`)
 

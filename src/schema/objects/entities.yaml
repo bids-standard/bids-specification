@@ -25,6 +25,13 @@ acquisition:
     remains at the discretion of the researcher.
   type: string
   format: label
+atlas:
+  name: atlas
+  display_name: Atlas
+  description: |
+    The `atlas-<label>` entity identifies files that are part of, or derived from, an atlas.
+  type: string
+  format: label
 ceagent:
   name: ce
   display_name: Contrast Enhancing Agent
@@ -35,6 +42,18 @@ ceagent:
     This entity represents the `"ContrastBolusIngredient"` metadata field.
     Therefore, if the `ce-<label>` entity is present in a filename,
     `"ContrastBolusIngredient"` MAY also be added in the JSON file, with the same label.
+  type: string
+  format: label
+cohort:
+  name: cohort
+  display_name: Cohort
+  description: |
+    A set of subjects sharing one or more common characteristics.
+
+    In the context of a template, the `cohort-<label>` entity identifies a subset of
+    subjects or sessions that were used to construct template variations.
+    For example, a developmental template may use scans from participants of different ages,
+    longitudinal sessions of the same participants, or a combination of the two.
   type: string
   format: label
 chunk:
@@ -76,14 +95,30 @@ direction:
   name: dir
   display_name: Phase-Encoding Direction
   description: |
-    The `dir-<label>` entity can be set to an arbitrary alphanumeric label
+    The `dir-<label>` entity can be set to an arbitrary legitimate label
     (for example, `dir-LR` or `dir-AP`)
     to distinguish different phase-encoding directions.
 
     This entity represents the `"PhaseEncodingDirection"` metadata field.
     Therefore, if the `dir-<label>` entity is present in a filename,
     `"PhaseEncodingDirection"` MUST be defined in the associated metadata.
-    Please note that the `<label>` does not need to match the actual value of the field.
+
+    Labels need not follow any particular convention and in case of conflict,
+    JSON metadata MUST take precedence in interpreting an image.
+
+    For example, `dir-j0` and `dir-j1` can indicate `"PhaseEncodingDirection": "j"` and `"j-"` (or vice versa),
+    identifying the phase-encoding axis while avoiding indicating polarity.
+    However, in case of a dataset indicating `dir-j0` with `"PhaseEncodingDirection": "i"`, the
+    JSON metadata overrides the entity `dir-` setting.
+
+    The use of generic labels, such as `dir-reference` and `dir-reversed`, is RECOMMENDED
+    to avoid any possible inconsistency.
+
+    To avoid inconsistency, if the `<label>` is `AP`, `PA`, `LR`, `RL`, `SI`, or `IS`,
+    then the `"PhaseEncodingDirection"` SHOULD correspond to the data
+    axis that most closely aligns with the cardinal direction and orientation.
+    For example, `dir-PA` and `dir-AP` for an image in RAS+ orientation SHOULD have
+    `"PhaseEncodingDirection": "j"` and `"j-"`, respectively.
   type: string
   format: label
 echo:
@@ -134,7 +169,7 @@ inversion:
     If files belonging to an entity-linked file collection are acquired at different inversion times,
     the `inv-<index>` entity MUST be used to distinguish individual files.
 
-    This entity represents the `"InversionTime` metadata field.
+    This entity represents the `"InversionTime"` metadata field.
     Therefore, if the `inv-<index>` entity is present in a filename,
     `"InversionTime"` MUST be defined in the associated metadata.
     Please note that the `<index>` denotes the number/index (in the form of a nonnegative integer),
@@ -179,6 +214,17 @@ mtransfer:
   enum:
     - $ref: objects.enums.on__mtransfer.value
     - $ref: objects.enums.off__mtransfer.value
+nucleus:
+  name: nuc
+  display_name: Nucleus
+  description: |
+    The `nuc-<label>` entity can be used to distinguish acquisitions tuned
+    to detect different nuclei.
+    The label is the name of the nucleus or nuclei, which corresponds to DICOM Tag `0018, 9100`.
+    If present in the filename, `"ResonantNucleus"` MUST also be included in
+    the associated metadata.
+  type: string
+  format: label
 part:
   name: part
   display_name: Part
@@ -232,7 +278,8 @@ recording:
   description: |
     The `recording-<label>` entity can be used to distinguish continuous recording files.
 
-    This entity is commonly applied when continuous recordings have different sampling frequencies or start times.
+    This entity is commonly applied when continuous recordings are from different acquisition instruments,
+    or have different sampling frequencies or start times.
     For example, physiological recordings with different sampling frequencies may be distinguished using
     labels like `recording-100Hz` and `recording-500Hz`.
   type: string
@@ -264,7 +311,7 @@ run:
     (only nonnegative integers are allowed as run indices).
 
     If different entities apply,
-    such as a different session indicated by [`ses-<label>`][SPEC_ROOT/appendices/entities.md#ses),
+    such as a different session indicated by [`ses-<label>`](SPEC_ROOT/appendices/entities.md#ses),
     or different acquisition parameters indicated by
     [`acq-<label>`](SPEC_ROOT/appendices/entities.md#acq),
     then `run` is not needed to distinguish the scans and MAY be omitted.
@@ -284,7 +331,41 @@ segmentation:
   display_name: Segmentation
   description: |
     The `seg-<label>` key/value pair corresponds to a custom label the user
-    MAY use to distinguish different segmentations.
+    MAY use to distinguish specific partitions of the data space
+    (segmentations or parcellations).
+
+    Segmentations and parcellations MAY or MAY NOT be associated with
+    [atlases](SPEC_ROOT/common-principles.md#definitions).
+    Therefore, `seg-<label>` SHOULD NOT be used to designate
+    [atlases](SPEC_ROOT/common-principles.md#definitions).
+    Please refer to the [template and atlas section](SPEC_ROOT/derivatives/atlas.md)
+    for detailed specifications on their combined use.
+    When a segmentation is a *realization* of an atlas' segmentation or parcellation,
+    `seg-<label>` SHOULD be employed to distinguish them.
+    For example, the [Yeo 2011 atlas](https://doi.org/10.1152/jn.00338.2011)
+    is distributed within *FreeSurfer* with two different parcellations:
+    the *7 networks* MAY be described with `seg-7n`, for instance, and
+    the *17 networks* MAY correspondingly be described with `seg-17n`.
+
+    This entity is only applicable to derivative data.
+  type: string
+  format: label
+scale:
+  name: scale
+  display_name: Scale
+  description: |
+    The `scale-<label>` key/value pair corresponds to a custom label the user
+    MAY use to distinguish segmentations that entail different levels of
+    *regional resolution* (scales), often indicated by the number of ROIs.
+    See ([Bijsterbosch et al., 2020](https://doi.org/10.1038/s41593-020-00726-z))
+    for further details on *regional resolution* or, as defined by the authors of
+    the manuscript, the *brain units*.
+
+    For example, the [Schaefer 2018 atlas](https://doi.org/10.1093/cercor/bhx179)
+    is distributed within *FreeSurfer* with ten different scales
+    (100, 200, 300, 400, 500, 600, 700, 800, 900, and 1000 regions) for each of
+    its three different parcellations (*7 networks*, *17 networks*, and
+    *Kong's variation of 17 networks*).
 
     This entity is only applicable to derivative data.
   type: string
@@ -313,17 +394,20 @@ space:
   name: space
   display_name: Space
   description: |
-    The `space-<label>` entity can be used to indicate the way in which electrode positions are interpreted
-    (for EEG/MEG/iEEG data)
-    or the spatial reference to which a file has been aligned (for MRI data).
-    The `<label>` MUST be taken from one of the modality specific lists in the
-    [Coordinate Systems Appendix](SPEC_ROOT/appendices/coordinate-systems.md).
-    For example, for iEEG data, the restricted keywords listed under
-    [iEEG Specific Coordinate Systems](SPEC_ROOT/appendices/coordinate-systems.md#ieeg-specific-coordinate-systems)
-    are acceptable for `<label>`.
+    The `space-<label>` entity indicates the coordinate system for interpreting
+    spatial coordinates.
+    For sensor-based modalities, such as EEG/MEG/iEEG,
+    the space indicates how sensor positions are reported;
+    for imaging modalities,
+    the space indicates a reference image to which a file has been aligned.
+    A list of common spaces is defined in the
+    [Coordinate Systems Appendix](SPEC_ROOT/appendices/coordinate-systems.md),
+    and these SHOULD be used as `<label>` values for data reported in those
+    spaces.
 
-    For EEG/MEG/iEEG data, this entity can be applied to raw data,
-    but for other data types, it is restricted to derivative data.
+    Note that the space entity is broadly applicable to derivative data,
+    but is only defined for a subset of raw data types.
+    For particular use cases, `<label>` may be restricted to a set of enumerated values.
   type: string
   format: label
 split:
@@ -343,7 +427,7 @@ split:
     If there are multiple parts of a recording and the optional `scans.tsv` is provided,
     all files MUST be listed separately in `scans.tsv` and
     the entries for the `acq_time` column in `scans.tsv` MUST all be identical,
-    as described in [Scans file](SPEC_ROOT/modality-agnostic-files.md#scans-file).
+    as described in [Scans file](SPEC_ROOT/modality-agnostic-files/data-summary-files.md#scans-file).
   type: string
   format: index
 stain:
@@ -387,13 +471,23 @@ task:
     The `task-<label>` MUST be consistent across subjects and sessions.
 
     Files with the `task-<label>` entity SHOULD have an associated
-    [events file](SPEC_ROOT/modality-specific-files/task-events.md#task-events),
+    [events file](SPEC_ROOT/modality-agnostic-files/events.md#events),
     as well as certain metadata fields in the associated JSON file.
 
     For the purpose of this specification we consider the so-called "resting state" a task,
     although events files are not expected for resting state data.
     Additionally, a common convention in the specification is to include the word "rest" in
     the `task` label for resting state files (for example, `task-rest`).
+  type: string
+  format: label
+template:
+  name: tpl
+  display_name: Template
+  description: |
+    A standardized space of analysis specified or generated by one or more averages of features
+    with respect to which group-level and atlas-derived results are provided.
+    The `<label>` SHOULD follow the modality-specific conventions listed in the
+    [Coordinate Systems Appendix](SPEC_ROOT/appendices/coordinate-systems.md).
   type: string
   format: label
 tracer:
@@ -408,9 +502,19 @@ tracer:
     Please note that the `<label>` does not need to match the actual value of the field.
   type: string
   format: label
+volume:
+  name: voi
+  display_name: Volume of Interest
+  description: |
+    The `voi-<label>` entity can be used to distinguish acquisitions localized to different regions.
+    The label SHOULD be the name of the body region or part scanned.
+    If used, the fields `"BodyPart"` and `"BodyPartDetails"` MUST be defined in the JSON file.
+    `BodyPartDetailsOntology` is OPTIONAL to also include.
+  type: string
+  format: label
 tracksys:
   name: tracksys
-  display_name: Tracking system
+  display_name: Tracking System
   description: |
     The `tracksys-<label>` entity can be used as a key-value pair
     to label *_motion.tsv and *_motion.json files.
