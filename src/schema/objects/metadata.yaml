@@ -929,6 +929,24 @@ DewarPosition:
     `"upright"`, `"supine"` or `"degrees"` of angle from vertical:
     for example on CTF systems, `"upright=15°, supine=90°"`.
   type: string
+DiffGradientDuration:
+  name: DiffGradientDuration
+  display_name: Diffusion Gradient Duration
+  description: |
+    In the context of a diffusion-weighted pulsed gradient spin echo sequence,
+    corresponds to the duration of a diffusion-encoding gradient pulse (δ),
+    specified in milliseconds.
+  type: number
+  unit: ms
+DiffGradientSeparation:
+  name: DiffGradientSeparation
+  display_name: Diffusion Gradient Separation
+  description: |
+    In the context of a diffusion-weighted pulsed gradient spin echo sequence,
+    corresponds to the time between the leading edges of two successive
+    diffusion-encoding gradient pulses (Δ), specified in milliseconds.
+  type: number
+  unit: ms
 DigitizedHeadPoints:
   name: DigitizedHeadPoints
   display_name: Digitized Head Points

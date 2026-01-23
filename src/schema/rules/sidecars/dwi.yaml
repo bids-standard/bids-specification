@@ -16,5 +16,7 @@ MRIDiffusionOtherMetadata:
     - suffix == "dwi"
     - match(extension, "^\.nii(\.gz)?$")
   fields:
+    DiffGradientDuration: recommended
+    DiffGradientSeparation: recommended
     PhaseEncodingDirection: recommended
     TotalReadoutTime: recommended
