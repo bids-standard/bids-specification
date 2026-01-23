@@ -46,7 +46,7 @@ the smallest unit of acquisition). In other words:
 
 -   Each row MUST start with `participant_id`.
 
--   Each TSV file SHOULD contain a `session_id` column when
+-   Each TSV file MUST contain a `session_id` column when
     multiple [sessions](../glossary.md#session-entities)[<sup>1</sup>](#footnotes) are present
     in the data set.
 
@@ -65,10 +65,10 @@ and a guide for using macros can be found at
 {{ MACROS___make_columns_table("modality_agnostic.Phenotypes") }}
 
 Furthermore, if you add a `session_id` column to the tabular phenotypic data,
-you SHOULD introduce a session directory to the imaging data,
+you MUST introduce a session directory to the imaging data,
 even if only one imaging session has been created.
 And vice versa, if imaging data has session directories,
-all imaging data and tabular phenotypic data SHOULD have sessions.
+all imaging data and tabular phenotypic data MUST have sessions.
 
 This produces a file in which same-participant entries can take up as many rows as needed
 according to the smallest unit of acquisition.
@@ -98,10 +98,12 @@ and indoor or outdoor experimental conditions.
 ### 7. Use the sessions file at the root-level
 
 If there is more than one session for any one participant, then
-it is RECOMMENDED to provide a sessions file at the dataset root.
-The sessions file SHOULD list all sessions for all subjects across
-imaging and tabular phenotypic data. The data dictionary JSON file’s
-`session_id` field MUST include `Levels` with the description of each `session_id`.
+it is REQUIRED to provide a sessions file at the dataset root,
+even if this file only contains a two-column inventory
+of `participant_id` and `session_id`.
+The `sessions.tsv` file MUST list all sessions for all subjects across
+imaging and tabular phenotypic data. The `sessions.json` file’s
+`session_id` field MUST include `"Levels"` with the description of each `session_id`.
 
 ### 8. Record acquisition time of all sessions with `acq_time`
 

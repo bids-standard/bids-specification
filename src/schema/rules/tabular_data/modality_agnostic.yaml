@@ -49,7 +49,7 @@ Phenotypes:
     session_id:
       level: optional
       description_addendum: |
-        A `session_id` column SHOULD be added to all tabular files in the phenotype directory
+        A `session_id` column MUST be added to all tabular files in the phenotype directory
         as soon as multiple sessions are present in the data set.
     run_id:
       level: optional
@@ -110,7 +110,7 @@ Sessions:
     participant_id: optional
     session_id: required
     run_id: optional
-    acq_time__sessions: recommended
+    acq_time__sessions: optional
     pathology: recommended
     HED: optional
   index_columns: [participant_id, session_id, run_id]
@@ -124,5 +124,5 @@ Sessions__Additional:
     - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
   columns:
     $ref: rules.tabular_data.modality_agnostic.Sessions.columns
-    acq_time__sessions: required
+    acq_time__sessions: recommended
   additional_columns: allowed_if_defined
