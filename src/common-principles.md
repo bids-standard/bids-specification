@@ -909,6 +909,28 @@ A guide for using macros can be found at
     }
 ) }}
 
+Example 5: Generalization of Examples 1 and 4 for a sidecar file without entities
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example(
+    {
+    "sub-01": {
+        "anat": {},
+        "func": {
+            "sub-01_task-xyz_acq-test1_run-1_bold.nii.gz": "",
+            "sub-01_task-xyz_acq-test1_run-2_bold.nii.gz": "",
+            }
+        },
+    "bold.json": "",
+    }
+) }}
+
+where `bold.json` in top directory would be applicable to all `_bold.nii.gz`
+regardless of any other entity in their filename.
+
 ## Participant names and other labels
 
 BIDS allows for custom user-defined `<label>`s and `<index>`es for example,
