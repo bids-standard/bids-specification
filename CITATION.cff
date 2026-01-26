@@ -385,7 +385,7 @@ authors:
     website: https://dasturge.github.io
   - given-names: Dan
     family-names: Brady
-    orcid: https://orcid.org/https://orcid.org/0000-0003-4671-0676
+    orcid: https://orcid.org/0000-0003-4671-0676
     affiliation: Research Software Engineering Team, University of Sheffield
     email: daniel.brady@sheffield.ac.uk
   - given-names: Dan
@@ -1366,7 +1366,7 @@ authors:
     email: petra.ritter@charite.de
   - given-names: Peyman
     family-names: Najafi
-    orcid: https://orcid.org/https://orcid.org/0000-0003-1746-3995
+    orcid: https://orcid.org/0000-0003-1746-3995
     affiliation: CNRS, Paris-Saclay University
     email: peyman.najafi@cnrs.fr
   - given-names: Pierre
