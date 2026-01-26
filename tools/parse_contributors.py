@@ -36,7 +36,10 @@ def main() -> None:
     if sys.argv[1:]:
         out_file = sys.argv[1]
     else:
-        out_file = input("Output TSV file [new_contributors.tsv]: ").strip() or "new_contributors.tsv"
+        out_file = (
+            input("Output TSV file [new_contributors.tsv]: ").strip()
+            or "new_contributors.tsv"
+        )
     text = input("Paste new contributors from wiki:\n").strip()
     entries = text.split("### ")[1:]
     records = [
@@ -50,9 +53,10 @@ def main() -> None:
         for entry in entries
     ]
     df = pd.DataFrame.from_records(records)
-    df.columns = [col.removesuffix(' (optional)') for col in df.columns]
+    df.columns = [col.removesuffix(" (optional)") for col in df.columns]
 
     Path(out_file).write_text(df.to_csv(sep="\t", index=False, na_rep=""))
+
 
 if __name__ == "__main__":
     main()

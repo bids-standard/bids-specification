@@ -172,7 +172,7 @@ def return_this_contributor(
     website = df[mask].website.values[0]
     if not pd.isna(website) and "://" not in website:
         # Reasonable guess
-        website = f'https://{website}'
+        website = f"https://{website}"
     affiliation = df[mask].affiliation.values[0]
     email = df[mask].email.values[0]
 
