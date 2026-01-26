@@ -1,5 +1,11 @@
 ---
 # This file describes valid file extensions in the specification.
+avi:
+  value: .avi
+  display_name: Audio Video Interleave
+  description: |
+    An [Audio Video Interleave](https://en.wikipedia.org/wiki/Audio_Video_Interleave) video file.
+    This format is commonly used for behavioral video recordings.
 ave:
   value: .ave
   display_name: AVE # not sure what ave stands for
@@ -114,6 +120,12 @@ fif:
   display_name: Functional Imaging File Format
   description: |
     An MEG file format used by Neuromag, Elekta, and MEGIN.
+flac:
+  value: .flac
+  display_name: Free Lossless Audio Codec
+  description: |
+    A [FLAC](https://en.wikipedia.org/wiki/FLAC) audio file.
+    This format is commonly used for behavioral audio recordings.
 jpg:
   value: .jpg
   display_name: Joint Photographic Experts Group Format
@@ -153,6 +165,24 @@ md:
   display_name: Markdown
   description: |
     A Markdown file.
+mkv:
+  value: .mkv
+  display_name: Matroska Video
+  description: |
+    A [Matroska](https://www.matroska.org/) video container file.
+    This format is commonly used for behavioral video recordings.
+mp3:
+  value: .mp3
+  display_name: MPEG Audio Layer III
+  description: |
+    An [MP3](https://en.wikipedia.org/wiki/MP3) audio file.
+    This format is commonly used for behavioral audio recordings or auditory stimuli.
+mp4:
+  value: .mp4
+  display_name: MPEG-4 Part 14
+  description: |
+    An [MPEG-4 Part 14](https://en.wikipedia.org/wiki/MPEG-4_Part_14) video container file.
+    This format is commonly used for behavioral video recordings and may contain both video and audio streams.
 mefd:
   value: .mefd/
   display_name: Multiscale Electrophysiology File Format Version 3.0
@@ -201,6 +231,12 @@ nwb:
     A [Neurodata Without Borders](https://nwb-schema.readthedocs.io/en/latest/) file.
 
     Each recording consists of a single `.nwb` file.
+ogg:
+  value: .ogg
+  display_name: Ogg Vorbis
+  description: |
+    An [Ogg Vorbis](https://en.wikipedia.org/wiki/Vorbis) audio file.
+    This format is commonly used for behavioral audio recordings.
 OMEBigTiff:
   value: .ome.btf
   display_name: Open Microscopy Environment BigTIFF
@@ -286,6 +322,12 @@ tsv_gz:
     A gzipped tab-delimited file.
     This file extension is only used for very large tabular data, such as physiological recordings.
     For smaller data, the unzipped `.tsv` extension is preferred.
+wav:
+  value: .wav
+  display_name: Waveform Audio File Format
+  description: |
+    A [Waveform Audio File Format](https://en.wikipedia.org/wiki/WAV) audio file.
+    This format is commonly used for behavioral audio recordings.
 txt:
   value: .txt
   display_name: Text
