@@ -33,7 +33,7 @@ repos:
         entry: env PRETTIER_LEGACY_CLI=1 prettier # temporary fix for https://github.com/prettier/prettier/issues/15742
         files: src/schema/.*/.*\.yaml
   - repo: https://github.com/adrienverge/yamllint
-    rev: v1.37.1
+    rev: v1.38.0
     hooks:
       - id: yamllint
         args: [-f=standard, -c=.yamllint.yml]
@@ -71,3 +71,11 @@ repos:
     rev: v0.11.0
     hooks:
       - id: shellcheck
+  - repo: local
+    hooks:
+      - id: check-embedded-json
+        name: check embedded JSON in markdown
+        entry: python tools/check_embedded_json.py
+        language: python
+        files: src/.*\.md$
+        pass_filenames: true
