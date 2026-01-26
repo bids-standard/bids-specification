@@ -229,6 +229,8 @@ AttenuationCorrection:
   display_name: Attenuation Correction
   description: |
     Short description of the attenuation correction method used.
+    Corresponds to [DICOM Tag 0054, 1101](https://dicomlookup.com/dicomtags/(0054,1101))
+    `Attenuation Correction Method`.
   type: string
 AttenuationCorrectionMethodReference:
   name: AttenuationCorrectionMethodReference
@@ -362,6 +364,7 @@ BodyPart:
   display_name: Body Part
   description: |
     Body part of the organ / body region scanned.
+    Corresponds to [DICOM Tag 0018, 0015](https://dicomlookup.com/dicomtags/(0018,0015)) `Body Part Examined`.
   type: string
 BodyPartDetails:
   name: BodyPartDetails
@@ -778,6 +781,7 @@ DecayCorrectionFactor:
   display_name: Decay Correction Factor
   description: |
     Decay correction factor for each frame.
+    Corresponds to [DICOM Tag 0054, 1321](https://dicomlookup.com/dicomtags/(0054,1321)) `Decay Factor`.
   type: array
   items:
     type: number
@@ -1978,16 +1982,16 @@ InjectionEnd:
   name: InjectionEnd
   display_name: Injection End
   description: |
-    Time of end of injection with respect to `"TimeZero"` in the default unit
-    seconds.
+    Time of end of injection with respect to `"TimeZero"`, in seconds.
+    Corresponds to [DICOM Tag 0018, 1073](https://dicomlookup.com/dicomtags/(0018,1073))
+    `Radiopharmaceutical Stop Time` converted to seconds relative to TimeZero.
   type: number
   unit: s
 InjectionStart:
   name: InjectionStart
   display_name: Injection Start
   description: |
-    Time of start of injection with respect to `"TimeZero"` in the default unit
-    seconds.
+    Time of start of injection with respect to `"TimeZero"`, in seconds.
     This corresponds to [DICOM Tag 0018, 1072](https://dicomlookup.com/dicomtags/(0018,1072))
     `Contrast/Bolus Start Time` converted to seconds relative to `"TimeZero"`.
   type: number
@@ -2933,6 +2937,7 @@ PharmaceuticalDoseAmount:
   display_name: Pharmaceutical Dose Amount
   description: |
     Dose amount of administered pharmaceutical.
+    Corresponds to [DICOM Tag 0018, 0028](https://dicomlookup.com/dicomtags/(0018,0028)) `Intervention Drug Dose`.
   anyOf:
     - type: number
     - type: array
@@ -2956,6 +2961,9 @@ PharmaceuticalDoseTime:
     the regimen description should be complete enough to enable unambiguous
     interpretation of `"PharmaceuticalDoseTime"`.
     Unit format of the specified pharmaceutical dose time MUST be seconds.
+    Corresponds to a combination of DICOM Tags
+    [0018, 0027](https://dicomlookup.com/dicomtags/(0018,0027)) `Intervention Drug Stop Time` and
+    [0018, 0035](https://dicomlookup.com/dicomtags/(0018,0035)) `Intervention Drug Start Time`.
   anyOf:
     - type: number
       unit: s
@@ -2975,7 +2983,9 @@ PharmaceuticalName:
   name: PharmaceuticalName
   display_name: Pharmaceutical Name
   description: |
-    Name of pharmaceutical.
+    Name of administered pharmaceutical.
+    Note that this is distinct from any radiotracer or contrast agent used in the scan protocol.
+    This partly matches [DICOM Tag 0018, 0034](https://dicomlookup.com/dicomtags/(0018,0034)) `Intervention Drug Name`.
   type: string
 PhaseEncodingDirection:
   name: PhaseEncodingDirection
@@ -3260,6 +3270,8 @@ ReconFilterSize:
   display_name: Recon Filter Size
   description: |
     Kernel size of post-recon filter (FWHM) in default units `"mm"`.
+    This partly matches the [DICOM Tag 0018, 1210](https://dicomlookup.com/dicomtags/(0018,1210))
+    `Convolution Kernel`.
   anyOf:
     - type: number
       unit: mm
@@ -3272,6 +3284,8 @@ ReconFilterType:
   display_name: Recon Filter Type
   description: |
     Type of post-recon smoothing (for example, `["Shepp"]`).
+    This partly matches the [DICOM Tag 0018, 1210](https://dicomlookup.com/dicomtags/(0018,1210))
+    `Convolution Kernel`.
   anyOf:
     - type: string
     - type: array
@@ -3288,12 +3302,16 @@ ReconMethodName:
   display_name: Recon Method Name
   description: |
     Reconstruction method or algorithm (for example, `"3d-op-osem"`).
+    This partly matches the [DICOM Tag 0054, 1103](https://dicomlookup.com/dicomtags/(0054,1103))
+    `Reconstruction Method`.
   type: string
 ReconMethodParameterLabels:
   name: ReconMethodParameterLabels
   display_name: Recon Method Parameter Labels
   description: |
     Names of reconstruction parameters (for example, `["subsets", "iterations"]`).
+    This partly matches the [DICOM Tag 0054, 1103](https://dicomlookup.com/dicomtags/(0054,1103))
+    `Reconstruction Method`.
   type: array
   items:
     type: string
@@ -3302,6 +3320,8 @@ ReconMethodParameterUnits:
   display_name: Recon Method Parameter Units
   description: |
     Unit of reconstruction parameters (for example, `["none", "none"]`).
+    This partly matches the [DICOM Tag 0054, 1103](https://dicomlookup.com/dicomtags/(0054,1103))
+    `Reconstruction Method`.
   type: array
   items:
     type: string
@@ -3311,6 +3331,8 @@ ReconMethodParameterValues:
   display_name: Recon Method Parameter Values
   description: |
     Values of reconstruction parameters (for example, `[21, 3]`).
+    This partly matches the [DICOM Tag 0054, 1103](https://dicomlookup.com/dicomtags/(0054,1103))
+    `Reconstruction Method`.
   type: array
   items:
     type: number
@@ -3654,6 +3676,7 @@ ScanDate:
   display_name: Scan Date
   description: |
     Date of scan in the format `"YYYY-MM-DD[Z]"`.
+    Corresponds to [DICOM Tag 0008, 0022](https://dicomlookup.com/dicomtags/(0008,0022)) `Acquisition Date`.
     This field is DEPRECATED, and this metadata SHOULD be recorded in the `acq_time` column of the
     corresponding [Scans file](SPEC_ROOT/modality-agnostic-files/data-summary-files.md#scans-file).
   type: string
@@ -3702,6 +3725,8 @@ ScatterFraction:
   display_name: Scatter Fraction
   description: |
     Scatter fraction for each frame (Units: 0-100%).
+    Corresponds to [DICOM Tag 0054, 1323](https://dicomlookup.com/dicomtags/(0054,1323))
+    `Scatter Fraction Factor`.
   type: array
   items:
     type: number
@@ -4307,6 +4332,9 @@ TracerName:
   display_name: Tracer Name
   description: |
     Name of the tracer compound used (for example, `"CIMBI-36"`)
+    Corresponds to [DICOM Tag 0054, 0300](https://dicomlookup.com/dicomtags/(0054,0300)) `Radionuclide Code Sequence`,
+    extracted from the fields [0008, 0122](https://dicomlookup.com/dicomtags/(0008,0122)) `Mapping Resource Name`
+    and/or [0008, 0105](https://dicomlookup.com/dicomtags/(0008,0105)) `Mapping Resource`.
   type: string
 TracerRadLex:
   name: TracerRadLex
@@ -4319,6 +4347,9 @@ TracerRadionuclide:
   display_name: Tracer Radionuclide
   description: |
     Radioisotope labeling tracer (for example, `"C11"`).
+    Corresponds to [DICOM Tag 0054, 0300](https://dicomlookup.com/dicomtags/(0054,0300)) `Radionuclide Code Sequence`,
+    extracted from the fields [0008, 0100](https://dicomlookup.com/dicomtags/(0008,0100)) `Code Value`
+    and/or [0008, 0104](https://dicomlookup.com/dicomtags/(0008,0104)) `Code Meaning`.
   type: string
 TracerSNOMED:
   name: TracerSNOMED
