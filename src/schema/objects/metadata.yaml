@@ -351,6 +351,15 @@ BasedOn:
       items:
         type: string
         format: participant_relative
+BigDelta:
+  name: BigDelta
+  display_name: Diffusion Gradient Separation
+  description: |
+    In the context of a diffusion-weighted pulsed gradient spin echo sequence,
+    corresponds to the time between the leading edges of two successive
+    diffusion-encoding gradient pulses (Δ), specified in seconds.
+  type: number
+  unit: s
 BloodDensity:
   name: BloodDensity
   display_name: Blood Density
@@ -3950,6 +3959,15 @@ SliceTiming:
     type: number
     minimum: 0
     unit: s
+SmallDelta:
+  name: SmallDelta
+  display_name: Diffusion Gradient Duration
+  description: |
+    In the context of a diffusion-weighted pulsed gradient spin echo sequence,
+    corresponds to the duration of a diffusion-encoding gradient pulse (δ),
+    specified in seconds.
+  type: number
+  unit: s
 SoftwareFilters:
   name: SoftwareFilters
   display_name: Software Filters
