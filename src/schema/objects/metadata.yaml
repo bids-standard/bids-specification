@@ -352,7 +352,7 @@ BasedOn:
         format: participant_relative
 BigDelta:
   name: BigDelta
-  display_name: Diffusion Gradient Separation
+  display_name: Diffusion Big Delta (Δ)
   description: |
     In the context of a diffusion-weighted pulsed gradient spin echo sequence,
     corresponds to the time between the leading edges of two successive
