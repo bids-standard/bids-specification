@@ -357,8 +357,15 @@ BigDelta:
     In the context of a diffusion-weighted pulsed gradient spin echo sequence,
     corresponds to the time between the leading edges of two successive
     diffusion-encoding gradient pulses (Δ), specified in seconds.
-  type: number
-  unit: s
+  anyOf:
+    - type: number
+      unit: s
+      exclusiveMinimum: 0
+    - type: array
+      items:
+        type: number
+        unit: s
+        exclusiveMinimum: 0
 BloodDensity:
   name: BloodDensity
   display_name: Blood Density
@@ -3905,8 +3912,15 @@ SmallDelta:
     In the context of a diffusion-weighted pulsed gradient spin echo sequence,
     corresponds to the duration of a diffusion-encoding gradient pulse (δ),
     specified in seconds.
-  type: number
-  unit: s
+  anyOf:
+    - type: number
+      unit: s
+      exclusiveMinimum: 0
+    - type: array
+      items:
+        type: number
+        unit: s
+        exclusiveMinimum: 0
 SoftwareFilters:
   name: SoftwareFilters
   display_name: Software Filters
