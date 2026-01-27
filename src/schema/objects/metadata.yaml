@@ -3900,7 +3900,7 @@ SliceTiming:
     unit: s
 SmallDelta:
   name: SmallDelta
-  display_name: Diffusion Gradient Duration
+  display_name: Diffusion Small Delta (δ)
   description: |
     In the context of a diffusion-weighted pulsed gradient spin echo sequence,
     corresponds to the duration of a diffusion-encoding gradient pulse (δ),
