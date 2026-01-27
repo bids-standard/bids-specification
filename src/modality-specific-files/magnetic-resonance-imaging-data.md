@@ -922,8 +922,8 @@ JSON example:
 
 ```JSON
 {
-  "BigDelta": 15.2,
-  "SmallDelta": 11.0,
+  "BigDelta": 0.0152,
+  "SmallDelta": 0.011,
   "PhaseEncodingDirection": "j-",
   "TotalReadoutTime": 0.095,
   "B0FieldSource": ["phasediff_fmap0", "pepolar_fmap0"]
