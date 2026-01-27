@@ -350,6 +350,15 @@ BasedOn:
       items:
         type: string
         format: participant_relative
+BigDelta:
+  name: BigDelta
+  display_name: Diffusion Big Delta (Δ)
+  description: |
+    In the context of a diffusion-weighted pulsed gradient spin echo sequence,
+    corresponds to the time between the leading edges of two successive
+    diffusion-encoding gradient pulses (Δ), specified in seconds.
+  type: number
+  unit: s
 BloodDensity:
   name: BloodDensity
   display_name: Blood Density
@@ -929,38 +938,6 @@ DewarPosition:
     `"upright"`, `"supine"` or `"degrees"` of angle from vertical:
     for example on CTF systems, `"upright=15°, supine=90°"`.
   type: string
-DiffGradientDuration:
-  name: DiffGradientDuration
-  display_name: Diffusion Gradient Duration
-  description: |
-    In the context of a diffusion-weighted pulsed gradient spin echo sequence,
-    corresponds to the duration of a diffusion-encoding gradient pulse (δ),
-    specified in milliseconds.
-  anyOf:
-    - type: number
-      unit: ms
-      exclusiveMinimum: 0
-    - type: array
-      items:
-        type: number
-        unit: ms
-        exclusiveMinimum: 0
-DiffGradientSeparation:
-  name: DiffGradientSeparation
-  display_name: Diffusion Gradient Separation
-  description: |
-    In the context of a diffusion-weighted pulsed gradient spin echo sequence,
-    corresponds to the time between the leading edges of two successive
-    diffusion-encoding gradient pulses (Δ), specified in milliseconds.
-  anyOf:
-    - type: number
-      unit: ms
-      exclusiveMinimum: 0
-    - type: array
-      items:
-        type: number
-        unit: ms
-        exclusiveMinimum: 0
 DigitizedHeadPoints:
   name: DigitizedHeadPoints
   display_name: Digitized Head Points
@@ -3921,6 +3898,15 @@ SliceTiming:
     type: number
     minimum: 0
     unit: s
+SmallDelta:
+  name: SmallDelta
+  display_name: Diffusion Small Delta (δ)
+  description: |
+    In the context of a diffusion-weighted pulsed gradient spin echo sequence,
+    corresponds to the duration of a diffusion-encoding gradient pulse (δ),
+    specified in seconds.
+  type: number
+  unit: s
 SoftwareFilters:
   name: SoftwareFilters
   display_name: Software Filters

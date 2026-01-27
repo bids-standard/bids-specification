@@ -746,7 +746,7 @@ within the `[*_]dwi.bval` and `[*_]dwi.bvec` files) MAY change across DWI runs.
 
 **Gradient orientation file formats**.
 The `[*_]dwi.bval` and `[*_]dwi.bvec` files MUST follow the
-[FSL format](https://fsl.fmrib.ox.ac.uk/fsl/docs/#/diffusion/index?id=diffusion-data-in-fsl).
+[FSL format](https://fsl.fmrib.ox.ac.uk/fsl/docs/diffusion/index.html#diffusion-data-in-fsl).
 
 The `[*_]dwi.bvec` file contains 3 rows with *N* space-delimited floating-point numbers,
 corresponding to the *N* volumes in the corresponding NIfTI file.
@@ -954,8 +954,8 @@ JSON example:
 
 ```JSON
 {
-  "DiffGradientDuration": 11.0,
-  "DiffGradientSeparation": 15.2,
+  "BigDelta": 0.040,
+  "SmallDelta": 0.015,
   "PhaseEncodingDirection": "j-",
   "TotalReadoutTime": 0.095,
   "B0FieldSource": ["phasediff_fmap0", "pepolar_fmap0"]
