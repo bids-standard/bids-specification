@@ -919,8 +919,7 @@ BIDS permits saving the TE, δ, and Δ values corresponding to the *N*
 volumes in the NIfTI file. The TE, δ, and Δ values MAY be stored as an array in the sidecar JSON file using the `EchoTime`, `SmallDelta`, and `BigDelta` fields, respectively.
 If a single TE, δ, or Δ value is used for the entire acquisition, the value
 MAY be stored as a single number in the sidecar JSON file using the `EchoTime`, `SmallDelta`, or `BigDelta` fields, respectively.
-The TE, δ, and Δ values are specified in seconds, milliseconds, and
-milliseconds, respectively.
+The TE, δ, and Δ values are all specified in seconds.
 
 The `EchoTime`, `SmallDelta`, and `BigDelta` fields MAY be
 saved in the sidecar JSON file on any level of the directory structure and thus define those values for
