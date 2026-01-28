@@ -104,8 +104,8 @@ The [`sample-<label>`](../appendices/entities.md#sample) entity is REQUIRED for
 Microscopy data and is used to distinguish between different samples from the same subject.
 The label MUST be unique per subject and is RECOMMENDED to be unique throughout the dataset.
 
-For example: Three brain slices (`sample-01` to `sample-03`) extracted from subject `sub-01`,
-imaged by scanning electron microscopy (SEM) in PNG format
+For example, three brain slices (`sample-01` to `sample-03`) extracted from subject `sub-01`,
+imaged by scanning electron microscopy (SEM) in PNG format:
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
@@ -139,9 +139,9 @@ they are consistent across subjects and sessions.
 The [`stain-<label>`](../appendices/entities.md#stain) entity MAY be used to distinguish
 image files from the same sample using different stains or antibodies for contrast enhancement.
 
-For example: One brain slice (`sample-01`) extracted from subject `sub-01` with three
+For example, one brain slice (`sample-01`) extracted from subject `sub-01` with three
 stains (`stain-01`, `stain-02` and `stain-03`) in three separate files, imaged by selective plane
-illumination microscopy (SPIM) in OME-TIFF format
+illumination microscopy (SPIM) in OME-TIFF format:
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
@@ -162,8 +162,9 @@ A guide for using macros can be found at
    }
 ) }}
 
-In this example, the entity stain is used to distinguish images with different
-stains in separate files from the same sample.
+In this example, the [`stain-<label>`](../appendices/entities.md#stain) entity
+is used to distinguish images with different stains in separate files from the
+same sample.
 In the case where a single file contains different staining in each channel, the
 `stain-<label>` is omitted.
 
@@ -197,8 +198,8 @@ Figure 1: Examples of chunks configurations.
 -   d) and e) ordered 2D chunks on different 3D planes,
 -   f) ordered 3D chunks.
 
-For example: Four chunks (`chunk-01` to `chunk-04`) from the same brain sample (`sample-01`)
-of subject `sub-01`, imaged by confocal microscopy (CONF) in OME-TIFF format
+For example, four chunks (`chunk-01` to `chunk-04`) from the same brain sample (`sample-01`)
+of subject `sub-01`, imaged by confocal microscopy (CONF) in OME-TIFF format:
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
