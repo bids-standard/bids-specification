@@ -67,6 +67,18 @@ AcquisitionVoxelSize:
     type: number
     exclusiveMinimum: 0
     unit: mm
+AdditionalValidation:
+  name: AdditionalValidation
+  display_name: Additional Validation
+  description: |
+    A string or list of strings of additional validations to be performed on the data,
+    chosen from among a pre-defined set. The currently allowed values are
+    only `"Phenotype"`.
+  anyOf:
+    - type: string
+    - type: array
+      items:
+        type: string
 Anaesthesia:
   name: Anaesthesia
   display_name: Anaesthesia
@@ -2536,6 +2548,7 @@ MeasurementToolMetadata:
     Contains two fields: `"Description"` and `"TermURL"`.
     `"Description"` is a free text description of the measurement tool.
     `"TermURL"` is a URL to an entity in an ontology corresponding to this tool.
+    RECOMMENDED by `AdditionalValidation` containing `"Phenotype"` in `dataset_description.json`.
   type: object
   properties:
     TermURL:
