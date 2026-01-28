@@ -50,10 +50,9 @@ nav:
           - Cross modality correspondence: appendices/cross-modality-correspondence.md
           - Phenotypic data guidelines: appendices/phenotype.md
       - Changelog: CHANGES.md
-  - The BIDS Starter Kit:
-      - Website: https://bids.neuroimaging.io/getting_started/
+  - The BIDS Website:
+      - Getting started: https://bids.neuroimaging.io/getting_started/
       - Tutorials: https://bids.neuroimaging.io/getting_started/tutorials/
-      - GitHub repository: https://github.com/bids-standard/bids-starter-kit
 exclude_docs: |
   README.md
   pregh-changes.md
