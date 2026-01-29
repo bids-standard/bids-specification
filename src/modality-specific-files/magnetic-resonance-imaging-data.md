@@ -929,7 +929,7 @@ all sessions and/or subjects in one place (see
 As an exception to the [common principles](../common-principles.md#definitions)
 that parameters are constant across runs, the `EchoTime`, `SmallDelta`, and `BigDelta` values MAY change across the DWI run.
 
-### Other RECOMMENDED metadata
+### Other metadata fields
 
 <!-- This block generates a metadata table.
 These tables are defined in
