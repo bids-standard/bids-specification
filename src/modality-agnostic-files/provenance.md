@@ -6,7 +6,7 @@ context of the academic literature.
 
 !!! example "Example datasets"
 
-    Several [example datasets](https://bids-website.readthedocs.io/en/latest/datasets/examples.html#provenance) have been formatted using this specification and can be used for practical guidance when curating a new dataset.
+    Several [example datasets](https://bids.neuroimaging.io/datasets/examples.html#provenance) have been formatted using this specification and can be used for practical guidance when curating a new dataset.
 
 This part of the BIDS specification is aimed at describing the provenance of a BIDS dataset. This description is retrospective: it describes a set of steps that were executed in order to establish the dataset and is based on [W3C Prov](https://www.w3.org/TR/2013/REC-prov-o-20130430/) (see [Provenance from an RDF perspective](#provenance-from-a-rdf-perspective)).
 
@@ -14,7 +14,7 @@ Provenance information SHOULD be included in a BIDS dataset when possible. If pr
 
 ## Provenance of a BIDS file
 
-Provenance of a BIDS file SHOULD be stored inside its sidecar JSON.
+Provenance of a BIDS data file SHOULD be stored inside its sidecar JSON.
 
 For that purpose, any sidecar JSON file MAY include the following keys:
 
@@ -143,7 +143,7 @@ and a guide for using macros can be found at
 
 ## Provenance files
 
-In addition to storing provenance in sidecar JSON files (see [Provenance of BIDS file](#provenance-of-a-bids-file)) or in `dataset_description.json` (see [Provenance of BIDS dataset](#provenance-of-a-bids-dataset)), other provenance information MUST be stored inside provenance files.
+Any provenance information that can't be stored in either sidecar JSON files (see [Provenance of BIDS file](#provenance-of-a-bids-file)) or in `dataset_description.json` (see [Provenance of BIDS dataset](#provenance-of-a-bids-dataset)) MUST be stored in provenance files under the `/prov/` directory.
 
 <!--
 This block generates a filename templates.
@@ -194,7 +194,7 @@ and a guide for using macros can be found at
 
 Activities are transformations that have been applied to data.
 
-Each file with a `act` suffix is a JSON file describing activities. It MUST include the following key:
+Each file with an `act` suffix is a JSON file describing activities. It MUST include the following key:
 
 <!-- This block generates a metadata table.
 The definitions of these fields can be found in
@@ -300,7 +300,7 @@ Each file with a `ent` suffix is a JSON file describing input and output data.
 
     These files SHOULD not describe the current dataset. See [Provenance of a BIDS dataset](#provenance-of-a-bids-dataset) for this purpose.
 
-Each file MUST include at least one of the following key:
+Each file MUST include one or more of the following keys:
 
 <!-- This block generates a metadata table.
 The definitions of these fields can be found in
@@ -432,7 +432,7 @@ prov/
     provenance.json
 ```
 
-The purpose of this RECOMMENDED file is to describe properties of [`_prov-`](../appendices/entities.md#prov) entities used in the names of provenance files.
+The purpose of this RECOMMENDED file is to describe properties of [`prov-`](../appendices/entities.md#prov) entities used in the names of provenance files.
 It MUST contain the column `provenance_id`, which MUST consist of `prov-<label>` values identifying one row for each [`prov entity`](../appendices/entities.md#prov) in the dataset, followed by an optional column containing a description for the entity. Each entity MUST be described by one and only one row.
 
 We RECOMMEND to make use of these columns, and
@@ -453,9 +453,9 @@ available").
 `provenance.tsv` example:
 
 ```tsv
-provenance_id    description
-prov-preprocspm Provenance of preprocessing performed with SPM.
-prov-preprocfsl Provenance of preprocessing performed with FSL.
+provenance_id	description
+prov-preprocspm	Provenance of preprocessing performed with SPM.
+prov-preprocfsl	Provenance of preprocessing performed with FSL.
 ```
 
 It is RECOMMENDED to accompany each `provenance.tsv` file with a sidecar
@@ -478,7 +478,7 @@ The following rules and conventions are provided in order to have consistent, hu
 
 ### Identifiers for input and output data
 
-The identifier for a BIDS file or a BIDS dataset MUST be a [BIDS URI](../common-principles.md#bids-uri). The identifier for a no longer existing BIDS file or BIDS dataset SHOULD be a [BIDS URI](../common-principles.md#bids-uri) with a fragment part.
+The identifier for a BIDS file or a BIDS dataset MUST be a [BIDS URI](../common-principles.md#bids-uri). The identifier for a no-longer-existing BIDS file or BIDS dataset SHOULD be a [BIDS URI](../common-principles.md#bids-uri) with a fragment part.
 
 !!! warning
 
@@ -808,15 +808,15 @@ Under the `derivatives/seg-brain` dataset, the `sub-001_space-orig_desc-exp1_dse
 
 The `derivatives/seg-brain/prov/provenance.tsv` gives a description of the `prov-seg` entity.
 
-```TXT
-provenance_id    description
-prov-seg   Manual brain segmentation performed by two experts
+```tsv
+provenance_id	description
+prov-seg	Manual brain segmentation performed by two experts
 ```
 
 The `descriptions.tsv` gives descriptions of the `desc-` entities used for datafiles.
 
-```TXT
-desc_id    description
-desc-exp1   Files generated by expert #1
-desc-exp2   Files generated by expert #2
+```tsv
+desc_id	description
+desc-exp1	Files generated by expert #1
+desc-exp2	Files generated by expert #2
 ```

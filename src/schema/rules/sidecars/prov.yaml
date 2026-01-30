@@ -1,7 +1,6 @@
 ---
 CommonProvenanceFields:
-  selectors:
-    - true == true # rule is validated for all sidecars files
+  selectors: []  # rule is validated for all sidecars files
   fields:
     GeneratedBy__Id__File: optional
     SidecarGeneratedBy: optional

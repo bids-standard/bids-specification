@@ -154,12 +154,12 @@ Activities:
         name: StartedAtTime
         description: Timestamp tracking when the activity started.
         type: string
-        format: date
+        format: datetime
       EndedAtTime:
         name: EndedAtTime
         description: Timestamp tracking when the activity ended.
         type: string
-        format: date
+        format: datetime
 Anaesthesia:
   name: Anaesthesia
   display_name: Anaesthesia
