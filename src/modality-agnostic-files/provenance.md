@@ -54,6 +54,7 @@ The `GeneratedBy` field MAY contain either of the following values:
 ### Description using identifiers
 
 This section details how to describe provenance of a dataset using identifiers.
+The following fields are intended for use in `dataset_description.json` to provide provenance information that applies to the entire dataset.
 
 <!-- This block generates a metadata table.
 The definitions of these fields can be found in
@@ -448,16 +449,6 @@ prov-preprocfsl	Provenance of preprocessing performed with FSL.
 Additional columns may be added to `provenance.tsv` but MUST be accompanied with a 
 `provenance.json` sidecar file to describe the TSV column names and properties of their values
 as outlined in [common principles for tabular files](../common-principles.md#tabular-files).
-
-`provenance.json` example:
-
-```JSON
-{
-    "description": {
-        "Description": "Description of the provenance file(s)."
-    }
-}
-```
 
 ## Consistency and uniqueness of identifiers
 

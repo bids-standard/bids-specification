@@ -14,6 +14,6 @@ ProvenanceEntityMissing:
   checks:
     - |
       allequal(
-        sorted(intersects(columns.provenance_id, dataset.subjects.participant_id)),
-        sorted(dataset.subjects.participant_id)
+        sorted(intersects(columns.provenance_id, dataset.prov.entities)),
+        sorted(dataset.prov.entities)
       )
