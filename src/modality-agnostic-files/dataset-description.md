@@ -24,26 +24,7 @@ The definitions of these fields can be found in
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "Name": "REQUIRED",
-      "BIDSVersion": "REQUIRED",
-      "HEDVersion": "RECOMMENDED",
-      "DatasetLinks": "REQUIRED if [BIDS URIs][] are used",
-      "DatasetType": "RECOMMENDED",
-      "License": "RECOMMENDED",
-      "Authors": "RECOMMENDED if CITATION.cff is not present",
-      "Keywords": "OPTIONAL",
-      "Acknowledgements": "OPTIONAL",
-      "HowToAcknowledge": "OPTIONAL",
-      "Funding": "OPTIONAL",
-      "EthicsApprovals": "OPTIONAL",
-      "ReferencesAndLinks": "OPTIONAL",
-      "DatasetDOI": "OPTIONAL",
-      "GeneratedBy": "RECOMMENDED",
-      "SourceDatasets": "RECOMMENDED",
-   }
-) }}
+{{ MACROS___make_json_table('dataset_metadata.dataset_description') }}
 
 !!! Note
     See the [Provenance of a BIDS dataset](provenance.md#provenance-of-a-bids-dataset) section
@@ -210,7 +191,3 @@ A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 {{ MACROS___render_text("objects.files.LICENSE.description") }}
-
-<!-- Link Definitions -->
-
-[bids uris]: ../common-principles.md#bids-uri

@@ -112,7 +112,7 @@ Motion specific fields SHOULD be present:
  "GYROChannelCount": 6,
  "MAGNChannelCount": 6,
  "Manufacturer": "BWSensing",
- "ManufacturersModelName": "BW-IMU600",
+ "ManufacturersModelName": "BW-IMU600"
 }
 ```
 
