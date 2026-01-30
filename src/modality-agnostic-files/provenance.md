@@ -67,6 +67,7 @@ The `GeneratedBy` field MAY contain either of the following values:
 
 -   Identifier(s) of the activity/activities responsible for the creation of the dataset
 (see [Description using identifiers](#description-using-identifiers)).
+
 -   A description of pipelines or processes responsible for the creation of the dataset
 (see [Description of pipelines or processes](#description-of-pipelines-or-processes)).
 
@@ -713,6 +714,7 @@ Among them:
 
 -   the `bids::prov#movefile-bac3f385` activity needed a T1w file from the ds000011
 dataset identified by `bids:ds000011:sub-01/anat/sub-01_T1w.nii.gz`;
+
 -   the `bids::prov#segment-7d5d4ac5` brain segmentation activity needed the two files
 listed inside the `Used` array.
 
