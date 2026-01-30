@@ -1,16 +1,27 @@
 # Provenance
 
-Support for provenance was developed as a [BIDS Extension Proposal](../extensions.md#bids-extension-proposals).
-Please see [Citing BIDS](../introduction.md#citing-bids) on how to appropriately credit this extension when referring to it in the
-context of the academic literature.
+Support for provenance was developed as
+a [BIDS Extension Proposal](../extensions.md#bids-extension-proposals).
+Please see [Citing BIDS](../introduction.md#citing-bids) on how to appropriately credit
+this extension when referring to it in the context of the academic literature.
 
 !!! example "Example datasets"
 
-    Several [example datasets](https://bids.neuroimaging.io/datasets/examples.html#provenance) have been formatted using this specification and can be used for practical guidance when curating a new dataset.
+    Several [example datasets](https://bids.neuroimaging.io/datasets/examples.html#provenance)
+    have been formatted using this specification and can be used
+    for practical guidance when curating a new dataset.
 
-This part of the BIDS specification is aimed at describing the provenance of a BIDS dataset. This description is retrospective: it describes a set of steps that were executed in order to establish the dataset and is based on [W3C Prov](https://www.w3.org/TR/2013/REC-prov-o-20130430/) (see [Provenance from an RDF perspective](#provenance-from-a-rdf-perspective)).
+This part of the BIDS specification is aimed at describing the provenance of a BIDS dataset.
+This description is retrospective: it describes a set of steps that were executed in order to
+establish the dataset and is based on [W3C Prov](https://www.w3.org/TR/2013/REC-prov-o-20130430/)
+(see [Provenance from an RDF perspective](#provenance-from-a-rdf-perspective)).
 
-Provenance information SHOULD be included in a BIDS dataset when possible. If provenance information is included, it MUST be described using the conventions detailed hereafter. Provenance information reflects the provenance of a full dataset and/or of specific files at any level of the BIDS hierarchy. Provenance information SHOULD not include human subject identifying data.
+Provenance information SHOULD be included in a BIDS dataset when possible.
+If provenance information is included,
+it MUST be described using the conventions detailed hereafter.
+Provenance information reflects the provenance of a full dataset
+and/or of specific files at any level of the BIDS hierarchy.
+Provenance information SHOULD not include human subject identifying data.
 
 ## Provenance of a BIDS file
 
@@ -40,21 +51,30 @@ and a guide for using macros can be found at
         }
     }
     ```
-    For a complete example see [Provenance of DICOM to NIfTI conversion with `heudiconv`](https://github.com/bclenet/bids-examples/tree/BEP028_heudiconv/provenance_heudiconv).
+    For a complete example see
+    [Provenance of DICOM to NIfTI conversion with `heudiconv`](https://github.com/bclenet/bids-examples/tree/BEP028_heudiconv/provenance_heudiconv).
 
 ## Provenance of a BIDS dataset
 
-Provenance of a BIDS dataset (raw, derivative, or study) SHOULD be stored inside its `dataset_description.json` file. The `dataset_description.json` file of a **BIDS raw dataset** or **BIDS study dataset** MAY include the `GeneratedBy` key to describe provenance. The `dataset_description.json` file of a **BIDS derivative dataset** MUST include the `GeneratedBy` key to describe provenance.
+Provenance of a BIDS dataset (raw, derivative, or study) SHOULD be stored
+inside its `dataset_description.json` file.
+The `dataset_description.json` file of a **BIDS raw dataset** or **BIDS study dataset** MAY
+include the `GeneratedBy` key to describe provenance.
+The `dataset_description.json` file of a **BIDS derivative dataset** MUST
+include the `GeneratedBy` key to describe provenance.
 
 The `GeneratedBy` field MAY contain either of the following values:
 
--   Identifier(s) of the activity/activities responsible for the creation of the dataset (see [Description using identifiers](#description-using-identifiers)).
--   A description of pipelines or processes responsible for the creation of the dataset (see [Description of pipelines or processes](#description-of-pipelines-or-processes)).
+-   Identifier(s) of the activity/activities responsible for the creation of the dataset
+(see [Description using identifiers](#description-using-identifiers)).
+-   A description of pipelines or processes responsible for the creation of the dataset
+(see [Description of pipelines or processes](#description-of-pipelines-or-processes)).
 
 ### Description using identifiers
 
 This section details how to describe provenance of a dataset using identifiers.
-The following fields are intended for use in `dataset_description.json` to provide provenance information that applies to the entire dataset.
+The following fields are intended for use in `dataset_description.json` to provide
+provenance information that applies to the entire dataset.
 
 <!-- This block generates a metadata table.
 The definitions of these fields can be found in
@@ -77,15 +97,19 @@ and a guide for using macros can be found at
         "GeneratedBy": "bids::prov#preprocessing-xMpFqB5q"
     }
     ```
-    For a complete example see [Provenance of fMRI preprocessing with `fMRIPrep`](https://github.com/bclenet/bids-examples/tree/BEP028_fmriprep/provenance_fmriprep).
+    For a complete example see
+    [Provenance of fMRI preprocessing with `fMRIPrep`](https://github.com/bclenet/bids-examples/tree/BEP028_fmriprep/provenance_fmriprep).
 
 ### Description of processes or pipelines
 
-This section details how to describe the provenance of a dataset using an array of objects representing pipelines or processes that generated the dataset.
+This section details how to describe the provenance of a dataset using an array of objects
+representing pipelines or processes that generated the dataset.
 
 !!! warning
 
-    This description can be equivalently represented using the previous section. This modeling is kept for backward-compatibility but might be removed in future BIDS releases (see BIDS 2.0).
+    This description can be equivalently represented using the previous section.
+    This modeling is kept for backward-compatibility but might be removed
+    in future BIDS releases (see BIDS 2.0).
 
 <!-- This block generates a metadata table.
 The definitions of these fields can be found in
@@ -137,7 +161,10 @@ and a guide for using macros can be found at
 
 ## Provenance files
 
-Any provenance information that can't be stored in either sidecar JSON files (see [Provenance of BIDS file](#provenance-of-a-bids-file)) or in `dataset_description.json` (see [Provenance of BIDS dataset](#provenance-of-a-bids-dataset)) MUST be stored in provenance files under the `/prov/` directory.
+Any provenance information that can't be stored in either sidecar JSON files
+(see [Provenance of BIDS file](#provenance-of-a-bids-file)) or in `dataset_description.json`
+(see [Provenance of BIDS dataset](#provenance-of-a-bids-dataset)) MUST be stored in
+provenance files under the `/prov/` directory.
 
 <!--
 This block generates a filename templates.
@@ -154,7 +181,9 @@ and a guide for using macros can be found at
 
 !!! note
 
-    The [`prov entity`](../appendices/entities.md#prov) allows to group related provenance files, using an arbitrary value for `<label>`. A subdirectory MAY be used to group provenance files sharing the same `prov entity`.
+    The [`prov entity`](../appendices/entities.md#prov) allows to group related provenance files,
+    using an arbitrary value for `<label>`.
+    A subdirectory MAY be used to group provenance files sharing the same `prov entity`.
 
 The following suffixes specify the contents of provenance files.
 
@@ -188,7 +217,8 @@ and a guide for using macros can be found at
 
 Activities are transformations that have been applied to data.
 
-Each file with an `act` suffix is a JSON file describing activities. It MUST include the following key:
+Each file with an `act` suffix is a JSON file describing activities.
+It MUST include the following key:
 
 <!-- This block generates a metadata table.
 The definitions of these fields can be found in
@@ -232,13 +262,16 @@ and a guide for using macros can be found at
         ]
     }
     ```
-    For a complete example, see [Provenance of DICOM to NIfTI conversion with `dcm2niix`](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix).
+    For a complete example, see
+    [Provenance of DICOM to NIfTI conversion with `dcm2niix`](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix).
 
 ### Software
 
-This section specifies how to describe software packages that computed the [activities](#activities).
+This section specifies how to describe software packages
+that computed the [activities](#activities).
 
-Each file with a `soft` suffix is a JSON file describing software. It MUST include the following key:
+Each file with a `soft` suffix is a JSON file describing software.
+It MUST include the following key:
 
 <!-- This block generates a metadata table.
 The definitions of these fields can be found in
@@ -280,7 +313,10 @@ and a guide for using macros can be found at
 
 ### Input and output data
 
-This section specifies how to describe input and output data for [activities](#activities). This data corresponds to the W3C Prov [prov:Entity](https://www.w3.org/TR/2013/REC-prov-o-20130430/#Entity) class that includes files, datasets and other types of data.
+This section specifies how to describe input and output data for [activities](#activities).
+This data corresponds to the W3C Prov
+[prov:Entity](https://www.w3.org/TR/2013/REC-prov-o-20130430/#Entity)
+class that includes files, datasets and other types of data.
 
 Each file with a `ent` suffix is a JSON file describing input and output data.
 
@@ -290,9 +326,11 @@ Each file with a `ent` suffix is a JSON file describing input and output data.
 
 !!! warning
 
-    These files SHOULD not describe files that are available in the dataset. See [Provenance of a BIDS file](#provenance-of-a-bids-file) for this purpose.
+    These files SHOULD not describe files that are available in the dataset.
+    See [Provenance of a BIDS file](#provenance-of-a-bids-file) for this purpose.
 
-    These files SHOULD not describe the current dataset. See [Provenance of a BIDS dataset](#provenance-of-a-bids-dataset) for this purpose.
+    These files SHOULD not describe the current dataset.
+    See [Provenance of a BIDS dataset](#provenance-of-a-bids-dataset) for this purpose.
 
 Each file MUST include one or more of the following keys:
 
@@ -369,9 +407,11 @@ and a guide for using macros can be found at
 
 ### Environments
 
-This section specifies how to describe software environments in which [activities](#activities) were performed.
+This section specifies how to describe software environments
+in which [activities](#activities) were performed.
 
-Each file with a `env` suffix is a JSON file describing environments. It MUST include the following key:
+Each file with a `env` suffix is a JSON file describing environments.
+It MUST include the following key:
 
 <!-- This block generates a metadata table.
 The definitions of these fields can be found in
@@ -420,8 +460,13 @@ prov/
     provenance.json
 ```
 
-The purpose of this RECOMMENDED file is to describe properties of [`prov-`](../appendices/entities.md#prov) entities used in the names of provenance files.
-It MUST contain the column `provenance_id`, which MUST consist of `prov-<label>` values identifying one row for each [`prov entity`](../appendices/entities.md#prov) in the dataset, followed by an optional column containing a description for the entity. Each entity MUST be described by one and only one row.
+The purpose of this RECOMMENDED file is to describe properties of
+[`prov-`](../appendices/entities.md#prov) entities used in the names of provenance files.
+It MUST contain the column `provenance_id`,
+which MUST consist of `prov-<label>` values identifying one row for each
+[`prov entity`](../appendices/entities.md#prov) in the dataset,
+followed by an optional column containing a description for the entity.
+Each entity MUST be described by one and only one row.
 
 We RECOMMEND to make use of these columns, and
 in case that you do use them, we RECOMMEND to use the following values
@@ -452,17 +497,25 @@ as outlined in [common principles for tabular files](../common-principles.md#tab
 
 ## Consistency and uniqueness of identifiers
 
-The following rules and conventions are provided in order to have consistent, human readable, and explicit [IRIs](https://www.w3.org/TR/json-ld11/#iris) as identifiers for JSON objects related to provenance.
+The following rules and conventions are provided in order to have consistent,
+human readable, and explicit [IRIs](https://www.w3.org/TR/json-ld11/#iris)
+as identifiers for JSON objects related to provenance.
 
 ### Identifiers for input and output data
 
-The identifier for a BIDS file or a BIDS dataset MUST be a [BIDS URI](../common-principles.md#bids-uri). The identifier for a no-longer-existing BIDS file or BIDS dataset SHOULD be a [BIDS URI](../common-principles.md#bids-uri) with a fragment part.
+The identifier for a BIDS file or a BIDS dataset MUST be
+a [BIDS URI](../common-principles.md#bids-uri).
+The identifier for a no-longer-existing BIDS file or BIDS dataset SHOULD be
+a [BIDS URI](../common-principles.md#bids-uri) with a fragment part.
 
 !!! warning
 
-    The use of BIDS URIs may require to define the `DatasetLinks` object in [`dataset_description.json`](dataset-description.md#dataset_descriptionjson).
+    The use of BIDS URIs may require to define the `DatasetLinks` object
+    in [`dataset_description.json`](dataset-description.md#dataset_descriptionjson).
 
-The identifier for a prov:Entity (see [Input and output data](#input-and-output-data)) that is described in a BIDS dataset `<dataset-name>` MAY have the following form, where `<label>` is an arbitrary value for identifying the prov:Entity.
+The identifier for a prov:Entity (see [Input and output data](#input-and-output-data))
+that is described in a BIDS dataset `<dataset-name>` MAY have the following form,
+where `<label>` is an arbitrary value for identifying the prov:Entity.
 
 ```text
 bids:[<dataset-name>]:prov#entity-<label>
@@ -470,21 +523,29 @@ bids:[<dataset-name>]:prov#entity-<label>
 
 !!! example "Examples of identifiers for input and output data"
 
-    - `bids:ds000011:sub-01/anat/sub-01_T1w.nii.gz` - identifier for a T1w file for subject `sub-01` in the `ds000011` dataset;
-    - `bids::sub-014/func/sub-014_task-MGT_run-01_events.tsv` - identifier for an events file for subject `sub-014` in the current dataset;
-    - `bids:fmriprep:sub-001/func/sub-001_task-MGT_run-01_bold_space-MNI152NLin2009cAsym_preproc.nii.gz` - identifier for a bold file for subject `sub-001` in the `fmriprep` dataset;
+    - `bids:ds000011:sub-01/anat/sub-01_T1w.nii.gz` -
+    identifier for a T1w file for subject `sub-01` in the `ds000011` dataset;
+    - `bids::sub-014/func/sub-014_task-MGT_run-01_events.tsv` -
+    identifier for an events file for subject `sub-014` in the current dataset;
+    - `bids:fmriprep:sub-001/func/sub-001_task-MGT_run-01_bold_space-MNI152NLin2009cAsym_preproc.nii.gz` -
+    identifier for a bold file for subject `sub-001` in the `fmriprep` dataset;
     - `bids:ds001734:.` - identifier for the `ds001734` dataset;
-    - `bids::prov#entity-28c0ba28` - identifier for a prov:Entity that is described in the current dataset.
+    - `bids::prov#entity-28c0ba28` -
+    identifier for a prov:Entity that is described in the current dataset.
 
 ### Identifiers for other objects
 
-The identifier for an activity, software, or environment described in a BIDS dataset `<dataset-name>` SHOULD have the following form, where `<label>` is a human readable name for coherently identifying the object and `<uid>` is a unique group of chars.
+The identifier for an activity, software, or environment described
+in a BIDS dataset `<dataset-name>` SHOULD have the following form,
+where `<label>` is a human readable name for coherently identifying
+the object and `<uid>` is a unique group of chars.
 
 ```text
 bids:[<dataset-name>]:prov#<label>-<uid>
 ```
 
-The uniqueness of this identifier MUST be used to distinguish any activity, software, or environment that are different in any of their attributes.
+The uniqueness of this identifier MUST be used to distinguish any activity,
+software, or environment that are different in any of their attributes.
 
 !!! example "Examples of identifiers for activities, environments and software"
 
@@ -494,7 +555,10 @@ The uniqueness of this identifier MUST be used to distinguish any activity, soft
 
 ## Provenance from an RDF perspective
 
-Objects describing provenance as defined in this specification can be aggregated into [JSON-LD](https://www.w3.org/TR/json-ld11/) files ; which allows to represent provenance as an RDF graph (see [Resource Description Framework (RDF)](https://www.w3.org/RDF/)).
+Objects describing provenance as defined in this specification
+can be aggregated into [JSON-LD](https://www.w3.org/TR/json-ld11/) files ;
+which allows to represent provenance as
+an RDF graph (see [Resource Description Framework (RDF)](https://www.w3.org/RDF/)).
 
 !!! example "Minimal provenance graph"
 
@@ -510,11 +574,18 @@ Objects describing provenance as defined in this specification can be aggregated
 
     - *sub-001_T1w.nii* is the original T1-weighted image;
     - *sub-001_T1w_preproc.nii* is the skull striped image;
-    - the *"Brain extraction"* activity was performed using the *FSL* software within a *Linux* software environment.
+    - the *"Brain extraction"* activity was performed using the *FSL*
+    software within a *Linux* software environment.
 
-Moreover, the terms defined in this specification to describe provenance are based on the [W3C Prov](https://www.w3.org/TR/2013/REC-prov-o-20130430/) standard. The corresponding [IRIs](https://www.w3.org/TR/json-ld11/#iris) are described in the JSON-LD context file [`provenance-context.json`](../provenance-context.json) provided with this specification.
+Moreover, the terms defined in this specification to describe provenance
+are based on the [W3C Prov](https://www.w3.org/TR/2013/REC-prov-o-20130430/) standard.
+The corresponding [IRIs](https://www.w3.org/TR/json-ld11/#iris) are described
+in the JSON-LD context file [`provenance-context.json`](../provenance-context.json)
+provided with this specification.
 
-All BIDS examples related to provenance (see. [bids-examples, provenance section](https://bids-website.readthedocs.io/en/latest/datasets/examples.html#provenance)) show the aggregated version of the provenance metadata they contain. This comes as a JSON-LD file and a visualization of the graph.
+All BIDS examples related to provenance (see. [bids-examples, provenance section](https://bids-website.readthedocs.io/en/latest/datasets/examples.html#provenance))
+show the aggregated version of the provenance metadata they contain.
+This comes as a JSON-LD file and a visualization of the graph.
 
 ## Minimal examples
 
@@ -524,7 +595,8 @@ All BIDS examples related to provenance (see. [bids-examples, provenance section
 
     For a complete example, see [Provenance of DICOM to NIfTI conversion with `dcm2niix`](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix).
 
-In this example, we explain provenance metadata of a DICOM to NIfTI conversion with `dcm2niix`. Consider the following BIDS raw dataset:
+In this example, we explain provenance metadata of a DICOM to NIfTI conversion with `dcm2niix`.
+Consider the following BIDS raw dataset:
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
@@ -552,7 +624,11 @@ A guide for using macros can be found at
     }
 ) }}
 
-The `prov/prov-dcm2niix_soft.json` file describes `dcm2niix`, the software package used for the DICOM conversion. As per the [Consistency and uniqueness of identifiers](#consistency-and-uniqueness-of-identifiers) section, the identifier for the associated software object SHOULD start with `bids:<dataset>:prov#` (`bids::` refers to the current dataset).
+The `prov/prov-dcm2niix_soft.json` file describes `dcm2niix`,
+the software package used for the DICOM conversion.
+As per the [Consistency and uniqueness of identifiers](#consistency-and-uniqueness-of-identifiers)
+section, the identifier for the associated software object SHOULD
+start with `bids:<dataset>:prov#` (`bids::` refers to the current dataset).
 
 ```JSON
 {
@@ -566,7 +642,9 @@ The `prov/prov-dcm2niix_soft.json` file describes `dcm2niix`, the software packa
 }
 ```
 
-The `prov/prov-dcm2niix_act.json` file describes the conversion activity. Note that the identifier for the previously described software package is used here to describe that the software package was used to compute this activity.
+The `prov/prov-dcm2niix_act.json` file describes the conversion activity.
+Note that the identifier for the previously described software package is used here
+to describe that the software package was used to compute this activity.
 
 ```JSON
 {
@@ -581,7 +659,9 @@ The `prov/prov-dcm2niix_act.json` file describes the conversion activity. Note t
 }
 ```
 
-Inside the `sub-001/anat/sub-001_T1w.json` file, the metadata field `GeneratedBy` indicates that the `sub-001/anat/sub-001_T1w.nii.gz` file was generated by the previously described activity.
+Inside the `sub-001/anat/sub-001_T1w.json` file,
+the metadata field `GeneratedBy` indicates that the `sub-001/anat/sub-001_T1w.nii.gz` file
+was generated by the previously described activity.
 
 ```JSON
 {
@@ -597,7 +677,8 @@ Inside the `sub-001/anat/sub-001_T1w.json` file, the metadata field `GeneratedBy
 
     For a complete example, see [Provenance of fMRI preprocessing with `SPM`](https://github.com/bclenet/bids-examples/tree/BEP028_spm/provenance_spm).
 
-In this example, we explain provenance metadata of fMRI preprocessing steps performed with `SPM`. Consider the following BIDS derivative dataset:
+In this example, we explain provenance metadata of fMRI preprocessing steps performed with `SPM`.
+Consider the following BIDS derivative dataset:
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
@@ -627,10 +708,13 @@ A guide for using macros can be found at
     }
 ) }}
 
-The `prov/prov-spm_act.json` file describes the preprocessing steps (activities) as JSON objects. Among them:
+The `prov/prov-spm_act.json` file describes the preprocessing steps (activities) as JSON objects.
+Among them:
 
--   the `bids::prov#movefile-bac3f385` activity needed a T1w file from the ds000011 dataset identified by `bids:ds000011:sub-01/anat/sub-01_T1w.nii.gz`;
--   the `bids::prov#segment-7d5d4ac5` brain segmentation activity needed the two files listed inside the `Used` array.
+-   the `bids::prov#movefile-bac3f385` activity needed a T1w file from the ds000011
+dataset identified by `bids:ds000011:sub-01/anat/sub-01_T1w.nii.gz`;
+-   the `bids::prov#segment-7d5d4ac5` brain segmentation activity needed the two files
+listed inside the `Used` array.
 
 ```JSON
 {
@@ -658,7 +742,10 @@ The `prov/prov-spm_act.json` file describes the preprocessing steps (activities)
 }
 ```
 
-`bids::sub-01/anat/sub-01_T1w.nii` is a BIDS file available in the current dataset. The `spm12/tpm/TPM.nii` file is not inside the dataset ; hence its description is stored inside `prov/prov-spm_ent.json` and its identifier is not a BIDS URI:
+`bids::sub-01/anat/sub-01_T1w.nii` is a BIDS file available in the current dataset.
+The `spm12/tpm/TPM.nii` file is not inside the dataset ;
+hence its description is stored inside `prov/prov-spm_ent.json` and
+its identifier is not a BIDS URI:
 
 ```JSON
 {
@@ -675,7 +762,9 @@ The `prov/prov-spm_act.json` file describes the preprocessing steps (activities)
 }
 ```
 
-Inside the `sub-001/anat/c1sub-001_T1w.json` file, the metadata field `GeneratedBy` indicates that the `c1sub-001/anat/sub-001_T1w.nii.gz` file was generated by the previously described brain segmentation activity.
+Inside the `sub-001/anat/c1sub-001_T1w.json` file,
+the metadata field `GeneratedBy` indicates that the `c1sub-001/anat/sub-001_T1w.nii.gz` file
+was generated by the previously described brain segmentation activity.
 
 ```JSON
 {
@@ -690,7 +779,9 @@ Inside the `sub-001/anat/c1sub-001_T1w.json` file, the metadata field `Generated
 
     For a complete example, see [Provenance of manual segmentations](https://github.com/bclenet/bids-examples/tree/BEP028_manual/provenance_manual).
 
-In this example, we explain provenance metadata of manual segmentations performed by two experts on the same T1w file. Consider the following BIDS study dataset:
+In this example, we explain provenance metadata of manual segmentations performed by
+two experts on the same T1w file.
+Consider the following BIDS study dataset:
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
@@ -738,7 +829,9 @@ A guide for using macros can be found at
     }
 ) }}
 
-Inside the `dataset_description.json` file of the `seg-brain` derivative dataset, the `DatasetLinks` metadata field defines an alias that is needed to refer to the raw dataset using BIDS URIs.
+Inside the `dataset_description.json` file of the `seg-brain` derivative dataset,
+the `DatasetLinks` metadata field defines an alias that is needed
+to refer to the raw dataset using BIDS URIs.
 
 ```JSON
 {
@@ -749,7 +842,8 @@ Inside the `dataset_description.json` file of the `seg-brain` derivative dataset
 }
 ```
 
-The `prov/prov-seg_act.json` file describes activities during which the experts generated segmentations.
+The `prov/prov-seg_act.json` file describes activities during which
+the experts generated segmentations.
 
 ```JSON
 {
@@ -774,9 +868,13 @@ The `prov/prov-seg_act.json` file describes activities during which the experts 
 }
 ```
 
-Note that a description of the `sub-001/anat/sub-001_T1w.nii.gz` file is needed because this data file is related to the activities. Here we rely on the `sourcedata/raw` dataset to provide a description of the data file.
+Note that a description of the `sub-001/anat/sub-001_T1w.nii.gz` file is needed because
+this data file is related to the activities.
+Here we rely on the `sourcedata/raw` dataset to provide a description of the data file.
 
-Under the `derivatives/seg-brain` dataset, the `sub-001_space-orig_desc-exp1_dseg.json` file describes which activity generated the `sub-001_space-orig_desc-exp1_dseg.nii.gz` file.
+Under the `derivatives/seg-brain` dataset,
+the `sub-001_space-orig_desc-exp1_dseg.json` file describes which activity generated
+the `sub-001_space-orig_desc-exp1_dseg.nii.gz` file.
 
 ```JSON
 {
