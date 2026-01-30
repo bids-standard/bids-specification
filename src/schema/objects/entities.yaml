@@ -264,7 +264,7 @@ processing:
     exploited.
   type: string
   format: label
-prov:
+provenance:
   name: prov
   display_name: Provenance group
   description: |

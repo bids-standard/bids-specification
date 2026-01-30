@@ -13,6 +13,21 @@ EnvironmentsProvenanceFile:
   fields:
     Environments: required
 
+EntitiesProvenanceFile:
+  selectors:
+    - datatype == "prov"
+    - suffix == "ent"
+  fields:
+    ProvEntity:
+      level: optional
+      level_addendum: required if `Files` and `Datasets` fields are absent
+    Files:
+      level: optional
+      level_addendum: required if `prov:Entity` and `Datasets` fields are absent
+    Dataset:
+      level: optional
+      level_addendum: required if `Files` and `prov:Entity` fields are absent
+
 ProvEntityProvenanceFile:
   selectors:
     - datatype == "prov"

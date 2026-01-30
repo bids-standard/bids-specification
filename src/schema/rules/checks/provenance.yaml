@@ -9,8 +9,8 @@ ProvenanceEntityMissing:
       the dataset.
     level: error
   selectors:
-    - datatype == 'provenance'
-    - suffix == '.tsv'
+    - suffix == 'provenance'
+    - extension == '.tsv'
   checks:
     - |
       allequal(

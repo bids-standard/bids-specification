@@ -24,14 +24,7 @@ The definitions of these fields can be found in
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "GeneratedBy__Id__File": "OPTIONAL",
-      "SidecarGeneratedBy": "OPTIONAL",
-      "Digest__File": "OPTIONAL",
-      "Type__File": "OPTIONAL"
-   }
-) }}
+{{ MACROS___make_sidecar_table('prov.CommonProvenanceFields') }}
 
 !!! example "Example of metadata in a sidecar JSON file"
 
@@ -308,13 +301,7 @@ The definitions of these fields can be found in
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "Files": "REQUIRED if `Datasets` and `prov:Entity` are not included",
-      "Datasets": "REQUIRED if `Files` and `prov:Entity` are not included",
-      "ProvEntity": "REQUIRED if `Files` and `Datasets` are not included"
-   }
-) }}
+{{ MACROS___make_json_table('json.prov.EntitiesProvenanceFile') }}
 
 Each object in the `Files` array includes the following keys:
 
@@ -458,9 +445,9 @@ prov-preprocspm	Provenance of preprocessing performed with SPM.
 prov-preprocfsl	Provenance of preprocessing performed with FSL.
 ```
 
-It is RECOMMENDED to accompany each `provenance.tsv` file with a sidecar
-`provenance.json` file to describe the TSV column names and properties of their values
-(see also [tabular files](../common-principles.md#tabular-files)).
+Additional columns may be added to `provenance.tsv` but MUST be accompanied with a 
+`provenance.json` sidecar file to describe the TSV column names and properties of their values
+as outlined in [common principles for tabular files](../common-principles.md#tabular-files).
 
 `provenance.json` example:
 

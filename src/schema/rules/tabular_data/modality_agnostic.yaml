@@ -78,7 +78,7 @@ Phenotype:
 Provenance:
   selectors:
     - datatype == 'prov'
-    - stem == 'provenance'
+    - suffix == 'provenance'
     - extension == '.tsv'
   initial_columns:
     - provenance_id
