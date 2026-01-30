@@ -154,7 +154,7 @@ BigDeltaNotConsistent:
       not match the 4th dimension of the NIfTI header.
     level: error
   selectors:
-    - modality == "mri"
+    - suffix == "dwi"
     - type(sidecar.BigDelta) == "array"
     - type(nifti_header) != "null"
   checks:
@@ -168,7 +168,7 @@ SmallDeltaNotConsistent:
       not match the 4th dimension of the NIfTI header.
     level: error
   selectors:
-    - modality == "mri"
+    - suffix == "dwi"
     - type(sidecar.SmallDelta) == "array"
     - type(nifti_header) != "null"
   checks:
