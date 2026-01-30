@@ -4,6 +4,7 @@ Portions of the BIDS specification are defined using YAML files in order to
 make the specification machine-readable.
 
 Currently the portions of the specification that rely on this schema are:
+
 -   the entity tables,
 -   entity definitions,
 -   filename templates,
