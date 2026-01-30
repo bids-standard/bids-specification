@@ -491,7 +491,7 @@ prov-preprocspm	Provenance of preprocessing performed with SPM.
 prov-preprocfsl	Provenance of preprocessing performed with FSL.
 ```
 
-Additional columns may be added to `provenance.tsv` but MUST be accompanied with a 
+Additional columns may be added to `provenance.tsv` but MUST be accompanied with a
 `provenance.json` sidecar file to describe the TSV column names and properties of their values
 as outlined in [common principles for tabular files](../common-principles.md#tabular-files).
 
