@@ -14,4 +14,4 @@ provenance:
   extensions:
     - .json
   entities:
-    prov: required
+    provenance: required
