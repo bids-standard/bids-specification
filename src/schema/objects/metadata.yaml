@@ -3912,6 +3912,8 @@ SmallDelta:
     In the context of a diffusion-weighted pulsed gradient spin echo sequence,
     corresponds to the duration of a diffusion-encoding gradient pulse (δ),
     specified in seconds.
+    The value may be an array, if δ varies by volume, in which case the number
+    of values MUST correspond to the number of volumes in the data file.
   anyOf:
     - type: number
       unit: s
