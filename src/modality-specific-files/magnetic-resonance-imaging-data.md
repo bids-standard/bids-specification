@@ -903,7 +903,7 @@ A guide for using macros can be found at
 ### Combined DWI schemes
 
 Some DWI schemes are acquired by varying parameters including the
-[`EchoTime (TE)`](../glossary.html#objects.metadata.EchoTime),
+[`EchoTime (TE)`](../glossary.md#objects.metadata.EchoTime),
 [`SmallDelta (δ)`](../glossary.md#smalldelta-metadata),
 [`BigDelta (Δ)`](../glossary.md#bigdelta-metadata);
 in addition to varying the diffusion-encoding weightings (b-values) and
