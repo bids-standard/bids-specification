@@ -24,7 +24,7 @@ EntitiesProvenanceFile:
     Files:
       level: optional
       level_addendum: required if `prov:Entity` and `Datasets` fields are absent
-    Dataset:
+    Datasets:
       level: optional
       level_addendum: required if `Files` and `prov:Entity` fields are absent
 
