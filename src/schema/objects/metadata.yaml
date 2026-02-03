@@ -79,10 +79,11 @@ Activities:
     properties:
       Id:
         name: Id
-        description: "Identifier for the activity (see the [Consistency and uniqueness of identifiers]\
-        (SPEC_ROOT/modality-agnostic-files/provenance.md#consistency-and-uniqueness-of-identifiers) section).\
-        \
-        Corresponds to [JSON-LD `@id`](https://www.w3.org/TR/json-ld11/#syntax-tokens-and-keywords)."
+        description: |
+          Identifier for the activity (see the [Consistency and uniqueness of identifiers](
+          SPEC_ROOT/modality-agnostic-files/provenance.md#consistency-and-uniqueness-of-identifiers) section).
+
+          Corresponds to [JSON-LD `@id`](https://www.w3.org/TR/json-ld11/#syntax-tokens-and-keywords).
         type: string
         format: uri
       Label:
@@ -878,10 +879,11 @@ Datasets:
     properties:
       Id:
         name: Id
-        description: "Identifier for the dataset (see the [Consistency and uniqueness of identifiers]\
-        (SPEC_ROOT/modality-agnostic-files/provenance.md#consistency-and-uniqueness-of-identifiers) section).\
-        \
-        Corresponds to [JSON-LD `@id`](https://www.w3.org/TR/json-ld11/#syntax-tokens-and-keywords)."
+        description: |
+          Identifier for the dataset (see the [Consistency and uniqueness of identifiers](
+          SPEC_ROOT/modality-agnostic-files/provenance.md#consistency-and-uniqueness-of-identifiers) section).
+  
+          Corresponds to [JSON-LD `@id`](https://www.w3.org/TR/json-ld11/#syntax-tokens-and-keywords).
         type: string
         format: uri
       Label:
@@ -1573,10 +1575,11 @@ ProvEntity:
     properties:
       Id:
         name: Id
-        description: "Identifier for the prov:Entity (see the [Consistency and uniqueness of identifiers]\
-        (SPEC_ROOT/modality-agnostic-files/provenance.md#consistency-and-uniqueness-of-identifiers) section).\
-        \
-        Corresponds to [JSON-LD `@id`](https://www.w3.org/TR/json-ld11/#syntax-tokens-and-keywords)."
+        description: |
+          Identifier for the prov:Entity (see the [Consistency and uniqueness of identifiers](
+          SPEC_ROOT/modality-agnostic-files/provenance.md#consistency-and-uniqueness-of-identifiers) section).
+
+          Corresponds to [JSON-LD `@id`](https://www.w3.org/TR/json-ld11/#syntax-tokens-and-keywords).
         type: string
         format: uri
       Label:
@@ -1637,10 +1640,11 @@ Environments:
     properties:
       Id:
         name: Id
-        description: "Identifier for the environment (see the [Consistency and uniqueness of identifiers]\
-        (SPEC_ROOT/modality-agnostic-files/provenance.md#consistency-and-uniqueness-of-identifiers) section).\
-        \
-        Corresponds to [JSON-LD `@id`](https://www.w3.org/TR/json-ld11/#syntax-tokens-and-keywords)."
+        description: |
+          Identifier for the environment (see the [Consistency and uniqueness of identifiers](
+          SPEC_ROOT/modality-agnostic-files/provenance.md#consistency-and-uniqueness-of-identifiers) section).
+
+          Corresponds to [JSON-LD `@id`](https://www.w3.org/TR/json-ld11/#syntax-tokens-and-keywords).
         type: string
         format: uri
       Label:
@@ -1803,10 +1807,11 @@ Files:
     properties:
       Id:
         name: Id
-        description: "Identifier for the file (see the [Consistency and uniqueness of identifiers]\
-        (SPEC_ROOT/modality-agnostic-files/provenance.md#consistency-and-uniqueness-of-identifiers) section).\
-        \
-        Corresponds to [JSON-LD `@id`](https://www.w3.org/TR/json-ld11/#syntax-tokens-and-keywords)."
+        description: |
+          Identifier for the file (see the [Consistency and uniqueness of identifiers](
+          SPEC_ROOT/modality-agnostic-files/provenance.md#consistency-and-uniqueness-of-identifiers) section).
+
+          Corresponds to [JSON-LD `@id`](https://www.w3.org/TR/json-ld11/#syntax-tokens-and-keywords).
         type: string
         format: uri
       Label:
@@ -4280,9 +4285,9 @@ Software:
       Id:
         name: Id
         description: |
-          Identifier for the software package (see the [Consistency and uniqueness of identifiers]
-          (SPEC_ROOT/modality-agnostic-files/provenance.md#consistency-and-uniqueness-of-identifiers) section).
-
+          Identifier for the software package (see the [Consistency and uniqueness of identifiers](
+          SPEC_ROOT/modality-agnostic-files/provenance.md#consistency-and-uniqueness-of-identifiers) section).
+  
           Corresponds to [JSON-LD `@id`](https://www.w3.org/TR/json-ld11/#syntax-tokens-and-keywords).
         type: string
         format: uri
