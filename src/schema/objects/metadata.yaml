@@ -1630,13 +1630,15 @@ Environments:
           Corresponds to [RDF Schema `rdfs:label`](https://www.w3.org/TR/rdf-schema/#ch_label).
         type: string
         format: label
-      EnvVars:
-        name: EnvVars
+      EnvironmentVariables:
+        name: EnvironmentVariables
         description: Object containing environment variables as key-value pairs.
         type: object
       OperatingSystem:
         name: OperatingSystem
-        description: Name of the operating system for the environment. Including the version of the kernel and/or distribution is recommended when applicable.
+        description: |
+          Name of the operating system for the environment.
+          Including the version of the kernel and/or distribution is recommended when applicable.
         type: string
       Dependencies:
         name: Dependencies
@@ -4268,8 +4270,8 @@ Software:
         name: Version
         description: Version of the software package.
         type: string
-      AltIdentifier:
-        name: AltIdentifier
+      AlternativeIdentifier:
+        name: AlternativeIdentifier
         description: |
           URI(s) of (an) alternative identifier(s) (such as [RRID](https://rrid.site/))
           for the software package.
