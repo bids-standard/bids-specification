@@ -17,3 +17,15 @@ ProvenanceEntityMissing:
         sorted(intersects(columns.provenance_id, dataset.prov.entities)),
         sorted(dataset.prov.entities)
       )
+
+ProvenanceOutsideProvDir:
+  issue:
+    code: PROVENANCE_OUTSIDE_PROV_DIR
+    message: |
+      A provenance.tsv file is outside the prov directory.
+    level: error
+  selectors:
+    - suffix == 'provenance'
+    - extension == '.tsv'
+  checks:
+    - datatype == 'prov'
