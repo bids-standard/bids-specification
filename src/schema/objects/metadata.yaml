@@ -882,7 +882,7 @@ Datasets:
         description: |
           Identifier for the dataset (see the [Consistency and uniqueness of identifiers](
           SPEC_ROOT/modality-agnostic-files/provenance.md#consistency-and-uniqueness-of-identifiers) section).
-  
+
           Corresponds to [JSON-LD `@id`](https://www.w3.org/TR/json-ld11/#syntax-tokens-and-keywords).
         type: string
         format: uri
@@ -4287,7 +4287,7 @@ Software:
         description: |
           Identifier for the software package (see the [Consistency and uniqueness of identifiers](
           SPEC_ROOT/modality-agnostic-files/provenance.md#consistency-and-uniqueness-of-identifiers) section).
-  
+
           Corresponds to [JSON-LD `@id`](https://www.w3.org/TR/json-ld11/#syntax-tokens-and-keywords).
         type: string
         format: uri
