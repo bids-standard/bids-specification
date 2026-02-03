@@ -568,14 +568,14 @@ an RDF graph (see [Resource Description Framework (RDF)](https://www.w3.org/RDF/
         B[Brain extraction] -->|wasAssociatedWith| S{FSL<br>}
         B -->|used| T1([sub-001_T1w.nii])
         B -->|used| L((Linux))
-        T1p([sub-001_T1w_preproc.nii]) -->|wasGeneratedBy| B
+        T1p([sub-001_space-orig_dseg.nii]) -->|wasGeneratedBy| B
     ```
 
     In this example, a brain extraction algorithm was applied on a T1-weighted image:
 
     - *sub-001_T1w.nii* is the original T1-weighted image;
-    - *sub-001_T1w_preproc.nii* is the skull striped image;
-    - the *"Brain extraction"* activity was performed using the *FSL*
+    - *sub-001_space-orig_dseg.nii* is the skull striped image;
+    - the *Brain extraction* activity was performed using the *FSL*
     software within a *Linux* software environment.
 
 Moreover, the terms defined in this specification to describe provenance
