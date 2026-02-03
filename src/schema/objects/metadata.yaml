@@ -1589,7 +1589,8 @@ ProvEntity:
           Related activities MUST be described as specified in the
           [Activities](SPEC_ROOT/modality-agnostic-files/provenance.md#activities) section.
 
-          Corresponds to [W3C PROV `prov:wasGeneratedBy`](https://www.w3.org/TR/2013/REC-prov-o-20130430/#wasGeneratedBy).
+          Corresponds to
+          [W3C PROV `prov:wasGeneratedBy`](https://www.w3.org/TR/2013/REC-prov-o-20130430/#wasGeneratedBy).
         type: array
         minItems: 1
         items:
@@ -4291,7 +4292,8 @@ Software:
           Related software MUST be described as specified in the
           [Software](SPEC_ROOT/modality-agnostic-files/provenance.md#software) section.
 
-          Corresponds to [W3C PROV `prov:actedOnBehalfOf`](https://www.w3.org/TR/2013/REC-prov-o-20130430/#actedOnBehalfOf).
+          Corresponds to
+          [W3C PROV `prov:actedOnBehalfOf`](https://www.w3.org/TR/2013/REC-prov-o-20130430/#actedOnBehalfOf).
         type: array
         minItems: 1
         items:
