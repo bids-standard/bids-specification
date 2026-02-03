@@ -1076,6 +1076,17 @@ Digest__Dataset:
     `SHAKE128`; `SHAKE256`. Otherwise, key MAY be an arbitrary label.
     The corresponding value is the checksum as computed by the function identified by the key.
   type: object
+Digest__Environment:
+  name: Digest
+  display_name: Digest
+  description: |
+    Object containing digests of the environment.
+    Each key in the object MUST be the name of a checksum function if present in this list:
+    `MD5`; `SHA1`; `SHA-224` ; `SHA-256` ; `SHA-384` ; `SHA-512` ;
+    `SHA3-224`; `SHA3-256`; `SHA3-384`; `SHA3-512`; `BLAKE2B-256`; `BLAKE3-256`;
+    `SHAKE128`; `SHAKE256`. Otherwise, key MAY be an arbitrary label.
+    The corresponding value is the checksum as computed by the function identified by the key.
+  type: object  
 Digest__File:
   name: Digest
   display_name: Digest
@@ -1632,6 +1643,8 @@ Environments:
           Corresponds to [RDF Schema `rdfs:label`](https://www.w3.org/TR/rdf-schema/#ch_label).
         type: string
         format: label
+      Digest:
+        $ref: objects.metadata.Digest__Environment
       EnvironmentVariables:
         name: EnvironmentVariables
         description: Object containing environment variables as key-value pairs.
