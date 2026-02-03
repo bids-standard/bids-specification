@@ -87,6 +87,8 @@ Activities:
         name: Label
         description: |
           Name for the activity.
+
+          Corresponds to [RDF Schema `rdfs:label`](https://www.w3.org/TR/rdf-schema/#ch_label).
         type: string
         format: label
       Command:
@@ -113,13 +115,13 @@ Activities:
 
           Related software MUST be described as specified in the
           [Software](SPEC_ROOT/modality-agnostic-files/provenance.md#software) section.
-        anyOf:
-          - type: string
+
+          Corresponds to [W3C PROV `prov:wasAssociatedWith`](https://www.w3.org/TR/2013/REC-prov-o-20130430/#wasAssociatedWith).
+        type: array
+          minItems: 1
+          items:
+            type: string
             format: uri
-          - type: array
-            items:
-              type: string
-              format: uri
       Used:
         name: Used
         description: |
@@ -130,34 +132,39 @@ Activities:
 
           Related environment(s) MUST be described as specified in the
           [Environments](SPEC_ROOT/modality-agnostic-files/provenance.md#environments) section.
-        anyOf:
-          - type: string
+
+          Corresponds to [W3C PROV `prov:used`](https://www.w3.org/TR/2013/REC-prov-o-20130430/#used).
+        type: array
+          minItems: 1
+          items:
+            type: string
             format: uri
-          - type: array
-            items:
-              type: string
-              format: uri
       Type:
         name: Type
         description: |
           Term(s) from (a) controlled vocabulary/vocabularies that more specifically
           describes the activity.
-        anyOf:
-          - type: string
+
+          Corresponds to [JSON-LD `@type`](https://www.w3.org/TR/json-ld11/#specifying-the-type).
+        type: array
+          minItems: 1
+          items:
+            type: string
             format: uri
-          - type: array
-            minItems: 1
-            items:
-              type: string
-              format: uri
       StartedAtTime:
         name: StartedAtTime
-        description: Timestamp tracking when the activity started.
+        description: |
+          Timestamp tracking when the activity started.
+
+          Corresponds to [W3C PROV `prov:startedAtTime`](https://www.w3.org/TR/2013/REC-prov-o-20130430/#startedAtTime).
         type: string
         format: datetime
       EndedAtTime:
         name: EndedAtTime
-        description: Timestamp tracking when the activity ended.
+        description: |
+          Timestamp tracking when the activity ended.
+
+          Corresponds to [W3C PROV `prov:endedAtTime`](https://www.w3.org/TR/2013/REC-prov-o-20130430/#endedAtTime).
         type: string
         format: datetime
 Anaesthesia:
@@ -874,7 +881,10 @@ Datasets:
         format: uri
       Label:
         name: Label
-        description: Name for the dataset.
+        description: |
+          Name for the dataset.
+
+          Corresponds to [RDF Schema `rdfs:label`](https://www.w3.org/TR/rdf-schema/#ch_label).
         type: string
         format: label
       Digest:
@@ -1553,7 +1563,10 @@ ProvEntity:
         format: uri
       Label:
         name: Label
-        description: Name for the prov:Entity.
+        description: |
+          Name for the prov:Entity.
+
+          Corresponds to [RDF Schema `rdfs:label`](https://www.w3.org/TR/rdf-schema/#ch_label).
         type: string
         format: label
       Digest:
@@ -1574,27 +1587,25 @@ ProvEntity:
 
           Related activities MUST be described as specified in the
           [Activities](SPEC_ROOT/modality-agnostic-files/provenance.md#activities) section.
-        anyOf:
-          - type: string
+
+          Corresponds to [W3C PROV `prov:wasGeneratedBy`](https://www.w3.org/TR/2013/REC-prov-o-20130430/#wasGeneratedBy).
+        type: array
+          minItems: 1
+          items:
+            type: string
             format: uri
-          - type: array
-            minItems: 1
-            items:
-              type: string
-              format: uri
       Type:
         name: Type
         description: |
           Term(s) from (a) controlled vocabulary/vocabularies that more specifically
           describes the prov:Entity.
-        anyOf:
-          - type: string
+
+          Corresponds to [JSON-LD `@type`](https://www.w3.org/TR/json-ld11/#specifying-the-type).
+        type: array
+          minItems: 1
+          items:
+            type: string
             format: uri
-          - type: array
-            minItems: 1
-            items:
-              type: string
-              format: uri
 Environments:
   name: Environments
   display_name: Environments
@@ -1613,7 +1624,10 @@ Environments:
         format: uri
       Label:
         name: Label
-        description: Name for the environment.
+        description: |
+          Name for the environment.
+
+          Corresponds to [RDF Schema `rdfs:label`](https://www.w3.org/TR/rdf-schema/#ch_label).
         type: string
         format: label
       EnvVars:
@@ -1770,7 +1784,10 @@ Files:
         format: uri
       Label:
         name: Label
-        description: Name for the file.
+        description: |
+          Name for the file.
+
+          Corresponds to [RDF Schema `rdfs:label`](https://www.w3.org/TR/rdf-schema/#ch_label).
         type: string
         format: label
       Digest:
@@ -1931,8 +1948,6 @@ GeneratedBy__Dataset:
     Description of the dataset provenance (see
     [Provenance of a BIDS dataset](SPEC_ROOT/modality-agnostic-files/provenance.md#provenance-of-a-bids-dataset)).
   anyOf:
-    - type: string
-      format: uri
     - type: array
       minItems: 1
       items:
@@ -1950,14 +1965,13 @@ GeneratedBy__Id__Dataset:
 
     Related activities MUST be described as specified in the
     [Activities](SPEC_ROOT/modality-agnostic-files/provenance.md#activities) section.
-  anyOf:
-    - type: string
+
+    Corresponds to [W3C PROV `prov:wasGeneratedBy`](https://www.w3.org/TR/2013/REC-prov-o-20130430/#wasGeneratedBy).
+  type: array
+    minItems: 1
+    items:
+      type: string
       format: uri
-    - type: array
-      minItems: 1
-      items:
-        type: string
-        format: uri
 GeneratedBy__Id__File:
   name: GeneratedBy
   display_name: Generated By
@@ -1966,14 +1980,13 @@ GeneratedBy__Id__File:
 
     Related activities MUST be described as specified in the
     [Activities](SPEC_ROOT/modality-agnostic-files/provenance.md#activities) section.
-  anyOf:
-    - type: string
+
+    Corresponds to [W3C PROV `prov:wasGeneratedBy`](https://www.w3.org/TR/2013/REC-prov-o-20130430/#wasGeneratedBy).
+  type: array
+    minItems: 1
+    items:
+      type: string
       format: uri
-    - type: array
-      minItems: 1
-      items:
-        type: string
-        format: uri
 GeneticLevel:
   name: GeneticLevel
   display_name: Genetic Level
@@ -4145,14 +4158,13 @@ SidecarGeneratedBy:
 
     Related activities MUST be described as specified in the
     [Activities](SPEC_ROOT/modality-agnostic-files/provenance.md#activities) section.
-  anyOf:
-    - type: string
+
+    Corresponds to [W3C PROV `prov:wasGeneratedBy`](https://www.w3.org/TR/2013/REC-prov-o-20130430/#wasGeneratedBy).
+  type: array
+    minItems: 1
+    items:
+      type: string
       format: uri
-    - type: array
-      minItems: 1
-      items:
-        type: string
-        format: uri
 SinglesRate:
   name: SinglesRate
   display_name: Singles Rate
@@ -4246,7 +4258,10 @@ Software:
         format: uri
       Label:
         name: Label
-        description: Name of the software package.
+        description: |
+          Name of the software package.
+
+          Corresponds to [RDF Schema `rdfs:label`](https://www.w3.org/TR/rdf-schema/#ch_label).
         type: string
         format: label
       Version:
@@ -4258,25 +4273,27 @@ Software:
         description: |
           URI(s) of (an) alternative identifier(s) (such as [RRID](https://rrid.site/))
           for the software package.
-        anyOf:
-          - type: string
+        type: array
+          minItems: 1
+          items:
+            type: string
             format: uri
-          - type: array
-            minItems: 1
-            items:
-              type: string
-              format: uri
       ActedOnBehalfOf:
         name: ActedOnBehalfOf
         description: |
-          Identifier of another software package that triggered the use of the software package.
+          Identifier(s) of other software package(s) that triggered the use of the software package.
 
           Example: if software A launches software B to perform activity C, then B ActedOnBehalfOf A.
 
           Related software MUST be described as specified in the
           [Software](SPEC_ROOT/modality-agnostic-files/provenance.md#software) section.
-        type: string
-        format: uri
+
+          Corresponds to [W3C PROV `prov:actedOnBehalfOf`](https://www.w3.org/TR/2013/REC-prov-o-20130430/#actedOnBehalfOf).
+        type: array
+          minItems: 1
+          items:
+            type: string
+            format: uri
 SoftwareFilters:
   name: SoftwareFilters
   display_name: Software Filters
