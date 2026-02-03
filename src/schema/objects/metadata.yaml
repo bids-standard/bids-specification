@@ -80,7 +80,9 @@ Activities:
       Id:
         name: Id
         description: "Identifier for the activity (see the [Consistency and uniqueness of identifiers]\
-        (SPEC_ROOT/modality-agnostic-files/provenance.md#consistency-and-uniqueness-of-identifiers) section)."
+        (SPEC_ROOT/modality-agnostic-files/provenance.md#consistency-and-uniqueness-of-identifiers) section).\
+        \
+        Corresponds to [JSON-LD `@id`](https://www.w3.org/TR/json-ld11/#syntax-tokens-and-keywords)."
         type: string
         format: uri
       Label:
@@ -146,7 +148,7 @@ Activities:
           Term(s) from (a) controlled vocabulary/vocabularies that more specifically
           describes the activity.
 
-          Corresponds to [JSON-LD `@type`](https://www.w3.org/TR/json-ld11/#specifying-the-type).
+          Corresponds to [JSON-LD `@type`](https://www.w3.org/TR/json-ld11/#syntax-tokens-and-keywords).
         type: array
         minItems: 1
         items:
@@ -877,7 +879,9 @@ Datasets:
       Id:
         name: Id
         description: "Identifier for the dataset (see the [Consistency and uniqueness of identifiers]\
-        (SPEC_ROOT/modality-agnostic-files/provenance.md#consistency-and-uniqueness-of-identifiers) section)."
+        (SPEC_ROOT/modality-agnostic-files/provenance.md#consistency-and-uniqueness-of-identifiers) section).\
+        \
+        Corresponds to [JSON-LD `@id`](https://www.w3.org/TR/json-ld11/#syntax-tokens-and-keywords)."
         type: string
         format: uri
       Label:
@@ -1570,7 +1574,9 @@ ProvEntity:
       Id:
         name: Id
         description: "Identifier for the prov:Entity (see the [Consistency and uniqueness of identifiers]\
-        (SPEC_ROOT/modality-agnostic-files/provenance.md#consistency-and-uniqueness-of-identifiers) section)."
+        (SPEC_ROOT/modality-agnostic-files/provenance.md#consistency-and-uniqueness-of-identifiers) section).\
+        \
+        Corresponds to [JSON-LD `@id`](https://www.w3.org/TR/json-ld11/#syntax-tokens-and-keywords)."
         type: string
         format: uri
       Label:
@@ -1613,7 +1619,7 @@ ProvEntity:
           Term(s) from (a) controlled vocabulary/vocabularies that more specifically
           describes the prov:Entity.
 
-          Corresponds to [JSON-LD `@type`](https://www.w3.org/TR/json-ld11/#specifying-the-type).
+          Corresponds to [JSON-LD `@type`](https://www.w3.org/TR/json-ld11/#syntax-tokens-and-keywords).
         type: array
         minItems: 1
         items:
@@ -1632,7 +1638,9 @@ Environments:
       Id:
         name: Id
         description: "Identifier for the environment (see the [Consistency and uniqueness of identifiers]\
-        (SPEC_ROOT/modality-agnostic-files/provenance.md#consistency-and-uniqueness-of-identifiers) section)."
+        (SPEC_ROOT/modality-agnostic-files/provenance.md#consistency-and-uniqueness-of-identifiers) section).\
+        \
+        Corresponds to [JSON-LD `@id`](https://www.w3.org/TR/json-ld11/#syntax-tokens-and-keywords)."
         type: string
         format: uri
       Label:
@@ -1796,7 +1804,9 @@ Files:
       Id:
         name: Id
         description: "Identifier for the file (see the [Consistency and uniqueness of identifiers]\
-        (SPEC_ROOT/modality-agnostic-files/provenance.md#consistency-and-uniqueness-of-identifiers) section)."
+        (SPEC_ROOT/modality-agnostic-files/provenance.md#consistency-and-uniqueness-of-identifiers) section).\
+        \
+        Corresponds to [JSON-LD `@id`](https://www.w3.org/TR/json-ld11/#syntax-tokens-and-keywords)."
         type: string
         format: uri
       Label:
@@ -4270,7 +4280,9 @@ Software:
       Id:
         name: Id
         description: "Identifier for the software package (see the [Consistency and uniqueness of identifiers]\
-        (SPEC_ROOT/modality-agnostic-files/provenance.md#consistency-and-uniqueness-of-identifiers) section)."
+        (SPEC_ROOT/modality-agnostic-files/provenance.md#consistency-and-uniqueness-of-identifiers) section).\
+        \
+        Corresponds to [JSON-LD `@id`](https://www.w3.org/TR/json-ld11/#syntax-tokens-and-keywords)."
         type: string
         format: uri
       Label:
@@ -4808,7 +4820,7 @@ Type__Dataset:
     Term(s) from (a) controlled vocabulary/vocabularies that more specifically
     describes the dataset.
 
-    Corresponds to [JSON-LD `@type`](https://www.w3.org/TR/json-ld11/#specifying-the-type).
+    Corresponds to [JSON-LD `@type`](https://www.w3.org/TR/json-ld11/#syntax-tokens-and-keywords).
   type: array
   minItems: 1
   items:
@@ -4821,7 +4833,7 @@ Type__File:
     Term(s) from (a) controlled vocabulary/vocabularies that more specifically
     describes the file.
 
-    Corresponds to [JSON-LD `@type`](https://www.w3.org/TR/json-ld11/#specifying-the-type).
+    Corresponds to [JSON-LD `@type`](https://www.w3.org/TR/json-ld11/#syntax-tokens-and-keywords).
   type: array
   minItems: 1
   items:
