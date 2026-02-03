@@ -747,7 +747,7 @@ its identifier is not a BIDS URI:
         {
             "Id": "bids::prov#entity-28c0ba28",
             "Label": "TPM.nii",
-            "AtLocation": "spm12/tpm/TPM.nii",
+            "AtLocation": "spm12/tpm/TPM.nii"
         }
     ]
 }
