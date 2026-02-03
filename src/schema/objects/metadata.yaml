@@ -4794,28 +4794,26 @@ Type__Dataset:
   description: |
     Term(s) from (a) controlled vocabulary/vocabularies that more specifically
     describes the dataset.
-  anyOf:
-    - type: string
-      format: uri
-    - type: array
-      minItems: 1
-      items:
-        type: string
-        format: uri
+
+    Corresponds to [JSON-LD `@type`](https://www.w3.org/TR/json-ld11/#specifying-the-type).
+  type: array
+  minItems: 1
+  items:
+    type: string
+    format: uri
 Type__File:
   name: Type
   display_name: Type
   description: |
     Term(s) from (a) controlled vocabulary/vocabularies that more specifically
     describes the file.
-  anyOf:
-    - type: string
-      format: uri
-    - type: array
-      minItems: 1
-      items:
-        type: string
-        format: uri
+
+    Corresponds to [JSON-LD `@type`](https://www.w3.org/TR/json-ld11/#specifying-the-type).
+  type: array
+  minItems: 1
+  items:
+    type: string
+    format: uri
 Units:
   name: Units
   display_name: Units
