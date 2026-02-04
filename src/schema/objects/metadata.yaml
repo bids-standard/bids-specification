@@ -898,7 +898,10 @@ Datasets:
         $ref: objects.metadata.Digest__Dataset
       AtLocation:
         name: AtLocation
-        description: Relative path to the dataset on disk.
+        description: |
+          Relative path to the dataset on disk.
+
+          Corresponds to [W3C PROV `prov:atLocation`](https://www.w3.org/TR/prov-o/#atLocation).
         type: string
       GeneratedBy:
         $ref: objects.metadata.GeneratedBy__Id__Dataset
@@ -1826,7 +1829,10 @@ Files:
         $ref: objects.metadata.Digest__File
       AtLocation:
         name: AtLocation
-        description: Relative path to the file on disk.
+        description: |
+          Relative path to the file on disk.
+
+          Corresponds to [W3C PROV `prov:atLocation`](https://www.w3.org/TR/prov-o/#atLocation).
         type: string
       GeneratedBy:
         $ref: objects.metadata.GeneratedBy__Id__File

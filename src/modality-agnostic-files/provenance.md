@@ -52,7 +52,8 @@ and a guide for using macros can be found at
     }
     ```
     For a complete example see
-    [Provenance of DICOM to NIfTI conversion with `heudiconv`](https://github.com/bclenet/bids-examples/tree/BEP028_heudiconv/provenance_heudiconv).
+    [Provenance of DICOM to NIfTI conversion with `heudiconv`](
+    https://github.com/bclenet/bids-examples/tree/BEP028_heudiconv/provenance_heudiconv).
 
 ## Provenance of a BIDS dataset
 
@@ -85,7 +86,8 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_metadata_table(
    {
-      "GeneratedBy__Id__Dataset": "RECOMMENDED for BIDS raw datasets and BIDS study datasets, REQUIRED for BIDS derivative datasets",
+      "GeneratedBy__Id__Dataset": "RECOMMENDED for BIDS raw datasets and BIDS study datasets,\
+      REQUIRED for BIDS derivative datasets",
       "Digest__Dataset": "OPTIONAL",
       "Type__Dataset": "OPTIONAL"
    }
@@ -98,8 +100,8 @@ and a guide for using macros can be found at
         "GeneratedBy": "bids::prov#preprocessing-xMpFqB5q"
     }
     ```
-    For a complete example see
-    [Provenance of fMRI preprocessing with `fMRIPrep`](https://github.com/bclenet/bids-examples/tree/BEP028_fmriprep/provenance_fmriprep).
+    For a complete example see [Provenance of fMRI preprocessing with `fMRIPrep`](
+    https://github.com/bclenet/bids-examples/tree/BEP028_fmriprep/provenance_fmriprep).
 
 ### Description of processes or pipelines
 
@@ -120,7 +122,8 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_metadata_table(
    {
-      "GeneratedBy": "RECOMMENDED for BIDS raw datasets and BIDS study datasets, REQUIRED for BIDS derivative datasets"
+      "GeneratedBy": "RECOMMENDED for BIDS raw datasets and BIDS study datasets,\
+      REQUIRED for BIDS derivative datasets"
    }
 ) }}
 
@@ -264,7 +267,8 @@ and a guide for using macros can be found at
     }
     ```
     For a complete example, see
-    [Provenance of DICOM to NIfTI conversion with `dcm2niix`](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix).
+    [Provenance of DICOM to NIfTI conversion with `dcm2niix`](
+    https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix).
 
 ### Software
 
@@ -310,7 +314,8 @@ and a guide for using macros can be found at
         ]
     }
     ```
-    For a complete example, see [Provenance of DICOM to NIfTI conversion with `dcm2niix`](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix)
+    For a complete example, see [Provenance of DICOM to NIfTI conversion with `dcm2niix`](
+    https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix)
 
 ### Input and output data
 
@@ -390,7 +395,8 @@ and a guide for using macros can be found at
         ]
     }
     ```
-    For a complete example, see [Provenance of fMRI preprocessing with `SPM`](https://github.com/bclenet/bids-examples/tree/BEP028_spm/provenance_spm)
+    For a complete example, see [Provenance of fMRI preprocessing with `SPM`](
+    https://github.com/bclenet/bids-examples/tree/BEP028_spm/provenance_spm)
 
 !!! example "Example: description of a dataset in a `prov/[<subdir>/]prov-<label>_ent.json` file"
 
@@ -404,7 +410,8 @@ and a guide for using macros can be found at
         ]
     }
     ```
-    For a complete example, see [Provenance of fMRI preprocessing with `fMRIPrep`](https://github.com/bclenet/bids-examples/tree/BEP028_fmriprep/provenance_fmriprep).
+    For a complete example, see [Provenance of fMRI preprocessing with `fMRIPrep`](
+    https://github.com/bclenet/bids-examples/tree/BEP028_fmriprep/provenance_fmriprep).
 
 ### Environments
 
@@ -436,20 +443,20 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_subobject_table("metadata.Environments.items") }}
 
-!!! example "Example: description of an environment in a `prov/[<subdir>/]prov-<label>_env.json` file"
+!!! example "Example: description of an environment (docker container) in a `prov/[<subdir>/]prov-<label>_env.json` file"
 
     ```JSON
     {
         "Environments": [
             {
-                "Id": "bids::prov#fedora-uldfv058",
-                "Label": "Fedora release 36 (Thirty Six)",
-                "OperatingSystem": "GNU/Linux 6.2.15-100.fc36.x86_64"
+                "Id": "https://hub.docker.com/layers/poldracklab/fmriprep/1.1.4",
+                "Label": "poldracklab/fmriprep:1.1.4"
             }
         ]
     }
     ```
-    For a complete example, see [Provenance of DICOM to NIfTI conversion with `dcm2niix`](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix)
+    For a complete example, see [Provenance of fMRI preprocessing with `fMRIPrep`](
+    https://github.com/bclenet/bids-examples/tree/BEP028_fmriprep/provenance_fmriprep).
 
 ### Provenance label file
 
@@ -584,7 +591,8 @@ The corresponding [IRIs](https://www.w3.org/TR/json-ld11/#iris) are described
 in the JSON-LD context file [`provenance-context.json`](../provenance-context.json)
 provided with this specification.
 
-All BIDS examples related to provenance (see. [bids-examples, provenance section](https://bids-website.readthedocs.io/en/latest/datasets/examples.html#provenance))
+All BIDS examples related to provenance (see. [bids-examples, provenance section](
+https://bids-website.readthedocs.io/en/latest/datasets/examples.html#provenance))
 show the aggregated version of the provenance metadata they contain.
 This comes as a JSON-LD file and a visualization of the graph.
 
@@ -594,7 +602,8 @@ This comes as a JSON-LD file and a visualization of the graph.
 
 !!! example
 
-    For a complete example, see [Provenance of DICOM to NIfTI conversion with `dcm2niix`](https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix).
+    For a complete example, see [Provenance of DICOM to NIfTI conversion with `dcm2niix`](
+    https://github.com/bclenet/bids-examples/tree/BEP028_dcm2niix/provenance_dcm2niix).
 
 In this example, we explain provenance metadata of a DICOM to NIfTI conversion with `dcm2niix`.
 Consider the following BIDS raw dataset:
@@ -672,7 +681,8 @@ was generated by the previously described activity.
 
 !!! example
 
-    For a complete example, see [Provenance of fMRI preprocessing with `SPM`](https://github.com/bclenet/bids-examples/tree/BEP028_spm/provenance_spm).
+    For a complete example, see [Provenance of fMRI preprocessing with `SPM`](
+    https://github.com/bclenet/bids-examples/tree/BEP028_spm/provenance_spm).
 
 In this example, we explain provenance metadata of fMRI preprocessing steps performed with `SPM`.
 Consider the following BIDS derivative dataset:
@@ -767,7 +777,8 @@ was generated by the previously described brain segmentation activity.
 
 !!! example
 
-    For a complete example, see [Provenance of manual segmentations](https://github.com/bclenet/bids-examples/tree/BEP028_manual/provenance_manual).
+    For a complete example, see [Provenance of manual segmentations](
+    https://github.com/bclenet/bids-examples/tree/BEP028_manual/provenance_manual).
 
 In this example, we explain provenance metadata of manual segmentations performed by
 two experts on the same T1w file.
