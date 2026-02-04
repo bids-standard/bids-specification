@@ -900,7 +900,7 @@ A guide for using macros can be found at
    }
 ) }}
 
-### Other RECOMMENDED metadata
+### Other RECOMMENDED and OPTIONAL metadata
 
 <!-- This block generates a metadata table.
 These tables are defined in
