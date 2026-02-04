@@ -149,7 +149,7 @@ Activities:
           Term(s) from (a) controlled vocabulary/vocabularies that more specifically
           describes the activity.
 
-          Corresponds to [JSON-LD `@type`](https://www.w3.org/TR/json-ld11/#syntax-tokens-and-keywords).
+          Corresponds to [RDF `rdf:type`](https://www.w3.org/1999/02/22-rdf-syntax-ns#type).
         type: array
         minItems: 1
         items:
@@ -1625,7 +1625,7 @@ ProvEntity:
           Term(s) from (a) controlled vocabulary/vocabularies that more specifically
           describes the prov:Entity.
 
-          Corresponds to [JSON-LD `@type`](https://www.w3.org/TR/json-ld11/#syntax-tokens-and-keywords).
+          Corresponds to [RDF `rdf:type`](https://www.w3.org/1999/02/22-rdf-syntax-ns#type).
         type: array
         minItems: 1
         items:
@@ -4832,7 +4832,7 @@ Type__Dataset:
     Term(s) from (a) controlled vocabulary/vocabularies that more specifically
     describes the dataset.
 
-    Corresponds to [JSON-LD `@type`](https://www.w3.org/TR/json-ld11/#syntax-tokens-and-keywords).
+    Corresponds to [RDF `rdf:type`](https://www.w3.org/1999/02/22-rdf-syntax-ns#type).
   type: array
   minItems: 1
   items:
@@ -4845,7 +4845,7 @@ Type__File:
     Term(s) from (a) controlled vocabulary/vocabularies that more specifically
     describes the file.
 
-    Corresponds to [JSON-LD `@type`](https://www.w3.org/TR/json-ld11/#syntax-tokens-and-keywords).
+    Corresponds to [RDF `rdf:type`](https://www.w3.org/1999/02/22-rdf-syntax-ns#type).
   type: array
   minItems: 1
   items:
