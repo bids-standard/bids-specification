@@ -1,4 +1,6 @@
 {
+  "name": "bids-specification",
+  "description": "Javascript utilities; run with `npm run $script-name`",
   "scripts": {
     "remark": "remark src/**/*.md --frail --rc-path ./.remarkrc",
     "all-contributors": "all-contributors generate"

@@ -8,7 +8,7 @@ abstract: >-
   The Brain Imaging Data Structure (BIDS) is a simple and intuitive way to
   organize and describe data.
 
-version: 1.10.2-dev
+version: 1.11.0
 
 license: CC-BY-4.0
 
@@ -201,8 +201,8 @@ authors:
     family-names: Basavaraj
     website: https://github.com/Arshitha
     orcid: https://orcid.org/0000-0002-6984-7969
-    affiliation: NIMH, Data Science and Sharing Team, Bethesda, MD, 20892, USA
-    email: arsh2794@gmail.com
+    affiliation: International Institute of Information Technology Bangalore
+    email: arshitha.basavaraj@iiitb.ac.in
   - given-names: Ashley G.
     family-names: Gillman
     website: https://github.com/ashgillman
@@ -253,7 +253,7 @@ authors:
     family-names: Clénet
     website: https://github.com/bclenet
     orcid: https://orcid.org/0009-0006-7727-5100
-    affiliation: Inria Rennes - Bretagne Atlantique Research Centre
+    affiliation: Univ Rennes, Inria, CNRS, Inserm
   - given-names: Bradley
     family-names: Voytek
     website: https://www.voyteklab.com/
@@ -364,8 +364,10 @@ authors:
     affiliation: Kiel University
     email: c.hansen@neurologie.uni-kiel.de
   - given-names: Cody
-    family-names: C Baker
-    website: https://github.com/CodyCBakerPhD
+    family-names: Baker
+    website: https://codycbakerphd.com
+    orcid: https://orcid.org/0000-0002-0829-4790
+    affiliation: Dartmouth College, Center for Open Neuroscience
   - given-names: Cyril
     family-names: Pernet
     website: https://cpernet.github.io/
@@ -381,6 +383,11 @@ authors:
   - given-names: D.
     family-names: Sturgeon
     website: https://dasturge.github.io
+  - given-names: Dan
+    family-names: Brady
+    orcid: https://orcid.org/0000-0003-4671-0676
+    affiliation: Research Software Engineering Team, University of Sheffield
+    email: daniel.brady@sheffield.ac.uk
   - given-names: Dan
     family-names: Levitas
     website: https://github.com/dlevitas
@@ -398,7 +405,7 @@ authors:
     affiliation: National  Institute of Mental Health
   - given-names: Daniel
     family-names: McCloy
-    website: https://github.com/drammock
+    website: https://dan.mccloy.info
     orcid: https://orcid.org/0000-0002-7572-3241
     affiliation: University of Washington
   - given-names: David
@@ -740,6 +747,8 @@ authors:
   - given-names: Isaac
     family-names: To
     website: https://github.com/candleindark
+    orcid: https://orcid.org/0000-0002-4740-0824
+    affiliation: Center for Open Neuroscience at Dartmouth College
   - given-names: Isla
     family-names: Staden
     orcid: https://orcid.org/0000-0002-0795-1154
@@ -1078,6 +1087,11 @@ authors:
     orcid: https://orcid.org/0000-0003-4505-8399
     affiliation: FISABIO, Join Unit Biomedical Imagin, Valencia, Valencia, 46006, Spain
     email: delaiglesia_mar@gva.es
+  - given-names: Marie-Eve
+    family-names: Picard
+    orcid: https://orcid.org/0009-0001-2412-7829
+    affiliation: Université de Montréal, Canada
+    email: marie-eve.picard.2@umontreal.ca
   - given-names: Marie-Hélène
     family-names: Bourget
     website: https://github.com/mariehbourget
@@ -1117,6 +1131,10 @@ authors:
     family-names: Bulgari
     orcid: https://orcid.org/0000-0003-1594-9617
     affiliation: IRCCS Centro San Giovanni di Dio Fatebenefratelli
+  - given-names: Mary
+    family-names: Miedema
+    affiliation: McGill University, Canada
+    email: mary.miedema@mail.mcgill.ca
   - given-names: Mateusz
     family-names: Pawlik
     website: https://github.com/mateuszpawlik
@@ -1325,6 +1343,11 @@ authors:
   - given-names: Patrick
     family-names: Park
     website: https://github.com/Park-Patrick
+  - given-names: Paul
+    family-names: Wighton
+    orcid: https://orcid.org/0000-0002-6787-3856
+    affiliation: Martinos Center @ MGH
+    email: Paul.Wighton@gmail.com
   - given-names: Paule-Joanne
     family-names: Toussaint
     orcid: https://orcid.org/0000-0002-7446-150X
@@ -1341,6 +1364,11 @@ authors:
     orcid: https://orcid.org/0000-0002-4643-4782
     affiliation: Charité University Medicine Berlin,  Berlin Institute of Health, Berlin, 10115, Germany
     email: petra.ritter@charite.de
+  - given-names: Peyman
+    family-names: Najafi
+    orcid: https://orcid.org/0000-0003-1746-3995
+    affiliation: CNRS, Paris-Saclay University
+    email: peyman.najafi@cnrs.fr
   - given-names: Pierre
     family-names: Rioux
     website: https://github.com/prioux
@@ -1357,11 +1385,19 @@ authors:
   - given-names: Qian
     family-names: Chu
     website: https://qian-chu.github.io/
+    orcid: https://orcid.org/0000-0003-2308-6102
+    affiliation: Max Planck - University of Toronto Centre for Neural Science and Technology
+    email: qianchu99@gmail.com
   - given-names: R.
     family-names: Cameron Craddock
     website: https://github.com/ccraddock
     orcid: https://orcid.org/0000-0002-4950-1303
     affiliation: 'Dell Medical School, The University of Texas at Austin '
+  - given-names: Reema
+    family-names: Gupta
+    orcid: https://orcid.org/0000-0003-4509-6969
+    affiliation: LMU, Munich
+    email: reema.gupta@lmu.de
   - given-names: Remi
     family-names: Gau
     website: https://remi-gau.github.io/
@@ -1470,8 +1506,9 @@ authors:
     email: smakeig@gmail.com
   - given-names: Sebastian
     family-names: Urchs
+    website: https://neurodatascience.github.io/
     orcid: https://orcid.org/0000-0001-5504-8579
-    affiliation: origami lab, McGill university, Montreal, Québec, Canada
+    affiliation: McGill University
     email: sebastian.urchs@mcgill.ca
   - given-names: Sein
     family-names: Jeung
@@ -1481,12 +1518,16 @@ authors:
     email: seinjeung@gmail.com
   - given-names: Seyed Yahya
     family-names: Shirazi
-    website: http://neuromechanist.github.io/
+    website: https://neuromechanist.github.io
     orcid: https://orcid.org/0000-0001-5557-259X
-    affiliation: Swartz Center for Computational Neuroscience, Institute for Neural Computation, University of California San Diego
+    affiliation: Swartz Center for Computational Neuroscience, UC San Diego
     email: shirazi@ieee.org
   - given-names: Shashank
     family-names: Bansal
+  - given-names: Shiyu
+    family-names: Wang
+    affiliation: Vanderbilt University, USA
+    email: shiyu.wang.1@vanderbilt.edu
   - given-names: Silvia
     family-names: Isabella
     orcid: https://orcid.org/0000-0002-7525-0333
@@ -1501,6 +1542,10 @@ authors:
     website: https://github.com/soichih
     orcid: https://orcid.org/0000-0003-3641-3491
     affiliation: Indiana University
+  - given-names: Sourav
+    family-names: Kulkarni
+    affiliation: Uni. Bonn, Germany
+    email: s.kulkarni@uni-bonn.de
   - given-names: Stefan
     family-names: Appelhoff
     website: https://www.stefanappelhoff.com
@@ -1512,6 +1557,11 @@ authors:
     orcid: https://orcid.org/0000-0002-3764-3734
     affiliation: Maastricht University
     email: Stefanie.DeSmet@UGent.be
+  - given-names: Stefano
+    family-names: Moia
+    orcid: https://orcid.org/0000-0002-2553-3327
+    affiliation: Maastricht University
+    email: s.moia.research@gmail.com
   - given-names: Stephan
     family-names: Bickel
     orcid: https://orcid.org/0000-0001-5265-2447
@@ -1601,6 +1651,11 @@ authors:
     family-names: Okell
     orcid: https://orcid.org/0000-0001-8258-0659
     affiliation: University of Oxford
+  - given-names: Thomas
+    family-names: Wachtler
+    orcid: https://orcid.org/0000-0003-2015-6590
+    affiliation: LMU Munich
+    email: wachtler@bio.lmu.de
   - given-names: Tibor
     family-names: Auer
     website: https://tiborauer.github.io
