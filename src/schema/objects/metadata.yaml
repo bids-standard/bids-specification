@@ -144,17 +144,7 @@ Activities:
           type: string
           format: uri
       Type:
-        name: Type
-        description: |
-          Term(s) from (a) controlled vocabulary/vocabularies that more specifically
-          describes the activity.
-
-          Corresponds to [W3C PROV `prov:type`](https://www.w3.org/TR/prov-dm/#term-attribute-type).
-        type: array
-        minItems: 1
-        items:
-          type: string
-          format: uri
+        $ref: objects.metadata.Type__Activity
       StartedAtTime:
         name: StartedAtTime
         description: |
@@ -1586,17 +1576,7 @@ ProvEntity:
           type: string
           format: uri
       Type:
-        name: Type
-        description: |
-          Term(s) from (a) controlled vocabulary/vocabularies that more specifically
-          describes the prov:Entity.
-
-          Corresponds to [W3C PROV `prov:type`](https://www.w3.org/TR/prov-dm/#term-attribute-type).
-        type: array
-        minItems: 1
-        items:
-          type: string
-          format: uri
+        $ref: objects.metadata.Type__ProvEntity
 Environments:
   name: Environments
   display_name: Environments
@@ -4798,12 +4778,37 @@ Type:
     - $ref: objects.enums.Lesion.value
     - $ref: objects.enums.Face.value
     - $ref: objects.enums.ROI.value
+Type__Activity:
+  name: Type
+  description: |
+    Term(s) from (a) controlled vocabulary/vocabularies that more specifically
+    describes the activity.
+
+    Corresponds to [W3C PROV `prov:type`](https://www.w3.org/TR/prov-dm/#term-attribute-type).
+  type: array
+  minItems: 1
+  items:
+    type: string
+    format: uri
 Type__File:
   name: Type
   display_name: Type
   description: |
     Term(s) from (a) controlled vocabulary/vocabularies that more specifically
     describes the file.
+
+    Corresponds to [W3C PROV `prov:type`](https://www.w3.org/TR/prov-dm/#term-attribute-type).
+  type: array
+  minItems: 1
+  items:
+    type: string
+    format: uri
+Type__ProvEntity:
+  name: Type
+  display_name: Type
+  description: |
+    Term(s) from (a) controlled vocabulary/vocabularies that more specifically
+    describes the prov:Entity.
 
     Corresponds to [W3C PROV `prov:type`](https://www.w3.org/TR/prov-dm/#term-attribute-type).
   type: array

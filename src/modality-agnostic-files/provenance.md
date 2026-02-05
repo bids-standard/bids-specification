@@ -587,14 +587,15 @@ an RDF graph (see [Resource Description Framework (RDF)](https://www.w3.org/RDF/
     software within a *Linux* software environment.
 
 The terms defined in this specification to describe provenance
-are based on the [RDF](https://www.w3.org/RDF/), the [RDF Schema](https://www.w3.org/TR/rdf-schema/#ch_label),
+are based on the [RDF](https://www.w3.org/RDF/), the [RDF Schema](https://www.w3.org/TR/rdf-schema/),
 [JSON-LD](https://www.w3.org/TR/json-ld11/), and [W3C PROV](https://www.w3.org/TR/2013/REC-prov-o-20130430/).
 The corresponding [IRIs](https://www.w3.org/TR/json-ld11/#iris) are described
 in the JSON-LD context file [`provenance-context.json`](../provenance-context.json)
 provided with this specification.
 
 Furthermore, this specification allows to describe provenance with terms from other vocaularies.
-This can be done using the `Type` field .
+This can be done using the `Type` fields for [Activities](#activities),
+[Files](#input-and-output-data) or [prov:Entity](#input-and-output-data).
 
 All BIDS examples related to provenance (see. [bids-examples, provenance section](
 https://bids-website.readthedocs.io/en/latest/datasets/examples.html#provenance))
