@@ -21,8 +21,6 @@ dataset_description:
     EthicsApprovals: optional
     ReferencesAndLinks: optional
     DatasetDOI: optional
-    Type__Dataset: optional
-    Digest__Dataset: optional
     GeneratedBy__Dataset: recommended
     SourceDatasets: recommended
 

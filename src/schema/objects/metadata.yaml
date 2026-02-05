@@ -149,7 +149,7 @@ Activities:
           Term(s) from (a) controlled vocabulary/vocabularies that more specifically
           describes the activity.
 
-          Corresponds to [RDF `rdf:type`](https://www.w3.org/1999/02/22-rdf-syntax-ns#type).
+          Corresponds to [W3C PROV `prov:type`](https://www.w3.org/TR/prov-dm/#term-attribute-type).
         type: array
         minItems: 1
         items:
@@ -875,7 +875,6 @@ Datasets:
   items:
     type: object
     required: [Id, Label]
-    recommended: [Digest]
     properties:
       Id:
         name: Id
@@ -894,19 +893,8 @@ Datasets:
           Corresponds to [RDF Schema `rdfs:label`](https://www.w3.org/TR/rdf-schema/#ch_label).
         type: string
         format: label
-      Digest:
-        $ref: objects.metadata.Digest__Dataset
-      AtLocation:
-        name: AtLocation
-        description: |
-          Relative path to the dataset on disk.
-
-          Corresponds to [W3C PROV `prov:atLocation`](https://www.w3.org/TR/prov-o/#atLocation).
-        type: string
       GeneratedBy:
         $ref: objects.metadata.GeneratedBy__Id__Dataset
-      Type:
-        $ref: objects.metadata.Type__Dataset
 DatasetType:
   name: DatasetType
   display_name: Dataset Type
@@ -1074,29 +1062,7 @@ DewarPosition:
     `"upright"`, `"supine"` or `"degrees"` of angle from vertical:
     for example on CTF systems, `"upright=15°, supine=90°"`.
   type: string
-Digest__Dataset:
-  name: Digest
-  display_name: Digest
-  description: |
-    Object containing digests of the dataset.
-    Each key in the object MUST be the name of a checksum function if present in this list:
-    `MD5`; `SHA1`; `SHA-224` ; `SHA-256` ; `SHA-384` ; `SHA-512` ;
-    `SHA3-224`; `SHA3-256`; `SHA3-384`; `SHA3-512`; `BLAKE2B-256`; `BLAKE3-256`;
-    `SHAKE128`; `SHAKE256`. Otherwise, key MAY be an arbitrary label.
-    The corresponding value is the checksum as computed by the function identified by the key.
-  type: object
-Digest__Environment:
-  name: Digest
-  display_name: Digest
-  description: |
-    Object containing digests of the environment.
-    Each key in the object MUST be the name of a checksum function if present in this list:
-    `MD5`; `SHA1`; `SHA-224` ; `SHA-256` ; `SHA-384` ; `SHA-512` ;
-    `SHA3-224`; `SHA3-256`; `SHA3-384`; `SHA3-512`; `BLAKE2B-256`; `BLAKE3-256`;
-    `SHAKE128`; `SHAKE256`. Otherwise, key MAY be an arbitrary label.
-    The corresponding value is the checksum as computed by the function identified by the key.
-  type: object
-Digest__File:
+Digest:
   name: Digest
   display_name: Digest
   description: |
@@ -1625,7 +1591,7 @@ ProvEntity:
           Term(s) from (a) controlled vocabulary/vocabularies that more specifically
           describes the prov:Entity.
 
-          Corresponds to [RDF `rdf:type`](https://www.w3.org/1999/02/22-rdf-syntax-ns#type).
+          Corresponds to [W3C PROV `prov:type`](https://www.w3.org/TR/prov-dm/#term-attribute-type).
         type: array
         minItems: 1
         items:
@@ -1658,8 +1624,15 @@ Environments:
           Corresponds to [RDF Schema `rdfs:label`](https://www.w3.org/TR/rdf-schema/#ch_label).
         type: string
         format: label
-      Digest:
-        $ref: objects.metadata.Digest__Environment
+      AlternativeIdentifier:
+        name: AlternativeIdentifier
+        description: |
+          URI(s) of (an) alternative identifier(s) for the environment.
+        type: array
+        minItems: 1
+        items:
+          type: string
+          format: uri
       EnvironmentVariables:
         name: EnvironmentVariables
         description: Object containing environment variables as key-value pairs.
@@ -1826,7 +1799,7 @@ Files:
         type: string
         format: label
       Digest:
-        $ref: objects.metadata.Digest__File
+        $ref: objects.metadata.Digest
       AtLocation:
         name: AtLocation
         description: |
@@ -4825,19 +4798,6 @@ Type:
     - $ref: objects.enums.Lesion.value
     - $ref: objects.enums.Face.value
     - $ref: objects.enums.ROI.value
-Type__Dataset:
-  name: Type
-  display_name: Type
-  description: |
-    Term(s) from (a) controlled vocabulary/vocabularies that more specifically
-    describes the dataset.
-
-    Corresponds to [RDF `rdf:type`](https://www.w3.org/1999/02/22-rdf-syntax-ns#type).
-  type: array
-  minItems: 1
-  items:
-    type: string
-    format: uri
 Type__File:
   name: Type
   display_name: Type
@@ -4845,7 +4805,7 @@ Type__File:
     Term(s) from (a) controlled vocabulary/vocabularies that more specifically
     describes the file.
 
-    Corresponds to [RDF `rdf:type`](https://www.w3.org/1999/02/22-rdf-syntax-ns#type).
+    Corresponds to [W3C PROV `prov:type`](https://www.w3.org/TR/prov-dm/#term-attribute-type).
   type: array
   minItems: 1
   items:
