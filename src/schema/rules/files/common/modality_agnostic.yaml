@@ -1,0 +1,17 @@
+---
+# Files and directories that can be found at any level of a dataset.
+
+# Provenance json files
+provenance:
+  level: optional
+  datatypes:
+    - prov
+  suffixes:
+    - act
+    - ent
+    - env
+    - soft
+  extensions:
+    - .json
+  entities:
+    provenance: required
