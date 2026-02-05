@@ -503,7 +503,7 @@ NIfTI header.
 
 ### Tabular files
 
-Tabular data MUST be saved as plain-text, tab-delimited values (TSV) files
+Tabular data MUST be saved as plain-text, tab-separated values (TSV) files
 (with [extension `.tsv`](glossary.md#tsv-extensions)),
 that is, [CSV files](https://en.wikipedia.org/wiki/Comma-separated_values) where commas are replaced by tab characters.
 Tabs MUST be true tab characters and MUST NOT be a series of space characters.
@@ -554,7 +554,7 @@ onset	duration	response_time	trial_type	trial_extra
     are not part of the tabular data file's content.
 
 Tabular files MAY be optionally accompanied by a simple data dictionary
-in the form of a JSON [object](https://www.json.org/json-en.html)
+in the form of a [JSON object](https://www.json.org/json-en.html)
 within a JSON file.
 The JSON files containing the data dictionaries MUST have the same name as
 their corresponding tabular files but with `.json` extensions.

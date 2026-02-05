@@ -38,10 +38,8 @@ ParticipantIDMismatch:
     - path == '/participants.tsv'
   checks:
     - |
-      allequal(
-        sorted(intersects(columns.participant_id, dataset.subjects.sub_dirs)),
-        sorted(dataset.subjects.sub_dirs)
-      )
+      length(intersects(unique(columns.participant_id), dataset.subjects.sub_dirs)) ==
+      length(dataset.subjects.sub_dirs)
 
 # 214
 SamplesTSVMissing:

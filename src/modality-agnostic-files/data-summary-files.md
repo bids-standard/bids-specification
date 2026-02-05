@@ -53,6 +53,9 @@ to date of birth.
 
 ```JSON
 {
+    "participant_id": {
+        "Description": "participant identifier"
+    },
     "age": {
         "Description": "age of the participant",
         "Units": "year"
@@ -80,6 +83,14 @@ to date of birth.
     }
 }
 ```
+
+It is RECOMMENDED to use the `age` column to record participant age
+at every session in longitudinal or multi-session data sets.
+This reduces data duplication across tabular data files. The `Units` of `age`
+do not have to be years so long as the units of the age
+are written in `participants.json`.
+Consider participant privacy or study objectives when selecting
+the `Units` of `age` or the accuracy of `age` data.
 
 ## Samples file
 
@@ -199,21 +210,14 @@ meg/sub-control01_task-rest_split-02_meg.nii.gz	1877-06-15T12:15:27
 
 ## Sessions file
 
-Template:
-
-```Text
-sub-<label>/
-    sub-<label>_sessions.tsv
-```
-
-Optional: Yes
-
-In case of multiple sessions there is an option of adding additional
-`sessions.tsv` files describing variables changing between sessions.
-In such case one file per participant SHOULD be added.
-These files MUST include a `session_id` column and describe each session by one and only one row.
-Column names in `sessions.tsv` files MUST be different from group level participant key column names in the
-[`participants.tsv` file](./data-summary-files.md#participants-file).
+In case of multiple sessions there is an option of adding an additional
+`sessions.tsv` file describing each session and variables changing between sessions.
+It is RECOMMENDED to provide this as a single file at the root-level of the dataset.
+It is OPTIONAL to instead provide these as separate files at the subject-level of the dataset.
+The intent of the sessions file is to describe the sessions
+in a data set and non-demographic variables changing between sessions.
+Column names in `sessions.tsv` files MUST be different from participant key column names in
+the [participants file](#participants-file).
 
 <!-- This block generates a columns table.
 The definitions of these fields can be found in
@@ -223,7 +227,82 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_columns_table("modality_agnostic.Sessions") }}
 
-`_sessions.tsv` example:
+`sessions.json` example:
+
+```JSON
+{
+    "participant_id": {
+        "Description": "Participant identifier"
+    },
+    "session_id": {
+        "Description": "Session identifier for the session",
+        "Levels": {
+            "ses-predrug": "session before drug administration",
+            "ses-postdrug": "session after drug administration",
+            "ses-followup": "follow-up session"
+        }
+    },
+    "acq_time": {
+        "Description": "Acquisition time of the session"
+    },
+    "systolic_blood_pressure": {
+        "Description": "Systolic blood pressure measured at the beginning of the session in mmHg"
+    }
+}
+```
+
+### RECOMMENDED: Root-level sessions file
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example(
+   {
+   "sessions.tsv": "",
+   "[sessions.json]": "",
+   }
+) }}
+
+Optional: Yes
+
+An aggregated sessions file is RECOMMENDED to be provided at the dataset root.
+If a root-level sessions file is provided, then it MUST begin with
+a `participant_id` column followed immediately after by a `session_id` column.
+
+`sessions.tsv` example:
+
+```tsv
+participant_id	session_id	acq_time	systolic_blood_pressure
+sub-01	ses-predrug	2009-06-15T13:45:30	120
+sub-01	ses-postdrug	2009-06-16T13:45:30	100
+sub-01	ses-followup	2009-06-17T13:45:30	110
+sub-02	ses-predrug	2009-06-22T12:22:05	105
+sub-02	ses-postdrug	2009-06-23T12:22:05	95
+sub-03	ses-postdrug	2009-06-30T14:06:40	115
+sub-03	ses-followup	2009-07-01T14:06:40	120
+```
+
+### OPTIONAL: Participant-level sessions files
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example(
+   {
+   "sub-<label>": {
+      "sub-<label>_sessions.tsv": "",
+      "[sub-<label>_sessions.json]": "",
+      }
+   }
+) }}
+
+Optional: Yes
+
+When one sessions file per participant is used,
+these files MUST include a `session_id` column and describe each session by one and only one row.
+`sub-<label>/sub-<label>_sessions.tsv` example:
 
 ```tsv
 session_id	acq_time	systolic_blood_pressure
@@ -231,3 +310,23 @@ ses-predrug	2009-06-15T13:45:30	120
 ses-postdrug	2009-06-16T13:45:30	100
 ses-followup	2009-06-17T13:45:30	110
 ```
+
+### Additional validation
+
+When the [`AdditionalValidation` key](dataset-description.md#additional-validation)
+contains `"Phenotype"` in the `dataset_description.json`,
+the following tabular phenotypic data guidelines
+apply to sessions files:
+
+-   [6.](../appendices/phenotype.md#6-record-participant-properties-in-the-participants-file-and-session-properties-in-the-sessions-file)
+    Record participant properties in the participants file
+    and session properties in the sessions file
+
+-   [7.](../appendices/phenotype.md#7-use-the-sessions-file-at-the-root-level)
+    Use the sessions file at the root-level
+
+-   [8.](../appendices/phenotype.md#8-record-acquisition-time-of-all-sessions-with-acq_time)
+    Record acquisition time of all sessions with `acq_time`
+
+To read more about the guidelines for tabular phenotypic data and examples,
+see the [tabular phenotypic data guidelines appendix](../appendices/phenotype.md).
