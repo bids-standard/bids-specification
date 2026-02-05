@@ -13,7 +13,7 @@ this extension when referring to it in the context of the academic literature.
 
 This part of the BIDS specification is aimed at describing the provenance of a BIDS dataset.
 This description is retrospective: it describes a set of steps that were executed in order to
-establish the dataset and is based on [W3C Prov](https://www.w3.org/TR/2013/REC-prov-o-20130430/)
+establish the dataset and is based on [W3C PROV](https://www.w3.org/TR/2013/REC-prov-o-20130430/)
 (see [Provenance from an RDF perspective](#provenance-from-a-rdf-perspective)).
 
 Provenance information SHOULD be included in a BIDS dataset when possible.
@@ -75,7 +75,7 @@ The `GeneratedBy` field MAY contain either of the following values:
 ### Description using identifiers
 
 This section details how to describe provenance of a dataset using identifiers.
-The following fields are intended for use in `dataset_description.json` to provide
+The following field is intended for use in `dataset_description.json` to provide
 provenance information that applies to the entire dataset.
 
 <!-- This block generates a metadata table.
@@ -87,9 +87,7 @@ and a guide for using macros can be found at
 {{ MACROS___make_metadata_table(
    {
       "GeneratedBy__Id__Dataset": "RECOMMENDED for BIDS raw datasets and BIDS study datasets,\
-      REQUIRED for BIDS derivative datasets",
-      "Digest__Dataset": "OPTIONAL",
-      "Type__Dataset": "OPTIONAL"
+      REQUIRED for BIDS derivative datasets"
    }
 ) }}
 
@@ -307,7 +305,7 @@ and a guide for using macros can be found at
         "Software": [
             {
                 "Id": "bids::prov#dcm2niix-khhkm7u1",
-                "AltIdentifier": ["RRID:SCR_023517"],
+                "AlternativeIdentifier": ["RRID:SCR_023517"],
                 "Label": "dcm2niix",
                 "Version": "v1.0.20220720"
             }
@@ -320,7 +318,7 @@ and a guide for using macros can be found at
 ### Input and output data
 
 This section specifies how to describe input and output data for [activities](#activities).
-This data corresponds to the W3C Prov
+This data corresponds to the W3C PROV
 [prov:Entity](https://www.w3.org/TR/2013/REC-prov-o-20130430/#Entity)
 class that includes files, datasets and other types of data.
 
@@ -449,8 +447,11 @@ and a guide for using macros can be found at
     {
         "Environments": [
             {
-                "Id": "https://hub.docker.com/layers/poldracklab/fmriprep/1.1.4",
-                "Label": "poldracklab/fmriprep:1.1.4"
+                "Id": ,
+                "Label": "poldracklab/fmriprep:1.1.4",
+                "AlternativeIdentifier": [
+                    "https://hub.docker.com/layers/poldracklab/fmriprep/1.1.4"
+                ]
             }
         ]
     }
@@ -585,11 +586,15 @@ an RDF graph (see [Resource Description Framework (RDF)](https://www.w3.org/RDF/
     - the *Brain extraction* activity was performed using the *FSL*
     software within a *Linux* software environment.
 
-Moreover, the terms defined in this specification to describe provenance
-are based on the [W3C Prov](https://www.w3.org/TR/2013/REC-prov-o-20130430/) standard.
+The terms defined in this specification to describe provenance
+are based on the [RDF](https://www.w3.org/RDF/), the [RDF Schema](https://www.w3.org/TR/rdf-schema/#ch_label),
+[JSON-LD](https://www.w3.org/TR/json-ld11/), and [W3C PROV](https://www.w3.org/TR/2013/REC-prov-o-20130430/).
 The corresponding [IRIs](https://www.w3.org/TR/json-ld11/#iris) are described
 in the JSON-LD context file [`provenance-context.json`](../provenance-context.json)
 provided with this specification.
+
+Furthermore, this specification allows to describe provenance with terms from other vocaularies.
+This can be done using the `Type` field .
 
 All BIDS examples related to provenance (see. [bids-examples, provenance section](
 https://bids-website.readthedocs.io/en/latest/datasets/examples.html#provenance))
