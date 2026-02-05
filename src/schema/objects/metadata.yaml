@@ -4780,6 +4780,7 @@ Type:
     - $ref: objects.enums.ROI.value
 Type__Activity:
   name: Type
+  display_name: Type
   description: |
     Term(s) from (a) controlled vocabulary/vocabularies that more specifically
     describes the activity.
