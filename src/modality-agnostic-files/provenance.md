@@ -447,7 +447,7 @@ and a guide for using macros can be found at
     {
         "Environments": [
             {
-                "Id": ,
+                "Id": "bids::prov#poldracklab/fmriprep-mHl7Dqa0",
                 "Label": "poldracklab/fmriprep:1.1.4",
                 "AlternativeIdentifier": [
                     "https://hub.docker.com/layers/poldracklab/fmriprep/1.1.4"
