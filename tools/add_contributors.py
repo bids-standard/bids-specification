@@ -170,6 +170,9 @@ def return_this_contributor(
         orcid = orcid.replace("http://", "https://")
 
     website = df[mask].website.values[0]
+    if not pd.isna(website) and "://" not in website:
+        # Reasonable guess
+        website = f"https://{website}"
     affiliation = df[mask].affiliation.values[0]
     email = df[mask].email.values[0]
 
@@ -249,9 +252,8 @@ def update_key(
         return contributor
     log.info(f"updating {contributor['name']} - {key}")
     if key == "contributions":
-        for contribution in value:
-            if contribution not in contributor[key]:
-                contributor[key].append(contribution)
+        contributions = contributor.setdefault(key, [])
+        contributions.extend(set(value) - set(contributions))
     else:
         contributor[key] = value
     return contributor

@@ -26,7 +26,7 @@ bval:
   value: .bval
   display_name: FSL-Format Gradient Amplitudes
   description: |
-    A space-delimited file containing gradient directions (b-vectors) of diffusion measurement.
+    A space-delimited file containing diffusion-encoding weightings (b-values).
 
     The `bval` file contains the *b*-values (in s/mm<sup>2</sup>) corresponding to the
     volumes in the relevant NIfTI file, with 0 designating *b*=0 volumes.
@@ -34,7 +34,7 @@ bvec:
   value: .bvec
   display_name: FSL-Format Gradient Directions
   description: |
-    A space-delimited file containing gradient directions (b-vectors) of diffusion measurement.
+    A space-delimited file containing diffusion-encoding gradients (b-vectors).
 
     The `bvec` file contains 3 rows with *N* space-delimited floating-point numbers,
     corresponding to the *N* volumes in the corresponding NIfTI file.

@@ -1,5 +1,23 @@
 # Changelog
 
+## [v1.11.0](https://bids-specification.readthedocs.io/en/v1.11.0/) (2026-02-04)
+
+-   \[ENH] BEP020 - Eye Tracking [#1128](https://github.com/bids-standard/bids-specification/pull/1128)
+-   \[ENH] BEP038 - Atlases [#1714](https://github.com/bids-standard/bids-specification/pull/1714)
+-   \[ENH] BEP042 - Electromyography (EMG) [#1998](https://github.com/bids-standard/bids-specification/pull/1998)
+-   \[ENH] Add another example to inheritance principle for .json without entities [#2019](https://github.com/bids-standard/bids-specification/pull/2019) ([yarikoptic](https://github.com/yarikoptic))
+-   \[ENH] Clarify that "raw dataset" source data in example layout is a raw BIDS dataset [#2210](https://github.com/bids-standard/bids-specification/pull/2210) ([yarikoptic](https://github.com/yarikoptic))
+-   \[ENH] Add human statement to emphasize that _desc is the last entity [#1915](https://github.com/bids-standard/bids-specification/pull/1915) ([yarikoptic](https://github.com/yarikoptic))
+-   \[ENH] Make Pharmaceutical metadata terms less PET-specific [#2294](https://github.com/bids-standard/bids-specification/pull/2294) ([yarikoptic](https://github.com/yarikoptic))
+-   \[ENH] Updated HED Version to 8.4.0 in examples [#2237](https://github.com/bids-standard/bids-specification/pull/2237) ([VisLab](https://github.com/VisLab))
+-   \[ENH] Clarify that "source datasets" do not have to be BIDS, and provide definitions for DOI and URL [#2203](https://github.com/bids-standard/bids-specification/pull/2203) ([yarikoptic](https://github.com/yarikoptic))
+-   \[ENH] Clearly define dual templates (fsaverage, fsaverageSym, and fsLR) in coordinate systems appendix [#1927](https://github.com/bids-standard/bids-specification/pull/1927) ([tsalo](https://github.com/tsalo))
+-   \[ENH] Add entity tables for motion, NIRS and MRS [#2209](https://github.com/bids-standard/bids-specification/pull/2209) ([JuliusWelzel](https://github.com/JuliusWelzel))
+-   \[FIX] Add desc- entity name into descriptions.tsv example [#2281](https://github.com/bids-standard/bids-specification/pull/2281) ([yarikoptic](https://github.com/yarikoptic))
+-   \[FIX] Update navigation with respect to the `bids-starter-kit` [#2297](https://github.com/bids-standard/bids-specification/pull/2297) ([kabilar](https://github.com/kabilar))
+-   \[FIX] Correct `bval` and clarify `bvec` descriptions [#2304](https://github.com/bids-standard/bids-specification/pull/2304) ([kabilar](https://github.com/kabilar))
+-   \[FIX] Add DWI recommended metadata table [#2308](https://github.com/bids-standard/bids-specification/pull/2308) ([kabilar](https://github.com/kabilar))
+
 ## [v1.10.1](https://bids-specification.readthedocs.io/en/v1.10.1/) (2025-09-03)
 
 -   \[ENH] Expand fieldmaps section to include B1 maps, including qMRI maps [#2183](https://github.com/bids-standard/bids-specification/pull/2183) ([tsalo](https://github.com/tsalo))

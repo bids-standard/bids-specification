@@ -244,6 +244,13 @@ Authors:
   type: array
   items:
     type: string
+AverageCalibrationError:
+  name: AverageCalibrationError
+  display_name: Average Calibration Error
+  description: |
+    Average calibration error in degrees of visual angle.
+  type: number
+  unit: degree
 B0FieldIdentifier:
   name: B0FieldIdentifier
   display_name: B0 Field Identifier
@@ -418,6 +425,46 @@ BrainLocation:
     or layer to refer to layer-specific gene expression,
     which can also tie up with laminar fMRI.
   type: string
+CalibrationCount:
+  name: CalibrationCount
+  display_name: Calibration Count
+  description: |
+    The number of calibrations corresponding to this run.
+  type: integer
+  minimum: 0
+CalibrationPosition:
+  name: CalibrationPosition
+  display_name: Calibration Position
+  description: |
+    A list of `[x, y]` coordinates in the `CalibrationUnit`.
+    For example, using 5 positions calibration presented on an HD screen,
+    it could be `[[960,50],[960,540],[960,1030],[50,540],[1870,540]]`.
+  type: array
+  items:
+    type: array
+    minItems: 2
+    maxItems: 2
+    items:
+      type: number
+CalibrationType:
+  name: CalibrationType
+  display_name: Calibration Type
+  description: |
+    The type of the calibration procedure executed last.
+    For example the `"H3"` for horizontal calibration with 3 positions
+    or `"HV9"` for horizontal and vertical calibration with 9 positions,
+    or one point calibration.
+  type: string
+CalibrationUnit:
+  name: CalibrationUnit
+  display_name: Calibration Unit
+  description: |
+    Unit of `"CalibrationPosition"`.
+  type: string
+  enum:
+    - pixel
+    - mm
+    - cm
 CASLType:
   name: CASLType
   display_name: CASL Type
@@ -1378,6 +1425,34 @@ EthicsApprovals:
   type: array
   items:
     type: string
+EyeTrackerDistance:
+  name: EyeTrackerDistance
+  display_name: Eye-Tracker Distance
+  description: |
+    Distance (in meters) between the eye-tracker and the participant eye(s).
+    Distance can either be expressed as a single numeric value indicating the shortest distance
+    between the participant's eye and the eye-tracker's camera, or a three-coordinates array
+    indicating the X, Y, Z distances between the participant's eye and the eye-tracker's
+    camera.
+  anyOf:
+    - type: number
+      unit: m
+    - type: array
+      items:
+        type: number
+        unit: m
+      minItems: 3
+      maxItems: 3
+EyeTrackingMethod:
+  name: EyeTrackingMethod
+  display_name: Eye-Tracking Method
+  description: |
+    Method used to track gaze or pupil position:
+    "P–CR" for video based eye-tracking using pupil and corneal reflection;
+    "DPI" for Dual-Purkinje Imaging system, "SSC" for scleral search coils;
+    "EOG" for electro-oculogram; "Limbus" for trackers estimating limbus borders
+    between the iris and sclera; or other.
+  type: string
 FiducialsCoordinateSystem:
   name: FiducialsCoordinateSystem
   display_name: Fiducials Coordinate System
@@ -1463,6 +1538,14 @@ FlipAngle:
         unit: degree
         exclusiveMinimum: 0
         maximum: 360
+OnsetSource:
+  name: OnsetSource
+  display_name: Column Name of the Onset Source
+  description: |
+    An existing column name in an corresponding recoding data TSV file that
+    indexes or is correspondent to the `"onset"` column of the present TSV file.
+    For example, `"timestamp"` column.
+  type: string
 Format:
   name: Format
   display_name: Value format
@@ -2439,6 +2522,13 @@ MaxMovement:
     as measured by the head localization coils (for example, `4.8`).
   type: number
   unit: mm
+MaximalCalibrationError:
+  name: MaximalCalibrationError
+  display_name: Maximal Calibration Error
+  description: |
+    Maximal calibration error in degrees of visual angle.
+  type: number
+  unit: degree
 Maximum:
   name: Maximum
   display_name: Maximum value
@@ -2922,6 +3012,16 @@ PhotoDescription:
   description: |
     Description of the photo.
   type: string
+PhysioType:
+  name: PhysioType
+  display_name: Physiological Recording Type
+  description: |
+    Defines the specific type of physiological recording.
+    For backwards compatibility, the default value is `"generic"`.
+  type: string
+  enum:
+    - $ref: objects.enums.PhysioTypeGeneric.value
+    - $ref: objects.enums.PhysioTypeEyetrack.value
 PixelSize:
   name: PixelSize
   display_name: Pixel Size
@@ -3080,6 +3180,15 @@ PulseSequenceType:
   description: |
     A general description of the pulse sequence used for the scan.
   type: string
+PupilFitMethod:
+  name: PupilFitMethod
+  display_name: Pupil Fit Method
+  description: |
+    The method employed for fitting the pupil, for example
+    `"centre-of-mass"` or `"ellipse"`.
+    If `"centre-of-mass"` or `"ellipse"` method is used, it is RECOMMENDED to
+    use these exact labels.
+  type: string
 Purity:
   name: Purity
   display_name: Purity
@@ -3104,6 +3213,12 @@ RandomRate:
   type: array
   items:
     type: number
+RawDataFilters:
+  name: RawDataFilters
+  display_name: Raw Data Filters
+  description: |
+    Filter settings applied to eye-movement raw data.
+  type: string
 RawSources:
   name: RawSources
   display_name: Raw Sources
@@ -3206,6 +3321,18 @@ ReconMethodParameterValues:
   type: array
   items:
     type: number
+RecordedEye:
+  name: RecordedEye
+  display_name: Recorded Eye
+  description: |
+    Indicates the eye being tracked, for example, `"left"` or `"right"`.
+    It SHOULD be set to `"cyclopean"` for recordings combining both eyes
+    as potentially generated by binocular eye-trackers.
+  type: string
+  enum:
+    - left
+    - right
+    - cyclopean
 RecordingDuration:
   name: RecordingDuration
   display_name: Recording Duration
@@ -3376,6 +3503,22 @@ SEEGChannelCount:
     Number of SEEG channels.
   type: integer
   minimum: 0
+SampleCoordinateSystem:
+  name: SampleCoordinateSystem
+  display_name: Coordinate System of the Gaze Position
+  description: |
+    Coordinate system of the gaze position recordings.
+    Generally eye-trackers are set to use `"gaze-on-screen"` coordinate system, but you may use
+    `"eye-in-head"` or `"gaze-in-world"`.
+    If none of the three default options properly describe the coordinate system, the
+    `"custom"` keyword MUST be employed and the coordinate system MUST be described
+    using additional metadata entries.
+  type: string
+  enum:
+    - gaze-on-screen
+    - eye-in-head
+    - gaze-in-world
+    - custom
 SampleEmbedding:
   name: SampleEmbedding
   display_name: Sample Embedding
@@ -3576,12 +3719,39 @@ ScreenDistance:
   display_name: Screen Distance
   description: |
     Distance between the participant's eye and the screen. If no screen was used, use `n/a`.
+    Distance can either be expressed as a single numeric value indicating the shortest distance between
+    the participant's eye and the screen, or a three-coordinates array indicating the X, Y, Z distances
+    between the participant's eye and the center of the screen.
   anyOf:
     - type: number
       unit: m
+    - type: array
+      items:
+        type: number
+      minItems: 3
+      maxItems: 3
     - type: string
       enum:
         - n/a
+ScreenOrigin:
+  name: ScreenOrigin
+  display_name: Screen Coordinate System's Origin
+  description: |
+    Location of the spatial coordinates' origin for the visual stimuli presentation,
+    described by a list of two keywords such as ("top", "left") if the coordinates
+    refer to the top-left corner of the screen, or ("center", "center") if the position
+    (0, 0) is at the center or the screen's extent.
+  type: array
+  maxItems: 2
+  minItems: 2
+  items:
+    type: string
+    enum:
+      - "top"
+      - "bottom"
+      - "left"
+      - "right"
+      - "center"
 ScreenRefreshRate:
   name: ScreenRefreshRate
   display_name: Screen Refresh Rate
@@ -3596,6 +3766,8 @@ ScreenResolution:
     Screen resolution in pixel
     (for example `[1920, 1200]` for a screen of 1920-width by 1080-height pixels),
     if no screen use `n/a`.
+    `ScreenResolution` is REQUIRED when the experiment included simultaneous eye-tracking
+    recordings with `SampleCoordinateSystem` matching `"gaze-on-screen"`.
   anyOf:
     - type: array
       items:
@@ -3612,6 +3784,8 @@ ScreenSize:
     Screen size in m, excluding potential screen borders
     (for example `[0.472, 0.295]` for a screen of 47.2-width by 29.5-height cm),
     if no screen use `n/a`.
+    `ScreenSize` is REQUIRED when the experiment included simultaneous eye-tracking
+    recordings with `SampleCoordinateSystem` matching `"gaze-on-screen"`.
   anyOf:
     - type: array
       items:
@@ -3989,6 +4163,7 @@ StimulusPresentation:
   recommended:
     - OperatingSystem
     - ScreenDistance
+    - ScreenOrigin
     - ScreenRefreshRate
     - ScreenResolution
     - ScreenSize
@@ -4002,6 +4177,8 @@ StimulusPresentation:
       $ref: objects.metadata.OperatingSystem
     ScreenDistance:
       $ref: objects.metadata.ScreenDistance
+    ScreenOrigin:
+      $ref: objects.metadata.ScreenOrigin
     ScreenRefreshRate:
       $ref: objects.metadata.ScreenRefreshRate
     ScreenResolution:
