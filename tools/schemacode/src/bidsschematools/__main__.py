@@ -181,5 +181,161 @@ def pre_receive_hook(schema_path: Path | None, input_: Path | str, output: Path 
     sys.exit(rc)
 
 
+@cli.group()
+def migrate():
+    """Migrate BIDS datasets to adopt standardized conventions"""
+    pass
+
+
+def _validate_bids_dataset(dataset_path: Path) -> None:
+    """Validate that a path contains a BIDS dataset.
+
+    Parameters
+    ----------
+    dataset_path : Path
+        Path to check for BIDS dataset
+
+    Raises
+    ------
+    SystemExit
+        If dataset_description.json is not found
+    """
+    if not (dataset_path / "dataset_description.json").exists():
+        lgr.error(
+            f"No dataset_description.json found in {dataset_path}. Is this a valid BIDS dataset?"
+        )
+        sys.exit(1)
+
+
+@migrate.command("list")
+def migrate_list():
+    """List all available migrations"""
+    from . import migrations  # noqa: F401 - Import to register migrations
+    from .migrate import registry
+
+    migrations_list = registry.list_migrations()
+
+    if not migrations_list:
+        lgr.info("No migrations available")
+        return
+
+    click.echo("Available migrations:\n")
+    for mig in sorted(migrations_list, key=lambda x: x["version"]):
+        click.echo(f"  {mig['name']} (version {mig['version']})")
+        click.echo(f"    {mig['description']}\n")
+
+
+@migrate.command("run")
+@click.argument("migration_name")
+@click.argument("dataset_path", type=click.Path(exists=True))
+@click.option(
+    "--dry-run",
+    is_flag=True,
+    help="Show what would be changed without modifying files",
+)
+def migrate_run(migration_name, dataset_path, dry_run):
+    """Run a specific migration on a BIDS dataset
+
+    MIGRATION_NAME is the name of the migration to run (use 'migrate list' to see available)
+
+    DATASET_PATH is the path to the BIDS dataset root directory
+    """
+    from . import migrations  # noqa: F401 - Import to register migrations
+    from .migrate import registry
+
+    dataset_path = Path(dataset_path).resolve()
+    _validate_bids_dataset(dataset_path)
+
+    try:
+        result = registry.run(migration_name, dataset_path, dry_run=dry_run)
+    except ValueError as e:
+        lgr.error(str(e))
+        lgr.info("Use 'bst migrate list' to see available migrations")
+        sys.exit(1)
+
+    # Display results
+    if result.get("modified_files"):
+        click.echo(f"\nModified files ({len(result['modified_files'])}):")
+        for filepath in result["modified_files"]:
+            click.echo(f"  - {filepath}")
+
+    if result.get("warnings"):
+        click.echo(f"\nWarnings ({len(result['warnings'])}):")
+        for warning in result["warnings"]:
+            click.echo(f"  - {warning}")
+
+    if result.get("suggestions"):
+        click.echo(f"\nSuggestions ({len(result['suggestions'])}):")
+        for suggestion in result["suggestions"]:
+            click.echo(f"  - {suggestion}")
+
+    click.echo(f"\n{result['message']}")
+
+    if not result["success"]:
+        sys.exit(1)
+
+
+@migrate.command("all")
+@click.argument("dataset_path", type=click.Path(exists=True))
+@click.option(
+    "--dry-run",
+    is_flag=True,
+    help="Show what would be changed without modifying files",
+)
+@click.option(
+    "--skip",
+    multiple=True,
+    help="Skip specific migrations (can be used multiple times)",
+)
+def migrate_all(dataset_path, dry_run, skip):
+    """Run all available migrations on a BIDS dataset
+
+    DATASET_PATH is the path to the BIDS dataset root directory
+    """
+    from . import migrations  # noqa: F401 - Import to register migrations
+    from .migrate import registry
+
+    dataset_path = Path(dataset_path).resolve()
+    _validate_bids_dataset(dataset_path)
+
+    migrations_list = registry.list_migrations()
+    skip_set = set(skip)
+
+    if not migrations_list:
+        click.echo("No migrations available")
+        return
+
+    click.echo(f"Running {len(migrations_list)} migration(s) on {dataset_path}")
+    if dry_run:
+        click.echo("DRY RUN: No files will be modified\n")
+
+    results = []
+    for mig in sorted(migrations_list, key=lambda x: x["version"]):
+        if mig["name"] in skip_set:
+            click.echo(f"Skipping: {mig['name']}")
+            continue
+
+        click.echo(f"\nRunning: {mig['name']} (version {mig['version']})")
+        result = registry.run(mig["name"], dataset_path, dry_run=dry_run)
+        results.append((mig["name"], result))
+
+        if result.get("modified_files"):
+            click.echo(f"  Modified {len(result['modified_files'])} file(s)")
+        if result.get("warnings"):
+            click.echo(f"  {len(result['warnings'])} warning(s)")
+        if result.get("suggestions"):
+            click.echo(f"  {len(result['suggestions'])} suggestion(s)")
+        click.echo(f"  {result['message']}")
+
+    # Summary
+    click.echo("\n" + "=" * 60)
+    click.echo("Migration Summary:")
+    click.echo("=" * 60)
+
+    for name, result in results:
+        status = "✓" if result["success"] else "✗"
+        click.echo(f"{status} {name}: {result['message']}")
+
+
 if __name__ == "__main__":
     cli()
