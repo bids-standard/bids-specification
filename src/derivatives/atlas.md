@@ -76,6 +76,79 @@ as described in the [Derived atlases](#derived-atlases) section, below.
 For uses of the `atlas-` entity without the `tpl-` entity,
 see [Imaging derivatives - Derivatives from atlases](imaging.md#derivatives-from-atlases).
 
+### templates.tsv
+
+Template:
+
+```Text
+<pipeline_name>/
+    templates.tsv
+    templates.json
+```
+
+Optional: Yes
+
+To keep a record of templates in the dataset, a `templates.tsv` file MAY be used.
+The `templates.tsv` file consists of one row for each unique `tpl-<label>`
+entity used in the dataset and a set of REQUIRED and OPTIONAL columns:
+
+<!-- This block generates a columns table.
+The definitions of these fields can be found in
+  src/schema/rules/tabular_data/*.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_columns_table("derivatives.common_derivatives.Templates") }}
+
+This file MUST be located at the root of the derivative dataset.
+
+`templates.tsv` example:
+
+```tsv
+template_id	description
+tpl-MNI152NLin2009cAsym	MNI152 nonlinear 2009c asymmetric template
+tpl-MNIPediatricAsym	MNI pediatric asymmetric template
+```
+
+### cohorts.tsv
+
+Template:
+
+```Text
+<pipeline_name>/
+    tpl-<label>/
+        tpl-<label>_cohorts.tsv
+        tpl-<label>_cohorts.json
+```
+
+Optional: Yes
+
+For templates with multiple cohorts, a `cohorts.tsv` file MAY be used to describe each cohort.
+The `cohorts.tsv` file consists of one row for each unique `cohort-<label>`
+entity used within the template and a set of REQUIRED and OPTIONAL columns:
+
+<!-- This block generates a columns table.
+The definitions of these fields can be found in
+  src/schema/rules/tabular_data/*.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_columns_table("derivatives.common_derivatives.Cohorts") }}
+
+This file MUST be located within the `tpl-<label>/` directory for which it describes cohorts.
+
+`tpl-MNIPediatricAsym_cohorts.tsv` example:
+
+```tsv
+cohort_id	description
+cohort-1	Ages 0-2 months
+cohort-2	Ages 3-5 months
+cohort-3	Ages 6-11 months
+cohort-4	Ages 1-2 years
+cohort-5	Ages 3-6 years
+cohort-6	Ages 7-18 years
+```
+
 ### Example: Single-cohort template
 
 For the pipeline that generated [`MNI152NLin2009cAsym`](../appendices/coordinate-systems.md#standard-template-identifiers),
@@ -87,6 +160,7 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_filetree_example({
    "mni152nlin2009casym-pipeline": {
+      "templates.tsv": "",
       "tpl-MNI152NLin2009cAsym": {
          "tpl-MNI152NLin2009cAsym_res-1_T1w.nii.gz": "",
          "tpl-MNI152NLin2009cAsym_res-1_T1w.json": "",
@@ -117,7 +191,9 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_filetree_example({
    "mnipediatricasym-pipeline": {
+      "templates.tsv": "",
       "tpl-MNIPediatricAsym": {
+         "tpl-MNIPediatricAsym_cohorts.tsv": "",
          "cohort-1": {
             "tpl-MNIPediatricAsym_cohort-1_T1w.nii.gz": "",
             "tpl-MNIPediatricAsym_cohort-1_T2w.nii.gz": "",
@@ -152,6 +228,7 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_filetree_example({
    "mni152nlin2009casym-pipeline": {
+      "templates.tsv": "",
       "sub-001": {
          "anat": {
             "sub-001_from-T1w_to-MNI152NLin2009cAsym_mode-image_xfm.h5": "",

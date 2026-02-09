@@ -566,6 +566,15 @@ colFA:
     image color is determined by the principal eigenvector of the diffusion tensor,
     where red encodes the magnitude of the left-right component of that orientation,
     with green and blue similarly encoding the anterior-posterior and inferior-superior components respectively.
+cohorts:
+  value: cohorts
+  display_name: Cohort Entity Definitions
+  description: |
+    A TSV file describing labels found for the `cohort` entity within a template.
+
+    This file MUST be located within a `tpl-<label>/` directory.
+
+    The `cohorts.tsv` file provides metadata to identify and describe cohorts in the template.
 coordsystem:
   value: coordsystem
   display_name: Coordinate System File
@@ -876,6 +885,15 @@ stim:
   display_name: Continuous recording
   description: |
     Continuous measures, such as parameters of a film or audio stimulus.
+templates:
+  value: templates
+  display_name: Template Entity Definitions
+  description: |
+    A TSV file describing labels found for the `tpl` entity in a Derivatives dataset.
+
+    This file MAY be located at the root of the derivative dataset.
+
+    The `templates.tsv` file provides metadata to identify and describe templates in the dataset.
 svs:
   value: svs
   display_name: Single-voxel spectroscopy

@@ -120,6 +120,22 @@ derived_from:
     for example a slice of tissue (`sample-02`) derived from a block of tissue (`sample-01`).
   type: string
   pattern: ^sample-[0-9a-zA-Z+]+$
+cohort_id:
+  name: cohort_id
+  display_name: Cohort ID
+  description: |
+    A cohort identifier of the form `cohort-<label>`,
+    matching a cohort entity found in the dataset.
+
+    The `cohort_id` column contains the labels used with the
+    [`cohort` entity](SPEC_ROOT/appendices/entities.md#cohort),
+    within the particular nesting that the `cohorts.tsv` file is placed.
+
+    For example, if the `cohorts.tsv` file is placed within a `tpl-<label>/` directory,
+    its `cohort_id` column SHOULD contain all labels of the `cohort` entity
+    used within that template directory.
+  type: string
+  pattern: ^cohort-[0-9a-zA-Z+]+$
 desc_id:
   name: desc_id
   display_name: Description Label
@@ -960,6 +976,22 @@ template_y:
   description: |
     Assumed or ideal position along the y axis.
   type: number
+template_id:
+  name: template_id
+  display_name: Template ID
+  description: |
+    A template identifier of the form `tpl-<label>`,
+    matching a template entity found in the dataset.
+
+    The `template_id` column contains the labels used with the
+    [`tpl` entity](SPEC_ROOT/appendices/entities.md#tpl),
+    within the particular nesting that the `templates.tsv` file is placed.
+
+    For example, if the `templates.tsv` file is placed at the root of the derivative dataset,
+    its `template_id` column SHOULD contain all labels of the `tpl` entity
+    used across the entire derivative dataset.
+  type: string
+  pattern: ^tpl-[0-9a-zA-Z+]+$
 template_z:
   name: template_z
   display_name: Z template position
