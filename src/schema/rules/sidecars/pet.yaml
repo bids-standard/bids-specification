@@ -8,20 +8,24 @@ PETHardware:
     Manufacturer:
       level: required
       description_addendum: |
-        Corresponds to [DICOM Tag 0008, 0070](https://dicomlookup.com/dicomtags/(0008,0070)) `Manufacturer`.
+        Corresponds to [DICOM Tag 0008, 0070](http://www.dicomlookup.com/dicomtags/(0008,0070))
+        `Manufacturer`.
     ManufacturersModelName:
       level: required
       description_addendum: |
-        Corresponds to [DICOM Tag 0008, 1090](https://dicomlookup.com/dicomtags/(0008,1090)) `Manufacturers Model Name`.
+        Corresponds to [DICOM Tag 0008, 1090](http://www.dicomlookup.com/dicomtags/(0008,1090))
+        `Manufacturers Model Name`.
     Units:
       level: required
       description_addendum: |
         SI unit for radioactivity (Becquerel) should be used (for example, "Bq/mL").
-        Corresponds to [DICOM Tag 0054, 1001](https://dicomlookup.com/dicomtags/(0054,1001)) `Units`.
+        Corresponds to [DICOM Tag 0054, 1001](http://www.dicomlookup.com/dicomtags/(0054,1001))
+        `Units`.
     BodyPart:
       level: recommended
       description_addendum: |
-        Corresponds to [DICOM Tag 0018, 0015](https://dicomlookup.com/dicomtags/(0018,0015)) `Body Part Examined`.
+        Corresponds to [DICOM Tag 0018, 0015](http://www.dicomlookup.com/dicomtags/(0018,0015))
+        `Body Part Examined`.
 
 PETInstitutionInformation:
   selectors:
@@ -31,15 +35,17 @@ PETInstitutionInformation:
     InstitutionName:
       level: recommended
       description_addendum: |
-        Corresponds to [DICOM Tag 0008, 0080](https://dicomlookup.com/dicomtags/(0008,0080)) `InstitutionName`.
+        Corresponds to [DICOM Tag 0008, 0080](http://www.dicomlookup.com/dicomtags/(0008,0080))
+        `InstitutionName`.
     InstitutionAddress:
       level: recommended
       description_addendum: |
-        Corresponds to [DICOM Tag 0008, 0081](https://dicomlookup.com/dicomtags/(0008,0081)) `InstitutionAddress`.
+        Corresponds to [DICOM Tag 0008, 0081](http://www.dicomlookup.com/dicomtags/(0008,0081))
+        `InstitutionAddress`.
     InstitutionalDepartmentName:
       level: recommended
       description_addendum: |
-        Corresponds to [DICOM Tag 0008, 1040](https://dicomlookup.com/dicomtags/(0008,1040))
+        Corresponds to [DICOM Tag 0008, 1040](http://www.dicomlookup.com/dicomtags/(0008,1040))
         `Institutional Department Name`.
 
 PETSample:
@@ -50,7 +56,8 @@ PETSample:
     BodyPart:
       level: optional
       description_addendum: |
-        Corresponds to [DICOM Tag 0018, 0015](https://dicomlookup.com/dicomtags/(0018,0015)) `Body Part Examined`.
+        Corresponds to [DICOM Tag 0018, 0015](http://www.dicomlookup.com/dicomtags/(0018,0015))
+        `Body Part Examined`.
     BodyPartDetails: optional
     BodyPartDetailsOntology: optional
 
@@ -124,20 +131,22 @@ PETPharmaceuticals:
       level: recommended
       description_addendum: |
         For pharmaceutical co-administered with tracer.
-        Corresponds to [DICOM Tag 0018, 0034](https://dicomlookup.com/dicomtags/(0018,0034)) `Intervention Drug Name`.
+        Corresponds to [DICOM Tag 0018, 0034](http://www.dicomlookup.com/dicomtags/(0018,0034))
+        `Intervention Drug Name`.
     PharmaceuticalDoseAmount:
       level: recommended
       description_addendum: |
         For pharmaceutical co-administered with tracer.
-        Corresponds to [DICOM Tag 0018, 0028](https://dicomlookup.com/dicomtags/(0018,0028)) `Intervention Drug Dose`.
+        Corresponds to [DICOM Tag 0018, 0028](http://www.dicomlookup.com/dicomtags/(0018,0028))
+        `Intervention Drug Dose`.
     PharmaceuticalDoseUnits: recommended
     PharmaceuticalDoseRegimen: recommended
     PharmaceuticalDoseTime:
       level: recommended
       description_addendum: |
         Corresponds to a combination of DICOM Tags
-        [0018, 0027](https://dicomlookup.com/dicomtags/(0018,0027)) `Intervention Drug Stop Time` and
-        [0018, 0035](https://dicomlookup.com/dicomtags/(0018,0035)) `Intervention Drug Start Time`.
+        [0018, 0027](http://www.dicomlookup.com/dicomtags/(0018,0027)) `Intervention Drug Stop Time` and
+        [0018, 0035](http://www.dicomlookup.com/dicomtags/(0018,0035)) `Intervention Drug Start Time`.
     Anaesthesia: optional
 
 PETTime:
@@ -150,19 +159,20 @@ PETTime:
     InjectionStart:
       level: required
       description_addendum: |
-        Corresponds to [DICOM Tag 0018, 1072](https://dicomlookup.com/dicomtags/(0018,1072))
+        Corresponds to [DICOM Tag 0018, 1072](http://www.dicomlookup.com/dicomtags/(0018,1072))
         `Radiopharmaceutical Start Time`.
     FrameTimesStart: required
     FrameDuration: required
     InjectionEnd:
       level: recommended
       description_addendum: |
-        Corresponds to [DICOM Tag 0018, 1073](https://dicomlookup.com/dicomtags/(0018,1073))
+        Corresponds to [DICOM Tag 0018, 1073](http://www.dicomlookup.com/dicomtags/(0018,1073))
         `Radiopharmaceutical Stop Time` converted to seconds relative to TimeZero.
     ScanDate:
       level: deprecated
       description_addendum: |
-        Corresponds to [DICOM Tag 0008, 0022](https://dicomlookup.com/dicomtags/(0008,0022)) `Acquisition Date`.
+        Corresponds to [DICOM Tag 0008, 0022](http://www.dicomlookup.com/dicomtags/(0008,0022))
+        `Acquisition Date`.
 
 PETReconstruction:
   selectors:
@@ -175,40 +185,40 @@ PETReconstruction:
     ReconMethodName:
       level: required
       description_addendum: |
-        This partly matches the [DICOM Tag 0054, 1103](https://dicomlookup.com/dicomtags/(0054,1103))
+        This partly matches the [DICOM Tag 0054, 1103](http://www.dicomlookup.com/dicomtags/(0054,1103))
         `Reconstruction Method`.
     ReconMethodParameterLabels:
       level: required
       description_addendum: |
-        This partly matches the [DICOM Tag 0054, 1103](https://dicomlookup.com/dicomtags/(0054,1103))
+        This partly matches the [DICOM Tag 0054, 1103](http://www.dicomlookup.com/dicomtags/(0054,1103))
         `Reconstruction Method`.
     ReconMethodParameterUnits:
       level: recommended
       level_addendum: required if `ReconMethodParameterLabels` does not contain `"none"`
       description_addendum: |
-        This partly matches the [DICOM Tag 0054, 1103](https://dicomlookup.com/dicomtags/(0054,1103))
+        This partly matches the [DICOM Tag 0054, 1103](http://www.dicomlookup.com/dicomtags/(0054,1103))
         `Reconstruction Method`.
     ReconMethodParameterValues:
       level: recommended
       level_addendum: required if `ReconMethodParameterLabels` does not contain `"none"`
       description_addendum: |
-        This partly matches the [DICOM Tag 0054, 1103](https://dicomlookup.com/dicomtags/(0054,1103))
+        This partly matches the [DICOM Tag 0054, 1103](http://www.dicomlookup.com/dicomtags/(0054,1103))
         `Reconstruction Method`.
     ReconFilterType:
       level: required
       description_addendum: |
-        This partly matches the [DICOM Tag 0018, 1210](https://dicomlookup.com/dicomtags/(0018,1210))
+        This partly matches the [DICOM Tag 0018, 1210](http://www.dicomlookup.com/dicomtags/(0018,1210))
         `Convolution Kernel`.
     ReconFilterSize:
       level: recommended
       level_addendum: required if `ReconFilterType` is not `"none"`
       description_addendum: |
-        This partly matches the [DICOM Tag 0018, 1210](https://dicomlookup.com/dicomtags/(0018,1210))
+        This partly matches the [DICOM Tag 0018, 1210](http://www.dicomlookup.com/dicomtags/(0018,1210))
         `Convolution Kernel`.
     AttenuationCorrection:
       level: required
       description_addendum: |
-        This corresponds to [DICOM Tag 0054, 1101](https://dicomlookup.com/dicomtags/(0054,1101))
+        This corresponds to [DICOM Tag 0054, 1101](http://www.dicomlookup.com/dicomtags/(0054,1101))
         `Attenuation Correction Method`.
     ReconMethodImplementationVersion: recommended
     AttenuationCorrectionMethodReference: recommended
@@ -216,15 +226,18 @@ PETReconstruction:
     ScatterFraction:
       level: recommended
       description_addendum: |
-        Corresponds to [DICOM Tag 0054, 1323](https://dicomlookup.com/dicomtags/(0054,1323)) `Scatter Fraction Factor`.
+        Corresponds to [DICOM Tag 0054, 1323](http://www.dicomlookup.com/dicomtags/(0054,1323))
+        `Scatter Fraction Factor`.
     DecayCorrectionFactor:
       level: recommended
       description_addendum: |
-        Corresponds to [DICOM Tag 0054, 1321](https://dicomlookup.com/dicomtags/(0054,1321)) `Decay Factor`.
+        Corresponds to [DICOM Tag 0054, 1321](http://www.dicomlookup.com/dicomtags/(0054,1321))
+        `Decay Factor`.
     DoseCalibrationFactor:
       level: recommended
       description_addendum: |
-        Corresponds to [DICOM Tag 0054, 1322](https://dicomlookup.com/dicomtags/(0054,1322)) `Dose Calibration Factor`.
+        Corresponds to [DICOM Tag 0054, 1322](http://www.dicomlookup.com/dicomtags/(0054,1322))
+        `Dose Calibration Factor`.
     PromptRate: recommended
     SinglesRate: recommended
     RandomRate: recommended

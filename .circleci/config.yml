@@ -44,7 +44,7 @@ jobs:
                 --ignore-url 'https://github.com/[^/]*' \
                 --ignore-url 'https://github.com/bids-standard/bids-specification/(pull|tree)/.*' \
                 --ignore-url 'https://www.incf.org' \
-                --ignore-url 'https://dicomlookup.com/dicomtags/.*' \
+                --ignore-url 'http://www.dicomlookup.com/dicomtags/.*' \
                 --ignore-url 'https://www.instagram.com/bidsstandard/' \
                 --ignore-url 'https://jsoneditoronline.org' \
                 --ignore-url 'https://rrid.site.*' \
