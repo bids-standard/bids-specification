@@ -506,9 +506,10 @@ as outlined in [common principles for tabular files](../common-principles.md#tab
 
 ## Consistency and uniqueness of identifiers
 
+Identifiers for JSON objects related to provenance must be
+[IRIs](https://www.w3.org/TR/json-ld11/#iris).
 The following rules and conventions are provided in order to have consistent,
-human readable, and explicit [IRIs](https://www.w3.org/TR/json-ld11/#iris)
-as identifiers for JSON objects related to provenance.
+human readable, and explicit IRIs as identifiers.
 
 ### Identifiers for input and output data
 
@@ -522,8 +523,9 @@ a [BIDS URI](../common-principles.md#bids-uri) with a fragment part.
     The use of BIDS URIs may require to define the `DatasetLinks` object
     in [`dataset_description.json`](dataset-description.md#dataset_descriptionjson).
 
-The identifier for a prov:Entity (see [Input and output data](#input-and-output-data))
-that is described in a BIDS dataset `<dataset-name>` MAY have the following form,
+Apart from BIDS files and BIDS datasets, identifiers for a prov:Entity
+(see [Input and output data](#input-and-output-data))
+in a BIDS dataset `<dataset-name>` MAY have the following form,
 where `<label>` is an arbitrary value for identifying the prov:Entity.
 
 ```text
@@ -532,6 +534,8 @@ bids:[<dataset-name>]:prov#entity-<label>
 
 !!! example "Examples of identifiers for input and output data"
 
+    BIDS files and datasets
+
     - `bids:ds000011:sub-01/anat/sub-01_T1w.nii.gz` -
     identifier for a T1w file for subject `sub-01` in the `ds000011` dataset;
     - `bids::sub-014/func/sub-014_task-MGT_run-01_events.tsv` -
@@ -539,6 +543,9 @@ bids:[<dataset-name>]:prov#entity-<label>
     - `bids:fmriprep:sub-001/func/sub-001_task-MGT_run-01_bold_space-MNI152NLin2009cAsym_preproc.nii.gz` -
     identifier for a bold file for subject `sub-001` in the `fmriprep` dataset;
     - `bids:ds001734:.` - identifier for the `ds001734` dataset;
+
+    Other prov:Entity
+
     - `bids::prov#entity-28c0ba28` -
     identifier for a prov:Entity that is described in the current dataset.
 
@@ -553,8 +560,8 @@ the object and `<uid>` is a unique group of chars.
 bids:[<dataset-name>]:prov#<label>-<uid>
 ```
 
-The uniqueness of this identifier MUST be used to distinguish any activity,
-software, or environment that are different in any of their attributes.
+The `<uid>` part of this identifier MUST be used to generate unique identifiers
+that distinguish any activity, software, or environment that are different in any of their attributes.
 
 !!! example "Examples of identifiers for activities, environments and software"
 
@@ -601,6 +608,11 @@ All BIDS examples related to provenance (see. [bids-examples, provenance section
 https://bids-website.readthedocs.io/en/latest/datasets/examples.html#provenance))
 show the aggregated version of the provenance metadata they contain.
 This comes as a JSON-LD file and a visualization of the graph.
+
+
+Il faudrait ajouter une phrase pour expliquer quelle est l' info manquante a ajouter
+pour construite le graphe (i.e. ajouter un type entity a tous les ids de BIDS files et datasets ?)
+
 
 ## Minimal examples
 
