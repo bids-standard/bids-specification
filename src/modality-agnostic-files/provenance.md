@@ -608,10 +608,10 @@ All BIDS examples related to provenance (see. [bids-examples, provenance section
 https://bids-website.readthedocs.io/en/latest/datasets/examples.html#provenance))
 show the aggregated version of the provenance metadata they contain.
 This comes as a JSON-LD file and a visualization of the graph.
-The JSON-LD file consists of an aggregation of the [`Activities`](./glossary.md#objects.metadata.Activities),
-[`Software`](./glossary.md#objects.metadata.Software), [`Files`](./glossary.md#objects.metadata.Files),
-[`Datasets`](./glossary.md#objects.metadata.Datasets), [`prov:Entity`](./glossary.md#objects.metadata.ProvEntity)
-and [`Environments`](./glossary.md#objects.metadata.Environments) objects inside a `Records` object,
+The JSON-LD file consists of an aggregation of the [`Activities`](../glossary.md#objects.metadata.Activities),
+[`Software`](../glossary.md#objects.metadata.Software), [`Files`](../glossary.md#objects.metadata.Files),
+[`Datasets`](../glossary.md#objects.metadata.Datasets), [`prov:Entity`](../glossary.md#objects.metadata.ProvEntity)
+and [`Environments`](../glossary.md#objects.metadata.Environments) objects inside a `Records` object,
 as well as a reference to the [`provenance-context.json`](../provenance-context.json) file as
 [JSON-LD `@context`](https://www.w3.org/TR/json-ld11/#syntax-tokens-and-keywords).
 
