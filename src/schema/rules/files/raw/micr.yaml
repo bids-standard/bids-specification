@@ -12,6 +12,7 @@ microscopy:
     - CONF
     - PLI
     - CARS
+    - 1PE
     - 2PE
     - MPE
     - SR
