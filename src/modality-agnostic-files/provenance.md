@@ -14,7 +14,7 @@ this extension when referring to it in the context of the academic literature.
 This part of the BIDS specification is aimed at describing the provenance of a BIDS dataset.
 This description is retrospective: it describes a set of steps that were executed in order to
 establish the dataset and is based on [W3C PROV](https://www.w3.org/TR/2013/REC-prov-o-20130430/)
-(see [Provenance from an RDF perspective](#provenance-from-a-rdf-perspective)).
+(see [Provenance graph](#provenance-graph)).
 
 Provenance information SHOULD be included in a BIDS dataset when possible.
 If provenance information is included,
@@ -504,12 +504,12 @@ Additional columns may be added to `provenance.tsv` but MUST be accompanied with
 `provenance.json` sidecar file to describe the TSV column names and properties of their values
 as outlined in [common principles for tabular files](../common-principles.md#tabular-files).
 
-## Consistency and uniqueness of identifiers
+## Provenance identifiers
 
 Identifiers for JSON objects related to provenance must be
 [IRIs](https://www.w3.org/TR/json-ld11/#iris).
 The following rules and conventions are provided in order to have consistent,
-human readable, and explicit IRIs as identifiers.
+human readable, unique, and explicit IRIs as identifiers.
 
 ### Identifiers for input and output data
 
@@ -569,7 +569,7 @@ that distinguish any activity, software, or environment that are different in an
     - `bids::prov#fedora-uldfv058` - a Fedora based environment described inside the current dataset;
     - `bids::prov#fmriprep-awf6cvk6` - the fMRIPrep software described inside the current dataset.
 
-## Provenance from an RDF perspective
+## Provenance graph
 
 Objects describing provenance as defined in this specification
 can be aggregated into [JSON-LD](https://www.w3.org/TR/json-ld11/) files ;
@@ -655,7 +655,7 @@ A guide for using macros can be found at
 
 The `prov/prov-dcm2niix_soft.json` file describes `dcm2niix`,
 the software package used for the DICOM conversion.
-As per the [Consistency and uniqueness of identifiers](#consistency-and-uniqueness-of-identifiers)
+As per the [Provenance identifiers](#provenance-identifiers)
 section, the identifier for the associated software object SHOULD
 start with `bids:<dataset>:prov#` (`bids::` refers to the current dataset).
 

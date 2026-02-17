@@ -80,8 +80,8 @@ Activities:
       Id:
         name: Id
         description: |
-          Identifier for the activity (see the [Consistency and uniqueness of identifiers](
-          SPEC_ROOT/modality-agnostic-files/provenance.md#consistency-and-uniqueness-of-identifiers) section).
+          Identifier for the activity (see the [Provenance identifiers](
+          SPEC_ROOT/modality-agnostic-files/provenance.md#provenance-identifiers) section).
 
           Corresponds to [JSON-LD `@id`](https://www.w3.org/TR/json-ld11/#syntax-tokens-and-keywords).
         type: string
@@ -869,8 +869,8 @@ Datasets:
       Id:
         name: Id
         description: |
-          Identifier for the dataset (see the [Consistency and uniqueness of identifiers](
-          SPEC_ROOT/modality-agnostic-files/provenance.md#consistency-and-uniqueness-of-identifiers) section).
+          Identifier for the dataset (see the [Provenance identifiers](
+          SPEC_ROOT/modality-agnostic-files/provenance.md#provenance-identifiers) section).
 
           Corresponds to [JSON-LD `@id`](https://www.w3.org/TR/json-ld11/#syntax-tokens-and-keywords).
         type: string
@@ -1535,8 +1535,8 @@ ProvEntity:
       Id:
         name: Id
         description: |
-          Identifier for the prov:Entity (see the [Consistency and uniqueness of identifiers](
-          SPEC_ROOT/modality-agnostic-files/provenance.md#consistency-and-uniqueness-of-identifiers) section).
+          Identifier for the prov:Entity (see the [Provenance identifiers](
+          SPEC_ROOT/modality-agnostic-files/provenance.md#provenance-identifiers) section).
 
           Corresponds to [JSON-LD `@id`](https://www.w3.org/TR/json-ld11/#syntax-tokens-and-keywords).
         type: string
@@ -1590,8 +1590,8 @@ Environments:
       Id:
         name: Id
         description: |
-          Identifier for the environment (see the [Consistency and uniqueness of identifiers](
-          SPEC_ROOT/modality-agnostic-files/provenance.md#consistency-and-uniqueness-of-identifiers) section).
+          Identifier for the environment (see the [Provenance identifiers](
+          SPEC_ROOT/modality-agnostic-files/provenance.md#provenance-identifiers) section).
 
           Corresponds to [JSON-LD `@id`](https://www.w3.org/TR/json-ld11/#syntax-tokens-and-keywords).
         type: string
@@ -1764,8 +1764,8 @@ Files:
       Id:
         name: Id
         description: |
-          Identifier for the file (see the [Consistency and uniqueness of identifiers](
-          SPEC_ROOT/modality-agnostic-files/provenance.md#consistency-and-uniqueness-of-identifiers) section).
+          Identifier for the file (see the [Provenance identifiers](
+          SPEC_ROOT/modality-agnostic-files/provenance.md#provenance-identifiers) section).
 
           Corresponds to [JSON-LD `@id`](https://www.w3.org/TR/json-ld11/#syntax-tokens-and-keywords).
         type: string
@@ -4244,8 +4244,8 @@ Software:
       Id:
         name: Id
         description: |
-          Identifier for the software package (see the [Consistency and uniqueness of identifiers](
-          SPEC_ROOT/modality-agnostic-files/provenance.md#consistency-and-uniqueness-of-identifiers) section).
+          Identifier for the software package (see the [Provenance identifiers](
+          SPEC_ROOT/modality-agnostic-files/provenance.md#provenance-identifiers) section).
 
           Corresponds to [JSON-LD `@id`](https://www.w3.org/TR/json-ld11/#syntax-tokens-and-keywords).
         type: string
