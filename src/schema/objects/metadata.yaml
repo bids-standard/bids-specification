@@ -2796,10 +2796,10 @@ PhotoDescription:
   type: string
 PhysioType:
   name: PhysioType
-  display_name: PhysioType
+  display_name: Physiological Recording Type
   description: |
-    Defines the specific type of physiological recording. 
-    For backwards compatibility, the default value is "generic".
+    Defines the specific type of physiological recording.
+    For backwards compatibility, the default value is `"generic"`.
   type: string
   enum:
     - $ref: objects.enums.PhysioTypeGeneric.value
