@@ -13,6 +13,8 @@ updates:
       actions-infrastructure:
         patterns:
          - "actions/*"
+    cooldown:
+      default-days: 14
   - package-ecosystem: "uv"
     directory: "/"
     schedule:
@@ -22,6 +24,8 @@ updates:
     groups:
       build-dependencies:
         patterns: ["*"]
+    cooldown:
+      default-days: 14
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
@@ -31,3 +35,18 @@ updates:
     groups:
       node-utilities:
         patterns: ["*"]
+    cooldown:
+      default-days: 14
+  - package-ecosystem: "npm"
+    target-branch: jsr-maint
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    labels:
+      - "exclude-from-changelog"
+      - "schema-code"
+    groups:
+      node-utilities:
+        patterns: ["*"]
+    cooldown:
+      default-days: 14

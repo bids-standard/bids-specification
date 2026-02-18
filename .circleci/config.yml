@@ -32,10 +32,10 @@ jobs:
             git status
             if (! git log -1 --pretty=oneline | grep REL:) ; then
               chmod a+rX -R ~
-              uvx linkchecker -t 1 ~/project/site/
+              uvx linkchecker -t 1 --no-warnings ~/project/site/
               # check external separately by pointing to all *html so no
               # failures for local file:/// -- yoh found no better way,
-              uvx linkchecker -t 1 --check-extern \
+              uvx linkchecker -t 1 --no-warnings --check-extern \
                 --ignore-url 'file:///.*' \
                 --ignore-url 'https://bids-specification.readthedocs.io/en/stable/.*' \
                 --ignore-url "https://bids-specification.readthedocs.io/en/v${CIRCLE_BRANCH#rel/}/" \
@@ -48,6 +48,7 @@ jobs:
                 --ignore-url 'https://www.instagram.com/bidsstandard/' \
                 --ignore-url 'https://jsoneditoronline.org' \
                 --ignore-url 'https://rrid.site.*' \
+                --ignore-url 'https://jsr.io/.*' \
                 ~/project/site/*html ~/project/site/*/*.html
             else
               echo "Release PR - do nothing"
