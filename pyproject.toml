@@ -31,7 +31,7 @@ tools = [
 ]
 
 [tool.bumpversion]
-current_version = "1.11.1-dev"
+current_version = "1.11.1"
 parse = """(?x)
     (?P<major>[0-9]+)
     \\.(?P<minor>[0-9]+)

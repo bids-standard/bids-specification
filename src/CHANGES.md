@@ -1,5 +1,9 @@
 # Changelog
 
+## [v1.11.1](https://bids-specification.readthedocs.io/en/v1.11.1/) (2026-02-19)
+
+-   \[FIX] Add EMG to timeseries rule for physio/stim files [#2346](https://github.com/bids-standard/bids-specification/pull/2346) ([neuromechanist](https://github.com/neuromechanist))
+
 ## [v1.11.0](https://bids-specification.readthedocs.io/en/v1.11.0/) (2026-02-04)
 
 -   \[ENH] BEP020 - Eye Tracking [#1128](https://github.com/bids-standard/bids-specification/pull/1128)
