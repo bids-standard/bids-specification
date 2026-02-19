@@ -1,0 +1,36 @@
+---
+microephys:
+  suffixes:
+    - ecephys
+    - icephys
+  extensions:
+    - .nwb
+    # possible future: serialization in .zarr format to accompany .ome.zarr
+    # - .nwb.zarr
+    - .nix
+    - .json
+  datatypes:
+    - ecephys
+    - icephys
+  entities:
+    subject: required
+    session: optional
+    sample: optional
+    task: optional
+    acquisition: optional
+    run: optional
+
+probes:
+  suffixes:
+    - probes
+  extensions:
+    - .tsv
+    - .json
+  datatypes:
+    - ecephys
+    - icephys
+  entities:
+    subject: required
+    session: optional
+    sample: optional
+    acquisition: optional

@@ -255,6 +255,162 @@ Please note that `space-scanner` SHOULD NOT be used, it is mentioned in this spe
 | --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | scanner               | The intrinsic coordinate system of the original image (the first entry of `RawSources`) after reconstruction and conversion to NIfTI or equivalent for the case of surfaces and dual volume/surface files. |
 
+## Microelectrode Electrophysiology Specific Coordinate Systems
+
+Restricted keywords for the `MicroephysCoordinateSystem` field in the
+`coordsystem.json` file for microelectrode electrophysiology datasets (both `icephys` and `ecephys`):
+
+<table>
+  <thead>
+    <tr>
+      <th><strong>Coordinate System</strong></th>
+      <th><strong>Description</strong></th>
+      <th><strong>Reference</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Pixels</td>
+      <td>
+        If electrodes are localized in 2D space (x and y are specified and z is <code>n/a</code>), then the
+        positions in this file must correspond to the locations expressed in pixels on the
+        photo/drawing/rendering of the electrodes on the brain. In this case, coordinates must be
+        (row,column) pairs, with (0,0) corresponding to the upper left pixel and (N,0) corresponding
+        to the lower left pixel.
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Stereotaxic</td>
+      <td>
+        A generic stereotaxic coordinate system commonly used in animal neuroscience for surgical targeting
+        and electrode localization. The origin is at bregma, a skull landmark defined as the intersection
+        of the coronal and sagittal sutures. The three axes are: AP (Anterior-Posterior) with positive values
+        anterior to the reference point, ML (Medial-Lateral) with positive values to the right of midline,
+        and DV (Dorsal-Ventral) with positive values ventral to the reference point.
+        See the [Microelectrode Surgical Coordinates](microelectrode-surgical-coordinates.md)
+        appendix for detailed axis conventions and angle definitions.
+        Units are typically in millimeters or micrometers.
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>AllenCCFv3</td>
+      <td>
+        Allen Common Coordinate Framework version 3 (<a href="https://scicrunch.org/resolver/RRID:SCR_020999">RRID:SCR_020999</a>),
+        a 3D reference space for the mouse brain based on average anatomy. The framework provides a systematic
+        way to map and compare data across different experiments and labs. Origin and orientation follow the
+        Allen Institute conventions.
+      </td>
+      <td><a href="https://doi.org/10.1016/j.cell.2020.04.007">doi:10.1016/j.cell.2020.04.007</a></td>
+    </tr>
+    <tr>
+      <td>WaxholmSpace</td>
+      <td>
+        A standardized 3D coordinate system for the mouse brain (<a href="https://scicrunch.org/resolver/RRID:SCR_001592">RRID:SCR_001592</a>)
+        based on high-resolution imaging data.
+      </td>
+      <td><a href="https://doi.org/10.1016/j.neuroimage.2010.06.067">doi:10.1016/j.neuroimage.2010.06.067</a></td>
+    </tr>
+    <tr>
+      <td>WistarRatAtlas</td>
+      <td>
+        A multidimensional magnetic resonance histology atlas of the adult Wistar rat brain
+        (<a href="https://scicrunch.org/resolver/RRID:SCR_006288">RRID:SCR_006288</a>). This atlas provides
+        high-resolution anatomical reference for rat brain studies.
+      </td>
+      <td><a href="https://doi.org/10.1016/j.neuroimage.2012.05.041">doi:10.1016/j.neuroimage.2012.05.041</a></td>
+    </tr>
+    <tr>
+      <td>PaxinosWatson</td>
+      <td>
+        The Paxinos and Watson rat brain atlas (<a href="https://scicrunch.org/resolver/RRID:SCR_006369">RRID:SCR_006369</a>),
+        a widely used stereotaxic coordinate system for the rat brain.
+        Provides standardized coordinates based on skull landmarks (bregma, lambda) for targeting brain structures.
+        Multiple editions available; users should specify the edition used in <code>MicroephysCoordinateSystemDescription</code>.
+      </td>
+      <td>Paxinos G, Watson C. The Rat Brain in Stereotaxic Coordinates. Academic Press.</td>
+    </tr>
+    <tr>
+      <td>FranklinPaxinos</td>
+      <td>
+        The Franklin and Paxinos mouse brain atlas (<a href="https://scicrunch.org/resolver/RRID:SCR_007127">RRID:SCR_007127</a>),
+        a widely used stereotaxic coordinate system for the mouse brain.
+        Provides standardized coordinates based on skull landmarks (bregma, lambda) for targeting brain structures.
+        Multiple editions available; users should specify the edition used in <code>MicroephysCoordinateSystemDescription</code>.
+      </td>
+      <td>Franklin KBJ, Paxinos G. The Mouse Brain in Stereotaxic Coordinates. Academic Press.</td>
+    </tr>
+    <tr>
+      <td>SwansonRat</td>
+      <td>
+        The Swanson rat brain atlas, a widely used stereotaxic coordinate system for the rat brain.
+        Provides detailed cytoarchitectonic parcellation and standardized coordinates for targeting brain structures.
+        Multiple editions available; users should specify the edition used in <code>MicroephysCoordinateSystemDescription</code>.
+      </td>
+      <td><a href="https://doi.org/10.1002/cne.24381">Swanson LW. Brain Maps: Structure of the Rat Brain. Elsevier.</a></td>
+    </tr>
+    <tr>
+      <td>CHARM</td>
+      <td>
+        Cortical Hierarchy Atlas of the Rhesus Macaque, a modern MRI-based atlas for the macaque brain.
+        Provides hierarchical cortical parcellation based on anatomical connectivity patterns.
+      </td>
+      <td><a href="https://doi.org/10.1016/j.neuroimage.2021.117997">doi:10.1016/j.neuroimage.2021.117997</a></td>
+    </tr>
+    <tr>
+      <td>D99</td>
+      <td>
+        Digital version of the Saleem and Logothetis macaque brain atlas.
+        Provides detailed parcellation of the rhesus macaque brain based on histological sections.
+      </td>
+      <td><a href="https://doi.org/10.1093/cercor/bhw248">doi:10.1093/cercor/bhw248</a></td>
+    </tr>
+    <tr>
+      <td>PaxinosMacaque</td>
+      <td>
+        The Paxinos rhesus macaque brain atlas, a stereotaxic coordinate system for the macaque brain.
+        Provides standardized coordinates based on stereotaxic landmarks for targeting brain structures.
+        Multiple editions available; users should specify the edition used in <code>MicroephysCoordinateSystemDescription</code>.
+      </td>
+      <td>Paxinos G, Huang XF, Petrides M, Evrard, H. The Rhesus Monkey Brain in Stereotaxic Coordinates. Academic Press.</td>
+    </tr>
+    <tr>
+      <td>MarmosetBrainAtlas</td>
+      <td>
+        A standardized 3D coordinate system for the common marmoset brain.
+        Provides high-resolution anatomical reference for marmoset brain studies.
+      </td>
+      <td><a href="https://doi.org/10.1016/j.neuroimage.2017.12.004">doi:10.1016/j.neuroimage.2017.12.004</a></td>
+    </tr>
+    <tr>
+      <td>individual</td>
+      <td>
+        Subject-specific anatomical coordinate system derived from the individual subject's anatomy. The origin
+        and orientation should be specified in <code>MicroephysCoordinateSystemDescription</code>. This coordinate
+        system requires specifying an additional, subject-specific file to be fully defined.
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Other</td>
+      <td>
+        Use this for other coordinate systems and specify all required details in the
+        <code>MicroephysCoordinateSystemDescription</code> field.
+      </td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+
+If you believe a specific coordinate system should be added to the list
+of restricted keywords for microelectrode electrophysiology, please open a new issue on the
+[bids-standard/bids-specification GitHub repository](https://github.com/bids-standard/bids-specification/issues/new/choose).
+
+For detailed information about coordinate systems in microelectrode electrophysiology,
+including probe angles and anatomical reference points, see the
+[Microelectrode Electrophysiology specification](../modality-specific-files/microelectrode-electrophysiology.md#coordinate-system-json-_coordsystemjson).
+
 <!-- Link Definitions -->
 
 [common file level metadata fields]: ../derivatives/common-data-types.md#common-file-level-metadata-fields
