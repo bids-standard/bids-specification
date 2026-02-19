@@ -923,6 +923,13 @@ Descriptors:
     - type: array
       items:
         type: string
+Device:
+  name: Device
+  display_name: Device
+  description: |
+    Free-form description of the device used to record the data
+    (for example, `"iPhone 12"`, `"Canon EOS R5"`).
+  type: string
 DeviceSerialNumber:
   name: DeviceSerialNumber
   display_name: Device Serial Number
@@ -4635,3 +4642,82 @@ iEEGReference:
     this field should have a general description and the channel specific
     reference should be defined in the `channels.tsv` file.
   type: string
+
+AudioChannelCount:
+  name: AudioChannelCount
+  display_name: Audio Channel Count
+  description: |
+    Number of audio channels in the recording (for example, `2` for stereo).
+  type: integer
+  minimum: 1
+
+AudioDuration:
+  name: AudioDuration
+  display_name: Audio Duration
+  description: |
+    Duration of the audio recording in seconds.
+  type: number
+  exclusiveMinimum: 0
+  unit: s
+
+AudioSampleRate:
+  name: AudioSampleRate
+  display_name: Audio Sample Rate
+  description: |
+    Sample rate of the audio recording in Hertz (for example, `44100`).
+  type: number
+  exclusiveMinimum: 0
+  unit: Hz
+
+AudioBitDepth:
+  name: AudioBitDepth
+  display_name: Audio Bit Depth
+  description: |
+    Number of bits per sample in the audio recording.
+
+    Common values include `16`, `24`, or `32`.
+  type: integer
+  minimum: 1
+
+CameraPosition:
+  name: CameraPosition
+  display_name: Camera Position
+  description: |
+    Free-form description of the camera placement relative to the subject or scene.
+
+    Examples include "front", "profile-left", "ceiling", "room-corner", or "overhead".
+  type: string
+
+Duration:
+  name: Duration
+  display_name: Duration
+  description: |
+    Total duration of the audio or video recording in seconds.
+  type: number
+  exclusiveMinimum: 0
+  unit: s
+
+FrameRate:
+  name: FrameRate
+  display_name: Frame Rate
+  description: |
+    Frame rate of the video recording in frames per second (for example, `30.0`).
+  type: number
+  exclusiveMinimum: 0
+  unit: Hz
+
+Height:
+  name: Height
+  display_name: Video Height
+  description: |
+    Height of the video in pixels (for example, `1080`).
+  type: integer
+  minimum: 1
+
+Width:
+  name: Width
+  display_name: Video Width
+  description: |
+    Width of the video in pixels (for example, `1920`).
+  type: integer
+  minimum: 1
