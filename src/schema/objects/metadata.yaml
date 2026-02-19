@@ -109,6 +109,8 @@ Activities:
           Plain-text extended description of the activity.
 
           RECOMMENDED if `Command` is set to `null`.
+
+          Corresponds to [RDF Schema `rdfs:comment`](https://www.w3.org/TR/rdf-schema/#ch_comment).
         type: string
       AssociatedWith:
         name: AssociatedWith

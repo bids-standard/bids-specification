@@ -12,6 +12,7 @@
         "Id": "@id",
         "Type": "@type",
         "Label": "rdfs:label",
+        "Description": "rdfs:comment",
         "StartedAtTime" : {
           "@id": "prov:startedAtTime",
           "@type": "xsd:dateTime"
