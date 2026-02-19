@@ -12,5 +12,6 @@ eeg:
     - .set
     - .fdt
     - .bdf
+    - .nwb
   datatypes:
     - eeg
