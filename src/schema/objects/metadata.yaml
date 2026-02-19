@@ -106,7 +106,7 @@ Activities:
       Description:
         name: Description
         description: |
-          Plain-text description of the activity.
+          Plain-text extended description of the activity.
 
           RECOMMENDED if `Command` is set to `null`.
         type: string
