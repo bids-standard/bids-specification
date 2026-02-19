@@ -94,21 +94,14 @@ A guide for using macros can be found at
 {{ MACROS___render_text("objects.files.genetic_info.description") }}
 
 <!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/json
 The definitions of these fields can be found in
   src/schema/objects/metadata.yaml
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "GeneticLevel": "REQUIRED",
-      "AnalyticalApproach": "OPTIONAL",
-      "SampleOrigin": "REQUIRED",
-      "TissueOrigin": "OPTIONAL",
-      "BrainLocation": "OPTIONAL",
-      "CellType": "OPTIONAL",
-   }
-) }}
+{{ MACROS___make_json_table("json.genetics.genetic_info") }}
 
 To ensure dataset description consistency, we recommend following [Multi-omics approaches to disease](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-017-1215-1) by Hasin et al. 2017 to determine the `GeneticLevel:`
 
