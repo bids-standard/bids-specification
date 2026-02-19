@@ -21,15 +21,21 @@ study:
     subdirs:
       - code
       - docs
+      - rawdata
       - derivatives
       - logs
       - sourcedata
+      - phenotype
   code:
     name: code
     level: optional
     opaque: true
   docs:
     name: docs
+    level: optional
+    opaque: true
+  rawdata:
+    name: rawdata
     level: optional
     opaque: true
   derivatives:
@@ -44,6 +50,10 @@ study:
     name: sourcedata
     level: optional
     opaque: true
+  phenotype:
+    name: phenotype
+    level: optional
+    opaque: false
 
 raw:
   root:
