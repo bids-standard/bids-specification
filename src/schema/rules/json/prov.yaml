@@ -1,0 +1,63 @@
+---
+ActivitiesProvenanceFile:
+  selectors:
+    - datatype == "prov"
+    - suffix == "act"
+  fields:
+    Activities: required
+
+EnvironmentsProvenanceFile:
+  selectors:
+    - datatype == "prov"
+    - suffix == "env"
+  fields:
+    Environments: required
+
+EntitiesProvenanceFile:
+  selectors:
+    - datatype == "prov"
+    - suffix == "ent"
+  fields:
+    Files:
+      level: optional
+      level_addendum: required if `prov:Entity` and `Datasets` fields are absent
+    Datasets:
+      level: optional
+      level_addendum: required if `Files` and `prov:Entity` fields are absent
+    ProvEntity:
+      level: optional
+      level_addendum: required if `Files` and `Datasets` fields are absent
+
+ProvEntityProvenanceFile:
+  selectors:
+    - datatype == "prov"
+    - suffix == "ent"
+    - '!("Files" in json)'
+    - '!("Datasets" in json)'
+  fields:
+    ProvEntity: required
+
+FilesProvenanceFile:
+  selectors:
+    - datatype == "prov"
+    - suffix == "ent"
+    - '!("Datasets" in json)'
+    - '!("prov:Entity" in json)'
+  fields:
+    Files: required
+
+DatasetsProvenanceFile:
+  selectors:
+    - datatype == "prov"
+    - suffix == "ent"
+    - '!("Files" in json)'
+    - '!("prov:Entity" in json)'
+  fields:
+    Datasets: required
+
+SoftwareProvenanceFile:
+  selectors:
+    - datatype == "prov"
+    - suffix == "soft"
+  fields:
+    Software: required

@@ -246,9 +246,9 @@ def make_filename_template(
 
     Parameters
     ----------
-    dstype : "raw" or "deriv"
-        The type of files being rendered; determines if rules are found in rules.files.raw
-        or rules.files.deriv
+    dstype : "raw", "deriv" or "common"
+        The type of files being rendered; determines if rules are found in rules.files.raw,
+        rules.files.deriv or rules.files.common
     schema : dict
         The schema object, which is a dictionary with nested dictionaries and
         lists stored within it.
@@ -309,25 +309,31 @@ def make_filename_template(
     ext_key_table = value_key_table(schema.objects.extensions)
 
     # Parent directories
-    sub_string = utils._link_with_html(
-        _format_entity(schema.objects.entities.subject, lt, gt),
-        html_path=ENTITIES_PATH + ".html",
-        heading="sub",
-        pdf_format=pdf_format,
-    )
-    ses_string = utils._link_with_html(
-        _format_entity(schema.objects.entities.session, lt, gt),
-        html_path=ENTITIES_PATH + ".html",
-        heading="ses",
-        pdf_format=pdf_format,
-    )
-    lines = [f"{sub_string}/", f"\t[{ses_string}/]"]
+    if dstype != "common":
+        sub_string = utils._link_with_html(
+            _format_entity(schema.objects.entities.subject, lt, gt),
+            html_path=ENTITIES_PATH + ".html",
+            heading="sub",
+            pdf_format=pdf_format,
+        )
+        ses_string = utils._link_with_html(
+            _format_entity(schema.objects.entities.session, lt, gt),
+            html_path=ENTITIES_PATH + ".html",
+            heading="ses",
+            pdf_format=pdf_format,
+        )
+        lines = [f"{sub_string}/", f"\t[{ses_string}/]"]
+        datatype_indent = "\t\t"
+    else:
+        lines = []
+        datatype_indent = ""
 
     file_rules = schema.rules.files[dstype]
     file_groups = {}
     for rule in file_rules.values(level=2):
-        for datatype in rule.datatypes:
-            file_groups.setdefault(datatype, []).append(rule)
+        if "datatypes" in rule:
+            for datatype in rule.datatypes:
+                file_groups.setdefault(datatype, []).append(rule)
 
     if empty_dirs is None:
         empty_dirs = not placeholders
@@ -356,7 +362,7 @@ def make_filename_template(
             heading=f"{datatype.lower()}-datatypes",
             pdf_format=pdf_format,
         )
-        group_lines.append(f"\t\t{datatype_string}/")
+        group_lines.append(f"{datatype_indent}{datatype_string}/")
 
         # Unique filename patterns
         for group in file_groups[datatype]:
@@ -450,7 +456,7 @@ def make_filename_template(
             )
 
             group_lines.extend(
-                f"\t\t\t{ent_string}_{suffix}{extension}"
+                f"\t{datatype_indent}{ent_string}_{suffix}{extension}"
                 for suffix in sorted(suffixes)
                 for extension in sorted(extensions)
             )

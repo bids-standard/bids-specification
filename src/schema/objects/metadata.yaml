@@ -67,6 +67,103 @@ AcquisitionVoxelSize:
     type: number
     exclusiveMinimum: 0
     unit: mm
+Activities:
+  name: Activities
+  display_name: Activities
+  description: Objects describing activities.
+  type: array
+  minItems: 1
+  items:
+    type: object
+    required: [Id, Label, Command]
+    properties:
+      Id:
+        name: Id
+        description: |
+          [Identifier](SPEC_ROOT/modality-agnostic-files/provenance.md#provenance-identifiers) for the activity.
+
+          Corresponds to [JSON-LD `@id`](https://www.w3.org/TR/json-ld11/#syntax-tokens-and-keywords).
+        type: string
+        format: uri
+      Label:
+        name: Label
+        description: |
+          Name for the activity.
+
+          Corresponds to [RDF Schema `rdfs:label`](https://www.w3.org/TR/rdf-schema/#ch_label).
+        type: string
+        format: label
+      Command:
+        name: Command
+        description: |
+          Command (or commands) performed by the activity, including all parameters.
+
+          Set to `null` to describe that the activity was performed manually.
+        anyOf:
+          - type: string
+            format: string
+          - type: "null"
+      Description:
+        name: Description
+        description: |
+          Plain-text extended description of the activity.
+
+          RECOMMENDED if `Command` is set to `null`.
+
+          Corresponds to [RDF Schema `rdfs:comment`](https://www.w3.org/TR/rdf-schema/#ch_comment).
+        type: string
+      AssociatedWith:
+        name: AssociatedWith
+        description: |
+          [Identifier(s)](SPEC_ROOT/modality-agnostic-files/provenance.md#provenance-identifiers)
+          of the software package(s) used to compute the activity.
+
+          Related software MUST be described as specified in the
+          [Software](SPEC_ROOT/modality-agnostic-files/provenance.md#software) section.
+
+          Corresponds to
+          [W3C PROV `prov:wasAssociatedWith`](https://www.w3.org/TR/2013/REC-prov-o-20130430/#wasAssociatedWith).
+        type: array
+        minItems: 1
+        items:
+          type: string
+          format: uri
+      Used:
+        name: Used
+        description: |
+          [Identifier(s)](SPEC_ROOT/modality-agnostic-files/provenance.md#provenance-identifiers)
+          of the input and output data or environment(s) used by the activity.
+
+          Related input and output data MUST be described as specified in the
+          [Input and output data](SPEC_ROOT/modality-agnostic-files/provenance.md#input-and-output-data) section.
+
+          Related environment(s) MUST be described as specified in the
+          [Environments](SPEC_ROOT/modality-agnostic-files/provenance.md#environments) section.
+
+          Corresponds to [W3C PROV `prov:used`](https://www.w3.org/TR/2013/REC-prov-o-20130430/#used).
+        type: array
+        minItems: 1
+        items:
+          type: string
+          format: uri
+      Type:
+        $ref: objects.metadata.Type__Activity
+      StartedAtTime:
+        name: StartedAtTime
+        description: |
+          Timestamp tracking when the activity started.
+
+          Corresponds to [W3C PROV `prov:startedAtTime`](https://www.w3.org/TR/2013/REC-prov-o-20130430/#startedAtTime).
+        type: string
+        format: datetime
+      EndedAtTime:
+        name: EndedAtTime
+        description: |
+          Timestamp tracking when the activity ended.
+
+          Corresponds to [W3C PROV `prov:endedAtTime`](https://www.w3.org/TR/2013/REC-prov-o-20130430/#endedAtTime).
+        type: string
+        format: datetime
 Anaesthesia:
   name: Anaesthesia
   display_name: Anaesthesia
@@ -762,6 +859,34 @@ DatasetLinks:
   additionalProperties:
     type: string
     format: uri
+Datasets:
+  name: Datasets
+  display_name: Datasets
+  description: Objects describing datasets.
+  type: array
+  minItems: 1
+  items:
+    type: object
+    required: [Id, Label]
+    properties:
+      Id:
+        name: Id
+        description: |
+          [Identifier](SPEC_ROOT/modality-agnostic-files/provenance.md#provenance-identifiers) for the dataset.
+
+          Corresponds to [JSON-LD `@id`](https://www.w3.org/TR/json-ld11/#syntax-tokens-and-keywords).
+        type: string
+        format: uri
+      Label:
+        name: Label
+        description: |
+          Name for the dataset.
+
+          Corresponds to [RDF Schema `rdfs:label`](https://www.w3.org/TR/rdf-schema/#ch_label).
+        type: string
+        format: label
+      GeneratedBy:
+        $ref: objects.metadata.GeneratedBy__Id__Dataset
 DatasetType:
   name: DatasetType
   display_name: Dataset Type
@@ -882,7 +1007,7 @@ Description__GeneratedBy:
   name: Description
   display_name: Pipeline Description
   description: |
-    Plain-text description of the pipeline or process that generated the outputs.
+    Plain-text description of the pipeline or process that generated the dataset.
     RECOMMENDED if `Name` is `"Manual"`.
   type: string
 DetectorType:
@@ -929,6 +1054,17 @@ DewarPosition:
     `"upright"`, `"supine"` or `"degrees"` of angle from vertical:
     for example on CTF systems, `"upright=15°, supine=90°"`.
   type: string
+Digest:
+  name: Digest
+  display_name: Digest
+  description: |
+    Object containing digests of the file.
+    Each key in the object MUST be the name of a checksum function if present in this list:
+    `MD5`; `SHA1`; `SHA-224` ; `SHA-256` ; `SHA-384` ; `SHA-512` ;
+    `SHA3-224`; `SHA3-256`; `SHA3-384`; `SHA3-512`; `BLAKE2B-256`; `BLAKE3-256`;
+    `SHAKE128`; `SHAKE256`. Otherwise, key MAY be an arbitrary label.
+    The corresponding value is the checksum as computed by the function identified by the key.
+  type: object
 DigitizedHeadPoints:
   name: DigitizedHeadPoints
   display_name: Digitized Head Points
@@ -1387,6 +1523,112 @@ EncodingTechnique:
     For example, `"Cartesian"`, `"EPSI"`, `"Spiral"`,
     or `"Density-weighted concentric ring trajectory"`.
   type: string
+ProvEntity:
+  name: "prov:Entity"
+  display_name: "prov:Entity"
+  description: Objects describing prov:Entity objects other than files or datasets.
+  type: array
+  minItems: 1
+  items:
+    type: object
+    required: [Id, Label]
+    recommended: [Digest]
+    properties:
+      Id:
+        name: Id
+        description: |
+          [Identifier](SPEC_ROOT/modality-agnostic-files/provenance.md#provenance-identifiers) for the prov:Entity.
+
+          Corresponds to [JSON-LD `@id`](https://www.w3.org/TR/json-ld11/#syntax-tokens-and-keywords).
+        type: string
+        format: uri
+      Label:
+        name: Label
+        description: |
+          Name for the prov:Entity.
+
+          Corresponds to [RDF Schema `rdfs:label`](https://www.w3.org/TR/rdf-schema/#ch_label).
+        type: string
+        format: label
+      Digest:
+        name: Digest
+        description: |
+          Object containing digests of the prov:Entity.
+          Each key in the object MUST be the name of a checksum function if present in this list:
+          `MD5`; `SHA1`; `SHA-224` ; `SHA-256` ; `SHA-384` ; `SHA-512` ;
+          `SHA3-224`; `SHA3-256`; `SHA3-384`; `SHA3-512`; `BLAKE2B-256`; `BLAKE3-256`;
+          `SHAKE128`; `SHAKE256`. Otherwise, key MAY be an arbitrary label.
+          The corresponding value is the checksum as computed by the function identified by the key.
+        type: object
+      GeneratedBy:
+        name: GeneratedBy
+        display_name: Generated By
+        description: |
+          [Identifier(s)](SPEC_ROOT/modality-agnostic-files/provenance.md#provenance-identifiers)
+          of the activity/activities responsible for the creation of the prov:Entity.
+
+          Related activities MUST be described as specified in the
+          [Activities](SPEC_ROOT/modality-agnostic-files/provenance.md#activities) section.
+
+          Corresponds to
+          [W3C PROV `prov:wasGeneratedBy`](https://www.w3.org/TR/2013/REC-prov-o-20130430/#wasGeneratedBy).
+        type: array
+        minItems: 1
+        items:
+          type: string
+          format: uri
+      Type:
+        $ref: objects.metadata.Type__ProvEntity
+Environments:
+  name: Environments
+  display_name: Environments
+  description: Objects describing environments.
+  type: array
+  minItems: 1
+  items:
+    type: object
+    required: [Id, Label]
+    properties:
+      Id:
+        name: Id
+        description: |
+          [Identifier](SPEC_ROOT/modality-agnostic-files/provenance.md#provenance-identifiers) for the environment.
+
+          Corresponds to [JSON-LD `@id`](https://www.w3.org/TR/json-ld11/#syntax-tokens-and-keywords).
+        type: string
+        format: uri
+      Label:
+        name: Label
+        description: |
+          Name for the environment.
+
+          Corresponds to [RDF Schema `rdfs:label`](https://www.w3.org/TR/rdf-schema/#ch_label).
+        type: string
+        format: label
+      AlternativeIdentifier:
+        name: AlternativeIdentifier
+        description: |
+          URI(s) of (an) alternative identifier(s) for the environment.
+        type: array
+        minItems: 1
+        items:
+          type: string
+          format: uri
+      EnvironmentVariables:
+        name: EnvironmentVariables
+        description: Object containing environment variables as key-value pairs.
+        type: object
+      OperatingSystem:
+        name: OperatingSystem
+        description: |
+          Name of the operating system for the environment.
+          Including the version of the kernel and/or distribution is recommended when applicable.
+        type: string
+      Dependencies:
+        name: Dependencies
+        description: |
+          Object containing names of the software dependencies as keys and their versions as values.
+        type: object
 EpochLength:
   name: EpochLength
   display_name: Epoch Length
@@ -1509,6 +1751,46 @@ FiducialsDescription:
     and how the position of the fiducials were measured
     (for example, `"both with Polhemus and with T1w MRI"`).
   type: string
+Files:
+  name: Files
+  display_name: Files
+  description: Objects describing files.
+  type: array
+  minItems: 1
+  items:
+    type: object
+    required: [Id, Label]
+    recommended: [Digest]
+    properties:
+      Id:
+        name: Id
+        description: |
+          [Identifier](SPEC_ROOT/modality-agnostic-files/provenance.md#provenance-identifiers) for the file.
+
+          Corresponds to [JSON-LD `@id`](https://www.w3.org/TR/json-ld11/#syntax-tokens-and-keywords).
+        type: string
+        format: uri
+      Label:
+        name: Label
+        description: |
+          Name for the file.
+
+          Corresponds to [RDF Schema `rdfs:label`](https://www.w3.org/TR/rdf-schema/#ch_label).
+        type: string
+        format: label
+      Digest:
+        $ref: objects.metadata.Digest
+      AtLocation:
+        name: AtLocation
+        description: |
+          Relative path to the file on disk.
+
+          Corresponds to [W3C PROV `prov:atLocation`](https://www.w3.org/TR/prov-o/#atLocation).
+        type: string
+      GeneratedBy:
+        $ref: objects.metadata.GeneratedBy__Id__File
+      Type:
+        $ref: objects.metadata.Type__File
 FlipAngle:
   name: FlipAngle
   display_name: Flip Angle
@@ -1632,8 +1914,7 @@ Gain:
 GeneratedBy:
   name: GeneratedBy
   display_name: Generated By
-  description: |
-    Used to specify provenance of the dataset.
+  description: Used to specify provenance of the dataset.
   type: array
   minItems: 1
   items:
@@ -1651,6 +1932,54 @@ GeneratedBy:
         $ref: objects.metadata.CodeURL
       Container:
         $ref: objects.metadata.Container
+GeneratedBy__Dataset:
+  name: GeneratedBy
+  display_name: Generated By
+  description: |
+    Description of the dataset provenance (see
+    [Provenance of a BIDS dataset](SPEC_ROOT/modality-agnostic-files/provenance.md#provenance-of-a-bids-dataset)).
+  anyOf:
+    - type: array
+      minItems: 1
+      items:
+        type: string
+        format: uri
+    - type: array
+      minItems: 1
+      items:
+        $ref: objects.metadata.GeneratedBy.items
+GeneratedBy__Id__Dataset:
+  name: GeneratedBy
+  display_name: Generated By
+  description: |
+    [Identifier(s)](SPEC_ROOT/modality-agnostic-files/provenance.md#provenance-identifiers) of the activity/activities
+    responsible for the creation of the dataset.
+
+    Related activities MUST be described as specified in the
+    [Activities](SPEC_ROOT/modality-agnostic-files/provenance.md#activities) section.
+
+    Corresponds to [W3C PROV `prov:wasGeneratedBy`](https://www.w3.org/TR/2013/REC-prov-o-20130430/#wasGeneratedBy).
+  type: array
+  minItems: 1
+  items:
+    type: string
+    format: uri
+GeneratedBy__Id__File:
+  name: GeneratedBy
+  display_name: Generated By
+  description: |
+    [Identifier(s)](SPEC_ROOT/modality-agnostic-files/provenance.md#provenance-identifiers) of the activity/activities
+    responsible for the creation of the file.
+
+    Related activities MUST be described as specified in the
+    [Activities](SPEC_ROOT/modality-agnostic-files/provenance.md#activities) section.
+
+    Corresponds to [W3C PROV `prov:wasGeneratedBy`](https://www.w3.org/TR/2013/REC-prov-o-20130430/#wasGeneratedBy).
+  type: array
+  minItems: 1
+  items:
+    type: string
+    format: uri
 GeneticLevel:
   name: GeneticLevel
   display_name: Genetic Level
@@ -2650,7 +2979,7 @@ Name__GeneratedBy:
   name: Name
   display_name: Pipeline Name
   description: |
-    Name of the pipeline or process that generated the outputs. Use `"Manual"` to
+    Name of the pipeline or process that generated the dataset. Use `"Manual"` to
     indicate the derivatives were generated by hand, or adjusted manually after an
     initial run of an automated pipeline.
   type: string
@@ -3814,6 +4143,22 @@ ShortChannelCount:
     The number of short channels. 0 indicates no short channels.
   type: integer
   minimum: 0
+SidecarGeneratedBy:
+  name: SidecarGeneratedBy
+  display_name: Sidecar Generated By
+  description: |
+    [Identifier(s)](SPEC_ROOT/modality-agnostic-files/provenance.md#provenance-identifiers) of the activity/activities
+    responsible for the creation of the sidecar JSON file.
+
+    Related activities MUST be described as specified in the
+    [Activities](SPEC_ROOT/modality-agnostic-files/provenance.md#activities) section.
+
+    Corresponds to [W3C PROV `prov:wasGeneratedBy`](https://www.w3.org/TR/2013/REC-prov-o-20130430/#wasGeneratedBy).
+  type: array
+  minItems: 1
+  items:
+    type: string
+    format: uri
 SinglesRate:
   name: SinglesRate
   display_name: Singles Rate
@@ -3889,6 +4234,65 @@ SliceTiming:
     type: number
     minimum: 0
     unit: s
+Software:
+  name: Software
+  display_name: Software
+  description: Objects describing software.
+  type: array
+  minItems: 1
+  items:
+    type: object
+    required: [Id, Label, Version]
+    properties:
+      Id:
+        name: Id
+        description: |
+          [Identifier](SPEC_ROOT/modality-agnostic-files/provenance.md#provenance-identifiers)
+          for the software package.
+
+          Corresponds to [JSON-LD `@id`](https://www.w3.org/TR/json-ld11/#syntax-tokens-and-keywords).
+        type: string
+        format: uri
+      Label:
+        name: Label
+        description: |
+          Name of the software package.
+
+          Corresponds to [RDF Schema `rdfs:label`](https://www.w3.org/TR/rdf-schema/#ch_label).
+        type: string
+        format: label
+      Version:
+        name: Version
+        description: Version of the software package.
+        type: string
+      AlternativeIdentifier:
+        name: AlternativeIdentifier
+        description: |
+          URI(s) of (an) alternative identifier(s) (such as [RRID](https://rrid.site/))
+          for the software package.
+        type: array
+        minItems: 1
+        items:
+          type: string
+          format: uri
+      ActedOnBehalfOf:
+        name: ActedOnBehalfOf
+        description: |
+          [Identifier(s)](SPEC_ROOT/modality-agnostic-files/provenance.md#provenance-identifiers) of other
+          software package(s) that triggered the use of the software package.
+
+          Example: if software A launches software B to perform activity C, then B ActedOnBehalfOf A.
+
+          Related software MUST be described as specified in the
+          [Software](SPEC_ROOT/modality-agnostic-files/provenance.md#software) section.
+
+          Corresponds to
+          [W3C PROV `prov:actedOnBehalfOf`](https://www.w3.org/TR/2013/REC-prov-o-20130430/#actedOnBehalfOf).
+        type: array
+        minItems: 1
+        items:
+          type: string
+          format: uri
 SoftwareFilters:
   name: SoftwareFilters
   display_name: Software Filters
@@ -4378,6 +4782,45 @@ Type:
     - $ref: objects.enums.Lesion.value
     - $ref: objects.enums.Face.value
     - $ref: objects.enums.ROI.value
+Type__Activity:
+  name: Type
+  display_name: Type
+  description: |
+    Term(s) from (a) controlled vocabulary/vocabularies that more specifically
+    describes the activity.
+
+    Corresponds to [W3C PROV `prov:type`](https://www.w3.org/TR/prov-dm/#term-attribute-type).
+  type: array
+  minItems: 1
+  items:
+    type: string
+    format: uri
+Type__File:
+  name: Type
+  display_name: Type
+  description: |
+    Term(s) from (a) controlled vocabulary/vocabularies that more specifically
+    describes the file.
+
+    Corresponds to [W3C PROV `prov:type`](https://www.w3.org/TR/prov-dm/#term-attribute-type).
+  type: array
+  minItems: 1
+  items:
+    type: string
+    format: uri
+Type__ProvEntity:
+  name: Type
+  display_name: Type
+  description: |
+    Term(s) from (a) controlled vocabulary/vocabularies that more specifically
+    describes the prov:Entity.
+
+    Corresponds to [W3C PROV `prov:type`](https://www.w3.org/TR/prov-dm/#term-attribute-type).
+  type: array
+  minItems: 1
+  items:
+    type: string
+    format: uri
 Units:
   name: Units
   display_name: Units
@@ -4427,7 +4870,7 @@ Version__Dataset:
 Version__GeneratedBy:
   name: Version
   display_name: Pipeline Version
-  description: Version of the pipeline
+  description: Version of the pipeline or process that generated the dataset.
   type: string
 VolumeAffineMatrix:
   name: VolumeAffineMatrix

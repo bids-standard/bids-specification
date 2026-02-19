@@ -23,6 +23,7 @@ study:
       - docs
       - derivatives
       - logs
+      - prov
       - sourcedata
   code:
     name: code
@@ -40,6 +41,16 @@ study:
     name: logs
     level: optional
     opaque: true
+  prov:
+    name: prov
+    level: optional
+    opaque: false
+    subdirs:
+      - subprov
+  subprov:
+    entity: prov
+    level: optional
+    opaque: false
   sourcedata:
     name: sourcedata
     level: optional
@@ -53,6 +64,7 @@ raw:
       - derivatives
       - logs
       - phenotype
+      - prov
       - sourcedata
       - stimuli
       - subject
@@ -74,6 +86,16 @@ raw:
     opaque: true
   phenotype:
     name: phenotype
+    level: optional
+    opaque: false
+  prov:
+    name: prov
+    level: optional
+    opaque: false
+    subdirs:
+      - subprov
+  subprov:
+    entity: prov
     level: optional
     opaque: false
   sourcedata:
@@ -111,6 +133,7 @@ derivative:
       - derivatives
       - logs
       - phenotype
+      - prov
       - sourcedata
       - stimuli
       - subject
@@ -139,6 +162,16 @@ derivative:
     opaque: true
   phenotype:
     name: phenotype
+    level: optional
+    opaque: false
+  prov:
+    name: prov
+    level: optional
+    opaque: false
+    subdirs:
+      - subprov
+  subprov:
+    entity: prov
     level: optional
     opaque: false
   sourcedata:
