@@ -19,12 +19,14 @@ A guide for using macros can be found at
 Every dataset MUST include this file with the following fields:
 
 <!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/json
 The definitions of these fields can be found in
   src/schema/objects/metadata.yaml
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_json_table('dataset_metadata.dataset_description') }}
+{{ MACROS___make_json_table('json.dataset.dataset_description') }}
 
 Each object in the `GeneratedBy` array includes the following REQUIRED, RECOMMENDED
 and OPTIONAL keys:
