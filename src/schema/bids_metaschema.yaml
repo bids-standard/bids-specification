@@ -103,6 +103,8 @@ classes:
 
   ValueTerm:
     is_a: GeneralTerm
+    extra_slots:
+      allowed: true
     description: >-
       A term whose identity is a single string value.
       Used for datatypes, extensions, and as a base for suffixes
@@ -127,6 +129,8 @@ classes:
 
   Suffix:
     is_a: ValueTerm
+    extra_slots:
+      allowed: true
     description: >-
       A filename suffix describing the contents of a file.
     attributes:
@@ -148,6 +152,8 @@ classes:
 
   NameValueTerm:
     is_a: GeneralTerm
+    extra_slots:
+      allowed: true
     description: >-
       A term where a name, when present, has a given meaning and its
       value may be restricted. Base for entities, metadata fields,
@@ -231,6 +237,8 @@ classes:
 
   MetadataField:
     is_a: NameValueTerm
+    extra_slots:
+      allowed: true
     description: >-
       A name-value pair appearing in JSON sidecar files.
     attributes:
@@ -240,6 +248,8 @@ classes:
 
   Column:
     is_a: NameValueTerm
+    extra_slots:
+      allowed: true
     description: >-
       A column heading and its value constraints in TSV files.
     attributes:
@@ -278,6 +288,8 @@ classes:
 
   EnumValue:
     is_a: ValueTerm
+    extra_slots:
+      allowed: true
     description: >-
       A named enumerated value with full description,
       used in objects.enums.
@@ -395,6 +407,8 @@ classes:
         inlined_as_list: true
         description: List of valid datatypes.
       entities:
+        range: EntityRequirementMap
+        inlined: true
         description: >-
           Map from entity name to requirement level or override object.
       level:
@@ -473,6 +487,8 @@ classes:
         description: >-
           Expressions that determine whether this rule applies.
       fields:
+        range: FieldRequirementMap
+        inlined: true
         description: >-
           Map from field name to requirement level or FieldSpec.
 
@@ -489,6 +505,8 @@ classes:
         description: >-
           Expressions that determine whether this rule applies.
       columns:
+        range: FieldRequirementMap
+        inlined: true
         description: >-
           Map from column name to requirement level or FieldSpec.
       additional_columns:
@@ -570,6 +588,8 @@ classes:
         description: List of datatypes belonging to this modality.
 
   DirectoryEntry:
+    extra_slots:
+      allowed: true
     description: >-
       A directory entry in the dataset directory structure.
     attributes:
@@ -651,12 +671,16 @@ classes:
           Can be any JSON value including null.
 
   Template:
+    extra_slots:
+      allowed: true
     description: >-
       A reusable partial rule fragment, typically containing
       entity requirements and optional selectors. May also
       include suffixes and extensions for derivative templates.
     attributes:
       entities:
+        range: TemplateEntityMap
+        inlined: true
         description: >-
           Map from entity name to requirement level.
       selectors:
@@ -678,6 +702,222 @@ classes:
         description: >-
           List of valid extensions for this template.
 
+  # --- Map wrapper classes ---
+  # These thin classes model JSON objects with arbitrary string keys
+  # and typed values. LinkML's extra_slots generates the correct
+  # additionalProperties in JSON Schema.
+
+  ColumnMap:
+    extra_slots:
+      range_expression:
+        range: Column
+    description: >-
+      Map from column name to Column definitions.
+
+  GeneralTermMap:
+    extra_slots:
+      range_expression:
+        range: GeneralTerm
+    description: >-
+      Map from term name to GeneralTerm definitions.
+
+  DatatypeMap:
+    extra_slots:
+      range_expression:
+        range: Datatype
+    description: >-
+      Map from datatype name to Datatype definitions.
+
+  EntityMap:
+    extra_slots:
+      range_expression:
+        range: Entity
+    description: >-
+      Map from entity name to Entity definitions.
+
+  ExtensionMap:
+    extra_slots:
+      range_expression:
+        range: Extension
+    description: >-
+      Map from extension name to Extension definitions.
+
+  FileObjectMap:
+    extra_slots:
+      range_expression:
+        range: FileObject
+    description: >-
+      Map from file name to FileObject definitions.
+
+  FormatMap:
+    extra_slots:
+      range_expression:
+        range: Format
+    description: >-
+      Map from format name to Format definitions.
+
+  MetadataFieldMap:
+    extra_slots:
+      range_expression:
+        range: MetadataField
+    description: >-
+      Map from field name to MetadataField definitions.
+
+  SuffixMap:
+    extra_slots:
+      range_expression:
+        range: Suffix
+    description: >-
+      Map from suffix name to Suffix definitions.
+
+  AssociationMap:
+    extra_slots:
+      range_expression:
+        range: Association
+    description: >-
+      Map from association name to Association objects.
+
+  SidecarRuleMap:
+    extra_slots:
+      range_expression:
+        range: SidecarRule
+    description: >-
+      Map from rule name to SidecarRule objects.
+
+  ErrorDefinitionMap:
+    extra_slots:
+      range_expression:
+        range: ErrorDefinition
+    description: >-
+      Map from error name to ErrorDefinition objects.
+
+  ModalityMappingMap:
+    extra_slots:
+      range_expression:
+        range: ModalityMapping
+    description: >-
+      Map from modality name to ModalityMapping objects.
+
+  EnumMap:
+    extra_slots:
+      allowed: true
+    description: >-
+      Map from enum name to EnumValue or PrivateEnum definitions.
+      Uses open additionalProperties since values can be either type.
+
+  # Category 2: Nested map wrapper classes (group -> name -> TypedValue)
+
+  TemplateMap:
+    extra_slots:
+      range_expression:
+        range: Template
+    description: >-
+      Map from template name to Template objects.
+
+  TemplateGroupMap:
+    extra_slots:
+      range_expression:
+        range: TemplateMap
+    description: >-
+      Map from template category to TemplateMap.
+
+  CheckRuleMap:
+    extra_slots:
+      range_expression:
+        range: CheckRule
+    description: >-
+      Map from check rule name to CheckRule objects.
+
+  CheckRuleGroupMap:
+    extra_slots:
+      range_expression:
+        range: CheckRuleMap
+    description: >-
+      Map from check group name to CheckRuleMap.
+
+  DirectoryEntryMap:
+    extra_slots:
+      range_expression:
+        range: DirectoryEntry
+    description: >-
+      Map from directory name to DirectoryEntry objects.
+
+  DirectoryGroupMap:
+    extra_slots:
+      range_expression:
+        range: DirectoryEntryMap
+    description: >-
+      Map from directory group name to DirectoryEntryMap.
+
+  SidecarRuleGroupMap:
+    extra_slots:
+      range_expression:
+        range: SidecarRuleMap
+    description: >-
+      Map from sidecar group name to SidecarRuleMap.
+
+  TabularDataRuleMap:
+    extra_slots:
+      range_expression:
+        range: TabularDataRule
+    description: >-
+      Map from rule name to TabularDataRule objects.
+
+  TabularDataRuleGroupMap:
+    extra_slots:
+      range_expression:
+        range: TabularDataRuleMap
+    description: >-
+      Map from tabular data group name to TabularDataRuleMap.
+
+  SuffixRuleMap:
+    extra_slots:
+      range_expression:
+        range: SuffixRule
+    description: >-
+      Map from suffix rule name to SuffixRule objects.
+
+  SuffixRuleGroupMap:
+    extra_slots:
+      range_expression:
+        range: SuffixRuleMap
+    description: >-
+      Map from file rule group name to SuffixRuleMap.
+
+  FileRuleGroupMap:
+    extra_slots:
+      allowed: true
+    description: >-
+      Map from file rule group name to open map of rules.
+      Used for common file rules where rule structure varies.
+
+  # Category 3: Union-valued map wrapper classes
+
+  EntityRequirementMap:
+    extra_slots:
+      range_expression:
+        any_of:
+          - range: RequirementLevel
+          - range: EntityOverride
+    description: >-
+      Map from entity name to RequirementLevel or EntityOverride.
+
+  FieldRequirementMap:
+    extra_slots:
+      range_expression:
+        any_of:
+          - range: RequirementLevel
+          - range: FieldSpec
+    description: >-
+      Map from field/column name to RequirementLevel or FieldSpec.
+
+  TemplateEntityMap:
+    extra_slots:
+      range_expression:
+        range: RequirementLevel
+    description: >-
+      Map from entity name to RequirementLevel for templates.
+
   # --- Container classes ---
 
   MetaSection:
@@ -686,6 +926,8 @@ classes:
       context, expression tests, templates, and version history.
     attributes:
       associations:
+        range: AssociationMap
+        inlined: true
         description: >-
           Map from association name to Association objects.
       context:
@@ -699,6 +941,8 @@ classes:
         description: >-
           Test cases for the expression language.
       templates:
+        range: TemplateGroupMap
+        inlined: true
         description: >-
           Nested map of template category to template name to
           Template objects.
@@ -714,39 +958,63 @@ classes:
       The objects section containing all term definitions.
     attributes:
       columns:
+        range: ColumnMap
+        inlined: true
         description: >-
           Map from column name to Column definitions.
       common_principles:
+        range: GeneralTermMap
+        inlined: true
         description: >-
           Map from term name to GeneralTerm definitions.
       datatypes:
+        range: DatatypeMap
+        inlined: true
         description: >-
           Map from datatype name to Datatype definitions.
       entities:
+        range: EntityMap
+        inlined: true
         description: >-
           Map from entity name to Entity definitions.
       enums:
+        range: EnumMap
+        inlined: true
         description: >-
           Map from enum name to EnumValue or PrivateEnum definitions.
       extensions:
+        range: ExtensionMap
+        inlined: true
         description: >-
           Map from extension name to Extension definitions.
       files:
+        range: FileObjectMap
+        inlined: true
         description: >-
           Map from file name to FileObject definitions.
       formats:
+        range: FormatMap
+        inlined: true
         description: >-
           Map from format name to Format definitions.
       metadata:
+        range: MetadataFieldMap
+        inlined: true
         description: >-
           Map from field name to MetadataField definitions.
       metaentities:
+        range: GeneralTermMap
+        inlined: true
         description: >-
           Map from metaentity name to GeneralTerm definitions.
       modalities:
+        range: GeneralTermMap
+        inlined: true
         description: >-
           Map from modality name to GeneralTerm definitions.
       suffixes:
+        range: SuffixMap
+        inlined: true
         description: >-
           Map from suffix name to Suffix definitions.
 
@@ -755,12 +1023,18 @@ classes:
       Container for all file naming rules, organized by category.
     attributes:
       common:
+        range: FileRuleGroupMap
+        inlined: true
         description: >-
           Common file rules including core files and tables.
       raw:
+        range: SuffixRuleGroupMap
+        inlined: true
         description: >-
           Raw data file rules, organized by datatype group.
       deriv:
+        range: SuffixRuleGroupMap
+        inlined: true
         description: >-
           Derivative data file rules, organized by datatype group.
 
@@ -769,6 +1043,8 @@ classes:
       The rules section containing validation and structural rules.
     attributes:
       checks:
+        range: CheckRuleGroupMap
+        inlined: true
         description: >-
           Map from check group name to map of check name
           to CheckRule objects.
@@ -779,9 +1055,13 @@ classes:
         description: >-
           Ordered list of common principle term names.
       dataset_metadata:
+        range: SidecarRuleMap
+        inlined: true
         description: >-
           Sidecar-like rules for dataset-level JSON files.
       directories:
+        range: DirectoryGroupMap
+        inlined: true
         description: >-
           Directory structure rules for BIDS datasets.
       entities:
@@ -791,6 +1071,8 @@ classes:
         description: >-
           Ordered list of entity names defining filename order.
       errors:
+        range: ErrorDefinitionMap
+        inlined: true
         description: >-
           Map from error name to ErrorDefinition objects.
       files:
@@ -799,6 +1081,8 @@ classes:
         description: >-
           File naming rules organized by common/raw/deriv.
       json:
+        range: SidecarRuleGroupMap
+        inlined: true
         description: >-
           Sidecar-like rules for JSON schema validation.
       metaentities:
@@ -808,13 +1092,19 @@ classes:
         description: >-
           Ordered list of metaentity term names.
       modalities:
+        range: ModalityMappingMap
+        inlined: true
         description: >-
           Map from modality name to ModalityMapping objects.
       sidecars:
+        range: SidecarRuleGroupMap
+        inlined: true
         description: >-
           Map from sidecar group to map of rule name
           to SidecarRule objects.
       tabular_data:
+        range: TabularDataRuleGroupMap
+        inlined: true
         description: >-
           Map from tabular group to map of rule name
           to TabularDataRule objects.

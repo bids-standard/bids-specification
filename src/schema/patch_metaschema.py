@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 """Post-process LinkML-generated JSON Schema for BIDS metaschema.
 
-LinkML does not natively support maps with arbitrary string keys and
-typed values (JSON Schema additionalProperties / patternProperties).
-This script patches the generated JSON Schema to add those constraints,
-producing a metaschema that can validate the compiled BIDS schema.
+With the adoption of LinkML's extra_slots feature (PR linkml/linkml#2940),
+the number of patches has been reduced from ~43 to ~6.
+
+The remaining patches cover:
+  - Category 5: Slot-level type coercions that extra_slots cannot express
+  - Category 6: Root $ref for the top-level schema object
+  - Special: sidecars/tabular_data derivatives nesting override
 
 Usage:
     gen-json-schema bids_metaschema.yaml | python patch_metaschema.py > metaschema.json
@@ -21,163 +24,26 @@ def patch(schema: dict[str, Any]) -> dict[str, Any]:
     """Apply patches to generated JSON Schema."""
     defs: dict[str, Any] = schema.get("$defs", {})
 
-    # --- Patch map slots to use additionalProperties ---
-    # Each entry: (class_name, slot_name, value_ref_or_type)
-    map_patches: list[tuple[str, str, dict[str, Any]]] = [
-        # MetaSection
-        ("MetaSection", "associations", {"$ref": "#/$defs/Association"}),
-        ("MetaSection", "context", {"type": "object"}),
-        ("MetaSection", "templates", {
-            "type": "object",
-            "additionalProperties": {
-                "type": "object",
-                "additionalProperties": {"$ref": "#/$defs/Template"},
-            },
-        }),
-        # ObjectsSection - each sub-namespace is a map of name -> typed object
-        ("ObjectsSection", "columns", {"$ref": "#/$defs/Column"}),
-        ("ObjectsSection", "common_principles", {"$ref": "#/$defs/GeneralTerm"}),
-        ("ObjectsSection", "datatypes", {"$ref": "#/$defs/Datatype"}),
-        ("ObjectsSection", "entities", {"$ref": "#/$defs/Entity"}),
-        ("ObjectsSection", "enums", {}),  # mixed EnumValue / PrivateEnum, allow any
-        ("ObjectsSection", "extensions", {"$ref": "#/$defs/Extension"}),
-        ("ObjectsSection", "files", {"$ref": "#/$defs/FileObject"}),
-        ("ObjectsSection", "formats", {"$ref": "#/$defs/Format"}),
-        ("ObjectsSection", "metadata", {"$ref": "#/$defs/MetadataField"}),
-        ("ObjectsSection", "metaentities", {"$ref": "#/$defs/GeneralTerm"}),
-        ("ObjectsSection", "modalities", {"$ref": "#/$defs/GeneralTerm"}),
-        ("ObjectsSection", "suffixes", {"$ref": "#/$defs/Suffix"}),
-        # RulesSection
-        ("RulesSection", "checks", {
-            "type": "object",
-            "additionalProperties": {
-                "type": "object",
-                "additionalProperties": {"$ref": "#/$defs/CheckRule"},
-            },
-        }),
-        ("RulesSection", "dataset_metadata", {"$ref": "#/$defs/SidecarRule"}),
-        ("RulesSection", "directories", {
-            "type": "object",
-            "additionalProperties": {
-                "type": "object",
-                "additionalProperties": {"$ref": "#/$defs/DirectoryEntry"},
-            },
-        }),
-        ("RulesSection", "errors", {"$ref": "#/$defs/ErrorDefinition"}),
-        ("RulesSection", "json", {
-            "type": "object",
-            "additionalProperties": {
-                "type": "object",
-                "additionalProperties": {"$ref": "#/$defs/SidecarRule"},
-            },
-        }),
-        ("RulesSection", "modalities", {"$ref": "#/$defs/ModalityMapping"}),
-        ("RulesSection", "sidecars", {
-            "type": "object",
-            "additionalProperties": {
-                "type": "object",
-                "additionalProperties": {"$ref": "#/$defs/SidecarRule"},
-            },
-        }),
-        ("RulesSection", "tabular_data", {
-            "type": "object",
-            "additionalProperties": {
-                "type": "object",
-                "additionalProperties": {"$ref": "#/$defs/TabularDataRule"},
-            },
-        }),
-        # FileRulesSection
-        ("FileRulesSection", "common", {
-            "type": "object",
-            "additionalProperties": {
-                "type": "object",
-                "additionalProperties": {},
-            },
-        }),
-        ("FileRulesSection", "raw", {
-            "type": "object",
-            "additionalProperties": {
-                "type": "object",
-                "additionalProperties": {"$ref": "#/$defs/SuffixRule"},
-            },
-        }),
-        ("FileRulesSection", "deriv", {
-            "type": "object",
-            "additionalProperties": {
-                "type": "object",
-                "additionalProperties": {"$ref": "#/$defs/SuffixRule"},
-            },
-        }),
-    ]
+    # --- Categories 1-4 are now handled by extra_slots in the LinkML schema ---
+    # Category 1 (simple typed maps): wrapper classes with range_expression
+    # Category 2 (nested maps): nested wrapper classes
+    # Category 3 (union-valued maps): wrapper classes with any_of
+    # Category 4 (open classes): extra_slots: {allowed: true}
 
-    for class_name, slot_name, value_schema in map_patches:
-        cls: dict[str, Any] = defs.get(class_name, {})
-        props: dict[str, Any] = cls.get("properties", {})
-        if slot_name in props:
-            if "$ref" in value_schema or "type" not in value_schema:
-                # Simple map: object with additionalProperties
-                props[slot_name] = {
-                    "description": props[slot_name].get("description", ""),
-                    "type": "object",
-                    "additionalProperties": value_schema if value_schema else True,
-                }
-            else:
-                # Complex nested type (already fully specified)
-                desc = props[slot_name].get("description", "")
-                value_schema["description"] = desc
-                props[slot_name] = value_schema
+    # --- Category 5: Slot-level type coercions ---
 
-    # --- Patch SidecarRule.fields and TabularDataRule.columns ---
-    # These are maps from name -> RequirementLevel string | FieldSpec object
-    field_spec = {
-        "anyOf": [
-            {"$ref": "#/$defs/RequirementLevel"},
-            {"$ref": "#/$defs/FieldSpec"},
-        ]
-    }
-    for class_name, slot_name in [
-        ("SidecarRule", "fields"),
-        ("TabularDataRule", "columns"),
-    ]:
-        cls = defs.get(class_name, {})
-        props = cls.get("properties", {})
-        if slot_name in props:
-            props[slot_name] = {
-                "description": props[slot_name].get("description", ""),
-                "type": "object",
-                "additionalProperties": field_spec,
-            }
-
-    # --- Patch SuffixRule.entities ---
-    # Map from entity name -> RequirementLevel string | EntityOverride object
-    entity_spec = {
-        "anyOf": [
-            {"$ref": "#/$defs/RequirementLevel"},
-            {"$ref": "#/$defs/EntityOverride"},
-        ]
-    }
-    suffix_rule = defs.get("SuffixRule", {})
-    suffix_props = suffix_rule.get("properties", {})
-    if "entities" in suffix_props:
-        suffix_props["entities"] = {
-            "description": suffix_props["entities"].get("description", ""),
+    # MetaSection.context is an arbitrary JSON Schema object
+    meta = defs.get("MetaSection", {})
+    meta_props: dict[str, Any] = meta.get("properties", {})
+    if "context" in meta_props:
+        meta_props["context"] = {
+            "description": meta_props["context"].get("description", ""),
             "type": "object",
-            "additionalProperties": entity_spec,
         }
 
-    # --- Patch Template.entities ---
-    template = defs.get("Template", {})
-    template_props = template.get("properties", {})
-    if "entities" in template_props:
-        template_props["entities"] = {
-            "description": template_props["entities"].get("description", ""),
-            "type": "object",
-            "additionalProperties": {"$ref": "#/$defs/RequirementLevel"},
-        }
-
-    # --- Patch AssociationTarget.extension to allow string or array ---
+    # AssociationTarget.extension can be a string or an array of strings
     assoc_target = defs.get("AssociationTarget", {})
-    at_props = assoc_target.get("properties", {})
+    at_props: dict[str, Any] = assoc_target.get("properties", {})
     if "extension" in at_props:
         at_props["extension"] = {
             "description": at_props["extension"].get("description", ""),
@@ -187,23 +53,23 @@ def patch(schema: dict[str, Any]) -> dict[str, Any]:
             ],
         }
 
-    # --- Patch ExpressionTest.result to allow any value ---
+    # ExpressionTest.result can be any JSON value
     expr_test = defs.get("ExpressionTest", {})
-    et_props = expr_test.get("properties", {})
+    et_props: dict[str, Any] = expr_test.get("properties", {})
     if "result" in et_props:
         et_props["result"] = {
             "description": et_props["result"].get("description", ""),
         }
 
-    # --- Patch JsonSchema to allow any object ---
+    # JsonSchema is an open container for any JSON Schema fragment
     if "JsonSchema" in defs:
         defs["JsonSchema"] = {
             "description": defs["JsonSchema"].get("description", ""),
         }
 
-    # --- Patch DirectoryEntry.subdirs to allow objects (oneOf) ---
+    # DirectoryEntry.subdirs items can be strings or objects
     dir_entry = defs.get("DirectoryEntry", {})
-    de_props = dir_entry.get("properties", {})
+    de_props: dict[str, Any] = dir_entry.get("properties", {})
     if "subdirs" in de_props:
         de_props["subdirs"] = {
             "description": de_props["subdirs"].get("description", ""),
@@ -216,26 +82,28 @@ def patch(schema: dict[str, Any]) -> dict[str, Any]:
             },
         }
 
-    # --- Patch sidecars/tabular_data to handle the 'derivatives'
-    #     sub-group which nests one more level ---
-    sidecar_rule_map = {
+    # --- Special: sidecars/tabular_data derivatives nesting ---
+    # The derivatives sub-group nests one more level than the regular
+    # groups. Override the generated schema with anyOf to accept both
+    # {RuleName: Rule} and {SubGroup: {RuleName: Rule}} at each group.
+    sidecar_rule_map: dict[str, Any] = {
         "type": "object",
         "additionalProperties": {"$ref": "#/$defs/SidecarRule"},
     }
-    tabular_rule_map = {
+    tabular_rule_map: dict[str, Any] = {
         "type": "object",
         "additionalProperties": {"$ref": "#/$defs/TabularDataRule"},
     }
     rules_section = defs.get("RulesSection", {})
-    rules_props = rules_section.get("properties", {})
+    rules_props: dict[str, Any] = rules_section.get("properties", {})
     if "sidecars" in rules_props:
         rules_props["sidecars"] = {
             "description": rules_props["sidecars"].get("description", ""),
             "type": "object",
             "additionalProperties": {
                 "anyOf": [
-                    sidecar_rule_map,  # direct group: {RuleName: SidecarRule}
-                    {  # nested group like derivatives: {SubGroup: {RuleName: SidecarRule}}
+                    sidecar_rule_map,
+                    {
                         "type": "object",
                         "additionalProperties": sidecar_rule_map,
                     },
@@ -248,8 +116,8 @@ def patch(schema: dict[str, Any]) -> dict[str, Any]:
             "type": "object",
             "additionalProperties": {
                 "anyOf": [
-                    tabular_rule_map,  # direct group
-                    {  # nested group like derivatives
+                    tabular_rule_map,
+                    {
                         "type": "object",
                         "additionalProperties": tabular_rule_map,
                     },
@@ -257,17 +125,7 @@ def patch(schema: dict[str, Any]) -> dict[str, Any]:
             },
         }
 
-    # --- Remove additionalProperties: false from classes that need
-    #     to accept JSON Schema fields (metadata, columns) ---
-    for class_name in [
-        "MetadataField", "Column", "NameValueTerm",
-        "Suffix", "EnumValue", "ValueTerm",
-        "DirectoryEntry", "Template",
-    ]:
-        cls = defs.get(class_name, {})
-        cls.pop("additionalProperties", None)
-
-    # --- Set the root $ref to BidsSchema ---
+    # --- Category 6: Root $ref ---
     schema["$ref"] = "#/$defs/BidsSchema"
 
     return schema

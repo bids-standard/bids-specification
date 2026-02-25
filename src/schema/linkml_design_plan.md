@@ -126,35 +126,66 @@ Sets `$ref` to `BidsSchema` so the schema validates the top-level object.
 This is already handled by `tree_root: true` in the LinkML model, but `gen-json-schema`
 does not emit a top-level `$ref` currently.
 
-### LinkML `extra_slots` and future improvements
+### LinkML `extra_slots` — implemented using PR 2940
 
-LinkML's [`extra_slots`](https://linkml.io/linkml-model/dev/docs/extra_slots/) feature is
-designed to address Categories 1, 2, 3, and 4.
-It maps to JSON Schema `additionalProperties`:
+LinkML's [`extra_slots`](https://linkml.io/linkml-model/dev/docs/extra_slots/) feature
+maps to JSON Schema `additionalProperties`.
+Using the draft implementation from linkml/linkml#2940
+(`sneakers-the-rat/linkml@jsonschema-extra`), we have adopted `extra_slots` throughout
+the BIDS metaschema:
 
 ```yaml
-# Would generate: "additionalProperties": {"$ref": "#/$defs/Entity"}
+# Generates: "additionalProperties": {"anyOf": [{"$ref": "#/$defs/Entity"}, {"type": "null"}]}
 EntityMap:
   extra_slots:
     range_expression:
       range: Entity
+
+# Generates: "additionalProperties": true
+MetadataField:
+  extra_slots:
+    allowed: true
+
+# Generates: "additionalProperties": {"anyOf": [{$ref: RequirementLevel}, {$ref: EntityOverride}, ...]}
+EntityRequirementMap:
+  extra_slots:
+    range_expression:
+      any_of:
+        - range: RequirementLevel
+        - range: EntityOverride
 ```
 
-**Current status (as of Feb 2026)**: `extra_slots` is defined in the LinkML metamodel but is
-**not yet implemented** in the JSON Schema generator (`jsonschemagen.py`).
-A draft PR (linkml/linkml#2940) exists to add support.
+**Results**: The patch script has been reduced from **43 patches to 8**:
+- Categories 1-4 (35 patches) are fully handled by `extra_slots`
+- Category 5 (5 slot-level type coercions) still requires patches
+- Category 6 (root `$ref`) still requires a patch
+- Special: sidecars/tabular_data derivatives nesting (2 patches) — heterogeneous
+  depth that cannot be expressed with simple `extra_slots`
 
-Once `extra_slots` lands in a released version of `linkml`, we can:
+**29 wrapper classes** were added to model the typed maps:
+- 13 simple map classes (Category 1): `EntityMap`, `ColumnMap`, etc.
+- 12 nested map classes (Category 2): `CheckRuleGroupMap` → `CheckRuleMap`, etc.
+- 3 union map classes (Category 3): `EntityRequirementMap`, `FieldRequirementMap`, `TemplateEntityMap`
+- 1 open map class: `EnumMap` (mixed EnumValue/PrivateEnum values)
 
-- **Eliminate Categories 1 and 4** entirely by adding `extra_slots` to the LinkML classes
-  (either `allowed: true` for open classes, or `range_expression: {range: X}` for typed maps)
-- **Reduce Category 2** by introducing thin wrapper classes for the inner map level
-- **Reduce Category 3** by using `range_expression: {any_of: [...]}` for union-valued maps
-- **Category 5** (slot-level type coercions) and **Category 6** (root ref) would still
-  require either patches or upstream LinkML features
+### Divergences to report against PR 2940
 
-This would reduce the patch script from ~43 patches to ~6, and eventually the script
-may become unnecessary entirely.
+1. **Spurious `{type: null}` in `additionalProperties`**: When `extra_slots` has a
+   `range_expression` pointing to a class, the generated `additionalProperties` wraps
+   the reference in `anyOf: [{$ref: X}, {type: null}]`. The null alternative is incorrect
+   for map values — it means map values can be null, which is not the intent. The fix
+   would be to call `get_subschema_for_slot(..., include_null=False)` in
+   `get_additional_properties()` (line 714 of `jsonschemagen.py`).
+
+   This does NOT cause validation failures (the BIDS schema has no null map values),
+   but it makes the schema less strict than intended.
+
+2. **No issue with `allowed: true`**: Classes using `extra_slots: {allowed: true}` correctly
+   generate `additionalProperties: true`.
+
+3. **`any_of` in `range_expression` works correctly**: Union-valued maps like
+   `EntityRequirementMap` generate the expected `anyOf` with all alternatives, plus
+   the spurious null from issue #1.
 
 ## Phase 2: Validation continuity — Generate JSON Schema from LinkML
 
