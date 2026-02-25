@@ -677,6 +677,9 @@ classes:
       A reusable partial rule fragment, typically containing
       entity requirements and optional selectors. May also
       include suffixes and extensions for derivative templates.
+      Note: relevant only to the YAML presentation and not detailed
+      in original metaschema.json. ATM used only for FileRule's, and like
+      "abstract class" or "Interface" which is then mixed in.
     attributes:
       entities:
         range: TemplateEntityMap
