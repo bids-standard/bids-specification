@@ -594,3 +594,73 @@ classes:
       value:
         range: string
         description: Value or pattern for the directory name.
+
+  # --- meta.* types ---
+
+  AssociationTarget:
+    description: >-
+      The target file specification for a file association.
+    attributes:
+      suffix:
+        range: string
+        description: The suffix of the associated file.
+      extension:
+        description: >-
+          The extension(s) of the associated file. Can be a single
+          string or a list of valid extensions.
+      entities:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        description: >-
+          Entities to propagate when finding the associated file.
+
+  Association:
+    description: >-
+      Defines how associated files (such as events.tsv for a BOLD
+      file) are discovered via the inheritance principle.
+    attributes:
+      target:
+        range: AssociationTarget
+        inlined: true
+        required: true
+        description: The target file to look for.
+      selectors:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        description: >-
+          Expressions that determine when this association applies.
+      inherit:
+        range: boolean
+        description: >-
+          Whether to apply the inheritance principle when searching.
+
+  ExpressionTest:
+    description: >-
+      A test case for the expression language, pairing an
+      expression string with its expected result.
+    attributes:
+      expression:
+        range: string
+        required: true
+        description: The expression to evaluate.
+      result:
+        description: >-
+          The expected result of evaluating the expression.
+          Can be any JSON value including null.
+
+  Template:
+    description: >-
+      A reusable partial rule fragment, typically containing
+      entity requirements and optional selectors.
+    attributes:
+      entities:
+        description: >-
+          Map from entity name to requirement level.
+      selectors:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        description: >-
+          Expressions that determine when this template applies.
