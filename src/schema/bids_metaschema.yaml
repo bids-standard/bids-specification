@@ -312,3 +312,285 @@ classes:
       constraints in metadata fields, columns, and suffixes.
       This is intentionally loosely typed to allow any valid
       JSON Schema construct.
+
+  # --- rules.* types ---
+
+  Issue:
+    description: >-
+      A validation issue with a code, message, and severity.
+    attributes:
+      code:
+        range: string
+        required: true
+        description: Issue identifier such as EVENTS_TSV_MISSING.
+      message:
+        range: string
+        required: true
+        description: Message for display to a user.
+      level:
+        range: IssueSeverity
+        description: >-
+          Issue severity. May be omitted when the level is
+          determined by the containing rule.
+
+  FieldSpec:
+    description: >-
+      Specification of a sidecar field or tabular column within a rule.
+      Can be either a plain requirement level string or an object with
+      additional details.
+    attributes:
+      level:
+        range: RequirementLevel
+        required: true
+        description: Requirement level of the field.
+      level_addendum:
+        range: string
+        description: >-
+          Additional text describing when the requirement level changes.
+      description_addendum:
+        range: string
+        description: >-
+          Additional text appended to the field description from objects.
+      issue:
+        range: Issue
+        inlined: true
+        description: >-
+          An issue to raise if this field violates the rule.
+
+  EntityOverride:
+    description: >-
+      An entity constraint within a file rule, specifying the
+      requirement level and optionally restricting valid values.
+    attributes:
+      level:
+        range: RequirementLevel
+        required: true
+        description: Requirement level for the entity.
+      enum:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        description: Exclusive list of valid entity values.
+
+  SuffixRule:
+    description: >-
+      A filename rule specifying valid combinations of suffixes,
+      extensions, datatypes, and entities for BIDS files.
+    attributes:
+      suffixes:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        required: true
+        description: List of valid suffixes.
+      extensions:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        required: true
+        description: List of valid extensions including the leading dot.
+      datatypes:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        description: List of valid datatypes.
+      entities:
+        description: >-
+          Map from entity name to requirement level or override object.
+      level:
+        range: RequirementLevel
+        description: Requirement level of the file.
+      selectors:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        description: >-
+          Expressions that determine whether this rule applies.
+
+  PathRule:
+    description: >-
+      A rule for a file identified by its exact path relative to
+      the dataset root.
+    attributes:
+      path:
+        range: string
+        required: true
+        description: >-
+          Location of the file relative to the dataset root.
+      level:
+        range: RequirementLevel
+        required: true
+        description: Requirement level of the file.
+      selectors:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        description: >-
+          Expressions that determine whether this rule applies.
+
+  StemRule:
+    description: >-
+      A rule for a file identified by its stem (name without
+      extension) relative to the dataset root.
+    attributes:
+      stem:
+        range: string
+        required: true
+        description: >-
+          Name of the file up to but not including the extension.
+      extensions:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        required: true
+        description: List of valid extensions.
+      level:
+        range: RequirementLevel
+        required: true
+        description: Requirement level of the file.
+      datatypes:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        description: List of valid datatypes.
+      selectors:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        description: >-
+          Expressions that determine whether this rule applies.
+
+  SidecarRule:
+    description: >-
+      A rule specifying required, recommended, or optional metadata
+      fields in JSON sidecar files.
+    attributes:
+      selectors:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        required: true
+        description: >-
+          Expressions that determine whether this rule applies.
+      fields:
+        description: >-
+          Map from field name to requirement level or FieldSpec.
+
+  TabularDataRule:
+    description: >-
+      A rule specifying required, recommended, or optional columns
+      in TSV files.
+    attributes:
+      selectors:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        required: true
+        description: >-
+          Expressions that determine whether this rule applies.
+      columns:
+        description: >-
+          Map from column name to requirement level or FieldSpec.
+      additional_columns:
+        range: string
+        required: true
+        description: >-
+          Whether extra columns are permitted.
+          One of allowed, allowed_if_defined, not_allowed, or n/a.
+      initial_columns:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        description: >-
+          Columns that must appear first, in order.
+      index_columns:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        description: >-
+          Columns that uniquely identify a row.
+
+  CheckRule:
+    description: >-
+      A validation rule with selectors, checks, and an issue.
+    attributes:
+      issue:
+        range: Issue
+        inlined: true
+        required: true
+        description: >-
+          The issue to raise when any check expression fails.
+      selectors:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        required: true
+        description: >-
+          Expressions that determine whether this rule applies.
+      checks:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        required: true
+        description: >-
+          Expressions that must all evaluate to true.
+
+  ErrorDefinition:
+    description: >-
+      An error or warning that cannot be expressed purely in the
+      schema but should be reported consistently by validators.
+    attributes:
+      code:
+        range: string
+        description: Error code identifier.
+      message:
+        range: string
+        required: true
+        description: Message for display to a user.
+      level:
+        range: IssueSeverity
+        required: true
+        description: Severity of the error.
+      selectors:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        description: >-
+          Expressions that determine when this error applies.
+
+  ModalityMapping:
+    description: >-
+      Maps a modality to its constituent datatypes.
+    attributes:
+      datatypes:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        required: true
+        description: List of datatypes belonging to this modality.
+
+  DirectoryEntry:
+    description: >-
+      A directory entry in the dataset directory structure.
+    attributes:
+      name:
+        range: string
+        description: The directory name.
+      level:
+        range: RequirementLevel
+        description: Requirement level of the directory.
+      opaque:
+        range: boolean
+        description: >-
+          Whether the directory contents are outside BIDS scope.
+      subdirs:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        description: List of subdirectory names.
+      entity:
+        range: string
+        description: Entity associated with this directory level.
+      value:
+        range: string
+        description: Value or pattern for the directory name.
