@@ -55,9 +55,111 @@ The core work. Translate the concepts in `metaschema.json` into LinkML:
 
 - **Meta types**: `Association`, `Context` (can remain as embedded JSON Schema)
 
+## Why the generated JSON Schema needs post-processing
+
+LinkML's JSON Schema generator (`gen-json-schema`) produces valid JSON Schema from the
+LinkML model, but the BIDS metaschema relies heavily on a pattern that LinkML does not
+natively express: **maps with arbitrary string keys and typed values**.
+In JSON Schema this is `"additionalProperties": {"$ref": "#/$defs/SomeClass"}`.
+
+The post-processing script `patch_metaschema.py` bridges this gap.
+The 43 patches fall into six categories:
+
+### Category 1: Simple typed maps (16 patches)
+
+Pattern: a slot whose value is `{arbitrary_key: TypedValue}`.
+
+Example: `ObjectsSection.entities` is a JSON object where every key is an entity name
+(like `"subject"`, `"session"`) and every value conforms to the `Entity` class.
+LinkML generates `"type": ["string", "null"]` for the slot (since it has no explicit range);
+the patch replaces this with `"type": "object", "additionalProperties": {"$ref": "#/$defs/Entity"}`.
+
+Affected slots: `ObjectsSection.columns`, `.datatypes`, `.entities`, `.enums`, `.extensions`,
+`.files`, `.formats`, `.metadata`, `.metaentities`, `.modalities`, `.suffixes`,
+`.common_principles`; `RulesSection.dataset_metadata`, `.errors`, `.modalities`;
+`MetaSection.associations`.
+
+### Category 2: Nested maps (9 patches)
+
+Pattern: two levels of arbitrary keys, `{groupName: {ruleName: TypedValue}}`.
+
+Example: `rules.checks` is `{anat: {T1wFileWithTooManyDimensions: CheckRule, ...}, ...}`.
+The patch builds nested `additionalProperties`.
+
+Affected: `MetaSection.templates`, `RulesSection.checks`, `.directories`, `.json`,
+`.sidecars`, `.tabular_data`; `FileRulesSection.common`, `.raw`, `.deriv`.
+
+### Category 3: Union-valued maps (4 patches)
+
+Pattern: a map where values can be either a plain string enum or an object.
+
+Example: `SuffixRule.entities` maps entity names to either a `RequirementLevel` string
+(`"required"`, `"optional"`) or an `EntityOverride` object (`{level: "required", enum: [...]}`).
+The patch uses `anyOf` in the `additionalProperties`.
+
+Affected: `SuffixRule.entities`, `SidecarRule.fields`, `TabularDataRule.columns`,
+`Template.entities`.
+
+### Category 4: Open classes (8 patches)
+
+LinkML generates `"additionalProperties": false` by default, but some BIDS classes embed
+arbitrary JSON Schema properties (for example, `MetadataField` can have `items`, `properties`,
+`additionalProperties`, and other JSON Schema keywords not enumerated in the class definition).
+The patch removes the `"additionalProperties": false` constraint from these classes.
+
+Affected: `MetadataField`, `Column`, `NameValueTerm`, `Suffix`, `EnumValue`, `ValueTerm`,
+`DirectoryEntry`, `Template`.
+
+### Category 5: Slot type coercions (5 patches)
+
+Individual slots that need type flexibility beyond what LinkML expresses:
+
+- `MetaSection.context` — the value is an arbitrary JSON Schema object (the context definition)
+- `AssociationTarget.extension` — can be a string or an array of strings
+- `ExpressionTest.result` — can be any JSON value (string, number, null, boolean, etc.)
+- `DirectoryEntry.subdirs` — array items can be strings or objects (with `oneOf`)
+- `JsonSchema` — the entire class is an open container for any JSON Schema fragment
+
+### Category 6: Root reference (1 patch)
+
+Sets `$ref` to `BidsSchema` so the schema validates the top-level object.
+This is already handled by `tree_root: true` in the LinkML model, but `gen-json-schema`
+does not emit a top-level `$ref` currently.
+
+### LinkML `extra_slots` and future improvements
+
+LinkML's [`extra_slots`](https://linkml.io/linkml-model/dev/docs/extra_slots/) feature is
+designed to address Categories 1, 2, 3, and 4.
+It maps to JSON Schema `additionalProperties`:
+
+```yaml
+# Would generate: "additionalProperties": {"$ref": "#/$defs/Entity"}
+EntityMap:
+  extra_slots:
+    range_expression:
+      range: Entity
+```
+
+**Current status (as of Feb 2026)**: `extra_slots` is defined in the LinkML metamodel but is
+**not yet implemented** in the JSON Schema generator (`jsonschemagen.py`).
+A draft PR (linkml/linkml#2940) exists to add support.
+
+Once `extra_slots` lands in a released version of `linkml`, we can:
+
+- **Eliminate Categories 1 and 4** entirely by adding `extra_slots` to the LinkML classes
+  (either `allowed: true` for open classes, or `range_expression: {range: X}` for typed maps)
+- **Reduce Category 2** by introducing thin wrapper classes for the inner map level
+- **Reduce Category 3** by using `range_expression: {any_of: [...]}` for union-valued maps
+- **Category 5** (slot-level type coercions) and **Category 6** (root ref) would still
+  require either patches or upstream LinkML features
+
+This would reduce the patch script from ~43 patches to ~6, and eventually the script
+may become unnecessary entirely.
+
 ## Phase 2: Validation continuity — Generate JSON Schema from LinkML
 
-- Use `linkml gen-json-schema` to produce a JSON Schema from the LinkML model
+- Use `gen-json-schema bids_metaschema.yaml | python patch_metaschema.py` to produce
+  the final JSON Schema
 - Verify it validates the compiled BIDS schema. The existing tooling already has what we need:
   - `check-jsonschema` (already a test dependency) can validate `schema.json` against a schema file
   - `bidsschematools` uses `jsonschema` library with `get_schema_validator()` — we just swap the metaschema source
