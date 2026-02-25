@@ -664,3 +664,174 @@ classes:
         inlined_as_list: true
         description: >-
           Expressions that determine when this template applies.
+
+  # --- Container classes ---
+
+  MetaSection:
+    description: >-
+      The meta section of the BIDS schema, containing associations,
+      context, expression tests, templates, and version history.
+    attributes:
+      associations:
+        description: >-
+          Map from association name to Association objects.
+      context:
+        description: >-
+          The context object is itself a JSON Schema defining the
+          namespace available to rule expressions.
+      expression_tests:
+        range: ExpressionTest
+        multivalued: true
+        inlined_as_list: true
+        description: >-
+          Test cases for the expression language.
+      templates:
+        description: >-
+          Nested map of template category to template name to
+          Template objects.
+      versions:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        description: >-
+          Version history as a list of semantic version strings.
+
+  ObjectsSection:
+    description: >-
+      The objects section containing all term definitions.
+    attributes:
+      columns:
+        description: >-
+          Map from column name to Column definitions.
+      common_principles:
+        description: >-
+          Map from term name to GeneralTerm definitions.
+      datatypes:
+        description: >-
+          Map from datatype name to Datatype definitions.
+      entities:
+        description: >-
+          Map from entity name to Entity definitions.
+      enums:
+        description: >-
+          Map from enum name to EnumValue or PrivateEnum definitions.
+      extensions:
+        description: >-
+          Map from extension name to Extension definitions.
+      files:
+        description: >-
+          Map from file name to FileObject definitions.
+      formats:
+        description: >-
+          Map from format name to Format definitions.
+      metadata:
+        description: >-
+          Map from field name to MetadataField definitions.
+      metaentities:
+        description: >-
+          Map from metaentity name to GeneralTerm definitions.
+      modalities:
+        description: >-
+          Map from modality name to GeneralTerm definitions.
+      suffixes:
+        description: >-
+          Map from suffix name to Suffix definitions.
+
+  FileRulesSection:
+    description: >-
+      Container for all file naming rules, organized by category.
+    attributes:
+      common:
+        description: >-
+          Common file rules including core files and tables.
+      raw:
+        description: >-
+          Raw data file rules, organized by datatype group.
+      deriv:
+        description: >-
+          Derivative data file rules, organized by datatype group.
+
+  RulesSection:
+    description: >-
+      The rules section containing validation and structural rules.
+    attributes:
+      checks:
+        description: >-
+          Map from check group name to map of check name
+          to CheckRule objects.
+      common_principles:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        description: >-
+          Ordered list of common principle term names.
+      dataset_metadata:
+        description: >-
+          Sidecar-like rules for dataset-level JSON files.
+      directories:
+        description: >-
+          Directory structure rules for BIDS datasets.
+      entities:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        description: >-
+          Ordered list of entity names defining filename order.
+      errors:
+        description: >-
+          Map from error name to ErrorDefinition objects.
+      files:
+        range: FileRulesSection
+        inlined: true
+        description: >-
+          File naming rules organized by common/raw/deriv.
+      json:
+        description: >-
+          Sidecar-like rules for JSON schema validation.
+      metaentities:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        description: >-
+          Ordered list of metaentity term names.
+      modalities:
+        description: >-
+          Map from modality name to ModalityMapping objects.
+      sidecars:
+        description: >-
+          Map from sidecar group to map of rule name
+          to SidecarRule objects.
+      tabular_data:
+        description: >-
+          Map from tabular group to map of rule name
+          to TabularDataRule objects.
+
+  BidsSchema:
+    tree_root: true
+    description: >-
+      Top-level BIDS schema object, as produced by compiling
+      the schema YAML files via bst export.
+    attributes:
+      meta:
+        range: MetaSection
+        inlined: true
+        required: true
+        description: Meta-information about the schema.
+      objects:
+        range: ObjectsSection
+        inlined: true
+        required: true
+        description: All term and object definitions.
+      rules:
+        range: RulesSection
+        inlined: true
+        required: true
+        description: All validation and structural rules.
+      bids_version:
+        range: string
+        required: true
+        description: The BIDS specification version.
+      schema_version:
+        range: string
+        required: true
+        description: The schema structure version.
