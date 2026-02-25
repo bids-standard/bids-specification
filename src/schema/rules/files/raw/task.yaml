@@ -2,6 +2,7 @@
 timeseries:
   suffixes:
     - physio
+    - physioevents
     - stim
   extensions:
     - .tsv.gz
@@ -9,6 +10,7 @@ timeseries:
   datatypes:
     - beh
     - eeg
+    - emg
     - ieeg
     - nirs
   entities:
@@ -18,6 +20,7 @@ timeseries:
 timeseries__mri_no_task:
   suffixes:
     - physio
+    - physioevents
     - stim
   extensions:
     - .tsv.gz

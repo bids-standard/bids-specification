@@ -352,7 +352,8 @@
             "contributions": [
                 "doc",
                 "infra",
-                "code"
+                "code",
+                "data"
             ],
             "login": "Arshitha",
             "name": "Arshitha Basavaraj",
@@ -458,7 +459,8 @@
             ],
             "contributions": [
                 "doc",
-                "code"
+                "code",
+                "data"
             ],
             "login": "bclenet",
             "name": "Boris Clénet",
@@ -689,6 +691,15 @@
             "name": "Clint Hansen"
         },
         {
+            "contributions": [
+                "code",
+                "tool"
+            ],
+            "login": "CodyCBakerPhD",
+            "name": "Cody Baker",
+            "profile": "https://codycbakerphd.com"
+        },
+        {
             "avatar_url": [
                 "https://avatars.githubusercontent.com/u/51133164?v=4"
             ],
@@ -735,6 +746,14 @@
             "profile": "https://dasturge.github.io"
         },
         {
+            "contributions": [
+                "code",
+                "test"
+            ],
+            "login": "ubdbra001",
+            "name": "Dan Brady"
+        },
+        {
             "avatar_url": "https://avatars.githubusercontent.com/u/25011343?v=4",
             "contributions": [
                 "doc"
@@ -773,7 +792,7 @@
             ],
             "login": "drammock",
             "name": "Daniel McCloy",
-            "profile": "https://github.com/drammock"
+            "profile": "https://dan.mccloy.info"
         },
         {
             "contributions": [
@@ -1012,7 +1031,14 @@
                 "maintenance",
                 "tool",
                 "ideas",
-                "code"
+                "code",
+                "eventOrganizing",
+                "talk",
+                "content",
+                "review",
+                "blog",
+                "data",
+                "projectManagement"
             ],
             "login": "ericearl",
             "name": "Eric A. Earl",
@@ -1497,7 +1523,8 @@
                 "https://avatars.githubusercontent.com/u/12135617?v=4"
             ],
             "contributions": [
-                "code"
+                "code",
+                "doc"
             ],
             "login": "candleindark",
             "name": "Isaac To",
@@ -1859,7 +1886,9 @@
                 "code",
                 "doc",
                 "tool",
-                "example"
+                "example",
+                "maintenance",
+                "data"
             ],
             "login": "julia-pfarr",
             "name": "Julia-Katharina Pfarr",
@@ -2207,6 +2236,13 @@
             "profile": "https://bimcv.cipf.es"
         },
         {
+            "contributions": [
+                "doc"
+            ],
+            "login": "me-pic",
+            "name": "Marie-Eve Picard"
+        },
+        {
             "avatar_url": "https://avatars.githubusercontent.com/u/54086142?v=4",
             "contributions": [
                 "doc",
@@ -2286,6 +2322,13 @@
             ],
             "login": "martina_bulgari",
             "name": "Martina Bulgari"
+        },
+        {
+            "contributions": [
+                "doc"
+            ],
+            "login": "m-miedema",
+            "name": "Mary Miedema"
         },
         {
             "avatar_url": "https://avatars.githubusercontent.com/u/9007100?v=4",
@@ -2773,6 +2816,13 @@
             "contributions": [
                 "doc"
             ],
+            "login": "pwighton",
+            "name": "Paul Wighton"
+        },
+        {
+            "contributions": [
+                "doc"
+            ],
             "login": "paule-joanne_toussaint",
             "name": "Paule-Joanne Toussaint"
         },
@@ -2798,6 +2848,17 @@
             "login": "BrainModes",
             "name": "Petra Ritter",
             "profile": "https://www.brainsimulation.org"
+        },
+        {
+            "contributions": [
+                "code",
+                "data",
+                "design",
+                "doc",
+                "tool"
+            ],
+            "login": "Peyman-N",
+            "name": "Peyman Najafi"
         },
         {
             "avatar_url": "https://avatars.githubusercontent.com/u/777588?v=4",
@@ -2833,7 +2894,8 @@
                 "https://avatars.githubusercontent.com/u/97355086?v=4"
             ],
             "contributions": [
-                "code"
+                "code",
+                "doc"
             ],
             "login": "qian-chu",
             "name": "Qian Chu",
@@ -2848,6 +2910,16 @@
             "login": "ccraddock",
             "name": "R. Cameron Craddock",
             "profile": "https://github.com/ccraddock"
+        },
+        {
+            "contributions": [
+                "data",
+                "doc",
+                "maintenance",
+                "question"
+            ],
+            "login": "ree-gupta",
+            "name": "Reema Gupta"
         },
         {
             "avatar_url": "https://avatars.githubusercontent.com/u/6961185?v=4",
@@ -3020,7 +3092,8 @@
         {
             "avatar_url": "https://avatars.githubusercontent.com/u/30598330?v=4",
             "contributions": [
-                "doc"
+                "doc",
+                "data"
             ],
             "login": "SamGuay",
             "name": "Samuel Guay"
@@ -3082,10 +3155,12 @@
             "contributions": [
                 "code",
                 "doc",
-                "ideas"
+                "ideas",
+                "data"
             ],
             "login": "surchs",
-            "name": "Sebastian Urchs"
+            "name": "Sebastian Urchs",
+            "profile": "https://neurodatascience.github.io/"
         },
         {
             "avatar_url": "https://avatars.githubusercontent.com/u/28531404?v=4",
@@ -3109,11 +3184,17 @@
             "contributions": [
                 "doc",
                 "ideas",
-                "code"
+                "code",
+                "maintenance",
+                "question",
+                "video",
+                "blog",
+                "data",
+                "tutorial"
             ],
             "login": "neuromechanist",
             "name": "Seyed Yahya Shirazi",
-            "profile": "http://neuromechanist.github.io/"
+            "profile": "https://neuromechanist.github.io"
         },
         {
             "contributions": [
@@ -3121,6 +3202,13 @@
             ],
             "login": "shashank_bansal",
             "name": "Shashank Bansal"
+        },
+        {
+            "contributions": [
+                "doc"
+            ],
+            "login": "ShiyuBelleWang",
+            "name": "Shiyu Wang"
         },
         {
             "contributions": [
@@ -3148,6 +3236,13 @@
             "login": "soichih",
             "name": "Soichi Hayashi",
             "profile": "https://github.com/soichih"
+        },
+        {
+            "contributions": [
+                "doc"
+            ],
+            "login": "Sourav-Kulkarni",
+            "name": "Sourav Kulkarni"
         },
         {
             "avatar_url": "https://avatars.githubusercontent.com/u/9084751?v=4",
@@ -3178,6 +3273,13 @@
             ],
             "login": "stefanie_de_smet",
             "name": "Stefanie De Smet"
+        },
+        {
+            "contributions": [
+                "doc"
+            ],
+            "login": "smoia",
+            "name": "Stefano Moia"
         },
         {
             "contributions": [
@@ -3376,6 +3478,15 @@
             ],
             "login": "thomas_okell",
             "name": "Thomas Okell"
+        },
+        {
+            "contributions": [
+                "doc",
+                "review",
+                "talk"
+            ],
+            "login": "twachtler",
+            "name": "Thomas Wachtler"
         },
         {
             "avatar_url": "https://avatars.githubusercontent.com/u/4816041?v=4",
