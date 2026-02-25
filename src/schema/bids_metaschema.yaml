@@ -98,3 +98,217 @@ classes:
         required: true
         description: >-
           A description of the term. May contain Markdown for rendering.
+
+  # --- objects.* term types ---
+
+  ValueTerm:
+    is_a: GeneralTerm
+    description: >-
+      A term whose identity is a single string value.
+      Used for datatypes, extensions, and as a base for suffixes
+      and named enum values.
+    attributes:
+      value:
+        range: string
+        required: true
+        description: The string value of the term.
+
+  Datatype:
+    is_a: ValueTerm
+    description: >-
+      A subdirectory that organizes files by acquisition type,
+      such as anat, eeg, or func.
+
+  Extension:
+    is_a: ValueTerm
+    description: >-
+      A filename component describing the format of the file,
+      including the leading dot.
+
+  Suffix:
+    is_a: ValueTerm
+    description: >-
+      A filename suffix describing the contents of a file.
+    attributes:
+      unit:
+        range: string
+        description: Interpretation of numeric values in the file.
+      anyOf:
+        range: JsonSchema
+        multivalued: true
+        inlined_as_list: true
+        description: >-
+          Multiple permissible unit or type descriptions.
+      maxValue:
+        range: float
+        description: Maximum permissible value in a data file.
+      minValue:
+        range: float
+        description: Minimum permissible value in a data file.
+
+  NameValueTerm:
+    is_a: GeneralTerm
+    description: >-
+      A term where a name, when present, has a given meaning and its
+      value may be restricted. Base for entities, metadata fields,
+      and columns.
+    attributes:
+      name:
+        range: string
+        required: true
+        description: >-
+          The name of the term as it appears in the specification
+          and in a dataset.
+      type:
+        range: string
+        description: >-
+          The JSON Schema type of the value, such as string, integer,
+          number, object, array, or boolean.
+      format:
+        range: FormatType
+        description: >-
+          The permissible format of the value, from objects.formats.
+      enum:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        description: >-
+          Exclusive list of valid values.
+      anyOf:
+        range: JsonSchema
+        multivalued: true
+        inlined_as_list: true
+        description: >-
+          A list of type constraints, any of which could apply.
+      items:
+        range: JsonSchema
+        description: >-
+          Constraints on array element types.
+      properties:
+        range: JsonSchema
+        description: >-
+          Constraints on object field types. Values are arbitrary
+          JSON Schema objects.
+      additionalProperties:
+        range: JsonSchema
+        description: >-
+          Constraints on values of arbitrary object keys.
+      maximum:
+        range: float
+        description: Maximum for numeric values.
+      minimum:
+        range: float
+        description: Minimum for numeric values.
+      exclusiveMinimum:
+        range: float
+        description: Exclusive minimum for numeric values.
+      maxItems:
+        range: integer
+        description: Maximum number of items in an array.
+      minItems:
+        range: integer
+        description: Minimum number of items in an array.
+      required:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        description: >-
+          List of required property names for object-typed values.
+      recommended:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        description: >-
+          List of recommended property names for object-typed values.
+
+  Entity:
+    is_a: NameValueTerm
+    description: >-
+      A name-value pair appearing in filenames.
+    slot_usage:
+      format:
+        required: true
+
+  MetadataField:
+    is_a: NameValueTerm
+    description: >-
+      A name-value pair appearing in JSON sidecar files.
+    attributes:
+      unit:
+        range: string
+        description: Interpretation of numeric values.
+
+  Column:
+    is_a: NameValueTerm
+    description: >-
+      A column heading and its value constraints in TSV files.
+    attributes:
+      unit:
+        range: string
+        description: Interpretation of numeric values.
+      pattern:
+        range: string
+        description: Regular expression constraining string values.
+      definition:
+        range: JsonSchema
+        description: >-
+          A JSON object describing the column as in the Tabular files
+          section of Common principles. Mutually exclusive with type.
+
+  Format:
+    is_a: GeneralTerm
+    description: >-
+      Defines the form that values of a given format may take.
+    attributes:
+      pattern:
+        range: string
+        required: true
+        description: Regular expression validating string values.
+
+  FileObject:
+    is_a: GeneralTerm
+    description: >-
+      Files and directories that may appear at the root of a dataset.
+    attributes:
+      file_type:
+        range: string
+        required: true
+        description: >-
+          Whether the file is a regular file or a directory.
+
+  EnumValue:
+    is_a: ValueTerm
+    description: >-
+      A named enumerated value with full description,
+      used in objects.enums.
+    attributes:
+      tags:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        description: >-
+          Tags for categorizing the enum value.
+
+  PrivateEnum:
+    description: >-
+      A private (underscore-prefixed) enum definition embedding
+      JSON Schema type and enum constraints. Used for reusable
+      value lists in objects.enums.
+    attributes:
+      type:
+        range: string
+        required: true
+        description: The JSON Schema type (typically string).
+      enum:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        required: true
+        description: The list of permissible values.
+
+  JsonSchema:
+    description: >-
+      An arbitrary JSON Schema fragment. Used for embedded type
+      constraints in metadata fields, columns, and suffixes.
+      This is intentionally loosely typed to allow any valid
+      JSON Schema construct.
