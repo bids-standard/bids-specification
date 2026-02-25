@@ -3118,8 +3118,6 @@ PhysioType:
     - $ref: objects.enums.PhysioTypeGeneric.value
     - $ref: objects.enums.PhysioTypeEyetrack.value
     - $ref: objects.enums.PhysioTypeEnriched.value
-=======
->>>>>>> origin/master
 PixelSize:
   name: PixelSize
   display_name: Pixel Size
