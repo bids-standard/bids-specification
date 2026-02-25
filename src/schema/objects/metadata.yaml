@@ -3117,7 +3117,6 @@ PhysioType:
   enum:
     - $ref: objects.enums.PhysioTypeGeneric.value
     - $ref: objects.enums.PhysioTypeEyetrack.value
-<<<<<<< HEAD
     - $ref: objects.enums.PhysioTypeEnriched.value
 =======
 >>>>>>> origin/master
