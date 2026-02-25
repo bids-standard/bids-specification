@@ -1,0 +1,100 @@
+id: https://bids-specification.readthedocs.io/en/latest/schema
+name: bids_metaschema
+description: >-
+  LinkML metaschema for the Brain Imaging Data Structure (BIDS) schema.
+  This schema defines the structure and constraints for the BIDS schema
+  YAML/JSON files.
+license: https://creativecommons.org/licenses/by/4.0/
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  bids: https://bids-specification.readthedocs.io/en/latest/schema/
+
+default_prefix: bids
+default_range: string
+
+imports:
+  - linkml:types
+
+enums:
+
+  RequirementLevel:
+    description: >-
+      Requirement levels following RFC 2119.
+    permissible_values:
+      required:
+        description: The element MUST be present.
+      recommended:
+        description: The element SHOULD be present.
+      optional:
+        description: The element MAY be present.
+      deprecated:
+        description: The element SHOULD NOT be present.
+
+  FormatType:
+    description: >-
+      Format identifiers whose patterns are defined in the BIDS schema
+      under objects.formats.
+    permissible_values:
+      index:
+        description: Non-negative integer, possibly zero-padded.
+      label:
+        description: Free-form label with alphanumeric characters.
+      boolean:
+        description: Boolean value.
+      integer:
+        description: Integer value.
+      number:
+        description: Numeric value.
+      string:
+        description: String value.
+      hed_version:
+        description: HED version string.
+      bids_uri:
+        description: BIDS URI.
+      dataset_relative:
+        description: Path relative to the dataset root.
+      date:
+        description: Date in ISO 8601 format.
+      datetime:
+        description: Date and time in ISO 8601 format.
+      file_relative:
+        description: Path relative to the current file.
+      participant_relative:
+        description: Path relative to the participant directory.
+      rrid:
+        description: Research Resource Identifier.
+      stimuli_relative:
+        description: Path relative to the stimuli directory.
+      time:
+        description: Time in ISO 8601 format.
+      unit:
+        description: Unit of measurement.
+      uri:
+        description: Uniform Resource Identifier.
+
+  IssueSeverity:
+    description: >-
+      Severity level for validation issues.
+    permissible_values:
+      error:
+        description: A rule violation that MUST be fixed.
+      warning:
+        description: A rule violation that SHOULD be fixed.
+
+classes:
+
+  GeneralTerm:
+    description: >-
+      Base class for all BIDS schema terms.
+      Every term has a human-readable display name and a description.
+    attributes:
+      display_name:
+        range: string
+        required: true
+        description: A human-friendly name for display in tools.
+      description:
+        range: string
+        required: true
+        description: >-
+          A description of the term. May contain Markdown for rendering.
