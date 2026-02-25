@@ -653,7 +653,8 @@ classes:
   Template:
     description: >-
       A reusable partial rule fragment, typically containing
-      entity requirements and optional selectors.
+      entity requirements and optional selectors. May also
+      include suffixes and extensions for derivative templates.
     attributes:
       entities:
         description: >-
@@ -664,6 +665,18 @@ classes:
         inlined_as_list: true
         description: >-
           Expressions that determine when this template applies.
+      suffixes:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        description: >-
+          List of valid suffixes for this template.
+      extensions:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        description: >-
+          List of valid extensions for this template.
 
   # --- Container classes ---
 
