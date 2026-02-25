@@ -219,6 +219,23 @@ EntityRequirementMap:
 - Update `src/schema/README.md` (note: this README is part of the Sphinx docs for bidsschematools, so updates need to be consistent with that documentation build)
 - Ensure `bst export-metaschema` outputs the generated JSON Schema for backwards compatibility
 
+## Class Hierarchy Diagram
+
+A Mermaid class diagram visualizing the 35 data model classes, 3 enums,
+inheritance, and composition relationships is available in
+[`class_diagram.md`](class_diagram.md).
+
+It is auto-generated from `bids_metaschema.yaml` by running:
+
+```bash
+uv run python src/schema/gen_class_diagram.py
+```
+
+The diagram excludes the 29 map wrapper classes (names ending in "Map")
+for clarity.  Map-typed attributes are shown using `Map~ValueType~` notation
+(e.g., `Map~Entity~` for a map with Entity values, `Map~Map~SuffixRule~~`
+for a nested two-level map).
+
 ## Suggested Starting Point
 
 Phase 1 is the critical path. Start with a minimal LinkML schema that models just the `objects.entities` and `objects.suffixes` sub-namespaces (they're the simplest — `GeneralTerm` + `NameValueTerm` / `ValueTerm`), then progressively add the more complex parts (`objects.metadata` with its embedded JSON Schema, then `rules.*`).
