@@ -108,7 +108,6 @@ PETDerivativesKineticModeling:
         i.e. the %SE. The column name should be the same as for the parameter name,
         but with the addition of “-se”.
 
-
 PETDerivativesBloodProcessing:
   selectors:
     - dataset.dataset_description.DatasetType == "derivative"
