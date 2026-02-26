@@ -125,7 +125,7 @@ otherwise, or split based on channel type, if preferred.
 The sole exception is eye tracking data, that **MUST** be split in its own
 file, following [its specification](#eye-tracking).
 
-We generally recommend keeping different files from different recording
+We **RECOMMEND** keeping different files from different recording
 devices separate, but for easier inspection and analysis they can kept together
 to get a clearer picture of what the fluctuations describe (e.g., looking 
 at ventilation and respiration together, or PPG and ECG for motion artifacts).
@@ -138,6 +138,7 @@ Recordings with different metadata such as sampling frequencies
 or recording device MUST be stored in separate files with different
 [`recording-<label>`](../appendices/entities.md#recording) entities.
 
+<!-- #!# There is a mention of `MeasurementType` that may be wrong --> 
 It is possible that the `recording-<label>` entity uses terms that could be confused with metadata field values, such as `MeasurementType` or `SamplingFrequency`. In that case, the lowest metadata level available should always be interpreted as the most reliable information. For instance, if the file name contains `recording-1000hz` but the `SamplingFrequency` metadata indicates a sampling frequency of 100Hz, data **MUST** be interpreted as being sampled at 100 Hz. Similarly, if the entity `recording-ecg` is used, but the `MeasurementType` metadata of the contained columns indicate “ppg” and “Ventilation”, the data **MUST** be interpreted as PPG and Ventilation, and not ECG.
 
 
