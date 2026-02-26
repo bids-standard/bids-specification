@@ -5,11 +5,15 @@ dataset_description:
   fields:
     Name: required
     BIDSVersion: required
+    HEDVersion: recommended
+    DatasetLinks:
+      level: optional
+      level_addendum: required if [BIDS URIs](SPEC_ROOT/common-principles.md#bids-uri) are used
     DatasetType: recommended
     License: recommended
     Authors:
       level: optional
-      level_addendum: recommended if no CITATION.cff file is present
+      level_addendum: recommended if `CITATION.cff` is not present
     Keywords: optional
     Acknowledgements: optional
     HowToAcknowledge: optional

@@ -78,7 +78,7 @@ A guide for using macros can be found at
 
 <sup>2</sup>Conveniently, for Siemens data, this value is easily obtained as
 `1 / (BWPPPE * ReconMatrixPE)`, where BWPPPE is the
-"BandwidthPerPixelPhaseEncode" in [DICOM Tag 0019, 1028](https://dicomlookup.com/dicomtags/(0019,1028)) and ReconMatrixPE is
+"BandwidthPerPixelPhaseEncode" in [DICOM Tag 0019, 1028](http://www.dicomlookup.com/dicomtags/(0019,1028)) and ReconMatrixPE is
 the size of the actual reconstructed data in the phase direction (which is NOT
 reflected in a single DICOM Tag for all possible aforementioned scan
 manipulations). See
@@ -746,7 +746,7 @@ within the `[*_]dwi.bval` and `[*_]dwi.bvec` files) MAY change across DWI runs.
 
 **Gradient orientation file formats**.
 The `[*_]dwi.bval` and `[*_]dwi.bvec` files MUST follow the
-[FSL format](https://fsl.fmrib.ox.ac.uk/fsl/docs/#/diffusion/index?id=diffusion-data-in-fsl).
+[FSL format](https://fsl.fmrib.ox.ac.uk/fsl/docs/diffusion/index.html#diffusion-data-in-fsl).
 
 The `[*_]dwi.bvec` file contains 3 rows with *N* space-delimited floating-point numbers,
 corresponding to the *N* volumes in the corresponding NIfTI file.
@@ -902,6 +902,16 @@ A guide for using macros can be found at
 
 ### Other RECOMMENDED metadata
 
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table("dwi.MRIDiffusionOtherMetadata") }}
+
 The `PhaseEncodingDirection` and `TotalReadoutTime` metadata
 fields are RECOMMENDED to enable the correction of geometrical distortions
 with [fieldmap information](#fieldmap-data).
@@ -942,7 +952,7 @@ accompanied by two ancillary files: `*_asl.json` and `*_aslcontext.tsv`.
 
 The `*_aslcontext.tsv` table consists of a single column of labels identifying the
 `volume_type` of each volume in the corresponding `*_asl.nii[.gz]` file.
-Volume types are defined in the following table, based on [DICOM Tag 0018, 9257](https://dicomlookup.com/dicomtags/(0018,9257)) `ASL Context`.
+Volume types are defined in the following table, based on [DICOM Tag 0018, 9257](http://www.dicomlookup.com/dicomtags/(0018,9257)) `ASL Context`.
 Note that the volume_types `control` and  `label` within BIDS only serve
 to specify the magnetization state of the blood and thus the ASL subtraction order.
 See the [ASL Appendix](../appendices/arterial-spin-labeling.md#which-image-is-control-and-which-is-label)

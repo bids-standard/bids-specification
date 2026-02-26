@@ -85,7 +85,7 @@ saved under a particular filename specified in the standard. This standard
 aspires to describe a majority of datasets, but acknowledges that there will be
 cases that do not fit. In such cases one can include additional files and
 subdirectories to the existing directory structure following common sense. For example
-one may want to include eye tracking data in a vendor specific format that is
+one may want to include eye-tracking data in a vendor specific format that is
 not covered by this standard. The most sensible place to put it is next to the
 continuous recording file with the same naming scheme but different extensions.
 The solutions will change from case to case and publicly available datasets will
@@ -376,7 +376,7 @@ Derivatives can be stored/distributed in two ways:
     Extra documentation (and relevant images) MAY be included in the `docs/` subdirectory.
     Logs from running the code or other commands MAY be stored under `logs/` subdirectory.
 
-    Example of a derivative dataset including the raw dataset as source:
+    Example of a derivative dataset including the BIDS raw dataset as source:
 
     <!-- This block generates a file tree.
     A guide for using macros can be found at
@@ -391,9 +391,11 @@ Derivatives can be stored/distributed in two ways:
                 "...": "",
             },
             "sourcedata": {
-                "sub-01": {},
-                "sub-02": {},
-                "...": "",
+                "raw": {
+                    "sub-01": {},
+                    "sub-02": {},
+                    "...": "",
+                },
             },
             "sub-01": {},
             "sub-02": {},
@@ -906,6 +908,28 @@ A guide for using macros can be found at
         }
     }
 ) }}
+
+Example 5: Generalization of Examples 1 and 4 for a sidecar file without entities
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example(
+    {
+    "sub-01": {
+        "anat": {},
+        "func": {
+            "sub-01_task-xyz_acq-test1_run-1_bold.nii.gz": "",
+            "sub-01_task-xyz_acq-test1_run-2_bold.nii.gz": "",
+            }
+        },
+    "bold.json": "",
+    }
+) }}
+
+where `bold.json` in top directory would be applicable to all `_bold.nii.gz`
+regardless of any other entity in their filename.
 
 ## Participant names and other labels
 
