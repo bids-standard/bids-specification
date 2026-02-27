@@ -205,7 +205,9 @@ def flatten_enums(namespace: Namespace, inplace=True) -> Namespace:
 
 
 @lru_cache
-def load_schema(schema_path: lt.Traversable | str | None = None, bids_version:str = None) -> Namespace:
+def load_schema(
+    schema_path: lt.Traversable | str | None = None, bids_version: str = None
+) -> Namespace:
     """Load the schema into a dict-like structure.
 
     This function allows the schema, like BIDS itself, to be specified in
@@ -246,12 +248,20 @@ def load_schema(schema_path: lt.Traversable | str | None = None, bids_version:st
     elif isinstance(schema_path, str) and bids_version is None:
         schema_path = Path(schema_path)
     elif schema_path is None and bids_version:
-        if re.search(r'^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$', bids_version):
-            schema_path = Path("https://bids-specification.readthedocs.io/en/v{}/schema.json".format(bids_version))
-        elif bids_version in ('stable', 'latest'):
-            schema_path = Path("https://bids-specification.readthedocs.io/en/{}/schema.json".format(bids_version))
+        if re.search(r"^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$", bids_version):
+            schema_path = Path(
+                "https://bids-specification.readthedocs.io/en/v{}/schema.json".format(bids_version)
+            )
+        elif bids_version in ("stable", "latest"):
+            schema_path = Path(
+                "https://bids-specification.readthedocs.io/en/{}/schema.json".format(bids_version)
+            )
         else:
-            raise Exception(NameError(f"BIDS version is limited to `stable`, `latest`, or semantic format `X.X.X`, you gave {bids_version}"))
+            raise Exception(
+                NameError(
+                    f"BIDS version is limited to `stable`, `latest`, or semantic format `X.X.X`, you gave {bids_version}"
+                )
+            )
 
     # JSON file: just load it
     if schema_path.is_file():

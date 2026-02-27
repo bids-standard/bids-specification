@@ -48,22 +48,26 @@ def test_load_schema(schema_dir):
     # Check that it is fully dereferenced
     assert "$ref" not in str(schema_obj)
 
-@pytest.mark.skipif(requests.get('https://bids-specification.readthedocs.io/').status_code != 200, reason="Unable to reach 'https://bids-specification.readthedocs.io, skipping url retrieval")
+
+@pytest.mark.skipif(
+    requests.get("https://bids-specification.readthedocs.io/").status_code != 200,
+    reason="Unable to reach 'https://bids-specification.readthedocs.io, skipping url retrieval",
+)
 def test_load_schema_from_url():
     # load from latest release at bids.neuroimaging.io
-    url = 'https://bids-specification.readthedocs.io/en/latest/schema.json'
+    url = "https://bids-specification.readthedocs.io/en/latest/schema.json"
     schema_obj = schema.load_schema(url)
     assert isinstance(schema_obj, Mapping)
 
     # load using latest and stable keywords
-    assert isinstance(schema.load_schema(bids_version='latest'), Mapping)
-    assert isinstance(schema.load_schema(bids_version='stable'), Mapping)
+    assert isinstance(schema.load_schema(bids_version="latest"), Mapping)
+    assert isinstance(schema.load_schema(bids_version="stable"), Mapping)
 
     # load with known version
-    assert isinstance(schema.load_schema(bids_version='1.11.1'), Mapping)
+    assert isinstance(schema.load_schema(bids_version="1.11.1"), Mapping)
 
     # load with bogus url
-    bad_url = 'https://bids-specification.readthedocs.io/en/not-a-real-version/schema.json'
+    bad_url = "https://bids-specification.readthedocs.io/en/not-a-real-version/schema.json"
     with pytest.raises(Exception):
         schema.load_schema(bad_url)
 
