@@ -54,11 +54,6 @@ def test_load_schema(schema_dir):
     reason="Unable to reach 'https://bids-specification.readthedocs.io, skipping url retrieval",
 )
 def test_load_schema_from_url():
-    # load from latest release at bids.neuroimaging.io
-    url = "https://bids-specification.readthedocs.io/en/latest/schema.json"
-    schema_obj = schema.load_schema(url)
-    assert isinstance(schema_obj, Mapping)
-
     # load using latest and stable keywords
     assert isinstance(schema.load_schema(bids_version="latest"), Mapping)
     assert isinstance(schema.load_schema(bids_version="stable"), Mapping)
@@ -67,9 +62,9 @@ def test_load_schema_from_url():
     assert isinstance(schema.load_schema(bids_version="1.11.1"), Mapping)
 
     # load with bogus url
-    bad_url = "https://bids-specification.readthedocs.io/en/not-a-real-version/schema.json"
-    with pytest.raises(Exception):
-        schema.load_schema(bad_url)
+    #bad_url = "https://bids-specification.readthedocs.io/en/not-a-real-version/schema.json"
+    #with pytest.raises(Exception):
+    #    schema.load_schema(bad_url)
 
 
 def test_object_definitions(schema_obj):

@@ -3,9 +3,6 @@ requires = [
   "pdm-backend",
   "acres",
   "pyyaml",
-  "universal-pathlib",
-  "requests",
-  "aiohttp",
 ]
 build-backend = "pdm.backend"
 
@@ -23,9 +20,6 @@ dependencies = [
   "acres",
   "click",
   "pyyaml",
-  "universal-pathlib",
-  "requests",
-  'aiohttp',
 ]
 classifiers = [
   "Development Status :: 4 - Beta",
@@ -62,6 +56,7 @@ tests = [
   "coverage[toml]",
   "pytest>6",
   "pytest-cov",
+  "requests",
 ]
 all = [
   "bidsschematools[tests]",

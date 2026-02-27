@@ -8,8 +8,10 @@ from collections import ChainMap
 from collections.abc import Iterable, Mapping, MutableMapping
 from copy import deepcopy
 from functools import cache, lru_cache
-from sys import version
-from upath import UPath as Path
+from pathlib import Path
+import subprocess
+import urllib3
+from tempfile import TemporaryDirectory
 
 from . import _lazytypes as lt
 from . import data, utils
@@ -249,19 +251,29 @@ def load_schema(
         schema_path = Path(schema_path)
     elif schema_path is None and bids_version:
         if re.search(r"^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$", bids_version):
-            schema_path = Path(
-                "https://bids-specification.readthedocs.io/en/v{}/schema.json".format(bids_version)
-            )
+            schema_url = "https://bids-specification.readthedocs.io/en/v{}/schema.json".format(bids_version)
+            
         elif bids_version in ("stable", "latest"):
-            schema_path = Path(
-                "https://bids-specification.readthedocs.io/en/{}/schema.json".format(bids_version)
-            )
+            schema_url = "https://bids-specification.readthedocs.io/en/{}/schema.json".format(bids_version)
         else:
             raise Exception(
                 NameError(
                     f"BIDS version is limited to `stable`, `latest`, or semantic format `X.X.X`, you gave {bids_version}"
                 )
             )
+        http = urllib3.PoolManager()
+        response = http.request("GET", schema_url)
+        if response.status != 200:
+            raise urllib3.exceptions.HTTPError(
+                f"Unable to retrieve schema from {schema_url} (status {response.status})"
+            )
+        else:
+            with TemporaryDirectory() as tmp:
+                schema_path = Path(tmp) / "schema.json"
+                with open(schema_path, 'w') as f:
+                    json.dump(response.json(), f)
+        
+                return Namespace.from_json(schema_path.read_text())
 
     # JSON file: just load it
     if schema_path.is_file():
