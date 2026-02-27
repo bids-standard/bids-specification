@@ -54,4 +54,3 @@ It feels that we need a construct (class?) to define smth like "DataProperties" 
     ...
     2214  LabelingPulseFlipAngle:
     2222:   maximum: 360
-
