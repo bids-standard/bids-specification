@@ -1,5 +1,5 @@
 [build-system]
-requires = ["pdm-backend", "acres", "pyyaml"]
+requires = ["pdm-backend", "acres", "pyyaml", "universal-pathlib", "requests", "aiohttp"]
 build-backend = "pdm.backend"
 
 [project]
@@ -16,7 +16,7 @@ dependencies = [
   "acres",
   "click",
   "pyyaml",
-  "universal_pathlib",
+  "universal-pathlib",
   "requests",
   'aiohttp',
 ]
