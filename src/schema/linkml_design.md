@@ -9,3 +9,49 @@ From linkml we would like also to generate TypeScript classes, for which an expe
 
 We still want to use new metaschema in linkml to validate our BIDS schema located under src/schema which is compiled into src/schema.json.
 If you need "sources" of linkml, its git repos are also available locally under /home/yoh/proj/misc/linkml .
+
+# Discoveries after round 1
+
+Looking at state at v1.11.1-18-g1320e864f and diagram at http://127.0.0.1:8000/en/stable/schema/class_diagram.html
+
+(We will use D{round}.{index} for identifiers)
+
+### D1.1 DataProperties
+
+It feels that we need a construct (class?) to define smth like "DataProperties"  (propose better name) to define
+
+   - minimum: float
+   - maximum: float
+   - unit: str
+
+  which defined at metaschema level and in principle can be used to hardcode in scheme associating with some suffixes e.g
+
+    ❯ show-paths -e unit: -f full-lines src/schema/objects/suffixes.yaml
+    18  Chimap:
+    28:   unit: ppm
+    ...
+
+    ❯ show-paths -e 'max' -f full-lines src/schema/objects/suffixes.yaml
+    144  MTRmap:
+    155:   maxValue: 100
+    ...
+
+  to describe associated data file (e.g. nii.gz) properties and then could be hardcoded for some .tsv columns
+
+    ❯ show-paths -e '(unit|max.*):' -f full-lines src/schema/objects/columns.yaml
+    ...
+    311  low_cutoff:
+    318:   unit: Hz
+    ...
+    353  metabolite_polar_fraction:
+    360:   maximum: 1
+    418:   unit: s
+    ...
+
+  and then could be provided in the actual datasets for columns in corresponding .json for .tsv files; and for data in data sidecar .json files:
+
+    ❯ show-paths -e 'maxim' -f full-lines src/schema/objects/metadata.yaml
+    ...
+    2214  LabelingPulseFlipAngle:
+    2222:   maximum: 360
+
