@@ -252,7 +252,7 @@ def load_schema(
     elif schema_path is None and bids_version:
         if re.search(r"^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$", bids_version):
             schema_url = "https://bids-specification.readthedocs.io/en/v{}/schema.json".format(bids_version)
-            
+
         elif bids_version in ("stable", "latest"):
             schema_url = "https://bids-specification.readthedocs.io/en/{}/schema.json".format(bids_version)
         else:
@@ -272,7 +272,7 @@ def load_schema(
                 schema_path = Path(tmp) / "schema.json"
                 with open(schema_path, 'w') as f:
                     json.dump(response.json(), f)
-        
+
                 return Namespace.from_json(schema_path.read_text())
 
     # JSON file: just load it
