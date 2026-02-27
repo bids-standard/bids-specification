@@ -16,6 +16,9 @@ dependencies = [
   "acres",
   "click",
   "pyyaml",
+  "universal_pathlib",
+  "requests",
+  'aiohttp',
 ]
 classifiers = [
   "Development Status :: 4 - Beta",

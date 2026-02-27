@@ -8,7 +8,8 @@ from collections import ChainMap
 from collections.abc import Iterable, Mapping, MutableMapping
 from copy import deepcopy
 from functools import cache, lru_cache
-from pathlib import Path
+from sys import version
+from upath import UPath as Path
 
 from . import _lazytypes as lt
 from . import data, utils
@@ -204,7 +205,7 @@ def flatten_enums(namespace: Namespace, inplace=True) -> Namespace:
 
 
 @lru_cache
-def load_schema(schema_path: lt.Traversable | str | None = None) -> Namespace:
+def load_schema(schema_path: lt.Traversable | str | None = None, bids_version:str = None) -> Namespace:
     """Load the schema into a dict-like structure.
 
     This function allows the schema, like BIDS itself, to be specified in
@@ -218,6 +219,9 @@ def load_schema(schema_path: lt.Traversable | str | None = None) -> Namespace:
     schema_path : str, optional
         Directory containing yaml files or yaml file. If ``None``, use the
         default schema packaged with ``bidsschematools``.
+    bids_version: str, optional
+        Version of bids release to load schema from, allows user to have full namespace/dict
+        like access to bids schema given a specific version
 
     Returns
     -------
@@ -228,7 +232,7 @@ def load_schema(schema_path: lt.Traversable | str | None = None) -> Namespace:
     -----
     This function is cached, so it will only be called once per schema path.
     """
-    if schema_path is None:
+    if schema_path is None and bids_version is None:
         # Default to bundled JSON, fall back to bundled YAML directory
         schema_path = data.load.readable("schema.json")
         if not schema_path.is_file():
@@ -239,8 +243,15 @@ def load_schema(schema_path: lt.Traversable | str | None = None) -> Namespace:
                 assert isinstance(schema_path, Path)
                 schema_path = Path.resolve(schema_path.parent / content)
         lgr.info("No schema path specified, defaulting to the bundled schema, `%s`.", schema_path)
-    elif isinstance(schema_path, str):
+    elif isinstance(schema_path, str) and bids_version is None:
         schema_path = Path(schema_path)
+    elif schema_path is None and bids_version:
+        if re.search(r'^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$', bids_version):
+            schema_path = Path("https://bids-specification.readthedocs.io/en/v{}/schema.json".format(bids_version))
+        elif bids_version in ('stable', 'latest'):
+            schema_path = Path("https://bids-specification.readthedocs.io/en/{}/schema.json".format(bids_version))
+        else:
+            raise Exception(NameError(f"BIDS version is limited to `stable`, `latest`, or semantic format `X.X.X`, you gave {bids_version}"))
 
     # JSON file: just load it
     if schema_path.is_file():
