@@ -12,10 +12,8 @@ PhenotypeSubjectsMissing:
   selectors:
     - datatype == 'phenotype'
     - suffix == '.tsv'
-    - type(dataset.subjects.participant_id) != 'null'
+    - type(dataset.participant_tsv.participant_id) != 'null'
   checks:
     - |
-      allequal(
-        sorted(intersects(columns.participant_id, dataset.subjects.participant_id)),
-        sorted(dataset.subjects.participant_id)
-      )
+      length(intersects(columns.participant_id, dataset.participant_tsv.participant_id))
+      == length(dataset.participant_tsv.participant_id)
