@@ -528,6 +528,26 @@ asllabeling:
     A deidentified screenshot of the planning of the labeling slab/plane
     with respect to the imaging slab or slices.
     This screenshot is based on DICOM macro C.8.13.5.14.
+audio:
+  value: audio
+  display_name: Audio Recording
+  description: |
+    Audio recording of a behaving subject.
+    This may include vocalizations, speech, or environmental sounds.
+    The audio stream may be from a standalone audio recording or extracted from a video file.
+audiovideo:
+  value: audiovideo
+  display_name: Audio-Video Recording
+  description: |
+    Combined audio and video recording of a behaving subject.
+    This suffix is used for files that contain both audio and video streams.
+image:
+  value: image
+  display_name: Behavioral Image
+  description: |
+    Still image captured during behavioral experiments.
+    This may include training frames for pose estimation, snapshots of behavioral setups,
+    or individual frames extracted from video recordings.
 beh:
   value: beh
   display_name: Behavioral recording
@@ -897,3 +917,11 @@ unloc:
   description: |
     MRS acquisitions run without localization.
     This includes signals detected using coil sensitivity only.
+video:
+  value: video
+  display_name: Video Recording
+  description: |
+    Video recording of a behaving subject.
+    This may include both video and audio streams.
+    Video recordings are typically used to capture behavior, facial expressions,
+    or body movements during experimental tasks or rest.

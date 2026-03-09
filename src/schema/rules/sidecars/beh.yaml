@@ -25,3 +25,48 @@ BEHInstitutionInformation:
     InstitutionName: recommended
     InstitutionAddress: recommended
     InstitutionalDepartmentName: recommended
+
+# Audio, Video, and Image metadata
+AudioVideoImageDevice:
+  selectors:
+    - datatype == "beh"
+    - intersects([suffix], ["audio", "video", "audiovideo", "behimage"])
+  fields:
+    Device: optional
+    DeviceSerialNumber: optional
+    License: optional
+
+AudioVideoDuration:
+  selectors:
+    - datatype == "beh"
+    - intersects([suffix], ["audio", "video", "audiovideo"])
+  fields:
+    Duration: optional
+
+AudioStreams:
+  selectors:
+    - datatype == "beh"
+    - intersects([suffix], ["audio", "audiovideo"])
+  fields:
+    AudioChannelCount: optional
+    AudioSampleRate: optional
+    AudioBitDepth: optional
+
+VideoStreams:
+  selectors:
+    - datatype == "beh"
+    - intersects([suffix], ["video", "audiovideo"])
+  fields:
+    FrameRate: optional
+    Height: optional
+    Width: optional
+    CameraPosition: optional
+
+ImageProperties:
+  selectors:
+    - datatype == "beh"
+    - suffix == "behimage"
+  fields:
+    Height: optional
+    Width: optional
+    CameraPosition: optional
