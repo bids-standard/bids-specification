@@ -2,7 +2,10 @@
 # See https://pre-commit.com/hooks.html for more hooks
 ci:
   skip: [shellcheck]
+  autoupdate_schedule: monthly
+
 exclude: 'tools/schemacode/src/bidsschematools/tests/data/broken_dataset_description.json'
+
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
@@ -17,7 +20,7 @@ repos:
       - id: check-added-large-files
       - id: check-case-conflict
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 0.36.2
+    rev: 0.37.0
     hooks:
       - id: check-dependabot
       - id: check-github-workflows
