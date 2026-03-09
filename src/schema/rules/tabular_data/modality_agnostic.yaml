@@ -2,13 +2,13 @@
 Participants:
   selectors:
     - path == "/participants.tsv"
+    - '!intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])'
   initial_columns:
     - participant_id
+    - session_id
   columns:
-    participant_id:
-      level: required
-      description_addendum: |
-        There MUST be exactly one row for each participant.
+    participant_id: required
+    session_id: recommended
     species: recommended
     age: recommended
     sex: recommended
@@ -16,8 +16,58 @@ Participants:
     strain: recommended
     strain_rrid: recommended
     HED: optional
-  index_columns: [participant_id]
+  index_columns: [participant_id, session_id]
   additional_columns: allowed
+
+Participants__Additional:
+  $ref: rules.tabular_data.modality_agnostic.Participants
+  selectors:
+    - path == "/participants.tsv"
+    - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
+  columns:
+    participant_id: required
+    session_id: recommended
+    HED: optional
+  additional_columns: allowed_if_defined
+
+Phenotypes:
+  selectors:
+    - datatype == 'phenotype'
+    - extension == ".tsv"
+    - '!intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])'
+  initial_columns:
+    - participant_id
+    - session_id
+    - run_id
+  columns:
+    participant_id:
+      level: required
+      description_addendum: |
+        Note that data for one participant MAY be represented across multiple rows
+        in case of multiple sessions or runs, and
+        therefore the entry in the `participant_id` column will be repeated.
+    session_id:
+      level: optional
+      description_addendum: |
+        A `session_id` column MUST be added to all tabular files in the phenotype directory
+        as soon as multiple sessions are present in the data set.
+    run_id:
+      level: optional
+      level_addendum: required if there are multiple runs within any session
+      description_addendum: |
+        A chronological `run` number is used when
+        a measurement tool or assessment described by a tabular file
+        was repeated within a session.
+    HED: optional
+  index_columns: [participant_id, session_id, run_id]
+  additional_columns: allowed
+
+Phenotypes__Additional:
+  $ref: rules.tabular_data.modality_agnostic.Phenotypes
+  selectors:
+    - datatype == 'phenotype'
+    - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
+  additional_columns: allowed_if_defined
 
 Samples:
   selectors:
@@ -51,26 +101,28 @@ Sessions:
   selectors:
     - suffix == "sessions"
     - extension == ".tsv"
+    - '!intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])'
   initial_columns:
+    - participant_id
     - session_id
+    - run_id
   columns:
-    session_id:
-      level: required
-      description_addendum: |
-        There MUST be exactly one row for each session.
+    participant_id: optional
+    session_id: required
+    run_id: optional
     acq_time__sessions: optional
     pathology: recommended
     HED: optional
-  index_columns: [session_id]
+  index_columns: [participant_id, session_id, run_id]
   additional_columns: allowed
 
-Phenotype:
+Sessions__Additional:
+  $ref: rules.tabular_data.modality_agnostic.Sessions
   selectors:
-    - datatype == 'phenotype'
-  initial_columns:
-    - participant_id
+    - suffix == "sessions"
+    - extension == ".tsv"
+    - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
   columns:
-    participant_id: required
-    HED: optional
-  index_columns: [participant_id]
-  additional_columns: allowed
+    $ref: rules.tabular_data.modality_agnostic.Sessions.columns
+    acq_time__sessions: recommended
+  additional_columns: allowed_if_defined
