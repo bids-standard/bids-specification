@@ -26,16 +26,9 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_json_table('dataset_metadata.dataset_description') }}
 
-Each object in the `GeneratedBy` array includes the following REQUIRED, RECOMMENDED
-and OPTIONAL keys:
-
-<!-- This block generates a table describing subfields within a metadata field.
-The definitions of these fields can be found in
-  src/schema/objects/metadata.yaml
-and a guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_subobject_table("metadata.GeneratedBy.items") }}
+!!! Note
+    See the [Provenance of a BIDS dataset](provenance.md#provenance-of-a-bids-dataset) section
+    for more information on how to describe provenance using the `GeneratedBy` field.
 
 Example:
 
