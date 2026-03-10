@@ -22,7 +22,12 @@ it MUST be described using the conventions detailed hereafter.
 Provenance information reflects the provenance of a full dataset
 and/or of specific files at any level of the BIDS hierarchy.
 Provenance information SHOULD not include human subject identifying data.
-
+!!! Note
+Throughout this document, the terms `Id` and `Label` are used to provide identification for JSON objects related to provenance.
+`Id` is used to unambiguously [identify those objects](#provenance-identifiers) that may be referenced elsewhere,
+permitting automated tools to [construct and query a graph](#provenance-graph).
+`Label` is a human-readable name for that object, which need not be unique,
+and should not be confused with the BIDS term [`label`](../glossary.md#label-common_principles).
 ## Provenance of a BIDS file
 
 Provenance of a BIDS data file SHOULD be stored inside its sidecar JSON.
