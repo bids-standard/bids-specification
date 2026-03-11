@@ -1,5 +1,9 @@
 [build-system]
-requires = ["pdm-backend", "acres", "pyyaml"]
+requires = [
+  "pdm-backend",
+  "acres",
+  "pyyaml",
+]
 build-backend = "pdm.backend"
 
 [project]
@@ -52,6 +56,7 @@ tests = [
   "coverage[toml]",
   "pytest>6",
   "pytest-cov",
+  "requests",
 ]
 all = [
   "bidsschematools[tests]",
