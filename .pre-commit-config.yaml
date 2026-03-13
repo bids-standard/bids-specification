@@ -2,7 +2,7 @@
 # See https://pre-commit.com/hooks.html for more hooks
 ci:
   skip: [shellcheck]
-exclude: 'tools/schemacode/src/bidsschematools/tests/data/broken_dataset_description.json'
+exclude: 'broken_dataset_description.json|uv.lock'
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0

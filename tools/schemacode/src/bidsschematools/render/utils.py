@@ -37,12 +37,13 @@ def _pandas_3_0_options():
     ]
 
     args = []
-    for option in options:
-        try:
-            pd.get_option(option[0])
-        except KeyError:
-            continue
-        args.extend(option)
+    if pd.__version__.split(".", 1)[0] < "3":
+        for option in options:
+            try:
+                pd.get_option(option[0])
+            except KeyError:
+                continue
+            args.extend(option)
     return args
 
 
