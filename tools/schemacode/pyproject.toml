@@ -13,9 +13,9 @@ license = { text = "MIT" }
 readme = "README.md"
 requires-python = ">=3.9"
 dependencies = [
-  "acres",
-  "click",
-  "pyyaml",
+  "acres>=0.5",
+  "click>=8.1",
+  "pyyaml>=6.0",
 ]
 classifiers = [
   "Development Status :: 4 - Beta",
@@ -31,30 +31,40 @@ classifiers = [
 dynamic = ["version"]
 
 [project.optional-dependencies]
-validation = [
-  "jsonschema[format]",
+expressions = [
+  "pyparsing>=3.2",
 ]
-dev = [
-  "bidsschematools[tests]",
-  "ruff",
-]
-expressions = ["pyparsing"]
 render = [
-  "tabulate",
-  "pandas",
-  "markdown-it-py",
+  "tabulate>=0.9",
+  "numpy>=1.26",
+  "pandas>=2.0",
+  "markdown-it-py>=3.0",
   "pymdown-extensions>=9.2",
 ]
-tests = [
-  "bidsschematools[validation,render,expressions]",
-  "check-jsonschema",
-  "codecov",
-  "coverage[toml]",
-  "pytest>6",
-  "pytest-cov",
+validation = [
+  "jsonschema[format]>=4.22",
 ]
-all = [
-  "bidsschematools[tests]",
+all = ["bidsschematools[expressions,render,validation]"]
+
+[dependency-groups]
+dev = [
+  "ruff>=0.15.6",
+]
+tests = [
+  "bidsschematools[all]",
+  "check-jsonschema>=0.36.2",
+  "coverage[toml]>=7.10.7",
+  "pytest>=8.4.2",
+  "pytest-cov>=7.0.0",
+  "pytest-xdist>=3.8.0",
+]
+types = [
+  "lxml>=6.0.2",
+  "mypy>=1.18.2",
+  "pandas-stubs>=2.2.2.240807",
+  "types-jsonschema>=4.25.1.20251009",
+  "types-pyyaml>=6.0.12.20250915",
+  "types-tabulate>=0.9.0.20241207",
 ]
 
 [project.scripts]
@@ -157,13 +167,3 @@ select = [
 
 [tool.ruff.lint.extend-per-file-ignores]
 "*/__init__.py" = ["F401"]
-
-[dependency-groups]
-types = [
-  "lxml>=6.0.2",
-  "mypy>=1.18.2",
-  "pandas-stubs>=2.2.2.240807",
-  "types-jsonschema>=4.25.1.20251009",
-  "types-pyyaml>=6.0.12.20250915",
-  "types-tabulate>=0.9.0.20241207",
-]
