@@ -6,7 +6,7 @@ updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "monthly"
+      interval: "quarterly"
     labels:
       - "exclude-from-changelog"
     groups:
@@ -40,7 +40,7 @@ updates:
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
-      interval: "monthly"
+      interval: "quarterly"
     labels:
       - "exclude-from-changelog"
     groups:
@@ -52,7 +52,7 @@ updates:
     target-branch: jsr-maint
     directory: "/"
     schedule:
-      interval: "monthly"
+      interval: "quarterly"
     labels:
       - "exclude-from-changelog"
       - "schema-code"
