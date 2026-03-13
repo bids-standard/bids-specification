@@ -21,6 +21,13 @@ defaults:
   run:
     shell: bash
 
+# Force tox and pytest to use color
+env:
+  FORCE_COLOR: true
+
+permissions:
+  contents: read
+
 jobs:
   build:
     name: Build & verify package
