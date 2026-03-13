@@ -18,7 +18,18 @@ updates:
   - package-ecosystem: "uv"
     directory: "/"
     schedule:
-      interval: "monthly"
+      interval: "quarterly"
+    labels:
+      - "exclude-from-changelog"
+    groups:
+      build-dependencies:
+        patterns: ["*"]
+    cooldown:
+      default-days: 14
+  - package-ecosystem: "uv"
+    directory: "tools/schemacode"
+    schedule:
+      interval: "quarterly"
     labels:
       - "exclude-from-changelog"
     groups:
