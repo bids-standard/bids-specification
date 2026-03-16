@@ -13,10 +13,17 @@ this extension when referring to it in the context of the academic literature.
 
 ## EMG data
 
+<!--
+This block generates a filename templates.
+The inputs for this macro can be found in the directory
+  src/schema/rules/files/raw
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
 {{ MACROS___make_filename_template(
-"raw",
-datatypes=["emg"],
-suffixes=["emg", "events"])
+   "raw",
+   datatypes=["emg"],
+   suffixes=["emg", "events", "physio", "stim"])
 }}
 
 EMG device manufacturers use a variety of formats for storing raw data, and there is
