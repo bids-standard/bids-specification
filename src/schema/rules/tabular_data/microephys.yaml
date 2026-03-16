@@ -21,8 +21,8 @@ microephysProbes:
     AP_angle: recommended
     ML_angle: recommended
     manufacturer__probes: recommended
-    model__probes: recommended
-    device_serial_number: recommended
+    model__probes: optional
+    device_serial_number: optional
     electrode_count: optional
     width__probes: optional
     height__probes: optional
@@ -88,7 +88,7 @@ microephysElectrodes:
         For 2D electrode localizations (for example, when the coordinate system is
         `Pixels`), this SHOULD be a column of `n/a` values.
     hemisphere: recommended
-    impedance: recommended
+    impedance: optional
     shank_id: optional
     size__microephys: optional
     electrode_shape: optional
@@ -136,6 +136,6 @@ microephysChannels:
     time_offset: optional
     time_reference_channel: optional
     ground: optional
-    recording_mode: recommended
+    recording_mode: optional
   index_columns: [name__channels]
   additional_columns: allowed_if_defined
