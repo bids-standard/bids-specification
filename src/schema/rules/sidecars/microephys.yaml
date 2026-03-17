@@ -13,8 +13,8 @@ microephysInstitutionInformation:
     - intersects([suffix], ["ecephys", "icephys"])
   fields:
     InstitutionName: recommended
-    InstitutionAddress: recommended
-    InstitutionalDepartmentName: recommended
+    InstitutionAddress: optional
+    InstitutionalDepartmentName: optional
 
 microephysSetup:
   selectors:
@@ -25,26 +25,26 @@ microephysSetup:
     Manufacturer:
       level: recommended
       description_addendum: For example, `"TDT"`, `"Blackrock"`.
-    ManufacturersModelName: recommended
-    ManufacturersModelVersion: recommended
-    RecordingSetupName: recommended
+    ManufacturersModelName: optional
+    ManufacturersModelVersion: optional
+    RecordingSetupName: optional
     SamplingFrequency:
       level: required
       description_addendum: |
          Internal (maximum) sampling frequency (in Hz)
          of the recording (for example, "24000").
     DeviceSerialNumber:
-      level: recommended
+      level: optional
       description_addendum: |
          The serial number of the components of the setup,
          recommended to add serial numbers and versions of
          ALL components constituting the setup.
     SoftwareName:
-      level: recommended
+      level: optional
       description_addendum: |
          The name of the software suite used to
          record the data.
-    SoftwareVersions: recommended
+    SoftwareVersions: optional
     RecordingDuration: recommended
     RecordingType: recommended
     EpochLength:
@@ -64,11 +64,11 @@ microephysPharmaceuticals:
     - intersects([datatype], ["ecephys", "icephys"])
     - intersects([suffix], ["ecephys", "icephys"])
   fields:
-    PharmaceuticalName: recommended
-    PharmaceuticalDoseAmount: recommended
-    PharmaceuticalDoseUnits: recommended
-    PharmaceuticalDoseRegimen: recommended
-    PharmaceuticalDoseTime: recommended
+    PharmaceuticalName: optional
+    PharmaceuticalDoseAmount: optional
+    PharmaceuticalDoseUnits: optional
+    PharmaceuticalDoseRegimen: optional
+    PharmaceuticalDoseTime: optional
 
 microephysSupplementary:
   selectors:
@@ -85,7 +85,7 @@ microephysSample:
     BodyPart: recommended
     BodyPartDetails: recommended
     BodyPartDetailsOntology: optional
-    SampleEnvironment: recommended
+    SampleEnvironment: optional
     SampleEmbedding: optional
     SliceThickness: optional
     SampleExtractionProtocol: optional
@@ -96,15 +96,15 @@ microephysTaskInformation:
     - intersects([suffix], ["ecephys", "icephys"])
   fields:
     TaskName:
-      level: recommended
+      level: optional
       description_addendum: |
         A recommended convention is to name resting state task using labels
         beginning with `rest`.
-    TaskDescription: recommended
+    TaskDescription: optional
     Instructions:
-      level: recommended
+      level: optional
       description_addendum: |
         This is especially important in context of resting state recordings and
         distinguishing between eyes open and eyes closed paradigms.
-    CogAtlasID: recommended
-    CogPOID: recommended
+    CogAtlasID: optional
+    CogPOID: optional
