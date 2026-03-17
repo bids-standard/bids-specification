@@ -17,3 +17,17 @@ PhenotypeSubjectsMissing:
     - |
       length(intersects(columns.participant_id, dataset.participant_tsv.participant_id))
       == length(dataset.participant_tsv.participant_id)
+
+PhenotypeSessionsRequired:
+  issue:
+    code: PHENOTYPE_SESSIONS_REQUIRED
+    message: |
+      Phenotype TSV files must have a session_id column if a dataset contains multiple sessions.
+    level: error
+  selectors:
+    - datatype == 'phenotype'
+    - suffix == '.tsv'
+    - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
+    - type(dataset.session_tsv) != 'null'
+  checks:
+    - type(columns.session_id) != 'null'
