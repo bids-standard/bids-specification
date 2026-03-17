@@ -50,3 +50,18 @@ SegregatedSessions:
     - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
   checks:
     - type(entities.subject) == 'null'
+
+SessionRequired:
+  issue:
+    code: SESSION_REQUIRED
+    message: |
+      Multi-session data is detected in the dataset, and
+      "Phenotype" additional validation has been enabled.
+      Every data file MUST be found in a session directory.
+    level: error
+  selectors:
+    - "!intersects([extension], ['.tsv', '.json'])"
+    - exists("sessions.tsv", "dataset")
+    - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
+  checks:
+    - type(entities.session) != 'null'
