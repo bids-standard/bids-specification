@@ -35,3 +35,18 @@ DuplicateReadmes:
     - match(path, '^/README.*')
   checks:
     - exists(["README", "README.md", "README.rst", "README.txt"], "dataset") == 1
+
+SegregatedSessions:
+  issue:
+    code: SEGREGATED_SESSIONS
+    message: |
+      Session files were detected outside the dataset root and
+      "Phenotype" additional validation has been enabled.
+      Aggregate session data in a root-level `sessions.tsv` file.
+    level: error
+  selectors:
+    - suffix == 'sessions'
+    - extension == '.tsv'
+    - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
+  checks:
+    - type(entities.subject) == 'null'
