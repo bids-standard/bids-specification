@@ -3,7 +3,7 @@
 !!! example "Example datasets"
 
     Datasets containing behavioral data can be found
-    in the [BIDS examples repository](https://bids-standard.github.io/bids-examples/#behavioral)
+    in the [BIDS examples repository](https://bids-website.readthedocs.io/en/latest/datasets/examples.html#behavioral)
     and can be used as helpful guidance when curating new datasets.
 
 <!--

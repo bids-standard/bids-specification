@@ -932,7 +932,7 @@ JSON example:
 
 !!! example "Example datasets"
 
-    Several [example ASL datasets](https://bids-standard.github.io/bids-examples/#asl)
+    Several [example ASL datasets](https://bids-website.readthedocs.io/en/latest/datasets/examples.html#asl)
     have been formatted using this specification
     and can be used for practical guidance when curating a new dataset.
 
@@ -1186,7 +1186,7 @@ For example:
 
 !!! example "Example datasets"
 
-    [Example datasets](https://bids-standard.github.io/bids-examples/#dataset-index)
+    [Example datasets](https://bids-website.readthedocs.io/en/latest/datasets/examples.html#dataset-index)
     containing that type of fieldmap can be found here:
 
     -   [`7t_trt`](https://github.com/bids-standard/bids-examples/tree/master/7t_trt)

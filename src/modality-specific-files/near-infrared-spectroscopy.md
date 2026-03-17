@@ -8,7 +8,7 @@ context of the academic literature.
 
 !!! example "Example datasets"
 
-    Several [example NIRS datasets](https://bids-standard.github.io/bids-examples/#nirs)
+    Several [example NIRS datasets](https://bids-website.readthedocs.io/en/latest/datasets/examples.html#nirs)
     have been formatted using this specification and can be used for practical guidance when curating a new dataset.
 
 ## NIRS recording data

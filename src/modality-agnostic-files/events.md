@@ -333,7 +333,7 @@ in the accompanying JSON sidecar as follows (based on the example of the previou
 
 !!! example "Example datasets"
 
-      The following [BIDS-Examples](https://bids-standard.github.io/bids-examples/#dataset-index)
+      The following [BIDS-Examples](https://bids-website.readthedocs.io/en/latest/datasets/examples.html#dataset-index)
       showcase stimulus-related signals and may be used as a reference
       when curating a new dataset:
 

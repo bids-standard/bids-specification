@@ -11,6 +11,12 @@ as BIDS-Derivatives.
     subject's space, please refer to the
     [Derivatives from atlases](imaging.md#derivatives-from-atlases) subsection.
 
+!!! example "Example datasets"
+
+    Templates and atlases datasets formatted according to this specification are available on
+    the [BIDS examples repository](https://bids-website.readthedocs.io/en/latest/datasets/examples.html#atlas)
+    and can be emulated when curating new datasets.
+
 ## Derived templates
 
 Many analyses include spatial standardization to pull individuals' data
