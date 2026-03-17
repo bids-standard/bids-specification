@@ -14,7 +14,7 @@ as BIDS-Derivatives.
 !!! example "Example datasets"
 
     Templates and atlases datasets formatted according to this specification are available on
-    the [BIDS examples repository](https://bids-website.readthedocs.io/en/latest/datasets/examples.html#atlas)
+    the [BIDS examples repository](https://bids.neuroimaging.io/datasets/examples.html#atlas)
     and can be emulated when curating new datasets.
 
 ## Derived templates

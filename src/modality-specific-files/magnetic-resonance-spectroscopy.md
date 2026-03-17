@@ -8,7 +8,7 @@ context of the academic literature.
 
 !!! example "Example datasets"
 
-    Several [example MRS datasets](https://bids-website.readthedocs.io/en/latest/datasets/examples.html#mrs) have
+    Several [example MRS datasets](https://bids.neuroimaging.io/datasets/examples.html#mrs) have
     been formatted using this specification and can be used for practical guidance when curating a new dataset.
 
 ## MRS data

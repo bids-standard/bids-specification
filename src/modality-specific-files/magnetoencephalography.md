@@ -14,7 +14,7 @@ context of the academic literature.
     -   [`multimodal MEG and MRI`](https://github.com/bids-standard/bids-examples/tree/master/ds000117)
 
     Further datasets are available from
-    the [BIDS examples repository](https://bids-website.readthedocs.io/en/latest/datasets/examples.html#meg).
+    the [BIDS examples repository](https://bids.neuroimaging.io/datasets/examples.html#meg).
 
 ## MEG recording data
 

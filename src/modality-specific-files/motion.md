@@ -5,7 +5,7 @@ For information on how to cite this extension when referencing it in the context
 !!! example "Example datasets"
 
     Motion datasets formatted using this specification are available on the
-    [BIDS examples repository](https://bids-website.readthedocs.io/en/latest/datasets/examples.html#motion)
+    [BIDS examples repository](https://bids.neuroimaging.io/datasets/examples.html#motion)
     and can be used as helpful guidance when curating new datasets.
 
 ## Motion recording data
