@@ -60,8 +60,9 @@ SessionRequired:
       Every data file MUST be found in a session directory.
     level: error
   selectors:
+    - type(entities.subject) != 'null'
     - "!intersects([extension], ['.tsv', '.json'])"
-    - exists("sessions.tsv", "dataset")
+    - type(dataset.sessions_tsv) != 'null'
     - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
   checks:
     - type(entities.session) != 'null'
