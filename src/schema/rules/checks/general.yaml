@@ -66,3 +66,19 @@ SessionRequired:
     - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
   checks:
     - type(entities.session) != 'null'
+
+SessionsTSVRequired:
+  issue:
+    code: SESSIONS_TSV_REQUIRED
+    message: |
+      Multi-session data is detected in the dataset, and
+      "Phenotype" additional validation has been enabled.
+      A sessions.tsv file MUST exist in the dataset root.
+    level: error
+    location: /sessions.tsv
+  selectors:
+    - "!intersects([extension], ['.tsv', '.json'])"
+    - type(entities.session) != 'null'
+    - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
+  checks:
+    - type(dataset.sessions_tsv) != 'null'
