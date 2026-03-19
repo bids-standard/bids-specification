@@ -440,6 +440,9 @@
               "properties": {
                 "common_derivatives": {
                   "$ref": "#/definitions/tabular_data"
+                },
+                "structural_mri": {
+                  "$ref": "#/definitions/tabular_data"
                 }
               },
               "required": ["common_derivatives"],
