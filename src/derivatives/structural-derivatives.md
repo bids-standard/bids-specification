@@ -35,16 +35,26 @@ A guide for using macros can be found at
 
 The supported surface types (`<surftype>` suffix) are:
 
-| `<surftype>` | Description                                                          |
-| ------------ | -------------------------------------------------------------------- |
-| white        | The gray matter / white matter border for the cortex                 |
-| smoothwm     | The smoothed gray matter / white matter border                       |
-| pial         | The gray matter / pial matter border                                 |
-| midthickness | The midpoints between white matter and pial surfaces                 |
-| inflated     | An inflation of the midthickness surface (useful for visualization)  |
-| vinflated    | A very-inflated midthicknesss surface (also for visualization)       |
-| sphere       | The sphere (used for registration - see transforms for nomenclature) |
-| flat         | The flattened surface (used for visualization)                       |
+<!--
+This block generates a suffix table.
+The definitions of these fields can be found in
+  src/schema/rules/files/raw
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_suffix_table(
+      [
+         "white",
+         "smoothwm",
+         "pial",
+         "midthickness",
+         "inflated",
+         "vinflated",
+         "sphere",
+         "flat",
+      ]
+   )
+}}
 
 -   [`space-<label>`](../appendices/entities.md#space) is REQUIRED to disambiguate derivatives defined with
     respect to different [coordinate systems](../appendices/coordinate-systems.md), following the general
@@ -106,16 +116,26 @@ A guide for using macros can be found at
 
 The file `<suffix>` MUST be one of the following values:
 
-| `<suffix>`   | Description                                           |
-| ------------ | ----------------------------------------------------- |
-| `curv`       | Cortical surface curvature indices                    |
-| `thickness`  | Cortical thickness                                    |
-| `area`       | Discretized surface area across regions               |
-| `dist`       | Distance from a point                                 |
-| `defects`    | Marked regions with surface defects                   |
-| `sulc`       | Sulcal depth                                          |
-| `T1wT2wratio`| T1w to T2w ratio, a proxy for myelination             |
-| `distortion` | Distortion map calculated from a surface registration |
+<!--
+This block generates a suffix table.
+The definitions of these fields can be found in
+  src/schema/rules/files/raw
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_suffix_table(
+      [
+         "curv",
+         "thickness",
+         "area",
+         "dist",
+         "defects",
+         "sulc",
+         "T1wT2wratio",
+         "distortion",
+      ]
+   )
+}}
 
 
 ## Morphometrics
@@ -150,16 +170,13 @@ A guide for using macros can be found at
     }
 ) }}
 
-| Column name | Description                                     |
-| ----------- | ----------------------------------------------- |
-| index       | RECOMMENDED. Label integer index                |
-| name        | RECOMMENDED. Structure name                     |
-| centroid    | OPTIONAL. Center coordinate of structure        |
-| volume      | OPTIONAL. Volume of structure                   |
-| intensity   | OPTIONAL. Intensity of voxels within structure  |
-| thickness   | OPTIONAL. Thickness of cortical structure       |
-| area        | OPTIONAL. Surface area of cortical structure    |
-| curv        | OPTIONAL. Curvature index of cortical structure |
+<!-- This block generates a columns table.
+The definitions of these fields can be found in
+  src/schema/rules/tabular_data/*.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_columns_table("deriv.structural_mri.Morphometrics") }}
 
 Some parameters might require unit specification or have multiple associated
 statistics (such as avg, std, min, max, range). The suggested syntax for such

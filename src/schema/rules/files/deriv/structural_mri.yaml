@@ -65,13 +65,3 @@ morphometrics:
   extensions:
     - .tsv
     - .json
-  columns:
-    index: required
-    name: required
-    centroid: optional
-    volume: optional
-    intensity: optional
-    thickness: optional
-    area: optional
-    curv: optional
-  additional_columns: allowed_if_defined

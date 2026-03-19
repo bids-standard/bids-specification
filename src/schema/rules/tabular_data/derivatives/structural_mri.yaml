@@ -1,0 +1,15 @@
+Morphometrics:
+  selectors:
+    - dataset.dataset_description.DatasetType == "derivative"
+    - intersects([suffix], ["morph"])
+  columns:
+    index: required
+    name: required
+    centroid: optional
+    volume: optional
+    intensity: optional
+    thickness: optional
+    area: optional
+    curv: optional
+  index_columns: [index]
+  additional_columns: allowed_if_defined
