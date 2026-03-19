@@ -16,7 +16,7 @@ The conventions described here apply uniformly to all such datatypes.
 ### Audio formats
 
 | Format                 | Extension | Description                                   |
-|------------------------|-----------|-----------------------------------------------|
+| ---------------------- | --------- | --------------------------------------------- |
 | Waveform Audio (WAV)   | `.wav`    | Uncompressed PCM audio; lossless, large files |
 | MP3                    | `.mp3`    | Lossy compressed audio; widely supported      |
 | Advanced Audio Coding  | `.aac`    | Lossy compressed audio; successor to MP3      |
@@ -25,7 +25,7 @@ The conventions described here apply uniformly to all such datatypes.
 ### Video container formats
 
 | Format                 | Extension | Description                              |
-|------------------------|-----------|------------------------------------------|
+| ---------------------- | --------- | ---------------------------------------- |
 | MPEG-4 Part 14         | `.mp4`    | Widely supported multimedia container    |
 | Audio Video Interleave | `.avi`    | Legacy multimedia container              |
 | Matroska               | `.mkv`    | Open, flexible multimedia container      |
@@ -34,7 +34,7 @@ The conventions described here apply uniformly to all such datatypes.
 ### Image formats
 
 | Format                    | Extension | Description                                  |
-|---------------------------|-----------|----------------------------------------------|
+| ------------------------- | --------- | -------------------------------------------- |
 | JPEG                      | `.jpg`    | Lossy compressed photographic images         |
 | Portable Network Graphics | `.png`    | Lossless compressed images with transparency |
 | Scalable Vector Graphics  | `.svg`    | XML-based vector image format                |
@@ -56,7 +56,7 @@ The following metadata fields are defined for media files:
 ### Duration
 
 | Field      | Suffix                          | Requirement Level |
-|------------|---------------------------------|-------------------|
+| ---------- | ------------------------------- | ----------------- |
 | `Duration` | `audio`, `video`, `audiovideo`  | RECOMMENDED       |
 
 `Duration` is the total duration of the media file in seconds.
@@ -65,7 +65,7 @@ For audio-video files, this is the duration of the longest stream.
 ### Audio stream properties
 
 | Field               | Suffix                | Requirement Level |
-|---------------------|-----------------------|-------------------|
+| ------------------- | --------------------- | ----------------- |
 | `AudioCodec`        | `audio`, `audiovideo` | RECOMMENDED       |
 | `AudioSampleRate`   | `audio`, `audiovideo` | RECOMMENDED       |
 | `AudioChannelCount` | `audio`, `audiovideo` | RECOMMENDED       |
@@ -74,14 +74,14 @@ For audio-video files, this is the duration of the longest stream.
 ### Visual properties
 
 | Field    | Suffix                              | Requirement Level |
-|----------|-------------------------------------|-------------------|
+| -------- | ----------------------------------- | ----------------- |
 | `Width`  | `video`, `audiovideo`, `image`      | RECOMMENDED       |
 | `Height` | `video`, `audiovideo`, `image`      | RECOMMENDED       |
 
 ### Video stream properties
 
 | Field               | Suffix                | Requirement Level |
-|---------------------|-----------------------|-------------------|
+| ------------------- | --------------------- | ----------------- |
 | `VideoCodec`        | `video`, `audiovideo` | RECOMMENDED       |
 | `FrameRate`         | `video`, `audiovideo` | RECOMMENDED       |
 | `VideoCodecRFC6381` | `video`, `audiovideo` | OPTIONAL          |
@@ -111,7 +111,7 @@ web and broadcast interoperability.
 ### Common codec reference
 
 | Codec          | FFmpeg Name | RFC 6381 String    | Notes                   |
-|----------------|-------------|--------------------|-------------------------|
+| -------------- | ----------- | ------------------ | ----------------------- |
 | H.264 / AVC    | `h264`      | `avc1.640028`      | Most widely supported   |
 | H.265 / HEVC   | `hevc`      | `hev1.1.6.L93.B0`  | High efficiency         |
 | VP9            | `vp9`       | `vp09.00.10.08`    | Open, royalty-free      |
