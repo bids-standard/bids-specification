@@ -91,7 +91,7 @@ The file `<suffix>` MUST be one of the following values:
 | `dist`       | Distance from a point                                 |
 | `defects`    | Marked regions with surface defects                   |
 | `sulc`       | Sulcal depth                                          |
-| `myelinmap`  | Myelin map calculated from T1w to T2w ratio           |
+| `T1wT2wratio`| T1w to T2w ratio, a proxy for myelination             |
 | `distortion` | Distortion map calculated from a surface registration |
 
 ## Morphometrics
