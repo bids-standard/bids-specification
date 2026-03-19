@@ -47,6 +47,13 @@ age:
     "Units": "year",
     "Maximum": 89,
   }
+area:
+  name: area
+  display_name: Area
+  description: |
+    Surface area of the cortical structure.
+  type: number
+  unit: mm^2
 cardiac:
   name: cardiac
   display_name: Cardiac measurement
@@ -57,6 +64,17 @@ cardiac:
     "Format": "number",
     "Units": "mV"
   }
+centroid:
+  name: centroid
+  display_name: Centroid
+  description: |
+    Center coordinate of the structure.
+  type: array
+  items:
+    type: number
+  minItems: 3
+  maxItems: 3
+  unit: mm
 channel:
   name: channel
   display_name: Channel
@@ -99,6 +117,13 @@ coordinate_system:
     Name of the coordinate system defined in `coordsystem.json` in which the electrode's
     `x`, `y`, and (optionally) `z` coordinates are given.
   type: string
+curv:
+  name: curv
+  display_name: Curvature
+  description: |
+    Curvature index of the cortical structure.
+  type: number
+  unit: arbitrary
 detector__channels:
   name: detector
   display_name: Detector Name
@@ -300,6 +325,13 @@ index:
   description: |
     The label integer index.
   type: integer
+intensity:
+  name: intensity
+  display_name: Intensity
+  description: |
+    Intensity of the voxels within the structure.
+  type: number
+  unit: arbitrary
 interelectrode_distance:
   name: interelectrode_distance
   display_name: Interelectrode Distance
@@ -722,6 +754,13 @@ target_muscle:
     When exact muscle is unknown (such as when using electrode grids that cover multiple muscles),
     groups of muscles may be named instead (for example "flexors of the left forearm").
   type: string
+thickness:
+  name: thickness
+  display_name: Thickness
+  description: |
+    Thickness of the cortical structure.
+  type: number
+  unit: mm
 time:
   name: time
   display_name: Time
@@ -864,6 +903,13 @@ units__motion:
     and [Common Principles](SPEC_ROOT/common-principles.md#units) pages.
   type: string
   format: unit
+volume:
+  name: volume
+  display_name: Volume
+  description: |
+    Volume of the structure.
+  type: number
+  unit: mm^3
 volume_type:
   name: volume_type
   display_name: ASL volume type
