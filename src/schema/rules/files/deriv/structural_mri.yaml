@@ -21,7 +21,7 @@ cortical_surfaces_giftis:
   $ref: rules.files.deriv.structural_mri.cortical_surfaces
   entities:
     $ref: rules.files.deriv.structural_mri.cortical_surfaces.entities
-    hemi: required
+    hemisphere: required
   extensions:
     - .json
     - .surf.gii
@@ -53,7 +53,7 @@ surface_mapped_scalars_giftis:
   $ref: rules.files.deriv.structural_mri.surface_mapped_scalars
   entities:
     $ref: rules.files.deriv.structural_mri.surface_mapped_scalars.entities
-    hemi: required
+    hemisphere: required
   extensions:
     - .json
     - .shape.gii

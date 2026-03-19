@@ -418,6 +418,13 @@ name__segmentations:
   description: |
     The unique label name.
   type: string
+# name column for morphometrics.tsv files
+name__morphometrics:
+  name: name
+  display_name: Structure name
+  description: |
+    The unique structure name.
+  type: string
 notch:
   name: notch
   display_name: Notch frequencies

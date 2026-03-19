@@ -4,7 +4,7 @@ Morphometrics:
     - intersects([suffix], ["morph"])
   columns:
     index: required
-    name: required
+    name__morphometrics: required
     centroid: optional
     volume: optional
     intensity: optional

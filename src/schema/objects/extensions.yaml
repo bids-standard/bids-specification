@@ -85,6 +85,13 @@ dlabelnii:
     A CIFTI-2 dense label file.
 
     This extension may only be used in derivative datasets.
+dscalarnii:
+  value: .dscalar.nii
+  display_name: CIFTI-2 Dense Scalar File
+  description: |
+    A CIFTI-2 dense scalar file.
+
+    This extension may only be used in derivative datasets.
 edf:
   value: .edf
   display_name: European Data Format
@@ -258,6 +265,13 @@ sqd:
     marker information.
 
     Used by KIT, Yokogawa, and Ricoh MEG systems.
+surfgii:
+  value: .surf.gii
+  display_name: GIFTI Surface File
+  description: |
+    A GIFTI surface file.
+
+    This extension may only be used in derivative datasets.
 tif:
   value: .tif
   display_name: Tag Image File Format
