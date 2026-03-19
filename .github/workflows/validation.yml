@@ -16,83 +16,56 @@ jobs:
   codespell:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: codespell-project/actions-codespell@master
 
   # Markdown formatting
   remark:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
         with:
-          node-version: 14
+          node-version: 22
       - name: Install dependencies
-        run: npm install `cat npm-requirements.txt`
+        run: npm install
       - name: Run style checks
-        run: npx remark src/**/*.md --frail --rc-path .remarkrc
+        run: npm run remark
 
   # YAML
   yamllint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: 3
-      - name: Install dependencies
-        run: pip install yamllint
+      - uses: actions/checkout@v6
+      - uses: astral-sh/setup-uv@v7
       - name: Lint yml files in src/schema
-        run: yamllint -f standard src/schema/ -c .yamllint.yml
+        run: uvx yamllint -f standard src/schema/ -c .yamllint.yml
 
   # Python best practices
   python-style:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: 3
-      - run: python -m pip install --upgrade flake8 black isort[colors]
-      - run: black --diff --color --check tools/schemacode
-      - run: isort --diff --color --check tools/schemacode
-      - run: flake8
-        working-directory: tools/schemacode
+      - uses: actions/checkout@v6
+      - uses: astral-sh/setup-uv@v7
+      - run: uvx ruff format --diff
+      - run: uvx ruff check
 
   # Avoid Latin phrases to improve readability
   latin-phrases:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: 3
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          python -m pip install -r tools/requirements.txt
-      - name: Run Python script to check for Latin phrases - Master
-        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
-        run: |
-          python no-bad-latin.py
-        working-directory: tools
-      - name: Run Python script to check for Latin phrases - Pull Request
-        if: github.event.pull_request
-        run: |
-          python no-bad-latin.py
-        working-directory: tools
+      - uses: actions/checkout@v6
+      - uses: astral-sh/setup-uv@v7
+      - name: Check for Latin phrases
+        run: uv run tools/no-bad-latin.py
 
   # Validate CITATION.cff
   validate_cff:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-python@v5
-      with:
-        python-version: 3
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip setuptools
-        pip3 install cffconvert
-    - name: Validate CITATION.cff
-      run: make validate_citation_cff
+      - uses: actions/checkout@v6
+      - uses: astral-sh/setup-uv@v7
+      - name: Validate CITATION.cff
+        run: uvx cffconvert --validate
+      - name: Check for Zenodo compatibility
+        run: uv run tools/validate_citation.py

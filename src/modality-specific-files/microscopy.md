@@ -7,14 +7,16 @@ Please see [Citing BIDS](../introduction.md#citing-bids)
 on how to appropriately credit this extension when referring to it in the
 context of the academic literature.
 
-Microscopy datasets formatted using this specification are available on the
-[BIDS examples repository](https://bids-standard.github.io/bids-examples/#microscopy)
-and can be used for practical guidance when curating a new dataset.
+!!! example "Example datasets"
 
-Further Microscopy datasets are available:
+      Microscopy datasets formatted using this specification are available on the
+      [BIDS examples repository](https://bids-standard.github.io/bids-examples/#microscopy)
+      and can be used for practical guidance when curating a new dataset.
 
--   In PNG format:  [`data_axondeepseg_sem`](https://doi.org/10.5281/zenodo.5498378)
--   In OME-TIFF format: [`Broca's Area Light-Sheet Microscopy`](https://doi.org/10.5281/zenodo.5517223)
+      Further Microscopy datasets are available:
+
+      -   In PNG format:  [`data_axondeepseg_sem`](https://doi.org/10.5281/zenodo.5498378)
+      -   In OME-TIFF format: [`Broca's Area Light-Sheet Microscopy`](https://doi.org/10.5281/zenodo.5517223)
 
 ## Microscopy imaging data
 
@@ -26,7 +28,7 @@ and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 {{ MACROS___make_filename_template("raw", datatypes=["micr"], suffixes=["TEM", "SEM", "uCT", "BF", "DF",
-"PC", "DIC", "FLUO", "CONF", "PLI", "CARS", "2PE", "MPE", "SR", "NLO", "OCT", "SPIM"], n_dupes_to_combine=4) }}
+"PC", "DIC", "FLUO", "CONF", "PLI", "CARS", "2PE", "MPE", "SR", "NLO", "OCT", "SPIM", "XPCT"], n_dupes_to_combine=4) }}
 
 Microscopy data MUST be stored in the `micr` directory.
 
@@ -53,12 +55,9 @@ Microscopy raw data MUST be stored in one of the following formats:
 
 -   [OME-TIFF](https://docs.openmicroscopy.org/ome-model/6.1.2/ome-tiff/specification.html#)
     (`.ome.tif` for standard TIFF files or `.ome.btf` for
-    [BigTIFF](https://www.awaresystems.be/imaging/tiff/bigtiff.html) files)
+    [BigTIFF](https://web.archive.org/web/20240706160214/https://www.awaresystems.be/imaging/tiff/bigtiff.html) files)
 
 -   [OME-ZARR/NGFF](https://ngff.openmicroscopy.org/latest/) (`.ome.zarr` directories)
-
-If different from PNG, TIFF, OME-TIFF, or OME-ZARR, the original unprocessed data in the native format MAY be
-stored in the [`/sourcedata` directory](../common-principles.md#source-vs-raw-vs-derived-data).
 
 ### Modality suffixes
 Microscopy data currently support the following imaging modalities:
@@ -89,6 +88,7 @@ and a guide for using macros can be found at
          "NLO",
          "OCT",
          "SPIM",
+         "XPCT",
       ]
    )
 }}
@@ -104,8 +104,8 @@ The [`sample-<label>`](../appendices/entities.md#sample) entity is REQUIRED for
 Microscopy data and is used to distinguish between different samples from the same subject.
 The label MUST be unique per subject and is RECOMMENDED to be unique throughout the dataset.
 
-For example: Three brain slices (`sample-01` to `sample-03`) extracted from subject `sub-01`,
-imaged by scanning electron microscopy (SEM) in PNG format
+For example, three brain slices (`sample-01` to `sample-03`) extracted from subject `sub-01`,
+imaged by scanning electron microscopy (SEM) in PNG format:
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
@@ -139,9 +139,9 @@ they are consistent across subjects and sessions.
 The [`stain-<label>`](../appendices/entities.md#stain) entity MAY be used to distinguish
 image files from the same sample using different stains or antibodies for contrast enhancement.
 
-For example: One brain slice (`sample-01`) extracted from subject `sub-01` with three
+For example, one brain slice (`sample-01`) extracted from subject `sub-01` with three
 stains (`stain-01`, `stain-02` and `stain-03`) in three separate files, imaged by selective plane
-illumination microscopy (SPIM) in OME-TIFF format
+illumination microscopy (SPIM) in OME-TIFF format:
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
@@ -162,8 +162,9 @@ A guide for using macros can be found at
    }
 ) }}
 
-In this example, the entity stain is used to distinguish images with different
-stains in separate files from the same sample.
+In this example, the [`stain-<label>`](../appendices/entities.md#stain) entity
+is used to distinguish images with different stains in separate files from the
+same sample.
 In the case where a single file contains different staining in each channel, the
 `stain-<label>` is omitted.
 
@@ -197,8 +198,8 @@ Figure 1: Examples of chunks configurations.
 -   d) and e) ordered 2D chunks on different 3D planes,
 -   f) ordered 3D chunks.
 
-For example: Four chunks (`chunk-01` to `chunk-04`) from the same brain sample (`sample-01`)
-of subject `sub-01`, imaged by confocal microscopy (CONF) in OME-TIFF format
+For example, four chunks (`chunk-01` to `chunk-04`) from the same brain sample (`sample-01`)
+of subject `sub-01`, imaged by confocal microscopy (CONF) in OME-TIFF format:
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
@@ -404,7 +405,7 @@ A guide for using macros can be found at
 
 ## Required Samples file
 
-For Microscopy data, the [Samples file](../modality-agnostic-files.md#samples-file)
+For Microscopy data, the [Samples file](../modality-agnostic-files/data-summary-files.md#samples-file)
 `samples.tsv` is REQUIRED and its associated sidecar `samples.json` file is RECOMMENDED.
 
 Additional optional columns MAY be used to describe other samples' attributes.
@@ -412,16 +413,16 @@ Additional optional columns MAY be used to describe other samples' attributes.
 ## Recommended Participants data
 
 For Microscopy data, we RECOMMEND to make use of the columns `species`, `strain` and
-`strain_rrid` in the [Participants file](../modality-agnostic-files.md#participants-file)
+`strain_rrid` in the [Participants file](../modality-agnostic-files/data-summary-files.md#participants-file)
 when applicable.
 
 Additional optional columns MAY be used to describe other subjects' attributes.
 
 `participants.tsv` example:
-```Text
-participant_id species strain strain_rrid
-sub-01 mus musculus C57BL/6J RRID:IMSR_JAX:000664
-sub-02 mus musculus C57BL/6J RRID:IMSR_JAX:000664
+```tsv
+participant_id	species	strain	strain_rrid
+sub-01	mus musculus	C57BL/6J	RRID:IMSR_JAX:000664
+sub-02	mus musculus	C57BL/6J	RRID:IMSR_JAX:000664
 ```
 
 `participants.json` example:
@@ -434,7 +435,7 @@ sub-02 mus musculus C57BL/6J RRID:IMSR_JAX:000664
         "Description": "name of the strain of the species"
     },
     "strain_rrid": {
-        "Description": "research resource identifier (RRID) of the strain (https://scicrunch.org/resources/data/source/nlx_154697-1/search)"
+        "Description": "research resource identifier (RRID) of the strain (https://rrid.site/data/source/nlx_154697-1/search)"
     }
 }
 ```

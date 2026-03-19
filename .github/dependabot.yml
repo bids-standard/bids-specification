@@ -1,10 +1,52 @@
 # Documentation
 # https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
 version: 2
+enable-beta-ecosystems: true
 updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
     labels:
       - "exclude-from-changelog"
+    groups:
+      actions-infrastructure:
+        patterns:
+         - "actions/*"
+    cooldown:
+      default-days: 14
+  - package-ecosystem: "uv"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    labels:
+      - "exclude-from-changelog"
+    groups:
+      build-dependencies:
+        patterns: ["*"]
+    cooldown:
+      default-days: 14
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    labels:
+      - "exclude-from-changelog"
+    groups:
+      node-utilities:
+        patterns: ["*"]
+    cooldown:
+      default-days: 14
+  - package-ecosystem: "npm"
+    target-branch: jsr-maint
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    labels:
+      - "exclude-from-changelog"
+      - "schema-code"
+    groups:
+      node-utilities:
+        patterns: ["*"]
+    cooldown:
+      default-days: 14

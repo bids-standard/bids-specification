@@ -1,0 +1,13 @@
+---
+descriptions:
+  selectors:
+    - dataset.dataset_description.DatasetType == 'derivative'
+  level: optional
+  suffixes:
+    - descriptions
+  extensions:
+    - .tsv
+    - .json
+  entities:
+    subject: optional
+    session: optional

@@ -1,15 +1,34 @@
 .PHONY:  tools/contributors.tsv
 
-validate_citation_cff: CITATION.cff
-	cffconvert --validate
+.PHONY: all serve install update_contributors formatschema
 
-update_contributors:
-	python tools/add_contributors.py
-	python tools/print_contributors.py
-	yarn all-contributors generate
+all:
+	@echo "Nothing is done by default. Consider following targets:"
+	@echo "  install -- prep environment"
+	@echo "  serve   -- prep environment and build and serve docs"
+	@echo "  formatschema -- format and commit(!) schema"
+
+serve: .venv
+	uv run mkdocs serve
+
+install: .venv node_modules
+
+node_modules: package.json package-lock.json
+	npm install
+
+.venv: pyproject.toml uv.lock
+	uv sync --frozen --group doc --group tools
+
+validate_citation_cff: CITATION.cff .venv
+	uv run cffconvert --validate
+
+update_contributors: .venv
+	uv run tools/add_contributors.py
+	uv run tools/print_contributors.py
+	npx all-contributors-cli generate
 
 runprettier:
-	prettier --write "src/schema/**/*.yaml"
+	npx prettier --write "src/schema/**/*.yaml"
 	python3 -m yamllint -f standard src/schema/ -c .yamllint.yml
 
 SCHEMA_CHANGES := $(shell git diff --name-only | grep src/schema/*.yaml)
@@ -23,6 +42,13 @@ commitschema:
 
 formatschema: runprettier commitschema
 
-all:
-
 .PHONY: runprettier commitschema
+
+schemacodedocs_clean:
+	uv run --group=doc sphinx-build -M clean tools/schemacode/docs tools/schemacode/docs/_build
+
+schemacodedocs_build: schemacodedocs_clean
+	uv run --group=doc sphinx-build -M html tools/schemacode/docs tools/schemacode/docs/_build
+
+schemacodedocs_serve: schemacodedocs_build
+	uv run python -m http.server -d tools/schemacode/docs/_build

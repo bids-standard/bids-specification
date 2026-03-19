@@ -4,12 +4,13 @@
     "preset-lint-recommended",
     "remark-gfm",
     ["lint-no-duplicate-headings", false],
-    ["lint-list-item-indent", "tab-size"],
+    ["lint-list-item-indent", "tab"],
     ["lint-emphasis-marker", "consistent"],
     ["lint-maximum-line-length", false],
     ["lint-maximum-heading-length", false],
     ["lint-no-shortcut-reference-link", false],
     ["lint-no-trailing-spaces"],
+    ["remark-lint-code-block-style", false],
     ["lint-no-undefined-references", false]
   ]
 }

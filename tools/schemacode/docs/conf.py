@@ -37,7 +37,7 @@ extensions = [
     "sphinx.ext.napoleon",
     "sphinx.ext.autodoc",
     "sphinx.ext.autosummary",
-    "myst_parser",
+    "myst_nb",
 ]
 
 autosummary_generate = True
@@ -48,13 +48,14 @@ templates_path = ["_templates"]
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = ["_build", "tests"]
+exclude_patterns = ["_build"]
 
 
 autosummary_mock_imports = [
     "pytest",
     # Mock internal modules to avoid building docs
     "bidsschematools.conftest",
+    "bidsschematools.tests",
 ]
 
 intersphinx_mapping = {"python": ("https://docs.python.org/3", None)}
@@ -76,3 +77,5 @@ html_theme_options = {
     "light_logo": "black_logo.svg",
     "dark_logo": "white_logo.svg",
 }
+
+myst_heading_anchors = 4

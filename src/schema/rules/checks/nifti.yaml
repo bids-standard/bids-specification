@@ -17,7 +17,7 @@ NiftiUnit:
   issue:
     code: NIFTI_UNIT
     message: |
-      NIfTI file's header field for unit information for x, y, z, and t dimensions is empty or too short.
+      NIfTI file's header field for unit information for x, y, z, and t dimensions is underspecified.
     level: warning
   selectors:
     - type(nifti_header) != "null"
@@ -30,12 +30,25 @@ NiftiPixdim:
   issue:
     code: NIFTI_PIXDIM
     message: |
-      NIfTI file's header field for pixel dimension information is empty or too short.
+      NIfTI file indicates 0-sized voxels.
     level: warning
   selectors:
+    - suffix != 'pet'
     - type(nifti_header) != "null"
   checks:
     - min(nifti_header.voxel_sizes) > 0
+
+NiftiPixdimPET:
+  issue:
+    code: NIFTI_PIXDIM_PET
+    message: |
+      NIfTI file indicates 0-sized voxels along spatial axes.
+    level: warning
+  selectors:
+    - suffix == 'pet'
+    - type(nifti_header) != "null"
+  checks:
+    - min([nifti_header.pixdim[1], nifti_header.pixdim[2], nifti_header.pixdim[3]]) > 0
 
 # 60
 XformCodes0:
@@ -49,3 +62,19 @@ XformCodes0:
     - nifti_header != null
   checks:
     - nifti_header.qform_code != 0 || nifti_header.sform_code != 0
+
+NiftiPEDir:
+  issue:
+    code: NIFTI_PE_DIRECTION_CONSISTENCY
+    message: |
+      The PhaseEncodingDirection and affine orientation indicate
+      that the entity value (one of AP, PA, RL, LR, SI, IS) may be inaccurate.
+    level: warning
+  selectors:
+    - type(nifti_header.axis_codes) != "null"
+    - intersects([entities.direction], ["AP", "PA", "RL", "LR", "SI", "IS"])
+    - sidecar.PhaseEncodingDirection
+  checks:
+    - |
+      entities.direction[2 - length(sidecar.PhaseEncodingDirection)]
+      == nifti_header.axis_codes[index(["i", "j", "k"], sidecar.PhaseEncodingDirection[0])]

@@ -1,224 +1,182 @@
+# This document implements the common derivatives specification,
+# generally adding space and description entities to most raw data.
+#
+# Imaging files are generally omitted, due to redundancy with imaging.yaml
 ---
-anat_nonparametric_common:
-  $ref: rules.files.raw.anat.nonparametric
-  entities:
-    $ref: rules.files.raw.anat.nonparametric.entities
-    space: optional
-    description: optional
-
-anat_parametric_common:
-  $ref: rules.files.raw.anat.parametric
-  entities:
-    $ref: rules.files.raw.anat.parametric.entities
-    space: optional
-    description: optional
-
-anat_defacemask_common:
-  $ref: rules.files.raw.anat.defacemask
-  entities:
-    $ref: rules.files.raw.anat.defacemask.entities
-    space: optional
-    description: optional
-
-anat_multiecho_common:
-  $ref: rules.files.raw.anat.multiecho
-  entities:
-    $ref: rules.files.raw.anat.multiecho.entities
-    space: optional
-    description: optional
-
-anat_multiflip_common:
-  $ref: rules.files.raw.anat.multiflip
-  entities:
-    $ref: rules.files.raw.anat.multiflip.entities
-    space: optional
-    description: optional
-
-anat_multiinversion_common:
-  $ref: rules.files.raw.anat.multiinversion
-  entities:
-    $ref: rules.files.raw.anat.multiinversion.entities
-    space: optional
-    description: optional
-
-anat_mp2rage_common:
-  $ref: rules.files.raw.anat.mp2rage
-  entities:
-    $ref: rules.files.raw.anat.mp2rage.entities
-    space: optional
-    description: optional
-
-anat_vfamt_common:
-  $ref: rules.files.raw.anat.vfamt
-  entities:
-    $ref: rules.files.raw.anat.vfamt.entities
-    space: optional
-    description: optional
-
-anat_mtr_common:
-  $ref: rules.files.raw.anat.mtr
-  entities:
-    $ref: rules.files.raw.anat.mtr.entities
-    space: optional
-    description: optional
-
 beh_noncontinuous_common:
-  $ref: rules.files.raw.beh.noncontinuous
+  $ref:
+    - meta.templates.deriv.base
+    - rules.files.raw.beh.noncontinuous
   entities:
-    $ref: rules.files.raw.beh.noncontinuous.entities
-    space: optional
-    description: optional
+    $ref:
+      - meta.templates.deriv.base.entities
+      - rules.files.raw.beh.noncontinuous.entities
 
-dwi_dwi_common:
-  $ref: rules.files.raw.dwi.dwi
+channels_channels_common:
+  $ref:
+    - meta.templates.deriv.base
+    - rules.files.raw.channels.channels
   entities:
-    $ref: rules.files.raw.dwi.dwi.entities
-    space: optional
-    description: optional
+    $ref:
+      - meta.templates.deriv.base.entities
+      - rules.files.raw.channels.channels.entities
 
-dwi_sbref_common:
-  $ref: rules.files.raw.dwi.sbref
+channels_channels__meg_common:
+  $ref:
+    - meta.templates.deriv.base
+    - rules.files.raw.channels.channels__meg
   entities:
-    $ref: rules.files.raw.dwi.sbref.entities
-    space: optional
-    description: optional
+    $ref:
+      - meta.templates.deriv.base.entities
+      - rules.files.raw.channels.channels__meg.entities
+
+channels_channels__motion_common:
+  $ref:
+    - meta.templates.deriv.base
+    - rules.files.raw.channels.channels__motion
+  entities:
+    $ref:
+      - meta.templates.deriv.base.entities
+      - rules.files.raw.channels.channels__motion.entities
+
+channels_coordsystem_common:
+  $ref:
+    - meta.templates.deriv.base
+    - rules.files.raw.channels.coordsystem
+  entities:
+    $ref:
+      - meta.templates.deriv.base.entities
+      - rules.files.raw.channels.coordsystem.entities
+
+channels_coordsystem__eeg_common:
+  $ref:
+    - meta.templates.deriv.base
+    - rules.files.raw.channels.coordsystem__eeg
+  entities:
+    $ref:
+      - meta.templates.deriv.base.entities
+      - rules.files.raw.channels.coordsystem__eeg.entities
+
+channels_electrodes_common:
+  $ref:
+    - meta.templates.deriv.base
+    - rules.files.raw.channels.electrodes
+  entities:
+    $ref:
+      - meta.templates.deriv.base.entities
+      - rules.files.raw.channels.electrodes.entities
+
+channels_electrodes__meg_common:
+  $ref:
+    - meta.templates.deriv.base
+    - rules.files.raw.channels.electrodes__meg
+  entities:
+    $ref:
+      - meta.templates.deriv.base.entities
+      - rules.files.raw.channels.electrodes__meg.entities
+
+channels_optodes_common:
+  $ref:
+    - meta.templates.deriv.base
+    - rules.files.raw.channels.optodes
+  entities:
+    $ref:
+      - meta.templates.deriv.base.entities
+      - rules.files.raw.channels.optodes.entities
 
 eeg_eeg_common:
-  $ref: rules.files.raw.eeg.eeg
+  $ref:
+    - meta.templates.deriv.spatial
+    - rules.files.raw.eeg.eeg
   entities:
-    $ref: rules.files.raw.eeg.eeg.entities
-    space: optional
-    description: optional
-
-fmap_fieldmaps_common:
-  $ref: rules.files.raw.fmap.fieldmaps
-  entities:
-    $ref: rules.files.raw.fmap.fieldmaps.entities
-    space: optional
-    description: optional
-
-fmap_pepolar_common:
-  $ref: rules.files.raw.fmap.pepolar
-  entities:
-    $ref: rules.files.raw.fmap.pepolar.entities
-    space: optional
-    description: optional
-
-fmap_TB1DAM_common:
-  $ref: rules.files.raw.fmap.TB1DAM
-  entities:
-    $ref: rules.files.raw.fmap.TB1DAM.entities
-    space: optional
-    description: optional
-
-fmap_TB1EPI_common:
-  $ref: rules.files.raw.fmap.TB1EPI
-  entities:
-    $ref: rules.files.raw.fmap.TB1EPI.entities
-    space: optional
-    description: optional
-
-fmap_RFFieldMaps_common:
-  $ref: rules.files.raw.fmap.RFFieldMaps
-  entities:
-    $ref: rules.files.raw.fmap.RFFieldMaps.entities
-    space: optional
-    description: optional
-
-fmap_TB1SRGE_common:
-  $ref: rules.files.raw.fmap.TB1SRGE
-  entities:
-    $ref: rules.files.raw.fmap.TB1SRGE.entities
-    space: optional
-    description: optional
-
-fmap_parametric_common:
-  $ref: rules.files.raw.fmap.parametric
-  entities:
-    $ref: rules.files.raw.fmap.parametric.entities
-    space: optional
-    description: optional
-
-func_func_common:
-  $ref: rules.files.raw.func.func
-  entities:
-    $ref: rules.files.raw.func.func.entities
-    space: optional
-    description: optional
-
-func_phase_common:
-  $ref: rules.files.raw.func.phase
-  entities:
-    $ref: rules.files.raw.func.phase.entities
-    space: optional
-    description: optional
+    $ref:
+      - meta.templates.deriv.spatial.entities
+      - rules.files.raw.eeg.eeg.entities
 
 ieeg_ieeg_common:
-  $ref: rules.files.raw.ieeg.ieeg
+  $ref:
+    - meta.templates.deriv.spatial
+    - rules.files.raw.ieeg.ieeg
   entities:
-    $ref: rules.files.raw.ieeg.ieeg.entities
-    space: optional
-    description: optional
+    $ref:
+      - meta.templates.deriv.spatial.entities
+      - rules.files.raw.ieeg.ieeg.entities
 
 meg_meg_common:
-  $ref: rules.files.raw.meg.meg
+  $ref:
+    - meta.templates.deriv.spatial
+    - rules.files.raw.meg.meg
   entities:
-    $ref: rules.files.raw.meg.meg.entities
-    space: optional
-    description: optional
+    $ref:
+      - meta.templates.deriv.spatial.entities
+      - rules.files.raw.meg.meg.entities
 
 meg_calibration_common:
-  $ref: rules.files.raw.meg.calibration
+  $ref:
+    - meta.templates.deriv.spatial
+    - rules.files.raw.meg.calibration
   entities:
-    $ref: rules.files.raw.meg.calibration.entities
-    space: optional
-    description: optional
+    $ref:
+      - meta.templates.deriv.spatial.entities
+      - rules.files.raw.meg.calibration.entities
 
 meg_crosstalk_common:
-  $ref: rules.files.raw.meg.crosstalk
+  $ref:
+    - meta.templates.deriv.spatial
+    - rules.files.raw.meg.crosstalk
   entities:
-    $ref: rules.files.raw.meg.crosstalk.entities
-    space: optional
-    description: optional
+    $ref:
+      - meta.templates.deriv.spatial.entities
+      - rules.files.raw.meg.crosstalk.entities
 
 meg_headshape_common:
-  $ref: rules.files.raw.meg.headshape
+  $ref:
+    - meta.templates.deriv.spatial
+    - rules.files.raw.meg.headshape
   entities:
-    $ref: rules.files.raw.meg.headshape.entities
-    space: optional
-    description: optional
+    $ref:
+      - meta.templates.deriv.spatial.entities
+      - rules.files.raw.meg.headshape.entities
 
 meg_markers_common:
-  $ref: rules.files.raw.meg.markers
+  $ref:
+    - meta.templates.deriv.spatial
+    - rules.files.raw.meg.markers
   entities:
-    $ref: rules.files.raw.meg.markers.entities
-    space: optional
-    description: optional
+    $ref:
+      - meta.templates.deriv.spatial.entities
+      - rules.files.raw.meg.markers.entities
 
 micr_microscopy_common:
-  $ref: rules.files.raw.micr.microscopy
+  $ref:
+    - meta.templates.deriv.spatial
+    - rules.files.raw.micr.microscopy
   entities:
-    $ref: rules.files.raw.micr.microscopy.entities
-    space: optional
-    description: optional
+    $ref:
+      - meta.templates.deriv.spatial.entities
+      - rules.files.raw.micr.microscopy.entities
 
-perf_asl_common:
-  $ref: rules.files.raw.perf.asl
+micr_microscopy_atlas:
+  $ref: rules.files.deriv.preprocessed_data.micr_microscopy_common
   entities:
-    $ref: rules.files.raw.perf.asl.entities
-    space: optional
-    description: optional
-
-pet_pet_common:
-  $ref: rules.files.raw.pet.pet
-  entities:
-    $ref: rules.files.raw.pet.pet.entities
-    space: optional
-    description: optional
+    $ref:
+      - meta.templates.atlas.base.entities
+      - rules.files.deriv.preprocessed_data.micr_microscopy_common.entities
 
 pet_blood_common:
-  $ref: rules.files.raw.pet.blood
+  $ref:
+    - meta.templates.deriv.spatial
+    - rules.files.raw.pet.blood
   entities:
-    $ref: rules.files.raw.pet.blood.entities
-    space: optional
-    description: optional
+    $ref:
+      - meta.templates.deriv.spatial.entities
+      - rules.files.raw.pet.blood.entities
+
+events_common:
+  $ref:
+    - meta.templates.deriv.base
+    - rules.files.raw.events.events
+  entities:
+    $ref:
+      - meta.templates.deriv.base.entities
+      - rules.files.raw.events.events.entities

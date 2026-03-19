@@ -1,17 +1,41 @@
 ---
-GzipHeaderFields:
+GzipHeaderMtime:
   issue:
-    code: GZIP_HEADER_DATA
+    code: GZIP_HEADER_MTIME
     message: |
-      The gzip header contains a non-zero timestamp or a non-empty filename and/or comment field.
-      These may leak sensitive information or indicate a non-reproducible conversion process.
+      The gzip header contains a non-zero timestamp.
+      This may leak sensitive information or indicate a non-reproducible conversion process.
     level: warning
   selectors:
     - match(extension, ".gz$")
     - gzip != null
   checks:
     - gzip.timestamp == 0
+
+GzipHeaderFilename:
+  issue:
+    code: GZIP_HEADER_FILENAME
+    message: |
+      The gzip header contains a non-empty filename.
+      This may leak sensitive information or indicate a non-reproducible conversion process.
+    level: warning
+  selectors:
+    - match(extension, ".gz$")
+    - gzip.filename
+  checks:
     - gzip.filename == ""
+
+GzipHeaderComment:
+  issue:
+    code: GZIP_HEADER_COMMENT
+    message: |
+      The gzip header contains a non-empty comment field.
+      This may leak sensitive information or indicate a non-reproducible conversion process.
+    level: warning
+  selectors:
+    - match(extension, ".gz$")
+    - gzip.comment
+  checks:
     - gzip.comment == ""
 
 CheckAge89:

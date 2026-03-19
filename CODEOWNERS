@@ -16,5 +16,5 @@
 /src/derivatives/diffusion-derivatives.md @francopestilli @oesteban @Lestropie
 
 # The schema
-/src/schema/ @tsalo @erdalkaraca
-/tools/schemacode/ @tsalo @erdalkaraca
+/src/schema/ @erdalkaraca
+/tools/schemacode/ @erdalkaraca

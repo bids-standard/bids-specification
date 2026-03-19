@@ -1,0 +1,53 @@
+---
+# This file describes metaentities (generic placeholder designations for one or more entities)
+# present in BIDS filenames.
+# WARNING: The metaentities are presented here in alphabetical order!
+# The appropriate order of entities in filenames is defined in `rules/entities.yaml`,
+# rather than this file (`objects/entities.yaml`).
+#
+# Example of wildcard "any" that could be used to denote all available data types:
+#
+# any:
+#   name: any
+#   display_name: any
+#   description: |
+#     `any` is used as a wildcard in BIDS filenames templates to denote
+#     that any acceptable value for the corresponding entity match the
+#     template pattern.
+
+#         For example, if employed in replacement of the `data_type` entity:
+
+#         ```Text
+#         sub-<label>/
+#             [ses-<label>/]
+#                 <any>/
+#                     sub-<label>_[ses-<label>]_events.<extension>
+#         ```
+
+#         this indicates that the filename pattern `sub-<label>_[ses-<label>]_events.<extension>`
+#         can be placed under any of the valid `data_type` directories.
+
+matches:
+  display_name: matches
+  description: |
+    `matches` is used as a placeholder in BIDS filenames templates to denote that several files
+    share exactly the same sequence of entities and labels in their basename.
+
+    For example, in the following filename template:
+
+    ```Text
+    <matches>_bold.nii.gz
+    <matches>_events.tsv
+    <matches>_events.json
+    ```
+
+    `<matches>` could correspond to `sub-control01_task-nback_run-1`.
+
+source-entities:
+  display_name: source entities
+  description: |
+    `source-entities` is used as a placeholder in BIDS derivatives filenames templates.
+
+    `source-entities` MUST be the entire source filename, with the omission of
+    the source suffix and extension.
+    One exception to this rule is filename entities that are no longer relevant.

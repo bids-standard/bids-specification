@@ -26,6 +26,10 @@
   result: false
 - expression: intersects(null, [])
   result: false
+- expression: allequal([], null)
+  result: false
+- expression: allequal(null, [])
+  result: false
 - expression: match(null, 'pattern')
   result: null
 - expression: match('string', null)
@@ -41,6 +45,8 @@
 - expression: max(null)
   result: null
 - expression: length(null)
+  result: null
+- expression: unique(null)
   result: null
 - expression: type(null)
   result: 'null'
@@ -70,6 +76,14 @@
 # General expressions
 - expression: 1 + 2
   result: 3
+- expression: 1 - 2
+  result: -1
+- expression: 3 * 4
+  result: 12
+- expression: 3 / 2
+  result: 1.5
+- expression: 3 % 2
+  result: 1
 - expression: '"cat" + "dog"'
   result: 'catdog'
 - expression: match('string', '.*')
@@ -89,7 +103,7 @@
 - expression: type(true)
   result: 'boolean'
 - expression: intersects([1], [1, 2])
-  result: true
+  result: [1]
 - expression: intersects([1], [])
   result: false
 - expression: length([1, 2, 3])
@@ -106,11 +120,40 @@
   result: null
 - expression: sorted([3, 2, 1])
   result: [1, 2, 3]
+- expression: sorted([1, 2, 5, 10], "lexical")
+  result: [1, 10, 2, 5]
+- expression: sorted(["1", "2", "5", "10"])
+  result: ["1", "10", "2", "5"]
+- expression: sorted(["1", "2", "5", "10"], "numeric")
+  result: ["1", "2", "5", "10"]
+- expression: sorted(["1", "2", "n/a"], "numeric")
+  result: ["1", "2", "n/a"]
+- expression: sorted(["n/a", "2", "1"], "numeric")
+  result: ["n/a", "1", "2"]
+- expression: allequal(sorted([3, 2, 1]), [1, 2, 3])
+  result: true
+# Regression test. Javascript will sort lexically by default.
+- expression: sorted([9, 81, 729, 6561])
+  result: [9, 81, 729, 6561]
 - expression: min([-1, "n/a", 1])
   result: -1
 - expression: max([-1, "n/a", 1])
   result: 1
+- expression: min(42)
+  result: 42
+- expression: max(42)
+  result: 42
 - expression: '[3, 2, 1][0]'
   result: 3
 - expression: '"string"[0]'
   result: 's'
+- expression: unique([])
+  result: []
+- expression: unique([52, -4, 3, 8, -4, 52, 9])
+  result: [52, -4, 3, 8, 9]
+- expression: unique(["52", "-4", "3", "8", "-4", "52", "9"])
+  result: ["52", "-4", "3", "8", "9"]
+- expression: unique([1, 1.0])
+  result: [1]
+- expression: unique([1.0, 1])
+  result: [1.0]

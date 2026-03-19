@@ -7,6 +7,10 @@ _EEGCoordSys:
     - $ref: objects.enums.EEGLAB.value
     - $ref: objects.enums.EEGLAB-HJ.value
     - $ref: objects.enums.Other.value
+_EMGCoordSys:
+  type: string
+  enum:
+    - $ref: objects.enums.Other.value
 _GeneticLevelEnum:
   type: string
   enum:
@@ -20,7 +24,8 @@ _MEGCoordSys:
   type: string
   enum:
     - $ref: objects.enums.CTF.value
-    - $ref: objects.enums.ElektaNeuromag.value
+    - $ref: objects.enums.ElektaNeuromag.value # deprecated
+    - $ref: objects.enums.NeuromagElektaMEGIN.value
     - $ref: objects.enums.4DBti.value
     - $ref: objects.enums.KitYokogawa.value
     - $ref: objects.enums.ChietiItab.value
@@ -43,7 +48,7 @@ _StandardTemplateCoordSys:
     - $ref: objects.enums.MNI152NLin2009bAsym.value
     - $ref: objects.enums.MNI152NLin2009cAsym.value
     - $ref: objects.enums.MNI152NLin6Sym.value
-    - $ref: objects.enums.MNI152NLin6ASym.value
+    - $ref: objects.enums.MNI152NLin6Asym.value
     - $ref: objects.enums.MNI305.value
     - $ref: objects.enums.NIHPD.value
     - $ref: objects.enums.OASIS30AntsOASISAnts.value
@@ -119,6 +124,11 @@ Absent:
   display_name: Absent
   description: |
     No specific M0 information is present.
+OneD:
+  value: 1D
+  display_name: One-dimensional
+  description: |
+    One-dimensional MR acquisition.
 TwoD:
   value: 2D
   display_name: Two-dimensional
@@ -307,6 +317,13 @@ ElektaNeuromag:
   display_name: Elekta Neuromag
   description: |
     RAS orientation and the origin between the ears.
+    [DEPRECATED](SPEC_ROOT/common-principles.md#definitions).
+    Dataset curators SHOULD use `NeuromagElektaMEGIN` instead.
+NeuromagElektaMEGIN:
+  value: NeuromagElektaMEGIN
+  display_name: Neuromag Elekta MEGIN
+  description: |
+    RAS orientation and the origin between the ears.
 4DBti:
   value: 4DBti
   display_name: 4D BTI
@@ -347,7 +364,7 @@ individual:
     In context of surfaces this space has been referred to as `fsnative`.
 
     In order for this space to be interpretable, `SpatialReference` metadata MUST be provided.
-study:
+study__space:
   value: study
   display_name: study
   description: |
@@ -355,6 +372,12 @@ study:
     This coordinate system requires specifying an additional file to be fully defined.
 
     In order for this space to be interpretable, `SpatialReference` metadata MUST be provided.
+study__datasettype:
+  value: study
+  display_name: study
+  description: |
+    A study BIDS dataset to organize the data for the entire study (original source data, raw BIDS,
+    derivatives) as a valid BIDS dataset.
 scanner:
   value: scanner
   display_name: scanner
@@ -392,34 +415,44 @@ fsaverage:
   value: fsaverage
   display_name: fsaverage
   description: |
-    The `fsaverage` is a **dual template** providing both volumetric and surface coordinates references.
-    The volumetric template corresponds to a FreeSurfer variant of `MNI305` space.
-    The `fsaverage` atlas also defines a surface reference system (formerly described as fsaverage[3|4|5|6|sym]).
+    The `fsaverage` is a surface reference system
+    (formerly described as fsaverage\[3\|4\|5\|6\|sym\]).
+    Additionally, by convention,
+    `fsaverage` is used as shorthand for a **dual template** providing both volumetric and
+    surface coordinates references,
+    where the surface template is `fsaverage` and the volumetric template corresponds to a
+    FreeSurfer variant of `MNI305` space.
 
     Used by Freesurfer.
 fsaverageSym:
   value: fsaverageSym
   display_name: fsaverageSym
   description: |
-    The `fsaverage` is a **dual template** providing both volumetric and surface coordinates references.
-    The volumetric template corresponds to a FreeSurfer variant of `MNI305` space.
-    The `fsaverageSym` atlas also defines a symmetric surface reference system
+    The `fsaverageSym` is a symmetric surface reference system
     (formerly described as `fsaveragesym`).
+    Additionally, by convention,
+    `fsaverageSym` is used as shorthand for a **dual template** providing both volumetric and
+    surface coordinates references,
+    where the surface template is `fsaverageSym` and the volumetric template corresponds to a
+    FreeSurfer variant of `MNI305` space.
 
     Used by Freesurfer.
 fsLR:
   value: fsLR
   display_name: fsLR
   description: |
-    The `fsLR` is a **dual template** providing both volumetric and surface coordinates references.
-    The volumetric template corresponds to `MNI152NLin6Asym`.
+    The `fsLR` is a surface template.
+    Additionally, by convention,
+    `fsLR` is used as shorthand for a **dual template** providing both volumetric and surface
+    coordinates references,
+    where the surface template is `fsLR` and the volumetric template corresponds to `MNI152NLin6Asym`.
     Surface templates are given at several sampling densities:
     164k (used by HCP pipelines for 3T and 7T anatomical analysis),
     59k (used by HCP pipelines for 7T MRI bold and DWI analysis),
     32k (used by HCP pipelines for 3T MRI bold and DWI analysis), or
     4k (used by HCP pipelines for MEG analysis) fsaverage_LR surface reconstructed from the T1w image.
 
-    Used by Freesurfer.
+    Used by Freesurfer and Connectome Workbench.
 MNIColin27:
   value: MNIColin27
   display_name: MNIColin27
@@ -489,9 +522,9 @@ MNI152NLin6Sym:
     Also known as symmetric ICBM 6th generation (non-linear coregistration).
 
     Used by FSL.
-MNI152NLin6ASym:
-  value: MNI152NLin6ASym
-  display_name: MNI152NLin6ASym
+MNI152NLin6Asym:
+  value: MNI152NLin6Asym
+  display_name: MNI152NLin6Asym
   description: |
     A variation of `MNI152NLin6Sym` built by A. Janke that is released as the _MNI template_ of FSL.
     Volumetric templates included with
@@ -727,11 +760,14 @@ LATENCY:
   value: LATENCY
   display_name: LATENCY
   tags:
+    - emg
     - motion
   description: |
     Latency of samples in seconds from recording onset.
     MUST be in form of `ss[.000000]`,
     where `[.000000]` is an optional subsecond resolution between 1 and 6 decimal points.
+    Note that `LATENCY` channels typically contain timestamps from an _external_ clock
+    source, often with the intent of synchronizing data across multiple devices.
 MAGN:
   value: MAGN
   display_name: MAGN
@@ -746,6 +782,7 @@ MISC:
   display_name: MISC
   tags:
     - eeg
+    - emg
     - meg
     - ieeg
     - fnirs
@@ -766,6 +803,7 @@ POS:
   value: POS
   display_name: POS
   tags:
+    - emg
     - motion
   description: |
     Position in space, one channel for each spatial axis.
@@ -803,6 +841,7 @@ EOG:
   display_name: EOG
   tags:
     - eeg
+    - emg
     - meg
     - ieeg
     - fnirs
@@ -813,6 +852,7 @@ ECG:
   display_name: ECG
   tags:
     - eeg
+    - emg
     - meg
     - ieeg
     - fnirs
@@ -823,6 +863,7 @@ EMG:
   display_name: EMG
   tags:
     - eeg
+    - emg
     - meg
     - ieeg
     - fnirs
@@ -850,6 +891,7 @@ HEOG:
   display_name: HEOG
   tags:
     - eeg
+    - emg
     - meg
     - ieeg
     - fnirs
@@ -877,6 +919,7 @@ REF:
   display_name: REF
   tags:
     - eeg
+    - emg
     - ieeg
   description: |
     Reference channel.
@@ -892,11 +935,14 @@ SYSCLOCK:
   display_name: SYSCLOCK
   tags:
     - eeg
+    - emg
     - meg
     - ieeg
     - fnirs
   description: |
-    System time showing elapsed time since trial started.
+    Elapsed time since trial/recording start, as provided by the recording device.
+    For device-external timestamp signals, use `LATENCY`.
+    For TTL-based synchronization signals, use `TRIG`.
 TEMP:
   value: TEMP
   display_name: TEMP
@@ -909,6 +955,7 @@ TRIG:
   display_name: TRIG
   tags:
     - eeg
+    - emg
     - meg
     - ieeg
     - fnirs
@@ -919,6 +966,7 @@ VEOG:
   display_name: VEOG
   tags:
     - eeg
+    - emg
     - meg
     - ieeg
     - fnirs
@@ -1222,27 +1270,45 @@ control:
   value: control
   display_name: control
   description: |
-    An ASL volume type: control
+    An ASL volume type: control.
+    The control image is acquired in the exact same way as the label image,
+    except that the magnetization of the blood flowing into the imaging region has not been inverted.
 label:
   value: label
   display_name: label
   description: |
-    An ASL volume type: label
+    An ASL volume type: label.
+    The label image is acquired in the exact same way as the control image,
+    except that the blood magnetization flowing into the imaging region has been inverted.
 m0scan:
   value: m0scan
   display_name: m0scan
   description: |
-    An ASL volume type: m0scan
+    An ASL volume type: m0scan.
+    The M0 image is a calibration image, used to estimate the equilibrium magnetization of blood.
+    These volumes may optionally be separated into a separate file with the ``m0scan`` suffix.
 deltam:
   value: deltam
   display_name: deltam
   description: |
-    An ASL volume type: deltam
+    An ASL volume type: deltam.
+    The deltaM image is a perfusion-weighted image, obtained by the subtraction of `control` - `label`.
 cbf:
   value: cbf
   display_name: cbf
   description: |
-    An ASL volume type: cbf
+    An ASL volume type: cbf.
+    The cerebral blood flow (CBF) image is produced by dividing the deltaM by the M0,
+    quantified into `mL/100g/min` (See also [doi:10.1002/mrm.25197](https://doi.org/10.1002/mrm.25197)).
+noRF:
+  value: noRF
+  display_name: noRF
+  description: |
+    An ASL volume type: noRF.
+    The no radio frequency excitation (noRF) image is a noise scan acquired by disabling the
+    radio frequency excitation,
+    while maintaining all other parameters from the associated scan.
+    These volumes may optionally be separated into a separate file with the ``noRF`` suffix.
 single_coil:
   value: single-coil
   display_name: single-coil
@@ -1405,3 +1471,13 @@ microvascular:
   display_name: microvascular
   description: |
     The origin of a tissue: microvascular
+PhysioTypeGeneric:
+  value: generic
+  display_name: Generic Physiological Recording
+  description: |
+    Unspecified physiological recording.
+PhysioTypeEyetrack:
+  value: eyetrack
+  display_name: Eye-tracking recording
+  description: |
+    A specific physiological recording type: eye-tracking.

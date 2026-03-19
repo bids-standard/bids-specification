@@ -30,3 +30,16 @@ sessions: # This file may only exist if session is present in the dataset.
     - .json
   entities:
     subject: required
+
+# Phenotype is a special case where there are no applicable entities, but a
+# parent directory is specified. This most closely matches datatype in the current
+# structure. We also require a stem that can match any value, as there are no
+# constraints on the filename except extension.
+phenotype:
+  level: optional
+  datatypes:
+    - phenotype
+  stem: '*'
+  extensions:
+    - .tsv
+    - .json
