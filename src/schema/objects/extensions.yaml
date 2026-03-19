@@ -251,6 +251,13 @@ set:
 
     The format used by the MATLAB toolbox [EEGLAB](https://sccn.ucsd.edu/eeglab/index.php).
     Each recording consists of a `.set` file with an optional `.fdt` file.
+shapegii:
+  value: .shape.gii
+  display_name: GIFTI Shape File
+  description: |
+    A GIFTI shape file.
+
+    This extension may only be used in derivative datasets.
 snirf:
   value: .snirf
   display_name: Shared Near Infrared Spectroscopy Format
