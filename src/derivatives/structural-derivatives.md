@@ -59,8 +59,8 @@ and a guide for using macros can be found at
 -   [`space-<label>`](../appendices/entities.md#space) is REQUIRED to disambiguate derivatives defined with
     respect to different [coordinate systems](../appendices/coordinate-systems.md), following the general
     BIDS-Derivatives specifications.
--   [`den-<label>`](../appendices/entities.md#den) is REQUIRED to disambiguate different surface sampling densities.
 
+-   [`den-<label>`](../appendices/entities.md#den) is REQUIRED to disambiguate different surface sampling densities.
 
 ## Surface-Mapped Anatomical Scalar Derivatives
 
@@ -136,7 +136,6 @@ and a guide for using macros can be found at
       ]
    )
 }}
-
 
 ## Morphometrics
 
