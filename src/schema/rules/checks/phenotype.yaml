@@ -1,6 +1,5 @@
 # Rules for phenotype files
 ---
-
 # 51
 PhenotypeSubjectsMissing:
   issue:
@@ -11,12 +10,12 @@ PhenotypeSubjectsMissing:
     level: error
   selectors:
     - datatype == 'phenotype'
-    - suffix == '.tsv'
+    - extension == '.tsv'
     - type(dataset.participant_tsv.participant_id) != 'null'
   checks:
     - |
       length(intersects(columns.participant_id, dataset.participant_tsv.participant_id))
-      == length(dataset.participant_tsv.participant_id)
+      == length(unique(columns.participant_id))
 
 PhenotypeSessionsRequired:
   issue:
@@ -26,8 +25,68 @@ PhenotypeSessionsRequired:
     level: error
   selectors:
     - datatype == 'phenotype'
-    - suffix == '.tsv'
+    - extension == '.tsv'
     - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
     - type(dataset.session_tsv) != 'null'
   checks:
     - type(columns.session_id) != 'null'
+
+PhenotypeSessionFileRequired:
+  issue:
+    code: PHENOTYPE_SESSION_FILE_REQUIRED
+    message: |
+      A phenotype TSV file contains a session_id column but no sessions.tsv file
+      was found at the dataset root. A sessions.tsv file is required to define
+      valid session labels.
+    level: error
+  selectors:
+    - datatype == 'phenotype'
+    - extension == '.tsv'
+    - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
+    - type(columns.session_id) != 'null'
+  checks:
+    - exists('sessions.tsv', 'dataset')
+
+PhenotypeSessionAggregation:
+  issue:
+    code: PHENOTYPE_SESSION_AGGREGATION
+    message: |
+      Participant-level sessions files (sub-<label>_sessions.tsv) must not exist
+      when a root sessions.tsv file is present. Session information should be
+      aggregated in the root sessions.tsv file.
+    level: error
+  selectors:
+    - suffix == 'sessions'
+    - extension == '.tsv'
+    - type(entities.subject) != 'null'
+  checks:
+    - "!exists('sessions.tsv', 'dataset')"
+
+PhenotypeSessionsMissing:
+  issue:
+    code: PHENOTYPE_SESSIONS_MISSING
+    message: |
+      Session directories were found in this dataset but no sessions.tsv file
+      exists at the dataset root. A sessions.tsv file is required when session
+      directories are present and Phenotype validation is enabled.
+    level: error
+  selectors:
+    - path == '/dataset_description.json'
+    - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
+    - length(glob("sub-*/ses-*")) > 0
+  checks:
+    - exists('sessions.tsv', 'dataset')
+
+PhenotypeSessionLevels:
+  issue:
+    code: PHENOTYPE_SESSION_LEVELS
+    message: |
+      The sessions.tsv sidecar must include a Levels field for session_id
+      to define valid session labels and their descriptions.
+    level: error
+  selectors:
+    - suffix == 'sessions'
+    - extension == '.tsv'
+    - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
+  checks:
+    - type(sidecar.session_id.Levels) != 'null'
