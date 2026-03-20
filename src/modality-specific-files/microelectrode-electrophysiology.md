@@ -55,15 +55,15 @@ The current list of allowed data file formats:
   </thead>
   <tbody>
     <tr>
-      <td><a href="https://nixio.readthedocs.io/en/latest/">Neuroscience Information Exchange Format</a></td>
+      <td><a href="https://nixio.readthedocs.io/en/latest/">Neuroscience Information Exchange Format</a> (NIX, <a href="https://scicrunch.org/resolver/RRID:SCR_016196">RRID:SCR_016196</a>)</td>
       <td><code>.nix</code></td>
       <td>
-        A generic and open framework with an hdf5 backend and a defined interface to many microephys formats via the
-        <a href="https://neo.readthedocs.io/en/latest/">Neo library</a>. The <code>.nix</code> file has to contain a valid Neo structure.
+        An open standard data model and API for annotated research data with an HDF5 file backend and a defined interface to many microephys formats via the
+        <a href="https://neo.readthedocs.io/en/latest/">Neo library</a> (<a href="https://scicrunch.org/resolver/RRID:SCR_000634">RRID:SCR_000634</a>). The <code>.nix</code> file has to contain a valid Neo structure.
       </td>
     </tr>
     <tr>
-      <td><a href="https://www.nwb.org">Neurodata Without Borders</a></td>
+      <td><a href="https://www.nwb.org">Neurodata Without Borders</a> (NWB, <a href="https://scicrunch.org/resolver/RRID:SCR_015242">RRID:SCR_015242</a>)</td>
       <td><code>.nwb</code></td>
       <td>
         An open data standard for neurophysiology, including data from intracellular and extracellular electrophysiology experiments.
@@ -78,7 +78,7 @@ Even though the duplication requires additional effort to ensure the consistency
 
 -   It makes the dataset easier for humans to scan, as essential information is easily accessible without loading the data files.
 -   The dataset adheres to the BIDS standard and can benefit from tools built on top of this standard, such as [bids-validator](https://github.com/bids-standard/bids-validator).
--   It simplifies the separation of data and basic metadata, enabling, for example, the publication of a dataset in a lightweight fashion with access to the data files on request (as implemented by [DataLad](https://www.datalad.org)).
+-   It simplifies the separation of data and basic metadata, enabling, for example, the publication of a dataset in a lightweight fashion with access to the data files on request (as implemented by [DataLad](https://www.datalad.org) ([RRID:SCR_003931](https://scicrunch.org/resolver/RRID:SCR_003931))).
 
 <!--
 This block generates a filename templates.
@@ -407,7 +407,7 @@ appendix.
 
 ### ProbeInterface Library
 
-[ProbeInterface](https://github.com/SpikeInterface/probeinterface) is a standard for specifying electrode layouts on probes.
+[ProbeInterface](https://github.com/SpikeInterface/probeinterface) (part of [SpikeInterface](https://spikeinterface.readthedocs.io), [RRID:SCR_021150](https://scicrunch.org/resolver/RRID:SCR_021150)) is a standard for specifying electrode layouts on probes.
 The [ProbeInterface library](https://github.com/SpikeInterface/probeinterface_library) includes layouts for many common probes.
 
 Probe information is specified in the `probes.json` sidecar file using the `model` field with `Levels` to define each probe model.
