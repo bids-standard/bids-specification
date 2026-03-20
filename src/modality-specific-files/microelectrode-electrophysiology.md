@@ -32,7 +32,7 @@ Within this modality, BIDS defines two datatypes based on fundamentally differen
 
 These datatypes differ in recording technique, signal amplitude, required metadata
 (for example, `pipette_solution` and `recording_mode` for icephys; probe geometry for ecephys),
-and analysis pipelines. The terms are established and used in [Neurodata Without Borders (NWB)](https://www.nwb.org) ([RRID:SCR_015242](https://scicrunch.org/resolver/RRID:SCR_015242)).
+and analysis pipelines. The terms are established and used in [Neurodata Without Borders (NWB)](https://www.nwb.org).
 
 Both datatypes share a unified BIDS structure (probes, electrodes, channels) with technique-specific optional metadata fields.
 Files are organized into `ecephys/` or `icephys/` subdirectories with corresponding file suffixes.
