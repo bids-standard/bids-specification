@@ -55,15 +55,15 @@ The current list of allowed data file formats:
   </thead>
   <tbody>
     <tr>
-      <td><a href="https://nixio.readthedocs.io/en/latest/">Neuroscience Information Exchange Format</a> (<a href="https://scicrunch.org/resolver/RRID:SCR_016196">RRID:SCR_016196</a>)</td>
+      <td><a href="https://nixio.readthedocs.io/en/latest/">Neuroscience Information Exchange Format</a> (NIX, <a href="https://scicrunch.org/resolver/RRID:SCR_016196">RRID:SCR_016196</a>)</td>
       <td><code>.nix</code></td>
       <td>
-        A generic and open framework with an hdf5 backend and a defined interface to many microephys formats via the
+        An open standard data model and API for annotated research data with an HDF5 file backend and a defined interface to many microephys formats via the
         <a href="https://neo.readthedocs.io/en/latest/">Neo library</a> (<a href="https://scicrunch.org/resolver/RRID:SCR_000634">RRID:SCR_000634</a>). The <code>.nix</code> file has to contain a valid Neo structure.
       </td>
     </tr>
     <tr>
-      <td><a href="https://www.nwb.org">Neurodata Without Borders</a></td>
+      <td><a href="https://www.nwb.org">Neurodata Without Borders</a> (NWB, <a href="https://scicrunch.org/resolver/RRID:SCR_015242">RRID:SCR_015242</a>)</td>
       <td><code>.nwb</code></td>
       <td>
         An open data standard for neurophysiology, including data from intracellular and extracellular electrophysiology experiments.
