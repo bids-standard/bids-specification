@@ -55,12 +55,13 @@ The following metadata fields are defined for media files:
 
 ### Duration
 
-| Field      | Suffix                          | Requirement Level |
-| ---------- | ------------------------------- | ----------------- |
-| `Duration` | `audio`, `video`, `audiovideo`  | RECOMMENDED       |
+| Field               | Suffix                         | Requirement Level |
+| ------------------- | ------------------------------ | ----------------- |
+| `RecordingDuration` | `audio`, `video`, `audiovideo` | RECOMMENDED       |
 
-`Duration` is the total duration of the media file in seconds.
-For audio-video files, this is the duration of the longest stream.
+`RecordingDuration` is the total duration of the media file in seconds.
+This reuses the existing BIDS metadata field already defined for
+electrophysiology recordings (EEG, iEEG, MEG, and others).
 
 ### Audio stream properties
 
@@ -148,7 +149,7 @@ A complete sidecar JSON file for an audio-video recording:
 
 ```json
 {
-    "Duration": 312.5,
+    "RecordingDuration": 312.5,
     "VideoCodec": "h264",
     "VideoCodecRFC6381": "avc1.640028",
     "FrameRate": 30,

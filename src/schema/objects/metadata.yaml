@@ -1064,15 +1064,6 @@ DoseCalibrationFactor:
     Corresponds to [DICOM Tag 0054, 1322](http://www.dicomlookup.com/dicomtags/(0054,1322))
     `Dose Calibration Factor`.
   type: number
-Duration:
-  name: Duration
-  display_name: Duration
-  description: |
-    Total duration of the media file, in seconds.
-    For audio-video files, this is the duration of the longest stream.
-  type: number
-  exclusiveMinimum: 0
-  unit: s
 DwellTime:
   name: DwellTime
   display_name: Dwell Time

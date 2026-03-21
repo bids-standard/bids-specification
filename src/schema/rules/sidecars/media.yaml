@@ -7,7 +7,7 @@ MediaDuration:
   selectors:
     - intersects([suffix], ["audio", "video", "audiovideo"])
   fields:
-    Duration: recommended
+    RecordingDuration: recommended
 
 MediaAudioProperties:
   selectors:
