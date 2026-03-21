@@ -11,6 +11,23 @@ Datatypes that incorporate media files (for example, behavioral recordings or st
 define their own file-naming rules, directory placement, and datatype-specific metadata.
 The conventions described here apply uniformly to all such datatypes.
 
+### Relationship to the `photo` suffix
+
+The media file definitions introduced here generalize the concept of all media in BIDS.
+The existing `photo` suffix (used for photographs of anatomical landmarks,
+head localization coils, and tissue samples) predates this framework and covers
+a narrower use case — still images in specific electrophysiology and microscopy datatypes.
+
+The media suffixes (`audio`, `video`, `audiovideo`, `image`) are intended as the
+general-purpose mechanism for all media content in BIDS.
+In practice, a "photo" could equally be a video of an experimental setup with verbal
+narration, an audio recording describing electrode placement, or a drawing rather than
+a photograph.
+The media file framework should be generally adopted for new datatypes,
+and a future proposal may deprecate the `photo` suffix in favor of the broader `image`
+suffix with appropriate migration tooling
+(see [bids-utils](https://github.com/bids-standard/bids-utils)).
+
 ## Supported Formats
 
 ### Audio formats
