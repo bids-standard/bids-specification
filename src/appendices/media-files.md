@@ -72,6 +72,10 @@ electrophysiology recordings (EEG, iEEG, MEG, and others).
 | `AudioChannelCount` | `audio`, `audiovideo` | RECOMMENDED       |
 | `AudioCodecRFC6381` | `audio`, `audiovideo` | OPTIONAL          |
 
+Note: `AudioSampleRate` is used instead of the existing `SamplingFrequency` field
+because audio-video files require distinguishing the audio sampling rate from the
+video frame rate. The `Audio` prefix makes this unambiguous in multi-stream containers.
+
 ### Visual properties
 
 | Field    | Suffix                              | Requirement Level |
