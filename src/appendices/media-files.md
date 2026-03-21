@@ -33,13 +33,13 @@ The conventions described here apply uniformly to all such datatypes.
 
 ### Image formats
 
-| Format                    | Extension | Description                                  |
-| ------------------------- | --------- | -------------------------------------------- |
-| JPEG                      | `.jpg`    | Lossy compressed photographic images         |
-| Portable Network Graphics | `.png`    | Lossless compressed images with transparency |
-| Scalable Vector Graphics  | `.svg`    | XML-based vector image format                |
-| WebP                      | `.webp`   | Modern format supporting lossy and lossless  |
-| Tag Image File Format     | `.tiff`   | Lossless format common in scientific imaging |
+| Format                    | Extension       | Description                                  |
+| ------------------------- | --------------- | -------------------------------------------- |
+| JPEG                      | `.jpg`          | Lossy compressed photographic images         |
+| Portable Network Graphics | `.png`          | Lossless compressed images with transparency |
+| Scalable Vector Graphics  | `.svg`          | XML-based vector image format                |
+| WebP                      | `.webp`         | Modern format supporting lossy and lossless  |
+| Tag Image File Format     | `.tif`, `.tiff` | Lossless format common in scientific imaging |
 
 When choosing a format, consider the trade-off between file size and data fidelity.
 Uncompressed or lossless formats (WAV, PNG, TIFF) preserve full quality
