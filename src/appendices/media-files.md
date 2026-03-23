@@ -68,26 +68,22 @@ at the cost of some data loss.
 
 Media files SHOULD be accompanied by a JSON sidecar file
 containing technical metadata about the media streams.
-The following metadata fields are defined for media files:
+The following metadata fields are defined for media files.
 
 ### Duration
 
-| Field               | Suffix                         | Requirement Level |
-| ------------------- | ------------------------------ | ----------------- |
-| `RecordingDuration` | `audio`, `video`, `audiovideo` | RECOMMENDED       |
+Applies to suffixes: `audio`, `video`, `audiovideo`.
 
-`RecordingDuration` is the total duration of the media file in seconds.
-This reuses the existing BIDS metadata field already defined for
+{{ MACROS___make_sidecar_table("media.MediaDuration") }}
+
+`RecordingDuration` reuses the existing BIDS metadata field already defined for
 electrophysiology recordings (EEG, iEEG, MEG, and others).
 
 ### Audio stream properties
 
-| Field               | Suffix                | Requirement Level |
-| ------------------- | --------------------- | ----------------- |
-| `AudioCodec`        | `audio`, `audiovideo` | RECOMMENDED       |
-| `AudioSampleRate`   | `audio`, `audiovideo` | RECOMMENDED       |
-| `AudioChannelCount` | `audio`, `audiovideo` | RECOMMENDED       |
-| `AudioCodecRFC6381` | `audio`, `audiovideo` | OPTIONAL          |
+Applies to suffixes: `audio`, `audiovideo`.
+
+{{ MACROS___make_sidecar_table("media.MediaAudioProperties") }}
 
 Note: `AudioSampleRate` is used instead of the existing `SamplingFrequency` field
 because audio-video files require distinguishing the audio sampling rate from the
@@ -95,18 +91,15 @@ video frame rate. The `Audio` prefix makes this unambiguous in multi-stream cont
 
 ### Visual properties
 
-| Field    | Suffix                              | Requirement Level |
-| -------- | ----------------------------------- | ----------------- |
-| `Width`  | `video`, `audiovideo`, `image`      | RECOMMENDED       |
-| `Height` | `video`, `audiovideo`, `image`      | RECOMMENDED       |
+Applies to suffixes: `video`, `audiovideo`, `image`.
+
+{{ MACROS___make_sidecar_table("media.MediaVisualProperties") }}
 
 ### Video stream properties
 
-| Field               | Suffix                | Requirement Level |
-| ------------------- | --------------------- | ----------------- |
-| `VideoCodec`        | `video`, `audiovideo` | RECOMMENDED       |
-| `FrameRate`         | `video`, `audiovideo` | RECOMMENDED       |
-| `VideoCodecRFC6381` | `video`, `audiovideo` | OPTIONAL          |
+Applies to suffixes: `video`, `audiovideo`.
+
+{{ MACROS___make_sidecar_table("media.MediaVideoProperties") }}
 
 ## Codec Identification
 
