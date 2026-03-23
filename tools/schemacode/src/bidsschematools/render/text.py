@@ -151,6 +151,12 @@ def make_glossary(schema, src_path=None):
         obj_desc = obj_def.get("description", None)
         if obj_desc is None:
             raise ValueError(f"{obj_marker} has no description.")
+        # A backslash before a newline means continue a string
+        obj_desc = obj_desc.replace("\\\n", "")
+        # Two newlines should be respected
+        obj_desc = obj_desc.replace("\n\n", "<br>")
+        # Otherwise a newline corresponds to a space
+        obj_desc = obj_desc.replace("\n", " ")
 
         if "sense 1" in obj_key:
             text += f'\n<a name="{obj_marker.split("__", 1)[0]}"></a>'
@@ -180,9 +186,7 @@ def make_glossary(schema, src_path=None):
             levels = [level["name"] if isinstance(level, dict) else level for level in levels]
             text += f"**Allowed values**: `{'`, `'.join(levels)}`\n\n"
 
-        # Convert description into markdown and append to text
-        obj_desc = MarkdownIt().render(f"**Description**:\n{obj_desc}")
-        text += f"{obj_desc}\n\n"
+        text += f"**Description**:\n{obj_desc}\n\n"
 
         reduced_obj_def = {k: v for k, v in obj_def.items() if k not in keys_to_drop}
 
