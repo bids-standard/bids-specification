@@ -7,6 +7,10 @@ combined audio-video recordings, and still images.
 This appendix defines the common file formats, metadata conventions,
 and codec identification schemes shared across all datatypes that use media files.
 
+The following media suffixes are defined:
+
+{{ MACROS___make_suffix_table(["audio", "video", "audiovideo", "image"]) }}
+
 Datatypes that incorporate media files (for example, behavioral recordings or stimuli)
 define their own file-naming rules, directory placement, and datatype-specific metadata.
 The conventions described here apply uniformly to all such datatypes.
