@@ -58,6 +58,7 @@ PhenotypeSessionAggregation:
   selectors:
     - suffix == 'sessions'
     - extension == '.tsv'
+    - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
     - type(entities.subject) != 'null'
   checks:
     - "!exists('sessions.tsv', 'dataset')"
