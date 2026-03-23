@@ -36,31 +36,15 @@ suffix with appropriate migration tooling
 
 ### Audio formats
 
-| Format                 | Extension | Description                                   |
-| ---------------------- | --------- | --------------------------------------------- |
-| Waveform Audio (WAV)   | `.wav`    | Uncompressed PCM audio; lossless, large files |
-| MP3                    | `.mp3`    | Lossy compressed audio; widely supported      |
-| Advanced Audio Coding  | `.aac`    | Lossy compressed audio; successor to MP3      |
-| Ogg Vorbis             | `.ogg`    | Open lossy compressed audio format            |
+{{ MACROS___make_extension_table(["wav", "mp3", "aac", "ogg"]) }}
 
 ### Video container formats
 
-| Format                 | Extension | Description                              |
-| ---------------------- | --------- | ---------------------------------------- |
-| MPEG-4 Part 14         | `.mp4`    | Widely supported multimedia container    |
-| Audio Video Interleave | `.avi`    | Legacy multimedia container              |
-| Matroska               | `.mkv`    | Open, flexible multimedia container      |
-| WebM                   | `.webm`   | Open format optimized for web delivery   |
+{{ MACROS___make_extension_table(["mp4", "avi", "mkv", "webm"]) }}
 
 ### Image formats
 
-| Format                    | Extension       | Description                                  |
-| ------------------------- | --------------- | -------------------------------------------- |
-| JPEG                      | `.jpg`          | Lossy compressed photographic images         |
-| Portable Network Graphics | `.png`          | Lossless compressed images with transparency |
-| Scalable Vector Graphics  | `.svg`          | XML-based vector image format                |
-| WebP                      | `.webp`         | Modern format supporting lossy and lossless  |
-| Tag Image File Format     | `.tif`, `.tiff` | Lossless format common in scientific imaging |
+{{ MACROS___make_extension_table(["jpg", "png", "svg", "webp", "tif", "tiff"]) }}
 
 When choosing a format, consider the trade-off between file size and data fidelity.
 Uncompressed or lossless formats (WAV, PNG, TIFF) preserve full quality
