@@ -290,6 +290,7 @@ expressions = [
 ]
 render = [
     { name = "markdown-it-py" },
+    { name = "numpy" },
     { name = "pandas" },
     { name = "pymdown-extensions" },
     { name = "tabulate" },
@@ -297,28 +298,30 @@ render = [
 
 [package.metadata]
 requires-dist = [
-    { name = "acres" },
-    { name = "bidsschematools", extras = ["expressions", "render", "validation"], marker = "extra == 'tests'" },
-    { name = "bidsschematools", extras = ["tests"], marker = "extra == 'all'" },
-    { name = "bidsschematools", extras = ["tests"], marker = "extra == 'dev'" },
-    { name = "check-jsonschema", marker = "extra == 'tests'" },
-    { name = "click" },
-    { name = "codecov", marker = "extra == 'tests'" },
-    { name = "coverage", extras = ["toml"], marker = "extra == 'tests'" },
-    { name = "jsonschema", extras = ["format"], marker = "extra == 'validation'" },
-    { name = "markdown-it-py", marker = "extra == 'render'" },
-    { name = "pandas", marker = "extra == 'render'" },
+    { name = "acres", specifier = ">=0.5" },
+    { name = "bidsschematools", extras = ["expressions", "render", "validation"], marker = "extra == 'all'" },
+    { name = "click", specifier = ">=8.1" },
+    { name = "jsonschema", extras = ["format"], marker = "extra == 'validation'", specifier = ">=4.22" },
+    { name = "markdown-it-py", marker = "extra == 'render'", specifier = ">=3.0" },
+    { name = "numpy", marker = "extra == 'render'", specifier = ">=1.26" },
+    { name = "pandas", marker = "extra == 'render'", specifier = ">=2.0" },
     { name = "pymdown-extensions", marker = "extra == 'render'", specifier = ">=9.2" },
-    { name = "pyparsing", marker = "extra == 'expressions'" },
-    { name = "pytest", marker = "extra == 'tests'", specifier = ">6" },
-    { name = "pytest-cov", marker = "extra == 'tests'" },
-    { name = "pyyaml" },
-    { name = "ruff", marker = "extra == 'dev'" },
-    { name = "tabulate", marker = "extra == 'render'" },
+    { name = "pyparsing", marker = "extra == 'expressions'", specifier = ">=3.2" },
+    { name = "pyyaml", specifier = ">=6.0" },
+    { name = "tabulate", marker = "extra == 'render'", specifier = ">=0.9" },
 ]
-provides-extras = ["validation", "dev", "expressions", "render", "tests", "all"]
+provides-extras = ["expressions", "render", "validation", "all"]
 
 [package.metadata.requires-dev]
+dev = [{ name = "ruff", specifier = ">=0.15.6" }]
+tests = [
+    { name = "bidsschematools", extras = ["all"] },
+    { name = "check-jsonschema", specifier = ">=0.36.2" },
+    { name = "coverage", extras = ["toml"], specifier = ">=7.10.7" },
+    { name = "pytest", specifier = ">=8.4.2" },
+    { name = "pytest-cov", specifier = ">=7.0.0" },
+    { name = "pytest-xdist", specifier = ">=3.8.0" },
+]
 types = [
     { name = "lxml", specifier = ">=6.0.2" },
     { name = "mypy", specifier = ">=1.18.2" },
