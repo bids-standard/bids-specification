@@ -556,6 +556,9 @@ export interface Schema {
       expression: string;
       result: unknown;
     }[];
+    templates?: {
+      [k: string]: unknown;
+    };
     versions: string[];
     [k: string]: unknown;
   };

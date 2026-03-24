@@ -82,6 +82,10 @@ export interface Associations {
      */
     aslcontext?: Aslcontext;
     /**
+     * Atlas description file
+     */
+    atlas_description?: AtlasDescription;
+    /**
      * B value file
      */
     bval?: Bval;
@@ -94,9 +98,13 @@ export interface Associations {
      */
     channels?: Channels;
     /**
-     * Coordinate system file
+     * Coordinate system file (first found)
      */
     coordsystem?: Coordsystem;
+    /**
+     * Coordinate system files (all)
+     */
+    coordsystems?: Coordsystems;
     /**
      * Electrodes file
      */
@@ -117,6 +125,10 @@ export interface Associations {
      * Magnitude1 image file
      */
     magnitude1?: Magnitude1;
+    /**
+     * Physiological recording file
+     */
+    physio?: Physio;
 }
 
 /**
@@ -135,6 +147,16 @@ export interface Aslcontext {
      * Contents of the volume_type column
      */
     volume_type?: string[];
+}
+
+/**
+ * Atlas description file
+ */
+export interface AtlasDescription {
+    /**
+     * Path to associated atlas description file
+     */
+    path: string;
 }
 
 /**
@@ -200,13 +222,31 @@ export interface Channels {
 }
 
 /**
- * Coordinate system file
+ * Coordinate system file (first found)
  */
 export interface Coordsystem {
     /**
      * Path to associated coordsystem file
      */
     path: string;
+}
+
+/**
+ * Coordinate system files (all)
+ */
+export interface Coordsystems {
+    /**
+     * ParentCoordinateSystem fields loaded from files
+     */
+    ParentCoordinateSystems: string[];
+    /**
+     * Paths to associated coordsystem files
+     */
+    paths: string[];
+    /**
+     * Space entity labels extracted from file names
+     */
+    spaces: string[];
 }
 
 /**
@@ -231,6 +271,10 @@ export interface Events {
      * Path to associated events file
      */
     path: string;
+    /**
+     * Sidecar metadata constructed via the inheritance principle
+     */
+    sidecar?: { [key: string]: any };
 }
 
 /**
@@ -261,6 +305,21 @@ export interface Magnitude1 {
      * Path to associated magnitude1 file
      */
     path: string;
+}
+
+/**
+ * Physiological recording file
+ */
+export interface Physio {
+    /**
+     * Path to associated physio file
+     */
+    path: string;
+    /**
+     * Sidecar metadata constructed via the inheritance principle
+     */
+    sidecar?: { [key: string]: any };
+    [property: string]: any;
 }
 
 /**
