@@ -115,7 +115,7 @@ exclude_also = [
 # uvx bump-my-version bump <patch|minor|major>
 # git push upstream <current-branch>
 [tool.bumpversion]
-current_version = "1.2.2-dev"
+current_version = "1.2.2"
 parse = """(?x)
     (?P<major>[0-9]+)
     \\.(?P<minor>[0-9]+)
