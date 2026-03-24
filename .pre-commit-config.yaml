@@ -4,8 +4,7 @@ ci:
   skip: [shellcheck]
   autoupdate_schedule: monthly
 
-exclude: 'tools/schemacode/src/bidsschematools/tests/data/broken_dataset_description.json'
-
+exclude: 'broken_dataset_description.json|uv.lock'
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
