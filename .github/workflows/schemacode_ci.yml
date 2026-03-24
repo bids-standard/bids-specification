@@ -44,7 +44,7 @@ jobs:
         if: ${{ startsWith(github.ref, 'refs/tags/schema-') }}
       - name: "Build archive on tag"
         run: |
-          uv run --extra=tests pytest -k make_archive
+          uv run --group=tests pytest -k make_archive
         working-directory: tools/schemacode
         env:
           BIDSSCHEMATOOLS_RELEASE: 1
