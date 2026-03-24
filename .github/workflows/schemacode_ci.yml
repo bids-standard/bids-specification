@@ -108,7 +108,7 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
 
       - name: Upload pytest test results
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: pytest-results-${{ matrix.os }}-${{ matrix.python-version }}-${{ matrix.dependencies }}-${{ matrix.architecture }}
           path: tools/schemacode/test-results.xml
