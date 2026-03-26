@@ -57,7 +57,7 @@ def test_selectors(schema_obj):
     # For directories of files, need to look three down
     for rules, level in (
         (schema_obj.rules.checks, 3),
-        (schema_obj.rules.dataset_metadata, 2),
+        (schema_obj.rules.json, 3),
         (schema_obj.rules.sidecars, 3),
         (schema_obj.rules.tabular_data, 3),
         (schema_obj.rules.errors, 2),
