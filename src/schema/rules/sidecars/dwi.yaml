@@ -9,12 +9,13 @@ MRIDiffusionMultipart:
   fields:
     MultipartID: optional
 
-# Other recommended metadata
+# Other recommended and optional metadata
 MRIDiffusionOtherMetadata:
   selectors:
     - datatype == "dwi"
     - suffix == "dwi"
     - match(extension, "^\.nii(\.gz)?$")
   fields:
+    MixingTime: optional
     PhaseEncodingDirection: recommended
     TotalReadoutTime: recommended
