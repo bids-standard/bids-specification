@@ -371,7 +371,7 @@ A guide for using macros can be found at
   },
 }) }}
 
-## Physiology "events"
+### Physiology "events"
 
 Discontinuous data associated with continuous recordings
 stored in `<matches>_physio.tsv.gz` files MAY be specified
@@ -510,13 +510,9 @@ the `OnsetSource` is set to `"n/a"` in `sub-01_task-nback_physioevents.json`:
 
 <!-- #!# This needs to be fixed -->
 
-### 2. JSON Data files
+**JSON Data files**. All metadata we are proposing are either **OPTIONAL** or **RECOMMENDED**, and they are meant to enrich the current `"generic"` `PhysioType`. However, we are also suggesting the introduction of a `"enriched"` `PhysioType`, that will differ from `"generic"` because one proposed metadata, `MeasureType`, will be **REQUIRED** rather than **RECOMMENDED**. Equally, the `Units` metadata will be **REQUIRED** instead of **RECOMMENDED** in this case.
 
-Metadata sidecar files (`<matches>_physio.json`) **SHOULD** define the field `PhysioType`. This field indicates a specific type of formatting, rather than a physiological modality. The `PhysioType` `"generic"` value, being the default, **MUST** be assumed if the `PhysioType` metadata is not defined.
-
-All metadata we are proposing are either **OPTIONAL** or **RECOMMENDED**, and they are meant to enrich the current `"generic"` `PhysioType`. However, we are also suggesting the introduction of a `"enriched"` `PhysioType`, that will differ from `"generic"` because one proposed metadata, `MeasureType`, will be **REQUIRED** rather than **RECOMMENDED**. Equally, the `Units` metadata will be **REQUIRED** instead of **RECOMMENDED** in this case.
-
-Compared to the current BIDS specification (1.10.0), at the file level we are adding one metadata, the **OPTIONAL** `SubjectPosition`, indicating the position of the subject during the data collection (see section 2.1).
+Compared to the current BIDS specification (1.10.0), at the file level we are adding one metadata, the **OPTIONAL** `SubjectPosition`, indicating the position of the subject during the data collection (see below "Metadata fields used in top level metadata").
 
 When specifying column names, columns **MUST** have unique names. All such data columns **MUST** be appropriately defined in the JSON metadata.
 
@@ -528,39 +524,33 @@ When specifying column names, columns **MUST** have unique names. All such data 
   "SamplingFrequency": 1000,
   "SubjectPosition": "sitting",
   "PhysioType": "enriched",
-  ...
   "screda1": {
     "MeasureType": "EDA-phasic",
     "Units": "mS",
     "Placement": "Thenar",
-    ...
   },
   "screda2": {
     "MeasureType": "EDA-tonic",
     "Units": "mS",
     "Placement": "Hypothenar",
-    ...
   },
   "ecg": {
     "MeasureType": "ECG",
     "Units": "mV",
     "Placement": "II",
-    ...
   },
   "ppg": {
     "MeasureType": "PPG",
     "Units": "au",
     "Placement": "Right earlobe",
-    ...
-  },
-  ...
+  }
 }
 ```
 
-As described in the following table (Section 2.2), this BEP is adding a few metadata to describe columns.
+As described in the table below ("Metadata fields for column description."), this BEP is adding a few metadata to describe columns.
 
 - The most important one is `MeasureType`, a **RECOMMENDED** metadata that indicates the actual nature of the data in the column. 
-    - This metadata value is a string that **MUST** come from a set of keywords (see table 2.2).
+    - This metadata value is a string that **MUST** come from a set of keywords.
     - This set of keywords can be expanded in the future to include more physiological modalities. 
     - When the file-level metadata `PhysioType` is `"enriched"`, `MeasureType` becomes a **REQUIRED** field for each column.
 
@@ -590,15 +580,15 @@ More information about the metadata entities contained in the JSON files can be 
 
 ---
 
-### 2.1 Metadata fields used in top level metadata 
+**Metadata fields used in top level metadata.** 
 
 {{ MACROS___make_sidecar_table(["continuous.Continuous"]) }}
 
-### 2.2 Metadata fields for column description
+**Metadata fields for column description.**
 
 {{ MACROS___make_columns_table("physio.PhysioColumns") }}
 
-### 2.3 MeasureType descriptions
+**MeasureType descriptions.**
 
 | **MeasureType** | **Name** | **Description** |
 |-----------------|----------|-----------------|
