@@ -1,0 +1,76 @@
+# This document implements the structural MRI derivatives specification.
+---
+cortical_surfaces:
+  $ref:
+    - meta.templates.deriv.base
+  entities:
+    $ref: meta.templates.raw.mri.entities
+  suffixes:
+    - white
+    - smoothwm
+    - pial
+    - midthickness
+    - inflated
+    - vinflated
+    - sphere
+    - flat
+  extensions:
+    - .json
+
+cortical_surfaces_giftis:
+  $ref: rules.files.deriv.structural_mri.cortical_surfaces
+  entities:
+    $ref: rules.files.deriv.structural_mri.cortical_surfaces.entities
+    hemisphere: required
+  extensions:
+    - .json
+    - .surf.gii
+
+cortical_surfaces_ciftis:
+  $ref: rules.files.deriv.structural_mri.cortical_surfaces
+  extensions:
+    - .json
+    - .dscalar.nii
+
+surface_mapped_scalars:
+  $ref:
+    - meta.templates.deriv.base
+  entities:
+    $ref: meta.templates.raw.mri.entities
+  suffixes:
+    - curv
+    - thickness
+    - area
+    - dist
+    - defects
+    - sulc
+    - T1wT2wratio
+    - distortion
+  extensions:
+    - .json
+
+surface_mapped_scalars_giftis:
+  $ref: rules.files.deriv.structural_mri.surface_mapped_scalars
+  entities:
+    $ref: rules.files.deriv.structural_mri.surface_mapped_scalars.entities
+    hemisphere: required
+  extensions:
+    - .json
+    - .shape.gii
+
+surface_mapped_scalars_ciftis:
+  $ref: rules.files.deriv.structural_mri.surface_mapped_scalars
+  extensions:
+    - .json
+    - .dscalar.nii
+
+morphometrics:
+  $ref:
+    - meta.templates.deriv.base
+  entities:
+    $ref: meta.templates.raw.mri.entities
+  suffixes:
+    - morph
+  extensions:
+    - .tsv
+    - .json
