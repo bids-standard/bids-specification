@@ -531,6 +531,13 @@ response_time:
     `n/a` denotes a missed response.
   type: number
   unit: s
+run_id:
+  name: run_id
+  display_name: Run ID
+  description: |
+    A run identifier that corresponds to an existing `run-<index>` entity used in a filename(s).
+  type: string
+  pattern: ^run-[0-9]+$
 sample_id:
   name: sample_id
   display_name: Sample ID
