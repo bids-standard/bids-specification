@@ -14,8 +14,8 @@ the TRX file format:
                 <source-entities>[space-<space>]_[tract-<tract name>]_[track-<tracking method>]_tractogram.json
 ```
 
-Where "tract” is the anatomical/structural entity that is being imaged, and
-“track” uses as its value one of the items in a controlled vocabulary.
+Where `tract` is the anatomical/structural entity that is being imaged, and
+`track` uses as its value one of the items in a controlled vocabulary.
 
 For example:
 
