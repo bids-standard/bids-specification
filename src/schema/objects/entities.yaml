@@ -512,6 +512,14 @@ volume:
     `BodyPartDetailsOntology` is OPTIONAL to also include.
   type: string
   format: label
+track:
+  name: track
+  display_name: Tractography Method
+  description: |
+    The `track-<label>` entity identifies the tractography method
+    employed to reconstruct white matter fiber streamlines.
+  type: string
+  format: label
 tracksys:
   name: tracksys
   display_name: Tracking System
@@ -524,5 +532,16 @@ tracksys:
     This entity corresponds to the `"TrackingSystemName"` metadata field in a *_motion.json file.
     `tracksys-<label>` entity is a concise string whereas `"TrackingSystemName"`
     may be longer and more human readable.
+  type: string
+  format: label
+tract:
+  name: tract
+  display_name: Anatomical Tract
+  description: |
+    The `tract-<label>` entity identifies the white matter fiber
+    anatomical/structural entity that is imaged through a
+    tractogram (for example, `tract-wholebrain` would correspond to a
+    whole-brain tractogram, whereas `tract-ArcuateFasciculus` would
+    correspond to a tractogram of the arcuate fasciculus).
   type: string
   format: label
