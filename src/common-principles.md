@@ -444,12 +444,12 @@ A guide for using macros can be found at
             "dicoms": {},
             "..." : "",
         },
-        "rawbids": {        
+        "rawbids": {
             "sub-01": {},
             "sub-02": {},
             "...": "",
             "dataset_description.json": "",
-            "...": "",            
+            "...": "",
         },
         "derivatives": {
             "pipeline1-v1": {},
@@ -465,7 +465,7 @@ A guide for using macros can be found at
 In this example, `sourcedata`, `rawbids`, and `derivatives` are top-level directories. **Only the `rawbids` directory** is a BIDS-compliant dataset.
 The subdirectories of `derivatives` MAY be BIDS-compliant derivatives datasets
 (see [Non-compliant derivatives](#non-compliant-derivatives) for further discussion).
-The above example is a fully compliant BIDS dataset, providing a convention useful for organizing source, raw BIDS, and derived BIDS data while maintaining conceptual and operational distinctions mentioned in the [Source vs. raw vs. derived data](#source-vs-raw-vs-derived-data) section. 
+The above example is a fully compliant BIDS dataset, providing a convention useful for organizing source, raw BIDS, and derived BIDS data while maintaining conceptual and operational distinctions mentioned in the [Source vs. raw vs. derived data](#source-vs-raw-vs-derived-data) section.
 When using this convention, `dataset_description.json` MUST have `DatasetType` set to `"study"`.  It is also RECOMMENDED to set the `SourceDatasets`
 field in `dataset_description.json` of each subdirectory of `derivatives` to:
 
