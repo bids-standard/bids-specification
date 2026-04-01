@@ -9,7 +9,7 @@ the [TRX file format](https://tee-ar-ex.github.io):
 <pipeline_name>/
     sub-<label>/
         [ses-<label>/]
-            <modality/
+            <modality>/
                 <source-entities>[space-<space>]_[tract-<tract name>]_[track-<tracking method>]_tractogram.trx
                 <source-entities>[space-<space>]_[tract-<tract name>]_[track-<tracking method>]_tractogram.json
 ```
