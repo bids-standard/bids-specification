@@ -167,21 +167,43 @@ references (the cases in which they are used will be presented later):
     (which are in turn references to individual values), and the references inside `GeneticLevel.anyOf` indicate that there may be a single
     such value or a list of values.
 
-1.  In [`rules.files.deriv.preprocessed_data`][preprocessed_data]:
+1.  In [`rules.files.deriv.imaging`](./rules/files/deriv/imaging.yaml):
     ```YAML
-    anat_nonparametric_common:
-      $ref: rules.files.raw.anat.nonparametric
+    anat_parametric_volumetric:
+      $ref: rules.files.raw.anat.parametric
       entities:
-        $ref: rules.files.raw.anat.nonparametric.entities
-        space: optional
-        description: optional
+        $ref:
+          - meta.templates.deriv.volumetric.entities
+          - rules.files.raw.anat.parametric.entities
     ```
     Here, the derivative datatype rule starts by copying the raw datatype rule
     `rules.files.raw.anat.nonparametric`.
     It then *overrides* the `entities` portion of that rule with a new object.
-    To *extend* the original `entities`, it again begins
-    by referencing `rules.files.raw.anat.nonparametric.entities`,
-    and adding the new entities `space` and `description`.
+    To *extend* the original `entities`, it composes
+    `meta.templates.deriv.volumetric.entities`
+    and `rules.files.raw.anat.nonparametric.entities`.
+    When multiple references are aggregated, the first reference takes
+    precedence.
+
+    Note also that `value: null` can be used to "delete" a key from a template.
+    For example, in `rules.files.raw.events`:
+
+    ```YAML
+    events__pet:
+      $ref: rules.files.raw.events.events
+      datatypes:
+        - pet
+      entities:
+        $ref: meta.templates.raw.task.entities
+        tracer: optional
+        reconstruction: optional
+        # Most events allow acquisition, PET doesn't
+        acquisition: null
+    ```
+
+    This technique should be used judiciously, preferring semantic clarity to brevity.
+    Templates should be expected to grow as BIDS evolves,
+    and should thus be used only where those changes should propagate.
 
 ### Expressions
 
@@ -497,18 +519,21 @@ The convention can be summed up in the following rules:
 #### Valid fields for definitions by sub-namespace
 
 -   `objects.common_principles`
+
     | Field          | Description         |
     | -------------- | ------------------- |
     | `display_name` | Human-friendly name |
     | `description`  | Term definition     |
 
 -   `objects.modalities`
+
     | Field          | Description         |
     | -------------- | ------------------- |
     | `display_name` | Human-friendly name |
     | `description`  | Term definition     |
 
 -   `objects.metaentities`
+
     | Field          | Description         |
     | -------------- | ------------------- |
     | `display_name` | Human-friendly name |
@@ -529,6 +554,7 @@ The convention can be summed up in the following rules:
     applies in certain contexts, that should be written in the specification, and not the schema.
 
 -   `objects.metadata`
+
     | Field          | Description                                                                          |
     | -------------- | ------------------------------------------------------------------------------------ |
     | `display_name` | Human-friendly name                                                                  |
@@ -543,6 +569,7 @@ The convention can be summed up in the following rules:
     | `*`            | JSON-schema fields to further constrain values                                       |
 
 -   `objects.columns`
+
     | Field          | Description                                                         |
     | -------------- | ------------------------------------------------------------------- |
     | `display_name` | Human-friendly name                                                 |
@@ -559,6 +586,7 @@ The convention can be summed up in the following rules:
     | `*`            | JSON-schema fields to further constrain values                      |
 
 -   `objects.datatypes`
+
     | Field          | Description                |
     | -------------- | -------------------------- |
     | `display_name` | Human-friendly name        |
@@ -566,6 +594,7 @@ The convention can be summed up in the following rules:
     | `value`        | String value of `datatype` |
 
 -   `objects.suffixes`
+
     | Field          | Description                                                    |
     | -------------- | -------------------------------------------------------------- |
     | `display_name` | Human-friendly name                                            |
@@ -577,6 +606,7 @@ The convention can be summed up in the following rules:
     | `anyOf`        | Used to describe multiple permissible units                    |
 
 -   `objects.extensions`
+
     | Field          | Description                 |
     | -------------- | --------------------------- |
     | `display_name` | Human-friendly name         |
@@ -584,6 +614,7 @@ The convention can be summed up in the following rules:
     | `value`        | String value of `extension` |
 
 -   `objects.formats`
+
     | Field          | Description                        |
     | -------------- | ---------------------------------- |
     | `display_name` | Human-friendly name                |
@@ -591,6 +622,7 @@ The convention can be summed up in the following rules:
     | `pattern`      | Regular expression defining format |
 
 -   `objects.files`
+
     | Field          | Description                                                                          |
     | -------------- | ------------------------------------------------------------------------------------ |
     | `display_name` | Human-friendly name                                                                  |
@@ -598,6 +630,7 @@ The convention can be summed up in the following rules:
     | `file_type`    | Indicator that the file is a regular file (`"regular"`) or directory (`"directory"`) |
 
 -   `objects.enums`
+
     | Field          | Description            |
     | -------------- | ---------------------- |
     | `display_name` | Human-friendly name    |
@@ -1074,5 +1107,4 @@ ensuring consistency across the entire schema directory. Validation of the schem
 incorporated into the CI, so any changes that are inconsistent will be flagged before
 inclusion.
 
-[preprocessed_data]: https://github.com/bids-standard/bids-specification/tree/master/src/schema/rules/files/deriv/preprocessed_data.yaml
 [tabular files]: https://bids-specification.readthedocs.io/en/stable/common-principles.html#tabular-files

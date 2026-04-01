@@ -10,7 +10,7 @@ data.
 
 If BIDS is new to you, and you would like to learn more about how to adapt your
 own datasets to match the BIDS specification, we recommend exploring the
-[BIDS Starter Kit](https://bids-standard.github.io/bids-starter-kit/).
+[BIDS Starter Kit](https://bids.neuroimaging.io/getting_started/).
 Alternatively, to get started please read [the introduction to the specification](introduction.md).
 
 For an overview of the BIDS ecosystem, visit the [BIDS homepage](https://bids.neuroimaging.io).

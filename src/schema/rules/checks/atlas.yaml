@@ -1,0 +1,27 @@
+AtlasDescriptionRequired:
+  issue:
+    code: ATLAS_DESCRIPTION_REQUIRED
+    message: |
+      No /atlas-{entities.atlas}_description.json could be found.
+    level: error
+  selectors:
+    - dataset.dataset_description.DatasetType == "derivative"
+    - entities.atlas
+    - entities.template
+    - extension != '.json'
+  checks:
+    - associations.atlas_description
+
+AtlasDescriptionRecommended:
+  issue:
+    code: ATLAS_DESCRIPTION_RECOMMENDED
+    message: |
+      No /atlas-{entities.atlas}_description.json could be found.
+    level: warning
+  selectors:
+    - dataset.dataset_description.DatasetType == "derivative"
+    - entities.atlas
+    - type(entities.template) == 'null'
+    - extension != '.json'
+  checks:
+    - associations.atlas_description

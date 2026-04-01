@@ -73,7 +73,8 @@ def _make_object_table(
         # except for subobjects (if table_type) and
         # "additional columns" (field_name.startswith("**"))
         if table_type and not field_name.startswith("**"):
-            field_name = f"[{field_name}]({GLOSSARY_PATH}.md#objects.{table_type}.{element})"
+            sub = table_type if table_type != "subobject" else "metadata"
+            field_name = f"[{field_name}]({GLOSSARY_PATH}.md#objects.{sub}.{element})"
 
         # Grab any requirement level information and text to be added to the description string
         requirement_info, description_addendum = field_info[element]["table_info"]
@@ -297,6 +298,8 @@ def make_entity_table(schema, tablefmt="github", src_path=None, **kwargs):
     formats = ["Format"]
     table = [formats]
 
+    suffix_map = {obj.value: key for key, obj in schema.objects.suffixes.items()}
+
     # Compose header and formats first
     for long_name in schema.rules.entities:
         entity = schema.objects.entities[long_name]
@@ -320,7 +323,8 @@ def make_entity_table(schema, tablefmt="github", src_path=None, **kwargs):
 
     for (dtype, entities), suffixes in rows.items():
         suf_str = " ".join(
-            f"[{suffix}]({GLOSSARY_PATH}.md#objects.suffixes.{suffix})" for suffix in suffixes
+            f"[{suffix}]({GLOSSARY_PATH}.md#objects.suffixes.{suffix_map[suffix]})"
+            for suffix in suffixes
         )
         # TODO: <br> is specific for html form
         fmt_str = f"[{dtype}]({GLOSSARY_PATH}.md#objects.datatypes.{dtype})<br>({suf_str})"
