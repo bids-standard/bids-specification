@@ -21,7 +21,7 @@ study:
     subdirs:
       - code
       - docs
-      - rawdata
+      - rawbids
       - derivatives
       - logs
       - sourcedata
@@ -34,8 +34,8 @@ study:
     name: docs
     level: optional
     opaque: true
-  rawdata:
-    name: rawdata
+  rawbids:
+    name: rawbids
     level: optional
     opaque: true
   derivatives:

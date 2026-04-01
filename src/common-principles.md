@@ -431,7 +431,7 @@ datasets and non-compliant derivatives.
 
 ## Study dataset
 
-BIDS allows one to organize the data for the entire study (original source data, raw BIDS, derivatives) as a valid BIDS dataset in the following way
+BIDS allows one to organize the source, raw, and derived data for the entire study as a valid BIDS dataset (see `study` [`DatasetType`](./glossary.md#session-entities)) in the following way
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
@@ -442,14 +442,14 @@ A guide for using macros can be found at
     "study-1": {
         "sourcedata": {
             "dicoms": {},
-            "raw": {
-                "sub-01": {},
-                "sub-02": {},
-                "...": "",
-                "dataset_description.json": "",
-				"...": "",
-            },
             "..." : "",
+        },
+        "rawbids": {        
+            "sub-01": {},
+            "sub-02": {},
+            "...": "",
+            "dataset_description.json": "",
+            "...": "",            
         },
         "derivatives": {
             "pipeline1-v1": {},
@@ -462,12 +462,11 @@ A guide for using macros can be found at
    }
 ) }}
 
-In this example, `sourcedata/dicoms` is not nested inside
-`sourcedata/raw`, **and only the `sourcedata/raw` subdirectory** is a BIDS-compliant dataset among `sourcedata/` subfolders.
+In this example, `sourcedata`, `rawbids`, and `derivatives` are top-level directories. **Only the `rawbids` directory** is a BIDS-compliant dataset.
 The subdirectories of `derivatives` MAY be BIDS-compliant derivatives datasets
 (see [Non-compliant derivatives](#non-compliant-derivatives) for further discussion).
-The above example is a fully compliant BIDS dataset, providing a convention useful for organizing source, raw BIDS, and derived BIDS data while maintaining overall BIDS compliance.
-When using this convention, `dataset_description.json` MUST have `DatasetType` to be set to `"study"`.  It is also RECOMMENDED to set the `SourceDatasets`
+The above example is a fully compliant BIDS dataset, providing a convention useful for organizing source, raw BIDS, and derived BIDS data while maintaining conceptual and operational distinctions mentioned in the [Source vs. raw vs. derived data](#source-vs-raw-vs-derived-data) section. 
+When using this convention, `dataset_description.json` MUST have `DatasetType` set to `"study"`.  It is also RECOMMENDED to set the `SourceDatasets`
 field in `dataset_description.json` of each subdirectory of `derivatives` to:
 
 ```JSON
