@@ -48,7 +48,7 @@ study:
     subdirs:
       - subprov
   subprov:
-    entity: prov
+    entity: provenance
     level: optional
     opaque: false
   sourcedata:
@@ -95,7 +95,7 @@ raw:
     subdirs:
       - subprov
   subprov:
-    entity: prov
+    entity: provenance
     level: optional
     opaque: false
   sourcedata:
@@ -171,7 +171,7 @@ derivative:
     subdirs:
       - subprov
   subprov:
-    entity: prov
+    entity: provenance
     level: optional
     opaque: false
   sourcedata:
