@@ -467,7 +467,7 @@ The subdirectories of `derivatives` MAY be BIDS-compliant derivatives datasets
 (see [Non-compliant derivatives](#non-compliant-derivatives) for further discussion).
 The above example is a fully compliant BIDS dataset, providing a convention useful for organizing source, raw BIDS, and derived BIDS data
 while maintaining conceptual and operational distinctions mentioned in [Source vs. raw vs. derived data](#source-vs-raw-vs-derived-data).
-When using this convention, `dataset_description.json` MUST have `DatasetType` set to `"study"`. 
+When using this convention, `dataset_description.json` MUST have `DatasetType` set to `"study"`.
 It is also RECOMMENDED to set the `SourceDatasets` field in `dataset_description.json` of each subdirectory of `derivatives` to:
 
 ```JSON
