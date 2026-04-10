@@ -237,6 +237,42 @@ AttenuationCorrectionMethodReference:
   description: |
     Reference paper for the attenuation correction method used.
   type: string
+AudioChannelCount:
+  name: AudioChannelCount
+  display_name: Audio Channel Count
+  description: |
+    Number of audio channels in the audio or audio-video file
+    (for example, `1` for mono, `2` for stereo).
+  type: integer
+  minimum: 1
+AudioCodec:
+  name: AudioCodec
+  display_name: Audio Codec
+  description: |
+    The audio codec used to encode the audio stream, expressed as an
+    [FFmpeg codec name](https://www.ffmpeg.org/ffmpeg-codecs.html)
+    (for example, `"aac"`, `"mp3"`, `"opus"`, `"flac"`, `"pcm_s16le"`).
+    This value can be auto-extracted using
+    `ffprobe -v quiet -print_format json -show_streams`.
+  type: string
+AudioCodecRFC6381:
+  name: AudioCodecRFC6381
+  display_name: Audio Codec (RFC 6381)
+  description: |
+    The audio codec expressed as an
+    [RFC 6381](https://datatracker.ietf.org/doc/html/rfc6381) codec string
+    (for example, `"mp4a.40.2"` for AAC-LC).
+    This representation is useful for web and broadcast interoperability.
+  type: string
+AudioSampleRate:
+  name: AudioSampleRate
+  display_name: Audio Sample Rate
+  description: |
+    Sampling frequency of the audio stream, in Hz
+    (for example, `44100`, `48000`, `96000`).
+  type: number
+  exclusiveMinimum: 0
+  unit: Hz
 Authors:
   name: Authors
   display_name: Authors
@@ -1544,6 +1580,15 @@ FlipAngle:
         unit: degree
         exclusiveMinimum: 0
         maximum: 360
+FrameRate:
+  name: FrameRate
+  display_name: Frame Rate
+  description: |
+    The video frame rate of the video stream, in Hz
+    (for example, `24`, `25`, `29.97`, `30`, `60`).
+  type: number
+  exclusiveMinimum: 0
+  unit: Hz
 OnsetSource:
   name: OnsetSource
   display_name: Column Name of the Onset Source
@@ -1767,6 +1812,14 @@ HardwareFilters:
     - type: string
       enum:
         - n/a
+Height:
+  name: Height
+  display_name: Height
+  description: |
+    Height of the video frame or image, in pixels.
+  type: integer
+  minimum: 1
+  unit: px
 HeadCircumference:
   name: HeadCircumference
   display_name: Head Circumference
@@ -4496,6 +4549,25 @@ VisionCorrection:
     Equipment used to correct participant vision during an experiment.
     Example: "spectacles", "lenses", "none".
   type: string
+VideoCodec:
+  name: VideoCodec
+  display_name: Video Codec
+  description: |
+    The video codec used to encode the video stream, expressed as an
+    [FFmpeg codec name](https://www.ffmpeg.org/ffmpeg-codecs.html)
+    (for example, `"h264"`, `"hevc"`, `"vp9"`, `"av1"`).
+    This value can be auto-extracted using
+    `ffprobe -v quiet -print_format json -show_streams`.
+  type: string
+VideoCodecRFC6381:
+  name: VideoCodecRFC6381
+  display_name: Video Codec (RFC 6381)
+  description: |
+    The video codec expressed as an
+    [RFC 6381](https://datatracker.ietf.org/doc/html/rfc6381) codec string
+    (for example, `"avc1.640028"` for H.264 High Profile Level 4.0).
+    This representation is useful for web and broadcast interoperability.
+  type: string
 VolumeTiming:
   name: VolumeTiming
   display_name: Volume Timing
@@ -4531,6 +4603,14 @@ WholeBloodAvail:
     If `true`, the `whole_blood_radioactivity` column MUST be present in the
     corresponding `*_blood.tsv` file.
   type: boolean
+Width:
+  name: Width
+  display_name: Width
+  description: |
+    Width of the video frame or image, in pixels.
+  type: integer
+  minimum: 1
+  unit: px
 WithdrawalRate:
   name: WithdrawalRate
   display_name: Withdrawal Rate
