@@ -1,5 +1,7 @@
 ---
 pet:
+  selectors:
+    - '!("tpl" in entities)'
   suffixes:
     - pet
   extensions:
@@ -12,6 +14,8 @@ pet:
     $ref: meta.templates.raw.pet.entities
 
 blood:
+  selectors:
+    - '!("tpl" in entities)'
   suffixes:
     - blood
   extensions:
