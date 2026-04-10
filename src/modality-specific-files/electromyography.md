@@ -8,7 +8,7 @@ this extension when referring to it in the context of the academic literature.
 !!! example "Example datasets"
 
     Electromyography datasets formatted according to this specification are available on
-    the [BIDS examples repository](https://github.com/bids-standard/bids-examples#emg)
+    the [BIDS examples repository](https://bids.neuroimaging.io/datasets/examples.html#emg)
     and can be emulated when curating new datasets.
 
 ## EMG data

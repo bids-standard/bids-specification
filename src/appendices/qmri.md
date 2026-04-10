@@ -213,7 +213,7 @@ A guide for using macros can be found at
 ### Example datasets
 
 You can find example file collections and qMRI maps organized according to BIDS
-in the [BIDS examples](https://bids-standard.github.io/bids-examples/#qmri).
+in the [BIDS examples](https://bids.neuroimaging.io/datasets/examples.html#qmri).
 
 ## Metadata requirements for qMRI data
 

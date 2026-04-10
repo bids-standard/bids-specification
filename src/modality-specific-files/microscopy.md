@@ -10,7 +10,7 @@ context of the academic literature.
 !!! example "Example datasets"
 
       Microscopy datasets formatted using this specification are available on the
-      [BIDS examples repository](https://bids-standard.github.io/bids-examples/#microscopy)
+      [BIDS examples repository](https://bids.neuroimaging.io/datasets/examples.html#microscopy)
       and can be used for practical guidance when curating a new dataset.
 
       Further Microscopy datasets are available:
