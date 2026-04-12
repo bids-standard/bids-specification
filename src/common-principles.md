@@ -480,8 +480,13 @@ field in `dataset_description.json` of each subdirectory of `derivatives` to:
 
 ### Imaging files
 
-All imaging data MUST be stored using the NIfTI file format. We RECOMMEND using
-compressed NIfTI files (.nii.gz), either version 1.0 or 2.0. If using compressed files,
+Imaging data SHOULD be stored using the NIfTI file format.
+Large imaging data MAY instead be stored using the
+[OME-Zarr (OME-NGFF)](https://ngff.openmicroscopy.org/) file format.
+
+#### NIfTI
+
+We RECOMMEND using compressed NIfTI files (.nii.gz), either version 1.0 or 2.0. If using compressed files,
 the gzip header SHOULD lack source filenames and timestamps. Imaging data SHOULD
 be converted to the NIfTI format using a tool that provides as much of the NIfTI
 header information (such as orientation and slice timing information) as
