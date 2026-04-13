@@ -506,6 +506,24 @@ The [BIDS-validator](https://github.com/bids-standard/bids-validator)
 will check for conflicts between the JSON file and the data recorded in the
 NIfTI header.
 
+#### OME-Zarr
+
+[Zarr](https://zarr-specs.readthedocs.io/) is a chunked, cloud-optimized format that provides efficient access to
+large multidimensional datasets without requiring a full download.
+[OME-Zarr](https://ngff.openmicroscopy.org/), developed by the Open Microscopy Environment (OME),
+extends Zarr with bioimaging-specific metadata.
+OME-Zarr is particularly suitable for very large imaging volumes (for example, high-resolution
+ex vivo MRI) where NIfTI would be impractical for streaming or web-based visualization.
+
+OME-Zarr filesets are stored with the `.ome.zarr` extension.
+Spatial metadata (such as the axis names and units, and coordinate transformations) SHOULD
+be stored within the OME-Zarr metadata following the
+[OME-Zarr version 0.5 specification](https://ngff.openmicroscopy.org/specifications/0.5/index.html)
+(the latest released version).
+Extended support for coordinate systems and transformations is described in
+[RFC-5: Coordinate Systems and Transformations](https://ngff.openmicroscopy.org/rfc/5/index.html)
+(draft, expected to be released as part of OME-Zarr version 0.6).
+
 ### Tabular files
 
 Tabular data MUST be saved as plain-text, tab-delimited values (TSV) files
