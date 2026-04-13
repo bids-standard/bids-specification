@@ -7,6 +7,7 @@ func:
   extensions:
     - .nii.gz
     - .nii
+    - .ome.zarr
     - .json
   datatypes:
     - func

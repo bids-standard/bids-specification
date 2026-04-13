@@ -6,6 +6,7 @@ asl:
   extensions:
     - .nii.gz
     - .nii
+    - .ome.zarr
     - .json
   datatypes:
     - perf
