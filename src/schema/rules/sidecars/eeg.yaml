@@ -71,13 +71,7 @@ EEGRecommended:
     EMGChannelCount: recommended
     EOGChannelCount: recommended
     MiscChannelCount: recommended
-    MISCChannelCount:
-      level: deprecated
-      description_addendum: |
-        Deprecated alias of `MiscChannelCount`. Existing datasets remain valid;
-        new datasets SHOULD use `MiscChannelCount`, which matches the MEG and
-        iEEG sidecar rules, the EEG channel-count consistency check, and the
-        documentation example in this modality.
+    MISCChannelCount: deprecated
     TriggerChannelCount: recommended
     RecordingDuration: recommended
     RecordingType: recommended
