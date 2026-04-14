@@ -16,7 +16,7 @@ nonparametric:
   extensions:
     - .nii.gz
     - .nii
-    - .ome.zarr
+    - .ome.zarr/
     - .json
   datatypes:
     - anat
@@ -47,7 +47,7 @@ parametric:
   extensions:
     - .nii.gz
     - .nii
-    - .ome.zarr
+    - .ome.zarr/
     - .json
   datatypes:
     - anat
@@ -61,7 +61,7 @@ defacemask:
   extensions:
     - .nii.gz
     - .nii
-    - .ome.zarr
+    - .ome.zarr/
     - .json
   datatypes:
     - anat
@@ -76,7 +76,7 @@ megre:
   extensions:
     - .nii.gz
     - .nii
-    - .ome.zarr
+    - .ome.zarr/
     - .json
   datatypes:
     - anat
@@ -92,7 +92,7 @@ mese:
   extensions:
     - .nii.gz
     - .nii
-    - .ome.zarr
+    - .ome.zarr/
     - .json
   datatypes:
     - anat
@@ -109,7 +109,7 @@ multiflip:
   extensions:
     - .nii.gz
     - .nii
-    - .ome.zarr
+    - .ome.zarr/
     - .json
   datatypes:
     - anat
@@ -126,7 +126,7 @@ multiinversion:
   extensions:
     - .nii.gz
     - .nii
-    - .ome.zarr
+    - .ome.zarr/
     - .json
   datatypes:
     - anat
@@ -142,7 +142,7 @@ mp2rage:
   extensions:
     - .nii.gz
     - .nii
-    - .ome.zarr
+    - .ome.zarr/
     - .json
   datatypes:
     - anat
@@ -161,7 +161,7 @@ vfamt:
   extensions:
     - .nii.gz
     - .nii
-    - .ome.zarr
+    - .ome.zarr/
     - .json
   datatypes:
     - anat
@@ -179,7 +179,7 @@ mtr:
   extensions:
     - .nii.gz
     - .nii
-    - .ome.zarr
+    - .ome.zarr/
     - .json
   datatypes:
     - anat

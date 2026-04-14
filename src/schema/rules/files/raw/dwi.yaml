@@ -5,7 +5,7 @@ dwi:
   extensions:
     - .nii.gz
     - .nii
-    - .ome.zarr
+    - .ome.zarr/
     - .json
     - .bvec
     - .bval
@@ -23,7 +23,7 @@ sbref:
   extensions:
     - .nii.gz
     - .nii
-    - .ome.zarr
+    - .ome.zarr/
     - .json
   datatypes:
     - dwi
@@ -43,7 +43,7 @@ ScannerDerivatives:
   extensions:
     - .nii.gz
     - .nii
-    - .ome.zarr
+    - .ome.zarr/
     - .json
   datatypes:
     - dwi
