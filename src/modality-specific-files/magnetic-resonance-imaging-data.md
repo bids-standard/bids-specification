@@ -1412,7 +1412,7 @@ and a guide for using macros can be found at
 | TB1AFI               | `RepetitionTimeExcitation`                                                                           |
 | TB1TFL               |                                                                                                      |
 | TB1RFM               |                                                                                                      |
-| TB1SRGE<sup>\*</sup> | `FlipAngle`, `InversionTime`, `RepetitionTimeExcitation`, `RepetitionTimePreperation`, `NumberShots` |
+| TB1SRGE<sup>\*</sup> | `FlipAngle`, `InversionTime`, `RepetitionTimeExcitation`, `RepetitionTimePreparation`, `NumberShots` |
 
 <sup>\*</sup> Please see TB1SRGE-specific notes for the calculation of `NumberShots`.
 
