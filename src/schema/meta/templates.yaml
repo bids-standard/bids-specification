@@ -88,7 +88,7 @@ deriv:
     extensions:
       - .nii.gz
       - .nii
-      - .ome.zarr
+      - .ome.zarr/
       - .json
     entities:
       $ref: meta.templates.deriv.spatial.entities
