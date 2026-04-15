@@ -359,6 +359,11 @@ T1w:
     to add an inversion preparation block to the beginning of the imaging
     sequence (for example, `TurboFLASH` or `MP-RAGE`).
   unit: arbitrary
+T1wT2wratio:
+  value: T1wT2wratio
+  display_name: T1w to T2w ratio, a proxy for myelination
+  description: |
+    T1w to T2w ratio, a proxy for myelination.
 T2map:
   value: T2map
   display_name: True transverse relaxation time image
@@ -509,6 +514,11 @@ angio:
     Magnetic resonance angiography sequences focus on enhancing the contrast of
     blood vessels (generally arteries, but sometimes veins) against other tissue
     types.
+area:
+  value: area
+  display_name: Discretized surface area across regions
+  description: |
+    Discretized surface area across regions.
 asl:
   value: asl
   display_name: Arterial Spin Labeling
@@ -572,12 +582,22 @@ coordsystem:
   description: |
     A JSON document specifying the coordinate system(s) used for the MEG, EEG,
     head localization coils, and anatomical landmarks.
+curv:
+  value: curv
+  display_name: Cortical surface curvature indices
+  description: |
+    Cortical surface curvature indices.
 defacemask:
   value: defacemask
   display_name: Defacing Mask
   description: |
     A binary mask that was used to remove facial features from an anatomical MRI
     image.
+defects:
+  value: defects
+  display_name: Marked regions with surface defects
+  description: |
+    Marked regions with surface defects.
 description:
   value: description
   display_name: Description file
@@ -599,6 +619,16 @@ descriptions:
     The use of `descriptions.tsv` files together with the desc entity are helpful to
     document how files are generated,
     even if their use may not be sufficient to provide full computational reproducibility.
+dist:
+  value: dist
+  display_name: Distance from a point
+  description: |
+    Distance from a point.
+distortion:
+  value: distortion
+  display_name: Distortion map calculated from a surface registration
+  description: |
+    Distortion map calculated from a surface registration.
 dseg:
   value: dseg
   display_name: Discrete Segmentation
@@ -650,6 +680,11 @@ fieldmap:
   description: |
     Some MR schemes such as spiral-echo imaging (SEI) sequences are able to
     directly provide maps of the *B<sub>0</sub>* field inhomogeneity.
+flat:
+  value: flat
+  display_name: Flattened surface
+  description: |
+    The flattened surface (used for visualization).
 headshape:
   value: headshape
   display_name: Headshape File
@@ -666,6 +701,11 @@ ieeg:
   display_name: Intracranial Electroencephalography
   description: |
     Intracranial electroencephalography recording data.
+inflated:
+  value: inflated
+  display_name: Inflated surface
+  description: |
+    An inflation of the midthickness surface (useful for visualization).
 inplaneT1:
   value: inplaneT1
   display_name: Inplane T1
@@ -727,6 +767,16 @@ meg:
   description: |
     Unprocessed MEG data stored in the native file format of the MEG instrument
     with which the data was collected.
+midthickness:
+  value: midthickness
+  display_name: Midpoints between white matter and pial matter
+  description: |
+    The midpoints between white matter and pial surfaces.
+morph:
+  value: morph
+  display_name: Morphometrics
+  description: |
+    Structural statistics produced by segmentation routines.
 motion:
   value: motion
   display_name: Motion
@@ -830,6 +880,11 @@ physioevents:
   description: |
     Event timing information corresponding to physiological recordings and other
     asynchronous data such as messages.
+pial:
+  value: pial
+  display_name: Gray matter / pial matter border
+  description: |
+    The gray matter / pial matter border.
 probseg:
   value: probseg
   display_name: Probabilistic Segmentation
@@ -871,16 +926,36 @@ sessions:
     These files MUST include a session_id column and describe each session by one and only one row.
     Column names in sessions.tsv files MUST be different from group level participant key column
     names in the participants.tsv file.
+smoothwm:
+  value: smoothwm
+  display_name: Smoothed gray matter / white matter border
+  description: |
+    The smoothed gray matter / white matter border.
+sphere:
+  value: sphere
+  display_name: Sphere
+  description: |
+    The sphere (used for registration - see transforms for nomenclature)
 stim:
   value: stim
   display_name: Continuous recording
   description: |
     Continuous measures, such as parameters of a film or audio stimulus.
+sulc:
+  value: sulc
+  display_name: Sulcal depth
+  description: |
+    Sulcal depth.
 svs:
   value: svs
   display_name: Single-voxel spectroscopy
   description: |
     MRS acquisitions where the detected MR signal is spatially localized to a single volume.
+thickness:
+  value: thickness
+  display_name: Cortical thickness
+  description: |
+    Cortical thickness.
 trace:
   value: trace
   display_name: Trace-weighted diffusion image
@@ -897,3 +972,13 @@ unloc:
   description: |
     MRS acquisitions run without localization.
     This includes signals detected using coil sensitivity only.
+vinflated:
+  value: vinflated
+  display_name: Very-inflated surface
+  description: |
+    A very-inflated midthickness surface (also for visualization).
+white:
+  value: white
+  display_name: Gray matter / white matter border for the cortex
+  description: |
+    The gray matter / white matter border for the cortex.
