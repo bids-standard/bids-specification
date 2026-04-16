@@ -44,7 +44,7 @@ age:
     Using "89+" for ages above 88 is DEPRECATED.
   definition: {
     "LongName": "Subject age",
-    "Description": "Subject postnatal age (by default in years)",
+    "Description": "Subject postnatal age",
     "Format": "number",
     "Units": "year",
     "Maximum": 89,
