@@ -1,7 +1,7 @@
 ---
 pet:
   selectors:
-    - '!("tpl" in entities)'
+    #- '!("tpl" in entities)'
   suffixes:
     - pet
   extensions:
@@ -15,7 +15,7 @@ pet:
 
 blood:
   selectors:
-    - '!("tpl" in entities)'
+    #- '!("tpl" in entities)'
   suffixes:
     - blood
   extensions:

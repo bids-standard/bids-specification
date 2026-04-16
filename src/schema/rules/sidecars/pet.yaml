@@ -4,6 +4,7 @@ PETHardware:
   selectors:
     - datatype == "pet"
     - suffix == "pet"
+    - '!("tpl" in entities)'
   fields:
     Manufacturer:
       level: required
@@ -31,6 +32,7 @@ PETInstitutionInformation:
   selectors:
     - datatype == "pet"
     - suffix == "pet"
+    - '!("tpl" in entities)'
   fields:
     InstitutionName:
       level: recommended
@@ -52,6 +54,7 @@ PETSample:
   selectors:
     - modality == "pet"
     - suffix == "pet"
+    - '!("tpl" in entities)'
   fields:
     BodyPart:
       level: optional
@@ -65,6 +68,7 @@ PETRadioChemistry:
   selectors:
     - datatype == "pet"
     - suffix == "pet"
+    - '!("tpl" in entities)'
   fields:
     TracerName:
       level: required
@@ -115,6 +119,7 @@ EntitiesBolusMetadata:
     - datatype == "pet"
     - suffix == "pet"
     - sidecar.ModeOfAdministration == 'bolus-infusion'
+    - '!("tpl" in entities)'
   fields:
     InfusionRadioactivity: required
     InfusionStart: required
@@ -126,6 +131,7 @@ PETPharmaceuticals:
   selectors:
     - datatype == "pet"
     - suffix == "pet"
+    - '!("tpl" in entities)'
   fields:
     PharmaceuticalName:
       level: recommended
@@ -153,6 +159,7 @@ PETTime:
   selectors:
     - datatype == "pet"
     - suffix == "pet"
+    - '!("tpl" in entities)'
   fields:
     TimeZero: required
     ScanStart: required
@@ -178,6 +185,7 @@ PETReconstruction:
   selectors:
     - datatype == "pet"
     - suffix == "pet"
+    - '!("tpl" in entities)'
   fields:
     AcquisitionMode: required
     ImageDecayCorrected: required
@@ -248,6 +256,7 @@ EntitiesReconMethodMetadata:
     - datatype == "pet"
     - suffix == "pet"
     - '!intersects(sidecar.ReconMethodParameterLabels, ["none"])'
+    - '!("tpl" in entities)'
   fields:
     ReconMethodParameterValues: required
     ReconMethodParameterUnits: required
@@ -258,6 +267,7 @@ EntitiesReconFilterMetadata:
     - datatype == "pet"
     - suffix == "pet"
     - '!intersects(sidecar.ReconFilterType, ["none"])'
+    - '!("tpl" in entities)'
   fields:
     ReconFilterSize: required
 
@@ -265,6 +275,7 @@ BloodRecording:
   selectors:
     - datatype == "pet"
     - suffix == "blood"
+    - '!("tpl" in entities)'
   fields:
     PlasmaAvail: required
     MetaboliteAvail: required
@@ -282,6 +293,7 @@ BloodPlasmaFreeFraction:
     - datatype == "pet"
     - suffix == "blood"
     - sidecar.PlasmaAvail == true
+    - '!("tpl" in entities)'
   fields:
     PlasmaFreeFraction:
       level: recommended
@@ -295,6 +307,7 @@ BloodMetaboliteMethod:
     - datatype == "pet"
     - suffix == "blood"
     - sidecar.MetaboliteAvail == true
+    - '!("tpl" in entities)'
   fields:
     MetaboliteMethod:
       level: required
@@ -308,6 +321,7 @@ PETTask:
   selectors:
     - datatype == "pet"
     - '"task" in entities'
+    - '!("tpl" in entities)'
   fields:
     TaskName:
       level: recommended
