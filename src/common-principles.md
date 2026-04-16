@@ -1135,9 +1135,16 @@ Describing dates and timestamps:
     for more information.
 
 -   Age SHOULD be given as the number of years since birth at the time of
-    scanning (or first scan in case of multi session datasets). Using higher
-    accuracy (weeks) should in general be avoided due to privacy protection,
-    unless when appropriate given the study goals, for example, when scanning babies.
+    scanning (or first scan in case of multi session datasets).
+    The default unit is `"year"`, but it MAY be overridden in the JSON sidecar
+    (for example, `participants.json`) by setting `"Units"` to one of the
+    following values based on
+    [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Durations) duration
+    designators: `"year"`, `"month"`, `"week"`, `"day"`, `"hour"`, `"minute"`,
+    or `"second"`.
+    Using higher accuracy (for example, weeks or days) should in general be
+    avoided due to privacy protection, unless when appropriate given the study
+    goals, for example, when scanning babies or animals.
 
 ## Directory structure
 
