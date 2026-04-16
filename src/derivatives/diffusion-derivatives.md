@@ -3,7 +3,7 @@
 ## Diffusion-based tractography
 
 Tractography based on diffusion-weighted MRI data is stored as streamlines in
-the TRX file format:
+the [TRX file format](https://tee-ar-ex.github.io):
 
 ```Text
 <pipeline_name>/
