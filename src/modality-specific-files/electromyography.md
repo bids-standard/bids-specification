@@ -383,7 +383,7 @@ Electrode locations may be specified in one of four ways:
     It may be possible to omit the `z` column when all electrodes are on the same surface
     (in the above example, if all electrodes were on the volar surface and none were on
     the dorsal surface).
-    Though it would be possible to omit both `z` and `y` if all electrodes are colinear
+    Though it would be possible to omit both `z` and `y` if all electrodes are collinear
     along the anatomically defined `x` axis, the `y` column is required and thus researchers
     SHOULD enter `0` for all entries in column `y` in such cases.
     In this case (of a single coordinate system for all electrodes) the
@@ -403,7 +403,7 @@ Electrode locations may be specified in one of four ways:
     `*_space-thigh_coordsystem.json` defined by upper-leg landmarks for electrodes above the knee.
     In such a case, entries in the `coordinate_system` column of `*_electrodes.tsv` MUST
     specify either `"lowerLeg"` or `"thigh"`.
-    As in (2) above, enter `0` for the `y` column values if all electrodes are colinear
+    As in (2) above, enter `0` for the `y` column values if all electrodes are collinear
     along the defined `x` axis.
 
 1.  **Measured coordinates in "nested" coordinate systems.**
