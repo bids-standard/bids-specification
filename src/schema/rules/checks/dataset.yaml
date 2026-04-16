@@ -53,10 +53,10 @@ AgeUnits:
       or "second".
     level: warning
   selectors:
-    - path == '/participants.json'
-    - '"Units" in json.age'
+    - path == '/participants.tsv'
+    - '"Units" in sidecar.age'
   checks:
-    - intersects([json.age.Units], ["year", "month", "week", "day", "hour", "minute", "second"])
+    - intersects([sidecar.age.Units], ["year", "month", "week", "day", "hour", "minute", "second"])
 
 # 214
 SamplesTSVMissing:
