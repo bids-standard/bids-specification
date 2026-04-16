@@ -19,9 +19,6 @@ Where `tract` is the anatomical/structural entity that is being imaged, and
 
 For example:
 
-```Text
-
-AFQ/
     sub–01/
         dwi/
             sub-01_space-MNI152NLin2009cAsym_tract-wholebrain_track-eudx_tractogram.trx
