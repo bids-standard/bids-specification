@@ -51,11 +51,9 @@ AgeUnits:
       ISO 8601-based duration unit.
       Allowed values are "year", "month", "week", "day", "hour", "minute",
       or "second".
-    level: error
+    level: warning
   selectors:
     - path == '/participants.json'
-    - '"age" in json'
-    - type(json.age) != 'null'
     - '"Units" in json.age'
   checks:
     - intersects([json.age.Units], ["year", "month", "week", "day", "hour", "minute", "second"])
