@@ -56,6 +56,7 @@ A guide for using macros can be found at
             },
         "sub-control01_sessions.tsv": "",
         },
+    "participant+sessions.tsv": "",
     "participants.tsv": "",
     "dataset_description.json": "",
     "README": "",
@@ -70,6 +71,13 @@ session_id	acq_time	systolic_blood_pressure
 ses-predrug	2009-06-15T13:45:30	120
 ses-postdrug	2009-06-16T13:45:30	100
 ```
+
+In addition to per-subject `_sessions.tsv` files,
+a dataset-level `participant+sessions.tsv` file can aggregate
+metadata that varies across both participants and sessions
+(such as age at each session) into a single file.
+See [Participant and sessions file](modality-agnostic-files/data-summary-files.md#participant-and-sessions-file)
+for details.
 
 See this [example dataset](https://github.com/bids-standard/bids-examples/tree/master/7t_trt)
 that has been formatted
