@@ -225,7 +225,7 @@ A guide for using macros can be found at
   "SoftwareFilters": "n/a",
   "RecordingDuration": 233.639,
   "HardwareFilters": {"Highpass RC filter": {"Half amplitude cutoff (Hz)": 0.0159, "Roll-off": "6dBOctave"}},
-  "CapManafacturer": "NIRx",
+  "CapManufacturer": "NIRx",
   "CapManufacturersModelName": "Headband with print (S-M)",
   "NIRSPlacementScheme": "n/a"
 }
