@@ -12,7 +12,7 @@ SubjectFolders:
     - path == '/dataset_description.json'
     - dataset.dataset_description.DatasetType != "study"
   checks:
-    - length(dataset.subjects.sub_dirs) > 0
+    - length(glob("sub-*")) > 0
 
 NoSubjectFolders:
   issue:
@@ -24,7 +24,7 @@ NoSubjectFolders:
     - path == '/dataset_description.json'
     - dataset.dataset_description.DatasetType == "study"
   checks:
-    - length(dataset.subjects.sub_dirs) == 0
+    - length(glob("sub-*")) == 0
 
 # 49
 ParticipantIDMismatch:
@@ -38,10 +38,8 @@ ParticipantIDMismatch:
     - path == '/participants.tsv'
   checks:
     - |
-      allequal(
-        sorted(intersects(columns.participant_id, dataset.subjects.sub_dirs)),
-        sorted(dataset.subjects.sub_dirs)
-      )
+      length(intersects(columns.participant_id, glob("sub-*")))
+      == length(glob("sub-*"))
 
 # 214
 SamplesTSVMissing:
