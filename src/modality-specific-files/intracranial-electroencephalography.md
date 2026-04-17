@@ -383,7 +383,7 @@ General fields:
 
 <!-- This block generates a metadata table.
 These tables are defined in
-  src/schema/rules/sidecars
+  src/schema/rules/json
 The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
 A guide for using macros can be found at
@@ -395,7 +395,7 @@ Fields relating to the iEEG electrode positions:
 
 <!-- This block generates a metadata table.
 These tables are defined in
-  src/schema/rules/sidecars
+  src/schema/rules/json
 The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
 A guide for using macros can be found at
