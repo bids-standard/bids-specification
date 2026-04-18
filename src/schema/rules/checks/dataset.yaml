@@ -43,6 +43,43 @@ ParticipantIDMismatch:
         sorted(dataset.subjects.sub_dirs)
       )
 
+ParticipantSessionsParticipantsMissing:
+  issue:
+    code: PARTICIPANT_SESSIONS_PARTICIPANTS_MISSING
+    message: |
+      participant+sessions.tsv lists participant_id values that do not correspond
+      to subject directories found in the dataset.
+    level: error
+  selectors:
+    - path == '/participant+sessions.tsv'
+  checks:
+    - |
+      allequal(
+        sorted(intersects(columns.participant_id, dataset.subjects.sub_dirs)),
+        sorted(unique(columns.participant_id))
+      )
+
+ParticipantSessionsSessionsMissing:
+  issue:
+    code: PARTICIPANT_SESSIONS_SESSIONS_MISSING
+    message: |
+      participant+sessions.tsv lists session_id values that do not correspond
+      to session directories found in the dataset.
+    level: error
+  selectors:
+    - path == '/participant+sessions.tsv'
+  checks:
+    - |
+      allequal(
+        sorted(intersects(columns.session_id, dataset.sessions.ses_dirs)),
+        sorted(unique(columns.session_id))
+      )
+
+# TODO: Add a check that each (participant_id, session_id) *combination*
+# corresponds to an actual sub-*/ses-*/ directory. The current check only
+# validates the sets independently. Checking combinations requires either
+# string concatenation in the expression language or a dedicated function.
+
 # 214
 SamplesTSVMissing:
   issue:
