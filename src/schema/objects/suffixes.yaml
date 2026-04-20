@@ -891,6 +891,14 @@ uCT:
   display_name: Micro-CT
   description: |
     Micro-CT imaging data
+survey:
+  value: survey
+  display_name: Survey
+  description: |
+    Instrument-based phenotypic survey data.
+    Responses collected from a structured questionnaire or assessment instrument,
+    organized as subject- and session-resolved tabular data with a corresponding
+    JSON sidecar.
 unloc:
   value: unloc
   display_name: Unlocalized spectroscopy
