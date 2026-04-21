@@ -520,9 +520,6 @@ Spatial metadata (such as the axis names and units, and coordinate transformatio
 be stored within the OME-Zarr metadata following the
 [OME-Zarr version 0.5 specification](https://ngff.openmicroscopy.org/specifications/0.5/index.html)
 (the latest released version).
-Extended support for coordinate systems and transformations is described in
-[RFC-5: Coordinate Systems and Transformations](https://ngff.openmicroscopy.org/rfc/5/index.html)
-(draft, expected to be released as part of OME-Zarr version 0.6).
 
 ### Tabular files
 
