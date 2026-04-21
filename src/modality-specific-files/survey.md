@@ -30,8 +30,12 @@ once within a session.
 
 ## Sidecar JSON (`*_survey.json`)
 
-Each survey `.tsv` file MUST be accompanied by a JSON sidecar with the same
-filename stem.
+Each survey `.tsv` file MUST be accompanied by a JSON sidecar.
+Following the [Inheritance Principle](../common-principles.md#the-inheritance-principle),
+the sidecar MAY be placed at any level of the hierarchy
+(for example, at the dataset root as `task-<label>_survey.json`)
+to apply to all survey files with matching entities,
+or alongside individual `.tsv` files with the same filename stem.
 The sidecar documents the instrument-level metadata and the individual items.
 
 ### Instrument metadata
@@ -47,12 +51,12 @@ administration context.
 | `FileFormat`           | REQUIRED    | MUST be `"tsv"`.                                                                                     |
 | `Language`             | REQUIRED    | Language code for the administered version (for example, `"en"`, `"de-AT"`).                         |
 | `Respondent`           | REQUIRED    | Who provided the responses (`"self"`, `"clinician"`, `"parent"`, or similar).                        |
-| `ShortName`            | OPTIONAL    | Common abbreviation of the instrument (for example, `"PSS-10"`).                                     |
+| `ShortName`            | OPTIONAL    | Common abbreviation of the instrument (for example, `"ESQ-3"`).                                      |
 | `Version`              | OPTIONAL    | Version or edition of the instrument.                                                                |
 | `Authors`              | OPTIONAL    | Array of instrument authors.                                                                         |
 | `DOI`                  | OPTIONAL    | DOI for the instrument or its primary validation paper.                                              |
 | `License`              | OPTIONAL    | License under which the instrument may be used.                                                      |
-| `Construct`            | OPTIONAL    | Psychological or clinical construct measured (for example, `"perceived stress"`).                    |
+| `Construct`            | OPTIONAL    | Psychological or clinical construct measured (for example, `"sleep quality"`).                       |
 | `Instructions`         | OPTIONAL    | Instructions given to the participant.                                                               |
 | `AdministrationMethod` | OPTIONAL    | How the instrument was administered (`"online"`, `"paper"`, `"interview"`, `"phone"`, or `"mixed"`). |
 | `SoftwarePlatform`     | OPTIONAL    | Software used to administer the instrument (for example, `"LimeSurvey"`, `"REDCap"`).                |
@@ -78,67 +82,68 @@ listed above is treated as a column-level variable definition (for example, `"Q0
 study/
 ├── dataset_description.json
 ├── participants.tsv
+├── task-sleep_survey.json
 ├── sub-01/
 │   ├── ses-baseline/
 │   │   └── survey/
-│   │       ├── sub-01_ses-baseline_task-pss_run-01_survey.tsv
-│   │       └── sub-01_ses-baseline_task-pss_run-01_survey.json
+│   │       └── sub-01_ses-baseline_task-sleep_run-01_survey.tsv
 │   └── ses-week04/
 │       └── survey/
-│           ├── sub-01_ses-week04_task-pss_run-01_survey.tsv
-│           ├── sub-01_ses-week04_task-pss_run-01_survey.json
-│           ├── sub-01_ses-week04_task-pss_run-02_survey.tsv
-│           └── sub-01_ses-week04_task-pss_run-02_survey.json
+│           ├── sub-01_ses-week04_task-sleep_run-01_survey.tsv
+│           └── sub-01_ses-week04_task-sleep_run-02_survey.tsv
 └── phenotype/
-    └── pss_summary.tsv
+    └── sleep_summary.tsv
 ```
 
-The `phenotype/` entry in this example is an optional aggregated downstream
-view of the subject-resolved survey data.
+The root-level `task-sleep_survey.json` applies to all `task-sleep` survey files
+through the inheritance principle, avoiding duplication across sessions and runs.
+The `phenotype/` entry is an optional aggregated downstream view of the subject-resolved survey data.
 
 ## Example `*_survey.tsv`
 
 ```tsv
 participant_id	Q01	Q02	Q03
-sub-01	2	1	3
+sub-01	7	4	0
 ```
 
-## Example `*_survey.json`
+## Example `task-sleep_survey.json`
 
 ```json
 {
-  "TaskName": "pss",
-  "OriginalName": "Perceived Stress Scale",
-  "ShortName": "PSS-10",
+  "TaskName": "sleep",
+  "OriginalName": "Example Sleep Questionnaire",
+  "ShortName": "ESQ-3",
   "StimulusType": "Questionnaire",
   "FileFormat": "tsv",
   "Language": "en",
   "Respondent": "self",
   "AdministrationMethod": "online",
   "Q01": {
-    "Description": "In the last month, how often have you been upset because of something that happened unexpectedly?",
-    "Levels": {
-      "0": "Never",
-      "1": "Almost never",
-      "2": "Sometimes",
-      "3": "Fairly often",
-      "4": "Very often"
-    },
+    "Description": "How many hours did you sleep last night?",
     "MinValue": 0,
-    "MaxValue": 4,
-    "DataType": "integer"
+    "MaxValue": 24,
+    "DataType": "float",
+    "Units": "h"
   },
   "Q02": {
-    "Description": "In the last month, how often have you felt that you were unable to control the important things in your life?",
+    "Description": "How would you rate your overall sleep quality?",
     "Levels": {
-      "0": "Never",
-      "1": "Almost never",
-      "2": "Sometimes",
-      "3": "Fairly often",
-      "4": "Very often"
+      "1": "Very poor",
+      "2": "Poor",
+      "3": "Fair",
+      "4": "Good",
+      "5": "Very good"
     },
-    "MinValue": 0,
-    "MaxValue": 4,
+    "MinValue": 1,
+    "MaxValue": 5,
+    "DataType": "integer"
+  },
+  "Q03": {
+    "Description": "Did you wake up during the night?",
+    "Levels": {
+      "0": "No",
+      "1": "Yes"
+    },
     "DataType": "integer"
   }
 }
