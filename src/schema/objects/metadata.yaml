@@ -2389,6 +2389,9 @@ MISCChannelCount:
   display_name: Miscellaneous channel count
   description: |
     Number of miscellaneous channels not covered otherwise.
+
+    Deprecated alias of `MiscChannelCount`. New datasets SHOULD use
+    `MiscChannelCount`.
   type: integer
   minimum: 0
 MotionChannelCount:

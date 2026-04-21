@@ -38,7 +38,7 @@ def test_make_entity_definitions(schema_obj):
 def test_make_glossary(schema_obj, schema_dir):
     """
     Test whether files under the schema objects subdirectory correspond to entries, and
-    that rules are not mis-loaded as objects.
+    that rules are not misloaded as objects.
     This may need to be updated for schema hierarchy changes.
     """
     # Test consistency
