@@ -39,23 +39,23 @@ The sidecar documents the instrument-level metadata and the individual items.
 The following top-level fields describe the survey instrument and its
 administration context.
 
-| Field | Requirement | Description |
-| --- | --- | --- |
-| `TaskName` | REQUIRED | Short label identifying the instrument as used in this dataset (MUST match the `task` entity value). |
-| `OriginalName` | REQUIRED | Full canonical name of the instrument. |
-| `StimulusType` | REQUIRED | MUST be `"Questionnaire"`. |
-| `FileFormat` | REQUIRED | MUST be `"tsv"`. |
-| `Language` | REQUIRED | Language code for the administered version (for example, `"en"`, `"de-AT"`). |
-| `Respondent` | REQUIRED | Who provided the responses (`"self"`, `"clinician"`, `"parent"`, or similar). |
-| `ShortName` | OPTIONAL | Common abbreviation of the instrument (for example, `"PSS-10"`). |
-| `Version` | OPTIONAL | Version or edition of the instrument. |
-| `Authors` | OPTIONAL | Array of instrument authors. |
-| `DOI` | OPTIONAL | DOI for the instrument or its primary validation paper. |
-| `License` | OPTIONAL | License under which the instrument may be used. |
-| `Construct` | OPTIONAL | Psychological or clinical construct measured (for example, `"perceived stress"`). |
-| `Instructions` | OPTIONAL | Instructions given to the participant. |
-| `AdministrationMethod` | OPTIONAL | How the instrument was administered (`"online"`, `"paper"`, `"interview"`, `"phone"`, or `"mixed"`). |
-| `SoftwarePlatform` | OPTIONAL | Software used to administer the instrument (for example, `"LimeSurvey"`, `"REDCap"`). |
+| Field                  | Requirement | Description                                                                                          |
+| ---------------------- | ----------- | ---------------------------------------------------------------------------------------------------- |
+| `TaskName`             | REQUIRED    | Short label identifying the instrument as used in this dataset (MUST match the `task` entity value). |
+| `OriginalName`         | REQUIRED    | Full canonical name of the instrument.                                                               |
+| `StimulusType`         | REQUIRED    | MUST be `"Questionnaire"`.                                                                           |
+| `FileFormat`           | REQUIRED    | MUST be `"tsv"`.                                                                                     |
+| `Language`             | REQUIRED    | Language code for the administered version (for example, `"en"`, `"de-AT"`).                         |
+| `Respondent`           | REQUIRED    | Who provided the responses (`"self"`, `"clinician"`, `"parent"`, or similar).                        |
+| `ShortName`            | OPTIONAL    | Common abbreviation of the instrument (for example, `"PSS-10"`).                                     |
+| `Version`              | OPTIONAL    | Version or edition of the instrument.                                                                |
+| `Authors`              | OPTIONAL    | Array of instrument authors.                                                                         |
+| `DOI`                  | OPTIONAL    | DOI for the instrument or its primary validation paper.                                              |
+| `License`              | OPTIONAL    | License under which the instrument may be used.                                                      |
+| `Construct`            | OPTIONAL    | Psychological or clinical construct measured (for example, `"perceived stress"`).                    |
+| `Instructions`         | OPTIONAL    | Instructions given to the participant.                                                               |
+| `AdministrationMethod` | OPTIONAL    | How the instrument was administered (`"online"`, `"paper"`, `"interview"`, `"phone"`, or `"mixed"`). |
+| `SoftwarePlatform`     | OPTIONAL    | Software used to administer the instrument (for example, `"LimeSurvey"`, `"REDCap"`).                |
 
 ### Item-level metadata
 
@@ -63,14 +63,14 @@ Any top-level key in the sidecar that is not one of the instrument-level fields
 listed above is treated as a column-level variable definition (for example, `"Q01"`,
 `"item_1"`).
 
-| Field | Requirement | Description |
-| --- | --- | --- |
-| `Description` | REQUIRED | The exact text of the question or item. |
-| `Levels` | OPTIONAL | Mapping of response values to their labels (for example, `{"0": "Not at all", "4": "Very often"}`). |
-| `MinValue` | OPTIONAL | Minimum expected value. |
-| `MaxValue` | OPTIONAL | Maximum expected value. |
-| `DataType` | OPTIONAL | Expected data type of the column (`"string"`, `"integer"`, or `"float"`). |
-| `Units` | OPTIONAL | Units, if applicable. |
+| Field         | Requirement | Description                                                                                         |
+| ------------- | ----------- | --------------------------------------------------------------------------------------------------- |
+| `Description` | REQUIRED    | The exact text of the question or item.                                                             |
+| `Levels`      | OPTIONAL    | Mapping of response values to their labels (for example, `{"0": "Not at all", "4": "Very often"}`). |
+| `MinValue`    | OPTIONAL    | Minimum expected value.                                                                             |
+| `MaxValue`    | OPTIONAL    | Maximum expected value.                                                                             |
+| `DataType`    | OPTIONAL    | Expected data type of the column (`"string"`, `"integer"`, or `"float"`).                           |
+| `Units`       | OPTIONAL    | Units, if applicable.                                                                               |
 
 ## Example dataset structure
 
