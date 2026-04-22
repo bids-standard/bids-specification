@@ -520,6 +520,9 @@ Spatial metadata (such as the axis names and units, and coordinate transformatio
 be stored within the OME-Zarr metadata following the
 [OME-Zarr version 0.5 specification](https://ngff.openmicroscopy.org/specifications/0.5/index.html)
 (the latest released version).
+An example dataset containing an OME-Zarr can be found in the
+[BIDS examples repository](https://github.com/bids-standard/bids-examples/tree/master/micr_XPCTzarr)
+and can be used as helpful guidance when curating new datasets.
 
 ### Tabular files
 
