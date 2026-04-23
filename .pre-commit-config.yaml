@@ -2,7 +2,9 @@
 # See https://pre-commit.com/hooks.html for more hooks
 ci:
   skip: [shellcheck]
-exclude: 'tools/schemacode/src/bidsschematools/tests/data/broken_dataset_description.json'
+  autoupdate_schedule: monthly
+
+exclude: 'broken_dataset_description.json|uv.lock'
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
@@ -17,7 +19,7 @@ repos:
       - id: check-added-large-files
       - id: check-case-conflict
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 0.35.0
+    rev: 0.37.1
     hooks:
       - id: check-dependabot
       - id: check-github-workflows
@@ -33,7 +35,7 @@ repos:
         entry: env PRETTIER_LEGACY_CLI=1 prettier # temporary fix for https://github.com/prettier/prettier/issues/15742
         files: src/schema/.*/.*\.yaml
   - repo: https://github.com/adrienverge/yamllint
-    rev: v1.37.1
+    rev: v1.38.0
     hooks:
       - id: yamllint
         args: [-f=standard, -c=.yamllint.yml]
@@ -44,12 +46,12 @@ repos:
       - id: taplo-format
         args: [-o, 'array_auto_collapse=false']
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.4.1
+    rev: v2.4.2
     hooks:
       - id: codespell
         args: ["--config=.codespellrc", "--dictionary=-", "--dictionary=.codespell_dict"]
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.19.0
+    rev: v1.20.0
     hooks:
       - id: mypy
         # Sync with project.optional-dependencies.typing
@@ -71,3 +73,11 @@ repos:
     rev: v0.11.0
     hooks:
       - id: shellcheck
+  - repo: local
+    hooks:
+      - id: check-embedded-json
+        name: check embedded JSON in markdown
+        entry: python tools/check_embedded_json.py
+        language: python
+        files: src/.*\.md$
+        pass_filenames: true

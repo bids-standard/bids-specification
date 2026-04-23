@@ -8,16 +8,18 @@ PETHardware:
     Manufacturer:
       level: required
       description_addendum: |
-        Corresponds to [DICOM Tag 0008, 0070](https://dicomlookup.com/dicomtags/(0008,0070)) `Manufacturer`.
+        Corresponds to [DICOM Tag 0008, 0070](http://www.dicomlookup.com/dicomtags/(0008,0070))
+        `Manufacturer`.
     ManufacturersModelName:
       level: required
       description_addendum: |
-        Corresponds to [DICOM Tag 0008, 1090](https://dicomlookup.com/dicomtags/(0008,1090)) `Manufacturers Model Name`.
+        Corresponds to [DICOM Tag 0008, 1090](http://www.dicomlookup.com/dicomtags/(0008,1090))
+        `Manufacturers Model Name`.
     Units:
       level: required
       description_addendum: |
         SI unit for radioactivity (Becquerel) should be used (for example, "Bq/mL").
-        Corresponds to [DICOM Tag 0054, 1001](https://dicomlookup.com/dicomtags/(0054,1001)) `Units`.
+        Corresponds to [DICOM Tag 0054, 1001](http://www.dicomlookup.com/dicomtags/(0054,1001)) `Units`.
 
 PETInstitutionInformation:
   selectors:
@@ -27,15 +29,17 @@ PETInstitutionInformation:
     InstitutionName:
       level: recommended
       description_addendum: |
-        Corresponds to [DICOM Tag 0008, 0080](https://dicomlookup.com/dicomtags/(0008,0080)) `InstitutionName`.
+        Corresponds to [DICOM Tag 0008, 0080](http://www.dicomlookup.com/dicomtags/(0008,0080))
+        `InstitutionName`.
     InstitutionAddress:
       level: recommended
       description_addendum: |
-        Corresponds to [DICOM Tag 0008, 0081](https://dicomlookup.com/dicomtags/(0008,0081)) `InstitutionAddress`.
+        Corresponds to [DICOM Tag 0008, 0081](http://www.dicomlookup.com/dicomtags/(0008,0081))
+        `InstitutionAddress`.
     InstitutionalDepartmentName:
       level: recommended
       description_addendum: |
-        Corresponds to [DICOM Tag 0008, 1040](https://dicomlookup.com/dicomtags/(0008,1040))
+        Corresponds to [DICOM Tag 0008, 1040](http://www.dicomlookup.com/dicomtags/(0008,1040))
         `Institutional Department Name`.
 
 PETSample:

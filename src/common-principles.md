@@ -85,7 +85,7 @@ saved under a particular filename specified in the standard. This standard
 aspires to describe a majority of datasets, but acknowledges that there will be
 cases that do not fit. In such cases one can include additional files and
 subdirectories to the existing directory structure following common sense. For example
-one may want to include eye tracking data in a vendor specific format that is
+one may want to include eye-tracking data in a vendor specific format that is
 not covered by this standard. The most sensible place to put it is next to the
 continuous recording file with the same naming scheme but different extensions.
 The solutions will change from case to case and publicly available datasets will
@@ -376,7 +376,7 @@ Derivatives can be stored/distributed in two ways:
     Extra documentation (and relevant images) MAY be included in the `docs/` subdirectory.
     Logs from running the code or other commands MAY be stored under `logs/` subdirectory.
 
-    Example of a derivative dataset including the raw dataset as source:
+    Example of a derivative dataset including the BIDS raw dataset as source:
 
     <!-- This block generates a file tree.
     A guide for using macros can be found at
@@ -391,9 +391,11 @@ Derivatives can be stored/distributed in two ways:
                 "...": "",
             },
             "sourcedata": {
-                "sub-01": {},
-                "sub-02": {},
-                "...": "",
+                "raw": {
+                    "sub-01": {},
+                    "sub-02": {},
+                    "...": "",
+                },
             },
             "sub-01": {},
             "sub-02": {},
@@ -429,7 +431,7 @@ datasets and non-compliant derivatives.
 
 ## Study dataset
 
-BIDS allows one to organize the data for the entire study (original source data, raw BIDS, derivatives) as a valid BIDS dataset in the following way
+BIDS allows one to organize the source, raw, and derived data for the entire study as a valid BIDS dataset (see `study` [`DatasetType`](./glossary.md#session-entities)) in the following way
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
@@ -440,14 +442,14 @@ A guide for using macros can be found at
     "study-1": {
         "sourcedata": {
             "dicoms": {},
-            "raw": {
-                "sub-01": {},
-                "sub-02": {},
-                "...": "",
-                "dataset_description.json": "",
-				"...": "",
-            },
             "..." : "",
+        },
+        "rawbids": {
+            "sub-01": {},
+            "sub-02": {},
+            "...": "",
+            "dataset_description.json": "",
+            "...": "",
         },
         "derivatives": {
             "pipeline1-v1": {},
@@ -460,17 +462,17 @@ A guide for using macros can be found at
    }
 ) }}
 
-In this example, `sourcedata/dicoms` is not nested inside
-`sourcedata/raw`, **and only the `sourcedata/raw` subdirectory** is a BIDS-compliant dataset among `sourcedata/` subfolders.
+In this example, `sourcedata`, `rawbids`, and `derivatives` are top-level directories. **Only the `rawbids` directory** is a BIDS-compliant dataset.
 The subdirectories of `derivatives` MAY be BIDS-compliant derivatives datasets
 (see [Non-compliant derivatives](#non-compliant-derivatives) for further discussion).
-The above example is a fully compliant BIDS dataset, providing a convention useful for organizing source, raw BIDS, and derived BIDS data while maintaining overall BIDS compliance.
-When using this convention, `dataset_description.json` MUST have `DatasetType` to be set to `"study"`.  It is also RECOMMENDED to set the `SourceDatasets`
-field in `dataset_description.json` of each subdirectory of `derivatives` to:
+The above example is a fully compliant BIDS dataset, providing a convention useful for organizing source, raw BIDS, and derived BIDS data
+while maintaining conceptual and operational distinctions mentioned in [Source vs. raw vs. derived data](#source-vs-raw-vs-derived-data).
+When using this convention, `dataset_description.json` MUST have `DatasetType` set to `"study"`.
+It is also RECOMMENDED to set the `SourceDatasets` field in `dataset_description.json` of each subdirectory of `derivatives` to:
 
 ```JSON
 {
-  "SourceDatasets": [ {"URL": "../../sourcedata/raw/"} ]
+  "SourceDatasets": [ {"URL": "../../rawbids/"} ]
 }
 ```
 
@@ -906,6 +908,28 @@ A guide for using macros can be found at
         }
     }
 ) }}
+
+Example 5: Generalization of Examples 1 and 4 for a sidecar file without entities
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example(
+    {
+    "sub-01": {
+        "anat": {},
+        "func": {
+            "sub-01_task-xyz_acq-test1_run-1_bold.nii.gz": "",
+            "sub-01_task-xyz_acq-test1_run-2_bold.nii.gz": "",
+            }
+        },
+    "bold.json": "",
+    }
+) }}
+
+where `bold.json` in top directory would be applicable to all `_bold.nii.gz`
+regardless of any other entity in their filename.
 
 ## Participant names and other labels
 

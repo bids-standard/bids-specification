@@ -2,9 +2,8 @@
 TemplateNonStandard:
   selectors:
     - dataset.dataset_description.DatasetType == "derivative"
-    - '!intersects(schema.objects.enums._StandardTemplateCoordSys.enum, [entities.tpl])'
-    - >
-      type(entities.space) == 'null' ||
-      !intersects(schema.objects.enums._StandardTemplateCoordSys.enum, [entities.space])
+    - '"template" in entities'
+    - type(entities.space) == 'null'
+    - '!intersects(schema.objects.enums._StandardTemplateCoordSys.enum, [entities.template])'
   fields:
     SpatialReference: required

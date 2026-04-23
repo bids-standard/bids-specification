@@ -519,18 +519,21 @@ The convention can be summed up in the following rules:
 #### Valid fields for definitions by sub-namespace
 
 -   `objects.common_principles`
+
     | Field          | Description         |
     | -------------- | ------------------- |
     | `display_name` | Human-friendly name |
     | `description`  | Term definition     |
 
 -   `objects.modalities`
+
     | Field          | Description         |
     | -------------- | ------------------- |
     | `display_name` | Human-friendly name |
     | `description`  | Term definition     |
 
 -   `objects.metaentities`
+
     | Field          | Description         |
     | -------------- | ------------------- |
     | `display_name` | Human-friendly name |
@@ -551,6 +554,7 @@ The convention can be summed up in the following rules:
     applies in certain contexts, that should be written in the specification, and not the schema.
 
 -   `objects.metadata`
+
     | Field          | Description                                                                          |
     | -------------- | ------------------------------------------------------------------------------------ |
     | `display_name` | Human-friendly name                                                                  |
@@ -565,6 +569,7 @@ The convention can be summed up in the following rules:
     | `*`            | JSON-schema fields to further constrain values                                       |
 
 -   `objects.columns`
+
     | Field          | Description                                                         |
     | -------------- | ------------------------------------------------------------------- |
     | `display_name` | Human-friendly name                                                 |
@@ -581,6 +586,7 @@ The convention can be summed up in the following rules:
     | `*`            | JSON-schema fields to further constrain values                      |
 
 -   `objects.datatypes`
+
     | Field          | Description                |
     | -------------- | -------------------------- |
     | `display_name` | Human-friendly name        |
@@ -588,6 +594,7 @@ The convention can be summed up in the following rules:
     | `value`        | String value of `datatype` |
 
 -   `objects.suffixes`
+
     | Field          | Description                                                    |
     | -------------- | -------------------------------------------------------------- |
     | `display_name` | Human-friendly name                                            |
@@ -599,6 +606,7 @@ The convention can be summed up in the following rules:
     | `anyOf`        | Used to describe multiple permissible units                    |
 
 -   `objects.extensions`
+
     | Field          | Description                 |
     | -------------- | --------------------------- |
     | `display_name` | Human-friendly name         |
@@ -606,6 +614,7 @@ The convention can be summed up in the following rules:
     | `value`        | String value of `extension` |
 
 -   `objects.formats`
+
     | Field          | Description                        |
     | -------------- | ---------------------------------- |
     | `display_name` | Human-friendly name                |
@@ -613,6 +622,7 @@ The convention can be summed up in the following rules:
     | `pattern`      | Regular expression defining format |
 
 -   `objects.files`
+
     | Field          | Description                                                                          |
     | -------------- | ------------------------------------------------------------------------------------ |
     | `display_name` | Human-friendly name                                                                  |
@@ -620,6 +630,7 @@ The convention can be summed up in the following rules:
     | `file_type`    | Indicator that the file is a regular file (`"regular"`) or directory (`"directory"`) |
 
 -   `objects.enums`
+
     | Field          | Description            |
     | -------------- | ---------------------- |
     | `display_name` | Human-friendly name    |

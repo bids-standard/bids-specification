@@ -640,9 +640,9 @@ events:
     Event timing information from a behavioral task.
 expADC:
   value: expADC
-  display_name: Exponental ADC
+  display_name: Exponential ADC
   description: |
-    Exponental ADC / Attenuation Coefficient / Attenuation Factor map,
+    Exponential ADC / Attenuation Coefficient / Attenuation Factor map,
     as the ratio of trace-weighted to non-diffusion-weighted image intensity
 fieldmap:
   value: fieldmap
@@ -824,6 +824,12 @@ physio:
   display_name: Physiological recording
   description: |
     Physiological recordings such as cardiac and respiratory signals.
+physioevents:
+  value: physioevents
+  display_name: Physiological events and asynchronous data
+  description: |
+    Event timing information corresponding to physiological recordings and other
+    asynchronous data such as messages.
 probseg:
   value: probseg
   display_name: Probabilistic Segmentation
