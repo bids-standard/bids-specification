@@ -248,7 +248,7 @@ def load_schema(schema_path: lt.Traversable | str | None = None) -> Namespace:
 
     # YAML directory: load, dereference and set versions
     if not schema_path.is_dir():
-        raise FileNotFoundError(f"schema path {schema_path} is not a folder or does not exist")
+        raise FileNotFoundError(f"schema path {schema_path} is not a directory or does not exist")
     schema = Namespace.from_directory(schema_path)
     if not schema.objects:
         raise ValueError(f"objects subdirectory path not found in {schema_path}")
