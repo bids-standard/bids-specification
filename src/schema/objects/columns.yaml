@@ -535,7 +535,8 @@ run_id:
   name: run_id
   display_name: Run ID
   description: |
-    A run identifier that corresponds to an existing `run-<index>` entity used in a filename(s).
+    A run identifier of the form `run-<index>`,
+    used to distinguish separate acquisitions with the otherwise same properties.
   type: string
   pattern: ^run-[0-9]+$
 sample_id:
