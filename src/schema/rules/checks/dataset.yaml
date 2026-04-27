@@ -87,7 +87,7 @@ SingleSourceCitationFields:
     level: warning
     message: |
       CITATION.cff file found.
-      The "HowToAckowledge", "License", and "ReferencesAndLinks" fields of
+      The "HowToAcknowledge", "License", and "ReferencesAndLinks" fields of
       'dataset_description.json' should be removed to avoid inconsistency.
   selectors:
     - path == '/CITATION.cff'
