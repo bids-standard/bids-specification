@@ -1418,7 +1418,8 @@
         },
         "pet_derivative": {
           "suffixes": [
-            "pet"
+            "pet",
+            "mimap"
           ],
           "entities": {
             "hemisphere": "optional",
@@ -14199,7 +14200,8 @@
               "dataset.dataset_description.DatasetType == 'derivative'"
             ],
             "suffixes": [
-              "pet"
+              "pet",
+              "mimap"
             ],
             "extensions": [
               ".nii.gz",
@@ -14233,7 +14235,8 @@
               "dataset.dataset_description.DatasetType == 'derivative'"
             ],
             "suffixes": [
-              "pet"
+              "pet",
+              "mimap"
             ],
             "extensions": [
               ".nii.gz",
@@ -16947,9 +16950,7 @@
         },
         "pet": {
           "pet": {
-            "selectors": [
-              "!(\"tpl\" in entities)"
-            ],
+            "selectors": null,
             "suffixes": [
               "pet"
             ],
@@ -16971,9 +16972,7 @@
             }
           },
           "blood": {
-            "selectors": [
-              "!(\"tpl\" in entities)"
-            ],
+            "selectors": null,
             "suffixes": [
               "blood"
             ],
@@ -19932,7 +19931,8 @@
         "PETHardware": {
           "selectors": [
             "datatype == \"pet\"",
-            "suffix == \"pet\""
+            "suffix == \"pet\"",
+            "!(\"tpl\" in entities)"
           ],
           "fields": {
             "Manufacturer": {
@@ -19956,7 +19956,8 @@
         "PETInstitutionInformation": {
           "selectors": [
             "datatype == \"pet\"",
-            "suffix == \"pet\""
+            "suffix == \"pet\"",
+            "!(\"tpl\" in entities)"
           ],
           "fields": {
             "InstitutionName": {
@@ -19976,7 +19977,8 @@
         "PETSample": {
           "selectors": [
             "modality == \"pet\"",
-            "suffix == \"pet\""
+            "suffix == \"pet\"",
+            "!(\"tpl\" in entities)"
           ],
           "fields": {
             "BodyPart": {
@@ -19990,7 +19992,8 @@
         "PETRadioChemistry": {
           "selectors": [
             "datatype == \"pet\"",
-            "suffix == \"pet\""
+            "suffix == \"pet\"",
+            "!(\"tpl\" in entities)"
           ],
           "fields": {
             "TracerName": {
@@ -20045,7 +20048,8 @@
           "selectors": [
             "datatype == \"pet\"",
             "suffix == \"pet\"",
-            "sidecar.ModeOfAdministration == 'bolus-infusion'"
+            "sidecar.ModeOfAdministration == 'bolus-infusion'",
+            "!(\"tpl\" in entities)"
           ],
           "fields": {
             "InfusionRadioactivity": "required",
@@ -20058,7 +20062,8 @@
         "PETPharmaceuticals": {
           "selectors": [
             "datatype == \"pet\"",
-            "suffix == \"pet\""
+            "suffix == \"pet\"",
+            "!(\"tpl\" in entities)"
           ],
           "fields": {
             "PharmaceuticalName": {
@@ -20081,7 +20086,8 @@
         "PETTime": {
           "selectors": [
             "datatype == \"pet\"",
-            "suffix == \"pet\""
+            "suffix == \"pet\"",
+            "!(\"tpl\" in entities)"
           ],
           "fields": {
             "TimeZero": "required",
@@ -20105,7 +20111,8 @@
         "PETReconstruction": {
           "selectors": [
             "datatype == \"pet\"",
-            "suffix == \"pet\""
+            "suffix == \"pet\"",
+            "!(\"tpl\" in entities)"
           ],
           "fields": {
             "AcquisitionMode": "required",
@@ -20166,7 +20173,8 @@
           "selectors": [
             "datatype == \"pet\"",
             "suffix == \"pet\"",
-            "!intersects(sidecar.ReconMethodParameterLabels, [\"none\"])"
+            "!intersects(sidecar.ReconMethodParameterLabels, [\"none\"])",
+            "!(\"tpl\" in entities)"
           ],
           "fields": {
             "ReconMethodParameterValues": "required",
@@ -20177,7 +20185,8 @@
           "selectors": [
             "datatype == \"pet\"",
             "suffix == \"pet\"",
-            "!intersects(sidecar.ReconFilterType, [\"none\"])"
+            "!intersects(sidecar.ReconFilterType, [\"none\"])",
+            "!(\"tpl\" in entities)"
           ],
           "fields": {
             "ReconFilterSize": "required"
@@ -20186,7 +20195,8 @@
         "BloodRecording": {
           "selectors": [
             "datatype == \"pet\"",
-            "suffix == \"blood\""
+            "suffix == \"blood\"",
+            "!(\"tpl\" in entities)"
           ],
           "fields": {
             "PlasmaAvail": "required",
@@ -20205,7 +20215,8 @@
           "selectors": [
             "datatype == \"pet\"",
             "suffix == \"blood\"",
-            "sidecar.PlasmaAvail == true"
+            "sidecar.PlasmaAvail == true",
+            "!(\"tpl\" in entities)"
           ],
           "fields": {
             "PlasmaFreeFraction": {
@@ -20222,7 +20233,8 @@
           "selectors": [
             "datatype == \"pet\"",
             "suffix == \"blood\"",
-            "sidecar.MetaboliteAvail == true"
+            "sidecar.MetaboliteAvail == true",
+            "!(\"tpl\" in entities)"
           ],
           "fields": {
             "MetaboliteMethod": {
@@ -20238,7 +20250,8 @@
         "PETTask": {
           "selectors": [
             "datatype == \"pet\"",
-            "\"task\" in entities"
+            "\"task\" in entities",
+            "!(\"tpl\" in entities)"
           ],
           "fields": {
             "TaskName": {
