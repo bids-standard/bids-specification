@@ -727,7 +727,7 @@ meg:
   description: |
     Unprocessed MEG data stored in the native file format of the MEG instrument
     with which the data was collected.
-  
+
 motion:
   value: motion
   display_name: Motion
