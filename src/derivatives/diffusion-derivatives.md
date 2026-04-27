@@ -23,6 +23,7 @@ unequivocally identify the data type from which the tractogram originated.
 
 For example:
 
+```Text
     sub–01/
         dwi/
             sub-01_space-MNI152NLin2009cAsym_tract-wholebrain_track-eudx_tractogram.trx
