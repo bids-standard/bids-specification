@@ -369,9 +369,14 @@ Derivatives can be stored/distributed in two ways:
     dataset is provided with read-only access, for publishing derivatives as
     independent bodies of work, or for describing derivatives that were created
     from more than one source dataset.
-    The `sourcedata/` subdirectory MAY be used to include the source dataset(s)
-    that were used to generate the derivatives.
-    Likewise, any code used to generate the derivatives from the source data
+    If the source is a raw BIDS dataset,
+    it MAY be included under the `rawbids/` subdirectory (see [Study dataset](#study-dataset) for the same convention used at the study level).
+    The `sourcedata/` subdirectory MAY be used to include any other source dataset(s)
+    used to generate the derivatives, including non-BIDS sources and derived BIDS datasets.
+    In particular, derivatives of derivatives MUST place their source derivative
+    dataset(s) under `sourcedata/`, not `rawbids/`,
+    since `rawbids/` is reserved for raw BIDS datasets.
+    Any code used to generate the derivatives from the source data
     MAY be included in the `code/` subdirectory.
     Extra documentation (and relevant images) MAY be included in the `docs/` subdirectory.
     Logs from running the code or other commands MAY be stored under `logs/` subdirectory.
@@ -390,12 +395,11 @@ Derivatives can be stored/distributed in two ways:
                 "hpc_submitter.sh": "",
                 "...": "",
             },
-            "sourcedata": {
-                "raw": {
-                    "sub-01": {},
-                    "sub-02": {},
-                    "...": "",
-                },
+            "rawbids": {
+                "sub-01": {},
+                "sub-02": {},
+                "...": "",
+                "dataset_description.json": "",
             },
             "sub-01": {},
             "sub-02": {},
@@ -431,7 +435,7 @@ datasets and non-compliant derivatives.
 
 ## Study dataset
 
-BIDS allows one to organize the data for the entire study (original source data, raw BIDS, derivatives) as a valid BIDS dataset in the following way
+BIDS allows one to organize the source, raw, and derived data for the entire study as a valid BIDS dataset (see `study` [`DatasetType`](./glossary.md#session-entities)) in the following way
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
@@ -442,14 +446,14 @@ A guide for using macros can be found at
     "study-1": {
         "sourcedata": {
             "dicoms": {},
-            "raw": {
-                "sub-01": {},
-                "sub-02": {},
-                "...": "",
-                "dataset_description.json": "",
-				"...": "",
-            },
             "..." : "",
+        },
+        "rawbids": {
+            "sub-01": {},
+            "sub-02": {},
+            "...": "",
+            "dataset_description.json": "",
+            "...": "",
         },
         "derivatives": {
             "pipeline1-v1": {},
@@ -462,17 +466,20 @@ A guide for using macros can be found at
    }
 ) }}
 
-In this example, `sourcedata/dicoms` is not nested inside
-`sourcedata/raw`, **and only the `sourcedata/raw` subdirectory** is a BIDS-compliant dataset among `sourcedata/` subfolders.
+In this example, `sourcedata`, `rawbids`, and `derivatives` are top-level directories. **Only the `rawbids` directory** is a BIDS-compliant dataset.
+The `rawbids/` subdirectory is reserved for the raw BIDS dataset
+(the same convention applies inside a `derivative` dataset when its source is a raw BIDS dataset;
+see [Storage of derived datasets](#storage-of-derived-datasets)).
 The subdirectories of `derivatives` MAY be BIDS-compliant derivatives datasets
 (see [Non-compliant derivatives](#non-compliant-derivatives) for further discussion).
-The above example is a fully compliant BIDS dataset, providing a convention useful for organizing source, raw BIDS, and derived BIDS data while maintaining overall BIDS compliance.
-When using this convention, `dataset_description.json` MUST have `DatasetType` to be set to `"study"`.  It is also RECOMMENDED to set the `SourceDatasets`
-field in `dataset_description.json` of each subdirectory of `derivatives` to:
+The above example is a fully compliant BIDS dataset, providing a convention useful for organizing source, raw BIDS, and derived BIDS data
+while maintaining conceptual and operational distinctions mentioned in [Source vs. raw vs. derived data](#source-vs-raw-vs-derived-data).
+When using this convention, `dataset_description.json` MUST have `DatasetType` set to `"study"`.
+It is also RECOMMENDED to set the `SourceDatasets` field in `dataset_description.json` of each subdirectory of `derivatives` to:
 
 ```JSON
 {
-  "SourceDatasets": [ {"URL": "../../sourcedata/raw/"} ]
+  "SourceDatasets": [ {"URL": "../../rawbids/"} ]
 }
 ```
 
@@ -1135,9 +1142,16 @@ Describing dates and timestamps:
     for more information.
 
 -   Age SHOULD be given as the number of years since birth at the time of
-    scanning (or first scan in case of multi session datasets). Using higher
-    accuracy (weeks) should in general be avoided due to privacy protection,
-    unless when appropriate given the study goals, for example, when scanning babies.
+    scanning (or first scan in case of multi session datasets).
+    The default unit is `"year"`, but it MAY be overridden in the JSON sidecar
+    (for example, `participants.json`) by setting `"Units"` to one of the
+    following values based on
+    [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Durations) duration
+    designators: `"year"`, `"month"`, `"week"`, `"day"`, `"hour"`, `"minute"`,
+    or `"second"`.
+    Using higher accuracy (for example, weeks or days) should in general be
+    avoided due to privacy protection, unless when appropriate given the study
+    goals, for example, when scanning babies or animals.
 
 ## Directory structure
 
