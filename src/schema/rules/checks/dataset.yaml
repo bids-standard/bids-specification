@@ -43,6 +43,21 @@ ParticipantIDMismatch:
         sorted(dataset.subjects.sub_dirs)
       )
 
+AgeUnits:
+  issue:
+    code: AGE_UNITS
+    message: |
+      The "Units" value for age in 'participants.json' is not a valid
+      ISO 8601-based duration unit.
+      Allowed values are "year", "month", "week", "day", "hour", "minute",
+      or "second".
+    level: warning
+  selectors:
+    - path == '/participants.tsv'
+    - '"Units" in sidecar.age'
+  checks:
+    - intersects([sidecar.age.Units], ["year", "month", "week", "day", "hour", "minute", "second"])
+
 # 214
 SamplesTSVMissing:
   issue:
