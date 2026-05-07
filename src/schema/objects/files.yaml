@@ -87,6 +87,16 @@ participants:
     (for examples `homo sapiens`, `mus musculus`, `rattus norvegicus`).
     For backwards compatibility, if `species` is absent, the participant is assumed to be
     `homo sapiens`.
+participant_sessions:
+  display_name: Participant and Session Information
+  file_type: regular
+  description: |
+    The purpose of this OPTIONAL file is to describe properties that vary
+    across both participants and sessions, such as age at each session.
+    If this file exists, it MUST contain the columns `participant_id` and `session_id`,
+    which MUST consist of `sub-<label>` and `ses-<label>` values respectively,
+    identifying one row for each participant-session combination.
+    Each combination of participant and session MUST be described by one and only one row.
 samples:
   display_name: Sample Information
   file_type: regular

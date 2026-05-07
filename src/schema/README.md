@@ -732,8 +732,9 @@ Here, `README` and `README.md` are both valid, while only `dataset_description.j
 #### Tabular metadata files
 
 `rules.files.common.tables` describes TSV files and their associated metadata,
-including `participants.tsv`, `samples.tsv`, `*_sessions.tsv` and `*_scans.tsv`.
-The first two use the `stem` field, while the latter two specify the entities used
+including `participants.tsv`, `participant+sessions.tsv`, `samples.tsv`,
+`*_sessions.tsv` and `*_scans.tsv`.
+The first three use the `stem` field, while the latter two specify the entities used
 to construct the filename.
 
 The valid fields are:

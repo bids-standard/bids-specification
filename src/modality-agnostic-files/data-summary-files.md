@@ -81,6 +81,63 @@ to date of birth.
 }
 ```
 
+## Participant and sessions file
+
+Template:
+
+```Text
+participant+sessions.tsv
+participant+sessions.json
+```
+
+<!-- This block generates a description.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___render_text("objects.files.participant_sessions.description") }}
+
+We RECOMMEND to make use of these columns, and
+in case that you do use them, we RECOMMEND to use the following values
+for them:
+
+<!-- This block generates a columns table.
+The definitions of these fields can be found in
+  src/schema/rules/tabular_data/*.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_columns_table("modality_agnostic.ParticipantSessions") }}
+
+`participant+sessions.tsv` example:
+
+```tsv
+participant_id	session_id	age	body_weight
+sub-01	ses-predrug	34	81.3
+sub-01	ses-postdrug	35	83.1
+sub-02	ses-predrug	12	45.2
+sub-02	ses-postdrug	13	48.7
+```
+
+It is RECOMMENDED to accompany each `participant+sessions.tsv` file with a sidecar
+`participant+sessions.json` file to describe the TSV column names and properties
+of their values (see also
+the [section on tabular files](../common-principles.md#tabular-files)).
+Such sidecar files are needed to interpret the data, especially so when
+additional columns are defined beyond `age`,
+such as `body_weight` in this example.
+
+`participant+sessions.json` example:
+
+```JSON
+{
+    "body_weight": {
+        "Description": "body weight of the participant at the time of the session",
+        "Format": "number",
+        "Units": "kg"
+    }
+}
+```
+
 ## Samples file
 
 Template:

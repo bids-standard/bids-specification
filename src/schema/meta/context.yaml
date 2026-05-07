@@ -80,6 +80,18 @@ properties:
             type: array
             items:
               type: string
+      sessions:
+        description: 'Collections of sessions in dataset'
+        type: object
+        required:
+          - ses_dirs
+        additionalProperties: false
+        properties:
+          ses_dirs:
+            description: 'Union of all ses-* directories found across all subjects'
+            type: array
+            items:
+              type: string
   subject:
     description: 'Properties and contents of the current subject'
     type: object

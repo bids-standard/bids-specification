@@ -19,6 +19,26 @@ Participants:
   index_columns: [participant_id]
   additional_columns: allowed
 
+ParticipantSessions:
+  selectors:
+    - path == "/participant+sessions.tsv"
+  initial_columns:
+    - participant_id
+    - session_id
+  columns:
+    participant_id:
+      level: required
+      description_addendum: |
+        There MUST be exactly one row for each combination of participant and session.
+    session_id: required
+    age:
+      level: optional
+      description_addendum: |
+        Age of the participant at the time of the session.
+    HED: optional
+  index_columns: [participant_id, session_id]
+  additional_columns: allowed
+
 Samples:
   selectors:
     - path == "/samples.tsv"
