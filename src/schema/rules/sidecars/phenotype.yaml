@@ -1,0 +1,18 @@
+---
+MeasurementToolMetadata:
+  selectors:
+    - datatype == 'phenotype'
+    - extension == '.tsv'
+    - '!intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])'
+  fields:
+    MeasurementToolMetadata:
+      level: optional
+      level_addendum: recommended by phenotype guidelines
+
+MeasurementToolMetadataRec:
+  selectors:
+    - datatype == 'phenotype'
+    - extension == '.tsv'
+    - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
+  fields:
+    MeasurementToolMetadata: recommended

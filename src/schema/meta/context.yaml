@@ -39,7 +39,6 @@ properties:
       - ignored
       - datatypes
       - modalities
-      - subjects
     additionalProperties: false
     properties:
       dataset_description:
@@ -63,23 +62,20 @@ properties:
         type: array
         items:
           type: string
-      subjects:
-        description: 'Collections of subjects in dataset'
+      participants_tsv:
+        description: 'Contents of /participants.tsv, accessed by column header'
         type: object
-        required:
-          - sub_dirs
-        additionalProperties: false
-        properties:
-          sub_dirs:
-            description: 'Subjects as determined by sub-* directories'
-            type: array
-            items:
-              type: string
-          participant_id:
-            description: 'The participant_id column of participants.tsv'
-            type: array
-            items:
-              type: string
+        additionalProperties:
+          type: array
+          items:
+            type: string
+      sessions_tsv:
+        description: 'Contents of /sessions.tsv, accessed by column header'
+        type: object
+        additionalProperties:
+          type: array
+          items:
+            type: string
   subject:
     description: 'Properties and contents of the current subject'
     type: object
