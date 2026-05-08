@@ -385,18 +385,18 @@ perf_asl_volumetric_atlas:
 
 pet_pet_volumetric:
   $ref:
-    - meta.templates.deriv.volumetric
+    - meta.templates.deriv.pet_derivative
     - rules.files.raw.pet.pet
   entities:
     $ref:
-      - meta.templates.deriv.volumetric.entities
+      - meta.templates.deriv.pet_derivative.entities
       - rules.files.raw.pet.pet.entities
 
 pet_pet_volumetric_atlas:
   $ref: rules.files.deriv.imaging.pet_pet_volumetric
   entities:
     $ref:
-      - meta.templates.deriv.volumetric.entities
+      - meta.templates.atlas.base.entities
       - rules.files.deriv.imaging.pet_pet_volumetric.entities
 
 # Masks
