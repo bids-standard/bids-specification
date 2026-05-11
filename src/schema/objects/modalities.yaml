@@ -42,3 +42,7 @@ nirs:
 mrs:
   display_name: Magnetic Resonance Spectroscopy
   description: Data acquired with MRS.
+survey:
+  display_name: Survey
+  description: |
+    Data collected with standardized questionnaires or assessment instruments.
