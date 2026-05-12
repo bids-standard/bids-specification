@@ -337,7 +337,7 @@ MEG and EEG sensors:
 
 <!-- This block generates a metadata table.
 These tables are defined in
-  src/schema/rules/sidecars
+  src/schema/rules/json
 The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
 A guide for using macros can be found at
@@ -349,7 +349,7 @@ Head localization coils:
 
 <!-- This block generates a metadata table.
 These tables are defined in
-  src/schema/rules/sidecars
+  src/schema/rules/json
 The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
 A guide for using macros can be found at
@@ -361,7 +361,7 @@ Digitized head points:
 
 <!-- This block generates a metadata table.
 These tables are defined in
-  src/schema/rules/sidecars
+  src/schema/rules/json
 The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
 A guide for using macros can be found at
@@ -373,7 +373,7 @@ Anatomical MRI:
 
 <!-- This block generates a metadata table.
 These tables are defined in
-  src/schema/rules/sidecars
+  src/schema/rules/json
 The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
 A guide for using macros can be found at
@@ -385,7 +385,7 @@ Anatomical landmarks:
 
 <!-- This block generates a metadata table.
 These tables are defined in
-  src/schema/rules/sidecars
+  src/schema/rules/json
 The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
 A guide for using macros can be found at
@@ -413,7 +413,7 @@ Fiducials information:
 
 <!-- This block generates a metadata table.
 These tables are defined in
-  src/schema/rules/sidecars
+  src/schema/rules/json
 The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
 A guide for using macros can be found at
