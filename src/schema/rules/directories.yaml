@@ -118,6 +118,7 @@ derivative:
     subdirs:
       - code
       - docs
+      - rawbids
       - derivatives
       - logs
       - phenotype
@@ -137,6 +138,10 @@ derivative:
       - datatype
   docs:
     name: docs
+    level: optional
+    opaque: true
+  rawbids:
+    name: rawbids
     level: optional
     opaque: true
   derivatives:
