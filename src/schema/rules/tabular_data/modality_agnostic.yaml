@@ -42,7 +42,8 @@ Scans:
       level: required
       description_addendum: |
         There MUST be exactly one row for each file.
-    acq_time__scans: optional
+    acq_time__scans: recommended
+    duration: optional
     HED: optional
   index_columns: [filename]
   additional_columns: allowed
