@@ -522,7 +522,7 @@ extends Zarr with bioimaging-specific metadata.
 OME-Zarr is particularly suitable for very large imaging volumes (for example, high-resolution
 ex vivo MRI) where NIfTI would be impractical for streaming or web-based visualization.
 
-OME-Zarr filesets are stored with the `.ome.zarr` extension.
+OME-Zarr filesets are stored in BIDS with the `.ome.zarr` extension.
 Spatial metadata (such as the axis names and units, and coordinate transformations) SHOULD
 be stored within the OME-Zarr metadata following the
 [OME-Zarr version 0.5 specification](https://ngff.openmicroscopy.org/specifications/0.5/index.html)
