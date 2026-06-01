@@ -24,7 +24,7 @@
 # Idempotent: skips PRs/issues that already have an identical comment.
 #
 # Modeled after datalad/release-action's `make_release_comments`:
-#   https://github.com/datalad/release-action/blob/main/datalad_release_action/client.py
+#   https://github.com/datalad/release-action/blob/master/datalad_release_action/client.py
 import argparse
 import asyncio
 import os
