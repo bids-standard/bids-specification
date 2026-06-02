@@ -39,7 +39,7 @@ render = [
   "numpy>=1.26",
   "pandas>=2.0",
   "markdown-it-py>=3.0",
-  "pymdown-extensions>=9.2",
+  "pymdown-extensions>=10.21.2",
 ]
 validation = [
   "jsonschema[format]>=4.22",
