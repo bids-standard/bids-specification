@@ -1932,6 +1932,16 @@ ImageHeight:
   type: integer
   minimum: 1
   unit: px
+ImagePixelFormat:
+  name: ImagePixelFormat
+  display_name: Image Pixel Format
+  description: |
+    The pixel format of the video frame or image, as reported by FFmpeg's
+    `pix_fmt` field (for example, `"yuv420p"`, `"yuv420p10le"`, `"gray16le"`,
+    `"rgb24"`). A single `pix_fmt` value encodes the color model, channel
+    count, chroma subsampling, and bit depth, and can be extracted
+    automatically with `ffprobe`.
+  type: string
 ImageWidth:
   name: ImageWidth
   display_name: Image Width
@@ -3096,16 +3106,6 @@ PhysioType:
   enum:
     - $ref: objects.enums.PhysioTypeGeneric.value
     - $ref: objects.enums.PhysioTypeEyetrack.value
-PixelFormat:
-  name: PixelFormat
-  display_name: Pixel Format
-  description: |
-    The pixel format of the video stream, as reported by FFmpeg's `pix_fmt`
-    field (for example, `"yuv420p"`, `"yuv420p10le"`, `"gray16le"`).
-    A single `pix_fmt` value encodes the color model, channel count, chroma
-    subsampling, and bit depth, and can be extracted automatically with
-    `ffprobe`.
-  type: string
 PixelSize:
   name: PixelSize
   display_name: Pixel Size

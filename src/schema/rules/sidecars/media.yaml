@@ -24,6 +24,7 @@ MediaImageProperties:
   fields:
     ImageWidth: recommended
     ImageHeight: recommended
+    ImagePixelFormat: optional
 
 MediaVideoProperties:
   selectors:
@@ -32,5 +33,4 @@ MediaVideoProperties:
     VideoCodec: recommended
     VideoFrameRate: recommended
     VideoFrameCount: recommended
-    PixelFormat: optional
     VideoCodecRFC6381: optional
