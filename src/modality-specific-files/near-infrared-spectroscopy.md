@@ -8,7 +8,7 @@ context of the academic literature.
 
 !!! example "Example datasets"
 
-    Several [example NIRS datasets](https://bids-standard.github.io/bids-examples/#nirs)
+    Several [example NIRS datasets](https://bids.neuroimaging.io/datasets/examples.html#nirs)
     have been formatted using this specification and can be used for practical guidance when curating a new dataset.
 
 ## NIRS recording data
@@ -225,7 +225,7 @@ A guide for using macros can be found at
   "SoftwareFilters": "n/a",
   "RecordingDuration": 233.639,
   "HardwareFilters": {"Highpass RC filter": {"Half amplitude cutoff (Hz)": 0.0159, "Roll-off": "6dBOctave"}},
-  "CapManafacturer": "NIRx",
+  "CapManufacturer": "NIRx",
   "CapManufacturersModelName": "Headband with print (S-M)",
   "NIRSPlacementScheme": "n/a"
 }

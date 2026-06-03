@@ -8,7 +8,7 @@ context of the academic literature.
 
 !!! example "Example datasets"
 
-    Several [example iEEG datasets](https://bids-standard.github.io/bids-examples/#ieeg)
+    Several [example iEEG datasets](https://bids.neuroimaging.io/datasets/examples.html#ieeg)
     have been formatted using this specification
     and can be used for practical guidance when curating a new dataset.
 
