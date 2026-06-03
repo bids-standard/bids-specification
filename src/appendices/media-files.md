@@ -43,7 +43,7 @@ suffix with appropriate migration tooling
 
 {{ MACROS___make_extension_table(["jpg", "png", "svg", "webp", "tif", "tiff"]) }}
 
-When choosing a format, consider the trade-off between file size and data fidelity.
+When choosing a format, consider the trade-off between file size, data fidelity, openness and prevalence of the format in the domain of application.
 Uncompressed or lossless formats (WAV, PNG, TIFF) preserve full quality
 but produce larger files.
 Lossy formats (MP3, AAC, JPEG) significantly reduce file size
