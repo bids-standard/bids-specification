@@ -1585,7 +1585,8 @@ FrameRate:
   display_name: Frame Rate
   description: |
     The video frame rate of the video stream, in Hz
-    (for example, `24`, `25`, `29.97`, `30`, `60`). For variable rate videos, this value should be the nominal frame rate.
+    (for example, `24`, `25`, `29.97`, `30`, `60`).
+    For variable rate videos, this value should be the nominal frame rate.
   type: number
   exclusiveMinimum: 0
   unit: Hz
@@ -1817,6 +1818,9 @@ Height:
   display_name: Height
   description: |
     Height of the video frame or image, in pixels.
+    Corresponds to the number of rows in the stored pixel grid as captured,
+    without applying any orientation correction that may be reported by
+    container metadata (for example, the EXIF `Orientation` tag).
   type: integer
   minimum: 1
   unit: px
@@ -3091,6 +3095,16 @@ PhysioType:
   enum:
     - $ref: objects.enums.PhysioTypeGeneric.value
     - $ref: objects.enums.PhysioTypeEyetrack.value
+PixelFormat:
+  name: PixelFormat
+  display_name: Pixel Format
+  description: |
+    The pixel format of the video stream, as reported by FFmpeg's `pix_fmt`
+    field (for example, `"yuv420p"`, `"yuv420p10le"`, `"gray16le"`).
+    A single `pix_fmt` value encodes the color model, channel count, chroma
+    subsampling, and bit depth, and can be extracted automatically with
+    `ffprobe`.
+  type: string
 PixelSize:
   name: PixelSize
   display_name: Pixel Size
@@ -4608,6 +4622,9 @@ Width:
   display_name: Width
   description: |
     Width of the video frame or image, in pixels.
+    Corresponds to the number of columns in the stored pixel grid as captured,
+    without applying any orientation correction that may be reported by
+    container metadata (for example, the EXIF `Orientation` tag).
   type: integer
   minimum: 1
   unit: px

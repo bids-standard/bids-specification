@@ -31,4 +31,5 @@ MediaVideoProperties:
   fields:
     VideoCodec: recommended
     FrameRate: recommended
+    PixelFormat: optional
     VideoCodecRFC6381: optional
