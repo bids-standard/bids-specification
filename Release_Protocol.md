@@ -235,11 +235,11 @@ Verify ReadTheDocs builds complete and publish. If needed, manually
 trigger [builds](https://readthedocs.org/projects/bids-specification/builds/)
 for `stable` and the most recent tag.
 
-Publishing the GitHub release also triggers the `announce_release` job in the
-[`Publish schema`](https://github.com/bids-standard/bids-specification/actions/workflows/publish_schema.yml)
+Publishing the GitHub release also triggers the
+[`Announce release on PRs and issues`](https://github.com/bids-standard/bids-specification/actions/workflows/announce_release.yml)
 workflow, which posts a "PR released in `vX.Y.Z`" comment on every PR that was
 merged for this release and a "Issue fixed in `vX.Y.Z`" comment on every issue
-those PRs close (`Fixes #N` / `Closes #N`). The job is idempotent — if
+those PRs close (`Fixes #N` / `Closes #N`). The workflow is idempotent — if
 re-published, comments are not duplicated.
 
 To back-fill comments on past releases that pre-date this workflow, run
