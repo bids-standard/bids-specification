@@ -74,11 +74,11 @@ Note: `AudioSampleRate` is used instead of the existing `SamplingFrequency` fiel
 because audio-video files require distinguishing the audio sampling rate from the
 video frame rate. The `Audio` prefix makes this unambiguous in multi-stream containers.
 
-### Visual properties
+### Image properties
 
 Applies to suffixes: `video`, `audiovideo`, `image`.
 
-{{ MACROS___make_sidecar_table("media.MediaVisualProperties") }}
+{{ MACROS___make_sidecar_table("media.MediaImageProperties") }}
 
 ### Video stream properties
 
@@ -151,9 +151,10 @@ A complete sidecar JSON file for an audio-video recording:
     "RecordingDuration": 312.5,
     "VideoCodec": "h264",
     "VideoCodecRFC6381": "avc1.640028",
-    "FrameRate": 30,
-    "Width": 1920,
-    "Height": 1080,
+    "VideoFrameRate": 30,
+    "VideoFrameCount": 9375,
+    "ImageWidth": 1920,
+    "ImageHeight": 1080,
     "AudioCodec": "aac",
     "AudioCodecRFC6381": "mp4a.40.2",
     "AudioSampleRate": 48000,

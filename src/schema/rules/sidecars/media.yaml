@@ -18,18 +18,19 @@ MediaAudioProperties:
     AudioChannelCount: recommended
     AudioCodecRFC6381: optional
 
-MediaVisualProperties:
+MediaImageProperties:
   selectors:
     - intersects([suffix], ["video", "audiovideo", "image"])
   fields:
-    Width: recommended
-    Height: recommended
+    ImageWidth: recommended
+    ImageHeight: recommended
 
 MediaVideoProperties:
   selectors:
     - intersects([suffix], ["video", "audiovideo"])
   fields:
     VideoCodec: recommended
-    FrameRate: recommended
+    VideoFrameRate: recommended
+    VideoFrameCount: recommended
     PixelFormat: optional
     VideoCodecRFC6381: optional

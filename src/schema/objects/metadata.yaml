@@ -1580,16 +1580,6 @@ FlipAngle:
         unit: degree
         exclusiveMinimum: 0
         maximum: 360
-FrameRate:
-  name: FrameRate
-  display_name: Frame Rate
-  description: |
-    The video frame rate of the video stream, in Hz
-    (for example, `24`, `25`, `29.97`, `30`, `60`).
-    For variable rate videos, this value should be the nominal frame rate.
-  type: number
-  exclusiveMinimum: 0
-  unit: Hz
 OnsetSource:
   name: OnsetSource
   display_name: Column Name of the Onset Source
@@ -1813,17 +1803,6 @@ HardwareFilters:
     - type: string
       enum:
         - n/a
-Height:
-  name: Height
-  display_name: Height
-  description: |
-    Height of the video frame or image, in pixels.
-    Corresponds to the number of rows in the stored pixel grid as captured,
-    without applying any orientation correction that may be reported by
-    container metadata (for example, the EXIF `Orientation` tag).
-  type: integer
-  minimum: 1
-  unit: px
 HeadCircumference:
   name: HeadCircumference
   display_name: Head Circumference
@@ -1942,6 +1921,28 @@ ImageDecayCorrectionTime:
     `"TimeZero"` in the default unit seconds.
   type: number
   unit: s
+ImageHeight:
+  name: ImageHeight
+  display_name: Image Height
+  description: |
+    Height of the video frame or image, in pixels.
+    Corresponds to the number of rows in the stored pixel grid as captured,
+    without applying any orientation correction that may be reported by
+    container metadata (for example, the EXIF `Orientation` tag).
+  type: integer
+  minimum: 1
+  unit: px
+ImageWidth:
+  name: ImageWidth
+  display_name: Image Width
+  description: |
+    Width of the video frame or image, in pixels.
+    Corresponds to the number of columns in the stored pixel grid as captured,
+    without applying any orientation correction that may be reported by
+    container metadata (for example, the EXIF `Orientation` tag).
+  type: integer
+  minimum: 1
+  unit: px
 Immersion:
   name: Immersion
   display_name: Immersion
@@ -4582,6 +4583,27 @@ VideoCodecRFC6381:
     (for example, `"avc1.640028"` for H.264 High Profile Level 4.0).
     This representation is useful for web and broadcast interoperability.
   type: string
+VideoFrameCount:
+  name: VideoFrameCount
+  display_name: Video Frame Count
+  description: |
+    Total number of frames in the video stream.
+    For constant frame rate video this can be derived from `VideoFrameRate`
+    and `RecordingDuration`, but for variable frame rate (VFR) video the
+    derivation is undefined, so an explicit value is needed.
+    Also useful as an integrity check to detect truncated or corrupted files.
+  type: integer
+  minimum: 1
+VideoFrameRate:
+  name: VideoFrameRate
+  display_name: Video Frame Rate
+  description: |
+    The video frame rate of the video stream, in Hz
+    (for example, `24`, `25`, `29.97`, `30`, `60`).
+    For variable rate videos, this value should be the nominal frame rate.
+  type: number
+  exclusiveMinimum: 0
+  unit: Hz
 VolumeTiming:
   name: VolumeTiming
   display_name: Volume Timing
@@ -4617,17 +4639,6 @@ WholeBloodAvail:
     If `true`, the `whole_blood_radioactivity` column MUST be present in the
     corresponding `*_blood.tsv` file.
   type: boolean
-Width:
-  name: Width
-  display_name: Width
-  description: |
-    Width of the video frame or image, in pixels.
-    Corresponds to the number of columns in the stored pixel grid as captured,
-    without applying any orientation correction that may be reported by
-    container metadata (for example, the EXIF `Orientation` tag).
-  type: integer
-  minimum: 1
-  unit: px
 WithdrawalRate:
   name: WithdrawalRate
   display_name: Withdrawal Rate
