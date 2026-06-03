@@ -1585,7 +1585,7 @@ FrameRate:
   display_name: Frame Rate
   description: |
     The video frame rate of the video stream, in Hz
-    (for example, `24`, `25`, `29.97`, `30`, `60`).
+    (for example, `24`, `25`, `29.97`, `30`, `60`). For variable rate videos, this value should be the nominal frame rate.
   type: number
   exclusiveMinimum: 0
   unit: Hz
