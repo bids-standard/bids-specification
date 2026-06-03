@@ -156,6 +156,7 @@ A complete sidecar JSON file for an audio-video recording:
     "ImageWidth": 1920,
     "ImageHeight": 1080,
     "ImagePixelFormat": "yuv420p",
+    "ImageBitDepth": 8,
     "AudioCodec": "aac",
     "AudioCodecRFC6381": "mp4a.40.2",
     "AudioSampleRate": 48000,

@@ -1907,6 +1907,22 @@ ImageAcquisitionProtocol:
     [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator)
     (for example from [protocols.io](https://www.protocols.io/)).
   type: string
+ImageBitDepth:
+  name: ImageBitDepth
+  display_name: Image Bit Depth
+  description: |
+    Bit depth per channel of the stored pixel data of the video frame or
+    image (for example, `8`, `10`, `12`, `16`). For multi-channel data
+    this is the depth of each individual channel.
+    When `ImagePixelFormat` is also provided, this field is redundant with
+    the bit depth encoded in the FFmpeg `pix_fmt` value (for example,
+    `yuv420p10le` -> 10) and the two MUST agree. `ImageBitDepth` is
+    nonetheless useful as a more directly discoverable summary, and as the
+    primary precision field for image-only sidecars whose producing tools
+    do not naturally surface `pix_fmt`.
+  type: integer
+  minimum: 1
+  unit: bit
 ImageDecayCorrected:
   name: ImageDecayCorrected
   display_name: Image Decay Corrected

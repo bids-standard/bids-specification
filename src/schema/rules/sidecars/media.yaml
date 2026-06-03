@@ -25,6 +25,7 @@ MediaImageProperties:
     ImageWidth: recommended
     ImageHeight: recommended
     ImagePixelFormat: optional
+    ImageBitDepth: optional
 
 MediaVideoProperties:
   selectors:
