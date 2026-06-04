@@ -16,6 +16,7 @@ MediaAudioProperties:
     AudioCodec: recommended
     AudioSampleRate: recommended
     AudioChannelCount: recommended
+    AudioBitDepth: optional
     AudioCodecRFC6381: optional
 
 MediaImageProperties:
