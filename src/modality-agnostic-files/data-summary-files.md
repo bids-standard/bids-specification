@@ -143,10 +143,10 @@ sub-<label>/
         sub-<label>[_ses-<label>]_scans.json
 ```
 
-Optional: Yes
+Optional: No
 
 The purpose of this file is to describe timing and other properties of each recording *file* within one session. 
-This file is RECOMMENDED when more than one modality is recorded simultaneously,
+This file is REQUIRED when more than one modality is recorded simultaneously,
 or, within the same modality, when multiple files are recorded simultaneously and independently (for example,
 in the case of multiple physiological monitoring systems).
 In general, each of these files SHOULD be described by exactly one row.
