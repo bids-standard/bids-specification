@@ -261,7 +261,9 @@ def select_tags(args: argparse.Namespace, tags: list[str]) -> list[str] | None:
     return [tags[-1]]
 
 
-async def main_async(args: argparse.Namespace, selected: list[str], tags: list[str]) -> int:
+async def main_async(
+    args: argparse.Namespace, selected: list[str], tags: list[str]
+) -> int:
     token = os.environ.get("GITHUB_TOKEN")
     if not token:
         print("GITHUB_TOKEN environment variable is not set.", file=sys.stderr)
@@ -275,9 +277,7 @@ async def main_async(args: argparse.Namespace, selected: list[str], tags: list[s
         for tag in selected:
             idx = tags.index(tag)
             prev = tags[idx - 1] if idx > 0 else None
-            await annotate_release(
-                client, session, token, tag, prev, post=args.post
-            )
+            await annotate_release(client, session, token, tag, prev, post=args.post)
     return 0
 
 

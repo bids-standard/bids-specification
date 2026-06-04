@@ -41,6 +41,7 @@ _spec.loader.exec_module(ann)
 
 # ---------- TAG_RE -----------------------------------------------------------
 
+
 @pytest.mark.parametrize("tag", ["v1.0.0", "v10.20.30", "v1.11.1", "v0.0.1"])
 def test_tag_regex_accepts(tag):
     assert ann.TAG_RE.match(tag), tag
@@ -49,12 +50,12 @@ def test_tag_regex_accepts(tag):
 @pytest.mark.parametrize(
     "tag",
     [
-        "1.0.0",            # missing v
-        "v1.0",             # missing patch
-        "schema-1.2.3",     # schema tag
-        "v1.0.0-dev",       # pre-release suffix
-        "v1.0.0.post1",     # post-release suffix
-        "v.1.1.2",          # bogus historical tag in this repo
+        "1.0.0",  # missing v
+        "v1.0",  # missing patch
+        "schema-1.2.3",  # schema tag
+        "v1.0.0-dev",  # pre-release suffix
+        "v1.0.0.post1",  # post-release suffix
+        "v.1.1.2",  # bogus historical tag in this repo
     ],
 )
 def test_tag_regex_rejects(tag):
@@ -63,10 +64,14 @@ def test_tag_regex_rejects(tag):
 
 # ---------- formatting ------------------------------------------------------
 
+
 def test_release_link_format():
     link = ann.release_link("v1.11.1")
     assert "[`v1.11.1`]" in link
-    assert "https://github.com/bids-standard/bids-specification/releases/tag/v1.11.1" in link
+    assert (
+        "https://github.com/bids-standard/bids-specification/releases/tag/v1.11.1"
+        in link
+    )
 
 
 def test_pr_and_issue_comment_bodies_differ_and_contain_tag():
@@ -80,6 +85,7 @@ def test_pr_and_issue_comment_bodies_differ_and_contain_tag():
 
 # ---------- prs_in_range ----------------------------------------------------
 
+
 def test_prs_in_range_squash_and_merge(monkeypatch):
     """Parses both squash-merge `... (#NNN)` and `Merge pull request #NNN` subjects.
 
@@ -87,13 +93,13 @@ def test_prs_in_range_squash_and_merge(monkeypatch):
     """
     fake_log = "\n".join(
         [
-            "REL: Version 1.11.1",                                       # no PR ref, skip
-            "[FIX] Add emg to timeseries rule (#2346)",                   # squash
-            "fix: Allow mkdocs to render links in glossary (#2345)",      # squash
-            "Merge pull request #2189 from bids-standard/rel/1.10.1",     # merge
-            "chore: commit with no PR ref",                               # skip
-            "another (#2346)",                                            # duplicate
-            "tail #1234 in middle, not at end",                           # skip (not (#))
+            "REL: Version 1.11.1",  # no PR ref, skip
+            "[FIX] Add emg to timeseries rule (#2346)",  # squash
+            "fix: Allow mkdocs to render links in glossary (#2345)",  # squash
+            "Merge pull request #2189 from bids-standard/rel/1.10.1",  # merge
+            "chore: commit with no PR ref",  # skip
+            "another (#2346)",  # duplicate
+            "tail #1234 in middle, not at end",  # skip (not (#))
         ]
     )
     monkeypatch.setattr(ann, "git", lambda *a: fake_log)
@@ -112,26 +118,26 @@ def test_prs_in_range_empty(monkeypatch):
 
 # ---------- release_tags ---------------------------------------------------
 
+
 def test_release_tags_filters_and_preserves_order(monkeypatch):
     raw = "\n".join(
         [
             "schema-1.2.3",
-            "v.1.1.2",        # malformed
+            "v.1.1.2",  # malformed
             "v1.1.2",
             "v1.10.0",
             "v1.10.1",
             "v1.11.0",
-            "v1.11.1-dev",    # pre-release
+            "v1.11.1-dev",  # pre-release
             "v1.11.1",
         ]
     )
     monkeypatch.setattr(ann, "git", lambda *a: raw)
-    assert ann.release_tags() == [
-        "v1.1.2", "v1.10.0", "v1.10.1", "v1.11.0", "v1.11.1"
-    ]
+    assert ann.release_tags() == ["v1.1.2", "v1.10.0", "v1.10.1", "v1.11.0", "v1.11.1"]
 
 
 # ---------- CLI argparse validation ----------------------------------------
+
 
 def _run_script(*argv):
     """Run the script as a subprocess, returning (returncode, stderr)."""
@@ -158,6 +164,7 @@ def test_cli_rejects_since_without_retroactive():
 def test_cli_missing_token(monkeypatch):
     """Without GITHUB_TOKEN, the script exits 1 with a clear message."""
     import os
+
     env = {k: v for k, v in os.environ.items() if k != "GITHUB_TOKEN"}
     proc = sp.run(
         [sys.executable, str(SCRIPT), "v1.11.1"],
@@ -173,6 +180,7 @@ def test_cli_missing_token(monkeypatch):
 def test_cli_help_without_token():
     """`--help` must work even without GITHUB_TOKEN (argparse short-circuits)."""
     import os
+
     env = {k: v for k, v in os.environ.items() if k != "GITHUB_TOKEN"}
     proc = sp.run(
         [sys.executable, str(SCRIPT), "--help"],
@@ -192,6 +200,7 @@ def test_cli_unknown_tag_message_before_token():
     `uv run script -- --help` pattern, which makes argparse see `--help`
     as a positional tag."""
     import os
+
     env = {k: v for k, v in os.environ.items() if k != "GITHUB_TOKEN"}
     proc = sp.run(
         [sys.executable, str(SCRIPT), "v9.99.99"],
@@ -207,9 +216,11 @@ def test_cli_unknown_tag_message_before_token():
 
 # ---------- select_tags ----------------------------------------------------
 
+
 def _ns(**kw):
     """Build an argparse.Namespace with sensible defaults."""
     import argparse
+
     return argparse.Namespace(
         tag=kw.get("tag"),
         retroactive=kw.get("retroactive", False),
@@ -240,7 +251,10 @@ def test_select_tags_retroactive_full():
 
 def test_select_tags_retroactive_since():
     tags = ["v1.0.0", "v1.1.0", "v1.2.0"]
-    assert ann.select_tags(_ns(retroactive=True, since="v1.1.0"), tags) == ["v1.1.0", "v1.2.0"]
+    assert ann.select_tags(_ns(retroactive=True, since="v1.1.0"), tags) == [
+        "v1.1.0",
+        "v1.2.0",
+    ]
 
 
 def test_select_tags_retroactive_since_unknown(capsys):
