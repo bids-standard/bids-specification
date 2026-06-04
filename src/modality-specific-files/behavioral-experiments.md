@@ -196,21 +196,23 @@ A guide for using macros can be found at
     that contain identifiable participant data. If not specified, the recording
     inherits the license from `dataset_description.json`.
 
-{{ MACROS___make_sidecar_table("beh.AudioVideoDuration") }}
+The general stream properties of these files (duration, codecs, sample rate,
+dimensions, and frame rate) are described by the common media file metadata
+(see [Common media file metadata](../appendices/media-files.md)):
+
+{{ MACROS___make_sidecar_table("media.MediaDuration") }}
 
 The following fields are available for audio recordings (`_audio`) and audio-video recordings (`_audiovideo`):
 
-{{ MACROS___make_sidecar_table("beh.AudioStreams") }}
+{{ MACROS___make_sidecar_table(["media.MediaAudioProperties", "beh.AudioBitDepthProperties"]) }}
 
 The following fields are available for video recordings (`_video`) and audio-video recordings (`_audiovideo`):
 
-{{ MACROS___make_sidecar_table("beh.VideoStreams") }}
+{{ MACROS___make_sidecar_table(["media.MediaVideoProperties", "media.MediaImageProperties", "beh.CameraProperties"]) }}
 
 The following fields are available for image files (`_image`):
 
-{{ MACROS___make_sidecar_table("beh.AudioVideoImageDevice") }}
-
-{{ MACROS___make_sidecar_table("beh.ImageProperties") }}
+{{ MACROS___make_sidecar_table(["media.MediaImageProperties", "beh.CameraProperties"]) }}
 
 ### Example audio-video sidecar JSON
 
@@ -220,27 +222,32 @@ For an audio-video file containing both video and audio streams:
 {
   "TaskName": "RestingState",
   "Device": "Sony FDR-AX53",
-  "AudioChannelCount": 2,
+  "RecordingDuration": 600.5,
+  "AudioCodec": "aac",
   "AudioSampleRate": 48000,
-  "FrameRate": 30.0,
-  "Height": 1080,
-  "Width": 1920,
-  "Duration": 600.5
+  "AudioChannelCount": 2,
+  "VideoCodec": "h264",
+  "VideoFrameRate": 30.0,
+  "VideoFrameCount": 18015,
+  "ImageWidth": 1920,
+  "ImageHeight": 1080
 }
 ```
 
 ### Example video sidecar JSON
 
-For a video-only recording:
+For a video-only recording (no audio stream):
 
 ```JSON
 {
   "TaskName": "RestingState",
   "Device": "Sony FDR-AX53",
-  "FrameRate": 30.0,
-  "Height": 1080,
-  "Width": 1920,
-  "Duration": 600.5
+  "RecordingDuration": 600.5,
+  "VideoCodec": "h264",
+  "VideoFrameRate": 30.0,
+  "VideoFrameCount": 18015,
+  "ImageWidth": 1920,
+  "ImageHeight": 1080
 }
 ```
 
@@ -252,9 +259,11 @@ For an audio-only recording:
 {
   "TaskName": "Vocalization",
   "Device": "Zoom H6 Handy Recorder",
-  "AudioChannelCount": 2,
+  "RecordingDuration": 300.2,
+  "AudioCodec": "flac",
   "AudioSampleRate": 44100,
-  "Duration": 300.2
+  "AudioChannelCount": 2,
+  "AudioBitDepth": 24
 }
 ```
 
@@ -266,8 +275,8 @@ For a still image:
 {
   "TaskName": "Reaching",
   "Device": "GoPro Hero 10",
-  "Height": 1080,
-  "Width": 1920,
+  "ImageWidth": 1920,
+  "ImageHeight": 1080,
   "CameraPosition": "overhead"
 }
 ```

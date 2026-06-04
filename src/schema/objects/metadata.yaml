@@ -4770,15 +4770,6 @@ iEEGReference:
     reference should be defined in the `channels.tsv` file.
   type: string
 
-AudioDuration:
-  name: AudioDuration
-  display_name: Audio Duration
-  description: |
-    Duration of the audio recording in seconds.
-  type: number
-  exclusiveMinimum: 0
-  unit: s
-
 AudioBitDepth:
   name: AudioBitDepth
   display_name: Audio Bit Depth
@@ -4797,37 +4788,3 @@ CameraPosition:
 
     Examples include "front", "profile-left", "ceiling", "room-corner", or "overhead".
   type: string
-
-Duration:
-  name: Duration
-  display_name: Duration
-  description: |
-    Total duration of the audio or video recording in seconds.
-  type: number
-  exclusiveMinimum: 0
-  unit: s
-
-FrameRate:
-  name: FrameRate
-  display_name: Frame Rate
-  description: |
-    Frame rate of the video recording in frames per second (for example, `30.0`).
-  type: number
-  exclusiveMinimum: 0
-  unit: Hz
-
-Height:
-  name: Height
-  display_name: Video Height
-  description: |
-    Height of the video in pixels (for example, `1080`).
-  type: integer
-  minimum: 1
-
-Width:
-  name: Width
-  display_name: Video Width
-  description: |
-    Width of the video in pixels (for example, `1920`).
-  type: integer
-  minimum: 1
