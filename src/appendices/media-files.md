@@ -33,7 +33,7 @@ suffix with appropriate migration tooling
 
 ### Audio formats
 
-{{ MACROS___make_extension_table(["wav", "mp3", "aac", "ogg"]) }}
+{{ MACROS___make_extension_table(["wav", "flac", "mp3", "aac", "ogg"]) }}
 
 ### Video container formats
 
