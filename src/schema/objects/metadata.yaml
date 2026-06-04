@@ -237,6 +237,15 @@ AttenuationCorrectionMethodReference:
   description: |
     Reference paper for the attenuation correction method used.
   type: string
+AudioBitDepth:
+  name: AudioBitDepth
+  display_name: Audio Bit Depth
+  description: |
+    Number of bits per sample in the audio stream
+    (for example, `16`, `24`, or `32`).
+    Typically reported for uncompressed or losslessly compressed audio.
+  type: integer
+  minimum: 1
 AudioChannelCount:
   name: AudioChannelCount
   display_name: Audio Channel Count
