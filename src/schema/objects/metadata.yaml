@@ -4770,16 +4770,6 @@ iEEGReference:
     reference should be defined in the `channels.tsv` file.
   type: string
 
-AudioBitDepth:
-  name: AudioBitDepth
-  display_name: Audio Bit Depth
-  description: |
-    Number of bits per sample in the audio recording.
-
-    Common values include `16`, `24`, or `32`.
-  type: integer
-  minimum: 1
-
 CameraPosition:
   name: CameraPosition
   display_name: Camera Position

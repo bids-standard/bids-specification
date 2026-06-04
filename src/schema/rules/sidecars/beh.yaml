@@ -39,13 +39,6 @@ AudioVideoImageDevice:
     DeviceSerialNumber: optional
     License: optional
 
-AudioBitDepthProperties:
-  selectors:
-    - datatype == "beh"
-    - intersects([suffix], ["audio", "audiovideo"])
-  fields:
-    AudioBitDepth: optional
-
 CameraProperties:
   selectors:
     - datatype == "beh"

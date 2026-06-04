@@ -204,7 +204,7 @@ dimensions, and frame rate) are described by the common media file metadata
 
 The following fields are available for audio recordings (`_audio`) and audio-video recordings (`_audiovideo`):
 
-{{ MACROS___make_sidecar_table(["media.MediaAudioProperties", "beh.AudioBitDepthProperties"]) }}
+{{ MACROS___make_sidecar_table("media.MediaAudioProperties") }}
 
 The following fields are available for video recordings (`_video`) and audio-video recordings (`_audiovideo`):
 
