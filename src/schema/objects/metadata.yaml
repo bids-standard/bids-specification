@@ -253,7 +253,7 @@ Authors:
   name: Authors
   display_name: Authors
   description: |
-    List of individuals who contributed to the creation/curation of the dataset.
+    List of contributors to the creation and/or curation of the dataset.
   type: array
   items:
     type: string
@@ -2401,6 +2401,9 @@ MISCChannelCount:
   display_name: Miscellaneous channel count
   description: |
     Number of miscellaneous channels not covered otherwise.
+
+    Deprecated alias of `MiscChannelCount`. New datasets SHOULD use
+    `MiscChannelCount`.
   type: integer
   minimum: 0
 MotionChannelCount:

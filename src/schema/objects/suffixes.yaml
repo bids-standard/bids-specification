@@ -640,9 +640,9 @@ events:
     Event timing information from a behavioral task.
 expADC:
   value: expADC
-  display_name: Exponental ADC
+  display_name: Exponential ADC
   description: |
-    Exponental ADC / Attenuation Coefficient / Attenuation Factor map,
+    Exponential ADC / Attenuation Coefficient / Attenuation Factor map,
     as the ratio of trace-weighted to non-diffusion-weighted image intensity
 fieldmap:
   value: fieldmap

@@ -1,4 +1,4 @@
-name: "schemacode_ci"
+name: bst
 
 on:
   push:
@@ -21,6 +21,13 @@ defaults:
   run:
     shell: bash
 
+# Force tox and pytest to use color
+env:
+  FORCE_COLOR: true
+
+permissions:
+  contents: read
+
 jobs:
   build:
     name: Build & verify package
@@ -37,7 +44,7 @@ jobs:
         if: ${{ startsWith(github.ref, 'refs/tags/schema-') }}
       - name: "Build archive on tag"
         run: |
-          uv run --extra=tests pytest -k make_archive
+          uv run --group=tests pytest -k make_archive
         working-directory: tools/schemacode
         env:
           BIDSSCHEMATOOLS_RELEASE: 1
@@ -47,22 +54,30 @@ jobs:
           path: tools/schemacode
           attest-build-provenance-github: ${{ github.event_name != 'pull_request' }}
 
-  test:
+  tox:
     runs-on: ${{ matrix.os }}
-    needs: [build]
     strategy:
       fail-fast: false
       matrix:
-        os: ["ubuntu-latest"]
-        python-version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
+        os: [ubuntu-latest]
+        python-version: ['3.10', '3.11', '3.12', '3.13', '3.14']
+        dependencies: [latest]
         include:
           - os: macos-latest
-            python-version: 3.13
+            python-version: '3.14'
+            dependencies: latest
           - os: windows-latest
-            python-version: 3.13
-    name: ${{ matrix.os }} with Python ${{ matrix.python-version }}
+            python-version: '3.14'
+            dependencies: latest
+          - os: ubuntu-latest
+            python-version: '3.10'
+            dependencies: min
+    env:
+      DEPENDS: ${{ matrix.dependencies }}
     steps:
       - uses: actions/checkout@v6
+        with:
+          submodules: recursive
 
       - name: Set up Python ${{ matrix.python-version }} (uv)
         uses: astral-sh/setup-uv@v7
@@ -70,105 +85,83 @@ jobs:
           python-version: ${{ matrix.python-version }}
           activate-environment: true
 
-      - name: "Display Python version"
+      - name: Display Python version
         run: python -c "import sys; print(sys.version)"
 
-      - name: "Fetch packages"
-        uses: actions/download-artifact@v7
-        with:
-          name: Packages
-          path: dist
+      - name: Install tox
+        run: uv tool install -v tox --with=tox-uv --with=tox-gh-actions
 
-      - name: "Install package"
-        run: |
-          uv pip install $( ls dist/*.whl )[all]
-
-      - name: "Run tests"
-        run: |
-          python -m pytest -vs --doctest-modules -m "not validate_schema" \
-              --cov-append --cov-report=xml --cov-report=term --cov=src/bidsschematools
+      - name: Show tox config
+        run: tox c
         working-directory: tools/schemacode
 
-      - name: "Validate generated types"
-        run: |
-          uvx --with=. mypy tests
+      - name: Setup test suite
+        run: tox run -vv --notest
         working-directory: tools/schemacode
 
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v6
+      - name: Run test suite
+        run: tox -v --skip-pkg-install --exit-and-dump-after 1200
+        working-directory: tools/schemacode
+
+      - uses: codecov/codecov-action@v5
+        if: ${{ always() }}
         with:
-          name: unit_${{ matrix.os }}_${{ matrix.python-version }}
-          path: tools/schemacode/coverage.xml
-        if: success()
+          files: tools/schemacode/cov.xml
+          token: ${{ secrets.CODECOV_TOKEN }}
+
+      - name: Upload pytest test results
+        uses: actions/upload-artifact@v7
+        with:
+          name: pytest-results-${{ matrix.os }}-${{ matrix.python-version }}-${{ matrix.dependencies }}-${{ matrix.architecture }}
+          path: tools/schemacode/test-results.xml
+        if: ${{ always() }}
+
+  checks:
+    runs-on: 'ubuntu-slim'
+    continue-on-error: true
+    strategy:
+      matrix:
+        check: ['typecheck']
+
+    steps:
+      - uses: actions/checkout@v6
+      - name: Setup uv and Python
+        uses: astral-sh/setup-uv@v7
+        with:
+          python-version: 3
+          activate-environment: true
+      - name: Display Python version
+        run: python -c "import sys; print(sys.version)"
+      - name: Install tox
+        run: uv tool install -v tox --with=tox-uv-bare --with=tox-gh-actions
+      - name: Show tox config (this call)
+        run: tox c -e ${{ matrix.check }}
+        working-directory: tools/schemacode
+      - name: Setup check environment
+        run: tox -vv --notest -e ${{ matrix.check }}
+        working-directory: tools/schemacode
+      - name: Run check
+        run: tox -e ${{ matrix.check }}
+        working-directory: tools/schemacode
 
   publish:
-    name: Publish Python Package
-    if: github.event_name == 'push'
     runs-on: ubuntu-latest
-    needs: [test]
+    environment: "Package deployment"
+    needs: [build, tox]
     permissions:
       attestations: write
       id-token: write
-
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
     steps:
-      - name: Download packages built by build-and-inspect-python-package
-        uses: actions/download-artifact@v7
+      - uses: actions/download-artifact@v8
         with:
-          name: Packages
-          path: dist
+          name: dist
+          path: dist/
       - name: "Test PyPI upload"
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
-          user: __token__
-          password: ${{ secrets.TEST_PYPI_API_TOKEN }}
           repository-url: https://test.pypi.org/legacy/
           skip-existing: true
       - name: "Upload to PyPI (on tags)"
         if: startsWith(github.ref, 'refs/tags/schema-')
         uses: pypa/gh-action-pypi-publish@release/v1
-
-  validate_schema:
-    runs-on: ubuntu-latest
-    name: Validate schema
-    steps:
-      - uses: actions/checkout@v6
-
-      - name: Set Up Python environment
-        uses: actions/setup-python@v6
-        with:
-          python-version: "3.11"
-
-      - name: Install the schemacode package
-        run: |
-          python -m pip install --progress-bar off --upgrade pip setuptools wheel
-          python -m pip install -e ./tools/schemacode[all]
-
-      - name: Run schema validation tests
-        run: |
-          python -m pytest -vs --doctest-modules -m "validate_schema" \
-              --cov-append --cov-report=xml --cov-report=term --cov=src/bidsschematools
-        working-directory: tools/schemacode
-
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v6
-        with:
-          name: schema_validation
-          path: tools/schemacode/coverage.xml
-        if: success()
-
-  upload_to_codecov:
-    runs-on: "ubuntu-latest"
-    name: Upload coverage
-    needs: [test, validate_schema]
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v6
-
-      - name: Download artifacts
-        uses: actions/download-artifact@v7
-
-      - name: Upload to CodeCov
-        uses: codecov/codecov-action@v5
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}  # not required but might help API rate limits
-          fail_ci_if_error: true
