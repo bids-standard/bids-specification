@@ -1101,8 +1101,8 @@ form of flowcharts.
 Data acquired to correct for inhomogeneities in the magnetic field can come in different forms.
 These "fieldmaps" can characterize different magnetic fields in the scanner,
 including the main static magnetic field ($B_0$)
-and the transmit (B<sub>1</sub><sup>+</sup>) and receive (B<sub>1</sub><sup>-</sup>) components of
-the radiofrequency magnetic field (B<sub>1</sub>).
+and the transmit ($B_1^+$) and receive ($B_1^-$) components of
+the radiofrequency magnetic field ($B_1$).
 
 ### $B_0$ fieldmaps
 
@@ -1376,7 +1376,7 @@ are REQUIRED for these field mapping sequences.
 ### Radiofrequency (RF) field mapping
 
 Fieldmaps may be acquired to measure the inhomogeneity in the RF ($B_1$) field.
-These fieldmaps may be divided into two categories: transmit (B<sub>1</sub><sup>+</sup>) and receive (B<sub>1</sub><sup>-</sup>) fieldmaps.
+These fieldmaps may be divided into two categories: transmit ($B_1^+$) and receive ($B_1^-$) fieldmaps.) fieldmaps.
 
 Some B1 fieldmap acquisitions call for the use of special notations that cannot be resolved by
 by entities that can generalize to other applications.

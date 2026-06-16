@@ -14,9 +14,9 @@ as custom units and defined in an accompanying JSON file, as described in the
 Earlier versions of the BIDS standard listed the following Unicode symbols, and
 these are still included for backwards compatibility:
 
-1.  [`U+03BC` (μ)](https://codepoints.net/U+03BC) or [`U+00B5` (µ)](https://codepoints.net/U+00B5)
-1.  [`U+03A9` (Ω)](https://codepoints.net/U+03A9) or [`U+2126` (Ω)](https://codepoints.net/U+2126)
-1.  [`U+00B0` (°)](https://codepoints.net/U+00B0)
+1. [`U+03BC` (μ)](https://codepoints.net/U+03BC) or [`U+00B5` (µ)](https://codepoints.net/U+00B5)
+2. [`U+03A9` (Ω)](https://codepoints.net/U+03A9) or [`U+2126` (Ω)](https://codepoints.net/U+2126)
+3. [`U+00B0` (°)](https://codepoints.net/U+00B0)
 
 Note that for the first two entries in this list, two characters are permissible
 for each, but the first character in each entry is preferred, per Unicode rules
@@ -36,13 +36,13 @@ check whether your formatting is compliant.
 
 Examples for CMIXF-12 (including the five unicode symbols mentioned above):
 
-1.  Different formatting of "micro Volts":
-    1.  RECOMMENDED: `uV` or `µV`
-    1.  NOT RECOMMENDED: `microV`, `µvolt` or `1e-6V`
+1. Different formatting of "micro Volts":
+   1. RECOMMENDED: `uV` or `µV`
+   2. NOT RECOMMENDED: `microV`, `µvolt` or `1e-6V`
 
-1.  Combinations of units:
-    1.  RECOMMENDED: `V/us` for the [Slew rate](https://en.wikipedia.org/wiki/Slew_rate)
-    1.  NOT RECOMMENDED: `volts per microsecond`
+2. Combinations of units:
+   1. RECOMMENDED: `V/us` for the [Slew rate](https://en.wikipedia.org/wiki/Slew_rate)
+   2. NOT RECOMMENDED: `volts per microsecond`
 
 ## Unit table
 
@@ -83,23 +83,23 @@ Examples for CMIXF-12 (including the five unicode symbols mentioned above):
 
 ### Multiples
 
-| **Prefix name** | **Prefix symbol** | **Factor**      |
-| --------------- | ----------------- | --------------- |
-| [deca][]        | da                | $10^1$  |
-| [hecto][]       | h                 | $10^2$  |
-| [kilo][]        | k                 | $10^3$  |
-| [mega][]        | M                 | $10^6$  |
-| [giga][]        | G                 | $10^9$  |
+| **Prefix name** | **Prefix symbol** | **Factor** |
+| --------------- | ----------------- | ---------- |
+| [deca][]        | da                | $10^1$     |
+| [hecto][]       | h                 | $10^2$     |
+| [kilo][]        | k                 | $10^3$     |
+| [mega][]        | M                 | $10^6$     |
+| [giga][]        | G                 | $10^9$     |
 | [tera][]        | T                 | $10^{12}$  |
 | [peta][]        | P                 | $10^{15}$  |
-| [exa][]         | E                 | $10^{18}$ |
-| [zetta][]       | Z                 | $10^{21}$ |
-| [yotta][]       | Y                 | $10^{24}$ |
+| [exa][]         | E                 | $10^{18}$  |
+| [zetta][]       | Z                 | $10^{21}$  |
+| [yotta][]       | Y                 | $10^{24}$  |
 
 ### Submultiples
 
-| **Prefix name** | **Prefix symbol** | **Factor**   |
-| --------------- | ----------------- | ------------ |
+| **Prefix name** | **Prefix symbol** | **Factor** |
+| --------------- | ----------------- | ---------- |
 | [deci][]        | d                 | $10^{-1}$  |
 | [centi][]       | c                 | $10^{-2}$  |
 | [milli][]       | m                 | $10^{-3}$  |
@@ -112,22 +112,41 @@ Examples for CMIXF-12 (including the five unicode symbols mentioned above):
 | [yocto][]       | y                 | $10^{-24}$ |
 
 [deca]: https://en.wikipedia.org/wiki/Deca-
+
 [hecto]: https://en.wikipedia.org/wiki/Hecto-
+
 [kilo]: https://en.wikipedia.org/wiki/Kilo-
+
 [mega]: https://en.wikipedia.org/wiki/Mega-
+
 [giga]: https://en.wikipedia.org/wiki/Giga-
+
 [tera]: https://en.wikipedia.org/wiki/Tera-
+
 [peta]: https://en.wikipedia.org/wiki/Peta-
+
 [exa]: https://en.wikipedia.org/wiki/Exa-
+
 [zetta]: https://en.wikipedia.org/wiki/Zetta-
+
 [yotta]: https://en.wikipedia.org/wiki/Yotta-
+
 [deci]: https://en.wikipedia.org/wiki/Deci-
+
 [centi]: https://en.wikipedia.org/wiki/Centi-
+
 [milli]: https://en.wikipedia.org/wiki/Milli-
+
 [micro]: https://en.wikipedia.org/wiki/Micro-
+
 [nano]: https://en.wikipedia.org/wiki/Nano-
+
 [pico]: https://en.wikipedia.org/wiki/Pico-
+
 [femto]: https://en.wikipedia.org/wiki/Femto-
+
 [atto]: https://en.wikipedia.org/wiki/Atto-
+
 [zepto]: https://en.wikipedia.org/wiki/Zepto-
+
 [yocto]: https://en.wikipedia.org/wiki/Yocto-
