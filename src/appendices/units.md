@@ -85,31 +85,31 @@ Examples for CMIXF-12 (including the five unicode symbols mentioned above):
 
 | **Prefix name** | **Prefix symbol** | **Factor**      |
 | --------------- | ----------------- | --------------- |
-| [deca][]        | da                | 10<sup>1</sup>  |
-| [hecto][]       | h                 | 10<sup>2</sup>  |
-| [kilo][]        | k                 | 10<sup>3</sup>  |
-| [mega][]        | M                 | 10<sup>6</sup>  |
-| [giga][]        | G                 | 10<sup>9</sup>  |
-| [tera][]        | T                 | 10<sup>12</sup> |
-| [peta][]        | P                 | 10<sup>15</sup> |
-| [exa][]         | E                 | 10<sup>18</sup> |
-| [zetta][]       | Z                 | 10<sup>21</sup> |
-| [yotta][]       | Y                 | 10<sup>24</sup> |
+| [deca][]        | da                | $10^1$  |
+| [hecto][]       | h                 | $10^2$  |
+| [kilo][]        | k                 | $10^3$  |
+| [mega][]        | M                 | $10^6$  |
+| [giga][]        | G                 | $10^9$  |
+| [tera][]        | T                 | $10^{12}$  |
+| [peta][]        | P                 | $10^{15}$  |
+| [exa][]         | E                 | $10^{18}$ |
+| [zetta][]       | Z                 | $10^{21}$ |
+| [yotta][]       | Y                 | $10^{24}$ |
 
 ### Submultiples
 
-| **Prefix name** | **Prefix symbol** | **Factor**       |
-| --------------- | ----------------- | ---------------- |
-| [deci][]        | d                 | 10<sup>-1</sup>  |
-| [centi][]       | c                 | 10<sup>-2</sup>  |
-| [milli][]       | m                 | 10<sup>-3</sup>  |
-| [micro][]       | u                 | 10<sup>-6</sup>  |
-| [nano][]        | n                 | 10<sup>-9</sup>  |
-| [pico][]        | p                 | 10<sup>-12</sup> |
-| [femto][]       | f                 | 10<sup>-15</sup> |
-| [atto][]        | a                 | 10<sup>-18</sup> |
-| [zepto][]       | z                 | 10<sup>-21</sup> |
-| [yocto][]       | y                 | 10<sup>-24</sup> |
+| **Prefix name** | **Prefix symbol** | **Factor**   |
+| --------------- | ----------------- | ------------ |
+| [deci][]        | d                 | $10^{-1}$  |
+| [centi][]       | c                 | $10^{-2}$  |
+| [milli][]       | m                 | $10^{-3}$  |
+| [micro][]       | u                 | $10^{-6}$  |
+| [nano][]        | n                 | $10^{-9}$  |
+| [pico][]        | p                 | $10^{-12}$ |
+| [femto][]       | f                 | $10^{-15}$ |
+| [atto][]        | a                 | $10^{-18}$ |
+| [zepto][]       | z                 | $10^{-21}$ |
+| [yocto][]       | y                 | $10^{-24}$ |
 
 [deca]: https://en.wikipedia.org/wiki/Deca-
 [hecto]: https://en.wikipedia.org/wiki/Hecto-
