@@ -14,9 +14,9 @@ as custom units and defined in an accompanying JSON file, as described in the
 Earlier versions of the BIDS standard listed the following Unicode symbols, and
 these are still included for backwards compatibility:
 
-1. [`U+03BC` (μ)](https://codepoints.net/U+03BC) or [`U+00B5` (µ)](https://codepoints.net/U+00B5)
-2. [`U+03A9` (Ω)](https://codepoints.net/U+03A9) or [`U+2126` (Ω)](https://codepoints.net/U+2126)
-3. [`U+00B0` (°)](https://codepoints.net/U+00B0)
+1.  [`U+03BC` (μ)](https://codepoints.net/U+03BC) or [`U+00B5` (µ)](https://codepoints.net/U+00B5)
+1.  [`U+03A9` (Ω)](https://codepoints.net/U+03A9) or [`U+2126` (Ω)](https://codepoints.net/U+2126)
+1.  [`U+00B0` (°)](https://codepoints.net/U+00B0)
 
 Note that for the first two entries in this list, two characters are permissible
 for each, but the first character in each entry is preferred, per Unicode rules
@@ -36,13 +36,13 @@ check whether your formatting is compliant.
 
 Examples for CMIXF-12 (including the five unicode symbols mentioned above):
 
-1. Different formatting of "micro Volts":
-   1. RECOMMENDED: `uV` or `µV`
-   2. NOT RECOMMENDED: `microV`, `µvolt` or `1e-6V`
+1.  Different formatting of "micro Volts":
+    1.  RECOMMENDED: `uV` or `µV`
+    1.  NOT RECOMMENDED: `microV`, `µvolt` or `1e-6V`
 
-2. Combinations of units:
-   1. RECOMMENDED: `V/us` for the [Slew rate](https://en.wikipedia.org/wiki/Slew_rate)
-   2. NOT RECOMMENDED: `volts per microsecond`
+1.  Combinations of units:
+    1.  RECOMMENDED: `V/us` for the [Slew rate](https://en.wikipedia.org/wiki/Slew_rate)
+    1.  NOT RECOMMENDED: `volts per microsecond`
 
 ## Unit table
 

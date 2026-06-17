@@ -13,12 +13,12 @@ values of the metadata fields they represent.
 Please keep the following list of linking entities up-to-date with the file collections
 included in this appendix:
 
-* Magnetic Resonance Imaging
-  * [`echo`](./entities.md#echo)
-  * [`flip`](./entities.md#flip)
-  * [`inv`](./entities.md#inv)
-  * [`mt`](./entities.md#mt)
-  * [`part`](./entities.md#part)
+-   Magnetic Resonance Imaging
+    -   [`echo`](./entities.md#echo)
+    -   [`flip`](./entities.md#flip)
+    -   [`inv`](./entities.md#inv)
+    -   [`mt`](./entities.md#mt)
+    -   [`part`](./entities.md#part)
 
 ## Magnetic Resonance Imaging
 
@@ -32,10 +32,10 @@ and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 
-{{ MACROS\_\_\_make\_filename\_template(
+{{ MACROS___make_filename_template(
 "raw",
-datatypes=\["anat"],
-suffixes=\[
+datatypes=["anat"],
+suffixes=[
 "VFA",
 "IRT1",
 "MP2RAGE",
@@ -68,10 +68,10 @@ and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 
-{{ MACROS\_\_\_make\_filename\_template(
+{{ MACROS___make_filename_template(
 "raw",
-datatypes=\["fmap"],
-suffixes=\[
+datatypes=["fmap"],
+suffixes=[
 "TB1DAM",
 "TB1EPI",
 "TB1AFI",
@@ -84,10 +84,10 @@ suffixes=\[
 
 | **Suffix** | **Meta-data relevant entity**                          | **Application**                 | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                         |
 | ---------- | ------------------------------------------------------ | ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| TB1DAM     | flip                                                   | Double-angle B1+ mapping        | The double-angle $B\_1^+$ method ([Insko and Bolinger 1993](https://doi.org/10.1006/jmra.1993.1133)) is based on the calculation of the actual angles from signal ratios, collected by two acquisitions at different nominal excitation flip angles. Common sequence types for this application include spin echo and echo planar imaging.                                                                                                              |
-| TB1EPI     | flip, echo                                             | $B\_1^+$ mapping with 3D EPI    | This $B\_1^+$ mapping method ([Jiru and Klose 2006](https://doi.org/10.1002/mrm.21083)) is based on two EPI readouts to acquire spin echo (SE) and stimulated echo (STE) images at multiple flip angles in one sequence, used in the calculation of deviations from the nominal flip angle.                                                                                                                                                             |
-| TB1AFI     | Please see the [qMRI appendix](../appendices/qmri.md). | Actual Flip Angle Imaging (AFI) | This method ([Yarnykh 2007](https://doi.org/10.1002/mrm.21120)) calculates a $B\_1^+$ map from two images acquired at interleaved (two) TRs with identical RF pulses using a steady-state sequence.                                                                                                                                                                                                                                                     |
-| TB1TFL     | Please see the [qMRI appendix](../appendices/qmri.md). | Siemens `tfl_b1_map`            | $B\_1^+$ data acquired using `tfl_b1_map` product sequence by Siemens based on the method by [Chung et al. (2010)](https://doi.org/10.1002/mrm.22423). The sequence generates one anatomical image and one scaled flip angle map.                                                                                                                                                                                                                       |
-| TB1RFM     | Please see the [qMRI appendix](../appendices/qmri.md). | Siemens `rf_map`                | $B\_1^+$ data acquired using `rf_map` product sequence by Siemens.                                                                                                                                                                                                                                                                                                                                                                                      |
+| TB1DAM     | flip                                                   | Double-angle B1+ mapping        | The double-angle $B_1^+$ method ([Insko and Bolinger 1993](https://doi.org/10.1006/jmra.1993.1133)) is based on the calculation of the actual angles from signal ratios, collected by two acquisitions at different nominal excitation flip angles. Common sequence types for this application include spin echo and echo planar imaging.                                                                                                               |
+| TB1EPI     | flip, echo                                             | $B_1^+$ mapping with 3D EPI     | This $B_1^+$ mapping method ([Jiru and Klose 2006](https://doi.org/10.1002/mrm.21083)) is based on two EPI readouts to acquire spin echo (SE) and stimulated echo (STE) images at multiple flip angles in one sequence, used in the calculation of deviations from the nominal flip angle.                                                                                                                                                              |
+| TB1AFI     | Please see the [qMRI appendix](../appendices/qmri.md). | Actual Flip Angle Imaging (AFI) | This method ([Yarnykh 2007](https://doi.org/10.1002/mrm.21120)) calculates a $B_1^+$ map from two images acquired at interleaved (two) TRs with identical RF pulses using a steady-state sequence.                                                                                                                                                                                                                                                      |
+| TB1TFL     | Please see the [qMRI appendix](../appendices/qmri.md). | Siemens `tfl_b1_map`            | $B_1^+$ data acquired using `tfl_b1_map` product sequence by Siemens based on the method by [Chung et al. (2010)](https://doi.org/10.1002/mrm.22423). The sequence generates one anatomical image and one scaled flip angle map.                                                                                                                                                                                                                        |
+| TB1RFM     | Please see the [qMRI appendix](../appendices/qmri.md). | Siemens `rf_map`                | $B_1^+$ data acquired using `rf_map` product sequence by Siemens.                                                                                                                                                                                                                                                                                                                                                                                       |
 | TB1SRGE    | `flip`, `inv`                                          | SA2RAGE                         | Saturation-prepared with 2 rapid gradient echoes (SA2RAGE) uses a ratio of two saturation recovery images with different time delays, and a simulated look-up table to estimate B1+ ([Eggenschwiler et al. 2011](https://doi.org/10.1002/mrm.23145)). This sequence can also be used in conjunction with MP2RAGE T1 mapping to iteratively improve B1+ and T1 map estimation ([Marques & Gruetter 2013](https://doi.org/10.1371/journal.pone.0069294)). |
-| RB1COR     | Please see the [qMRI appendix](../appendices/qmri.md). | $B\_1^-$ field correction       | Low resolution images acquired by the body coil (in the gantry of the scanner) and the head coil using identical acquisition parameters to generate a combined sensitivity map as described in [Papp et al. (2016)](https://doi.org/10.1002/mrm.26058).                                                                                                                                                                                                 |
+| RB1COR     | Please see the [qMRI appendix](../appendices/qmri.md). | $B_1^-$ field correction        | Low resolution images acquired by the body coil (in the gantry of the scanner) and the head coil using identical acquisition parameters to generate a combined sensitivity map as described in [Papp et al. (2016)](https://doi.org/10.1002/mrm.26058).                                                                                                                                                                                                 |
