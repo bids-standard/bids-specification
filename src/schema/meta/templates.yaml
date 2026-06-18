@@ -152,6 +152,11 @@ deriv:
       atlas: optional
       segmentation: optional
       scale: optional
+  tac:
+    $ref: meta.templates.deriv.base
+    entities:
+      segmentation: optional
+      $ref: meta.templates.deriv.base.entities
 
 # Entities that apply to most atlas files
 # Include thus:
