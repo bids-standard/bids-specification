@@ -113,6 +113,6 @@ For example `sub-human1/ses-NUY`, `sub-human1/ses-MIT`, `sub-phantom1/ses-NUY`, 
 ## On tabular phenotypic data across sessions
 
 Read the [tabular phenotypic data guidelines appendix](appendices/phenotype.md)
-or the [phenotypic and assessment data section](phenotypic-and-assessment-data.md)
+or the [phenotypic and assessment data section](modality-agnostic-files/phenotypic-and-assessment-data.md)
 for an explanation of how to use `"IndexColumns"`
 to aggregate longitudinal or multi-session tabular phenotypic data.

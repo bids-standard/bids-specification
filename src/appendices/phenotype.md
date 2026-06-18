@@ -24,7 +24,7 @@ in the corresponding JavaScript Object Notation (JSON) sidecar file.
 There are two examples of this usage [below in this appendix](#examples).
 Store each of the TSV and JSON files in the `/phenotype` directory
 using the file-naming template `/phenotype/tool-<ToolName>_phenotype.tsv`.
-Read the [phenotypic and assessment data section](phenotypic-and-assessment-data.md)
+Read the [phenotypic and assessment data section](../modality-agnostic-files/phenotypic-and-assessment-data.md)
 for further explanation of how to use `"IndexColumns"`
 to aggregate longitudinal or multi-session tabular phenotypic data.
 
