@@ -1481,3 +1481,67 @@ PhysioTypeEyetrack:
   display_name: Eye-tracking recording
   description: |
     A specific physiological recording type: eye-tracking.
+# Life cycle stages for age_category
+adolescent:
+  value: adolescent
+  display_name: Adolescent
+  description: |
+    Life cycle stage of a subject loosely defined by the transitional growth
+    and development between childhood and adulthood, often described as puberty.
+adult:
+  value: adult
+  display_name: Adult
+  description: |
+    Life cycle stage of a subject that starts with sexual maturity and ends with
+    death. Adapted from UBERON - http://purl.obolibrary.org/obo/UBERON_0000113.
+embryo:
+  value: embryo
+  display_name: Embryo
+  description: |
+    Life cycle stage of a subject that starts with fertilization and ends with the
+    fully formed embryo. If fertilization is unknown the LMP startdate is assumed.
+    Adapted from UBERON - http://purl.obolibrary.org/obo/UBERON_0000068.
+infant:
+  value: infant
+  display_name: Infant
+  description: |
+    Life cycle stage of subjects (mammals) that follows the neonate stage and ends at
+    weaning. Adapted from UBERON - http://purl.obolibrary.org/obo/UBERON_0034920.
+juvenile:
+  value: juvenile
+  display_name: Juvenile
+  description: |
+    Life cycle stage of a subject that starts with the independence of the nest
+    and/or caregivers and ends with sexual maturity. Adapted from
+    UBERON - http://purl.obolibrary.org/obo/UBERON_0034919.
+late_adult:
+  value: late adult
+  display_name: Late adult
+  description: |
+    Life cycle stage of a subject that follows the prime adult stage and ends with
+    death. Adapted from UBERON - http://purl.obolibrary.org/obo/UBERON_0007222.
+neonate:
+  value: neonate
+  display_name: Neonate
+  description: |
+    Life cycle stage of a subject that immediately follows birth.
+    Adapted from UBERON - http://purl.obolibrary.org/obo/UBERON_0007221.
+perinate:
+  value: perinate
+  display_name: Perinate
+  description: |
+    Life cycle stage of a subject that starts right before and ends right after birth.
+    Adapted from UBERON - http://purl.obolibrary.org/obo/UBERON_0012101.
+prime_adult:
+  value: prime adult
+  display_name: Prime adult
+  description: |
+    Life cycle stage of a subject that starts with sexual maturity or
+    the cessation of growth, whichever comes last, and ends before senescence.
+    Adapted from UBERON - http://purl.obolibrary.org/obo/UBERON_0018241.
+young_adult:
+  value: young adult
+  display_name: Young adult
+  description: |
+    Life cycle stage of a subject that starts with sexual maturity and ends with the
+    cessation of growth (if this is reached after sexual maturity).
