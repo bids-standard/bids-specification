@@ -14,20 +14,24 @@ You can make them mandatory during validation by setting the
 [`AdditionalValidation` key](../modality-agnostic-files/dataset-description.md#additional-validation)
 to contain `"Phenotype"` in the `dataset_description.json`.
 
-### 1. Aggregate data across sessions
+### 1. Aggregate data across sessions using `"IndexColumns"`
 
-Aggregate participant information across all sessions into one tabular TSV file per
-measurement or phenotypic assessment and store this file in the `/phenotype` directory.
-Demographic information is a special case and SHOULD be aggregated
-in the `participants.tsv` file at the root level of the dataset.
-It is RECOMMENDED to use the `age` column in the `participants.tsv` file
-to record participant age at every session in longitudinal or multi-session data sets.
+In multi-session datasets,
+aggregate phenotypic and assessment data across all sessions
+into one tabular tab-separated value (TSV) file per measurement tool.
+In order to aggregate, you MUST use the `"IndexColumns"` list/array field
+in the corresponding JavaScript Object Notation (JSON) sidecar file.
+There are two examples of this usage [below in this appendix](#examples).
+Store each of the TSV and JSON files in the `/phenotype` directory
+using the file-naming template `/phenotype/tool-<ToolName>_phenotype.tsv`.
+Read the [phenotypic and assessment data section](phenotypic-and-assessment-data.md)
+for further explanation of how to use `"IndexColumns"`
+to aggregate longitudinal or multi-session tabular phenotypic data.
 
 ### 2. Always pair tabular data with data dictionaries
 
 Tabular phenotypic data MUST be prepared as one pair of a tabular file
-in tab-separated value (TSV) format and a corresponding data dictionary
-in JavaScript Object Notation (JSON) format.
+in TSV format and a corresponding data dictionary in JSON format.
 See the [Tabular files section](../common-principles.md#tabular-files) for more information.
 
 ### 3. Add `MeasurementToolMetadata` to each tabular phenotypic measurement tool
@@ -39,22 +43,15 @@ See [`MeasurementToolMetadata` in the glossary](../glossary.md#measurementtoolme
 
 ### 4. Ensure minimal annotation for phenotypic and assessment data
 
-In phenotypic and assessment data, each measurement tool SHOULD have an independent
+In multi-session phenotypic and assessment data,
+each measurement tool SHOULD have an independent
 aggregated data TSV file in which the user collects all subjects, sessions,
-and/or runs of data as one entry per row (with a row defined by
-the smallest unit of acquisition). In other words:
-
--   Each row MUST start with `participant_id`.
-
--   Each TSV file MUST contain a `session_id` column when
-    multiple [sessions](../glossary.md#session-entities)[<sup>1</sup>](#footnotes) are present
-    in the data set.
-
--   If a measurement tool is acquired multiple times within a single session,
-    a `run_id` column MUST be added to disambiguate the separate acquisitions.
-
--   A measurement tool’s acquisition time SHOULD be stored in the `sessions.tsv`
-    file at the root-level of the dataset in the `acq_time` column.
+and/or runs of data as one entry per row
+(with a row defined by the smallest unit of acquisition).
+This also means the user MUST use the `"IndexColumns"` field
+in each JSON sidecar for multi-session data.
+Some common index columns are:
+`participant_id`, `session_id`, `run_id`, and `acq_time`.
 
 <!-- This block generates a columns table.
 The definitions of these fields can be found in
@@ -64,52 +61,30 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_columns_table("modality_agnostic.Phenotypes") }}
 
-Furthermore, if you add a `session_id` column to the tabular phenotypic data,
+Furthermore, if you add a `session_id` index column to any tabular phenotypic data,
 you MUST introduce a session directory to the imaging data,
 even if only one imaging session has been created.
 And vice versa, if imaging data has session directories,
 all imaging data and tabular phenotypic data MUST have sessions.
 
-This produces a file in which same-participant entries can take up as many rows as needed
+This produces files in which same-participant entries can take up as many rows as needed
 according to the smallest unit of acquisition.
 
-### 5. Store demographic data in the participants file and instrument data in the phenotype directory
-
-The participants file is for demographic data about the participant,
-including longitudinal information such as `age`.
-The phenotypic and assessment data directory
-is for phenotypic measurement instruments collected about the participants
-such as questionnaires, surveys, and cognitive assessments.
-Create one tabular file for each instrument
-in the phenotypic and assessment data directory.
-
-### 6. Record participant properties in the participants file and session properties in the sessions file
-
-Since the same `participant_id` and `session_id` columns can be used
-similarly in the participants file and the sessions file,
-use the two different files to instead differentiate
-properties of participants versus sessions.
-Properties of participants MAY include things like
-age, sex, race, or household income.
-Properties of sessions MAY include things like
-acquisition time, measurement device properties,
-and indoor or outdoor experimental conditions.
-
-### 7. Use the sessions file at the root-level
+### 5. Use a demographics file for multi-session data
 
 If there is more than one session for any one participant, then
-it is REQUIRED to provide a sessions file at the dataset root,
-even if this file only contains a two-column inventory
-of `participant_id` and `session_id`.
-The `sessions.tsv` file MUST list all sessions for all subjects across
-imaging and tabular phenotypic data. The `sessions.json` file’s
-`session_id` field MUST include `"Levels"` with the description of each `session_id`.
+it is REQUIRED to provide a demographics file in the `/phenotype` directory
+named as `/phenotype/tool-Demographics_phenotype.tsv`
+using the `"IndexColumns"` JSON sidecar field.
+It is RECOMMENDED to store the `age` column for multi-session datasets
+in this demographics file to record participant age for every session
+on their own rows.
 
-### 8. Record acquisition time of all sessions with `acq_time`
+### 6. Record acquisition time of all sessions with `acq_time`
 
 It is RECOMMENDED to store acquisition time[<sup>2</sup>](#footnotes)
 for tabular phenotypic data and store the time of acquisition of each row
-inside a column named `acq_time` in the sessions file.
+inside a column named `acq_time` in the demographics file.
 This is consistent with how acquisition time is recorded for MRI data
 and other time-sensitive measurements (for example systolic blood pressure).
 
@@ -120,7 +95,7 @@ In summary, it is RECOMMENDED to always use the participants file
 and separate files by measurement instrument in
 the phenotypic and assessment data directory,
 since they each collect different information.
-If you use sessions, then the sessions file is also RECOMMENDED.
+If you have multi-session data, then follow the aggregation guidelines above.
 
 ## Examples
 
@@ -137,8 +112,8 @@ A guide for using macros can be found at
 {{ MACROS___make_filetree_example(
    {
    "phenotype": {
-      "measurement_tool.json": "",
-      "measurement_tool.tsv": "",
+      "tool-Measurements_phenotype.json": "",
+      "tool-Measurements_phenotype.tsv": "",
       },
    "sub-01": {
       "anat": {
@@ -149,7 +124,7 @@ A guide for using macros can be found at
    }
 ) }}
 
-Contents of `phenotype/measurement_tool.tsv`
+Contents of `phenotype/tool-Measurements_phenotype.tsv`
 
 ```tsv
 participant_id	measurement_1	measurement_2
@@ -161,10 +136,10 @@ sub-01	value1	value2
 With only one imaging and one phenotypic session each in this example you might want
 to merge both imaging and phenotypic data under one session. But it is more correct to
 have separate sessions for the imaging and phenotypic data, especially if
-the sessions were collected days, weeks, or months apart. You can denote both sessions
-and their acquisition time in the `sessions.tsv` file and have `session_id` `Levels` noted
-in the `sessions.json` sidecar. Below are a CORRECT and an INCORRECT example
-of prepared data following these guidelines.
+the sessions were collected days, weeks, or months apart. You can denote all of
+`participant_id`, `session_id`, and `acq_time` in the `tool-Measurements_phenotype.tsv` file
+and note `session_id` `Levels` in the `tool-Measurements_phenotype.json` sidecar.
+Below are a CORRECT and an INCORRECT example of prepared data following these guidelines.
 
 #### CORRECT
 
@@ -176,11 +151,9 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_filetree_example(
    {
-   "sessions.json": "",
-   "sessions.tsv": "",
    "phenotype": {
-      "measurement_tool.json": "",
-      "measurement_tool.tsv": "",
+      "tool-Measurements_phenotype.json": "",
+      "tool-Measurements_phenotype.tsv": "",
       },
    "sub-01": {
       "ses-MRI": {
@@ -193,19 +166,42 @@ A guide for using macros can be found at
    }
 ) }}
 
-Contents of `sessions.tsv`
+Contents of `phenotype/tool-Measurements_phenotype.tsv`
 
 ```tsv
-participant_id	session_id	acq_time
-sub-01	ses-pheno	2001-01-01T12:05:00
-sub-01	ses-MRI	2001-03-01T13:14:00
+participant_id	session_id	acq_time	measurement_1	measurement_2
+sub-01	ses-pheno	2001-01-01T12:05:00	value1	value2
+sub-01	ses-MRI	2001-03-01T13:14:00	n/a	n/a
 ```
 
-Contents of `phenotype/measurement_tool.tsv`
+Contents of `phenotype/tool-Measurements_phenotype.json`
 
-```tsv
-participant_id	session_id	measurement_1	measurement_2
-sub-01	ses-pheno	value1	value2
+```json
+{
+    "IndexColumns": [
+        "participant_id",
+        "session_id"
+    ],
+    "participant_id": {
+        "Description": "Participant identifier"
+    },
+    "session_id": {
+        "Description": "Session identifier",
+        "Levels": {
+            "ses-pheno": "Phenotype-only session",
+            "ses-MRI": "MRI-only session"
+        }
+    },
+    "acq_time": {
+        "Description": "When the data acquisition started"
+    },
+    "measurement_1": {
+        "Description": "A first measurement taken at a phenotypic session"
+    },
+    "measurement_2": {
+        "Description": "A second measurement taken at a phenotypic session"
+    }
+}
 ```
 
 #### INCORRECT
@@ -219,8 +215,8 @@ A guide for using macros can be found at
 {{ MACROS___make_filetree_example(
    {
    "phenotype": {
-      "measurement_tool.json": "",
-      "measurement_tool.tsv": "",
+      "tool-Measurements_phenotype.json": "",
+      "tool-Measurements_phenotype.tsv": "",
       },
    "sub-01": {
       "anat": {
@@ -231,15 +227,18 @@ A guide for using macros can be found at
    }
 ) }}
 
-Contents of `phenotype/measurement_tool.tsv`
+Contents of `phenotype/tool-Measurements_phenotype.tsv`
 
 ```tsv
 participant_id	measurement_1	measurement_2
 sub-01	value1	value2
 ```
 
-A session directory **MUST** be present in the participant directory and
-the `session_id` column **MUST** be present in `phenotype/measurement_tool.tsv` as well.
+A session directory MUST be present in the participant's directory and
+the `session_id` column MUST be present
+in `phenotype/tool-Measurements_phenotype.tsv`,
+and the `"IndexColumns"` of `participant_id` and `session_id` MUST be present
+in `phenotype/tool-Measurements_phenotype.json`.
 Sessions must be used consistently for the combination of tabular and
 non-tabular phenotypic data.
 
@@ -258,11 +257,9 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_filetree_example(
    {
-   "sessions.json": "",
-   "sessions.tsv": "",
    "phenotype": {
-      "measurement_tool.json": "",
-      "measurement_tool.tsv": "",
+      "tool-Measurements_phenotype.json": "",
+      "tool-Measurements_phenotype.tsv": "",
       },
    "sub-01": {
       "ses-MRI1": {
@@ -289,23 +286,14 @@ A guide for using macros can be found at
    }
 ) }}
 
-Contents of `sessions.tsv`
+Contents of `phenotype/tool-Measurements_phenotype.tsv`
 
 ```tsv
-participant_id	session_id	acq_time
-sub-01	ses-MRI1	2001-01-01T11:12:00
-sub-01	ses-MRI2	2001-07-01T13:14:00
-sub-02	ses-MRI1	2001-01-181T15:16:00
-sub-02	ses-pheno	2001-02-20T12:05:00
-```
-
-Contents of `phenotype/measurement_tool.tsv`
-
-```tsv
-participant_id	session_id	measurement_1	measurement_2
-sub-01	ses-MRI1	value1	value2
-sub-02	ses-MRI1	value3	value4
-sub-02	ses-pheno	value5	value6
+participant_id	session_id	acq_time	measurement_1	measurement_2
+sub-01	ses-MRI1	2001-01-01T11:12:00	value1	value2
+sub-01	ses-MRI2	2001-07-01T13:14:00	n/a	n/a
+sub-02	ses-MRI1	2001-01-181T15:16:00	value3	value4
+sub-02	ses-pheno	2001-02-20T12:05:00	value5	value6
 ```
 
 ### 3 participants with 3 different kinds of sessions among them
@@ -322,11 +310,11 @@ A guide for using macros can be found at
    {
    "participants.json": "",
    "participants.tsv": "",
-   "sessions.json": "",
-   "sessions.tsv": "",
    "phenotype": {
-      "survey.json": "",
-      "survey.tsv": "",
+      "tool-Demographics_phenotype.json": "",
+      "tool-Demographics_phenotype.tsv": "",
+      "tool-Survey_phenotype.json": "",
+      "tool-Survey_phenotype.tsv": "",
       },
    "sub-01": {
       "ses-baseline/": "",
@@ -342,42 +330,46 @@ A guide for using macros can be found at
    }
 ) }}
 
-Contents of `participants.tsv`. Participant properties that can change
+Contents of `participants.tsv`.
+Unchanging participant propoerties belong here.
+
+```tsv
+participant_id	sex
+sub-01	M
+sub-02	F
+sub-03	F
+```
+
+Contents of `phenotype/tool-Demographics_phenotype.tsv`.
+Participant properties that can change
 from session to session belong here especially.
 
 ```tsv
-participant_id	session_id	sex	age	gender	race	household_income
-sub-01	ses-baseline	M	10	3	4	5
-sub-01	ses-followupMRI	M	10	3	4	5
-sub-01	ses-interview	M	11	4	4	6
-sub-02	ses-baseline	F	9	1	3	3
-sub-02	ses-interview	F	10	1	7	3
-sub-03	ses-baseline	F	11	2	10	4
-sub-03	ses-followupMRI	F	12	5	10	4
+participant_id	session_id	acq_time	age	gender	race	household_income
+sub-01	ses-baseline	2001-01-01T12:05:00	10	3	4	5
+sub-01	ses-followupMRI	2001-07-01T13:33:00	10	3	4	5
+sub-01	ses-interview	2002-01-01T11:21:00	11	4	4	6
+sub-02	ses-baseline	2001-04-01T11:01:00	9	1	3	3
+sub-02	ses-interview	2002-04-01T14:08:00	10	1	7	3
+sub-03	ses-baseline	2001-09-01T11:45:00	11	2	10	4
+sub-03	ses-followupMRI	2002-03-01T12:17:00	12	5	10	4
 ```
 
-Contents of `sessions.tsv`.
-
-```tsv
-participant_id	session_id	acq_time
-sub-01	ses-baseline	2001-01-01T12:05:00
-sub-01	ses-followupMRI	2001-07-01T13:33:00
-sub-01	ses-interview	2002-01-01T11:21:00
-sub-02	ses-baseline	2001-04-01T11:01:00
-sub-02	ses-interview	2002-04-01T14:08:00
-sub-03	ses-baseline	2001-09-01T11:45:00
-sub-03	ses-followupMRI	2002-03-01T12:17:00
-```
-
-Contents of `sessions.json`. Note how the `session_id` `Levels` are clearly described.
+Partial contents of `phenotype/tool-Demographics_phenotype.json`.
+Note how the `session_id` `Levels` are clearly described
+and how `"IndexColumns"` is present.
 
 ```json
 {
+    "IndexColumns": [
+        "participant_id",
+        "session_id"
+    ],
     "participant_id": {
-        "Description": "BIDS participant identifier"
+        "Description": "Participant identifier"
     },
     "session_id": {
-        "Description": "BIDS session identifier",
+        "Description": "Session identifier",
         "Levels": {
             "ses-baseline": "Baseline visit for MRI and assessments",
             "ses-followupMRI": "6-months after baseline MRI follow-up",
@@ -390,9 +382,10 @@ Contents of `sessions.json`. Note how the `session_id` `Levels` are clearly desc
 }
 ```
 
-Contents of `phenotype/survey.tsv`. Note how `sub-03` does not have
-a row for `ses-interview` because that session was not collected
-and is absent above in the `participants.tsv` and `sessions.tsv` files.
+Contents of `phenotype/tool-Survey_phenotype.tsv`.
+Note how `sub-03` does not have a row for `ses-interview`
+because that session was not collected and is absent above
+in the `phenotype/tool-Demographics_phenotype.tsv` file as well.
 
 ```tsv
 participant_id	session_id	question_1	question_2	question_3

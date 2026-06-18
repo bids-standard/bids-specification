@@ -84,13 +84,23 @@ to date of birth.
 }
 ```
 
-It is RECOMMENDED to use the `age` column to record participant age
-at every session in longitudinal or multi-session data sets.
+It is RECOMMENDED to use the `age` column to record participant age.
 This reduces data duplication across tabular data files. The `Units` of `age`
 do not have to be years so long as the units of the age
 are written in `participants.json`.
 Consider participant privacy or study objectives when selecting
 the `Units` of `age` or the accuracy of `age` data.
+
+There are two methods to record `age` in longitudinal or multi-session data sets.
+Choose what makes the most sense for your dataset's expected users.
+The first method is to aggregate into a single file in the phenotypic and assessment data folder
+using the `"IndexColumns"` field in the sidecar JSON.
+Read the [tabular phenotypic data guidelines appendix](../appendices/phenotype.md)
+or the [phenotypic and assessment data section](phenotypic-and-assessment-data.md)
+for an explanation of how to use `"IndexColumns"`
+to aggregate longitudinal or multi-session tabular phenotypic data.
+The second method is to segregate `age` into participant's session files.
+Read the [sessions file section](#sessions-file) below for further explanation.
 
 ## Samples file
 
@@ -210,80 +220,7 @@ meg/sub-control01_task-rest_split-02_meg.nii.gz	1877-06-15T12:15:27
 
 ## Sessions file
 
-In case of multiple sessions there is an option of adding an additional
-`sessions.tsv` file describing each session and variables changing between sessions.
-It is RECOMMENDED to provide this as a single file at the root-level of the dataset.
-It is OPTIONAL to instead provide these as separate files at the subject-level of the dataset.
-The intent of the sessions file is to describe the sessions
-in a data set and non-demographic variables changing between sessions.
-Column names in `sessions.tsv` files MUST be different from participant key column names in
-the [participants file](#participants-file).
-
-<!-- This block generates a columns table.
-The definitions of these fields can be found in
-  src/schema/rules/tabular_data/*.yaml
-and a guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_columns_table("modality_agnostic.Sessions") }}
-
-`sessions.json` example:
-
-```JSON
-{
-    "participant_id": {
-        "Description": "Participant identifier"
-    },
-    "session_id": {
-        "Description": "Session identifier for the session",
-        "Levels": {
-            "ses-predrug": "session before drug administration",
-            "ses-postdrug": "session after drug administration",
-            "ses-followup": "follow-up session"
-        }
-    },
-    "acq_time": {
-        "Description": "Acquisition time of the session"
-    },
-    "systolic_blood_pressure": {
-        "Description": "Systolic blood pressure measured at the beginning of the session in mmHg"
-    }
-}
-```
-
-### RECOMMENDED: Root-level sessions file
-
-<!-- This block generates a file tree.
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_filetree_example(
-   {
-   "sessions.tsv": "",
-   "[sessions.json]": "",
-   }
-) }}
-
-Optional: Yes
-
-An aggregated sessions file is RECOMMENDED to be provided at the dataset root.
-If a root-level sessions file is provided, then it MUST begin with
-a `participant_id` column followed immediately after by a `session_id` column.
-
-`sessions.tsv` example:
-
-```tsv
-participant_id	session_id	acq_time	systolic_blood_pressure
-sub-01	ses-predrug	2009-06-15T13:45:30	120
-sub-01	ses-postdrug	2009-06-16T13:45:30	100
-sub-01	ses-followup	2009-06-17T13:45:30	110
-sub-02	ses-predrug	2009-06-22T12:22:05	105
-sub-02	ses-postdrug	2009-06-23T12:22:05	95
-sub-03	ses-postdrug	2009-06-30T14:06:40	115
-sub-03	ses-followup	2009-07-01T14:06:40	120
-```
-
-### OPTIONAL: Participant-level sessions files
+Template:
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
@@ -300,8 +237,13 @@ A guide for using macros can be found at
 
 Optional: Yes
 
-When one sessions file per participant is used,
-these files MUST include a `session_id` column and describe each session by one and only one row.
+In case of multiple sessions there is an option of adding an additional
+sessions file describing each session and variables changing between sessions.
+Column names in sessions files MUST be different from participant key column names in
+the [participants file](#participants-file).
+
+These files MUST start with a `session_id` column
+and describe each session by one and only one row.
 `sub-<label>/sub-<label>_sessions.tsv` example:
 
 ```tsv
@@ -311,6 +253,40 @@ ses-postdrug	2009-06-16T13:45:30	100
 ses-followup	2009-06-17T13:45:30	110
 ```
 
+<!-- This block generates a columns table.
+The definitions of these fields can be found in
+  src/schema/rules/tabular_data/*.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_columns_table("modality_agnostic.Sessions") }}
+
+`sub-<label>/sub-<label>_sessions.json` example:
+
+```JSON
+{
+    "session_id": {
+        "Description": "Session identifier",
+        "Levels": {
+            "ses-predrug": "session before drug administration",
+            "ses-postdrug": "session after drug administration",
+            "ses-followup": "follow-up session"
+        }
+    },
+    "acq_time": {
+        "Description": "Acquisition time of the session"
+    },
+    "systolic_blood_pressure": {
+        "Description": "Systolic blood pressure measured at the beginning of the session in mmHg"
+    }
+}
+```
+
+Read the [tabular phenotypic data guidelines appendix](../appendices/phenotype.md)
+or the [phenotypic and assessment data section](phenotypic-and-assessment-data.md)
+for an explanation of how to use `"IndexColumns"`
+to aggregate longitudinal or multi-session tabular phenotypic data.
+
 ### Additional validation
 
 When the [`AdditionalValidation` key](dataset-description.md#additional-validation)
@@ -318,14 +294,10 @@ contains `"Phenotype"` in the `dataset_description.json`,
 the following tabular phenotypic data guidelines
 apply to sessions files:
 
--   [6.](../appendices/phenotype.md#6-record-participant-properties-in-the-participants-file-and-session-properties-in-the-sessions-file)
-    Record participant properties in the participants file
-    and session properties in the sessions file
+-   [5.](../appendices/phenotype.md#5-use-a-demographics-file-for-multi-session-data)
+    Use a demographics file for multi-session data
 
--   [7.](../appendices/phenotype.md#7-use-the-sessions-file-at-the-root-level)
-    Use the sessions file at the root-level
-
--   [8.](../appendices/phenotype.md#8-record-acquisition-time-of-all-sessions-with-acq_time)
+-   [6.](../appendices/phenotype.md#6-record-acquisition-time-of-all-sessions-with-acq_time)
     Record acquisition time of all sessions with `acq_time`
 
 To read more about the guidelines for tabular phenotypic data and examples,

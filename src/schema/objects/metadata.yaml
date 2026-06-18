@@ -1904,6 +1904,15 @@ Immersion:
     Lens immersion medium. If the file format is OME-TIFF, the value MUST be consistent
     with the `Immersion` OME metadata field.
   type: string
+IndexColumns:
+  name: IndexColumns
+  display_name: Index Columns
+  description: |
+    A list of column names to be used as joint indices in
+    their corresponding tabular phenotypic data file.
+  type: array
+  items:
+    type: string
 InfusionRadioactivity:
   name: InfusionRadioactivity
   display_name: Infusion Radioactivity

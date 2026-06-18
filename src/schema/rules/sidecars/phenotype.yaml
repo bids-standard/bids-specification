@@ -1,4 +1,11 @@
 ---
+IndexColumns:
+  selectors:
+    - datatype == 'phenotype'
+    - extension == '.tsv'
+  fields:
+    IndexColumns: optional
+
 MeasurementToolMetadata:
   selectors:
     - datatype == 'phenotype'
