@@ -331,7 +331,7 @@ A guide for using macros can be found at
 ) }}
 
 Contents of `participants.tsv`.
-Unchanging participant propoerties belong here.
+Unchanging participant properties belong here.
 
 ```tsv
 participant_id	sex
