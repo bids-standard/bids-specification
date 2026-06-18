@@ -138,11 +138,11 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table("mri.MRIAnatomicalLandmarks") }}
 
-### Echo-Planar Imaging and *B<sub>0</sub>* mapping
+### Echo-Planar Imaging and $B_0$ mapping
 
 Echo-Planar Imaging (EPI) schemes typically used in the acquisition of
 diffusion and functional MRI may also be *intended for* estimating the
-*B<sub>0</sub>* field nonuniformity inside the scanner (in other words,
+$B_0$ field nonuniformity inside the scanner (in other words,
 *mapping the field*) without the acquisition of additional MRI schemes
 such as gradient-recalled echo (GRE) sequences that are stored under the
 `fmap/` directory of the BIDS structure.
@@ -767,7 +767,7 @@ is *not* equivalent to the DICOM convention,
 where orientations are instead defined with respect to the scanner device's coordinate system
 (see [Coordinate systems](../appendices/coordinate-systems.md)).
 
-The `[*_]dwi.bval` file contains the *b*-values (in s/mm<sup>2</sup>)
+The `[*_]dwi.bval` file contains the *b*-values (in s/mm$^2$)
 corresponding to the volumes in the relevant NIfTI file,
 with 0 designating *b*=0 volumes; space-delimited.
 
@@ -1100,11 +1100,11 @@ form of flowcharts.
 
 Data acquired to correct for inhomogeneities in the magnetic field can come in different forms.
 These "fieldmaps" can characterize different magnetic fields in the scanner,
-including the main static magnetic field (B<sub>0</sub>)
-and the transmit (B<sub>1</sub><sup>+</sup>) and receive (B<sub>1</sub><sup>-</sup>) components of
-the radiofrequency magnetic field (B<sub>1</sub>).
+including the main static magnetic field ($B_0$)
+and the transmit ($B_1^+$) and receive ($B_1^-$) components of
+the radiofrequency magnetic field ($B_1$).
 
-### B<sub>0</sub> fieldmaps
+### $B_0$ fieldmaps
 
 The current version of this standard considers four different scenarios:
 
@@ -1140,13 +1140,13 @@ and a guide for using macros can be found at
 #### Expressing the MR protocol intent for fieldmaps
 
 Fieldmaps are typically acquired with the purpose of correcting one or more EPI
-scans under `dwi/`, `func/`, or `perf/` for distortions derived from *B<sub>0</sub>*
+scans under `dwi/`, `func/`, or `perf/` for distortions derived from $B_0$
 nonuniformity.
 
 ##### Using `B0FieldIdentifier` metadata
 
 The general purpose [`B0FieldIdentifier` MRI metadata](#echo-planar-imaging-and-b0-mapping)
-is RECOMMENDED for the prescription of the *B<sub>0</sub>* field estimation intent of the
+is RECOMMENDED for the prescription of the $B_0$ field estimation intent of the
 original acquisition protocol.
 `B0FieldIdentifier` and `B0FieldSource` duplicate the capabilities of
 the original `IntendedFor` approach (see below), while permitting more
@@ -1180,7 +1180,7 @@ For example:
 }
 ```
 
-#### Types of B<sub>0</sub> fieldmaps
+#### Types of $B_0$ fieldmaps
 
 ##### Case 1: Phase-difference map and at least one magnitude image
 
@@ -1273,7 +1273,7 @@ For example, `sub-<label>[_ses-<label>][_acq-<label>][_run-<index>]_phase2.json`
 ##### Case 3: Direct *field mapping*
 
 In some cases (for example GE), the scanner software will directly reconstruct a
-*B<sub>0</sub>* field map along with a magnitude image used for anatomical reference.
+$B_0$ field map along with a magnitude image used for anatomical reference.
 
 <!--
 This block generates a filename templates.
@@ -1320,7 +1320,7 @@ for details on the `IntendedFor` field.
 
 The phase-encoding polarity (PEpolar) technique combines two or more Spin Echo
 EPI scans with different phase encoding directions to estimate the distortion
-map corresponding to the nonuniformities of the *B<sub>0</sub>* field.
+map corresponding to the nonuniformities of the $B_0$ field.
 These `*_epi.nii[.gz]` - or `*_m0scan.nii[.gz]` for arterial spin labeling perfusion data - files can be 3D or 4D --
 in the latter case, all timepoints share the same scanning parameters.
 Some 4D scans intended for correcting DWIs may have accompanying `*_epi.bval` and `*_epi.bvec` files.
@@ -1375,15 +1375,15 @@ are REQUIRED for these field mapping sequences.
 
 ### Radiofrequency (RF) field mapping
 
-Fieldmaps may be acquired to measure the inhomogeneity in the RF (B<sub>1</sub>) field.
-These fieldmaps may be divided into two categories: transmit (B<sub>1</sub><sup>+</sup>) and receive (B<sub>1</sub><sup>-</sup>) fieldmaps.
+Fieldmaps may be acquired to measure the inhomogeneity in the RF ($B_1$) field.
+These fieldmaps may be divided into two categories: transmit ($B_1^+$) and receive ($B_1^-$) fieldmaps.) fieldmaps.
 
 Some B1 fieldmap acquisitions call for the use of special notations that cannot be resolved by
 by entities that can generalize to other applications.
 The `acq` entity is used to distinguish the individual files in these cases.
 These suffixes include: `TB1AFI`, `TB1TFL`, `TB1RFM`, and `RB1COR`.
 
-#### B<sub>1</sub><sup>+</sup> fieldmaps
+#### $B_1^+$ fieldmaps
 
 <!--
 This block generates a suffix table.
@@ -1502,7 +1502,7 @@ A guide for using macros can be found at
 
 ##### `TB1AFI` specific notes
 
-This method calculates a B1<sup>+</sup> map from two images acquired at two interleaved excitation repetition times (TR).
+This method calculates a $B_1^+$ map from two images acquired at two interleaved excitation repetition times (TR).
 Note that there is no entity for the TR that can be used to label the files corresponding to the two
 repetition times and the definition of repetition time depends on the modality
 (`functional` or `anatomical`) in the specification.
@@ -1568,7 +1568,7 @@ A guide for using macros can be found at
 
 The example above applies to the `TB1RFM` suffix as well.
 
-#### B<sub>1</sub><sup>-</sup> fieldmaps
+#### $B_1^-$ fieldmaps
 
 <!--
 This block generates a suffix table.
