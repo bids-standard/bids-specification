@@ -159,11 +159,6 @@ deriv:
       - pet
     entities:
       $ref: meta.templates.deriv.volumetric.entities
-      hemisphere: optional
-      atlas: optional
-      segmentation: optional
-      scale: optional
-      label: optional
 
 # Entities that apply to most atlas files
 # Include thus:

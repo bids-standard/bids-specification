@@ -391,6 +391,12 @@ pet_pet_volumetric:
     $ref:
       - meta.templates.deriv.pet_derivative.entities
       - rules.files.raw.pet.pet.entities
+    atlas: optional
+    hemisphere: optional
+    template: optional
+    scale: optional
+    label: optional
+    segmentation: optional
 
 pet_pet_volumetric_atlas:
   $ref: rules.files.deriv.imaging.pet_pet_volumetric
@@ -398,6 +404,7 @@ pet_pet_volumetric_atlas:
     $ref:
       - meta.templates.atlas.base.entities
       - rules.files.deriv.imaging.pet_pet_volumetric.entities
+    subject: optional
 
 # Masks
 anat_mask:
