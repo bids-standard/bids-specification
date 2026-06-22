@@ -155,6 +155,12 @@ deriv:
 
   pet_derivative:
     $ref: meta.templates.deriv.volumetric
+    extensions:
+      - .gii
+      - .gii.gz
+      - .nii.gz
+      - .nii
+      - .json
     suffixes:
       - pet
     entities:
