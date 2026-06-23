@@ -614,12 +614,10 @@ ChecksumAlgorithm:
   name: ChecksumAlgorithm
   display_name: ChecksumAlgorithm
   description: |
-    Algorithm used to compute the checksum.
-    
-    If the algorithm is listed as an [SPDX `spdx:ChecksumAlgorithm`](https://spdx.org/rdf/terms/#d4e2129),
-    then the value MUST be the identifier as provided by SPDX (for example: `spdx:checksumAlgorithm_sha256`).
+    URI of the algorithm used to compute the checksum.
 
-    Otherwise, value MAY be an identifier of the algorithm used to compute the checksum.
+    If the algorithm is listed as an [SPDX `spdx:ChecksumAlgorithm`](https://spdx.org/rdf/terms/#d4e2129)
+    then the URI MUST be as provided by SPDX (for example: `spdx:checksumAlgorithm_sha256`).
   type: string
   format: uri
 ChecksumValue:
