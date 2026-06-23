@@ -9,8 +9,7 @@ TwoPE:
 ADC:
   value: ADC
   display_name: Apparent diffusion coefficient (ADC)
-  description:
-    Apparent diffusion coefficient (ADC) map
+  description: Apparent diffusion coefficient (ADC) map
 BF:
   value: BF
   display_name: Bright-field microscopy
@@ -891,6 +890,11 @@ uCT:
   display_name: Micro-CT
   description: |
     Micro-CT imaging data
+tractogram:
+  value: tractogram
+  display_name: Tractogram
+  description: |
+    Tractography streamlines data stored in TRX format.
 unloc:
   value: unloc
   display_name: Unlocalized spectroscopy
