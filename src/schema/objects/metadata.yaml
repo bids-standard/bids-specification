@@ -624,7 +624,7 @@ ChecksumValue:
   name: ChecksumValue
   display_name: ChecksumValue
   description: |
-    A lower case hexidecimal encoded digest value.
+    A lower case hexadecimal encoded digest value.
 
     Corresponds to [SPDX `spdx:checksumValue`](https://spdx.org/rdf/terms/#d4e1053).
   type: string
