@@ -627,13 +627,6 @@ electrodes:
   display_name: Electrodes
   description: |
     File that gives the location of (i)EEG electrodes.
-ent:
-  value: ent
-  display_name: Description of input and output data
-  description: |
-    A JSON file containing objects describing  input and output data in the context of provenance.
-    (See the [`Input and output data`](SPEC_ROOT/modality-agnostic-files/provenance.md#-input-and-output-data)
-    section).
 env:
   value: env
   display_name: Description of environments
@@ -699,6 +692,13 @@ inplaneT2:
     In arbitrary units (arbitrary).
     T2 weighted structural image matched to a functional (task) image.
   unit: arbitrary
+io:
+  value: io
+  display_name: Description of input and output data
+  description: |
+    A JSON file containing objects describing input and output data in the context of provenance.
+    (See the [`Input and output data`](SPEC_ROOT/modality-agnostic-files/provenance.md#-input-and-output-data)
+    section).  
 m0scan:
   value: m0scan
   display_name: M0 image

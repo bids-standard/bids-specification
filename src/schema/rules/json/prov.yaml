@@ -16,7 +16,7 @@ EnvironmentsProvenanceFile:
 EntitiesProvenanceFile:
   selectors:
     - datatype == "prov"
-    - suffix == "ent"
+    - suffix == "io"
   fields:
     Files:
       level: optional
@@ -31,7 +31,7 @@ EntitiesProvenanceFile:
 ProvEntityProvenanceFile:
   selectors:
     - datatype == "prov"
-    - suffix == "ent"
+    - suffix == "io"
     - '!("Files" in json)'
     - '!("Datasets" in json)'
   fields:
@@ -40,7 +40,7 @@ ProvEntityProvenanceFile:
 FilesProvenanceFile:
   selectors:
     - datatype == "prov"
-    - suffix == "ent"
+    - suffix == "io"
     - '!("Datasets" in json)'
     - '!("prov:Entity" in json)'
   fields:
@@ -49,7 +49,7 @@ FilesProvenanceFile:
 DatasetsProvenanceFile:
   selectors:
     - datatype == "prov"
-    - suffix == "ent"
+    - suffix == "io"
     - '!("Files" in json)'
     - '!("prov:Entity" in json)'
   fields:

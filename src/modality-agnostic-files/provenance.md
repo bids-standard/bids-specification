@@ -202,7 +202,7 @@ and a guide for using macros can be found at
 {{ MACROS___make_filename_template(
    "common",
    datatypes=["prov"],
-   suffixes=["act", "soft", "env", "ent"])
+   suffixes=["act", "io", "soft", "env"])
 }}
 
 !!! note
@@ -221,7 +221,7 @@ and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 {{ MACROS___make_suffix_table(
-      ["act", "ent", "env", "soft"]
+      ["act", "io", "soft", "env"]
    )
 }}
 
@@ -231,10 +231,10 @@ and a guide for using macros can be found at
     prov/
     ├─ prov-preprocspm/
     │  ├─ prov-preprocspm_act.json
-    │  └─ prov-preprocspm_ent.json
+    │  └─ prov-preprocspm_io.json
     ├─ prov-preprocfsl_act.json
-    ├─ prov-preprocfsl_ent.json
     ├─ prov-preprocfsl_env.json
+    ├─ prov-preprocfsl_io.json
     ├─ prov-preprocfsl_soft.json
     └─ ...
     ```
@@ -346,11 +346,7 @@ This data corresponds to the
 [W3C PROV prov:Entity](https://www.w3.org/TR/2013/REC-prov-o-20130430/#Entity)
 class that includes files, datasets and other types of data.
 
-Each file with a `ent` suffix is a JSON file describing input and output data.
-
-!!! note
-
-    The `ent` suffix stands for prov:Entity.
+Each file with a `io` suffix is a JSON file describing input and output data.
 
 !!! warning
 
@@ -410,7 +406,7 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_subobject_table("metadata.Checksum.items") }}
 
-!!! example "Example: description of a file in a `prov/[<subdir>/]prov-<label>_ent.json` file"
+!!! example "Example: description of a file in a `prov/[<subdir>/]prov-<label>_io.json` file"
 
     ```JSON
     {
@@ -433,7 +429,7 @@ and a guide for using macros can be found at
     For a complete example, see [Provenance of fMRI preprocessing with `SPM`](
     https://github.com/bclenet/bids-examples/tree/BEP028_spm/provenance_spm)
 
-!!! example "Example: description of a dataset in a `prov/[<subdir>/]prov-<label>_ent.json` file"
+!!! example "Example: description of a dataset in a `prov/[<subdir>/]prov-<label>_io.json` file"
 
     ```JSON
     {
@@ -751,7 +747,7 @@ A guide for using macros can be found at
     {
         "prov": {
             "prov-spm_act.json": "",
-            "prov-spm_ent.json": "",
+            "prov-spm_io.json": "",
             "...": ""
         },
         "sub-01": {
@@ -804,7 +800,7 @@ listed inside the `Used` array.
 
 `bids::sub-01/anat/sub-01_T1w.nii` is a BIDS file available in the current dataset.
 The `spm12/tpm/TPM.nii` file is not inside the dataset ;
-hence its description is stored inside `prov/prov-spm_ent.json` and
+hence its description is stored inside `prov/prov-spm_io.json` and
 its identifier is not a BIDS URI:
 
 ```JSON
@@ -856,7 +852,7 @@ A guide for using macros can be found at
                     "provenance.tsv": "",
                     "prov-seg_act.json": "",
                     "prov-seg_soft.json": "",
-                    "prov-seg_ent.json": "",
+                    "prov-seg_io.json": "",
                 },
                 "sub-001": {
                     "sub-001_space-orig_desc-exp1_dseg.json": "",
@@ -874,7 +870,7 @@ A guide for using macros can be found at
             "raw": {
                 "dataset_description.json": "",
                 "prov": {
-                    "prov-raw_ent.json": "",
+                    "prov-raw_io.json": "",
                 },
                 "sub-001": {
                     "sub-001_T1w.json": "",

@@ -8,9 +8,9 @@ provenance:
     - prov
   suffixes:
     - act
-    - ent
-    - env
+    - io
     - soft
+    - env
   extensions:
     - .json
   entities:
