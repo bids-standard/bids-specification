@@ -48,6 +48,16 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table('prov.CommonProvenanceFields') }}
 
+Each object in the `Checksum` array includes the following keys:
+
+<!-- This block generates a table describing subfields within a metadata field.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_subobject_table("metadata.Checksum.items") }}
+
 !!! example "Example of metadata in a sidecar JSON file"
 
     ```JSON
@@ -57,9 +67,12 @@ and a guide for using macros can be found at
             "bids::prov#preparation-conversion-1xkhm1ft",
             "bids::prov#conversion-00f3a18f"
         ],
-        "Digest": {
-            "SHA-256": "66eeafb465559148e0222d4079558a8354eb09b9efabcc47cd5b8af6eed51907"
-        }
+        "Checksum": [
+            {
+                "ChecksumAlgorithm": "spdx:checksumAlgorithm_sha256",
+                "ChecksumValue": "66eeafb465559148e0222d4079558a8354eb09b9efabcc47cd5b8af6eed51907"
+            }
+        ]
     }
     ```
     For a complete example see
@@ -387,6 +400,16 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_subobject_table("metadata.ProvEntity.items") }}
 
+For `Files` and `prov:Entity` objects, each object in the `Checksum` array includes the following keys:
+
+<!-- This block generates a table describing subfields within a metadata field.
+The definitions of these fields can be found in
+  src/schema/objects/metadata.yaml
+and a guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_subobject_table("metadata.Checksum.items") }}
+
 !!! example "Example: description of a file in a `prov/[<subdir>/]prov-<label>_ent.json` file"
 
     ```JSON
@@ -397,9 +420,12 @@ and a guide for using macros can be found at
                 "Label": "sub-01_T1w.nii",
                 "AtLocation": "sub-01/anat/sub-01_T1w.nii",
                 "GeneratedBy": "bids::prov#gunzip-e9264918",
-                "Digest": {
-                    "SHA-256": "45485541db5734f565b7cac3e009f8b02907245fc6db435c700e84d1037773b5"
-                }
+                "Checksum": [
+                    {
+                        "ChecksumAlgorithm": "spdx:checksumAlgorithm_sha256",
+                        "ChecksumValue": "45485541db5734f565b7cac3e009f8b02907245fc6db435c700e84d1037773b5"
+                    }
+                ]
             }
         ]
     }

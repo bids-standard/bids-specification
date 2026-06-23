@@ -8,6 +8,7 @@
         "prov" : "http://www.w3.org/ns/prov#",
         "xsd": "http://www.w3.org/2001/XMLSchema#",
         "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+        "spdx": "http://spdx.org/rdf/terms#",
         "RRID":  "http://scicrunch.org/resolver/",
         "Id": "@id",
         "Type": "@type",
@@ -54,6 +55,9 @@
         "Environments": "prov:Entity",
         "Activities": "prov:Activity",
         "Software": "prov:Agent",
-        "Atlocation": "prov:atLocation"
+        "Atlocation": "prov:atLocation",
+        "Checksum": "spdx:Checksum",
+        "ChecksumAlgorithm": "spdx:ChecksumAlgorithm",
+        "ChecksumValue": "spdx:ChecksumValue",
     }
 }
