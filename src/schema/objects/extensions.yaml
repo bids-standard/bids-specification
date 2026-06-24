@@ -141,6 +141,16 @@ kdf:
     the digitized positions of the head points (`\_digitizer.txt`),
     the position of the center of the MEG coils (`.chn`),
     and the event markers (`.trg`).
+funcgii:
+  value: .func.gii
+  display_name: GIFTI functional data file
+  description: |
+    A GIFTI file containing data values sampled on a surface.
+funcgii_gz:
+  value: .func.gii.gz
+  display_name: Compressed GIFTI functional data file
+  description: |
+    A compressed GIFTI file containing data values sampled on a surface.
 labelgii:
   value: .label.gii
   display_name: GIFTI label/annotation file
