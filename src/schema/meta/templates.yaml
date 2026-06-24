@@ -153,26 +153,12 @@ deriv:
       segmentation: optional
       scale: optional
 
-  pet_derivative:
-    $ref: meta.templates.deriv.volumetric
-    extensions:
-      - .nii.gz
-      - .nii
-      - .json
-    suffixes:
-      - pet
-    entities:
-      $ref: meta.templates.deriv.volumetric.entities
-
-  pet_surface:
-    $ref: meta.templates.deriv.surface
+  surface_map:
+    $ref:
+      - meta.templates.deriv.surface
     extensions:
       - .func.gii
-      - .func.gii.gz
-    suffixes:
-      - pet
-    entities:
-      $ref: meta.templates.deriv.surface.entities
+      - .json
 
 # Entities that apply to most atlas files
 # Include thus:
@@ -185,3 +171,4 @@ atlas:
     entities:
       template: required
       cohort: optional
+      atlas: optional
