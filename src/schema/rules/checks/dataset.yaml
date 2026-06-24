@@ -12,12 +12,7 @@ SubjectFolders:
     - path == '/dataset_description.json'
     - dataset.dataset_description.DatasetType != "study"
   checks:
-    - |
-      length(dataset.subjects.sub_dirs) > 0 ||
-      (
-        dataset.dataset_description.DatasetType == "derivative" &&
-        dataset.tree.directories.some((dir) => dir.name.startsWith("tpl-"))
-      )
+    - length(dataset.subjects.sub_dirs) > 0
 
 NoSubjectFolders:
   issue:
