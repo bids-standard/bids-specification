@@ -58,6 +58,6 @@
         "Atlocation": "prov:atLocation",
         "Checksum": "spdx:Checksum",
         "ChecksumAlgorithm": "spdx:ChecksumAlgorithm",
-        "ChecksumValue": "spdx:ChecksumValue",
+        "ChecksumValue": "spdx:ChecksumValue"
     }
 }
