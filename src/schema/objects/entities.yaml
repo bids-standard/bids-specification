@@ -502,16 +502,6 @@ tracer:
     Please note that the `<label>` does not need to match the actual value of the field.
   type: string
   format: label
-volume:
-  name: voi
-  display_name: Volume of Interest
-  description: |
-    The `voi-<label>` entity can be used to distinguish acquisitions localized to different regions.
-    The label SHOULD be the name of the body region or part scanned.
-    If used, the fields `"BodyPart"` and `"BodyPartDetails"` MUST be defined in the JSON file.
-    `BodyPartDetailsOntology` is OPTIONAL to also include.
-  type: string
-  format: label
 track:
   name: track
   display_name: Tractography Method
@@ -520,6 +510,8 @@ track:
     employed to reconstruct white matter fiber streamlines.
   type: string
   format: label
+  enum:
+    - $ref: objects.enums._TrackMethod
 tracksys:
   name: tracksys
   display_name: Tracking System
@@ -543,5 +535,15 @@ tract:
     tractogram (for example, `tract-wholebrain` would correspond to a
     whole-brain tractogram, whereas `tract-ArcuateFasciculus` would
     correspond to a tractogram of the arcuate fasciculus).
+  type: string
+  format: label
+volume:
+  name: voi
+  display_name: Volume of Interest
+  description: |
+    The `voi-<label>` entity can be used to distinguish acquisitions localized to different regions.
+    The label SHOULD be the name of the body region or part scanned.
+    If used, the fields `"BodyPart"` and `"BodyPartDetails"` MUST be defined in the JSON file.
+    `BodyPartDetailsOntology` is OPTIONAL to also include.
   type: string
   format: label
