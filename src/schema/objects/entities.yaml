@@ -502,7 +502,7 @@ tracer:
     Please note that the `<label>` does not need to match the actual value of the field.
   type: string
   format: label
-trackmethod:
+track:
   name: track
   display_name: Tractography Method
   description: |
