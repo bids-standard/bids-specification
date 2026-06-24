@@ -4638,3 +4638,63 @@ iEEGReference:
     this field should have a general description and the channel specific
     reference should be defined in the `channels.tsv` file.
   type: string
+StreamlineSeeding:
+  name: StreamlineSeeding
+  display_name: Streamline Seeding
+  description: |
+    The specification of how streamline seed points were determined.
+    The contents of this dictionary are described in the
+    [diffusion derivatives](SPEC_ROOT/derivatives/diffusion-derivatives.md)
+    documentation.
+  type: object
+StreamlinePropagation:
+  name: StreamlinePropagation
+  display_name: Streamline Propagation
+  description: |
+    The specification of how streamlines were propagated from seed points.
+    The contents of this dictionary are described in the
+    [diffusion derivatives](SPEC_ROOT/derivatives/diffusion-derivatives.md)
+    documentation.
+  type: object
+StreamlineTermination:
+  name: StreamlineTermination
+  display_name: Streamline Termination
+  description: |
+    The specification of criteria that caused ongoing streamline propagation
+    to cease. The contents of this dictionary are described in the
+    [diffusion derivatives](SPEC_ROOT/derivatives/diffusion-derivatives.md)
+    documentation.
+  type: object
+StreamlineAcceptanceCriteria:
+  name: StreamlineAcceptanceCriteria
+  display_name: Streamline Acceptance Criteria
+  description: |
+    The specification of criteria applied to decide whether a streamline
+    that was successfully propagated was acceptable to be retained in the
+    output tractogram. The contents of this dictionary are described in the
+    [diffusion derivatives](SPEC_ROOT/derivatives/diffusion-derivatives.md)
+    documentation.
+  type: object
+StreamlineReconstructionDensity:
+  name: StreamlineReconstructionDensity
+  display_name: Streamline Reconstruction Density
+  description: |
+    The specification of criteria that determined when tractogram generation
+    ceased based on the number of seeds, generated streamlines, or accepted
+    streamlines. The contents of this dictionary are described in the
+    [diffusion derivatives](SPEC_ROOT/derivatives/diffusion-derivatives.md)
+    documentation.
+  type: object
+Track:
+  name: Track
+  display_name: Tracking Method
+  description: |
+    A description of the algorithm used to perform tractography.
+  type: object
+  properties:
+    Name:
+      $ref: objects.metadata.Name
+    Description:
+      $ref: objects.metadata.Description
+    URL:
+      $ref: objects.metadata.URL
