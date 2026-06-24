@@ -241,7 +241,7 @@ Authors:
   name: Authors
   display_name: Authors
   description: |
-    List of individuals who contributed to the creation/curation of the dataset.
+    List of contributors to the creation and/or curation of the dataset.
   type: array
   items:
     type: string
