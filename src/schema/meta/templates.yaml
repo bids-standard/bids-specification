@@ -156,8 +156,6 @@ deriv:
   pet_derivative:
     $ref: meta.templates.deriv.volumetric
     extensions:
-      - .func.gii
-      - .func.gii.gz
       - .nii.gz
       - .nii
       - .json
@@ -165,6 +163,16 @@ deriv:
       - pet
     entities:
       $ref: meta.templates.deriv.volumetric.entities
+
+  pet_surface:
+    $ref: meta.templates.deriv.surface
+    extensions:
+      - .func.gii
+      - .func.gii.gz
+    suffixes:
+      - pet
+    entities:
+      $ref: meta.templates.deriv.surface.entities
 
 # Entities that apply to most atlas files
 # Include thus:
