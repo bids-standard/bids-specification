@@ -604,11 +604,11 @@ Checksum:
   minItems: 1
   items:
     type: object
-    required: [Algorithm, Value]
+    required: [ChecksumAlgorithm, ChecksumValue]
     properties:
-      Algorithm:
+      ChecksumAlgorithm:
         $ref: objects.metadata.ChecksumAlgorithm
-      Value:
+      ChecksumValue:
         $ref: objects.metadata.ChecksumValue
 ChecksumAlgorithm:
   name: ChecksumAlgorithm
@@ -1587,11 +1587,11 @@ ProvEntity:
         minItems: 1
         items:
           type: object
-          required: [Algorithm, Value]
+          required: [ChecksumAlgorithm, ChecksumValue]
           properties:
-            Algorithm:
+            ChecksumAlgorithm:
               $ref: objects.metadata.ChecksumAlgorithm
-            Value:
+            ChecksumValue:
               $ref: objects.metadata.ChecksumValue
       GeneratedBy:
         name: GeneratedBy
