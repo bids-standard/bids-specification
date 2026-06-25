@@ -41,9 +41,9 @@ MicroscopyImageAcquisition:
     SheetAngle: optional
     StageVelocity: optional
     ExcitationWavelengths: optional
+    LaserPowers: optional
     ChannelEmissionRange: optional
     ChannelStackDirection: optional
-    LaserPowers: optional
     ROISizeX: optional
     ROISizeY: optional
     ROISizeZ: optional
