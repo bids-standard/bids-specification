@@ -323,7 +323,7 @@ BackgroundFrames:
   name: BackgroundFrames
   display_name: Background Frames
   description: |
-    Number of frames acquired after the excitation was turned off.
+    Number of frames acquired after the excitation laser was turned off.
     Unlike the frames counted in `ImageFrames`, these frames contain no sample signal.
   type: integer
   minimum: 0
@@ -525,7 +525,7 @@ ChannelEmissionRange:
   display_name: Channel Emission Range
   description: |
     Approximate emission wavelength range(s) acquired in each detection channel, in nanometers,
-    listed in the same order as the excitation wavelengths.
+    listed in the same order as the `ExcitationWavelengths`.
     Each channel's range is given as a `[min, max]` pair of bounds,
     where `null` denotes an open-ended bound.
     For example, `[[null, 560], [560, 640], [738, null]]` describes a first channel
@@ -2343,7 +2343,7 @@ LaserPowers:
   display_name: Laser Powers
   description: |
     Power of the lasers used for imaging, in milliwatts,
-    in the same order as the excitation wavelengths.
+    in the same order as the `ExcitationWavelengths`.
   anyOf:
     - type: number
       unit: mW
