@@ -35,3 +35,50 @@ DuplicateReadmes:
     - match(path, '^/README.*')
   checks:
     - exists(["README", "README.md", "README.rst", "README.txt"], "dataset") == 1
+
+SegregatedSessions:
+  issue:
+    code: SEGREGATED_SESSIONS
+    message: |
+      Session files were detected outside the dataset root and
+      "Phenotype" additional validation has been enabled.
+      Aggregate session data in a root-level `sessions.tsv` file.
+    level: error
+  selectors:
+    - suffix == 'sessions'
+    - extension == '.tsv'
+    - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
+  checks:
+    - type(entities.subject) == 'null'
+
+SessionRequired:
+  issue:
+    code: SESSION_REQUIRED
+    message: |
+      Multi-session data is detected in the dataset, and
+      "Phenotype" additional validation has been enabled.
+      Every data file MUST be found in a session directory.
+    level: error
+  selectors:
+    - type(entities.subject) != 'null'
+    - "!intersects([extension], ['.tsv', '.json'])"
+    - type(dataset.sessions_tsv) != 'null'
+    - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
+  checks:
+    - type(entities.session) != 'null'
+
+SessionsTSVRequired:
+  issue:
+    code: SESSIONS_TSV_REQUIRED
+    message: |
+      Multi-session data is detected in the dataset, and
+      "Phenotype" additional validation has been enabled.
+      A sessions.tsv file MUST exist in the dataset root.
+    level: error
+    location: /sessions.tsv
+  selectors:
+    - "!intersects([extension], ['.tsv', '.json'])"
+    - type(entities.session) != 'null'
+    - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
+  checks:
+    - type(dataset.sessions_tsv) != 'null'

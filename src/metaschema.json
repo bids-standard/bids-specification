@@ -326,8 +326,11 @@
                   "type": "object",
                   "properties": {
                     "issue": {
-                      "allOf": [{ "$ref": "#/definitions/ruleTypes/issue" }],
-                      "required": ["level"]
+                      "allOf": [
+                        { "$ref": "#/definitions/ruleTypes/issue" },
+                        { "required": ["level"] }
+                      ],
+                      "unevaluatedProperties": false
                     },
                     "selectors": {
                       "$ref": "#/definitions/ruleTypes/expressionList"
@@ -473,17 +476,18 @@
           "type": "object",
           "patternProperties": {
             "^[a-zA-Z0-9_]+$": {
-              "type": "object",
-              "properties": {
-                "code": { "type": "string" },
-                "message": { "type": "string" },
-                "level": { "enum": ["error", "warning"] },
-                "selectors": {
-                  "$ref": "#/definitions/ruleTypes/expressionList"
+              "allOf": [
+                { "$ref": "#/definitions/ruleTypes/issue" },
+                {
+                  "properties": {
+                    "selectors": {
+                      "$ref": "#/definitions/ruleTypes/expressionList"
+                    }
+                  },
+                  "required": ["level"]
                 }
-              },
-              "required": ["message", "level"],
-              "additionalProperties": false
+              ],
+              "unevaluatedProperties": false
             }
           },
           "additionalProperties": false
@@ -595,7 +599,10 @@
               "level": { "$ref": "#/definitions/enums/requirement_level" },
               "level_addendum": { "type": "string" },
               "description_addendum": { "type": "string" },
-              "issue": { "$ref": "#/definitions/ruleTypes/issue" }
+              "issue": {
+                "$ref": "#/definitions/ruleTypes/issue",
+                "unevaluatedProperties": false
+              }
             },
             "required": ["level"],
             "additionalProperties": false
@@ -606,11 +613,13 @@
         "type": "object",
         "properties": {
           "code": { "type": "string" },
+          "subCode": { "type": "string" },
+          "level": { "enum": ["error", "warning"] },
+          "location": { "type": "string" },
           "message": { "type": "string" },
-          "level": { "enum": ["error", "warning"] }
+          "suggestion": { "type": "string" }
         },
-        "required": ["code", "message"],
-        "additionalProperties": false
+        "required": ["code", "message"]
       },
       "expressionList": {
         "type": "array",

@@ -19,6 +19,28 @@ Participants:
   index_columns: [participant_id]
   additional_columns: allowed
 
+Phenotypes:
+  selectors:
+    - datatype == 'phenotype'
+    - extension == ".tsv"
+    - '!intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])'
+  initial_columns:
+    - participant_id
+  columns:
+    participant_id:
+      level: required
+    HED: optional
+  index_columns: [participant_id]
+  additional_columns: allowed
+
+Phenotypes__Additional:
+  $ref: rules.tabular_data.modality_agnostic.Phenotypes
+  selectors:
+    - datatype == 'phenotype'
+    - suffix == 'phenotype'
+    - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
+  additional_columns: allowed_if_defined
+
 Samples:
   selectors:
     - path == "/samples.tsv"
@@ -51,6 +73,7 @@ Sessions:
   selectors:
     - suffix == "sessions"
     - extension == ".tsv"
+    - '!intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])'
   initial_columns:
     - session_id
   columns:
@@ -64,13 +87,13 @@ Sessions:
   index_columns: [session_id]
   additional_columns: allowed
 
-Phenotype:
+Sessions__Additional:
+  $ref: rules.tabular_data.modality_agnostic.Sessions
   selectors:
-    - datatype == 'phenotype'
-  initial_columns:
-    - participant_id
+    - suffix == "sessions"
+    - extension == ".tsv"
+    - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
   columns:
-    participant_id: required
-    HED: optional
-  index_columns: [participant_id]
-  additional_columns: allowed
+    $ref: rules.tabular_data.modality_agnostic.Sessions.columns
+    acq_time__sessions: recommended
+  additional_columns: allowed_if_defined
