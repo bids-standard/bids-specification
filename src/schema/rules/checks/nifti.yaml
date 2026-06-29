@@ -50,6 +50,20 @@ NiftiPixdimPET:
   checks:
     - min([nifti_header.pixdim[1], nifti_header.pixdim[2], nifti_header.pixdim[3]]) > 0
 
+NiftiLargeVolume:
+  issue:
+    code: NIFTI_LARGE_VOLUME
+    message: |
+      NIfTI file has a spatial dimension exceeding 1024 voxels.
+      Consider using the OME-Zarr file format, which is better suited
+      for large imaging data.
+    level: warning
+  selectors:
+    - type(nifti_header) != "null"
+    - length(nifti_header.shape) >= 3
+  checks:
+    - max([nifti_header.shape[0], nifti_header.shape[1], nifti_header.shape[2]]) <= 1024
+
 # 60
 XformCodes0:
   issue:
