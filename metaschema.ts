@@ -750,9 +750,6 @@ export interface Schema {
     tabular_data: {};
     metaentities: string[];
     common_principles: string[];
-    dataset_metadata: {
-      [k: string]: unknown;
-    };
     directories: {
       [k: string]: unknown;
     };
