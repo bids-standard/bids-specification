@@ -37,6 +37,19 @@ MicroscopyImageAcquisition:
     Immersion: optional
     NumericalAperture: optional
     Magnification: optional
+    FrameRate: optional
+    SheetAngle: optional
+    StageVelocity: optional
+    ExcitationWavelengths: optional
+    LaserPowers: optional
+    ChannelEmissionRange: optional
+    ChannelStackDirection: optional
+    ROISizeX: optional
+    ROISizeY: optional
+    ROISizeZ: optional
+    ImageFrames: optional
+    BackgroundFrames: optional
+    AcquisitionDirection: optional
     ImageAcquisitionProtocol: optional
     OtherAcquisitionParameters: optional
 
