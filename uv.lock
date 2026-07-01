@@ -341,7 +341,7 @@ tests = [
 types = [
     { name = "lxml", specifier = ">=6.0.2" },
     { name = "mypy", specifier = ">=1.18.2" },
-    { name = "pandas-stubs", specifier = ">=2.2.2.240807" },
+    { name = "pandas-stubs", specifier = ">=3.0.3.260530" },
     { name = "types-jsonschema", specifier = ">=4.25.1.20251009" },
     { name = "types-pyyaml", specifier = ">=6.0.12.20250915" },
     { name = "types-tabulate", specifier = ">=0.9.0.20241207" },
