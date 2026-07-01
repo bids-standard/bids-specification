@@ -334,7 +334,7 @@ tests = [
     { name = "bidsschematools", extras = ["all"] },
     { name = "check-jsonschema", specifier = ">=0.36.2" },
     { name = "coverage", extras = ["toml"], specifier = ">=7.10.7" },
-    { name = "pytest", specifier = ">=8.4.2" },
+    { name = "pytest", specifier = ">=9.1.0" },
     { name = "pytest-cov", specifier = ">=7.0.0" },
     { name = "pytest-xdist", specifier = ">=3.8.0" },
 ]
