@@ -10,7 +10,7 @@ to the BIDS standard.
 The BIDS schema is available in two machine readable formats:
 
 -   as a set of [YAML](https://en.wikipedia.org/wiki/YAML) files in the [BIDS specification repository](https://github.com/bids-standard/bids-specification/tree/master/src/schema)
--   as a [single dereferenced json file](https://bids-specification.readthedocs.io/en/stable/schema.json)
+-   as a [single dereferencedJSONfile](https://bids-specification.readthedocs.io/en/stable/schema.json)
 
 A didactic walkthrough of the schema can be found in the [BEP Guide](https://bids-extensions.readthedocs.io/en/latest/schema/),
 and a complete description is available in the [`bidsschematools` documentation](https://bidsschematools.readthedocs.io/en/latest/).
