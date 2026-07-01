@@ -329,7 +329,7 @@ requires-dist = [
 provides-extras = ["expressions", "render", "validation", "all"]
 
 [package.metadata.requires-dev]
-dev = [{ name = "ruff", specifier = ">=0.15.6" }]
+dev = [{ name = "ruff", specifier = ">=0.15.17" }]
 tests = [
     { name = "bidsschematools", extras = ["all"] },
     { name = "check-jsonschema", specifier = ">=0.36.2" },

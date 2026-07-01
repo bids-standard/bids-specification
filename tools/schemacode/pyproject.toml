@@ -48,7 +48,7 @@ all = ["bidsschematools[expressions,render,validation]"]
 
 [dependency-groups]
 dev = [
-  "ruff>=0.15.6",
+  "ruff>=0.15.17",
 ]
 tests = [
   "bidsschematools[all]",
