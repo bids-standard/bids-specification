@@ -237,6 +237,51 @@ AttenuationCorrectionMethodReference:
   description: |
     Reference paper for the attenuation correction method used.
   type: string
+AudioBitDepth:
+  name: AudioBitDepth
+  display_name: Audio Bit Depth
+  description: |
+    Number of bits per sample in the audio stream
+    (for example, `16`, `24`, or `32`).
+    Typically reported for uncompressed or losslessly compressed audio.
+  type: integer
+  minimum: 1
+AudioChannelCount:
+  name: AudioChannelCount
+  display_name: Audio Channel Count
+  description: |
+    Number of audio channels in the audio or audio-video file
+    (for example, `1` for mono, `2` for stereo).
+  type: integer
+  minimum: 1
+AudioCodec:
+  name: AudioCodec
+  display_name: Audio Codec
+  description: |
+    The audio codec used to encode the audio stream, expressed as an
+    [FFmpeg codec name](https://www.ffmpeg.org/ffmpeg-codecs.html)
+    (for example, `"aac"`, `"mp3"`, `"opus"`, `"flac"`, `"pcm_s16le"`).
+    This value can be auto-extracted using
+    `ffprobe -v quiet -print_format json -show_streams`.
+  type: string
+AudioCodecRFC6381:
+  name: AudioCodecRFC6381
+  display_name: Audio Codec (RFC 6381)
+  description: |
+    The audio codec expressed as an
+    [RFC 6381](https://datatracker.ietf.org/doc/html/rfc6381) codec string
+    (for example, `"mp4a.40.2"` for AAC-LC).
+    This representation is useful for web and broadcast interoperability.
+  type: string
+AudioSampleRate:
+  name: AudioSampleRate
+  display_name: Audio Sample Rate
+  description: |
+    Sampling frequency of the audio stream, in Hz
+    (for example, `44100`, `48000`, `96000`).
+  type: number
+  exclusiveMinimum: 0
+  unit: Hz
 Authors:
   name: Authors
   display_name: Authors
@@ -923,6 +968,13 @@ Descriptors:
     - type: array
       items:
         type: string
+Device:
+  name: Device
+  display_name: Device
+  description: |
+    Free-form description of the device used to record the data
+    (for example, `"iPhone 12"`, `"Canon EOS R5"`).
+  type: string
 DeviceSerialNumber:
   name: DeviceSerialNumber
   display_name: Device Serial Number
@@ -1871,6 +1923,22 @@ ImageAcquisitionProtocol:
     [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator)
     (for example from [protocols.io](https://www.protocols.io/)).
   type: string
+ImageBitDepth:
+  name: ImageBitDepth
+  display_name: Image Bit Depth
+  description: |
+    Bit depth per channel of the stored pixel data of the video frame or
+    image (for example, `8`, `10`, `12`, `16`). For multi-channel data
+    this is the depth of each individual channel.
+    When `ImagePixelFormat` is also provided, this field is redundant with
+    the bit depth encoded in the FFmpeg `pix_fmt` value (for example,
+    `yuv420p10le` -> 10) and the two MUST agree. `ImageBitDepth` is
+    nonetheless useful as a more directly discoverable summary, and as the
+    primary precision field for image-only sidecars whose producing tools
+    do not naturally surface `pix_fmt`.
+  type: integer
+  minimum: 1
+  unit: bit
 ImageDecayCorrected:
   name: ImageDecayCorrected
   display_name: Image Decay Corrected
@@ -1885,6 +1953,38 @@ ImageDecayCorrectionTime:
     `"TimeZero"` in the default unit seconds.
   type: number
   unit: s
+ImageHeight:
+  name: ImageHeight
+  display_name: Image Height
+  description: |
+    Height of the video frame or image, in pixels.
+    Corresponds to the number of rows in the stored pixel grid as captured,
+    without applying any orientation correction that may be reported by
+    container metadata (for example, the EXIF `Orientation` tag).
+  type: integer
+  minimum: 1
+  unit: px
+ImagePixelFormat:
+  name: ImagePixelFormat
+  display_name: Image Pixel Format
+  description: |
+    The pixel format of the video frame or image, as reported by FFmpeg's
+    `pix_fmt` field (for example, `"yuv420p"`, `"yuv420p10le"`, `"gray16le"`,
+    `"rgb24"`). A single `pix_fmt` value encodes the color model, channel
+    count, chroma subsampling, and bit depth, and can be extracted
+    automatically with `ffprobe`.
+  type: string
+ImageWidth:
+  name: ImageWidth
+  display_name: Image Width
+  description: |
+    Width of the video frame or image, in pixels.
+    Corresponds to the number of columns in the stored pixel grid as captured,
+    without applying any orientation correction that may be reported by
+    container metadata (for example, the EXIF `Orientation` tag).
+  type: integer
+  minimum: 1
+  unit: px
 Immersion:
   name: Immersion
   display_name: Immersion
@@ -4499,6 +4599,46 @@ VisionCorrection:
     Equipment used to correct participant vision during an experiment.
     Example: "spectacles", "lenses", "none".
   type: string
+VideoCodec:
+  name: VideoCodec
+  display_name: Video Codec
+  description: |
+    The video codec used to encode the video stream, expressed as an
+    [FFmpeg codec name](https://www.ffmpeg.org/ffmpeg-codecs.html)
+    (for example, `"h264"`, `"hevc"`, `"vp9"`, `"av1"`).
+    This value can be auto-extracted using
+    `ffprobe -v quiet -print_format json -show_streams`.
+  type: string
+VideoCodecRFC6381:
+  name: VideoCodecRFC6381
+  display_name: Video Codec (RFC 6381)
+  description: |
+    The video codec expressed as an
+    [RFC 6381](https://datatracker.ietf.org/doc/html/rfc6381) codec string
+    (for example, `"avc1.640028"` for H.264 High Profile Level 4.0).
+    This representation is useful for web and broadcast interoperability.
+  type: string
+VideoFrameCount:
+  name: VideoFrameCount
+  display_name: Video Frame Count
+  description: |
+    Total number of frames in the video stream.
+    For constant frame rate video this can be derived from `VideoFrameRate`
+    and `RecordingDuration`, but for variable frame rate (VFR) video the
+    derivation is undefined, so an explicit value is needed.
+    Also useful as an integrity check to detect truncated or corrupted files.
+  type: integer
+  minimum: 1
+VideoFrameRate:
+  name: VideoFrameRate
+  display_name: Video Frame Rate
+  description: |
+    The video frame rate of the video stream, in Hz
+    (for example, `24`, `25`, `29.97`, `30`, `60`).
+    For variable rate videos, this value should be the nominal frame rate.
+  type: number
+  exclusiveMinimum: 0
+  unit: Hz
 VolumeTiming:
   name: VolumeTiming
   display_name: Volume Timing
@@ -4637,4 +4777,14 @@ iEEGReference:
     If different channels have a different reference,
     this field should have a general description and the channel specific
     reference should be defined in the `channels.tsv` file.
+  type: string
+
+DevicePosition:
+  name: DevicePosition
+  display_name: Device Position
+  description: |
+    Free-form description of the recording device's placement relative to the subject or scene.
+
+    This applies to any recording device, such as a camera or microphone.
+    Examples include "front", "profile-left", "ceiling", "room-corner", or "overhead".
   type: string
