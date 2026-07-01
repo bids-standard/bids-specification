@@ -103,7 +103,7 @@ jobs:
         run: tox -v --skip-pkg-install --exit-and-dump-after 1200
         working-directory: tools/schemacode
 
-      - uses: codecov/codecov-action@v5
+      - uses: codecov/codecov-action@v7
         if: ${{ always() }}
         with:
           files: tools/schemacode/cov.xml
