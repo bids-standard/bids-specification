@@ -208,11 +208,11 @@ The following fields are available for audio recordings (`_audio`) and audio-vid
 
 The following fields are available for video recordings (`_video`) and audio-video recordings (`_audiovideo`):
 
-{{ MACROS___make_sidecar_table(["media.MediaVideoProperties", "media.MediaImageProperties", "beh.CameraProperties"]) }}
+{{ MACROS___make_sidecar_table(["media.MediaVideoProperties", "media.MediaImageProperties"]) }}
 
 The following fields are available for image files (`_image`):
 
-{{ MACROS___make_sidecar_table(["media.MediaImageProperties", "beh.CameraProperties"]) }}
+{{ MACROS___make_sidecar_table("media.MediaImageProperties") }}
 
 ### Example audio-video sidecar JSON
 
@@ -277,7 +277,7 @@ For a still image:
   "Device": "GoPro Hero 10",
   "ImageWidth": 1920,
   "ImageHeight": 1080,
-  "CameraPosition": "overhead"
+  "DevicePosition": "overhead"
 }
 ```
 

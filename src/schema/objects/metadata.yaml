@@ -4779,11 +4779,12 @@ iEEGReference:
     reference should be defined in the `channels.tsv` file.
   type: string
 
-CameraPosition:
-  name: CameraPosition
-  display_name: Camera Position
+DevicePosition:
+  name: DevicePosition
+  display_name: Device Position
   description: |
-    Free-form description of the camera placement relative to the subject or scene.
+    Free-form description of the recording device's placement relative to the subject or scene.
 
+    This applies to any recording device, such as a camera or microphone.
     Examples include "front", "profile-left", "ceiling", "room-corner", or "overhead".
   type: string

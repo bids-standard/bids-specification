@@ -37,11 +37,5 @@ AudioVideoImageDevice:
   fields:
     Device: optional
     DeviceSerialNumber: optional
+    DevicePosition: optional
     License: optional
-
-CameraProperties:
-  selectors:
-    - datatype == "beh"
-    - intersects([suffix], ["video", "audiovideo", "image"])
-  fields:
-    CameraPosition: optional
