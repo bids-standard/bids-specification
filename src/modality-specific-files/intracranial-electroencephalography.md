@@ -36,7 +36,7 @@ stored in one of the following formats:
 | [European data format](https://www.edfplus.info/)                         | `.edf`                   | Each recording consists of a `.edf` single file. [`edf+`](https://www.edfplus.info/specs/edfplus.html) files are permitted. The capital `.EDF` extension MUST NOT be used. |
 | [BrainVision Core Data Format][bvformat]                                  | `.vhdr`, `.vmrk`, `.eeg` | Each recording consists of a  `.vhdr`, `.vmrk`, `.eeg` file triplet.                                                                                                       |
 | [EEGLAB](https://sccn.ucsd.edu/eeglab/index.php)                          | `.set`, `.fdt`           | The format used by the MATLAB toolbox [EEGLAB](https://sccn.ucsd.edu/eeglab/index.php). Each recording consists of a `.set` file with an OPTIONAL `.fdt` file.             |
-| [Neurodata Without Borders](https://nwb-schema.readthedocs.io/en/latest/) | `.nwb`                   | Each recording consists of a single `.nwb` file.                                                                                                                           |
+| [Neurodata Without Borders][nwb]                                          | `.nwb`                   | Each recording consists of a single `.nwb` file.                                                                                                                           |
 | [MEF3](https://osf.io/e3sf9/)                                             | `.mefd`                  | Each recording consists of a `.mefd` directory.                                                                                                                            |
 
 It is RECOMMENDED to use the European data format, or the BrainVision data
@@ -546,3 +546,4 @@ onset	duration	trial_type	electrical_stimulation_type	electrical_stimulation_sit
 <!-- Link Definitions -->
 
 [bvformat]: https://www.brainproducts.com/support-resources/brainvision-core-data-format-1-0/
+[nwb]: https://neurodatawithoutborders.github.io/
