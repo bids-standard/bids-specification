@@ -66,6 +66,7 @@ raw:
       - sourcedata
       - stimuli
       - subject
+      - probes
   code:
     name: code
     level: optional
@@ -112,6 +113,10 @@ raw:
     value: datatype
     level: required
     opaque: false
+  probes:
+    name: probes
+    level: optional
+    opaque: true
 
 derivative:
   root:

@@ -1,0 +1,41 @@
+#
+# Groups of related metadata fields
+#
+# Assumptions: never need disjunction of selectors
+# Assumptions: top-to-bottom overrides is sufficient logic
+
+---
+microephysCoordsystemGeneral:
+  selectors:
+    - intersects([datatype], ["ecephys", "icephys"])
+    - suffix == "coordsystem"
+  fields:
+    IntendedFor:
+      level: optional
+      description_addendum: |
+        This field can be used to indicate the data files for which
+        this coordinate system applies.
+
+# Fields relating to the microephys electrode positions
+microephysCoordsystemPositions:
+  selectors:
+    - intersects([datatype], ["ecephys", "icephys"])
+    - suffix == "coordsystem"
+  fields:
+    MicroephysCoordinateSystem: required
+    MicroephysCoordinateUnits: required
+    MicroephysCoordinateSystemDescription:
+      level: recommended
+      level_addendum: required if `MicroephysCoordinateSystem` is `"Other"`
+    MicroephysCoordinateSystemPhoto:
+      level: optional
+      level_addendum: required if `MicroephysCoordinateUnits` is `"pixels"`
+
+microephysCoordsystemOther:
+  selectors:
+    - intersects([datatype], ["ecephys", "icephys"])
+    - suffix == "coordsystem"
+    - '"MicroephysCoordinateSystem" in json'
+    - json.MicroephysCoordinateSystem == "Other"
+  fields:
+    MicroephysCoordinateSystemDescription: required

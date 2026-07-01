@@ -1,0 +1,18 @@
+---
+# For microephys, only space-labeled electrodes.tsv requires coordsystem.json
+# Non-microephys modalities are handled by RequiredCoordsystem in channels.yaml
+MicroephysRequiredCoordsystemWithSpace:
+  issue:
+    code: MICROEPHYS_COORDSYSTEM_REQUIRED
+    message: |
+      For microelectrode electrophysiology data, if an electrodes.tsv file has a
+      space-<label> entity, a corresponding coordsystem.json file with the same
+      space label must also be present.
+    level: error
+  selectors:
+    - intersects([datatype], ["ecephys", "icephys"])
+    - suffix == "electrodes"
+    - extension == ".tsv"
+    - '"space" in entities'
+  checks:
+    - associations.coordsystem != null
