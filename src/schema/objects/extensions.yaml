@@ -131,6 +131,22 @@ flac:
   display_name: Free Lossless Audio Codec
   description: |
     A [FLAC](https://en.wikipedia.org/wiki/FLAC) lossless audio file.
+funcgii:
+  value: .func.gii
+  display_name: GIFTI functional file
+  description: |
+    A GIFTI functional file.
+
+    Per the GIFTI standard: "[A] functional file contains one or more DataArrays
+    with Intent set to NIFTI_INTENT_NONE or one of the statistical intent values.
+    Each DataArray has DataType set to NIFTI_TYPE_FLOAT32.
+    Dimensionality is one with the first dimension set to the number of nodes."
+
+    In practice, this extension is used as a catch-all for scalar data sampled
+    to a surface, with the exceptions of labels (`.label.gii`) and
+    morphometry (`.shape.gii`).
+
+    This extension may only be used in derivative datasets.
 jpg:
   value: .jpg
   display_name: Joint Photographic Experts Group Format
