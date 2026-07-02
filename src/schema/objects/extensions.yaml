@@ -333,6 +333,14 @@ None:
   display_name: No extension
   description: |
     A file with no extension.
+trx:
+  value: .trx
+  display_name: TRactography eXchange Format
+  description: |
+    Tractography streamline data stored in the
+    [TRX](https://tee-ar-ex.github.io/) file format, which stores
+    streamline coordinates, spatial metadata,
+    per-vertex and per-streamline data, and streamline groupings.
 Directory:
   value: /
   display_name: Directory
