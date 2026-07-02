@@ -462,9 +462,6 @@
           "type": "array",
           "items": { "type": "string" }
         },
-        "dataset_metadata": {
-          "type": "object"
-        },
         "directories": {
           "type": "object"
         },
@@ -517,7 +514,6 @@
         "tabular_data",
         "metaentities",
         "common_principles",
-        "dataset_metadata",
         "directories",
         "errors",
         "modalities"

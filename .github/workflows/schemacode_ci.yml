@@ -36,7 +36,7 @@ jobs:
       attestations: write
       id-token: write
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
       - name: Install the latest version of uv
@@ -75,7 +75,7 @@ jobs:
     env:
       DEPENDS: ${{ matrix.dependencies }}
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           submodules: recursive
 
@@ -103,7 +103,7 @@ jobs:
         run: tox -v --skip-pkg-install --exit-and-dump-after 1200
         working-directory: tools/schemacode
 
-      - uses: codecov/codecov-action@v5
+      - uses: codecov/codecov-action@v7
         if: ${{ always() }}
         with:
           files: tools/schemacode/cov.xml
@@ -124,7 +124,7 @@ jobs:
         check: ['typecheck']
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - name: Setup uv and Python
         uses: astral-sh/setup-uv@v7
         with:
