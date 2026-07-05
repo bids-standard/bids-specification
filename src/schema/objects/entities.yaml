@@ -510,7 +510,7 @@ track:
     employed to reconstruct white matter fiber streamlines.
   type: string
   format: label
-  enum:
+  anyOf:
     - $ref: objects.enums._TrackMethod
 tracksys:
   name: tracksys
