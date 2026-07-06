@@ -415,11 +415,13 @@ Probe information is specified in the `probes.json` sidecar file using the `mode
 For probes listed in the ProbeInterface library, use `TermURL` to reference the probe definition:
 
 ```json
-"model": {
-    "Levels": {
-        "A1x32": {
-            "Description": "A1x32-Poly3-10mm-50-177, a 1-shank probe",
-            "TermURL": "https://raw.githubusercontent.com/SpikeInterface/probeinterface_library/refs/heads/main/neuronexus/A1x32-Poly3-10mm-50-177/A1x32-Poly3-10mm-50-177.json"
+{
+    "model": {
+        "Levels": {
+            "A1x32": {
+                "Description": "A1x32-Poly3-10mm-50-177, a 1-shank probe",
+                "TermURL": "https://raw.githubusercontent.com/SpikeInterface/probeinterface_library/refs/heads/main/neuronexus/A1x32-Poly3-10mm-50-177/A1x32-Poly3-10mm-50-177.json"
+            }
         }
     }
 }
@@ -430,11 +432,13 @@ If the probe is not listed in the ProbeInterface library, you SHOULD define it u
 For custom probes, reference them using a [BIDS URI](../common-principles.md#bids-uri) with the `bids::` prefix in the `TermURL` field:
 
 ```json
-"model": {
-    "Levels": {
-        "customprobe1": {
-            "Description": "Custom experimental probe",
-            "TermURL": "bids::probes/customprobe1.json"
+{
+    "model": {
+        "Levels": {
+            "customprobe1": {
+                "Description": "Custom experimental probe",
+                "TermURL": "bids::probes/customprobe1.json"
+            }
         }
     }
 }
