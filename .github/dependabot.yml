@@ -6,7 +6,7 @@ updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "monthly"
+      interval: "quarterly"
     labels:
       - "exclude-from-changelog"
     groups:
@@ -18,7 +18,18 @@ updates:
   - package-ecosystem: "uv"
     directory: "/"
     schedule:
-      interval: "monthly"
+      interval: "quarterly"
+    labels:
+      - "exclude-from-changelog"
+    groups:
+      build-dependencies:
+        patterns: ["*"]
+    cooldown:
+      default-days: 14
+  - package-ecosystem: "uv"
+    directory: "tools/schemacode"
+    schedule:
+      interval: "quarterly"
     labels:
       - "exclude-from-changelog"
     groups:
@@ -29,7 +40,7 @@ updates:
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
-      interval: "monthly"
+      interval: "quarterly"
     labels:
       - "exclude-from-changelog"
     groups:
@@ -41,7 +52,7 @@ updates:
     target-branch: jsr-maint
     directory: "/"
     schedule:
-      interval: "monthly"
+      interval: "quarterly"
     labels:
       - "exclude-from-changelog"
       - "schema-code"

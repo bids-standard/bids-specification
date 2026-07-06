@@ -645,9 +645,9 @@ events:
     Event timing information from a behavioral task.
 expADC:
   value: expADC
-  display_name: Exponental ADC
+  display_name: Exponential ADC
   description: |
-    Exponental ADC / Attenuation Coefficient / Attenuation Factor map,
+    Exponential ADC / Attenuation Coefficient / Attenuation Factor map,
     as the ratio of trace-weighted to non-diffusion-weighted image intensity
 fieldmap:
   value: fieldmap
@@ -737,6 +737,7 @@ meg:
   description: |
     Unprocessed MEG data stored in the native file format of the MEG instrument
     with which the data was collected.
+
 motion:
   value: motion
   display_name: Motion
