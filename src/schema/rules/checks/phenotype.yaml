@@ -45,7 +45,7 @@ PhenotypeSessionFileRequired:
     - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
     - type(columns.session_id) != 'null'
   checks:
-    - exists('sessions.tsv', 'dataset')
+    - exists('phenotype/tool-Demographics_phenotype.tsv', 'dataset')
 
 PhenotypeSessionAggregation:
   issue:
@@ -61,7 +61,7 @@ PhenotypeSessionAggregation:
     - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
     - type(entities.subject) != 'null'
   checks:
-    - "!exists('sessions.tsv', 'dataset')"
+    - "!exists('phenotype/tool-Demographics_phenotype.tsv', 'dataset')"
 
 PhenotypeSessionsMissing:
   issue:
@@ -76,7 +76,7 @@ PhenotypeSessionsMissing:
     - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
     - length(glob("sub-*/ses-*")) > 0
   checks:
-    - exists('sessions.tsv', 'dataset')
+    - exists('phenotype/tool-Demographics_phenotype.tsv', 'dataset')
 
 PhenotypeSessionLevels:
   issue:
@@ -86,7 +86,8 @@ PhenotypeSessionLevels:
       to define valid session labels and their descriptions.
     level: error
   selectors:
-    - suffix == 'sessions'
+    - entities.tool == Demographics
+    - suffix == 'phenotype'
     - extension == '.tsv'
     - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
   checks:
