@@ -45,32 +45,10 @@ The native file format is used in case conversion elicits the loss of crucial me
 Metadata should be included alongside the data in the `.json` and `.tsv` files.
 The current list of allowed data file formats:
 
-<table>
-  <thead>
-    <tr>
-      <th><strong>Format</strong></th>
-      <th><strong>Extension(s)</strong></th>
-      <th><strong>Description</strong></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><a href="https://nixio.readthedocs.io/en/latest/">Neuroscience Information Exchange Format</a> (NIX, <a href="https://scicrunch.org/resolver/RRID:SCR_016196">RRID:SCR_016196</a>)</td>
-      <td><code>.nix</code></td>
-      <td>
-        An open standard data model and API for annotated research data with an HDF5 file backend and a defined interface to many microephys formats via the
-        <a href="https://neo.readthedocs.io/en/latest/">Neo library</a> (<a href="https://scicrunch.org/resolver/RRID:SCR_000634">RRID:SCR_000634</a>). The <code>.nix</code> file has to contain a valid Neo structure.
-      </td>
-    </tr>
-    <tr>
-      <td><a href="https://www.nwb.org">Neurodata Without Borders</a> (NWB, <a href="https://scicrunch.org/resolver/RRID:SCR_015242">RRID:SCR_015242</a>)</td>
-      <td><code>.nwb</code></td>
-      <td>
-        An open data standard for neurophysiology, including data from intracellular and extracellular electrophysiology experiments.
-      </td>
-    </tr>
-  </tbody>
-</table>
+| Format                                                                                                                                                        | Extension(s) | Description                                                                                                                                                                                                                                                                                                                            |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [Neuroscience Information Exchange Format](https://nixio.readthedocs.io/en/latest/) (NIX, [RRID:SCR\_016196](https://scicrunch.org/resolver/RRID:SCR_016196)) | `.nix`       | An open standard data model and API for annotated research data with an HDF5 file backend and a defined interface to many microephys formats via the [Neo library](https://neo.readthedocs.io/en/latest/) ( [RRID:SCR\_000634](https://scicrunch.org/resolver/RRID:SCR_000634)). The `.nix` file has to contain a valid Neo structure. |
+| [Neurodata Without Borders](https://www.nwb.org) (NWB, [RRID:SCR\_015242](https://scicrunch.org/resolver/RRID:SCR_015242))                                    | `.nwb`       | An open data standard for neurophysiology, including data from intracellular and extracellular electrophysiology experiments.                                                                                                                                                                                                          |
 
 Both of these formats can also store essential metadata of the datasets.
 Some of this metadata needs to be duplicated in BIDS `.tsv` and `.json` sidecar files.
