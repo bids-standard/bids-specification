@@ -150,7 +150,6 @@ electrodes__microephys:
     session: optional
     sample: optional
     acquisition: optional
-    processing: optional
     space: optional
 
 optodes:
