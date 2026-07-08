@@ -93,8 +93,8 @@ the `Units` of `age` or the accuracy of `age` data.
 
 There are two methods to record `age` in longitudinal or multi-session data sets.
 Choose what makes the most sense for your dataset's expected users.
-The first method is to aggregate into a single file in the phenotypic and assessment data folder
-using the `"IndexColumns"` field in the sidecar JSON.
+The first method is to aggregate into a single file in the phenotypic and assessment data
+directory using the `"IndexColumns"` field in the sidecar JSON.
 Read the [tabular phenotypic data guidelines appendix](../appendices/phenotype.md)
 or the [phenotypic and assessment data section](phenotypic-and-assessment-data.md)
 for an explanation of how to use `"IndexColumns"`
