@@ -1,3 +1,4 @@
+---
 atlas_description:
   selectors:
     - dataset.dataset_description.DatasetType == 'derivative'
