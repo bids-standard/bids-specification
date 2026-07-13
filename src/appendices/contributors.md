@@ -339,6 +339,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 | Parul Sethi                                          | 📖🔧⚠️💻                               |
 | Patricia Clement                                     | 💬🐛💻📖🔣💡📋🤔📆⚠️📢                 |
 | Patrick Park                                         | 📖💡💬💻                               |
+| Patrick Sadil                                        | 🐛                                     |
 | Paul Wighton                                         | 📖                                     |
 | Paule-Joanne Toussaint                               | 📖                                     |
 | Peer Herholz                                         | 💬📖👀🔧✅📢                           |
