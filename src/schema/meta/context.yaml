@@ -271,6 +271,25 @@ properties:
           path:
             description: 'Path to associated electrodes.tsv file'
             type: string
+          name:
+            description: 'Contents of the name column'
+            type: array
+            items:
+              type: string
+      probes:
+        description: 'Probes file'
+        type: object
+        required: [path]
+        additionalProperties: false
+        properties:
+          path:
+            description: 'Path to associated probes.tsv file'
+            type: string
+          probe_name:
+            description: 'Contents of the probe_name column'
+            type: array
+            items:
+              type: string
       coordsystem:
         description: 'Coordinate system file (first found)'
         type: object
