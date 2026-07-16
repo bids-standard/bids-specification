@@ -225,7 +225,7 @@ A guide for using macros can be found at
   "SoftwareFilters": "n/a",
   "RecordingDuration": 233.639,
   "HardwareFilters": {"Highpass RC filter": {"Half amplitude cutoff (Hz)": 0.0159, "Roll-off": "6dBOctave"}},
-  "CapManafacturer": "NIRx",
+  "CapManufacturer": "NIRx",
   "CapManufacturersModelName": "Headband with print (S-M)",
   "NIRSPlacementScheme": "n/a"
 }
@@ -387,7 +387,7 @@ General fields:
 
 <!-- This block generates a metadata table.
 These tables are defined in
-  src/schema/rules/sidecars
+  src/schema/rules/json
 The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
 A guide for using macros can be found at
@@ -400,7 +400,7 @@ Fields relating to the NIRS optode positions:
 
 <!-- This block generates a metadata table.
 These tables are defined in
-  src/schema/rules/sidecars
+  src/schema/rules/json
 The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
 A guide for using macros can be found at
@@ -413,7 +413,7 @@ Fields relating to the position of fiducials measured during an NIRS session/run
 
 <!-- This block generates a metadata table.
 These tables are defined in
-  src/schema/rules/sidecars
+  src/schema/rules/json
 The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
 A guide for using macros can be found at
@@ -426,7 +426,7 @@ Fields relating to the position of anatomical landmarks measured during an NIRS 
 
 <!-- This block generates a metadata table.
 These tables are defined in
-  src/schema/rules/sidecars
+  src/schema/rules/json
 The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
 A guide for using macros can be found at

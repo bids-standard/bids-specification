@@ -283,7 +283,7 @@ def resolve_metadata_type(definition):
             string = "string or number"
     else:
         # This clause should only catch $refs.
-        # The schema should be deferenced by this point, so $refs should not exist.
+        # The schema should be dereferenced by this point, so $refs should not exist.
         raise ValueError(f"Type could not be inferred for {definition['name']}")
 
     return string
