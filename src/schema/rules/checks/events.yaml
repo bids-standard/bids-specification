@@ -19,6 +19,19 @@ EventsMissing:
   checks:
     - '"events" in associations'
 
+BehavioralOnsetAndDuration:
+  issue:
+    code: BEH_ONSET_DURATION
+    message: |
+      This behavioral file contains onset and duration columns.
+      Consider renaming to use the `events` suffix.
+    level: warning
+  selectors:
+    - suffix == "beh"
+    - extension == ".tsv"
+  checks:
+    - columns.onset == null || columns.duration == null
+
 StimulusFileMissing:
   issue:
     code: STIMULUS_FILE_MISSING
