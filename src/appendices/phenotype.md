@@ -10,6 +10,8 @@ tabular phenotypic data like the participants file, sessions file,
 and phenotypic and assessment data.
 
 They are recommendations and are by default ignored during validation.
+This maintains backward compatibility with prior datasets
+and allows you to opt-in for this stricter validation.
 You can make them mandatory during validation by setting the
 [`AdditionalValidation` key](../modality-agnostic-files/dataset-description.md#additional-validation)
 to contain `"Phenotype"` in the `dataset_description.json`.
@@ -30,14 +32,15 @@ to aggregate longitudinal or multi-session tabular phenotypic data.
 
 ### 2. Always pair tabular data with data dictionaries
 
-Tabular phenotypic data MUST be prepared as one pair of a tabular file
+Tabular phenotypic data and the participants file MUST be prepared as one pair of a tabular file
 in TSV format and a corresponding data dictionary in JSON format.
 See the [Tabular files section](../common-principles.md#tabular-files) for more information.
 
 ### 3. Add `MeasurementToolMetadata` to each tabular phenotypic measurement tool
 
-Whenever possible, it is RECOMMENDED to add `MeasurementToolMetadata` to
-each `phenotype/<measurement_tool_name>.json` data dictionary.
+It is REQUIRED to add `MeasurementToolMetadata` to
+each `phenotype/tool-<ToolName>_phenotype.json` data dictionary.
+One of either the `TermURL` or `Description` MUST be defined.
 This improves reusability and provides clarity about the measurement tool.
 See [`MeasurementToolMetadata` in the glossary](../glossary.md#measurementtoolmetadata-metadata) for more.
 

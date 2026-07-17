@@ -69,13 +69,6 @@ properties:
           type: array
           items:
             type: string
-      sessions_tsv:
-        description: 'Contents of /sessions.tsv, accessed by column header'
-        type: object
-        additionalProperties:
-          type: array
-          items:
-            type: string
   subject:
     description: 'Properties and contents of the current subject'
     type: object

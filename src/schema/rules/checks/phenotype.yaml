@@ -17,30 +17,17 @@ PhenotypeSubjectsMissing:
       length(intersects(columns.participant_id, dataset.participant_tsv.participant_id))
       == length(unique(columns.participant_id))
 
-PhenotypeSessionsRequired:
+PhenotypeDemographicsFileRequired:
   issue:
-    code: PHENOTYPE_SESSIONS_REQUIRED
+    code: PHENOTYPE_DEMOGRAPHICS_FILE_REQUIRED
     message: |
-      Phenotype TSV files must have a session_id column if a dataset contains multiple sessions.
+      A phenotype TSV file contains a session_id column but no
+      /phenotype/tool-Demographics_phenotype.tsv file
+      was found in the /phenotype/ directory.
     level: error
   selectors:
     - datatype == 'phenotype'
-    - extension == '.tsv'
-    - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
-    - type(dataset.session_tsv) != 'null'
-  checks:
-    - type(columns.session_id) != 'null'
-
-PhenotypeSessionFileRequired:
-  issue:
-    code: PHENOTYPE_SESSION_FILE_REQUIRED
-    message: |
-      A phenotype TSV file contains a session_id column but no sessions.tsv file
-      was found at the dataset root. A sessions.tsv file is required to define
-      valid session labels.
-    level: error
-  selectors:
-    - datatype == 'phenotype'
+    - suffix == 'phenotype'
     - extension == '.tsv'
     - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
     - type(columns.session_id) != 'null'

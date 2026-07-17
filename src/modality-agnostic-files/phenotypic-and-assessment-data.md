@@ -50,10 +50,13 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table('phenotype.Phenotype') }}
 
-The `"IndexColumns"` field defines a "joint index".
-This means there MAY be more than one row per `participant_id`,
-but there MUST be no more than one unique combination of
-the joint indices defined in the list among all rows.
+The `"IndexColumns"` field defines a list of column names to be used 
+as a "joint index".
+This means, for the relevant tabular data file, each row must have a
+unique combination of values for the columns specified by
+`"IndexColumns"`. This replaces the implicit constraint on the
+[`participant_id`](../glossary.md#participants-files])
+column that its values MUST be unique.
 
 As an example, consider the contents of a file called
 `phenotype/tool-ACDSAdult_phenotype.json` in a multi-session dataset:
@@ -91,7 +94,7 @@ As an example, consider the contents of a file called
 }
 ```
 
-Please note in this example
+Note in this example
 there MUST be no more than one unique combination of
 the joint indices of `participant_id` and `session_id`.
 Also in the above example, `MeasurementToolMetadata`
