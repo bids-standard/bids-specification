@@ -1,6 +1,6 @@
 {
   "name": "@bids/schema",
-  "version": "2.0.0-dev.2+a81440d8",
+  "version": "2.0.0-dev.3+bee74b06",
   "exports": {
     ".": "./mod.ts",
     "./context": "./context.ts",
