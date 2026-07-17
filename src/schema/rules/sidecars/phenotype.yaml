@@ -5,6 +5,7 @@ IndexColumns:
     - extension == '.tsv'
   fields:
     IndexColumns: optional
+    Derivative: optional
 
 MeasurementToolMetadata:
   selectors:
