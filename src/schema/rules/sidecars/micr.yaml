@@ -37,6 +37,15 @@ MicroscopyImageAcquisition:
     Immersion: optional
     NumericalAperture: optional
     Magnification: optional
+    ImageAcquisitionProtocol: optional
+    OtherAcquisitionParameters: optional
+
+# Selective Plane Illumination Microscopy (SPIM) Image Acquisition
+SPIMAcquisition:
+  selectors:
+    - datatype == "micr"
+    - suffix == "SPIM"
+  fields:
     FrameRate: optional
     SheetAngle: optional
     StageVelocity: optional
@@ -50,8 +59,6 @@ MicroscopyImageAcquisition:
     ImageFrames: optional
     BackgroundFrames: optional
     AcquisitionDirection: optional
-    ImageAcquisitionProtocol: optional
-    OtherAcquisitionParameters: optional
 
 # Sample
 MicroscopySample:

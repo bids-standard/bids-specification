@@ -285,6 +285,22 @@ A guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table("micr.MicroscopyImageAcquisition") }}
 
+#### Image Acquisition - Selective Plane Illumination Microscopy (SPIM)
+
+The following metadata fields describe acquisition parameters that are specific to
+selective plane illumination microscopy (SPIM).
+They apply only to files with the `SPIM` suffix.
+
+<!-- This block generates a metadata table.
+These tables are defined in
+  src/schema/rules/sidecars
+The definitions of the fields specified in these tables may be found in
+  src/schema/objects/metadata.yaml
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_sidecar_table("micr.SPIMAcquisition") }}
+
 #### Sample
 
 <!-- This block generates a metadata table.
