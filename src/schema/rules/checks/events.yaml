@@ -23,8 +23,8 @@ BehavioralOnsetAndDuration:
   issue:
     code: BEH_ONSET_DURATION
     message: |
-      A '*_beh.tsv' file contains both 'onset' and 'duration' columns.
-      Rename this file to use the '*_events.tsv' suffix.
+      This behavioral file contains onset and duration columns.
+      Consider renaming to use the `events` suffix.
     level: warning
   selectors:
     - suffix == "beh"
