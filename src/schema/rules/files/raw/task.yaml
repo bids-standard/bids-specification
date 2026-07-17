@@ -9,8 +9,10 @@ timeseries:
     - .json
   datatypes:
     - beh
+    - ecephys
     - eeg
     - emg
+    - icephys
     - ieeg
     - nirs
   entities:

@@ -49,6 +49,7 @@ jobs:
                 --ignore-url 'https://jsoneditoronline.org' \
                 --ignore-url 'https://rrid.site.*' \
                 --ignore-url 'https://jsr.io/.*' \
+                --ignore-url 'https://scicrunch.org/resolver/.*' \
                 ~/project/site/*html ~/project/site/*/*.html
             else
               echo "Release PR - do nothing"

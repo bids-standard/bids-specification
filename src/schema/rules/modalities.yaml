@@ -34,6 +34,10 @@ motion:
 nirs:
   datatypes:
     - nirs
+microephys:
+  datatypes:
+    - ecephys
+    - icephys
 mrs:
   datatypes:
     - mrs
