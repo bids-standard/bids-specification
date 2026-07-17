@@ -50,7 +50,7 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_sidecar_table('phenotype.Phenotype') }}
 
-The `"IndexColumns"` field defines a list of column names to be used 
+The `"IndexColumns"` field defines a list of column names to be used
 as a "joint index".
 This means, for the relevant tabular data file, each row must have a
 unique combination of values for the columns specified by
