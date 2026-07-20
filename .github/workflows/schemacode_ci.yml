@@ -155,7 +155,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@v7
         with:
-          name: dist
+          name: Packages
           path: dist/
       - name: "Test PyPI upload"
         uses: pypa/gh-action-pypi-publish@release/v1
