@@ -35,6 +35,19 @@ Acknowledgements:
     Text acknowledging contributions of individuals or institutions beyond
     those listed in Authors or Funding.
   type: string
+AcquisitionDirection:
+  name: AcquisitionDirection
+  display_name: Acquisition Direction
+  description: |
+    The axis along which successive image frames are acquired, indicating whether each frame
+    corresponds to a spatial plane along the X, Y, or Z axis, or a point in time.
+    This clarifies how the `ImageFrames` count maps onto the image dimensions.
+  type: string
+  enum:
+    - X
+    - Y
+    - Z
+    - T
 AcquisitionDuration:
   name: AcquisitionDuration
   display_name: Acquisition Duration
@@ -308,6 +321,14 @@ BIDSVersion:
   description: |
     The version of the BIDS standard that was used.
   type: string
+BackgroundFrames:
+  name: BackgroundFrames
+  display_name: Background Frames
+  description: |
+    Number of frames acquired after the excitation laser was turned off.
+    Unlike the frames counted in `ImageFrames`, these frames contain no sample signal.
+  type: integer
+  minimum: 0
 BackgroundSuppression:
   name: BackgroundSuppression
   display_name: Background Suppression
@@ -502,6 +523,45 @@ CellType:
     Values SHOULD come from the
     [cell ontology](https://obofoundry.org/ontology/cl.html).
   type: string
+ChannelEmissionRange:
+  name: ChannelEmissionRange
+  display_name: Channel Emission Range
+  description: |
+    Approximate emission wavelength range(s) acquired in each detection channel, in nanometers,
+    listed in the same order as the `ExcitationWavelengths`.
+    Each channel's range is given as a `[min, max]` pair of bounds,
+    where `null` denotes an open-ended bound.
+    For example, `[[null, 560], [560, 640], [738, null]]` describes a first channel
+    capturing 560 nm and below, a second channel capturing 560 to 640 nm,
+    and a third channel capturing 738 nm and above.
+  type: array
+  items:
+    type: array
+    minItems: 2
+    maxItems: 2
+    items:
+      anyOf:
+        - type: number
+          unit: nm
+        - type: "null"
+ChannelStackDirection:
+  name: ChannelStackDirection
+  display_name: Channel Stack Direction
+  description: |
+    Multiple channels are acquired in one camera frame.
+    Direction along which the channels are stacked, that is, X, Y, or Z.
+    For example, if the channels are stacked along the Z axis,
+    a reader can use the number of channels listed in `ChannelEmissionRange`
+    to split the frame along Z into the individual channels
+    (for two channels, by dividing the Z extent in two).
+    The channels are stacked in the same order in which their emission ranges
+    are listed in `ChannelEmissionRange`,
+    that is, the first listed channel is on top.
+  type: string
+  enum:
+    - X
+    - Y
+    - Z
 ChemicalShiftOffset:
   name: ChemicalShiftOffset
   display_name: Chemical Shift Offset
@@ -1434,6 +1494,18 @@ EthicsApprovals:
   type: array
   items:
     type: string
+ExcitationWavelengths:
+  name: ExcitationWavelengths
+  display_name: Excitation Wavelengths
+  description: |
+    Wavelengths of the excitation lasers used for imaging, in nanometers.
+  anyOf:
+    - type: number
+      unit: nm
+    - type: array
+      items:
+        type: number
+        unit: nm
 EyeTrackerDistance:
   name: EyeTrackerDistance
   display_name: Eye-Tracker Distance
@@ -1609,6 +1681,13 @@ FrameDuration:
   items:
     type: number
   unit: s
+FrameRate:
+  name: FrameRate
+  display_name: Frame Rate
+  description: |
+    Camera acquisition frame rate in frames per second.
+  type: number
+  unit: Hz
 FrameTimesStart:
   name: FrameTimesStart
   display_name: Frame Times Start
@@ -1889,6 +1968,15 @@ ImageDecayCorrectionTime:
     `"TimeZero"` in the default unit seconds.
   type: number
   unit: s
+ImageFrames:
+  name: ImageFrames
+  display_name: Image Frames
+  description: |
+    Number of frames acquired that contain the sample signal.
+    These frames make up the reconstructed image and are indexed along the axis
+    specified by `AcquisitionDirection` (either X, Y, or Z, or time).
+  type: integer
+  minimum: 1
 Immersion:
   name: Immersion
   display_name: Immersion
@@ -2254,6 +2342,19 @@ LabelingSlabThickness:
   type: number
   exclusiveMinimum: 0
   unit: mm
+LaserPowers:
+  name: LaserPowers
+  display_name: Laser Powers
+  description: |
+    Power of the lasers used for imaging, in milliwatts,
+    in the same order as the `ExcitationWavelengths`.
+  anyOf:
+    - type: number
+      unit: mW
+    - type: array
+      items:
+        type: number
+        unit: mW
 LATENCYChannelCount:
   name: LATENCYChannelCount
   display_name: Latency channel count
@@ -3227,6 +3328,30 @@ Purity:
   type: number
   minimum: 0
   maximum: 100
+ROISizeX:
+  name: ROISizeX
+  display_name: ROI Size X
+  description: |
+    Size, in pixels, of the acquisition region of interest (ROI)
+    along the X axis, using the same axis convention as `PixelSize`.
+  type: integer
+  minimum: 1
+ROISizeY:
+  name: ROISizeY
+  display_name: ROI Size Y
+  description: |
+    Size, in pixels, of the acquisition region of interest (ROI)
+    along the Y axis, using the same axis convention as `PixelSize`.
+  type: integer
+  minimum: 1
+ROISizeZ:
+  name: ROISizeZ
+  display_name: ROI Size Z
+  description: |
+    Size, in pixels, of the acquisition region of interest (ROI)
+    along the Z axis, using the same axis convention as `PixelSize`.
+  type: integer
+  minimum: 1
 RRID:
   name: RRID
   display_name: RRID
@@ -3865,6 +3990,13 @@ SequenceVariant:
     - type: array
       items:
         type: string
+SheetAngle:
+  name: SheetAngle
+  display_name: Sheet Angle
+  description: |
+    Angle of the illumination sheet with respect to the optical axis, in degrees.
+  type: number
+  unit: degree
 ShortChannelCount:
   name: ShortChannelCount
   display_name: Short Channel Count
@@ -4189,6 +4321,13 @@ SpoilingType:
     - $ref: objects.enums.RF.value
     - $ref: objects.enums.GRADIENT.value
     - $ref: objects.enums.COMBINED.value
+StageVelocity:
+  name: StageVelocity
+  display_name: Stage Velocity
+  description: |
+    Stage velocity during the acquisition, in millimeters per second.
+  type: number
+  unit: mm/s
 StartTime:
   name: StartTime
   display_name: Start Time
