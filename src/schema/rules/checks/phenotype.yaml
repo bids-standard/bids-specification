@@ -14,8 +14,9 @@ PhenotypeSubjectsMissing:
     - suffix == '.tsv'
     - type(dataset.subjects.participant_id) != 'null'
   checks:
+    # A∩B == A iff A⊆B
     - |
       allequal(
         sorted(intersects(columns.participant_id, dataset.subjects.participant_id)),
-        sorted(dataset.subjects.participant_id)
+        sorted(columns.participant_id)
       )
