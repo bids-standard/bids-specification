@@ -13,6 +13,7 @@ PhenotypeSubjectsMissing:
     - extension == '.tsv'
     - type(dataset.participant_tsv.participant_id) != 'null'
   checks:
+    # A∩B == A iff A⊆B
     - |
       length(intersects(columns.participant_id, dataset.participant_tsv.participant_id))
       == length(unique(columns.participant_id))
