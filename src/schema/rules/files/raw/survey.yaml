@@ -1,0 +1,11 @@
+---
+# Instrument-based phenotypic survey data
+survey:
+  $ref: meta.templates.raw.task
+  suffixes:
+    - survey
+  extensions:
+    - .tsv
+    - .json
+  datatypes:
+    - survey
