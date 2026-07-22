@@ -453,12 +453,18 @@ A guide for using macros can be found at
         "sub-001": {
             "anat": {
                 "sub-001_dseg.dlabel.nii": "",
-                "sub-001_dseg.dlabel.nii": "",
+                "sub-001_dseg.dlabel.json": "",
                 },
             },
         }
    }
 ) }}
+
+## Spatial transformations
+
+Spatial transformations between coordinate spaces SHOULD be stored using the pattern `from-<space>_to-<space>_mode-image_xfm.<extension>`. The `from` and `to` entities identify the source and target spaces, such as `orig`. Allowed extensions are `.txt` and `.json`.
+
+For example: `sub-01_ses-01_from-T1w_to-MNI152NLin6Asym_mode-image_xfm.txt`
 
 ### Common image-derived labels
 
