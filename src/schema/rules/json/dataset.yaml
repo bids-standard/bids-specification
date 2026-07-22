@@ -10,10 +10,12 @@ dataset_description:
       level: optional
       level_addendum: required if [BIDS URIs](SPEC_ROOT/common-principles.md#bids-uri) are used
     DatasetType: recommended
-    License: recommended
+    License:
+      level: optional
+      level_addendum: recommended if neither `CITATION.cff` nor `datacite.yml` is present
     Authors:
       level: optional
-      level_addendum: recommended if `CITATION.cff` is not present
+      level_addendum: recommended if neither `CITATION.cff` nor `datacite.yml` is present
     Keywords: optional
     Acknowledgements: optional
     HowToAcknowledge: optional
@@ -28,7 +30,9 @@ dataset_authors:
   selectors:
     - path == "/dataset_description.json"
     - '!exists("CITATION.cff", "dataset")'
+    - '!exists("datacite.yml", "dataset")'
   fields:
+    License: recommended
     Authors:
       level: recommended
       issue:

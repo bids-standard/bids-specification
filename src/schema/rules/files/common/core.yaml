@@ -8,6 +8,9 @@ dataset_description:
 CITATION:
   level: optional
   path: CITATION.cff
+datacite:
+  level: optional
+  path: datacite.yml
 README:
   level: recommended
   stem: README
