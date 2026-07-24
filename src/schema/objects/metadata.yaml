@@ -68,6 +68,18 @@ AcquisitionVoxelSize:
     type: number
     exclusiveMinimum: 0
     unit: mm
+AdditionalValidation:
+  name: AdditionalValidation
+  display_name: Additional Validation
+  description: |
+    A string or list of strings of additional validations to be performed on the data,
+    chosen from among a pre-defined set. The currently allowed values are
+    only `"Phenotype"`.
+  anyOf:
+    - type: string
+    - type: array
+      items:
+        type: string
 Anaesthesia:
   name: Anaesthesia
   display_name: Anaesthesia
@@ -1896,6 +1908,15 @@ Immersion:
     Lens immersion medium. If the file format is OME-TIFF, the value MUST be consistent
     with the `Immersion` OME metadata field.
   type: string
+IndexColumns:
+  name: IndexColumns
+  display_name: Index Columns
+  description: |
+    A list of column names to be used as joint indices in
+    their corresponding tabular phenotypic data file.
+  type: array
+  items:
+    type: string
 InfusionRadioactivity:
   name: InfusionRadioactivity
   display_name: Infusion Radioactivity
@@ -2565,6 +2586,7 @@ MeasurementToolMetadata:
     Contains two fields: `"Description"` and `"TermURL"`.
     `"Description"` is a free text description of the measurement tool.
     `"TermURL"` is a URL to an entity in an ontology corresponding to this tool.
+    RECOMMENDED by `AdditionalValidation` containing `"Phenotype"` in `dataset_description.json`.
   type: object
   properties:
     TermURL:
