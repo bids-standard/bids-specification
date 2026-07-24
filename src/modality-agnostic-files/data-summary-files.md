@@ -299,6 +299,3 @@ apply to sessions files:
 
 -   [6.](../appendices/phenotype.md#6-record-acquisition-time-of-all-sessions-with-acq_time)
     Record acquisition time of all sessions with `acq_time`
-
-To read more about the guidelines for tabular phenotypic data and examples,
-see the [tabular phenotypic data guidelines appendix](../appendices/phenotype.md).

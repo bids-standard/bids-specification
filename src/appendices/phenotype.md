@@ -53,8 +53,9 @@ and/or runs of data as one entry per row
 (with a row defined by the smallest unit of acquisition).
 This also means the user MUST use the `"IndexColumns"` field
 in each JSON sidecar for multi-session data.
-Some common index columns are:
-`participant_id`, `session_id`, `run_id`, and `acq_time`.
+Some common index columns are
+`participant_id`, `session_id`, and `run_id`.
+Other time, visit, and day based index columns are OPTIONAL.
 
 <!-- This block generates a columns table.
 The definitions of these fields can be found in
