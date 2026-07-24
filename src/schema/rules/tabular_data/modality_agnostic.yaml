@@ -42,7 +42,12 @@ Scans:
       level: required
       description_addendum: |
         There MUST be exactly one row for each file.
-    acq_time__scans: optional
+    acq_time__scans: 
+      level: recommended
+      level_addendum: required if multiple recordings are acquired concurrently
+    duration: 
+      level: optional
+      level_addendum: required if multiple recordings are acquired concurrently
     HED: optional
   index_columns: [filename]
   additional_columns: allowed

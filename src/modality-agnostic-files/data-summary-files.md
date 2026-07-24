@@ -143,9 +143,12 @@ sub-<label>/
         sub-<label>[_ses-<label>]_scans.json
 ```
 
-Optional: Yes
+Optional: No
 
-The purpose of this file is to describe timing and other properties of each recording *file* within one session.
+The purpose of this file is to describe timing and other properties of each recording *file* within one session. 
+This file is REQUIRED when more than one modality is recorded simultaneously,
+or, within the same modality, when multiple files are recorded simultaneously and independently (for example,
+in the case of multiple physiological monitoring systems).
 In general, each of these files SHOULD be described by exactly one row.
 
 For *file formats* that are based on several files of different extensions,
@@ -196,6 +199,11 @@ func/sub-control01_task-motor_bold.nii.gz	1877-06-15T13:55:33
 meg/sub-control01_task-rest_split-01_meg.nii.gz	1877-06-15T12:15:27
 meg/sub-control01_task-rest_split-02_meg.nii.gz	1877-06-15T12:15:27
 ```
+
+### Scans file usage for identification of simultaneously acquired data
+When multiple modalities (or multiple separately-recorded files within a modality) are acquired simultaneously (for example, concurrent fMRI, EEG, and physiological setups), it is REQUIRED to document this concurrency using `*_scans.tsv`. The use of the `acq_time` and `duration` columns provides a machine-readable way to verify which files overlap in time and removes ambiguity regarding whether modalities were acquired sequentially or simultaneously. Concurrency between recordings is determined by overlap of [`acq_time`, `acq_time + duration`] intervals, where `duration` comes from the `*_scans.tsv` column when present and from the file-level metadata otherwise.
+
+Users should note that this information within `*_scans.tsv` is intended to delineate which files overlap temporally within a dataset, rather than to serve as the primary method for exact temporal synchronization. For robust alignment of time series data, it is RECOMMENDED to record ongoing hardware markers (such as trigger pulses) directly within the data files of the respective modalities, or for channel-based data, a `LATENCY` channel is RECOMMENDED to aid in this precise temporal alignment. 
 
 ## Sessions file
 
