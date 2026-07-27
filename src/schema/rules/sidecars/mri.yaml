@@ -151,6 +151,8 @@ ASLMRISequenceSpecifics:
 
 MTParameters:
   selectors:
+    - modality == "mri"
+    - match(extension, "^\.nii(\.gz)?$")
     - sidecar.MTState == true
   fields:
     MTOffsetFrequency: recommended
@@ -161,18 +163,24 @@ MTParameters:
 
 SpoilingType:
   selectors:
+    - modality == "mri"
+    - match(extension, "^\.nii(\.gz)?$")
     - sidecar.SpoilingState == true
   fields:
     SpoilingType: recommended
 
 SpoilingRF:
   selectors:
+    - modality == "mri"
+    - match(extension, "^\.nii(\.gz)?$")
     - intersects([sidecar.SpoilingType], ["RF", "COMBINED"])
   fields:
     SpoilingRFPhaseIncrement: recommended
 
 SpoilingGradient:
   selectors:
+    - modality == "mri"
+    - match(extension, "^\.nii(\.gz)?$")
     - intersects([sidecar.SpoilingType], ["GRADIENT", "COMBINED"])
   fields:
     SpoilingGradientMoment: recommended
