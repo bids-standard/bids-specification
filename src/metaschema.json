@@ -47,7 +47,7 @@
                   "type": "boolean"
                 }
               },
-              "required": ["target", "inherit"],
+              "required": ["selectors", "target", "inherit"],
               "additionalProperties": false,
               "if": {
                 "properties": {
