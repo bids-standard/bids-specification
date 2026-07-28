@@ -57,7 +57,7 @@ AP_angle:
     0° represents vertical along DV axis. Positive values indicate anterior rotation.
   unit: degree
   type: number
-  minimum: -180
+  exclusiveMinimum: -180
   maximum: 180
 AP__probes:
   name: AP
@@ -515,14 +515,14 @@ ML_angle:
     0° represents vertical along DV axis. Positive values indicate rightward/clockwise rotation (as seen from behind).
   unit: degree
   type: number
-  minimum: -180
+  exclusiveMinimum: -180
   maximum: 180
 ML__probes:
   name: ML
   display_name: Probe ML position
   description: |
     Probe position along the Medial-Lateral axis.
-    Positive values are to the right (as seen from behind).
+    Positive values are to the right, as seen from behind (neurological convention).
   type: number
   unit: mm
 metabolite_parent_fraction:
@@ -732,7 +732,7 @@ reference_atlas:
   display_name: Reference atlas
   description: |
     Name of reference atlas used for associated brain region identification,
-    preferably an [ebrains supported atlas](https://www.ebrains.eu/brain-atlases/reference-atlases/#services).
+    preferably an [EBRAINS-supported atlas](https://www.ebrains.eu/brain-atlases/reference-atlases/#services).
   type: string
 reference_frame:
   name: reference_frame
@@ -769,7 +769,7 @@ rotation_angle:
     Positive rotation is clockwise when viewed from above.
   unit: degree
   type: number
-  minimum: -180
+  exclusiveMinimum: -180
   maximum: 180
 sample_id:
   name: sample_id
@@ -897,11 +897,7 @@ software_filter_types:
     The `Levels` for this column SHOULD be defined in the accompanying
     `*_channels.json` file, mapping each filter type key to its description.
     Use `n/a` if no software filters were applied to this channel.
-  anyOf:
-    - type: string
-    - type: string
-      enum:
-        - n/a
+  type: string
 source__channels:
   name: source
   display_name: Source name
@@ -1258,12 +1254,8 @@ z__optodes:
   display_name: Z position
   description: |
     Recorded position along the z-axis.
-    "`n/a`" if not available.
-  anyOf:
-    - type: number
-    - type: string
-      enum:
-        - n/a
+    `n/a` if not available.
+  type: number
 template_x:
   name: template_x
   display_name: X template position
