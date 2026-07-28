@@ -110,6 +110,7 @@ probes:
   target:
     suffix: probes
     extension: .tsv
+  inherit: true
 
 physio:
   selectors:

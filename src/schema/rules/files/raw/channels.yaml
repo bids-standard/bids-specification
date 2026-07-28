@@ -14,11 +14,6 @@ channels:
 # microephys has an additional 'sample' entity but excludes task/run
 channels__microephys:
   $ref: rules.files.raw.channels.channels
-  suffixes:
-    - channels
-  extensions:
-    - .json
-    - .tsv
   datatypes:
     - icephys
     - ecephys
@@ -137,11 +132,6 @@ electrodes__meg:
 # microephys electrodes exclude task/run entities
 electrodes__microephys:
   $ref: rules.files.raw.channels.electrodes
-  suffixes:
-    - electrodes
-  extensions:
-    - .json
-    - .tsv
   datatypes:
     - ecephys
     - icephys
