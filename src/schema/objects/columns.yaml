@@ -1238,11 +1238,7 @@ z:
     Recorded position along the z-axis.
 
     For 2D electrode localizations, this SHOULD be a column of `n/a` values.
-  anyOf:
-    - type: number
-    - type: string
-      enum:
-        - n/a
+  type: number
 x__optodes:
   name: x
   display_name: X position
