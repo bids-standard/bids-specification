@@ -47,7 +47,7 @@
                   "type": "boolean"
                 }
               },
-              "required": ["target"],
+              "required": ["selectors", "target", "inherit"],
               "additionalProperties": false
             }
           },
