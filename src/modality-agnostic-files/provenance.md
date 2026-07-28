@@ -36,7 +36,7 @@ Provenance information SHOULD not include human subject identifying data.
 
 ## Provenance of a BIDS file
 
-Provenance of a BIDS data file SHOULD be stored inside its sidecar JSON.
+Provenance of a BIDS file SHOULD be stored inside its sidecar JSON.
 
 For that purpose, any sidecar JSON file MAY include the following keys:
 
