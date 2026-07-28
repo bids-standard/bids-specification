@@ -3556,7 +3556,7 @@ SampleCoordinateSystem:
     `"eye-in-head"`     for gaze direction relative to the head direction, independent of any screen.
     `"gaze-in-world"`   for gaze position relative to the external scene (for example, as recorded by scene-camera systems)
     `"custom"`          for any other coordinate system, which must be described using additional metadata entries.
-    Generally eye-trackers are set to use `"gaze-on-screen"` coordinate system. 
+    Generally eye-trackers are set to use `"gaze-on-screen"` coordinate system.
   type: string
   enum:
     - gaze-on-screen
