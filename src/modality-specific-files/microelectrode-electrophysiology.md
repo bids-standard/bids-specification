@@ -354,6 +354,35 @@ sidecar file, which matters most for atlases that provide no resolvable identifi
 
 {{ MACROS___make_sidecar_table("microephys.microephysElectrodeLocalization") }}
 
+In the following `*_electrodes.json` example, the locations carry identifiers from an atlas
+that publishes them, so the atlas is named for its version and the identifiers can be looked up
+through the [`TermURL`](../common-principles.md#tabular-files) of the column that holds them:
+
+```JSON
+{
+  "anatomical_location_id": {
+    "Description": "Structure identifier from the Allen Mouse Brain Atlas",
+    "TermURL": "https://atlas.brain-map.org"
+  },
+  "LocalizationMethod": "histology",
+  "ReferenceAtlas": "Allen Mouse Brain Common Coordinate Framework v3"
+}
+```
+
+In the next example the atlas publishes region names but no identifiers, so the
+`*_electrodes.tsv` file has no `anatomical_location_id` column and `ReferenceAtlas` is what
+makes the names in `anatomical_location` interpretable:
+
+```JSON
+{
+  "LocalizationMethod": "stereotaxic coordinates",
+  "ReferenceAtlas": "D99 macaque atlas v2.0"
+}
+```
+
+In both examples the localization method is given once in the sidecar because it is the same
+for every electrode in the file.
+
 Because a dataset may contain more than one `*_electrodes.tsv` file for the same recording,
 distinguished by the [`space-<label>`](../appendices/entities.md#space) entity,
 localizations produced by different atlases or different methods can be provided alongside one another,

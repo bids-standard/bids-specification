@@ -34,3 +34,23 @@ MicroephysLocalizationMethodDuplicated:
     - type(columns.localization_method) != "null"
   checks:
     - '!("LocalizationMethod" in sidecar)'
+
+# Where locations are given as names with no identifiers, the atlas the names come from
+# is the only thing that makes them interpretable.
+MicroephysRecommendedReferenceAtlas:
+  issue:
+    code: MICROEPHYS_REFERENCE_ATLAS_RECOMMENDED
+    message: |
+      The `*_electrodes.tsv` file gives anatomical locations by name, with no
+      `anatomical_location_id` column to identify them. The atlas the names are taken
+      from SHOULD be given in the `ReferenceAtlas` field of the corresponding
+      `*_electrodes.json` file, since the names cannot otherwise be interpreted.
+    level: warning
+  selectors:
+    - intersects([datatype], ["ecephys", "icephys"])
+    - suffix == "electrodes"
+    - extension == ".tsv"
+    - columns.anatomical_location != null
+    - columns.anatomical_location_id == null
+  checks:
+    - '"ReferenceAtlas" in sidecar'
