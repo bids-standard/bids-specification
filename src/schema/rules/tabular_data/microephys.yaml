@@ -31,10 +31,8 @@ microephysProbes:
     coordinate_reference_point: recommended
     anatomical_reference_point: optional
     hemisphere__probes: recommended
-    associated_brain_region: recommended
-    associated_brain_region_id: recommended
-    associated_brain_region_quality_type: recommended
-    reference_atlas: recommended
+    anatomical_location__probes: recommended
+    anatomical_location_id__probes: recommended
     material__probes: optional
   index_columns: [probe_name]
   additional_columns: allowed_if_defined
@@ -93,7 +91,9 @@ microephysElectrodes:
     size__microephys: optional
     electrode_shape: optional
     material: optional
-    location: recommended
+    anatomical_location: recommended
+    anatomical_location_id: optional
+    localization_method: optional
     pipette_solution: optional
     internal_pipette_diameter: optional
     external_pipette_diameter: optional

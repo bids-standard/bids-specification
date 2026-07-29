@@ -67,26 +67,52 @@ AP__probes:
     Positive values are anterior to the reference point.
   type: number
   unit: mm
-associated_brain_region:
-  name: associated_brain_region
-  display_name: Associated brain region
+anatomical_location:
+  name: anatomical_location
+  display_name: Anatomical location
   description: |
-    A textual indication on the location of the probe,
-    preferably species-independent terms as obtained, for example from Uberon.
+    The anatomical structure in which the electrode is located
+    (for example, `cortical layer 3`, `CA1`, `MOp`).
+    Terms from a species-specific atlas are acceptable, and are often preferable to
+    species-independent terms.
   type: string
-associated_brain_region_id:
-  name: associated_brain_region_id
-  display_name: Associated brain region identifier
+anatomical_location_id:
+  name: anatomical_location_id
+  display_name: Anatomical location identifier
   description: |
-    An identifier of the associated brain region based on the Uberon ontology
-    for anatomical structures in animals, for example "UBERON:0010415"
+    An identifier for the structure named in `anatomical_location`, taken from an ontology
+    or from a species-specific atlas, for example, `UBERON:0001950` or `MBA:985`.
+    The identifier SHOULD be resolvable, either as a URI or as a prefixed identifier whose
+    prefix identifies the source, so that the term can be looked up.
+    Where the source provides no resolvable identifiers, name it in the `ReferenceAtlas`
+    field of the corresponding `*_electrodes.json` file instead.
   type: string
-associated_brain_region_quality_type:
-  name: associated_brain_region_quality_type
-  display_name: Associated brain region quality type
+# anatomical_location and anatomical_location_id for probes.tsv files, which describe the
+# probe as a whole and so are coarser than their electrodes.tsv counterparts
+anatomical_location__probes:
+  name: anatomical_location
+  display_name: Anatomical location
   description: |
-    The method used to identify the associated brain region (estimated|proof)
-    depending on anatomical pictures proofing the location or indirect estimation of the location.
+    The anatomical structure in which the probe is placed,
+    for example, `brain`, `left hemisphere`, `isocortex`, or `CA1`.
+    This column describes the probe as a whole, so the structure named here SHOULD be one
+    that contains every recording site on the probe.
+    A probe that spans several structures SHOULD therefore be described here by a
+    containing structure, with the location of each recording site given in the
+    `anatomical_location` column of the `*_electrodes.tsv` file.
+    Terms from a species-specific atlas are acceptable, and are often preferable to
+    species-independent terms.
+  type: string
+anatomical_location_id__probes:
+  name: anatomical_location_id
+  display_name: Anatomical location identifier
+  description: |
+    An identifier for the structure named in `anatomical_location`, taken from an ontology
+    or from a species-specific atlas, for example, `UBERON:0000955` or `MBA:315`.
+    The identifier SHOULD be resolvable, either as a URI or as a prefixed identifier whose
+    prefix identifies the source, so that the term can be looked up.
+    Where the source provides no resolvable identifiers, name it in the `ReferenceAtlas`
+    field of the corresponding `*_electrodes.json` file instead.
   type: string
 cardiac:
   name: cardiac
@@ -439,11 +465,16 @@ index:
   description: |
     The label integer index.
   type: integer
-location:
-  name: location
-  display_name: Location
+localization_method:
+  name: localization_method
+  display_name: Localization method
   description: |
-    An indication on the location of the electrode (for example, `cortical layer 3`, `CA1`).
+    The method used to determine the anatomical location of the electrode,
+    for example, `histology`, `atlas registration`, `stereotaxic coordinates`,
+    or `post-operative imaging`.
+    Where the same method applies to every electrode in the file, it MAY instead be given
+    once in the `LocalizationMethod` field of the corresponding `*_electrodes.json` file.
+    It MUST NOT be given in both places.
   type: string
 interelectrode_distance:
   name: interelectrode_distance
@@ -726,13 +757,6 @@ reference__ieeg:
   description: |
     Specification of the reference (for example, `mastoid`, `ElectrodeName01`, `intracranial`, `CAR`, `other`, `n/a`).
     If the channel is not an electrode channel (for example, a microphone channel) use `n/a`.
-  type: string
-reference_atlas:
-  name: reference_atlas
-  display_name: Reference atlas
-  description: |
-    Name of reference atlas used for associated brain region identification,
-    preferably an [EBRAINS-supported atlas](https://www.ebrains.eu/brain-atlases/reference-atlases/#services).
   type: string
 reference_frame:
   name: reference_frame

@@ -2293,6 +2293,19 @@ License:
     The corresponding full license text MAY be specified in an additional
     `LICENSE` file.
   type: string
+LocalizationMethod:
+  name: LocalizationMethod
+  display_name: Localization Method
+  description: |
+    The method used to determine the anatomical location of the electrodes described in the
+    corresponding `*_electrodes.tsv` file,
+    for example, `"histology"`, `"atlas registration"`, `"stereotaxic coordinates"`,
+    or `"post-operative imaging"`.
+    This field applies to every electrode in the file.
+    Where the method differs between electrodes, use the `localization_method` column of
+    `*_electrodes.tsv` instead.
+    The method MUST NOT be specified in both places.
+  type: string
 LongName:
   name: LongName
   display_name: Long Name
@@ -3456,6 +3469,18 @@ RecordingType:
     - $ref: objects.enums.continuous.value
     - $ref: objects.enums.epoched.value
     - $ref: objects.enums.discontinuous.value
+ReferenceAtlas:
+  name: ReferenceAtlas
+  display_name: Reference Atlas
+  description: |
+    Name and, where applicable, version of the reference atlas from which the values of
+    `anatomical_location` and `anatomical_location_id` in the corresponding
+    `*_electrodes.tsv` file are taken,
+    for example, `"Allen Mouse Brain Common Coordinate Framework v3"` or `"D99 macaque atlas v2.0"`.
+    RECOMMENDED whenever anatomical locations are given, and particularly where the atlas
+    does not provide resolvable identifiers,
+    since the atlas is then the only way to interpret the terms used.
+  type: string
 ReferencesAndLinks:
   name: ReferencesAndLinks
   display_name: References And Links
