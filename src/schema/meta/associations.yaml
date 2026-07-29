@@ -139,3 +139,4 @@ atlas_description:
   target:
     suffix: description
     extension: .json
+  inherit: true
