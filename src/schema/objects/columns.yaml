@@ -55,15 +55,10 @@ anatomical_location__samples:
   description: |
     The anatomical structure the sample was taken from,
     for example, `primary visual cortex`, `hippocampus`, or `brain`.
-  type: string
-anatomical_location_id__samples:
-  name: anatomical_location_id
-  display_name: Anatomical location identifier
-  description: |
-    An identifier for the structure named in `anatomical_location`, taken from an ontology
-    or from a species-specific atlas, for example, `UBERON:0000955` or `MBA:315`.
-    The identifier SHOULD be resolvable, either as a URI or as a prefixed identifier whose
-    prefix identifies the source, so that the term can be looked up.
+    The ontology or atlas the terms are taken from SHOULD be documented in `samples.json`,
+    using `TermURL` for the column and, where the individual terms are resolvable, `Levels`
+    to map each term to its own `TermURL`
+    (see [Tabular files](SPEC_ROOT/common-principles.md#tabular-files)).
   type: string
 AP_angle:
   name: AP_angle
