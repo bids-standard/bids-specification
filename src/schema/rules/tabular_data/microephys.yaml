@@ -32,7 +32,6 @@ microephysProbes:
     anatomical_reference_point: optional
     hemisphere__probes: recommended
     anatomical_location__probes: recommended
-    anatomical_location_id__probes: recommended
     material__probes: optional
   index_columns: [probe_name]
   additional_columns: allowed_if_defined
@@ -92,7 +91,6 @@ microephysElectrodes:
     electrode_shape: optional
     material: optional
     anatomical_location: recommended
-    anatomical_location_id: optional
     localization_method: optional
     pipette_solution: optional
     internal_pipette_diameter: optional

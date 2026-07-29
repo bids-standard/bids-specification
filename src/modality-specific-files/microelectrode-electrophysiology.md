@@ -337,11 +337,14 @@ recording site is located, and is where a per-contact localization belongs.
 Only the electrode-level column can describe a probe that passes through several structures,
 which is common for long shank probes.
 
-Both tables also accept an `anatomical_location_id` column giving an identifier for the structure.
-Identifiers SHOULD be resolvable, either as a URI or as a prefixed identifier whose prefix
-identifies the source, so that a reader can look the term up.
 Terms may be taken from a species-independent ontology such as Uberon or from a species-specific
 atlas, and a species-specific atlas is often the better choice.
+The source the terms come from SHOULD be documented in the sidecar file, in the way BIDS
+documents any other tabular column, as described in
+[Tabular files](../common-principles.md#tabular-files).
+Where the individual terms resolve, give each one its own `TermURL` under `Levels`.
+Where they do not, name the atlas in the `ReferenceAtlas` field of the sidecar,
+which is then the only thing that makes the terms interpretable.
 
 The method used to determine the location SHOULD be recorded.
 Where it differs between recording sites, use the `localization_method` column of
@@ -349,29 +352,35 @@ Where it differs between recording sites, use the `localization_method` column o
 Where the same method applies to every electrode in the file, it MAY be given once in the
 `LocalizationMethod` field of the corresponding `*_electrodes.json` file instead,
 but it MUST NOT be given in both places.
-The atlas from which the terms are taken SHOULD be named in the `ReferenceAtlas` field of the same
-sidecar file, which matters most for atlases that provide no resolvable identifiers.
 
 {{ MACROS___make_sidecar_table("microephys.microephysElectrodeLocalization") }}
 
-In the following `*_electrodes.json` example, the locations carry identifiers from an atlas
-that publishes them, so the atlas is named for its version and the identifiers can be looked up
-through the [`TermURL`](../common-principles.md#tabular-files) of the column that holds them:
+In the following `*_electrodes.json` example the atlas resolves its individual structures,
+so each term used in the table is given its own `TermURL`:
 
 ```JSON
 {
-  "anatomical_location_id": {
-    "Description": "Structure identifier from the Allen Mouse Brain Atlas",
-    "TermURL": "https://atlas.brain-map.org"
+  "anatomical_location": {
+    "Description": "Structure the electrode is located in, from the Allen Mouse Brain Atlas",
+    "Levels": {
+      "MOp": {
+        "Description": "Primary motor area",
+        "TermURL": "https://atlas.brain-map.org/atlas?atlas=602630314#structure=985"
+      },
+      "CA1": {
+        "Description": "Field CA1",
+        "TermURL": "https://atlas.brain-map.org/atlas?atlas=602630314#structure=382"
+      }
+    }
   },
   "LocalizationMethod": "histology",
   "ReferenceAtlas": "Allen Mouse Brain Common Coordinate Framework v3"
 }
 ```
 
-In the next example the atlas publishes region names but no identifiers, so the
-`*_electrodes.tsv` file has no `anatomical_location_id` column and `ReferenceAtlas` is what
-makes the names in `anatomical_location` interpretable:
+In the next example the atlas publishes region names but nothing to resolve them to,
+so there are no `TermURL` values to give and `ReferenceAtlas` is what makes the names
+in `anatomical_location` interpretable:
 
 ```JSON
 {
@@ -393,15 +402,15 @@ each with its own `ReferenceAtlas` and `LocalizationMethod`.
 **Extracellular electrophysiology example (probe-relative coordinates):**
 
 ```tsv
-name	probe_name	hemisphere	x	y	z	impedance	shank_id	size	material	anatomical_location	anatomical_location_id	localization_method
-e001	probe01	L	0	0	0	1.2	0	15	iridium-oxide	MOp	MBA:985	histology
-e002	probe01	L	0	0	25	1.1	0	15	iridium-oxide	MOp	MBA:985	histology
-e003	probe01	L	0	0	50	1.3	0	15	iridium-oxide	MOp	MBA:985	histology
-e004	probe01	L	0	0	75	1.4	0	15	iridium-oxide	MOp	MBA:985	histology
-e005	probe02	R	0	0	0	2.1	n/a	12	tungsten	CA1	MBA:382	histology
-e006	probe02	R	0	0	15	2.3	n/a	12	tungsten	CA1	MBA:382	histology
-e007	probe02	R	0	0	30	1.9	n/a	12	tungsten	CA1	MBA:382	histology
-e008	probe02	R	0	0	45	2.0	n/a	12	tungsten	CA1	MBA:382	histology
+name	probe_name	hemisphere	x	y	z	impedance	shank_id	size	material	anatomical_location	localization_method
+e001	probe01	L	0	0	0	1.2	0	15	iridium-oxide	MOp	histology
+e002	probe01	L	0	0	25	1.1	0	15	iridium-oxide	MOp	histology
+e003	probe01	L	0	0	50	1.3	0	15	iridium-oxide	MOp	histology
+e004	probe01	L	0	0	75	1.4	0	15	iridium-oxide	MOp	histology
+e005	probe02	R	0	0	0	2.1	n/a	12	tungsten	CA1	histology
+e006	probe02	R	0	0	15	2.3	n/a	12	tungsten	CA1	histology
+e007	probe02	R	0	0	30	1.9	n/a	12	tungsten	CA1	histology
+e008	probe02	R	0	0	45	2.0	n/a	12	tungsten	CA1	histology
 ```
 
 **Intracellular electrophysiology example:**
@@ -427,9 +436,9 @@ This file contains the probe ID, the type of recording (acute/chronic), and the 
 **Extracellular electrophysiology example:**
 
 ```tsv
-probe_name	type	AP	ML	DV	AP_angle	ML_angle	rotation_angle	hemisphere	manufacturer	device_serial_number	electrode_count	width	height	depth	coordinate_reference_point	anatomical_reference_point	anatomical_location	anatomical_location_id	material
-probe01	silicon-probe	-2.5	1.5	-4.0	15	0	0	L	IMEC	NP1100-2205	384	70	20	10	tip	Bregma	isocortex	MBA:315	silicon
-probe02	tetrode	-1.2	-2.1	-3.5	0	10	45	R	Neuralynx	TT-12345	4	n/a	n/a	n/a	tip	Bregma	CA1	MBA:382	tungsten
+probe_name	type	AP	ML	DV	AP_angle	ML_angle	rotation_angle	hemisphere	manufacturer	device_serial_number	electrode_count	width	height	depth	coordinate_reference_point	anatomical_reference_point	anatomical_location	material
+probe01	silicon-probe	-2.5	1.5	-4.0	15	0	0	L	IMEC	NP1100-2205	384	70	20	10	tip	Bregma	isocortex	silicon
+probe02	tetrode	-1.2	-2.1	-3.5	0	10	45	R	Neuralynx	TT-12345	4	n/a	n/a	n/a	tip	Bregma	CA1	tungsten
 ```
 
 **Intracellular electrophysiology example:**

@@ -3474,13 +3474,12 @@ ReferenceAtlas:
   display_name: Reference Atlas
   description: |
     Name and, where applicable, version of the reference atlas from which the values of
-    `anatomical_location` and `anatomical_location_id` in the corresponding
-    `*_electrodes.tsv` file are taken,
+    `anatomical_location` in the corresponding `*_electrodes.tsv` file are taken,
     for example, `"Allen Mouse Brain Common Coordinate Framework v3"` or `"D99 macaque atlas v2.0"`.
-    Some atlases publish region names but no identifiers that can be looked up.
-    Where `anatomical_location` is taken from such an atlas, so that
-    `anatomical_location_id` is absent or `n/a`,
-    this field is what makes the names interpretable and SHOULD be given.
+    Some atlases publish region names but no identifiers that can be looked up, so that the
+    terms cannot be documented with a `TermURL`.
+    Where `anatomical_location` is taken from such an atlas, this field is what makes the
+    names interpretable and SHOULD be given.
   type: string
 ReferencesAndLinks:
   name: ReferencesAndLinks

@@ -75,20 +75,13 @@ anatomical_location:
     (for example, `cortical layer 3`, `CA1`, `MOp`).
     Terms from a species-specific atlas are acceptable, and are often preferable to
     species-independent terms.
+    The ontology or atlas the terms are taken from SHOULD be documented in the
+    corresponding `*_electrodes.json` file, using `TermURL` for the column and,
+    where the individual terms are resolvable, `Levels` to map each term to its own
+    `TermURL` (see [Tabular files](SPEC_ROOT/common-principles.md#tabular-files)).
   type: string
-anatomical_location_id:
-  name: anatomical_location_id
-  display_name: Anatomical location identifier
-  description: |
-    An identifier for the structure named in `anatomical_location`, taken from an ontology
-    or from a species-specific atlas, for example, `UBERON:0001950` or `MBA:985`.
-    The identifier SHOULD be resolvable, either as a URI or as a prefixed identifier whose
-    prefix identifies the source, so that the term can be looked up.
-    Where the source provides no resolvable identifiers, name it in the `ReferenceAtlas`
-    field of the corresponding `*_electrodes.json` file instead.
-  type: string
-# anatomical_location and anatomical_location_id for probes.tsv files, which describe the
-# probe as a whole and so are coarser than their electrodes.tsv counterparts
+# anatomical_location for probes.tsv files, which describes the probe as a whole and so is
+# coarser than its electrodes.tsv counterpart
 anatomical_location__probes:
   name: anatomical_location
   display_name: Anatomical location
@@ -101,18 +94,9 @@ anatomical_location__probes:
     containing structure, with the location of each recording site given in the
     `anatomical_location` column of the `*_electrodes.tsv` file.
     Terms from a species-specific atlas are acceptable, and are often preferable to
-    species-independent terms.
-  type: string
-anatomical_location_id__probes:
-  name: anatomical_location_id
-  display_name: Anatomical location identifier
-  description: |
-    An identifier for the structure named in `anatomical_location`, taken from an ontology
-    or from a species-specific atlas, for example, `UBERON:0000955` or `MBA:315`.
-    The identifier SHOULD be resolvable, either as a URI or as a prefixed identifier whose
-    prefix identifies the source, so that the term can be looked up.
-    Where the source provides no resolvable identifiers, name it in the `ReferenceAtlas`
-    field of the corresponding `*_electrodes.json` file instead.
+    species-independent terms, and the source they come from SHOULD be documented in the
+    corresponding `*_probes.json` file as described for the `anatomical_location` column of
+    `*_electrodes.tsv`.
   type: string
 cardiac:
   name: cardiac

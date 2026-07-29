@@ -35,22 +35,24 @@ MicroephysLocalizationMethodDuplicated:
   checks:
     - '!("LocalizationMethod" in sidecar)'
 
-# Where locations are given as names with no identifiers, the atlas the names come from
-# is the only thing that makes them interpretable.
-MicroephysRecommendedReferenceAtlas:
+# Anatomical location terms are interpretable if the sidecar documents where they came
+# from, either by resolving the terms themselves or by naming the atlas they were taken from.
+MicroephysUndocumentedAnatomicalLocation:
   issue:
-    code: MICROEPHYS_REFERENCE_ATLAS_RECOMMENDED
+    code: MICROEPHYS_ANATOMICAL_LOCATION_UNDOCUMENTED
     message: |
-      The `*_electrodes.tsv` file gives anatomical locations by name, with no
-      `anatomical_location_id` column to identify them. The atlas the names are taken
-      from SHOULD be given in the `ReferenceAtlas` field of the corresponding
-      `*_electrodes.json` file, since the names cannot otherwise be interpreted.
+      The `*_electrodes.tsv` file gives anatomical locations, but the corresponding
+      `*_electrodes.json` file neither documents the terms with `TermURL` or `Levels`
+      nor names the atlas they were taken from in `ReferenceAtlas`,
+      so the terms cannot be interpreted.
     level: warning
   selectors:
     - intersects([datatype], ["ecephys", "icephys"])
     - suffix == "electrodes"
     - extension == ".tsv"
     - columns.anatomical_location != null
-    - columns.anatomical_location_id == null
   checks:
-    - '"ReferenceAtlas" in sidecar'
+    - |
+      sidecar.anatomical_location.TermURL != null ||
+      sidecar.anatomical_location.Levels != null ||
+      sidecar.ReferenceAtlas != null
