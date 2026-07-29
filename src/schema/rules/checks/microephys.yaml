@@ -16,3 +16,21 @@ MicroephysRequiredCoordsystemWithSpace:
     - '"space" in entities'
   checks:
     - associations.coordsystem != null
+
+# The localization method belongs either in the electrodes table, where it can vary
+# between electrodes, or in the sidecar, where it applies to all of them, but not in both.
+MicroephysLocalizationMethodDuplicated:
+  issue:
+    code: MICROEPHYS_LOCALIZATION_METHOD_DUPLICATED
+    message: |
+      The localization method is given both in the `localization_method` column of
+      `*_electrodes.tsv` and in the `LocalizationMethod` field of the corresponding
+      `*_electrodes.json` file. It MUST be given in only one of the two.
+    level: error
+  selectors:
+    - intersects([datatype], ["ecephys", "icephys"])
+    - suffix == "electrodes"
+    - extension == ".tsv"
+    - type(columns.localization_method) != "null"
+  checks:
+    - '!("LocalizationMethod" in sidecar)'
