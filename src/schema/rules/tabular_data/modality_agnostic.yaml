@@ -28,6 +28,8 @@ Samples:
     sample_type: required
     pathology: recommended
     derived_from: recommended
+    anatomical_location__samples: optional
+    anatomical_location_id__samples: optional
   index_columns: [sample_id, participant_id]
   additional_columns: allowed
 

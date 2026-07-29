@@ -107,12 +107,12 @@ and a guide for using macros can be found at
 `samples.tsv` example:
 
 ```tsv
-sample_id	participant_id	sample_type	derived_from
-sample-01	sub-01	tissue	n/a
-sample-02	sub-01	tissue	sample-01
-sample-03	sub-01	tissue	sample-01
-sample-04	sub-02	tissue	n/a
-sample-05	sub-02	tissue	n/a
+sample_id	participant_id	sample_type	derived_from	anatomical_location	anatomical_location_id
+sample-01	sub-01	tissue block	n/a	brain	UBERON:0000955
+sample-02	sub-01	tissue slice	sample-01	brain	UBERON:0000955
+sample-03	sub-01	tissue slice	sample-01	brain	UBERON:0000955
+sample-04	sub-02	tissue	n/a	n/a	n/a
+sample-05	sub-02	tissue	n/a	n/a	n/a
 ```
 
 It is RECOMMENDED to accompany each `samples.tsv` file with a sidecar
@@ -124,10 +124,16 @@ It is RECOMMENDED to accompany each `samples.tsv` file with a sidecar
 ```JSON
 {
     "sample_type": {
-        "Description": "type of sample from ENCODE Biosample Type (https://www.encodeproject.org/profiles/biosample_type)"
+        "Description": "type of sample"
     },
     "derived_from": {
         "Description": "sample_id from which the sample is derived"
+    },
+    "anatomical_location": {
+        "Description": "anatomical structure the sample was taken from"
+    },
+    "anatomical_location_id": {
+        "Description": "identifier for the anatomical structure, from the Uberon ontology"
     }
 }
 ```

@@ -49,6 +49,22 @@ age:
     "Units": "year",
     "Maximum": 89,
   }
+anatomical_location__samples:
+  name: anatomical_location
+  display_name: Anatomical location
+  description: |
+    The anatomical structure the sample was taken from,
+    for example, `primary visual cortex`, `hippocampus`, or `brain`.
+  type: string
+anatomical_location_id__samples:
+  name: anatomical_location_id
+  display_name: Anatomical location identifier
+  description: |
+    An identifier for the structure named in `anatomical_location`, taken from an ontology
+    or from a species-specific atlas, for example, `UBERON:0000955` or `MBA:315`.
+    The identifier SHOULD be resolvable, either as a URI or as a prefixed identifier whose
+    prefix identifies the source, so that the term can be looked up.
+  type: string
 AP_angle:
   name: AP_angle
   display_name: AP angle
@@ -783,8 +799,12 @@ sample_type:
   name: sample_type
   display_name: Sample type
   description: |
-    Biosample type defined by
-    [ENCODE Biosample Type](https://www.encodeproject.org/profiles/biosample_type).
+    The type of the sample.
+    Values are drawn from
+    [ENCODE Biosample Type](https://www.encodeproject.org/profiles/biosample_type)
+    and from the tissue sample types defined by
+    [openMINDS](https://openminds.docs.om-i.org/en/latest/instance_libraries/terminologies/tissueSampleType.html).
+    Where no listed value describes a sample, an addition to this list MAY be proposed.
   type: string
   enum:
     - $ref: objects.enums.cell_line.value
@@ -796,6 +816,11 @@ sample_type:
     - $ref: objects.enums.whole_organisms.value
     - $ref: objects.enums.organoid.value
     - $ref: objects.enums.technical_sample.value
+    - $ref: objects.enums.whole_organ.value
+    - $ref: objects.enums.tissue_block.value
+    - $ref: objects.enums.tissue_slice.value
+    - $ref: objects.enums.single_cell.value
+    - $ref: objects.enums.cell_population.value
 sampling_frequency:
   name: sampling_frequency
   display_name: Channel sampling frequency
