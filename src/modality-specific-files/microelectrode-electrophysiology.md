@@ -37,6 +37,37 @@ and analysis pipelines. The terms are established and used in [Neurodata Without
 Both datatypes share a unified BIDS structure (probes, electrodes, channels) with technique-specific optional metadata fields.
 Files are organized into `ecephys/` or `icephys/` subdirectories with corresponding file suffixes.
 
+## Samples and the `sample-<label>` Entity
+
+The [`sample-<label>`](../appendices/entities.md#sample) entity identifies the biological sample
+from which a recording was made, and is used to distinguish between different samples from the same subject.
+The label MUST be unique per subject and is RECOMMENDED to be unique throughout the dataset.
+
+The entity is REQUIRED for `icephys` data and OPTIONAL for `ecephys` data.
+Intracellular recordings are always made from a discrete sample, so the entity is required even when a subject
+yields only a single sample, and even when the recording is made in vivo,
+because the patched cell is itself the sample.
+Requiring the entity in the single-sample case avoids having to rename files if a second sample is added later.
+Extracellular recordings are frequently made in vivo without an identifiable sample,
+so the entity is optional, but it SHOULD be used when the recording is made from a sample
+such as an acute slice or a cultured cell population.
+
+A sample corresponds to the finest granularity of biological material from which signals are measured.
+For patch clamp recordings this is the individual cell (for example, `sample-cell001`),
+and for in vitro extracellular recordings it is typically the slice or the cell population.
+
+Where several samples are obtained from a common source, for example several cells patched
+from one slice, the source MAY also be described as a sample in `samples.tsv` and linked
+to the samples derived from it using the `derived_from` column.
+Such a parent sample generally does not appear as a `sample-<label>` entity in recording filenames,
+since it is not itself what was measured.
+
+Whenever the `sample-<label>` entity is present in a filename, the dataset MUST include a
+[`samples.tsv` file](../modality-agnostic-files/data-summary-files.md#samples-file) describing each sample.
+This applies to both `icephys` and `ecephys` data.
+See the [Intracellular Electrophysiology example](#intracellular-electrophysiology-patch) below
+for a dataset organized this way.
+
 ## Primary Data File Formats
 
 Microelectrode electrophysiology data (of `icephys` or `ecephys` datatypes) MUST be stored in an [open file format](https://en.wikipedia.org/wiki/Open_format),
@@ -574,7 +605,7 @@ with:
 
 The [`ses-<label>`](../appendices/entities.md#ses) entity may be used to specify when the photo was taken.
 
-The [`sample-<label>`](../appendices/entities.md#sample) entity may be used to specify the tissue sample for histological photos.
+The [`sample-<label>`](#samples-and-the-sample-label-entity) entity may be used to specify the tissue sample for histological photos.
 
 The [`space-<label>`](../appendices/entities.md#space) entity may be used to specify the coordinate system for atlas overlay photos.
 
