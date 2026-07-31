@@ -498,9 +498,9 @@ additional meta information extracted from DICOM files in a sidecar JSON file
 (with the same filename as the `.nii[.gz]` file, but with a `.json` extension).
 Currently defined metadata fields are listed in the [Glossary](./glossary.md).
 Where possible, DICOM Tags are adopted directly as BIDS metadata terms and
-indicated with "**Corresponds to** DICOM Tag ID1, ID2 `DICOM Tag Name`.".
+indicated with "**Corresponds to** DICOM Tag (####,####) `<Attribute Name>`".
 When harmonization has been deemed necessary, this is indicated in the
-BIDS term description with "**Based on** DICOM Tag ID1, ID2 `DICOM Tag Name`.".
+BIDS term description with "**Based on** DICOM Tag (####,####) `<Attribute Name>`".
 Extraction of BIDS compatible metadata can be performed using
 [DICOM to NIfTI converters](https://bids.neuroimaging.io/tools/converters.html)
 such as [dcm2niix](https://github.com/rordenlab/dcm2niix).
