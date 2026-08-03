@@ -951,7 +951,7 @@ accompanied by two ancillary files: `*_asl.json` and `*_aslcontext.tsv`.
 
 The `*_aslcontext.tsv` table consists of a single column of labels identifying the
 `volume_type` of each volume in the corresponding `*_asl.nii[.gz]` file.
-Volume types are defined in the following table, based on [DICOM Tag (0018,9257)](http://www.dicomlookup.com/dicomtags/(0018,9257)) `ASL Context`.
+Volume types are defined in the following table, based on [DICOM Tag (0018,9257)](https://www.dicomlookup.com/dicomtags/(0018,9257)) `ASL Context`.
 Note that the volume_types `control` and  `label` within BIDS only serve
 to specify the magnetization state of the blood and thus the ASL subtraction order.
 See the [ASL Appendix](../appendices/arterial-spin-labeling.md#which-image-is-control-and-which-is-label)
