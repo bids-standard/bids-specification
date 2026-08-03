@@ -265,7 +265,7 @@ B0FieldIdentifier:
     particular instance of the *B<sub>0</sub> field* estimation.
     It is RECOMMENDED to derive this identifier from DICOM Tags, for example,
     DICOM Tag (0018,1030) `Protocol Name`, or DICOM Tag (0018,0024) `Sequence Name`
-    when the former is not defined (for example, in GE devices.)
+    when the former is not defined (for example, on GE devices).
   anyOf:
     - type: string
     - type: array
