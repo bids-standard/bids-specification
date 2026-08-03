@@ -123,8 +123,8 @@ Each `<label>` in the table above MAY be combined with another to better describ
 For example, `megaspecial`, `jpress`, `dwslaser`, `mcdwsteam`, and so on.
 
 The OPTIONAL `nuc-<label>` entity can be used to distinguish acquisitions tuned to detect different nuclei.
-The label is the name of the nucleus or nuclei, which corresponds to [DICOM Tag
-(0018,9100)](https://www.dicomlookup.com/#/tags?q=(0018%2C9100)&field=number) `Resonant Nucleus`.
+The label is the name of the nucleus or nuclei, which corresponds to [DICOM Tag (0018,9100)](https://www.dicomlookup.com/#/tags?q=(0018%2C9100)&field=number)
+`Resonant Nucleus`.
 For example, `nuc-1H`, `nuc-31P`, `nuc-1H13C`.
 If used, the field `ResonantNucleus` MUST also be included in the corresponding sidecar JSON file, using the same label.
 
