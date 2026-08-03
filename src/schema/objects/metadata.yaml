@@ -409,7 +409,7 @@ BolusCutOffFlag:
   description: |
     Boolean indicating if a bolus cut-off technique is used.
     Corresponds to [DICOM Tag (0018,925C)](https://www.dicomlookup.com/dicomtags/(0018,925C))
-    `ASLBolusCutoffFlag`.
+    `ASL Bolus Cut-off Flag`.
   type: boolean
 BolusCutOffTechnique:
   name: BolusCutOffTechnique
@@ -417,7 +417,7 @@ BolusCutOffTechnique:
   description: |
     Name of the technique used, for example `"Q2TIPS"`, `"QUIPSS"`, `"QUIPSSII"`.
     Corresponds to [DICOM Tag (0018,925E)](https://www.dicomlookup.com/dicomtags/(0018,925E))
-    `ASLBolusCutoffTechnique`.
+    `ASL Bolus Cut-off Technique`.
   type: string
 BrainLocation:
   name: BrainLocation
@@ -3125,7 +3125,7 @@ PostLabelingDelay:
     Any image within the time-series without a PLD, for example an `m0scan`,
     is indicated by a zero.
     Based on DICOM Tags (0018,9079) `Inversion Times` and (0018,0082)
-    `InversionTime`.
+    `Inversion Time`.
   anyOf:
     - type: number
       minimum: 0
