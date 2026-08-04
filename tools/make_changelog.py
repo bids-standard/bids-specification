@@ -19,10 +19,10 @@ import re
 import subprocess as sp
 import sys
 from dataclasses import dataclass
-from datetime import date, datetime, timedelta, UTC
+from datetime import UTC, date, datetime, timedelta
 from pathlib import Path
 
-from gql import gql, Client
+from gql import Client, gql
 from gql.transport.aiohttp import AIOHTTPTransport
 
 SEARCH_MERGED_PRS_QUERY = gql("""\
@@ -122,7 +122,7 @@ async def get_merged_prs(
             if not pr:
                 continue
 
-            merged_date = datetime.fromisoformat(pr["mergedAt"].replace("Z", "+00:00"))
+            merged_date = datetime.fromisoformat(pr["mergedAt"])
 
             prs.append(
                 PR(
@@ -162,7 +162,7 @@ async def main() -> None:
         client, repository="bids-standard/bids-specification", merged_after=start_date
     )
 
-    with open(repo / "src/CHANGES.md", "w") as changelog:
+    with open(repo / "src/CHANGES.md", "w") as changelog:  # noqa: ASYNC230
         changelog.write("# Changelog\n\n## Upcoming\n\n")
         changelog.write("\n".join([*map(str, prs), "", changes]))
 
