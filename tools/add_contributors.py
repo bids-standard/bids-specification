@@ -41,7 +41,6 @@ import logging
 import os
 from collections import OrderedDict
 from pathlib import Path
-from typing import Optional
 
 import emoji
 import pandas as pd
@@ -135,7 +134,7 @@ def emoji_map(reverse=False) -> dict[str, str]:
 
 def return_this_contributor(
     df: pd.DataFrame, name: str, contribution_needed=True
-) -> dict[str, Optional[str]]:
+) -> dict[str, str | None]:
     """Get and validate the data for a given contributor."""
     name = name.strip()
 
@@ -154,7 +153,7 @@ def return_this_contributor(
     contributions = df[mask].contributions.values[0]
     log.debug(f"contributions for {name}: '{contributions}'")
     if pd.isna(contributions):
-        contributions is None
+        contributions = None
     if contribution_needed and contributions is None:
         raise ValueError(f"Contributions for {name} not defined in input file.")
     if contributions is not None:
@@ -191,9 +190,7 @@ def return_this_contributor(
     for key, value in this_contributor.items():
         if value is None:
             continue
-        if not isinstance(this_contributor[key], (list)) and pd.isna(
-            this_contributor[key]
-        ):
+        if not isinstance(value, (list)) and pd.isna(value):
             this_contributor[key] = None
         elif isinstance(this_contributor[key], (str)):
             this_contributor[key] = this_contributor[key].strip()
@@ -239,7 +236,7 @@ def canonicalize_contributions(contributions: list) -> list:
         contributions[contributions.index(contribution_)] = contribution_.replace(
             ":", ""
         )
-    contributions = sorted(list(set(contributions)))
+    contributions = sorted(set(contributions))
 
     return contributions
 
@@ -264,8 +261,8 @@ def update_key(
 
 def load_tributors(tributors_file: Path) -> dict:
     """Load `.tributors` file."""
-    with open(tributors_file, "r", encoding="utf8") as tributors_file:
-        return json.load(tributors_file)
+    with open(tributors_file, "r", encoding="utf8") as f:
+        return json.load(f)
 
 
 def write_tributors(tributors_file: Path, tributors: dict[str, dict]) -> None:
@@ -283,13 +280,13 @@ def return_missing_from_tributors(tributors_file: Path, names: list[str]) -> lis
     for i, name in enumerate(names):
         names[i] = name.strip()
     missing_from_tributors = set(names) - set(tributors_names)
-    return sorted(list(missing_from_tributors))
+    return sorted(missing_from_tributors)
 
 
 def sort_tributors(tributors: dict[str, dict]) -> dict[str, dict]:
     """Sort `.tributors` alphabetically by name of contributor."""
-    for key in tributors:
-        tributors[key] = dict(OrderedDict(sorted(tributors[key].items())))
+    for key, value in tributors.items():
+        tributors[key] = dict(OrderedDict(sorted(value.items())))
     return dict(sorted(tributors.items(), key=lambda item: item[1]["name"]))
 
 
@@ -539,7 +536,7 @@ def main():
 
     # sanity checks to make sure no contributor was added manually
     assert len(tributors_names) == len(set(tributors_names))
-    assert len(allcontrib_names) == len(set(allcontrib_names)), print(
+    assert len(allcontrib_names) == len(set(allcontrib_names)), (
         f"{allcontrib_names=}, {len(set(allcontrib_names))=}"
     )
     # We might be removing duplicates etc, thus let's not verify
@@ -590,11 +587,16 @@ def main():
         this_contributor["login"] = github_username
         this_contributor = rename_keys_for_allcontrib(this_contributor)
 
-        if UPDATE_AVATARS and "avatar_url" not in this_contributor:
-            if avatar_url := get_gh_avatar(
-                this_contributor["login"], GH_USERNAME, GH_TOKEN
-            ):
-                this_contributor["avatar_url"] = avatar_url
+        if (
+            UPDATE_AVATARS
+            and "avatar_url" not in this_contributor
+            and (
+                avatar_url := get_gh_avatar(
+                    this_contributor["login"], GH_USERNAME, GH_TOKEN
+                )
+            )
+        ):
+            this_contributor["avatar_url"] = avatar_url
 
         allcontrib = update_allcontrib(allcontrib, this_contributor)
 
