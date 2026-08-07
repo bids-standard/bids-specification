@@ -77,7 +77,7 @@ def build_pdf(filename="bids-spec.pdf", logfile="bids-spec_pandoc_log.json"):
 
     # print and run
     print("pandoc command being run: \n\n" + "\n".join(cmd))
-    subprocess.run(cmd, check=False)
+    subprocess.run(cmd, check=True)
 
 
 if __name__ == "__main__":

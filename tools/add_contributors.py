@@ -261,8 +261,7 @@ def update_key(
 
 def load_tributors(tributors_file: Path) -> dict:
     """Load `.tributors` file."""
-    with open(tributors_file, "r", encoding="utf8") as f:
-        return json.load(f)
+    return json.loads(tributors_file.read_text())
 
 
 def write_tributors(tributors_file: Path, tributors: dict[str, dict]) -> None:
@@ -286,7 +285,7 @@ def return_missing_from_tributors(tributors_file: Path, names: list[str]) -> lis
 def sort_tributors(tributors: dict[str, dict]) -> dict[str, dict]:
     """Sort `.tributors` alphabetically by name of contributor."""
     for key, value in tributors.items():
-        tributors[key] = dict(OrderedDict(sorted(value.items())))
+        tributors[key] = dict(sorted(value.items()))
     return dict(sorted(tributors.items(), key=lambda item: item[1]["name"]))
 
 
