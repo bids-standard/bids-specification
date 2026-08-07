@@ -11,11 +11,11 @@ PhenotypeSubjectsMissing:
   selectors:
     - datatype == 'phenotype'
     - extension == '.tsv'
-    - type(dataset.participant_tsv.participant_id) != 'null'
+    - type(dataset.subjects.participant_id) != 'null'
   checks:
     # A∩B == A iff A⊆B
     - |
-      length(intersects(columns.participant_id, dataset.participant_tsv.participant_id))
+      length(intersects(columns.participant_id, dataset.subjects.participant_id))
       == length(unique(columns.participant_id))
 
 PhenotypeDemographicsFileRequired:
@@ -35,29 +35,12 @@ PhenotypeDemographicsFileRequired:
   checks:
     - exists('phenotype/tool-Demographics_phenotype.tsv', 'dataset')
 
-PhenotypeSessionAggregation:
+PhenotypeSessionColumnMissing:
   issue:
-    code: PHENOTYPE_SESSION_AGGREGATION
+    code: PHENOTYPE_DEMOGRAPHICS_FILE_REQUIRED
     message: |
-      Participant-level sessions files (sub-<label>_sessions.tsv) must not exist
-      when a root sessions.tsv file is present. Session information should be
-      aggregated in the root sessions.tsv file.
-    level: error
-  selectors:
-    - suffix == 'sessions'
-    - extension == '.tsv'
-    - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
-    - type(entities.subject) != 'null'
-  checks:
-    - "!exists('phenotype/tool-Demographics_phenotype.tsv', 'dataset')"
-
-PhenotypeSessionsMissing:
-  issue:
-    code: PHENOTYPE_SESSIONS_MISSING
-    message: |
-      Session directories were found in this dataset but no sessions.tsv file
-      exists at the dataset root. A sessions.tsv file is required when session
-      directories are present and Phenotype validation is enabled.
+      A phenotype/tool-Demographics_phenotype.tsv file is required when session
+      directories are present and additional phenotype validation is enabled.
     level: error
   selectors:
     - path == '/dataset_description.json'
@@ -70,13 +53,60 @@ PhenotypeSessionLevels:
   issue:
     code: PHENOTYPE_SESSION_LEVELS
     message: |
-      The sessions.tsv sidecar must include a Levels field for session_id
-      to define valid session labels and their descriptions.
+      phenotype/tool-Demographics_phenotype.tsv missing `Levels` definition for `session_id` object in
+      its sidecar.
     level: error
   selectors:
-    - entities.tool == Demographics
     - suffix == 'phenotype'
     - extension == '.tsv'
     - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
+    - type(sidecar.session_id) != 'null'
   checks:
     - type(sidecar.session_id.Levels) != 'null'
+
+PhenotypeSessionDirectoryMissing:
+  issue:
+    code: SESSION_REQUIRED
+    message: |
+      No subject session directories were found. Use of session_id columns in
+      phenotype tsv files requires that session directories be used for any subject
+      directories.
+    level: error
+  selectors:
+    - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
+    - entities.tool == 'Demographics'
+    - suffix == 'phenotype'
+    - extension == '.tsv'
+    - type(columns.session_id) != 'null'
+  checks:
+    - length(glob("sub-*/ses-*")) > 0
+
+PhenotypeSessionRequired:
+  issue:
+    code: SESSION_REQUIRED
+    message: |
+      Every data file MUST be found in a session directory when
+      multi-session data is detected in the dataset and
+      "Phenotype" additional validation has been enabled.
+    level: error
+  selectors:
+    - type(entities.sub) != 'null'
+    - "!intersects([extension], ['.tsv', '.json'])"
+    - length(glob("sub-*/ses-*")) > 0
+    - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
+  checks:
+    - type(entities.session) != 'null'
+
+PhenotypeIndexColumnsRequired:
+  issue:
+    code: PHENOTYPE_TOOL_MISSING_INDEX_COLUMNS
+    message: |
+      A phenotype file is missing the `IndexColumns` key and value in its associated sidecar.
+    level: error
+  selectors:
+    - suffix == 'phenotype'
+    - extension == '.tsv'
+    - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
+    - length(glob("sub-*/ses-*")) > 0
+  checks:
+    - type(sidecar.IndexColumns) != 'null'
