@@ -113,11 +113,11 @@ Additional information on each participant MAY be provided in a
 in the root directory of the dataset.
 
 If data for the subject were acquired across multiple sessions, then within
-the subject directory resides subdirectories named "`ses-<label>`",
+the subject directory reside subdirectories named "`ses-<label>`",
 where string "`<label>`" is substituted with a unique identification
 label for each session.
 In datasets where at least one subject has more than one session, this
-additional subdirectory later SHOULD be added for all subjects in the dataset.
+additional subdirectory layer SHOULD be added for all subjects in the dataset.
 Additional information on each session MAY be provided in a
 [sessions file](modality-agnostic-files/data-summary-files.md#sessions-file)
 within the subject directory.
