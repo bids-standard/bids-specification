@@ -139,7 +139,7 @@ async def get_merged_prs(
     return sorted(prs, key=lambda x: (x.category, now - x.merged_date))
 
 
-async def main() -> None:
+def main() -> None:
     github_token = os.getenv("GITHUB_TOKEN")
     if not github_token:
         print("GITHUB_TOKEN environment variable is not set.")
@@ -158,14 +158,18 @@ async def main() -> None:
     repo = get_repo()
     changes = load_changes(repo, tag)
 
-    prs = await get_merged_prs(
-        client, repository="bids-standard/bids-specification", merged_after=start_date
+    prs = asyncio.run(
+        get_merged_prs(
+            client,
+            repository="bids-standard/bids-specification",
+            merged_after=start_date,
+        )
     )
 
-    with open(repo / "src/CHANGES.md", "w") as changelog:  # noqa: ASYNC230
+    with open(repo / "src/CHANGES.md", "w") as changelog:
         changelog.write("# Changelog\n\n## Upcoming\n\n")
         changelog.write("\n".join([*map(str, prs), "", changes]))
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    main()

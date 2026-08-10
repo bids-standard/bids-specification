@@ -51,8 +51,7 @@ repos:
       - id: codespell
         args: ["--config=.codespellrc", "--dictionary=-", "--dictionary=.codespell_dict"]
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    # Keep in sync with the ruff version used by .github/workflows/validation.yml
-    rev: v0.16.1
+    rev: v0.16.2
     hooks:
       - id: ruff-check
         args: [--fix]

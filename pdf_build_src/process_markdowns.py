@@ -585,12 +585,12 @@ def edit_titlepage():
         file.writelines(data)
 
 
-class MockPage:
-    pass
-
-
 class MockFile:
-    pass
+    src_path: str
+
+
+class MockPage:
+    file: MockFile
 
 
 def process_macros(duplicated_src_dir_path):
