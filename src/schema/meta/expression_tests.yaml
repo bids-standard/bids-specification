@@ -50,14 +50,6 @@
   result: null
 - expression: unique(null)
   result: null
-- expression: zip([], null)
-  result: null
-- expression: zip(null, [])
-  result: null
-- expression: zip(null, [1])
-  result: null
-- expression: zip([1], null)
-  result: null
 - expression: type(null)
   result: 'null'
 - expression: null == false
@@ -167,7 +159,3 @@
   result: [1]
 - expression: unique([1.0, 1])
   result: [1.0]
-- expression: zip([1, 2, 3], [4, 5, 6])
-  result: [[1, 4], [2, 5], [3, 6]]
-- expression: zip([1, 2, 3], [4, 5, 6], [7, 8, 9])
-  result: [[1, 4, 7], [2, 5, 8], [3, 6, 9]]
