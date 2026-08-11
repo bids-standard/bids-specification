@@ -15,10 +15,10 @@ PhenotypeSubjectsMissing:
   checks:
     # A∩B == A iff A⊆B
     - |
-      length(intersects(columns.participant_id, dataset.subjects.participant_id))
+      length(intersects(unique(columns.participant_id), dataset.subjects.participant_id))
       == length(unique(columns.participant_id))
 
-PhenotypeDemographicsFileRequired:
+PhenotypeDemographicsFileRequiredByTool:
   issue:
     code: PHENOTYPE_DEMOGRAPHICS_FILE_REQUIRED
     message: |
@@ -35,7 +35,7 @@ PhenotypeDemographicsFileRequired:
   checks:
     - exists('phenotype/tool-Demographics_phenotype.tsv', 'dataset')
 
-PhenotypeSessionColumnMissing:
+PhenotypeDemographicsFileRequiredBySessionDir:
   issue:
     code: PHENOTYPE_DEMOGRAPHICS_FILE_REQUIRED
     message: |
@@ -78,6 +78,7 @@ PhenotypeSessionDirectoryMissing:
     - suffix == 'phenotype'
     - extension == '.tsv'
     - type(columns.session_id) != 'null'
+    - length(glob("sub-*")) > 0
   checks:
     - length(glob("sub-*/ses-*")) > 0
 
@@ -95,7 +96,7 @@ PhenotypeSessionRequired:
     - length(glob("sub-*/ses-*")) > 0
     - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
   checks:
-    - type(entities.session) != 'null'
+    - type(entities.ses) != 'null'
 
 PhenotypeIndexColumnsRequired:
   issue:
@@ -107,6 +108,22 @@ PhenotypeIndexColumnsRequired:
     - suffix == 'phenotype'
     - extension == '.tsv'
     - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
-    - length(glob("sub-*/ses-*")) > 0
+    - type(columns.session_id) != 'null'
   checks:
     - type(sidecar.IndexColumns) != 'null'
+
+    
+PhenotypeSessionColumn:
+  issue:
+    code: PHENOTYPE_SESSION_LEVELS
+    message: |
+      phenotype/tool-Demographics_phenotype.tsv missing `Levels` definition for `session_id` object in
+      its sidecar.
+    level: error
+  selectors:
+    - suffix == 'phenotype'
+    - extension == '.tsv'
+    - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
+    - length(glob("sub-*/ses-*")) > 0
+  checks:
+    - type(sidecar.session_id) != 'null'

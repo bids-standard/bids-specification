@@ -44,6 +44,9 @@ Phenotypes__Additional:
     - datatype == 'phenotype'
     - suffix == 'phenotype'
     - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
+  columns:
+    $ref: rules.tabular_data.modality_agnostic.Phenotypes.columns
+    acq_time__sessions: recommended
   additional_columns: allowed_if_defined
 
 Samples:
