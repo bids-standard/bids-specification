@@ -404,10 +404,10 @@ probe02	tetrode	-1.2	-2.1	-3.5	0	10	45	R	Neuralynx	TT-12345	4	n/a	n/a	n/a	tip	Br
 **Intracellular electrophysiology example:**
 
 ```tsv
-probe_name	type	AP	ML	DV	AP_angle	ML_angle	rotation_angle	hemisphere	manufacturer	electrode_count	coordinate_reference_point	associated_brain_region	associated_brain_region_id	reference_atlas
-pipette01	patch-pipette	-1.8	0.5	-2.2	30	0	0	L	Sutter	1	tip	Visual Cortex Layer 2/3	VISp2/3	AllenCCFv3
-pipette02	patch-pipette	-1.8	-0.5	-2.2	30	0	0	R	Sutter	1	tip	Visual Cortex Layer 2/3	VISp2/3	AllenCCFv3
-pipette03	sharp-electrode	-3.2	1.2	-3.8	20	5	0	L	WPI	1	tip	Prefrontal Cortex Layer 5	PL5	Franklin-Paxinos
+probe_name	type	AP	ML	DV	AP_angle	ML_angle	rotation_angle	hemisphere	manufacturer	electrode_count	coordinate_reference_point	anatomical_reference_point	associated_brain_region	associated_brain_region_id	reference_atlas
+pipette01	patch-pipette	-1.8	0.5	-2.2	30	0	0	L	Sutter	1	tip	Bregma	Visual Cortex Layer 2/3	VISp2/3	AllenCCFv3
+pipette02	patch-pipette	-1.8	-0.5	-2.2	30	0	0	R	Sutter	1	tip	Bregma	Visual Cortex Layer 2/3	VISp2/3	AllenCCFv3
+pipette03	sharp-electrode	-3.2	1.2	-3.8	20	5	0	L	WPI	1	tip	Bregma	Prefrontal Cortex Layer 5	PL5	Franklin-Paxinos
 ```
 
 For details on the surgical coordinate system used to describe probe placement during surgery (AP, ML, DV, angles, and
