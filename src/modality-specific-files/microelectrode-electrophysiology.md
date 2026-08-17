@@ -338,7 +338,7 @@ Only the electrode-level column can describe a probe that passes through several
 which is common for long shank probes.
 
 Terms may be taken from a species-independent ontology such as Uberon or from a species-specific
-atlas, and a species-specific atlas is often the better choice.
+atlas or ontology such as the [Mouse Brain Atlas Ontology](https://www.ebi.ac.uk/ols4/ontologies/mba), and a species-specific is often the better choice.
 The source the terms come from SHOULD be documented in the sidecar file, in the way BIDS
 documents any other tabular column, as described in
 [Tabular files](../common-principles.md#tabular-files).
