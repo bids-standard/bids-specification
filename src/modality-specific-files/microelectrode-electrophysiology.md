@@ -443,10 +443,10 @@ probe02	tetrode	-1.2	-2.1	-3.5	0	10	45	R	Neuralynx	TT-12345	4	n/a	n/a	n/a	tip	Br
 **Intracellular electrophysiology example:**
 
 ```tsv
-probe_name	type	AP	ML	DV	AP_angle	ML_angle	rotation_angle	hemisphere	manufacturer	electrode_count	coordinate_reference_point	anatomical_location
-pipette01	patch-pipette	-1.8	0.5	-2.2	30	0	0	L	Sutter	1	tip	VISp2/3
-pipette02	patch-pipette	-1.8	-0.5	-2.2	30	0	0	R	Sutter	1	tip	VISp2/3
-pipette03	sharp-electrode	-3.2	1.2	-3.8	20	5	0	L	WPI	1	tip	PL5
+probe_name	type	AP	ML	DV	AP_angle	ML_angle	rotation_angle	hemisphere	manufacturer	electrode_count	coordinate_reference_point	anatomical_reference_point	anatomical_location
+pipette01	patch-pipette	-1.8	0.5	-2.2	30	0	0	L	Sutter	1	tip	Bregma	VISp2/3
+pipette02	patch-pipette	-1.8	-0.5	-2.2	30	0	0	R	Sutter	1	tip	Bregma	VISp2/3
+pipette03	sharp-electrode	-3.2	1.2	-3.8	20	5	0	L	WPI	1	tip	Bregma	PL5
 ```
 
 For details on the surgical coordinate system used to describe probe placement during surgery (AP, ML, DV, angles, and

@@ -56,3 +56,21 @@ MicroephysUndocumentedAnatomicalLocation:
       sidecar.anatomical_location.TermURL != null ||
       sidecar.anatomical_location.Levels != null ||
       sidecar.ReferenceAtlas != null
+
+# Stereotaxic coordinates cannot be interpreted without knowing the point they are
+# measured from, so requiring the reference point is conditioned on their presence.
+MicroephysRequiredAnatomicalReferencePoint:
+  issue:
+    code: MICROEPHYS_ANATOMICAL_REFERENCE_POINT_REQUIRED
+    message: |
+      The `anatomical_reference_point` column MUST be defined in `*_probes.tsv` when
+      stereotaxic coordinates are given, that is, when any of the `AP`, `ML`, or `DV`
+      columns are present.
+    level: error
+  selectors:
+    - intersects([datatype], ["ecephys", "icephys"])
+    - suffix == "probes"
+    - extension == ".tsv"
+    - columns.AP != null || columns.ML != null || columns.DV != null
+  checks:
+    - columns.anatomical_reference_point != null
