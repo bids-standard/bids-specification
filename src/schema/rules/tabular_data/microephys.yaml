@@ -29,7 +29,9 @@ microephysProbes:
     depth__probes: optional
     rotation_angle: recommended
     coordinate_reference_point: recommended
-    anatomical_reference_point: optional
+    anatomical_reference_point:
+      level: optional
+      level_addendum: required if `AP`, `ML`, or `DV` are present
     hemisphere__probes: recommended
     associated_brain_region: recommended
     associated_brain_region_id: recommended

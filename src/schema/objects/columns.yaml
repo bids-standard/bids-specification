@@ -144,9 +144,10 @@ anatomical_reference_point:
   name: anatomical_reference_point
   display_name: Anatomical reference point
   description: |
-    Anatomical reference point for stereotaxic coordinates (for example, `Bregma`, `Lambda`).
-    If not specified, `Bregma` is assumed for rodents.
-    MUST be defined for species other than rodents.
+    Anatomical reference point from which the stereotaxic coordinates of the probe are
+    measured (for example, `Bregma`, `Lambda`).
+    This column MUST be defined whenever any of the `AP`, `ML`, or `DV` columns are present,
+    for every species, since those coordinates cannot be interpreted without it.
   type: string
 depth__probes:
   name: depth
