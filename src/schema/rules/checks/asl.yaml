@@ -15,7 +15,7 @@ ASLLabelingDurationNiftiLength:
       an array of numbers must be specified, for which any `m0scan` in the timeseries has a `LabelingDuration` of
       zero.
       In case an array of numbers is provided, its length should be equal to the number of volumes specified in
-      the associated `aslcontext.tsv`. Corresponds to DICOM Tag 0018,9258 `ASL Pulse Train Duration`.
+      the associated `aslcontext.tsv`. Corresponds to DICOM Tag (0018,9258) `ASL Pulse Train Duration`.
     level: error
   selectors:
     - suffix == "asl"
@@ -47,7 +47,7 @@ ASLFlipAngleNiftiLength:
     message: |
       The number of values for 'FlipAngle' for this file does not match the 4th dimension of the NIfTI header.
       'FlipAngle' is the flip angle (FA) for the acquisition, specified in degrees.
-      Corresponds to: [DICOM Tag 0018, 1314](http://www.dicomlookup.com/dicomtags/(0018,1314))
+      Corresponds to: [DICOM Tag (0018,1314)](https://www.dicomlookup.com/dicomtags/(0018,1314))
       `Flip Angle`.
       The data type number may apply to files from any MRI modality concerned with a single value for this field,
       or to the files in a file collection where the value of this field is iterated using the flip entity.
@@ -71,7 +71,7 @@ ASLFlipAngleASLContextLength:
       The number of values for 'FlipAngle' for this file does not match the number of volumes in the
       associated 'aslcontext.tsv'.
       'FlipAngle' is the flip angle (FA) for the acquisition, specified in degrees.
-      Corresponds to: [DICOM Tag 0018, 1314](http://www.dicomlookup.com/dicomtags/(0018,1314))
+      Corresponds to: [DICOM Tag (0018,1314)](https://www.dicomlookup.com/dicomtags/(0018,1314))
       `Flip Angle`.
       The data type number may apply to files from any MRI modality concerned with a single value for this field,
       or to the files in a file collection where the value of this field is iterated using the flip entity.
@@ -100,7 +100,7 @@ ASLPostLabelingDelayNiftiLength:
       (that is, each 'control' and 'label')
       in the acquisition order. Any image within the time-series without a PLD (for example, an 'm0scan') is
       indicated by a zero.
-      Based on DICOM Tags 0018,9079 Inversion Times and 0018,0082 InversionTime.
+      Based on DICOM Tags (0018,9079) `Inversion Times` and (0018,0082) `Inversion Time`.
     level: error
   selectors:
     - suffix == "asl"
@@ -125,7 +125,7 @@ ASLPostLabelingDelayASLContextLength:
       (that is, each 'control' and 'label')
       in the acquisition order.
       Any image within the time-series without a PLD (for example, an 'm0scan') is indicated by a zero.
-      Based on DICOM Tags 0018,9079 Inversion Times and 0018,0082 InversionTime.
+      Based on DICOM Tags (0018,9079) `Inversion Times` and (0018,0082) `Inversion Time`.
     level: error
   selectors:
     - suffix == "asl"
@@ -150,7 +150,7 @@ ASLLabelingDurationASLContextLength:
       `LabelingDuration` of zero.
       In case an array of numbers is provided, its length should be equal to the number of volumes
       specified in the associated `aslcontext.tsv`.
-      Corresponds to DICOM Tag 0018,9258 `ASL Pulse Train Duration`.
+      Corresponds to DICOM Tag (0018,9258) `ASL Pulse Train Duration`.
     level: error
   selectors:
     - suffix == "asl"

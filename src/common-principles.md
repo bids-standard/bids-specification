@@ -106,18 +106,18 @@ BIDS datasets embedded within a larger BIDS dataset MAY follow some convention (
 ## Filesystem structure
 
 Data for each subject are placed in subdirectories named "`sub-<label>`",
-where string "`<label>`" is substituted with the unique identification
+where "`<label>`" is substituted with the unique identification
 label of each subject.
 Additional information on each participant MAY be provided in a
 [participants file](modality-agnostic-files/data-summary-files.md#participants-file)
 in the root directory of the dataset.
 
-If data for the subject were acquired across multiple sessions, then within
-the subject directory resides subdirectories named "`ses-<label>`",
-where string "`<label>`" is substituted with a unique identification
-label for each session.
+If data for the subject were acquired across multiple sessions,
+then subdirectories named "`ses-<label>`" reside within the subject directory,
+where "`<label>`" is substituted with the unique identification
+label of each session.
 In datasets where at least one subject has more than one session, this
-additional subdirectory later SHOULD be added for all subjects in the dataset.
+additional subdirectory layer SHOULD be added for all subjects in the dataset.
 Additional information on each session MAY be provided in a
 [sessions file](modality-agnostic-files/data-summary-files.md#sessions-file)
 within the subject directory.
@@ -498,9 +498,9 @@ additional meta information extracted from DICOM files in a sidecar JSON file
 (with the same filename as the `.nii[.gz]` file, but with a `.json` extension).
 Currently defined metadata fields are listed in the [Glossary](./glossary.md).
 Where possible, DICOM Tags are adopted directly as BIDS metadata terms and
-indicated with "**Corresponds to** DICOM Tag ID1, ID2 `DICOM Tag Name`.".
+indicated with "**Corresponds to** DICOM Tag (####,####) `<Attribute Name>`".
 When harmonization has been deemed necessary, this is indicated in the
-BIDS term description with "**Based on** DICOM Tag ID1, ID2 `DICOM Tag Name`.".
+BIDS term description with "**Based on** DICOM Tag (####,####) `<Attribute Name>`".
 Extraction of BIDS compatible metadata can be performed using
 [DICOM to NIfTI converters](https://bids.neuroimaging.io/tools/converters.html)
 such as [dcm2niix](https://github.com/rordenlab/dcm2niix).

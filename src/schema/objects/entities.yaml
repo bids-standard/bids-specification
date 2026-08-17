@@ -220,7 +220,7 @@ nucleus:
   description: |
     The `nuc-<label>` entity can be used to distinguish acquisitions tuned
     to detect different nuclei.
-    The label is the name of the nucleus or nuclei, which corresponds to DICOM Tag `0018, 9100`.
+    The label is the name of the nucleus or nuclei, which corresponds to DICOM Tag (0018,9100).
     If present in the filename, `"ResonantNucleus"` MUST also be included in
     the associated metadata.
   type: string
@@ -232,7 +232,7 @@ part:
     This entity is used to indicate which component of the complex
     representation of the MRI signal is represented in voxel data.
     The `part-<label>` entity is associated with the DICOM Tag
-    `0008, 9208`.
+    (0008,9208).
     Allowed label values for this entity are `phase`, `mag`, `real` and `imag`,
     which are typically used in `part-mag`/`part-phase` or
     `part-real`/`part-imag` pairs of files.

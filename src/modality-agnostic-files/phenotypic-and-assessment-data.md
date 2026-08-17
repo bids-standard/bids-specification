@@ -36,12 +36,7 @@ The definitions of these fields can be found in
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_metadata_table(
-   {
-      "MeasurementToolMetadata": "OPTIONAL",
-      "Derivative": "OPTIONAL",
-   }
-) }}
+{{ MACROS___make_sidecar_table('phenotype.Phenotype') }}
 
 As an example, consider the contents of a file called
 `phenotype/acds_adult.json`:
