@@ -343,8 +343,7 @@ The source the terms come from SHOULD be documented in the sidecar file, in the 
 documents any other tabular column, as described in
 [Tabular files](../common-principles.md#tabular-files).
 Where the individual terms resolve, give each one its own `TermURL` under `Levels`.
-Where they do not, name the atlas in the `ReferenceAtlas` field of the sidecar,
-which is then the only thing that makes the terms interpretable.
+Where they do not, name the atlas in the `ReferenceAtlas` field of the sidecar.
 
 The method used to determine the location SHOULD be recorded.
 Where it differs between recording sites, use the `localization_method` column of
