@@ -78,7 +78,7 @@ according to the smallest unit of acquisition.
 
 If there is more than one session for any one participant, then
 it is REQUIRED to provide a demographics file in the `/phenotype` directory
-named as `/phenotype/tool-Demographics_phenotype.tsv`
+named as `/phenotype/tool-demographics_phenotype.tsv`
 using the `"IndexColumns"` JSON sidecar field.
 It is RECOMMENDED to store the `age` column for multi-session datasets
 in this demographics file to record participant age for every session
@@ -315,8 +315,8 @@ A guide for using macros can be found at
    "participants.json": "",
    "participants.tsv": "",
    "phenotype": {
-      "tool-Demographics_phenotype.json": "",
-      "tool-Demographics_phenotype.tsv": "",
+      "tool-demographics_phenotype.json": "",
+      "tool-demographics_phenotype.tsv": "",
       "tool-Survey_phenotype.json": "",
       "tool-Survey_phenotype.tsv": "",
       },
@@ -344,7 +344,7 @@ sub-02	F
 sub-03	F
 ```
 
-Contents of `phenotype/tool-Demographics_phenotype.tsv`.
+Contents of `phenotype/tool-demographics_phenotype.tsv`.
 Participant properties that can change
 from session to session belong here especially.
 
@@ -359,7 +359,7 @@ sub-03	ses-baseline	2001-09-01T11:45:00	11	2	10	4
 sub-03	ses-followupMRI	2002-03-01T12:17:00	12	5	10	4
 ```
 
-Partial contents of `phenotype/tool-Demographics_phenotype.json`.
+Partial contents of `phenotype/tool-demographics_phenotype.json`.
 Note how the `session_id` `Levels` are clearly described
 and how `"IndexColumns"` is present.
 
@@ -386,10 +386,10 @@ and how `"IndexColumns"` is present.
 }
 ```
 
-Contents of `phenotype/tool-Survey_phenotype.tsv`.
+Contents of `phenotype/tool-survey_phenotype.tsv`.
 Note how `sub-03` does not have a row for `ses-interview`
 because that session was not collected and is absent above
-in the `phenotype/tool-Demographics_phenotype.tsv` file as well.
+in the `phenotype/tool-demographics_phenotype.tsv` file as well.
 
 ```tsv
 participant_id	session_id	question_1	question_2	question_3

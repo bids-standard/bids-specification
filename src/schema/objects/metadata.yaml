@@ -72,14 +72,12 @@ AdditionalValidation:
   name: AdditionalValidation
   display_name: Additional Validation
   description: |
-    A string or list of strings of additional validations to be performed on the data,
+    A list of strings of additional validations to be performed on the data,
     chosen from among a pre-defined set. The currently allowed values are
     only `"Phenotype"`.
-  anyOf:
-    - type: string
-    - type: array
-      items:
-        type: string
+  type: array
+  items:
+    type: string
 Anaesthesia:
   name: Anaesthesia
   display_name: Anaesthesia

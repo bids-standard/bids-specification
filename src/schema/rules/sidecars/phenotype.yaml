@@ -10,10 +10,10 @@ Phenotype:
       level_addendum: recommended by phenotype guidelines
     Derivative: optional
 
-MeasurementToolMetadataRec:
+MeasurementToolMetadataReq:
   selectors:
     - datatype == 'phenotype'
     - extension == '.tsv'
     - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
   fields:
-    MeasurementToolMetadata: recommended
+    MeasurementToolMetadata: required
