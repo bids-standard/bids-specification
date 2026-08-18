@@ -27,6 +27,7 @@ See also: [BIDS governance](https://bids.neuroimaging.io/collaboration/governanc
 | Julia-Katharina Pfarr ([@julia-pfarr](https://github.com/julia-pfarr))       | 2h/week         |                                       | Mar 2025 |
 | Seyed (Yahya) Shirazi ([@neuromechanist](https://github.com/neuromechanist)) | 2h/week         | ExG, multi-modal, events & annotations | Jul 2025 |
 | Boris Clénet ([@bclenet](https://github.com/bclenet))                        | 2h/week         |                                       | Jul 2025 |
+| Fabricio Cravo ([@fabriciocravo](https://fabriciocravo.github.io/))          | 2h/week         |                                       | Jul 2025 |
 
 In addition to the [BIDS Governance](https://bids.neuroimaging.io/collaboration/governance.html#bids-maintainers-group)
 classification of a maintainer, maintainers may declare a limited scope of responsibility.
