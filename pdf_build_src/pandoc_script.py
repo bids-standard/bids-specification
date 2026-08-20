@@ -4,8 +4,9 @@ This is done once the duplicate src directory is processed.
 """
 
 import subprocess
-import yaml
 from pathlib import Path
+
+import yaml
 
 HERE = Path(__file__).absolute()
 
@@ -76,7 +77,7 @@ def build_pdf(filename="bids-spec.pdf", logfile="bids-spec_pandoc_log.json"):
 
     # print and run
     print("pandoc command being run: \n\n" + "\n".join(cmd))
-    subprocess.run(cmd)
+    subprocess.run(cmd, check=True)
 
 
 if __name__ == "__main__":
