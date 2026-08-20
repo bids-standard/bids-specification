@@ -17,5 +17,5 @@ jobs:
       - name: Add to project
         uses: actions/add-to-project@v1.0.2
         with:
-          project-url: https://github.com/orgs/bids-standard/projects/19
+          project-url: https://github.com/orgs/bids-standard/projects/23
           github-token: ${{ secrets.ADD_TO_PROJECT_PAT }}
