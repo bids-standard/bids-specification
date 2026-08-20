@@ -92,8 +92,9 @@ All metadata that is not directly related to one of the other metadata files (pr
 
 There should be one such JSON file for each data file.
 
-The `*_ecephys.json` or `*_icephys.json` file can be used to store any microephys-specific metadata for the dataset. All setup-related metadata should be stored in a dedicated node of the JSON file called `Setup`.
-We recommend using the following keys to describe the setup:
+The `*_ecephys.json` or `*_icephys.json` file can be used to store any microephys-specific metadata for the dataset.
+The file is a flat JSON object: all keys listed below are top-level keys.
+The tables group them by topic for readability only and do not imply any nesting in the file.
 
 ### Institution Information
 
@@ -107,24 +108,15 @@ We recommend using the following keys to describe the setup:
 
 {{ MACROS___make_sidecar_table("microephys.microephysProcessing") }}
 
-### Additional Procedure Information
-
-Furthermore, additional information can be stored about the recording procedure.
-We RECOMMEND to use a dedicated `Procedure` node with the following keys:
-
--   `Pharmaceuticals`
--   `Sample`
--   `Supplementary`
-
-#### Pharmaceuticals
+### Pharmaceuticals
 
 {{ MACROS___make_sidecar_table("microephys.microephysPharmaceuticals") }}
 
-#### Sample
+### Sample
 
 {{ MACROS___make_sidecar_table("microephys.microephysSample") }}
 
-#### Supplementary
+### Supplementary
 
 {{ MACROS___make_sidecar_table("microephys.microephysSupplementary") }}
 
@@ -637,12 +629,23 @@ In such a case, this file is REQUIRED.
 This allows benefiting from the capability of the supported data formats (NIX and NWB) to store multiple
 recordings in a single file, which can be convenient when these recordings share numerous characteristics
 (for example, for subsequent recordings obtained on a single cell in intracellular electrophysiology).
-In such case, the information about these recordings should be stored in columns added in the
-`*_events.tsv` file, which are listed now.
+In such a case, each recording stored in the file MUST be described by one row of the `*_events.tsv` file,
+using the standard `onset` and `duration` columns to give the start time and duration of that recording
+relative to the start of the data file.
+The `trial_type` column SHOULD be used to label the recording (for example, with the name of the
+recording or protocol as it appears inside the data file).
+This specification does not define any additional `*_events.tsv` columns for this purpose.
+Further columns MAY be added, as for any `*_events.tsv` file, and SHOULD be described in the
+accompanying `*_events.json` sidecar.
 
-Optional column names in `events.tsv` to support multiple recordings in a single data file:
+Example of a `*_events.tsv` describing three recordings stored in a single data file:
 
-<!-- TODO: Macro for events -->
+```tsv
+onset	duration	trial_type
+0.0	120.0	baseline
+125.5	300.0	current-steps
+430.0	180.0	current-steps
+```
 
 ## Microelectrode Electrophysiology Examples
 
@@ -902,14 +905,22 @@ Example `sub-20220101B_sample-cell002_task-IVcurve_icephys.json`:
 }
 ```
 
-This toy data set can be found in [this repository,](https://gin.g-node.org/NeuralEnsemble/BEP032-examples/src/master/toy-dataset_patchclamp_single-record-per-file) with the content of the metadata files. The other option available to organize such data consists in storing several recordings in a single data file (as described in 3.8.2); the same data set is presented using this latter option in [this other repository](https://gin.g-node.org/NeuralEnsemble/BEP032-examples/src/master/toy-dataset_patchclamp_multiple-records-per-file), so that both options can be compared for the same data set.
+The other option available to organize such data consists in storing several recordings in a single data file,
+as described in [Multiple recordings in a single data file](#multiple-recordings-in-a-single-data-file-_eventstsv).
 
 ## Examples of Real Datasets
 
-Several real-world datasets have been formatted using this specification and can be used for practical guidance when curating a new dataset.
-<!-- TODO: Update with current real datasets. A current version of these datasets [can be found on GIN](https://gin.g-node.org/NeuralEnsemble/BEP032-examples) .
+Example datasets formatted according to this specification are maintained in the
+[bids-examples](https://github.com/bids-standard/bids-examples) repository and can be used
+for practical guidance when curating a new dataset:
 
-For a complete dataset including all data samples the extracellular microelectrode dataset published in [Brochier (2018)](https://doi.org/10.1038/sdata.2018.55) has been reorganized according to the current version of this BEP, using the NIX data format.
-The up-to-date version of the dataset [can be found on GIN](https://gin.g-node.org/sprenger/multielectrode_grasp/src/bep_animalephys) .
+-   [`microephys_toy`](https://github.com/bids-standard/bids-examples/tree/master/microephys_toy):
+    the toy extracellular and intracellular datasets described above.
+-   [`microephys_ecephys_multielectrode_grasp`](https://github.com/bids-standard/bids-examples/tree/master/microephys_ecephys_multielectrode_grasp):
+    the extracellular multielectrode array dataset published in
+    [Brochier (2018)](https://doi.org/10.1038/sdata.2018.55), reorganized according to this specification
+    using the NIX data format.
 
-We will also publish another dataset using the NWB data format in the near future, and a dataset acquired -->
+Further real-world datasets are being organized according to this specification in the
+[bids-dandisets](https://github.com/bids-dandisets) project, which mirrors datasets from the
+[DANDI Archive](https://dandiarchive.org) in BIDS layout.
