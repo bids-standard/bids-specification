@@ -23,7 +23,7 @@ PhenotypeDemographicsFileRequiredByTool:
     code: PHENOTYPE_DEMOGRAPHICS_FILE_REQUIRED
     message: |
       A phenotype TSV file contains a session_id column but no
-      /phenotype/tool-Demographics_phenotype.tsv file
+      /phenotype/tool-demographics_phenotype.tsv file
       was found in the /phenotype/ directory.
     level: error
   selectors:
@@ -33,7 +33,7 @@ PhenotypeDemographicsFileRequiredByTool:
     - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
     - type(columns.session_id) != 'null'
   checks:
-    - exists('phenotype/tool-Demographics_phenotype.tsv', 'dataset')
+    - exists('phenotype/tool-demographics_phenotype.tsv', 'dataset')
 
 PhenotypeDemographicsFileRequiredBySessionDir:
   issue:
@@ -47,7 +47,7 @@ PhenotypeDemographicsFileRequiredBySessionDir:
     - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
     - length(glob("sub-*/ses-*")) > 0
   checks:
-    - exists('phenotype/tool-Demographics_phenotype.tsv', 'dataset')
+    - exists('phenotype/tool-demographics_phenotype.tsv', 'dataset')
 
 PhenotypeSessionLevels:
   issue:
@@ -56,6 +56,7 @@ PhenotypeSessionLevels:
       A phenotype tsv sidecar is missing the `Levels` definition for its `session_id` object.
     level: error
   selectors:
+    - entities.tool == demographics
     - suffix == 'phenotype'
     - extension == '.tsv'
     - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
