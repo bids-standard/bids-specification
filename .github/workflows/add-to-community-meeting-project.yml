@@ -1,0 +1,21 @@
+name: Add to community meeting project
+
+on:
+  issues:
+    types:
+      - labeled
+  pull_request:
+    types:
+      - labeled
+
+jobs:
+  add-to-project:
+    name: Add issue/PR to project
+    runs-on: ubuntu-latest
+    if: github.event.label.name == 'community-meeting'
+    steps:
+      - name: Add to project
+        uses: actions/add-to-project@v1.0.2
+        with:
+          project-url: https://github.com/orgs/bids-standard/projects/19
+          github-token: ${{ secrets.ADD_TO_PROJECT_PAT }}
