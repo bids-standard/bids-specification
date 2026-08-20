@@ -27,10 +27,10 @@ PhenotypeDemographicsFileRequiredByTool:
       was found in the /phenotype/ directory.
     level: error
   selectors:
+    - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
     - datatype == 'phenotype'
     - suffix == 'phenotype'
     - extension == '.tsv'
-    - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
     - type(columns.session_id) != 'null'
   checks:
     - exists('phenotype/tool-demographics_phenotype.tsv', 'dataset')
@@ -43,8 +43,8 @@ PhenotypeDemographicsFileRequiredBySessionDir:
       directories are present.
     level: error
   selectors:
-    - path == '/dataset_description.json'
     - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
+    - path == '/dataset_description.json'
     - length(glob("sub-*/ses-*")) > 0
   checks:
     - exists('phenotype/tool-demographics_phenotype.tsv', 'dataset')
@@ -56,10 +56,10 @@ PhenotypeSessionLevels:
       A phenotype tsv sidecar is missing the `Levels` definition for its `session_id` object.
     level: error
   selectors:
+    - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
     - entities.tool == demographics
     - suffix == 'phenotype'
     - extension == '.tsv'
-    - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
     - type(sidecar.session_id) != 'null'
   checks:
     - type(sidecar.session_id.Levels) != 'null'
@@ -89,10 +89,10 @@ PhenotypeSessionRequired:
       entity when any other multi-session data is used in the dataset.
     level: error
   selectors:
+    - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
     - type(entities.sub) != 'null'
     - "!intersects([extension], ['.tsv', '.json'])"
     - length(glob("sub-*/ses-*")) > 0
-    - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
   checks:
     - type(entities.ses) != 'null'
 
@@ -103,9 +103,9 @@ PhenotypeIndexColumnsRequired:
       A phenotype file is missing the `IndexColumns` key and value in its associated sidecar.
     level: error
   selectors:
+    - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
     - suffix == 'phenotype'
     - extension == '.tsv'
-    - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
     - type(columns.session_id) != 'null'
   checks:
     - type(sidecar.IndexColumns) != 'null'
@@ -118,9 +118,9 @@ PhenotypeSessionColumnExists:
       its sidecar.
     level: error
   selectors:
+    - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
     - suffix == 'phenotype'
     - extension == '.tsv'
-    - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
     - length(glob("sub-*/ses-*")) > 0
   checks:
     - type(sidecar.session_id) != 'null'
@@ -149,7 +149,6 @@ PhenotypeSidecarRequired:
     - extension == '.tsv'
     - type(entities.tool) != 'null'
   checks:
-    - type(sidecar.MeasurementToolMetadata) != 'null'
     - type(sidecar.MeasurementToolMetadata.TermURL) != 'null'
       || type(sidecar.MeasurementToolMetadata.Description) != 'null'
 
@@ -161,8 +160,8 @@ PhenotypeDemographicsFileRequiredBySessionDir:
       `IndexColumns` defined in its sidecar session directories are present.
     level: error
   selectors:
-    - path == '/phenotype/tool-Demographics_phenotype.tsv'
     - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
+    - path == '/phenotype/tool-Demographics_phenotype.tsv'
     - length(glob("sub-*/ses-*")) > 0
   checks:
     - type(columns.session_id) != 'null'
