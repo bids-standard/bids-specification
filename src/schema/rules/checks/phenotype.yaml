@@ -127,3 +127,32 @@ PhenotypeSessionColumn:
     - length(glob("sub-*/ses-*")) > 0
   checks:
     - type(sidecar.session_id) != 'null'
+
+ParicipantsSidecarRequired:
+  issue:
+    code: wat
+    message: wat
+  selectors:
+    - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
+    - path == '/participants.tsv'
+  checks:
+    - type(sidecar.participant_id) != 'null'
+
+PhenotypeSidecarRequired:
+  issue:
+    code: PHENOTYPE_SESSION_LEVELS
+    message: |
+      Phenotype tsvs are required to have a sidecar with a MeasurementToolMetadata object with either a `TermURL` or 
+      `Description` key defined.
+    level: error
+  selectors:
+    - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
+    - suffix == 'phenotype'
+    - extension == '.tsv'
+    - type(entities.tool) != 'null'
+  checks:
+    - type(sidecar.MeasurementToolMetadata) != 'null'
+    - type(sidecar.MeasurementToolMetadata.TermURL) != 'null' 
+      || type(sidecar.MeasurementToolMetadata.Description) != 'null'
+
+
