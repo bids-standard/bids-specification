@@ -2,7 +2,7 @@
 # See https://pre-commit.com/hooks.html for more hooks
 ci:
   skip: [shellcheck]
-  autoupdate_schedule: monthly
+  autoupdate_schedule: quarterly
 
 exclude: 'broken_dataset_description.json|uv.lock'
 repos:
