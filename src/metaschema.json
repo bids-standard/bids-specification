@@ -47,8 +47,43 @@
                   "type": "boolean"
                 }
               },
-              "required": ["target"],
-              "additionalProperties": false
+              "required": ["selectors", "target", "inherit"],
+              "additionalProperties": false,
+              "if": {
+                "properties": {
+                  "target": {
+                    "properties": {
+                      "extension": {
+                        "oneOf": [
+                          {
+                            "enum": [".json", ".tsv", ".bval", ".bvec"]
+                          },
+                          {
+                            "type": "array",
+                            "items": {
+                              "enum": [".json", ".tsv", ".bval", ".bvec"]
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "inherit": {
+                    "const": true
+                  }
+                }
+              },
+              "else": {
+                "properties": {
+                  "inherit": {
+                    "const": false
+                  }
+                }
+              }
             }
           },
           "additionalProperties": false
