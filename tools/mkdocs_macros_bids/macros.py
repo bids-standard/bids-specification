@@ -138,7 +138,7 @@ def make_root_filename_template(
             matching_rules[rule_name] = rule
         # Check if rule is a namespace containing rules with the path
         elif not hasattr(rule, "path") and hasattr(rule, "keys"):
-            for sub_name in rule.keys():
+            for sub_name in rule:
                 sub_rule = rule[sub_name]
                 if hasattr(sub_rule, "path") and sub_rule.path == target_path:
                     matching_rules[f"{rule_name}.{sub_name}"] = sub_rule
