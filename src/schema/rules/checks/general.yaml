@@ -44,9 +44,6 @@ BrainvisionLinksBroken:
       A BrainVision recording must include matching '.eeg', '.vhdr', and '.vmrk' files.
     level: error
   selectors:
-    - dataset.dataset_description.DatasetType == "raw"
-    - intersects([suffix], ["eeg", "ieeg"])
-    - intersects([extension], [".eeg", ".vhdr", ".vmrk"])
     # Report once per recording: prefer the header, then the marker, then the data file.
     - |
       extension == ".vhdr" ||
