@@ -71,6 +71,9 @@
             "additionalProperties": false
           }
         },
+        "templates": {
+          "type": "object"
+        },
         "versions": {
           "type": "array",
           "items": {
@@ -421,9 +424,10 @@
             "^derivatives$": {
               "type": "object",
               "properties": {
+                "atlas": { "$ref": "#/definitions/json" },
                 "common_derivatives": { "$ref": "#/definitions/json" }
               },
-              "required": ["common_derivatives"],
+              "required": ["atlas", "common_derivatives"],
               "additionalProperties": false
             },
             "^(?!derivatives$)[a-z_]+$": {
@@ -459,9 +463,6 @@
         "common_principles": {
           "type": "array",
           "items": { "type": "string" }
-        },
-        "dataset_metadata": {
-          "type": "object"
         },
         "directories": {
           "type": "object"
@@ -514,7 +515,6 @@
         "tabular_data",
         "metaentities",
         "common_principles",
-        "dataset_metadata",
         "directories",
         "errors",
         "modalities"

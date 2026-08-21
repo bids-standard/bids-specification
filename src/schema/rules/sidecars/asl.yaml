@@ -180,7 +180,7 @@ MRIASLPaslSpecificBolusCutOffFlagTrue:
     BolusCutOffTechnique:
       level: required
       issue:
-        code: PASL_BOLUS_CUT_OFF_TECHINIQUE
+        code: PASL_BOLUS_CUT_OFF_TECHNIQUE
         message: |
           It is required to define `BolusCutOffTechnique` for this file,
           when `BolusCutOffFlag` is set to `true`. `BolusCutOffTechnique`,

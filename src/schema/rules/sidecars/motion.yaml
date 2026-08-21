@@ -61,7 +61,8 @@ motionRecommended:
     JNTANGChannelCount: recommended
     LATENCYChannelCount: recommended
     MAGNChannelCount: recommended
-    MISCChannelCount: recommended
+    MiscChannelCount: recommended
+    MISCChannelCount: deprecated
     MissingValues: recommended
     MotionChannelCount: recommended
     ORNTChannelCount: recommended

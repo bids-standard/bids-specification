@@ -21,15 +21,21 @@ study:
     subdirs:
       - code
       - docs
+      - rawbids
       - derivatives
       - logs
       - sourcedata
+      - phenotype
   code:
     name: code
     level: optional
     opaque: true
   docs:
     name: docs
+    level: optional
+    opaque: true
+  rawbids:
+    name: rawbids
     level: optional
     opaque: true
   derivatives:
@@ -44,6 +50,10 @@ study:
     name: sourcedata
     level: optional
     opaque: true
+  phenotype:
+    name: phenotype
+    level: optional
+    opaque: false
 
 raw:
   root:
@@ -108,18 +118,30 @@ derivative:
     subdirs:
       - code
       - docs
+      - rawbids
       - derivatives
       - logs
       - phenotype
       - sourcedata
       - stimuli
       - subject
+      - template
   code:
     name: code
     level: optional
     opaque: true
+  cohort:
+    entity: cohort
+    level: optional
+    opaque: false
+    subdirs:
+      - datatype
   docs:
     name: docs
+    level: optional
+    opaque: true
+  rawbids:
+    name: rawbids
     level: optional
     opaque: true
   derivatives:
@@ -154,6 +176,13 @@ derivative:
     level: optional
     opaque: false
     subdirs:
+      - datatype
+  template:
+    entity: template
+    level: optional
+    opaque: false
+    subdirs:
+      - cohort
       - datatype
   datatype:
     value: datatype

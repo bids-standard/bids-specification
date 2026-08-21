@@ -8,7 +8,7 @@ context of the academic literature.
 
 !!! example "Example datasets"
 
-    Several [example PET datasets](https://bids-standard.github.io/bids-examples/#pet)
+    Several [example PET datasets](https://bids.neuroimaging.io/datasets/examples.html#pet)
     have been formatted using this specification
     and can be used for practical guidance when curating a new dataset.
 
@@ -314,7 +314,7 @@ Knudsen et al. 2020
 recommends recording participant body weight.
 If recorded once per participant, these data SHOULD be included in the
 [Participants file](../modality-agnostic-files/data-summary-files.md#participants-file) or as
-[Phenotypic and assessment data](../modality-agnostic-files/data-summary-files.md#phenotypic-and-assessment-data).
+[Phenotypic and assessment data](../modality-agnostic-files/phenotypic-and-assessment-data.md#phenotypic-and-assessment-data).
 
 For example:
 

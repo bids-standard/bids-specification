@@ -23,7 +23,7 @@ EchoTimeGreaterThan:
     - modality == "mri"
     - sidecar.EchoTime
   checks:
-    - sidecar.EchoTime <= 1
+    - max(sidecar.EchoTime) <= 1
 
 # 5
 TotalReadoutTimeGreaterThan:

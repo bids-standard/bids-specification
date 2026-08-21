@@ -516,6 +516,18 @@ asl:
     The complete ASL time series stored as a 4D NIfTI file in the original
     acquisition order, with possible volume types including: control, label,
     m0scan, deltam, cbf.
+audio:
+  value: audio
+  display_name: Audio file
+  description: |
+    An audio data file containing one or more audio streams.
+    Common formats include WAV (uncompressed), MP3, AAC, and Ogg Vorbis.
+audiovideo:
+  value: audiovideo
+  display_name: Audio-video file
+  description: |
+    A media file containing both audio and video streams.
+    Common containers include MP4, MKV, AVI, and WebM.
 aslcontext:
   value: aslcontext
   display_name: Arterial Spin Labeling Context
@@ -578,6 +590,15 @@ defacemask:
   description: |
     A binary mask that was used to remove facial features from an anatomical MRI
     image.
+description:
+  value: description
+  display_name: Description file
+  description: |
+    A JSON file describing the entities that occur in the filename.
+
+    At present, this is used for atlas descriptions.
+
+    This file MUST be located at the root of the dataset.
 descriptions:
   value: descriptions
   display_name: Description Entity Definitions
@@ -611,7 +632,12 @@ electrodes:
   value: electrodes
   display_name: Electrodes
   description: |
-    File that gives the location of (i)EEG electrodes.
+    File that gives the location of (i)EEG or EMG electrodes.
+emg:
+  value: emg
+  display_name: Electromyography
+  description: |
+    Electromyography recording data.
 epi:
   value: epi
   display_name: EPI
@@ -626,9 +652,9 @@ events:
     Event timing information from a behavioral task.
 expADC:
   value: expADC
-  display_name: Exponental ADC
+  display_name: Exponential ADC
   description: |
-    Exponental ADC / Attenuation Coefficient / Attenuation Factor map,
+    Exponential ADC / Attenuation Coefficient / Attenuation Factor map,
     as the ratio of trace-weighted to non-diffusion-weighted image intensity
 fieldmap:
   value: fieldmap
@@ -652,6 +678,12 @@ ieeg:
   display_name: Intracranial Electroencephalography
   description: |
     Intracranial electroencephalography recording data.
+image:
+  value: image
+  display_name: Image file
+  description: |
+    A still image data file.
+    Common formats include JPEG, PNG, SVG, WebP, and TIFF.
 inplaneT1:
   value: inplaneT1
   display_name: Inplane T1
@@ -713,6 +745,7 @@ meg:
   description: |
     Unprocessed MEG data stored in the native file format of the MEG instrument
     with which the data was collected.
+
 motion:
   value: motion
   display_name: Motion
@@ -810,6 +843,12 @@ physio:
   display_name: Physiological recording
   description: |
     Physiological recordings such as cardiac and respiratory signals.
+physioevents:
+  value: physioevents
+  display_name: Physiological events and asynchronous data
+  description: |
+    Event timing information corresponding to physiological recordings and other
+    asynchronous data such as messages.
 probseg:
   value: probseg
   display_name: Probabilistic Segmentation
@@ -877,40 +916,9 @@ unloc:
   description: |
     MRS acquisitions run without localization.
     This includes signals detected using coil sensitivity only.
-audio:
-  value: audio
-  display_name: Audio stimulus file
-  description: |
-    Any data file used as an audio stimulus. Media files usually have an audio file type (such as wav, mp3, aac, ogg).
-    The JSON sidecar associated with each media file should contain information to describe the origin and the
-    nature of the media.
-    However, in the case of the imposed distribution restrictions of the stimulus, the media stimulus file may not be
-    present with only JSON sidecar file containing the aforementioned pertinent metadata.
-image:
-  value: image
-  display_name: Image stimulus file
-  description: |
-    Any data file used as an image stimulus. Media files usually have an image file type (such as jpg, png, svg).
-    The JSON sidecar associated with each media file should contain information to describe the origin and the
-    nature of the media.
-    However, in the case of the imposed distribution restrictions of the stimulus, the media stimulus file may not be
-    present with only JSON sidecar file containing the aforementioned pertinent metadata.
 video:
   value: video
-  display_name: Video stimulus file
+  display_name: Video file
   description: |
-    Any data file used as a video stimulus. Media files usually have a video file type (such as mp4, avi, mkv, webm).
-    The JSON sidecar associated with each media file should contain information to describe the origin and the
-    nature of the media.
-    However, in the case of the imposed distribution restrictions of the stimulus, the media stimulus file may not be
-    present with only JSON sidecar file containing the aforementioned pertinent metadata.
-audiovideo:
-  value: audiovideo
-  display_name: Audiovideo stimulus file
-  description: |
-    Any data file used as an audiovideo stimulus. Media files usually have an audiovideo file type (such as mp4, avi,
-    mkv, webm).
-    The JSON sidecar associated with each media file should contain information to describe the origin and the
-    nature of the media.
-    However, in the case of the imposed distribution restrictions of the stimulus, the media stimulus file may not be
-    present with only JSON sidecar file containing the aforementioned pertinent metadata.
+    A video data file containing one or more video streams but no audio.
+    Common containers include MP4, MKV, AVI, and WebM.

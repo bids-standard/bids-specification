@@ -15,7 +15,7 @@ REQUIRED, RECOMMENDED, and OPTIONAL.
 The guiding principles for when particular data is placed under a given requirement level
 can be loosely described as below:
 
--   REQUIRED: Data cannot be be interpreted without this information (or the ambiguity is unacceptably high)
+-   REQUIRED: Data cannot be interpreted without this information (or the ambiguity is unacceptably high)
 -   RECOMMENDED: Interpretation/utility would be dramatically improved with this information
 -   OPTIONAL: Users and/or tools might find it useful to have this information
 
@@ -85,7 +85,7 @@ saved under a particular filename specified in the standard. This standard
 aspires to describe a majority of datasets, but acknowledges that there will be
 cases that do not fit. In such cases one can include additional files and
 subdirectories to the existing directory structure following common sense. For example
-one may want to include eye tracking data in a vendor specific format that is
+one may want to include eye-tracking data in a vendor specific format that is
 not covered by this standard. The most sensible place to put it is next to the
 continuous recording file with the same naming scheme but different extensions.
 The solutions will change from case to case and publicly available datasets will
@@ -93,7 +93,7 @@ be reviewed to include common data types in the future releases of the BIDS
 specification.
 
 It is RECOMMENDED that non-compulsory metadata fields (like `notch` in `channels.tsv` files)
-and/or files (like `events.tsv`) are fully omitted *when they are unavailable or unapplicable*,
+and/or files (like `events.tsv`) are fully omitted *when they are unavailable or inapplicable*,
 instead of specified with an `n/a` value, or included as an empty file
 (for example an empty `events.tsv` file with only the headers included).
 
@@ -127,6 +127,12 @@ session subdirectories are present) are subdirectories named according to
 data type as defined above.
 A data type directory SHOULD NOT be defined if there are no files to be placed
 in that directory.
+
+**Specific structure of derived data**.
+In the case of [storing derived data (see below)](#source-vs-raw-vs-derived-data),
+template (`tpl-<label>`) directories may be found at the root of the dataset,
+and these may include cohort (`cohort-<label>`) subdirectories.
+These directories are described in [Templates and atlases](derivatives/atlas.md).
 
 ### Other top level directories
 
@@ -297,6 +303,15 @@ However, in the case that these data are to be included:
     through the `sourcedata/` directory mechanism.
     In the case of source data, these aspects are likely more stringent.
 
+**Templates and atlases as derived data.**
+Templates and atlases are key neuroscientific tools to carry out group-level inferences
+and also employed in many atlas-based methodologies (such as atlas-based segmentation).
+Original templates and atlases employed as primary data to the analysis MAY be stored
+within the `sourcedata/atlases/` directory.
+Atlases and artifacts derived from atlases are considered derived data
+and MUST be stored as derivative datasets,
+as described in the next section.
+
 ### Storage of derived datasets
 
 Derivatives can be stored/distributed in two ways:
@@ -332,6 +347,15 @@ Derivatives can be stored/distributed in two ways:
     <dataset>/derivatives/spm-stats/sub-0001
     ```
 
+    Example of an atlas-generating pipeline, including outputs for individual subjects
+    prior to aggregation in the
+    [`MNI152NLin2009cAsym` standard space](appendices/coordinate-systems.md):
+
+    ```Plain
+    <dataset>/derivatives/atlasgenerator/sub-0001
+    <dataset>/derivatives/atlasgenerator/tpl-MNI152NLin2009cAsym
+    ```
+
     Example of a pipeline with nested derivative directories:
 
     ```Plain
@@ -345,14 +369,19 @@ Derivatives can be stored/distributed in two ways:
     dataset is provided with read-only access, for publishing derivatives as
     independent bodies of work, or for describing derivatives that were created
     from more than one source dataset.
-    The `sourcedata/` subdirectory MAY be used to include the source dataset(s)
-    that were used to generate the derivatives.
-    Likewise, any code used to generate the derivatives from the source data
+    If the source is a raw BIDS dataset,
+    it MAY be included under the `rawbids/` subdirectory (see [Study dataset](#study-dataset) for the same convention used at the study level).
+    The `sourcedata/` subdirectory MAY be used to include any other source dataset(s)
+    used to generate the derivatives, including non-BIDS sources and derived BIDS datasets.
+    In particular, derivatives of derivatives MUST place their source derivative
+    dataset(s) under `sourcedata/`, not `rawbids/`,
+    since `rawbids/` is reserved for raw BIDS datasets.
+    Any code used to generate the derivatives from the source data
     MAY be included in the `code/` subdirectory.
     Extra documentation (and relevant images) MAY be included in the `docs/` subdirectory.
     Logs from running the code or other commands MAY be stored under `logs/` subdirectory.
 
-    Example of a derivative dataset including the raw dataset as source:
+    Example of a derivative dataset including the BIDS raw dataset as source:
 
     <!-- This block generates a file tree.
     A guide for using macros can be found at
@@ -366,10 +395,11 @@ Derivatives can be stored/distributed in two ways:
                 "hpc_submitter.sh": "",
                 "...": "",
             },
-            "sourcedata": {
+            "rawbids": {
                 "sub-01": {},
                 "sub-02": {},
                 "...": "",
+                "dataset_description.json": "",
             },
             "sub-01": {},
             "sub-02": {},
@@ -386,11 +416,14 @@ Case 2.
 In both cases, every derivatives dataset is considered a BIDS dataset and must
 include a `dataset_description.json` file at the root level (see
 [Dataset description][dataset-description]).
-Consequently, files should be organized to comply with BIDS to the full extent
+Consequently, files SHOULD be organized to comply with BIDS to the full extent
 possible (that is, unless explicitly contradicted for derivatives).
-Any subject-specific derivatives should be housed within each subject's directory;
-if session-specific derivatives are generated, they should be deposited under a
+Any subject-specific derivatives SHOULD be housed within each subject's directory;
+if session-specific derivatives are generated, they SHOULD be deposited under a
 session subdirectory within the corresponding subject directory; and so on.
+Likewise, any template-specific derivatives SHOULD be housed within each template's directory;
+if cohort-specific derivatives are generated, they SHOULD be deposited under a
+cohort subdirectory within the corresponding template directory; and so on.
 
 ### Non-compliant derivatives
 
@@ -402,7 +435,7 @@ datasets and non-compliant derivatives.
 
 ## Study dataset
 
-BIDS allows one to organize the data for the entire study (original source data, raw BIDS, derivatives) as a valid BIDS dataset in the following way
+BIDS allows one to organize the source, raw, and derived data for the entire study as a valid BIDS dataset (see `study` [`DatasetType`](./glossary.md#session-entities)) in the following way
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
@@ -413,14 +446,14 @@ A guide for using macros can be found at
     "study-1": {
         "sourcedata": {
             "dicoms": {},
-            "raw": {
-                "sub-01": {},
-                "sub-02": {},
-                "...": "",
-                "dataset_description.json": "",
-				"...": "",
-            },
             "..." : "",
+        },
+        "rawbids": {
+            "sub-01": {},
+            "sub-02": {},
+            "...": "",
+            "dataset_description.json": "",
+            "...": "",
         },
         "derivatives": {
             "pipeline1-v1": {},
@@ -433,17 +466,20 @@ A guide for using macros can be found at
    }
 ) }}
 
-In this example, `sourcedata/dicoms` is not nested inside
-`sourcedata/raw`, **and only the `sourcedata/raw` subdirectory** is a BIDS-compliant dataset among `sourcedata/` subfolders.
+In this example, `sourcedata`, `rawbids`, and `derivatives` are top-level directories. **Only the `rawbids` directory** is a BIDS-compliant dataset.
+The `rawbids/` subdirectory is reserved for the raw BIDS dataset
+(the same convention applies inside a `derivative` dataset when its source is a raw BIDS dataset;
+see [Storage of derived datasets](#storage-of-derived-datasets)).
 The subdirectories of `derivatives` MAY be BIDS-compliant derivatives datasets
 (see [Non-compliant derivatives](#non-compliant-derivatives) for further discussion).
-The above example is a fully compliant BIDS dataset, providing a convention useful for organizing source, raw BIDS, and derived BIDS data while maintaining overall BIDS compliance.
-When using this convention, `dataset_description.json` MUST have `DatasetType` to be set to `"study"`.  It is also RECOMMENDED to set the `SourceDatasets`
-field in `dataset_description.json` of each subdirectory of `derivatives` to:
+The above example is a fully compliant BIDS dataset, providing a convention useful for organizing source, raw BIDS, and derived BIDS data
+while maintaining conceptual and operational distinctions mentioned in [Source vs. raw vs. derived data](#source-vs-raw-vs-derived-data).
+When using this convention, `dataset_description.json` MUST have `DatasetType` set to `"study"`.
+It is also RECOMMENDED to set the `SourceDatasets` field in `dataset_description.json` of each subdirectory of `derivatives` to:
 
 ```JSON
 {
-  "SourceDatasets": [ {"URL": "../../sourcedata/raw/"} ]
+  "SourceDatasets": [ {"URL": "../../rawbids/"} ]
 }
 ```
 
@@ -591,7 +627,7 @@ Example:
 ```
 
 Each level can be described with a string as in the example above,
-or with an object containing the fields [`Description`](./glossary.md#description-metadata)
+or with an object containing the fields [`Description`](./glossary.md#description-sense-1-metadata)
 and [`TermURL`](./glossary.md#termurl-metadata)
 like in the example below.
 
@@ -631,7 +667,7 @@ Rules for formatting plain-text tabular files apply to TSVGZ files with three ex
 !!! warning "Attention"
 
     In contrast to plain-text TSV files,
-    compressed tabular files files MUST NOT include a header line.
+    compressed tabular files MUST NOT include a header line.
     Column names MUST be provided in the JSON file with the
     [`Columns`](glossary.md#columns-metadata) field.
     Each column MAY additionally be described with a column description,
@@ -880,6 +916,28 @@ A guide for using macros can be found at
     }
 ) }}
 
+Example 5: Generalization of Examples 1 and 4 for a sidecar file without entities
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example(
+    {
+    "sub-01": {
+        "anat": {},
+        "func": {
+            "sub-01_task-xyz_acq-test1_run-1_bold.nii.gz": "",
+            "sub-01_task-xyz_acq-test1_run-2_bold.nii.gz": "",
+            }
+        },
+    "bold.json": "",
+    }
+) }}
+
+where `bold.json` in top directory would be applicable to all `_bold.nii.gz`
+regardless of any other entity in their filename.
+
 ## Participant names and other labels
 
 BIDS allows for custom user-defined `<label>`s and `<index>`es for example,
@@ -1067,7 +1125,7 @@ Describing dates and timestamps:
 -   Dates can be shifted by a random number of days for privacy protection
     reasons.
     To distinguish real dates from shifted dates,
-    is is RECOMMENDED to set shifted dates to the year 1925 or earlier.
+    it is RECOMMENDED to set shifted dates to the year 1925 or earlier.
     Note that some data formats do not support arbitrary recording dates.
     For example, the [EDF](https://www.edfplus.info/)
     data format can only contain recording dates after 1985.
@@ -1084,9 +1142,16 @@ Describing dates and timestamps:
     for more information.
 
 -   Age SHOULD be given as the number of years since birth at the time of
-    scanning (or first scan in case of multi session datasets). Using higher
-    accuracy (weeks) should in general be avoided due to privacy protection,
-    unless when appropriate given the study goals, for example, when scanning babies.
+    scanning (or first scan in case of multi session datasets).
+    The default unit is `"year"`, but it MAY be overridden in the JSON sidecar
+    (for example, `participants.json`) by setting `"Units"` to one of the
+    following values based on
+    [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Durations) duration
+    designators: `"year"`, `"month"`, `"week"`, `"day"`, `"hour"`, `"minute"`,
+    or `"second"`.
+    Using higher accuracy (for example, weeks or days) should in general be
+    avoided due to privacy protection, unless when appropriate given the study
+    goals, for example, when scanning babies or animals.
 
 ## Directory structure
 

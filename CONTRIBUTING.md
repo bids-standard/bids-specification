@@ -268,11 +268,12 @@ such as when you build the documentation locally.
 ### 4. Ready to build!
 
 Using the terminal (command line) please enter `uv run mkdocs serve`.
+Alternatively, if you would like to use `make`, run `make serve`, which will run `uv sync` and then `mkdocs`.
 This will allow you to see a local version of the specification.
 The local address will be `http://127.0.0.1:8000`.
 You may enter that into your browser and this will bring up the specification!
 
-(If you are not using `uv`, activate your environment and then run `mkdocs serve`.)
+(If you are not using `uv` or `make`, activate your environment and then run `mkdocs serve`.)
 
 ## Fixing Markdown style errors
 
@@ -293,17 +294,10 @@ NodeJS.
 Remark-CLI can be installed via [npm](https://www.npmjs.com/), which is part of
 the NodeJS distribution.
 
-To install the packages we use for our style guide, the following command will
-work on most command lines:
+To install the packages we use for our style guide, use the following command:
 
 ```shell
-npm install `cat npm-requirements.txt`
-```
-
-The equivalent command on PowerShell is:
-
-```shell
-npm install @(cat npm-requirements.txt)
+npm install
 ```
 
 ### 3. Find documents that are failing the check
@@ -311,7 +305,7 @@ npm install @(cat npm-requirements.txt)
 Run the following from the root directory of `bids-specification`:
 
 ```shell
-npx remark ./src/*.md ./src/*/*.md
+npm run remark
 ```
 
 ### 4. Fix the flagged document
@@ -319,13 +313,13 @@ npx remark ./src/*.md ./src/*/*.md
 Please go to the directory where the flagged file is and run remark like this:
 
 ```shell
-npx remark flagged_file.md -o flagged_file_fixed.md
+npx remark path/to/flagged_file.md -o path/to/flagged_file_fixed.md
 ```
 
-Please confirm this has fixed the file. To do this, please run this:
+To confirm this has fixed the file, run:
 
 ```shell
-npx remark flagged_file_fixed.md --frail
+npx remark path/to/flagged_file_fixed.md --frail
 ```
 
 This command will indicate whether this file now conforms to the style guide.
@@ -333,8 +327,8 @@ If it passes, replace `flagged_file.md` with the contents of
 `flagged_file_fixed.md`, add and commit the change:
 
 ```shell
-mv flagged_file_fixed.md flagged_file.md
-git add flagged_file.md
+mv path/to/flagged_file_fixed.md path/to/flagged_file.md
+git add path/to/flagged_file.md
 git commit -m 'STY: Fixed Markdown style'
 ```
 
@@ -429,14 +423,10 @@ The decision-making rules are outlined in
 
 ## How is the changelog generated?
 
-The changelog (see `src/CHANGES.md`) is generated automatically using
-[github-changelog-generator](https://github.com/github-changelog-generator/github-changelog-generator).
-You can see the workflow in the following GitHub Actions configuration file: `.github/workflows/changelog_generator.yml`.
+The changelog (see `src/CHANGES.md`) is generated automatically using a custom script:
+[tools/make_changelog.py](./tools/make_changelog.py).
 
-This workflow is triggered for every commit to `master` that contains string `[build changelog]` in its commit message.
-If you push several commits at once, you need to make sure that the "youngest commit" (the HEAD commit) contains that string.
-The workflow will then open a Pull Request to incorporate the updated changelog.
-Check the proposed changes and merge the Pull Request at will.
+The script uses the title of the pull request, so that should be a brief summary of the change.
 
 To exclude pull requests from showing up in the changelog, they have to be labeled with
 the "exclude-from-changelog" label.

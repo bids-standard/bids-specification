@@ -38,7 +38,7 @@ def test_make_entity_definitions(schema_obj):
 def test_make_glossary(schema_obj, schema_dir):
     """
     Test whether files under the schema objects subdirectory correspond to entries, and
-    that rules are not mis-loaded as objects.
+    that rules are not misloaded as objects.
     This may need to be updated for schema hierarchy changes.
     """
     # Test consistency
@@ -60,9 +60,9 @@ def test_make_glossary(schema_obj, schema_dir):
     for line in glossary.split("\n"):
         if line.startswith('<a name="objects.'):
             # Are all objects objects?
-            assert any([line.startswith(f'<a name="objects.{i}') for i in object_files])
+            assert any(line.startswith(f'<a name="objects.{i}.') for i in object_files)
             # Are rules loaded incorrectly?
-            assert not any([line.startswith(f'<a name="objects.{i}') for i in rules_only])
+            assert not any(line.startswith(f'<a name="objects.{i}.') for i in rules_only)
 
 
 @pytest.mark.parametrize("placeholders", [True, False])

@@ -70,7 +70,8 @@ EEGRecommended:
     ECGChannelCount: recommended
     EMGChannelCount: recommended
     EOGChannelCount: recommended
-    MISCChannelCount: recommended
+    MiscChannelCount: recommended
+    MISCChannelCount: deprecated
     TriggerChannelCount: recommended
     RecordingDuration: recommended
     RecordingType: recommended

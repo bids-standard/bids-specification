@@ -7,3 +7,30 @@ PhysioColumns:
     respiratory: optional
     trigger: optional
   additional_columns: allowed
+
+PhysioEyeTracking:
+  selectors:
+    - suffix == "physio"
+    - sidecar.PhysioType == "eyetrack"
+  columns:
+    timestamp__eyetrack: required
+    x_coordinate: required
+    y_coordinate: required
+    pupil_size: optional
+  initial_columns:
+    - timestamp__eyetrack
+    - x_coordinate
+    - y_coordinate
+  additional_columns: allowed
+
+PhysioEventsColumns:
+  selectors:
+    - suffix == "physioevents"
+  columns:
+    onset__physioevents: required
+    duration: recommended
+    trial_type: optional
+    message: optional
+  initial_columns:
+    - onset__physioevents
+  additional_columns: allowed

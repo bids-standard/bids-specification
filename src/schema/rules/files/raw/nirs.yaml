@@ -1,5 +1,6 @@
 ---
 nirs:
+  $ref: meta.templates.raw.task
   suffixes:
     - nirs
   extensions:
@@ -7,9 +8,3 @@ nirs:
     - .json
   datatypes:
     - nirs
-  entities:
-    subject: required
-    session: optional
-    task: required
-    acquisition: optional
-    run: optional

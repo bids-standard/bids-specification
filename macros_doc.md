@@ -323,7 +323,7 @@ As a rule of thumb, no, unless it is clear that this kind of table will reappear
 many times in the future in the specification. But this is usually hard to
 predict so better start with a table in Markdown.
 
-If later we see that the same type of table keeps reoccuring the specification
+If later we see that the same type of table keeps reoccurring the specification
 we could create a macro to generate them.
 
 ## Why use macros at all?

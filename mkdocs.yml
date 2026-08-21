@@ -1,4 +1,4 @@
-site_name: Brain Imaging Data Structure 1.10.2-dev
+site_name: Brain Imaging Data Structure 1.11.2-dev
 site_url: https://bids-specification.readthedocs.io/en/stable/
 repo_url: https://github.com/bids-standard/bids-specification
 nav:
@@ -25,10 +25,12 @@ nav:
           - Near-Infrared Spectroscopy: modality-specific-files/near-infrared-spectroscopy.md
           - Motion: modality-specific-files/motion.md
           - Magnetic Resonance Spectroscopy: modality-specific-files/magnetic-resonance-spectroscopy.md
+          - Electromyography: modality-specific-files/electromyography.md
       - Derivatives:
           - BIDS Derivatives: derivatives/introduction.md
           - Common data types and metadata: derivatives/common-data-types.md
           - Imaging data types: derivatives/imaging.md
+          - Templates and atlases: derivatives/atlas.md
       - Longitudinal and multi-site studies: longitudinal-and-multi-site-studies.md
       - Glossary: glossary.md
       - BIDS Extension Proposals: extensions.md
@@ -46,12 +48,15 @@ nav:
           - Coordinate systems: appendices/coordinate-systems.md
           - Quantitative MRI: appendices/qmri.md
           - Arterial Spin Labeling: appendices/arterial-spin-labeling.md
+          - Media files: appendices/media-files.md
           - Cross modality correspondence: appendices/cross-modality-correspondence.md
       - Changelog: CHANGES.md
-  - The BIDS Starter Kit:
-      - Website: https://bids.neuroimaging.io/getting_started/
+  - The BIDS Website:
+      - Getting started: https://bids.neuroimaging.io/getting_started/
       - Tutorials: https://bids.neuroimaging.io/getting_started/tutorials/
-      - GitHub repository: https://github.com/bids-standard/bids-starter-kit
+exclude_docs: |
+  README.md
+  pregh-changes.md
 theme:
   name: material
   favicon: images/favicon.png
@@ -108,6 +113,7 @@ extra_javascript:
   - js/jquery-3.6.0.min.js
 extra_css:
   - css/tsv.css
+  - css/dynamic-width.css
 markdown_extensions:
   - toc:
       anchorlink: true

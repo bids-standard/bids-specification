@@ -124,7 +124,7 @@ It is RECOMMENDED to accompany each `samples.tsv` file with a sidecar
 ```JSON
 {
     "sample_type": {
-        "Description": "type of sample from ENCODE Biosample Type (https://www.encodeproject.org/profiles/biosample_type)",
+        "Description": "type of sample from ENCODE Biosample Type (https://www.encodeproject.org/profiles/biosample_type)"
     },
     "derived_from": {
         "Description": "sample_id from which the sample is derived"

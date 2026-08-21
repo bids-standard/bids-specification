@@ -16,18 +16,19 @@ from __future__ import annotations
 import json
 from textwrap import dedent, indent
 
-TYPE_CHECKING = False
-if TYPE_CHECKING:
-    from typing import Any, Callable, Protocol
+from .. import _lazytypes as lt
 
-    class Spec(Protocol):
+if lt.TYPE_CHECKING:
+    from collections.abc import Mapping
+
+    class Spec(lt.Protocol):
         prelude: str
         class_def: str
         attr_def: str
         proto_prefix: str
 
 
-def with_indent(spaces: int, /) -> Callable[[str], str]:
+def with_indent(spaces: int, /) -> lt.Callable[[str], str]:
     def decorator(attr: str) -> str:
         return indent(dedent(attr), " " * spaces)
 
@@ -140,8 +141,8 @@ def snake_to_pascal(name: str) -> str:
 
 def create_protocol_source(
     class_name: str,
-    properties: dict[str, Any],
-    metadata: dict[str, Any],
+    properties: dict[str, lt.Any],
+    metadata: dict[str, lt.Any],
     template: Spec,
     classes: dict[str, str],
 ) -> str:
@@ -189,10 +190,10 @@ def create_protocol_source(
 
 def typespec_to_source(
     name: str,
-    typespec: dict[str, Any],
+    typespec: dict[str, lt.Any],
     template: Spec,
     classes: dict[str, str],
-) -> tuple[str, dict[str, Any]]:
+) -> tuple[str, dict[str, lt.Any]]:
     """Convert JSON-schema style specification to type and metadata dictionary."""
     tp = typespec.get("type")
     if not tp:
@@ -226,7 +227,7 @@ def typespec_to_source(
 
 
 def generate_protocols(
-    typespec: dict[str, Any],
+    typespec: dict[str, lt.Any],
     root_class_name: str,
     template: Spec,
 ) -> dict[str, str]:
@@ -241,7 +242,7 @@ def generate_protocols(
     return protocols
 
 
-def generate_module(schema: dict[str, Any], class_type: str) -> str:
+def generate_module(schema: Mapping[str, lt.Any], class_type: str) -> str:
     """Generate a context module source code from a BIDS schema.
 
     Returns a tuple containing the module source code and a list of protocol names.
