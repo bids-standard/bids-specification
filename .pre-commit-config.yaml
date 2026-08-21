@@ -50,6 +50,12 @@ repos:
     hooks:
       - id: codespell
         args: ["--config=.codespellrc", "--dictionary=-", "--dictionary=.codespell_dict"]
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.16.2
+    hooks:
+      - id: ruff-check
+        args: [--fix]
+      - id: ruff-format
   - repo: https://github.com/pre-commit/mirrors-mypy
     rev: v2.3.0
     hooks:
