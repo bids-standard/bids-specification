@@ -291,11 +291,4 @@ to aggregate longitudinal or multi-session tabular phenotypic data.
 
 When the [`AdditionalValidation` key](dataset-description.md#additional-validation)
 contains `"Phenotype"` in the `dataset_description.json`,
-the following tabular phenotypic data guidelines
-apply to sessions files:
-
--   [5.](../appendices/phenotype.md#5-use-a-demographics-file-for-multi-session-data)
-    Use a demographics file for multi-session data
-
--   [6.](../appendices/phenotype.md#6-record-acquisition-time-of-all-sessions-with-acq_time)
-    Record acquisition time of all sessions with `acq_time`
+the tabular phenotypic data guidelines become REQUIRED.
