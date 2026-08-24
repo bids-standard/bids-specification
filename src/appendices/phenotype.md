@@ -27,6 +27,8 @@ In order to validate correctly, use `session_id` as your session column's name.
 There are two examples of this usage [below in this appendix](#examples).
 Store each of the TSV and JSON files in the `/phenotype` directory
 using the file-naming template `/phenotype/tool-<ToolName>_phenotype.tsv`.
+The `<ToolName>` in `tool-<ToolName>` MUST be alphanumeric,
+but it CAN be named as `lowercase`, `PascalCase`, or `camelCase`.
 Read the [phenotypic and assessment data section](../modality-agnostic-files/phenotypic-and-assessment-data.md)
 for further explanation of how to use `"IndexColumns"`
 to aggregate longitudinal or multi-session tabular phenotypic data.
