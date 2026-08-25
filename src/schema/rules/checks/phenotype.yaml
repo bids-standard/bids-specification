@@ -153,7 +153,7 @@ PhenotypeSidecarRequired:
     - type(sidecar.MeasurementToolMetadata.TermURL) != 'null'
       || type(sidecar.MeasurementToolMetadata.Description) != 'null'
 
-PhenotypeDemographicsFileRequiredBySessionDir:
+PhenotypeDemographicsMissingData:
   issue:
     code: PHENOTYPE_DEMOGRAPHICS_MISSING_DATA
     message: |

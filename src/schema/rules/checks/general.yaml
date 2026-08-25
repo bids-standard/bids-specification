@@ -35,4 +35,3 @@ DuplicateReadmes:
     - match(path, '^/README.*')
   checks:
     - exists(["README", "README.md", "README.rst", "README.txt"], "dataset") == 1
-
