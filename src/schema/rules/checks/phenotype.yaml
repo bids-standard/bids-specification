@@ -73,7 +73,7 @@ PhenotypeSessionDirectoryMissing:
     level: error
   selectors:
     - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
-    - entities.tool == 'Demographics'
+    - entities.tool == 'demographics'
     - suffix == 'phenotype'
     - extension == '.tsv'
     - type(columns.session_id) != 'null'
@@ -114,7 +114,7 @@ PhenotypeSessionColumnExists:
   issue:
     code: PHENOTYPE_SESSION_LEVELS
     message: |
-      /phenotype/tool-Demographics_phenotype.tsv missing `Levels` definition for `session_id` object in
+      /phenotype/tool-demographics_phenotype.tsv missing `Levels` definition for `session_id` object in
       its sidecar.
     level: error
   selectors:
@@ -157,12 +157,12 @@ PhenotypeDemographicsMissingData:
   issue:
     code: PHENOTYPE_DEMOGRAPHICS_MISSING_DATA
     message: |
-      /phenotype/tool-Demographics_phenotype.tsv is required to have a `session_id` column defined as well as an
+      /phenotype/tool-demographics_phenotype.tsv is required to have a `session_id` column defined as well as an
       `IndexColumns` defined in its sidecar session directories are present.
     level: error
   selectors:
     - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
-    - path == '/phenotype/tool-Demographics_phenotype.tsv'
+    - path == '/phenotype/tool-demographics_phenotype.tsv'
     - length(glob("sub-*/ses-*")) > 0
   checks:
     - type(columns.session_id) != 'null'
