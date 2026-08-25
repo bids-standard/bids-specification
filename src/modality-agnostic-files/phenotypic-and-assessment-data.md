@@ -117,20 +117,7 @@ questionnaire).
 
 When the [`AdditionalValidation` key](dataset-description.md#additional-validation)
 contains `"Phenotype"` in the `dataset_description.json`,
-the following tabular phenotypic data guidelines
-apply to phenotypic and assessment data.
-
--   [1.](../appendices/phenotype.md#1-aggregate-data-across-sessions-using-indexcolumns)
-    Aggregate data across sessions using `"IndexColumns"`
-
--   [2.](../appendices/phenotype.md#2-always-pair-tabular-data-with-data-dictionaries)
-    Always pair tabular data with data dictionaries
-
--   [3.](../appendices/phenotype.md#3-add-measurementtoolmetadata-to-each-tabular-phenotypic-measurement-tool)
-    Add `MeasurementToolMetadata` to each tabular phenotypic measurement tool
-
--   [4.](../appendices/phenotype.md#4-ensure-minimal-annotation-for-phenotypic-and-assessment-data)
-    Ensure minimal annotation for phenotypic and assessment data
+the tabular phenotypic data guidelines become REQUIRED.
 
 To read more about the guidelines for tabular phenotypic data and examples,
 see the [tabular phenotypic data guidelines appendix](../appendices/phenotype.md).

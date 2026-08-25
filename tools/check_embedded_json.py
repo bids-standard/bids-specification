@@ -91,7 +91,7 @@ def check_file(filepath):
     try:
         with open(filepath, encoding="utf8") as f:
             text = f.read()
-    except (FileNotFoundError, IOError):
+    except (OSError, FileNotFoundError):
         return []
 
     blocks = extract_json_blocks(text)
