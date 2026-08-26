@@ -93,8 +93,7 @@ All metadata that is not directly related to one of the other metadata files (pr
 There should be one such JSON file for each data file.
 
 The `*_ecephys.json` or `*_icephys.json` file can be used to store any microephys-specific metadata for the dataset.
-The file is a flat JSON object: all keys listed below are top-level keys.
-The tables group them by topic for readability only and do not imply any nesting in the file.
+The tables below group top-level JSON keys by topic for readability only and do not imply any nesting in the file.
 
 ### Institution Information
 
