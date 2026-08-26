@@ -326,26 +326,96 @@ This rule is different from the electrodes.tsv table of the [iEEG modality](intr
 
 To specify electrode positions in surgical space, individual anatomical space, or a common coordinate system (such as the Allen CCF), use an additional `*_electrodes.tsv` file with a [`space-<label>`](../appendices/entities.md#space) entity. See the [`*_coordsystem.json` section](#coordinate-system-json-_coordsystemjson) for details on defining these coordinate systems.
 
+### Anatomical Location
+
+Anatomical location is described at two levels of detail.
+The `anatomical_location` column of `*_probes.tsv` names the structure in which the probe as a whole
+is placed, which for a probe spanning several structures MUST be a structure containing all of them,
+and may be as coarse as `brain` or a single hemisphere.
+The `anatomical_location` column of `*_electrodes.tsv` names the structure in which an individual
+recording site is located, and is where a per-contact localization belongs.
+Only the electrode-level column can describe a probe that passes through several structures,
+which is common for long shank probes.
+
+Terms may be taken from a species-independent ontology such as [Uberon](https://obophenotype.github.io/uberon/) or from a species-specific
+atlas or ontology such as the [Mouse Brain Atlas Ontology](https://www.ebi.ac.uk/ols4/ontologies/mba), and a species-specific is often the better choice.
+The source the terms come from SHOULD be documented in the sidecar file, in the way BIDS
+documents any other tabular column, as described in
+[Tabular files](../common-principles.md#tabular-files).
+Where the individual terms resolve, give each one its own `TermURL` under `Levels`.
+Where they do not, name the atlas in the `ReferenceAtlas` field of the sidecar.
+
+The method used to determine the location SHOULD be recorded.
+Where it differs between recording sites, use the `localization_method` column of
+`*_electrodes.tsv`.
+Where the same method applies to every electrode in the file, it MAY be given once in the
+`LocalizationMethod` field of the corresponding `*_electrodes.json` file instead,
+but it MUST NOT be given in both places.
+
+{{ MACROS___make_sidecar_table("microephys.microephysElectrodeLocalization") }}
+
+In the following `*_electrodes.json` example the atlas resolves its individual structures,
+so each term used in the table is given its own `TermURL`:
+
+```JSON
+{
+  "anatomical_location": {
+    "Description": "Structure the electrode is located in, from the Allen Mouse Brain Atlas",
+    "Levels": {
+      "MOp": {
+        "Description": "Primary motor area",
+        "TermURL": "https://atlas.brain-map.org/atlas?atlas=602630314#structure=985"
+      },
+      "CA1": {
+        "Description": "Field CA1",
+        "TermURL": "https://atlas.brain-map.org/atlas?atlas=602630314#structure=382"
+      }
+    }
+  },
+  "LocalizationMethod": "histology",
+  "ReferenceAtlas": "Allen Mouse Brain Common Coordinate Framework v3"
+}
+```
+
+In the next example the atlas publishes region names but nothing to resolve them to,
+so there are no `TermURL` values to give and `ReferenceAtlas` is what makes the names
+in `anatomical_location` interpretable:
+
+```JSON
+{
+  "LocalizationMethod": "stereotaxic coordinates",
+  "ReferenceAtlas": "D99 macaque atlas v2.0"
+}
+```
+
+In both examples the localization method is given once in the sidecar because it is the same
+for every electrode in the file.
+
+Because a dataset may contain more than one `*_electrodes.tsv` file for the same recording,
+distinguished by the [`space-<label>`](../appendices/entities.md#space) entity,
+localizations produced by different atlases or different methods can be provided alongside one another,
+each with its own `ReferenceAtlas` and `LocalizationMethod`.
+
 ### Example `*_electrodes.tsv`
 
 **Extracellular electrophysiology example (probe-relative coordinates):**
 
 ```tsv
-name	probe_name	hemisphere	x	y	z	impedance	shank_id	size	material	location
-e001	probe01	L	0	0	0	1.2	0	15	iridium-oxide	MOp
-e002	probe01	L	0	0	25	1.1	0	15	iridium-oxide	MOp
-e003	probe01	L	0	0	50	1.3	0	15	iridium-oxide	MOp
-e004	probe01	L	0	0	75	1.4	0	15	iridium-oxide	MOp
-e005	probe02	R	0	0	0	2.1	n/a	12	tungsten	CA1
-e006	probe02	R	0	0	15	2.3	n/a	12	tungsten	CA1
-e007	probe02	R	0	0	30	1.9	n/a	12	tungsten	CA1
-e008	probe02	R	0	0	45	2.0	n/a	12	tungsten	CA1
+name	probe_name	hemisphere	x	y	z	impedance	shank_id	size	material	anatomical_location	localization_method
+e001	probe01	L	0	0	0	1.2	0	15	iridium-oxide	MOp	histology
+e002	probe01	L	0	0	25	1.1	0	15	iridium-oxide	MOp	histology
+e003	probe01	L	0	0	50	1.3	0	15	iridium-oxide	MOp	histology
+e004	probe01	L	0	0	75	1.4	0	15	iridium-oxide	MOp	histology
+e005	probe02	R	0	0	0	2.1	n/a	12	tungsten	CA1	histology
+e006	probe02	R	0	0	15	2.3	n/a	12	tungsten	CA1	histology
+e007	probe02	R	0	0	30	1.9	n/a	12	tungsten	CA1	histology
+e008	probe02	R	0	0	45	2.0	n/a	12	tungsten	CA1	histology
 ```
 
 **Intracellular electrophysiology example:**
 
 ```tsv
-name	probe_name	hemisphere	x	y	z	impedance	pipette_solution	internal_pipette_diameter	external_pipette_diameter	material	location
+name	probe_name	hemisphere	x	y	z	impedance	pipette_solution	internal_pipette_diameter	external_pipette_diameter	material	anatomical_location
 patch01	pipette01	L	0	0	0	5.2	K-gluconate	1.5	2.5	borosilicate-glass	VISp2/3
 patch02	pipette02	R	0	0	0	4.8	K-gluconate	1.5	2.5	borosilicate-glass	VISp2/3
 sharp01	pipette03	L	0	0	0	80	3M KCl	0.5	1.0	borosilicate-glass	PL5
@@ -365,18 +435,18 @@ This file contains the probe ID, the type of recording (acute/chronic), and the 
 **Extracellular electrophysiology example:**
 
 ```tsv
-probe_name	type	AP	ML	DV	AP_angle	ML_angle	rotation_angle	hemisphere	manufacturer	device_serial_number	electrode_count	width	height	depth	coordinate_reference_point	anatomical_reference_point	associated_brain_region	associated_brain_region_id	reference_atlas	material
-probe01	silicon-probe	-2.5	1.5	-4.0	15	0	0	L	IMEC	NP1100-2205	384	70	20	10	tip	Bregma	Primary Motor Cortex	MOp	Franklin-Paxinos	silicon
-probe02	tetrode	-1.2	-2.1	-3.5	0	10	45	R	Neuralynx	TT-12345	4	n/a	n/a	n/a	tip	Bregma	Hippocampus CA1	CA1	Paxinos-Watson	tungsten
+probe_name	type	AP	ML	DV	AP_angle	ML_angle	rotation_angle	hemisphere	manufacturer	device_serial_number	electrode_count	width	height	depth	coordinate_reference_point	anatomical_reference_point	anatomical_location	material
+probe01	silicon-probe	-2.5	1.5	-4.0	15	0	0	L	IMEC	NP1100-2205	384	70	20	10	tip	Bregma	isocortex	silicon
+probe02	tetrode	-1.2	-2.1	-3.5	0	10	45	R	Neuralynx	TT-12345	4	n/a	n/a	n/a	tip	Bregma	CA1	tungsten
 ```
 
 **Intracellular electrophysiology example:**
 
 ```tsv
-probe_name	type	AP	ML	DV	AP_angle	ML_angle	rotation_angle	hemisphere	manufacturer	electrode_count	coordinate_reference_point	anatomical_reference_point	associated_brain_region	associated_brain_region_id	reference_atlas
-pipette01	patch-pipette	-1.8	0.5	-2.2	30	0	0	L	Sutter	1	tip	Bregma	Visual Cortex Layer 2/3	VISp2/3	AllenCCFv3
-pipette02	patch-pipette	-1.8	-0.5	-2.2	30	0	0	R	Sutter	1	tip	Bregma	Visual Cortex Layer 2/3	VISp2/3	AllenCCFv3
-pipette03	sharp-electrode	-3.2	1.2	-3.8	20	5	0	L	WPI	1	tip	Bregma	Prefrontal Cortex Layer 5	PL5	Franklin-Paxinos
+probe_name	type	AP	ML	DV	AP_angle	ML_angle	rotation_angle	hemisphere	manufacturer	electrode_count	coordinate_reference_point	anatomical_reference_point	anatomical_location
+pipette01	patch-pipette	-1.8	0.5	-2.2	30	0	0	L	Sutter	1	tip	Bregma	VISp2/3
+pipette02	patch-pipette	-1.8	-0.5	-2.2	30	0	0	R	Sutter	1	tip	Bregma	VISp2/3
+pipette03	sharp-electrode	-3.2	1.2	-3.8	20	5	0	L	WPI	1	tip	Bregma	PL5
 ```
 
 For details on the surgical coordinate system used to describe probe placement during surgery (AP, ML, DV, angles, and

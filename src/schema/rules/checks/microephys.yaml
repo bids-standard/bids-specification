@@ -17,6 +17,46 @@ MicroephysRequiredCoordsystemWithSpace:
   checks:
     - associations.coordsystem != null
 
+# The localization method belongs either in the electrodes table, where it can vary
+# between electrodes, or in the sidecar, where it applies to all of them, but not in both.
+MicroephysLocalizationMethodDuplicated:
+  issue:
+    code: MICROEPHYS_LOCALIZATION_METHOD_DUPLICATED
+    message: |
+      The localization method is given both in the `localization_method` column of
+      `*_electrodes.tsv` and in the `LocalizationMethod` field of the corresponding
+      `*_electrodes.json` file. It MUST be given in only one of the two.
+    level: error
+  selectors:
+    - intersects([datatype], ["ecephys", "icephys"])
+    - suffix == "electrodes"
+    - extension == ".tsv"
+    - type(columns.localization_method) != "null"
+  checks:
+    - '!("LocalizationMethod" in sidecar)'
+
+# Anatomical location terms are interpretable if the sidecar documents where they came
+# from, either by resolving the terms themselves or by naming the atlas they were taken from.
+MicroephysUndocumentedAnatomicalLocation:
+  issue:
+    code: MICROEPHYS_ANATOMICAL_LOCATION_UNDOCUMENTED
+    message: |
+      The `*_electrodes.tsv` file gives anatomical locations, but the corresponding
+      `*_electrodes.json` file neither documents the terms with `TermURL` or `Levels`
+      nor names the atlas they were taken from in `ReferenceAtlas`,
+      so the terms cannot be interpreted.
+    level: warning
+  selectors:
+    - intersects([datatype], ["ecephys", "icephys"])
+    - suffix == "electrodes"
+    - extension == ".tsv"
+    - columns.anatomical_location != null
+  checks:
+    - |
+      sidecar.anatomical_location.TermURL != null ||
+      sidecar.anatomical_location.Levels != null ||
+      sidecar.ReferenceAtlas != null
+
 # Stereotaxic coordinates cannot be interpreted without knowing the point they are
 # measured from, so requiring the reference point is conditioned on their presence.
 MicroephysRequiredAnatomicalReferencePoint:

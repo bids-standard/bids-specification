@@ -78,26 +78,36 @@ AP__probes:
     Positive values are anterior to the reference point.
   type: number
   unit: mm
-associated_brain_region:
-  name: associated_brain_region
-  display_name: Associated brain region
+anatomical_location:
+  name: anatomical_location
+  display_name: Anatomical location
   description: |
-    A textual indication on the location of the probe,
-    preferably species-independent terms as obtained, for example from Uberon.
+    The anatomical structure in which the electrode is located
+    (for example, `cortical layer 3`, `CA1`, `MOp`).
+    Terms from a species-specific atlas are acceptable, and are often preferable to
+    species-independent terms.
+    The ontology or atlas the terms are taken from SHOULD be documented in the
+    corresponding `*_electrodes.json` file, using `TermURL` for the column and,
+    where the individual terms are resolvable, `Levels` to map each term to its own
+    `TermURL` (see [Tabular files](SPEC_ROOT/common-principles.md#tabular-files)).
   type: string
-associated_brain_region_id:
-  name: associated_brain_region_id
-  display_name: Associated brain region identifier
+# anatomical_location for probes.tsv files, which describes the probe as a whole and so is
+# coarser than its electrodes.tsv counterpart
+anatomical_location__probes:
+  name: anatomical_location
+  display_name: Anatomical location
   description: |
-    An identifier of the associated brain region based on the Uberon ontology
-    for anatomical structures in animals, for example "UBERON:0010415"
-  type: string
-associated_brain_region_quality_type:
-  name: associated_brain_region_quality_type
-  display_name: Associated brain region quality type
-  description: |
-    The method used to identify the associated brain region (estimated|proof)
-    depending on anatomical pictures proofing the location or indirect estimation of the location.
+    The anatomical structure in which the probe is placed,
+    for example, `brain`, `left hemisphere`, `isocortex`, or `CA1`.
+    This column describes the probe as a whole, so the structure named here SHOULD be one
+    that contains every recording site on the probe.
+    A probe that spans several structures SHOULD therefore be described here by a
+    containing structure, with the location of each recording site given in the
+    `anatomical_location` column of the `*_electrodes.tsv` file.
+    Terms from a species-specific atlas are acceptable, and are often preferable to
+    species-independent terms, and the source they come from SHOULD be documented in the
+    corresponding `*_probes.json` file as described for the `anatomical_location` column of
+    `*_electrodes.tsv`.
   type: string
 cardiac:
   name: cardiac
@@ -443,11 +453,16 @@ index:
   description: |
     The label integer index.
   type: integer
-location:
-  name: location
-  display_name: Location
+localization_method:
+  name: localization_method
+  display_name: Localization method
   description: |
-    An indication on the location of the electrode (for example, `cortical layer 3`, `CA1`).
+    The method used to determine the anatomical location of the electrode,
+    for example, `histology`, `atlas registration`, `stereotaxic coordinates`,
+    or `post-operative imaging`.
+    Where the same method applies to every electrode in the file, it MAY instead be given
+    once in the `LocalizationMethod` field of the corresponding `*_electrodes.json` file.
+    It MUST NOT be given in both places.
   type: string
 interelectrode_distance:
   name: interelectrode_distance
@@ -730,13 +745,6 @@ reference__ieeg:
   description: |
     Specification of the reference (for example, `mastoid`, `ElectrodeName01`, `intracranial`, `CAR`, `other`, `n/a`).
     If the channel is not an electrode channel (for example, a microphone channel) use `n/a`.
-  type: string
-reference_atlas:
-  name: reference_atlas
-  display_name: Reference atlas
-  description: |
-    Name of reference atlas used for associated brain region identification,
-    preferably an [EBRAINS-supported atlas](https://www.ebrains.eu/brain-atlases/reference-atlases/#services).
   type: string
 reference_frame:
   name: reference_frame
