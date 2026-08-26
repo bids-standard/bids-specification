@@ -337,7 +337,7 @@ recording site is located, and is where a per-contact localization belongs.
 Only the electrode-level column can describe a probe that passes through several structures,
 which is common for long shank probes.
 
-Terms may be taken from a species-independent ontology such as Uberon or from a species-specific
+Terms may be taken from a species-independent ontology such as [Uberon](https://obophenotype.github.io/uberon/) or from a species-specific
 atlas or ontology such as the [Mouse Brain Atlas Ontology](https://www.ebi.ac.uk/ols4/ontologies/mba), and a species-specific is often the better choice.
 The source the terms come from SHOULD be documented in the sidecar file, in the way BIDS
 documents any other tabular column, as described in
