@@ -72,6 +72,22 @@ SamplesTSVMissing:
   checks:
     - exists('samples.tsv', 'dataset')
 
+# samples.tsv is required whenever the sample entity is used, not only for
+# microscopy. See the description of the samples file in objects/files.yaml.
+SamplesTSVMissingForSampleEntity:
+  issue:
+    code: SAMPLES_TSV_MISSING
+    message: |
+      The compulsory file '/samples.tsv' is missing.
+      This file is REQUIRED if the `sample-<label>` entity is present in any
+      filename within the dataset.
+      See 'Modality agnostic files' section of the BIDS specification.
+    level: error
+  selectors:
+    - '"sample" in entities'
+  checks:
+    - exists('samples.tsv', 'dataset')
+
 UnknownVersion:
   issue:
     code: UNKNOWN_BIDS_VERSION
