@@ -2,7 +2,7 @@
 # See https://pre-commit.com/hooks.html for more hooks
 ci:
   skip: [shellcheck]
-  autoupdate_schedule: monthly
+  autoupdate_schedule: quarterly
 
 exclude: 'broken_dataset_description.json|uv.lock'
 repos:
@@ -46,12 +46,18 @@ repos:
       - id: taplo-format
         args: [-o, 'array_auto_collapse=false']
   - repo: https://github.com/codespell-project/codespell
-    rev: v2.4.2
+    rev: v2.4.3
     hooks:
       - id: codespell
         args: ["--config=.codespellrc", "--dictionary=-", "--dictionary=.codespell_dict"]
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.16.2
+    hooks:
+      - id: ruff-check
+        args: [--fix]
+      - id: ruff-format
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v2.1.0
+    rev: v2.3.0
     hooks:
       - id: mypy
         # Sync with project.optional-dependencies.typing
