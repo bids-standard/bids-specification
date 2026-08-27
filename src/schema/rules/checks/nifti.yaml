@@ -59,6 +59,7 @@ NiftiLargeVolume:
       for large imaging data.
     level: warning
   selectors:
+    - match(extension, "^\.nii(\.gz)?$")
     - type(nifti_header) != "null"
     - length(nifti_header.shape) >= 3
   checks:
