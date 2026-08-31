@@ -49,6 +49,66 @@ age:
     "Units": "year",
     "Maximum": 89,
   }
+anatomical_location__samples:
+  name: anatomical_location
+  display_name: Anatomical location
+  description: |
+    The anatomical structure the sample was taken from,
+    for example, `primary visual cortex`, `hippocampus`, or `brain`.
+    The ontology or atlas the terms are taken from SHOULD be documented in `samples.json`,
+    using `TermURL` for the column and, where the individual terms are resolvable, `Levels`
+    to map each term to its own `TermURL`
+    (see [Tabular files](SPEC_ROOT/common-principles.md#tabular-files)).
+  type: string
+AP_angle:
+  name: AP_angle
+  display_name: AP angle
+  description: |
+    Anterior-Posterior rotation angle measured as rotation from the vertical axis in the sagittal plane.
+    0° represents vertical along DV axis. Positive values indicate anterior rotation.
+  unit: degree
+  type: number
+  exclusiveMinimum: -180
+  maximum: 180
+AP__probes:
+  name: AP
+  display_name: Probe AP position
+  description: |
+    Probe position along the Anterior-Posterior axis.
+    Positive values are anterior to the reference point.
+  type: number
+  unit: mm
+anatomical_location:
+  name: anatomical_location
+  display_name: Anatomical location
+  description: |
+    The anatomical structure in which the electrode is located
+    (for example, `cortical layer 3`, `CA1`, `MOp`).
+    Terms from a species-specific atlas are acceptable, and are often preferable to
+    species-independent terms.
+    The ontology or atlas the terms are taken from SHOULD be documented in the
+    corresponding `*_electrodes.json` file, using `TermURL` for the column and,
+    where the individual terms are resolvable, `Levels` to map each term to its own
+    `TermURL` (see [Tabular files](SPEC_ROOT/common-principles.md#tabular-files)).
+  type: string
+# anatomical_location for probes.tsv files, which describes the probe as a whole and so is
+# coarser than its electrodes.tsv counterpart
+anatomical_location__probes:
+  name: anatomical_location
+  display_name: Anatomical location
+  description: |
+    The anatomical structure in which the probe is placed,
+    for example, `brain`, `left hemisphere`, `isocortex`, or `CA1`.
+    This column describes the probe as a whole, so the structure named here SHOULD be one
+    that contains every recording site on the probe.
+    A probe that spans several structures SHOULD therefore be described here by a
+    containing structure, with the location of each recording site given in the
+    `anatomical_location` column of the `*_electrodes.tsv` file.
+    Terms from a species-specific atlas are acceptable, and are often preferable to
+    species-independent terms, and the source they come from SHOULD be documented in the
+    corresponding `*_probes.json` file as described for the `anatomical_location` column of
+    `*_electrodes.tsv`.
+  type: string
 cardiac:
   name: cardiac
   display_name: Cardiac measurement
@@ -94,6 +154,31 @@ component:
     - $ref: objects.enums.quat_y.value
     - $ref: objects.enums.quat_z.value
     - $ref: objects.enums.quat_w.value
+coordinate_reference_point:
+  name: coordinate_reference_point
+  display_name: Coordinate reference point
+  description: |
+    Point of the probe that is described by the probe coordinates and
+    on which the yaw, pitch, and roll rotations are applied.
+  type: string
+anatomical_reference_point:
+  name: anatomical_reference_point
+  display_name: Anatomical reference point
+  description: |
+    Anatomical reference point from which the stereotaxic coordinates of the probe are
+    measured (for example, `Bregma`, `Lambda`).
+    This column MUST be defined whenever any of the `AP`, `ML`, or `DV` columns are present,
+    for every species, since those coordinates cannot be interpreted without it.
+  type: string
+depth__probes:
+  name: depth
+  display_name: Depth
+  description: |
+    Physical depth of the probe in mm, for example, `0.3`.
+    This dimension should be omitted or set to 0 for two-dimensional (shank-type) probes.
+    This dimension corresponds to the z-axis of the probe's local coordinate frame.
+  type: number
+  unit: mm
 coordinate_system:
   name: coordinate_system
   display_name: Coordinate System
@@ -143,6 +228,12 @@ description:
   description: |
     Brief free-text description of the channel, or other information of interest.
   type: string
+device_serial_number:
+  name: device_serial_number
+  display_name: Device serial number
+  description: |
+    The serial number of the probe (provided by the manufacturer).
+  type: string
 description__optode:
   name: description
   display_name: Description
@@ -173,6 +264,32 @@ duration:
   type: number
   unit: s
   minimum: 0
+DV__probes:
+  name: DV
+  display_name: Probe DV position
+  description: |
+    Probe position along the Dorsal-Ventral axis.
+    Positive values are ventral.
+  type: number
+  unit: mm
+electrode_name:
+  name: electrode_name
+  display_name: Electrode name
+  description: |
+    Name of the electrode contact point.
+  type: string
+electrode_count:
+  name: electrode_count
+  display_name: Electrode count
+  description: |
+    Number of miscellaneous analog electrodes for auxiliary signals (for example, `2`).
+  type: number
+electrode_shape:
+  name: electrode_shape
+  display_name: Electrode shape
+  description: |
+    Description of the shape of the electrode (for example, `square`, `circle`).
+  type: string
 x_coordinate:
   name: x_coordinate
   display_name: Gaze x-coordinate
@@ -211,6 +328,21 @@ filename:
     Relative paths to files.
   type: string
   format: participant_relative
+gain:
+  name: gain
+  display_name: Gain
+  description: |
+    Amplification factor applied from signal detection at the electrode
+    to the signal stored in the data file.
+    If no gain factor is provided it is assumed to be 1.
+  type: number
+ground:
+  name: ground
+  display_name: Ground
+  description: |
+    Information on the ground. For example, `chamber screw`, `head post`, `ear clip`.
+    Only should be used to optionally override the global ground in the `_ecephys.json` or `_icephys.json` file.
+  type: string
 group__channel:
   name: group
   display_name: Channel group
@@ -262,11 +394,30 @@ handedness:
 
     For "ambidextrous", use one of these values: `ambidextrous`, `a`, `A`, `AMBIDEXTROUS`,
     `Ambidextrous`.
+height__probes:
+  name: height
+  display_name: Probe height
+  description: |
+    Physical height of the probe in mm, for example, `0.3`.
+    This dimension should be omitted or set to 0 for one-dimensional (linear) probes.
+    This dimension corresponds to the y-axis of the probe's local coordinate frame.
+  type: number
+  unit: mm
 hemisphere:
   name: hemisphere
   display_name: Electrode hemisphere
   description: |
     The hemisphere in which the electrode is placed.
+  type: string
+  enum:
+    - $ref: objects.enums.left_hemisphere.value
+    - $ref: objects.enums.right_hemisphere.value
+# consider unifying with base `hemisphere` column between electrodes and probes
+hemisphere__probes:
+  name: hemisphere
+  display_name: Hemisphere
+  description: |
+    Hemisphere in which the probe is placed.
   type: string
   enum:
     - $ref: objects.enums.left_hemisphere.value
@@ -302,6 +453,17 @@ index:
   description: |
     The label integer index.
   type: integer
+localization_method:
+  name: localization_method
+  display_name: Localization method
+  description: |
+    The method used to determine the anatomical location of the electrode,
+    for example, `histology`, `atlas registration`, `stereotaxic coordinates`,
+    or `post-operative imaging`.
+    Where the same method applies to every electrode in the file, it MAY instead be given
+    once in the `LocalizationMethod` field of the corresponding `*_electrodes.json` file.
+    It MUST NOT be given in both places.
+  type: string
 interelectrode_distance:
   name: interelectrode_distance
   display_name: Interelectrode Distance
@@ -326,6 +488,13 @@ manufacturer:
     The manufacturer for each electrode.
     Can be used if electrodes were manufactured by more than one company.
   type: string
+# consider unifying with base `manufacturer` column between electrodes and probes
+manufacturer__probes:
+  name: manufacturer
+  display_name: Manufacturer
+  description: |
+    Manufacturer of the probes system  (for example, `openephys`, `alphaomega`, `blackrock`).
+  type: string
 mapping:
   name: mapping
   display_name: Label mapping
@@ -345,6 +514,36 @@ material:
   description: |
     Material of the electrode (for example, `Tin`, `Ag/AgCl`, `Gold`).
   type: string
+material__probes:
+  name: material
+  display_name: Material
+  description: |
+    A textual description of the base material of the probe.
+  type: string
+model__probes:
+  name: model
+  display_name: Probe model
+  description: |
+    The model name or number of the probe (for example, `Neuropixels 1.0`, `A1x32-Poly3-5mm-25s-177`).
+  type: string
+ML_angle:
+  name: ML_angle
+  display_name: ML angle
+  description: |
+    Medial-Lateral rotation angle measured as rotation from the vertical axis in the coronal plane.
+    0° represents vertical along DV axis. Positive values indicate rightward/clockwise rotation (as seen from behind).
+  unit: degree
+  type: number
+  exclusiveMinimum: -180
+  maximum: 180
+ML__probes:
+  name: ML
+  display_name: Probe ML position
+  description: |
+    Probe position along the Medial-Lateral axis.
+    Positive values are to the right, as seen from behind (neurological convention).
+  type: number
+  unit: mm
 metabolite_parent_fraction:
   name: metabolite_parent_fraction
   display_name: Metabolite parent fraction
@@ -439,6 +638,28 @@ participant_id:
     matching a participant entity found in the dataset.
   type: string
   pattern: ^sub-[0-9a-zA-Z+]+$
+pipette_solution:
+  name: pipette_solution
+  display_name: Pipette solution
+  description: |
+    The solution used to fill the pipette.
+    See also [openMINDS Pipette]
+    (https://github.com/openMetadataInitiative/openMINDS_ephys/blob/v1/schemas/device/pipetteUsage.schema.tpl.json).
+  type: string
+internal_pipette_diameter:
+  name: internal_pipette_diameter
+  display_name: Internal pipette diameter
+  description: |
+    The internal diameter of the pipette in micrometers.
+  type: number
+  unit: um
+external_pipette_diameter:
+  name: external_pipette_diameter
+  display_name: External pipette diameter
+  description: |
+    The external diameter of the pipette in micrometers.
+  type: number
+  unit: um
 onset__physioevents:
   name: onset
   display_name: Onset of events in physiological recordings
@@ -479,7 +700,18 @@ plasma_radioactivity:
   description: |
     Radioactivity in plasma, in unit of plasma radioactivity (for example, `kBq/mL`).
   type: number
-# reference column for channels.tsv files for EEG data
+probe_name:
+  name: probe_name
+  display_name: Probe name
+  description: |
+    A unique identifier of the probe, can be identical with the `device_serial_number`.
+  type: string
+recording_mode:
+  name: recording_mode
+  display_name: Recording mode
+  description: |
+    The mode of recording for patch clamp datasets (for example, `voltage clamp`, `current clamp`).
+  type: string
 reference__eeg:
   name: reference
   display_name: Electrode reference
@@ -487,6 +719,14 @@ reference__eeg:
     Name of the reference electrode(s).
     This column is not needed when it is common to all channels.
     In that case the reference electrode(s) can be specified in `*_eeg.json` as `EEGReference`).
+  type: string
+reference__microephys:
+  name: reference
+  display_name: Reference
+  description: |
+    The reference for the given channel.
+    When the reference is an electrode in `*_electrodes.tsv`, use the name of that electrode.
+    If a corresponding electrode is not applicable, use "n/a"
   type: string
 # reference column for channels.tsv files for EMG data
 reference__emg:
@@ -533,6 +773,16 @@ response_time:
     `n/a` denotes a missed response.
   type: number
   unit: s
+rotation_angle:
+  name: rotation_angle
+  display_name: Rotation angle
+  description: |
+    Rotation angle around the probe axis. 0° when probe features align with the coronal plane.
+    Positive rotation is clockwise when viewed from above.
+  unit: degree
+  type: number
+  exclusiveMinimum: -180
+  maximum: 180
 sample_id:
   name: sample_id
   display_name: Sample ID
@@ -545,8 +795,12 @@ sample_type:
   name: sample_type
   display_name: Sample type
   description: |
-    Biosample type defined by
-    [ENCODE Biosample Type](https://www.encodeproject.org/profiles/biosample_type).
+    The type of the sample.
+    Values are drawn from
+    [ENCODE Biosample Type](https://www.encodeproject.org/profiles/biosample_type)
+    and from the tissue sample types defined by
+    [openMINDS](https://openminds.docs.om-i.org/en/latest/instance_libraries/terminologies/tissueSampleType.html).
+    Where no listed value describes a sample, an addition to this list MAY be proposed.
   type: string
   enum:
     - $ref: objects.enums.cell_line.value
@@ -558,6 +812,11 @@ sample_type:
     - $ref: objects.enums.whole_organisms.value
     - $ref: objects.enums.organoid.value
     - $ref: objects.enums.technical_sample.value
+    - $ref: objects.enums.whole_organ.value
+    - $ref: objects.enums.tissue_block.value
+    - $ref: objects.enums.tissue_slice.value
+    - $ref: objects.enums.single_cell.value
+    - $ref: objects.enums.cell_population.value
 sampling_frequency:
   name: sampling_frequency
   display_name: Channel sampling frequency
@@ -606,6 +865,13 @@ sex:
       "other": "Other",
     }
   }
+shank_id:
+  name: shank_id
+  display_name: Shank ID
+  description: |
+    A unique identifier to specify which shank of the probe the electrode is on.
+    This is useful for spike sorting when the electrodes are on a multi-shank probe.
+  type: string
 short_channel:
   name: short_channel
   display_name: Short Channel
@@ -628,6 +894,13 @@ size:
     Surface area of the electrode, units MUST be in `mm^2`.
   type: number
   unit: 'mm^2'
+size__microephys:
+  name: size
+  display_name: Electrode size
+  description: |
+    Surface area of the electrode, units MUST be in `um^2`.
+  type: number
+  unit: 'um^2'
 software_filters:
   name: software_filters
   display_name: Software filters
@@ -636,6 +909,15 @@ software_filters:
     (for example, `SSS`, `SpatialCompensation`).
     Note that parameters should be defined in the general MEG sidecar .json file.
     Indicate `n/a` in the absence of software filters applied.
+  type: string
+software_filter_types:
+  name: software_filter_types
+  display_name: Software filter types
+  description: |
+    The types of software filters applied to this channel.
+    The `Levels` for this column SHOULD be defined in the accompanying
+    `*_channels.json` file, mapping each filter type key to its description.
+    Use `n/a` if no software filters were applied to this channel.
   type: string
 source__channels:
   name: source
@@ -716,6 +998,12 @@ strain_rrid:
     of the strain of the species, for example: `RRID:IMSR_JAX:000664`.
   type: string
   format: rrid
+stream_id:
+  name: stream_id
+  display_name: Stream ID
+  description: |
+    Data stream of the recording the signal.
+  type: string
 target_muscle:
   name: target_muscle
   display_name: Target muscle
@@ -732,6 +1020,19 @@ time:
     For example, 5.
   type: number
   unit: s
+time_offset:
+  name: time_offset
+  display_name: Time offset
+  description: |
+    Time shift between signal of this channel to a reference channel in seconds.
+  type: number
+  unit: s
+time_reference_channel:
+  name: time_reference_channel
+  display_name: Time reference channel
+  description: |
+    Name of the channel that is used for time alignment of signals.
+  type: string
 tracked_point__channels:
   name: tracked_point
   display_name: Tracked point channel
@@ -772,6 +1073,8 @@ type__channels:
     - $ref: objects.enums.ADC.value
     - $ref: objects.enums.ANGACCEL.value
     - $ref: objects.enums.AUDIO.value
+    - $ref: objects.enums.BB.value
+    - $ref: objects.enums.BEH.value
     - $ref: objects.enums.DAC.value
     - $ref: objects.enums.DBS.value
     - $ref: objects.enums.ECG.value
@@ -785,8 +1088,11 @@ type__channels:
     - $ref: objects.enums.GYRO.value
     - $ref: objects.enums.HEOG.value
     - $ref: objects.enums.HLU.value
+    - $ref: objects.enums.HP.value
+    - $ref: objects.enums.IM.value
     - $ref: objects.enums.JNTANG.value
     - $ref: objects.enums.LATENCY.value
+    - $ref: objects.enums.LFP.value
     - $ref: objects.enums.MAGN.value
     - $ref: objects.enums.MEGGRADAXIAL.value
     - $ref: objects.enums.MEGGRADPLANAR.value
@@ -796,6 +1102,7 @@ type__channels:
     - $ref: objects.enums.MEGREFGRADPLANAR.value
     - $ref: objects.enums.MEGREFMAG.value
     - $ref: objects.enums.MISC.value
+    - $ref: objects.enums.MUA.value
     - $ref: objects.enums.NIRSCWAMPLITUDE.value
     - $ref: objects.enums.NIRSCWFLUORESCENSEAMPLITUDE.value
     - $ref: objects.enums.NIRSCWHBO.value
@@ -811,11 +1118,15 @@ type__channels:
     - $ref: objects.enums.REF.value
     - $ref: objects.enums.RESP.value
     - $ref: objects.enums.SEEG.value
+    - $ref: objects.enums.SPIKES.value
+    - $ref: objects.enums.STIM.value
+    - $ref: objects.enums.SYNC.value
     - $ref: objects.enums.SYSCLOCK.value
     - $ref: objects.enums.TEMP.value
     - $ref: objects.enums.TRIG.value
     - $ref: objects.enums.VEL.value
     - $ref: objects.enums.VEOG.value
+    - $ref: objects.enums.VM.value
 # type column for electrodes.tsv files
 type__electrodes:
   name: type
@@ -832,6 +1143,12 @@ type__optodes:
   enum:
     - $ref: objects.enums.source.value
     - $ref: objects.enums.detector.value
+type__probes:
+  name: type
+  display_name: Type
+  description: |
+    The type of the probe.
+  type: string
 units:
   name: units
   display_name: Units
@@ -904,6 +1221,14 @@ wavelength_emission_actual:
     `n/a` for channels that do not contain raw NIRS signals (acceleration).
     This field is equivalent to `measurementList.wavelengthEmissionActual` in the SNIRF specification.
   type: number
+width__probes:
+  name: width
+  display_name: Width
+  description: |
+    Physical width of the probe in mm, for example, `5`.
+    This dimension corresponds to the x-axis of the probe's local coordinate frame.
+  type: number
+  unit: mm
 whole_blood_radioactivity:
   name: whole_blood_radioactivity
   display_name: Whole blood radioactivity
@@ -928,6 +1253,8 @@ z:
   display_name: Z position
   description: |
     Recorded position along the z-axis.
+
+    For 2D electrode localizations, this SHOULD be a column of `n/a` values.
   type: number
 x__optodes:
   name: x
@@ -948,7 +1275,7 @@ z__optodes:
   display_name: Z position
   description: |
     Recorded position along the z-axis.
-    `"n/a"` if not available.
+    `n/a` if not available.
   type: number
 template_x:
   name: template_x
