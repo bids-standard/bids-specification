@@ -29,7 +29,7 @@ layouts in the documentation. The macro takes a single parameter, the directory
 tree to be displayed in JSON format. If you insert the following in the BIDS
 markdown document:
 
-```python
+```jinja
 {{ MACROS___make_filetree_example(
 
    {
@@ -230,7 +230,7 @@ The macro will create the different columns of the table:
 
 A general description of that macro call would look like this:
 
-```python
+```jinja
 {{ MACROS___make_metadata_table(
    {
       "TermToRender": "REQUIREMENT_LEVEL plus anything else after", "Extra content you want to append after the description of that term."
@@ -264,7 +264,7 @@ If you wanted to add some extra content to that table, but without modifying the
 definition in the schema, then you could just add some extra content into the
 macro call.
 
-```python
+```jinja
 #### Reconstruction
 
 {{ MACROS___make_metadata_table(
@@ -293,7 +293,7 @@ contains an entry for `MoonPhase`. If this is the case because the term already
 exists and is used somewhere in the BIDS specification, you are in luck and you
 can just stop there.
 
-```python
+```jinja
 #### Reconstruction
 
 {{ MACROS___make_metadata_table(
@@ -323,7 +323,7 @@ As a rule of thumb, no, unless it is clear that this kind of table will reappear
 many times in the future in the specification. But this is usually hard to
 predict so better start with a table in Markdown.
 
-If later we see that the same type of table keeps reoccuring the specification
+If later we see that the same type of table keeps reoccurring the specification
 we could create a macro to generate them.
 
 ## Why use macros at all?

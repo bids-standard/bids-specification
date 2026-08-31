@@ -873,9 +873,9 @@ meg_meg_common:
     description: optional
 ```
 
-### Sidecar and tabular data rules
+### JSON and tabular data rules
 
-Tabular data and JSON sidecar files follow a similar pattern:
+Tabular data and JSON files follow a similar pattern:
 
 |      | Name          | Value         |
 | ---- | ------------- | ------------- |
@@ -937,7 +937,7 @@ rule is applied.
 
 #### Valid fields for definitions
 
-1.  `rules.sidecars.*`
+1.  `rules.sidecars.*` and `rules.json.*`
 
     | Field       | Description                                                                                              |
     | ----------- | -------------------------------------------------------------------------------------------------------- |
@@ -983,6 +983,11 @@ MRIFuncVolumeTiming:
 
 An additional check will be required to assert that both are not present,
 but these tables may be combined for rendering purposes.
+
+`rules.json.*` and `rules.sidecars.*` are essentially identical,
+except `rules.json` rules describe the contents of individual JSON files,
+while `rules.sidecars` rules describe the contents of sidecar files,
+accumulated by the inheritance principle.
 
 Here we present an example rule in `rules.tabular_data.eeg`:
 
@@ -1057,9 +1062,6 @@ EventsMissing:
     | Field       | Description                           |
     | ----------- | ------------------------------------- |
     | `datatypes` | List of datatypes mapping to modality |
-
--   `rules.dataset_metadata` - These are similar to `rules.sidecars.*`, for JSON files at the root level.
-    This is likely to go away in favor of other approaches.
 
 -   `rules.errors` - This file describes errors that cannot be expressed in the schema. This provides common
     codes and language that implementing validators can use to ensure the same problems are reported to

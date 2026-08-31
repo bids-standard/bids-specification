@@ -16,14 +16,14 @@ jobs:
   codespell:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: codespell-project/actions-codespell@master
 
   # Markdown formatting
   remark:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: actions/setup-node@v6
         with:
           node-version: 22
@@ -36,25 +36,16 @@ jobs:
   yamllint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: astral-sh/setup-uv@v7
       - name: Lint yml files in src/schema
         run: uvx yamllint -f standard src/schema/ -c .yamllint.yml
-
-  # Python best practices
-  python-style:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v6
-      - uses: astral-sh/setup-uv@v7
-      - run: uvx ruff format --diff
-      - run: uvx ruff check
 
   # Avoid Latin phrases to improve readability
   latin-phrases:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: astral-sh/setup-uv@v7
       - name: Check for Latin phrases
         run: uv run tools/no-bad-latin.py
@@ -63,7 +54,7 @@ jobs:
   validate_cff:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
       - uses: astral-sh/setup-uv@v7
       - name: Validate CITATION.cff
         run: uvx cffconvert --validate

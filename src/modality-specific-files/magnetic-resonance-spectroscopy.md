@@ -8,7 +8,7 @@ context of the academic literature.
 
 !!! example "Example datasets"
 
-    Several [example MRS datasets](https://github.com/bids-standard/bids-examples?tab=readme-ov-file#mrs) have
+    Several [example MRS datasets](https://bids.neuroimaging.io/datasets/examples.html#mrs) have
     been formatted using this specification and can be used for practical guidance when curating a new dataset.
 
 ## MRS data
@@ -123,7 +123,8 @@ Each `<label>` in the table above MAY be combined with another to better describ
 For example, `megaspecial`, `jpress`, `dwslaser`, `mcdwsteam`, and so on.
 
 The OPTIONAL `nuc-<label>` entity can be used to distinguish acquisitions tuned to detect different nuclei.
-The label is the name of the nucleus or nuclei, which corresponds to DICOM Tag 0018, 9100.
+The label is the name of the nucleus or nuclei, which corresponds to [DICOM Tag (0018,9100)](https://www.dicomlookup.com/dicomtags/(0018,9100))
+`Resonant Nucleus`.
 For example, `nuc-1H`, `nuc-31P`, `nuc-1H13C`.
 If used, the field `ResonantNucleus` MUST also be included in the corresponding sidecar JSON file, using the same label.
 

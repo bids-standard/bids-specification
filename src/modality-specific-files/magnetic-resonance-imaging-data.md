@@ -77,12 +77,11 @@ A guide for using macros can be found at
 {{ MACROS___make_sidecar_table(["mri.MRISpatialEncoding", "mri.PhaseEncodingDirectionRec"]) }}
 
 <sup>2</sup>Conveniently, for Siemens data, this value is easily obtained as
-`1 / (BWPPPE * ReconMatrixPE)`, where BWPPPE is the
-"BandwidthPerPixelPhaseEncode" in [DICOM Tag 0019, 1028](http://www.dicomlookup.com/dicomtags/(0019,1028)) and ReconMatrixPE is
-the size of the actual reconstructed data in the phase direction (which is NOT
-reflected in a single DICOM Tag for all possible aforementioned scan
-manipulations). See
-[Acquiring and using field maps - LCNI](https://web.archive.org/web/20240709020334/https://lcni.uoregon.edu/wiki/acquiring-and-using-field-maps/)
+`1 / (BWPPPE * ReconMatrixPE)`, where `BWPPPE` is the
+"BandwidthPerPixelPhaseEncode" in DICOM Tag (0019,1028) (a private, Siemens-specific DICOM tag)
+and `ReconMatrixPE` is the size of the actual reconstructed data in the phase direction (which is
+NOT reflected in a single DICOM Tag for all possible aforementioned scan
+manipulations). See [Acquiring and using field maps - LCNI](https://web.archive.org/web/20240709020334/https://lcni.uoregon.edu/wiki/acquiring-and-using-field-maps/)
 and [TotalReadoutTime - dcm\_qa](https://github.com/neurolabusc/dcm_qa/tree/master/In/TotalReadoutTime).
 
 <sup>3</sup>We use the time between the center of the first "effective" echo
@@ -268,7 +267,7 @@ and a guide for using macros can be found at
 The [`part-<label>`](../appendices/entities.md#part) entity is
 used to indicate which component of the complex representation of the MRI
 signal is represented in voxel data.
-This entity is associated with the DICOM Tag `0008, 9208`.
+This entity is associated with the DICOM Tag (0008,9208).
 Allowed label values for this entity are `phase`, `mag`, `real` and `imag`,
 which are typically used in `part-mag`/`part-phase` or `part-real`/`part-imag`
 pairs of files.
@@ -963,7 +962,7 @@ JSON example:
 
 !!! example "Example datasets"
 
-    Several [example ASL datasets](https://bids-standard.github.io/bids-examples/#asl)
+    Several [example ASL datasets](https://bids.neuroimaging.io/datasets/examples.html#asl)
     have been formatted using this specification
     and can be used for practical guidance when curating a new dataset.
 
@@ -983,7 +982,7 @@ accompanied by two ancillary files: `*_asl.json` and `*_aslcontext.tsv`.
 
 The `*_aslcontext.tsv` table consists of a single column of labels identifying the
 `volume_type` of each volume in the corresponding `*_asl.nii[.gz]` file.
-Volume types are defined in the following table, based on [DICOM Tag 0018, 9257](http://www.dicomlookup.com/dicomtags/(0018,9257)) `ASL Context`.
+Volume types are defined in the following table, based on [DICOM Tag (0018,9257)](https://www.dicomlookup.com/dicomtags/(0018,9257)) `ASL Context`.
 Note that the volume_types `control` and  `label` within BIDS only serve
 to specify the magnetization state of the blood and thus the ASL subtraction order.
 See the [ASL Appendix](../appendices/arterial-spin-labeling.md#which-image-is-control-and-which-is-label)
@@ -1217,7 +1216,7 @@ For example:
 
 !!! example "Example datasets"
 
-    [Example datasets](https://bids-standard.github.io/bids-examples/#dataset-index)
+    [Example datasets](https://bids.neuroimaging.io/datasets/examples.html#dataset-index)
     containing that type of fieldmap can be found here:
 
     -   [`7t_trt`](https://github.com/bids-standard/bids-examples/tree/master/7t_trt)
@@ -1443,7 +1442,7 @@ and a guide for using macros can be found at
 | TB1AFI               | `RepetitionTimeExcitation`                                                                           |
 | TB1TFL               |                                                                                                      |
 | TB1RFM               |                                                                                                      |
-| TB1SRGE<sup>\*</sup> | `FlipAngle`, `InversionTime`, `RepetitionTimeExcitation`, `RepetitionTimePreperation`, `NumberShots` |
+| TB1SRGE<sup>\*</sup> | `FlipAngle`, `InversionTime`, `RepetitionTimeExcitation`, `RepetitionTimePreparation`, `NumberShots` |
 
 <sup>\*</sup> Please see TB1SRGE-specific notes for the calculation of `NumberShots`.
 

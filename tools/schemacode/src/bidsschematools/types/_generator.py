@@ -198,7 +198,7 @@ def typespec_to_source(
     tp = typespec.get("type")
     if not tp:
         raise ValueError(f"Invalid typespec: {json.dumps(typespec)}")
-    metadata = {
+    metadata: dict[str, lt.Any] = {
         key: typespec[key] for key in ("name", "description", "required") if key in typespec
     }
     if tp == "object":
