@@ -702,10 +702,11 @@ stim_id:
   display_name: Stimulus identifier
   description: |
     Represents a unique identifier for the stimulus presented at the given onset
-    time. The `stim_id` is inclusive of the stimulus file(s), annotations
-    related to the stimulus, and the information about the stimulus present in
-    the `stimuli.tsv` file.
+    time, of the form `stim-<label>`. The `stim_id` is inclusive of the stimulus
+    file(s), annotations related to the stimulus, and the information about the
+    stimulus present in the `stimuli.tsv` file.
   type: string
+  pattern: ^stim-[0-9a-zA-Z+]+$
 strain:
   name: strain
   display_name: Strain
@@ -981,8 +982,10 @@ stimulus_id:
   name: stimulus_id
   display_name: Stimulus Identifier
   description: |
-    Unique identifier for a specific stimulus.
+    Unique identifier for a specific stimulus, of the form `stim-<label>`,
+    matching the `stim-<label>` entity of the stimulus files it describes.
   type: string
+  pattern: ^stim-[0-9a-zA-Z+]+$
 annot_id:
   name: annot_id
   display_name: Annotation Identifier

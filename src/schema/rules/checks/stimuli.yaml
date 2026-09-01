@@ -1,16 +1,24 @@
 ---
-StimulusIdExists:
+# The stim_id values in events.tsv are identifiers (stim-<label>), not file
+# paths, so their existence in /stimuli cannot be verified with exists().
+# Verifying that each stim_id has a matching stimulus file or stimuli.tsv
+# entry requires cross-file column access (a stimuli association) and is
+# left to future validator support. Value patterns for stim_id and
+# stimulus_id are enforced through the column definitions in
+# objects/columns.yaml.
+StimuliTsvForStimId:
   issue:
-    code: STIMULUS_ID_NOT_FOUND
+    code: STIMULI_TSV_MISSING
     message: |
-      Stimulus ID referenced in events.tsv file does not exist in the /stimuli directory
-      or is not properly referenced in stimuli.tsv file.
-    level: error
+      The stim_id column is used in an events.tsv file, but no stimuli.tsv
+      file is present in the /stimuli directory. The stimuli.tsv file lists
+      the stimulus identifiers that stim_id values refer to.
+    level: warning
   selectors:
     - suffix == "events"
-    - '"stim_id" in columns'
+    - columns.stim_id != null
   checks:
-    - exists(columns.stim_id, "stimuli") == length(columns.stim_id) - count(columns.stim_id, "n/a")
+    - exists("stimuli.tsv", "stimuli") == 1
 
 StimuliDirectoryStructure:
   issue:
@@ -24,15 +32,3 @@ StimuliDirectoryStructure:
     - suffix in ["audio", "video", "audiovideo", "image"]
   checks:
     - entities.stimulus != null
-
-StimuliTableEntriesValid:
-  issue:
-    code: STIMULI_TABLE_REFERENCES
-    message: |
-      Each stimulus_id in stimuli.tsv must correspond to an actual stimulus file
-      in the /stimuli directory.
-    level: warning
-  selectors:
-    - suffix == "stimuli"
-  checks:
-    - matches_pattern(columns.stimulus_id, "^stim-[a-zA-Z0-9]+$")
