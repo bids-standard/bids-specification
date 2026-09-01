@@ -77,12 +77,11 @@ A guide for using macros can be found at
 {{ MACROS___make_sidecar_table(["mri.MRISpatialEncoding", "mri.PhaseEncodingDirectionRec"]) }}
 
 <sup>2</sup>Conveniently, for Siemens data, this value is easily obtained as
-`1 / (BWPPPE * ReconMatrixPE)`, where BWPPPE is the
-"BandwidthPerPixelPhaseEncode" in [DICOM Tag 0019, 1028](http://www.dicomlookup.com/dicomtags/(0019,1028)) and ReconMatrixPE is
-the size of the actual reconstructed data in the phase direction (which is NOT
-reflected in a single DICOM Tag for all possible aforementioned scan
-manipulations). See
-[Acquiring and using field maps - LCNI](https://web.archive.org/web/20240709020334/https://lcni.uoregon.edu/wiki/acquiring-and-using-field-maps/)
+`1 / (BWPPPE * ReconMatrixPE)`, where `BWPPPE` is the
+"BandwidthPerPixelPhaseEncode" in DICOM Tag (0019,1028) (a private, Siemens-specific DICOM tag)
+and `ReconMatrixPE` is the size of the actual reconstructed data in the phase direction (which is
+NOT reflected in a single DICOM Tag for all possible aforementioned scan
+manipulations). See [Acquiring and using field maps - LCNI](https://web.archive.org/web/20240709020334/https://lcni.uoregon.edu/wiki/acquiring-and-using-field-maps/)
 and [TotalReadoutTime - dcm\_qa](https://github.com/neurolabusc/dcm_qa/tree/master/In/TotalReadoutTime).
 
 <sup>3</sup>We use the time between the center of the first "effective" echo
@@ -268,7 +267,7 @@ and a guide for using macros can be found at
 The [`part-<label>`](../appendices/entities.md#part) entity is
 used to indicate which component of the complex representation of the MRI
 signal is represented in voxel data.
-This entity is associated with the DICOM Tag `0008, 9208`.
+This entity is associated with the DICOM Tag (0008,9208).
 Allowed label values for this entity are `phase`, `mag`, `real` and `imag`,
 which are typically used in `part-mag`/`part-phase` or `part-real`/`part-imag`
 pairs of files.
@@ -900,7 +899,36 @@ A guide for using macros can be found at
    }
 ) }}
 
-### Other RECOMMENDED metadata
+### Combined DWI schemes
+
+Some DWI schemes are acquired by varying parameters including the
+[`EchoTime (TE)`](../glossary.md#objects.metadata.EchoTime),
+[`SmallDelta (δ)`](../glossary.md#smalldelta-metadata),
+[`BigDelta (Δ)`](../glossary.md#bigdelta-metadata);
+in addition to varying the diffusion-encoding weightings (b-values) and
+gradients (b-vectors).
+
+For instance, in a single run the
+[Connectome 2.0 scanner](https://doi.org/10.1016/j.neuroimage.2021.118530)
+collects DWI volumes where the `EchoTime`, `SmallDelta`, and `BigDelta` parameters can be varied. The DWI
+volumes are concatenated in a single file and processed together with the `EchoTime`, `SmallDelta`,
+and `BigDelta` values.
+
+BIDS permits saving the `EchoTime`, `SmallDelta`, and `BigDelta` values corresponding to the *N*
+volumes in the NIfTI file. The `EchoTime`, `SmallDelta`, and `BigDelta` values MAY be stored as an array in the sidecar JSON file.
+If a single `EchoTime`, `SmallDelta`, or `BigDelta` value is used for the entire acquisition, the value
+MAY be stored as a single number in the sidecar JSON file.
+The `EchoTime`, `SmallDelta`, and `BigDelta` values MUST be specified in seconds.
+
+The `EchoTime`, `SmallDelta`, and `BigDelta` fields MAY be
+saved in the sidecar JSON file on any level of the directory structure and thus define those values for
+all sessions and/or subjects in one place (see
+[the inheritance principle](../common-principles.md#the-inheritance-principle)).
+
+As an exception to the [common principles](../common-principles.md#definitions)
+that parameters are constant across runs, the `EchoTime`, `SmallDelta`, and `BigDelta` values MAY change across the DWI run.
+
+### Other metadata fields
 
 <!-- This block generates a metadata table.
 These tables are defined in
@@ -922,6 +950,8 @@ JSON example:
 
 ```JSON
 {
+  "BigDelta": 0.040,
+  "SmallDelta": 0.015,
   "PhaseEncodingDirection": "j-",
   "TotalReadoutTime": 0.095,
   "B0FieldSource": ["phasediff_fmap0", "pepolar_fmap0"]
@@ -952,7 +982,7 @@ accompanied by two ancillary files: `*_asl.json` and `*_aslcontext.tsv`.
 
 The `*_aslcontext.tsv` table consists of a single column of labels identifying the
 `volume_type` of each volume in the corresponding `*_asl.nii[.gz]` file.
-Volume types are defined in the following table, based on [DICOM Tag 0018, 9257](http://www.dicomlookup.com/dicomtags/(0018,9257)) `ASL Context`.
+Volume types are defined in the following table, based on [DICOM Tag (0018,9257)](https://www.dicomlookup.com/dicomtags/(0018,9257)) `ASL Context`.
 Note that the volume_types `control` and  `label` within BIDS only serve
 to specify the magnetization state of the blood and thus the ASL subtraction order.
 See the [ASL Appendix](../appendices/arterial-spin-labeling.md#which-image-is-control-and-which-is-label)

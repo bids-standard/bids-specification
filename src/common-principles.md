@@ -106,18 +106,18 @@ BIDS datasets embedded within a larger BIDS dataset MAY follow some convention (
 ## Filesystem structure
 
 Data for each subject are placed in subdirectories named "`sub-<label>`",
-where string "`<label>`" is substituted with the unique identification
+where "`<label>`" is substituted with the unique identification
 label of each subject.
 Additional information on each participant MAY be provided in a
 [participants file](modality-agnostic-files/data-summary-files.md#participants-file)
 in the root directory of the dataset.
 
-If data for the subject were acquired across multiple sessions, then within
-the subject directory resides subdirectories named "`ses-<label>`",
-where string "`<label>`" is substituted with a unique identification
-label for each session.
+If data for the subject were acquired across multiple sessions,
+then subdirectories named "`ses-<label>`" reside within the subject directory,
+where "`<label>`" is substituted with the unique identification
+label of each session.
 In datasets where at least one subject has more than one session, this
-additional subdirectory later SHOULD be added for all subjects in the dataset.
+additional subdirectory layer SHOULD be added for all subjects in the dataset.
 Additional information on each session MAY be provided in a
 [sessions file](modality-agnostic-files/data-summary-files.md#sessions-file)
 within the subject directory.
@@ -487,8 +487,13 @@ It is also RECOMMENDED to set the `SourceDatasets` field in `dataset_description
 
 ### Imaging files
 
-All imaging data MUST be stored using the NIfTI file format. We RECOMMEND using
-compressed NIfTI files (.nii.gz), either version 1.0 or 2.0. If using compressed files,
+Imaging data SHOULD be stored using the NIfTI file format.
+Large imaging data MAY instead be stored using the
+[OME-Zarr (OME-NGFF)](https://ngff.openmicroscopy.org/) file format.
+
+#### NIfTI
+
+We RECOMMEND using compressed NIfTI files (.nii.gz), either version 1.0 or 2.0. If using compressed files,
 the gzip header SHOULD lack source filenames and timestamps. Imaging data SHOULD
 be converted to the NIfTI format using a tool that provides as much of the NIfTI
 header information (such as orientation and slice timing information) as
@@ -498,15 +503,33 @@ additional meta information extracted from DICOM files in a sidecar JSON file
 (with the same filename as the `.nii[.gz]` file, but with a `.json` extension).
 Currently defined metadata fields are listed in the [Glossary](./glossary.md).
 Where possible, DICOM Tags are adopted directly as BIDS metadata terms and
-indicated with "**Corresponds to** DICOM Tag ID1, ID2 `DICOM Tag Name`.".
+indicated with "**Corresponds to** DICOM Tag (####,####) `<Attribute Name>`".
 When harmonization has been deemed necessary, this is indicated in the
-BIDS term description with "**Based on** DICOM Tag ID1, ID2 `DICOM Tag Name`.".
+BIDS term description with "**Based on** DICOM Tag (####,####) `<Attribute Name>`".
 Extraction of BIDS compatible metadata can be performed using
 [DICOM to NIfTI converters](https://bids.neuroimaging.io/tools/converters.html)
 such as [dcm2niix](https://github.com/rordenlab/dcm2niix).
 The [BIDS-validator](https://github.com/bids-standard/bids-validator)
 will check for conflicts between the JSON file and the data recorded in the
 NIfTI header.
+
+#### OME-Zarr
+
+[Zarr](https://zarr-specs.readthedocs.io/) is a chunked, cloud-optimized format that provides efficient access to
+large multidimensional datasets without requiring a full download.
+[OME-Zarr](https://ngff.openmicroscopy.org/), developed by the Open Microscopy Environment (OME),
+extends Zarr with bioimaging-specific metadata.
+OME-Zarr is particularly suitable for very large imaging volumes (for example, high-resolution
+ex vivo MRI) where NIfTI would be impractical for streaming or web-based visualization.
+
+OME-Zarr filesets are stored in BIDS with the `.ome.zarr` extension.
+Spatial metadata (such as the axis names and units, and coordinate transformations) SHOULD
+be stored within the OME-Zarr metadata following the
+[OME-Zarr version 0.5 specification](https://ngff.openmicroscopy.org/specifications/0.5/index.html)
+(the latest released version).
+An example dataset containing an OME-Zarr can be found in the
+[BIDS examples repository](https://github.com/bids-standard/bids-examples/tree/master/micr_XPCTzarr)
+and can be used as helpful guidance when curating new datasets.
 
 ### Tabular files
 
