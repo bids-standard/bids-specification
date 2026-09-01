@@ -20,6 +20,20 @@ StimuliTsvForStimId:
   checks:
     - exists("stimuli.tsv", "stimuli") == 1
 
+StimuliTsvAtRoot:
+  issue:
+    code: STIMULI_TSV_NOT_AT_ROOT
+    message: |
+      A scoped stimuli.tsv or stimuli.json file was found in a subdirectory of
+      /stimuli, but the dataset-wide stimuli.tsv is missing. The dataset-wide
+      stimuli.tsv and stimuli.json files must be stored directly in the
+      /stimuli directory; subdirectory copies only amend or override it.
+    level: warning
+  selectors:
+    - match(path, '^/stimuli/.+/stimuli\.(tsv|json)$')
+  checks:
+    - exists("stimuli.tsv", "stimuli") == 1
+
 StimuliDirectoryStructure:
   issue:
     code: INVALID_STIMULUS_FILENAME

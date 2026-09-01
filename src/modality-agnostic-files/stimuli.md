@@ -34,6 +34,43 @@ and a guide for using macros can be found at
 
 Note: The presence of the `stimuli.tsv` file indicates that the content of the `/stimuli` directory follows this BIDS specification for stimulus organization.
 
+### Directory hierarchy and inheritance
+
+The `/stimuli` directory MAY contain subdirectories to organize stimulus files,
+for example by stimulus category, task, or acquisition batch.
+Stimulus identifiers MUST remain unique across the entire `/stimuli` hierarchy:
+the `stim-<label>` entity identifies a stimulus
+regardless of the subdirectory in which its files are stored.
+
+The dataset-wide `stimuli.tsv` and `stimuli.json` files MUST be stored
+directly in the `/stimuli` directory, not in a subdirectory.
+Subdirectories MAY contain additional `stimuli.tsv`, `stimuli.json`,
+`annotations.tsv`, and `annotations.json` files
+that apply only to the stimuli stored in that subdirectory and below.
+Following the [Inheritance Principle](../common-principles.md#the-inheritance-principle),
+information defined deeper in the hierarchy amends or replaces
+information defined closer to the `/stimuli` root:
+columns and metadata fields introduced in a subdirectory file
+are added to those defined at higher levels,
+and entries for the same `stimulus_id` (or `annot_id`)
+override the corresponding higher-level entries.
+
+For example:
+
+```Text
+stimuli/
+    stimuli.tsv
+    stimuli.json
+    annotations.tsv
+    faces/
+        stimuli.tsv          # amends/overrides root entries for stimuli in faces/
+        stim-face01_image.png
+        stim-face02_image.png
+    sounds/
+        stim-tone01_audio.wav
+        stim-tone01_annot-pitch_events.tsv
+```
+
 ### Stimulus File Formats
 
 The following table lists the supported stimulus file formats and their corresponding suffixes. The suffixes are used to identify the type of stimulus file and are appended to the `stim-<label>` prefix in the file name.
@@ -82,7 +119,9 @@ If the stimulus file is not shared, the `URL` field SHOULD provide a link to the
 
 ## Stimuli Description (`stimuli.tsv`)
 
-The `stimuli.tsv` files are used to provide information about the stimuli based on their `stim_id`. This file is similar in usage as `participants.tsv`, `scans.tsv` and `sessions.tsv`, which list descriptions about subjects, scans and sessions, respectively. The `stimuli.tsv` files MUST be placed in the `/stimuli` directory.
+The `stimuli.tsv` files are used to provide information about the stimuli based on their `stim_id`. This file is similar in usage as `participants.tsv`, `scans.tsv` and `sessions.tsv`, which list descriptions about subjects, scans and sessions, respectively. The dataset-wide `stimuli.tsv` file MUST be placed directly in the `/stimuli` directory;
+additional scoped `stimuli.tsv` files MAY be placed in subdirectories
+(see [Directory hierarchy and inheritance](#directory-hierarchy-and-inheritance)).
 
 The `stimuli.tsv` file contains information about each stimulus, including stimulus ID, type, URL, and other relevant details. The following table describes the REQUIRED, RECOMMENDED, and OPTIONAL columns for the `stimuli.tsv` file:
 
@@ -115,7 +154,7 @@ Annotations of the still images or general description of the stimuli (such as f
 | ------------- | ----- | ----------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ | ------- |
 | stim-nsd02951 | image | an open market full of people and piles of vegetables | ((Item-count, High), Ingestible-object), (Background-view, ((Human, Body, Agent-trait/Adult), Outdoors, Furnishing, Natural-feature/Sky, Urban, Man-made-object)) | 2951   | 262145  |
 
-However, for time-varying stimuli, such as audio or video, it is RECOMMENDED to use specific annotations files in the form of `stim-<label>_annot-<label>_events.tsv` to store the annotations. These files have the same structure as the `events.tsv` files and are used to store annotations for the stimuli. There can be multiple annotation files for a single stimulus file, each with a unique annotation label. The annotation files MUST be stored in the `/stimuli` directory.
+However, for time-varying stimuli, such as audio or video, it is RECOMMENDED to use specific annotations files in the form of `stim-<label>_annot-<label>_events.tsv` to store the annotations. These files have the same structure as the `events.tsv` files and are used to store annotations for the stimuli. There can be multiple annotation files for a single stimulus file, each with a unique annotation label. The annotation files MUST be stored under the `/stimuli` hierarchy, and it is RECOMMENDED to store them in the same directory as the stimulus files they annotate.
 
 ## Annotation Description (`annotations.tsv`)
 
