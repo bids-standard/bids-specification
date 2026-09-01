@@ -1,10 +1,15 @@
 ---
+# Selectors for the catalog tables are path-based rather than suffix-based:
+# stimuli.tsv and annotations.tsv match stem file rules, and the validator
+# clears context.suffix for stem-matched files (cleanContext), so a
+# suffix == "stimuli" selector would never fire.
 Stimuli:
   selectors:
-    - suffix == "stimuli"
+    - extension == ".tsv"
+    - match(path, '^/stimuli/stimuli\.tsv$')
   initial_columns:
     - stimulus_id
-    - type
+    - type__stimuli
   columns:
     stimulus_id: required
     type__stimuli: required
@@ -18,12 +23,34 @@ Stimuli:
     partDescription__stimuli: optional
   additional_columns: allowed_if_defined
 
+# Scoped stimuli.tsv files in subdirectories amend or override the root
+# catalog (Inheritance Principle), so only the stimulus_id key is required.
+StimuliScoped:
+  selectors:
+    - extension == ".tsv"
+    - match(path, '^/stimuli/.+/stimuli\.tsv$')
+  initial_columns:
+    - stimulus_id
+  columns:
+    stimulus_id: required
+    type__stimuli: optional
+    URL: optional
+    license: optional
+    copyright: optional
+    description__stimuli: optional
+    HED: optional
+    filename: optional
+    present: optional
+    partDescription__stimuli: optional
+  additional_columns: allowed_if_defined
+
 Annotations:
   selectors:
-    - suffix == "annotations"
+    - extension == ".tsv"
+    - match(path, '^/stimuli/(.+/)?(stim-[0-9a-zA-Z+]+_)?annotations\.tsv$')
   initial_columns:
     - annot_id
-    - description
+    - description__annot
   columns:
     annot_id: required
     description__annot: required
