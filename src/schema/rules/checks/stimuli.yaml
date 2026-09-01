@@ -11,8 +11,9 @@ StimuliTsvForStimId:
     code: STIMULI_TSV_MISSING
     message: |
       The stim_id column is used in an events.tsv file, but no stimuli.tsv
-      file is present in the /stimuli directory. The stimuli.tsv file lists
-      the stimulus identifiers that stim_id values refer to.
+      file is present at the /stimuli root. A dataset-wide stimuli.tsv,
+      even a sparse one listing only the stimulus_id of every stimulus,
+      is RECOMMENDED as the entry point for resolving stim_id references.
     level: warning
   selectors:
     - suffix == "events"
@@ -25,9 +26,10 @@ StimuliTsvAtRoot:
     code: STIMULI_TSV_NOT_AT_ROOT
     message: |
       A scoped stimuli.tsv or stimuli.json file was found in a subdirectory of
-      /stimuli, but the dataset-wide stimuli.tsv is missing. The dataset-wide
-      stimuli.tsv and stimuli.json files must be stored directly in the
-      /stimuli directory; subdirectory copies only amend or override it.
+      /stimuli, but there is no dataset-wide stimuli.tsv at the /stimuli root.
+      A root stimuli.tsv is RECOMMENDED, even a sparse one listing only the
+      stimulus_id of every stimulus: it provides a single entry point for
+      tools and readers, and scoped subdirectory catalogs amend or override it.
     level: warning
   selectors:
     - match(path, '^/stimuli/.+/stimuli\.(tsv|json)$')

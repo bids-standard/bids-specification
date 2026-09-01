@@ -32,7 +32,7 @@ and a guide for using macros can be found at
    path="stimuli")
 }}
 
-Note: The presence of the `stimuli.tsv` file indicates that the content of the `/stimuli` directory follows this BIDS specification for stimulus organization.
+Note: The presence of a `stimuli.tsv` file anywhere under the `/stimuli` directory indicates that the content of the `/stimuli` directory follows this BIDS specification for stimulus organization.
 
 ### Directory hierarchy and inheritance
 
@@ -42,11 +42,22 @@ Stimulus identifiers MUST remain unique across the entire `/stimuli` hierarchy:
 the `stim-<label>` entity identifies a stimulus
 regardless of the subdirectory in which its files are stored.
 
-The dataset-wide `stimuli.tsv` and `stimuli.json` files MUST be stored
-directly in the `/stimuli` directory, not in a subdirectory.
-Subdirectories MAY contain additional `stimuli.tsv`, `stimuli.json`,
+Subdirectories MAY contain their own `stimuli.tsv`, `stimuli.json`,
 `annotations.tsv`, and `annotations.json` files
 that apply only to the stimuli stored in that subdirectory and below.
+This makes a subdirectory fully self-describing,
+so a stimulus set (its files, catalog, annotations, and metadata)
+can be moved between datasets as a portable unit.
+A dataset-wide `stimuli.tsv` (with an accompanying `stimuli.json`)
+stored directly in the `/stimuli` directory is RECOMMENDED,
+even a sparse one listing only the `stimulus_id` of every stimulus:
+it provides a single entry point for tools and readers,
+and serves as the place for dataset-wide amendments and overrides.
+Because the `stim-<label>` entity, not the directory path,
+identifies a stimulus, the same `stimulus_id` MUST NOT be defined
+by catalog files in sibling subdirectories:
+the Inheritance Principle can only reconcile re-descriptions
+along a single ancestor chain.
 Following the [Inheritance Principle](../common-principles.md#the-inheritance-principle),
 information defined deeper in the hierarchy amends or replaces
 information defined closer to the `/stimuli` root:
@@ -119,8 +130,8 @@ If the stimulus file is not shared, the `URL` field SHOULD provide a link to the
 
 ## Stimuli Description (`stimuli.tsv`)
 
-The `stimuli.tsv` files are used to provide information about the stimuli based on their `stim_id`. This file is similar in usage as `participants.tsv`, `scans.tsv` and `sessions.tsv`, which list descriptions about subjects, scans and sessions, respectively. The dataset-wide `stimuli.tsv` file MUST be placed directly in the `/stimuli` directory;
-additional scoped `stimuli.tsv` files MAY be placed in subdirectories
+The `stimuli.tsv` files are used to provide information about the stimuli based on their `stim_id`. This file is similar in usage as `participants.tsv`, `scans.tsv` and `sessions.tsv`, which list descriptions about subjects, scans and sessions, respectively. A dataset-wide `stimuli.tsv` file placed directly in the `/stimuli` directory is RECOMMENDED;
+scoped `stimuli.tsv` files MAY be placed in subdirectories
 (see [Directory hierarchy and inheritance](#directory-hierarchy-and-inheritance)).
 
 The `stimuli.tsv` file contains information about each stimulus, including stimulus ID, type, URL, and other relevant details. The following table describes the REQUIRED, RECOMMENDED, and OPTIONAL columns for the `stimuli.tsv` file:

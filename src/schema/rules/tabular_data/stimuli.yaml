@@ -12,7 +12,7 @@ Stimuli:
     - type__stimuli
   columns:
     stimulus_id: required
-    type__stimuli: required
+    type__stimuli: recommended
     URL: optional
     license: recommended
     copyright: recommended
