@@ -14,7 +14,7 @@ The standardization of stimulus files and their annotations within BIDS offers s
 1.  **Efficiency**: Minimizes redundancy by centralizing annotations
 1.  **Flexibility**: Facilitates dataset reuse with alternative annotations
 
-To preserve backward compatibility with existing datasets (see the Legacy section below), the use of these specifications for the `/stimuli` directory and the `stim_id` column in the `events.tsv` files is RECOMMENDED but not required. Researchers are encouraged to follow these guidelines to enhance the interoperability and reproducibility of their studies.
+To preserve backward compatibility with existing datasets (which reference stimulus files directly through the `stim_file` column, as described in [Task events](events.md#stimulus-organization)), the use of these specifications for the `/stimuli` directory and the `stim_id` column in the `events.tsv` files is RECOMMENDED but not required. Researchers are encouraged to follow these guidelines to enhance the interoperability and reproducibility of their studies.
 
 Following these guidelines will help ensure that stimulus files and their annotations are stored and referenced consistently across different datasets, facilitating data sharing, reuse, and reproducibility.
 
@@ -38,12 +38,15 @@ Note: The presence of the `stimuli.tsv` file indicates that the content of the `
 
 The following table lists the supported stimulus file formats and their corresponding suffixes. The suffixes are used to identify the type of stimulus file and are appended to the `stim-<label>` prefix in the file name.
 
-| suffix      | extensions                      | description                  |
-| ----------- | ------------------------------- | ---------------------------- |
-| audio       | `.wav`, `.mp3`, `.aac`, `.ogg`  | Audio-only stimulus files    |
-| image       | `.jpg`, `.png`, `.svg`, `.webp` | Static visual stimulus files |
-| video       | `.mp4`, `.avi`, `.mkv`, `.webm` | Video-only stimulus files    |
-| audiovideo  | `.mp4`, `.avi`, `.mkv`, `.webm` | Combined audio-visual files  |
+| suffix      | extensions                                       | description                  |
+| ----------- | ------------------------------------------------ | ---------------------------- |
+| audio       | `.wav`, `.flac`, `.mp3`, `.aac`, `.ogg`          | Audio-only stimulus files    |
+| image       | `.jpg`, `.png`, `.svg`, `.webp`, `.tif`, `.tiff` | Static visual stimulus files |
+| video       | `.mp4`, `.avi`, `.mkv`, `.webm`                  | Video-only stimulus files    |
+| audiovideo  | `.mp4`, `.avi`, `.mkv`, `.webm`                  | Combined audio-visual files  |
+
+See the [Media Files appendix](../appendices/media-files.md) for format details and
+the recommended technical metadata for media streams.
 
 ## Stimulus description (`stim-<label>_<suffix>.json`)
 
@@ -74,7 +77,7 @@ In some cases, such as observing the copyright of a stimulus file, the actual st
 ```
 
 The `License` field SHOULD provide the known identifiers, such as `PDL`, `CC0`, `CC-BY` from the [BIDS Licensees Appendix](https://bids-specification.readthedocs.io/en/stable/appendices/licenses.html), or common license lists such as [SPDX](https://spdx.org/licenses/) or [Creative Commons](https://creativecommons.org/licenses/).
-The `Copyright` filed SHOULD provide the year, copyright holder's name, and if available, the email address of the copyright holder.
+The `Copyright` field SHOULD provide the year, copyright holder's name, and if available, the email address of the copyright holder.
 If the stimulus file is not shared, the `URL` field SHOULD provide a link to the stimulus file.
 
 ## Stimuli Description (`stimuli.tsv`)
