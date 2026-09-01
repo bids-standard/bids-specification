@@ -76,3 +76,9 @@ nirs:
   value: nirs
   display_name: Near-Infrared Spectroscopy
   description: Near-Infrared Spectroscopy data organized around the SNIRF format
+survey:
+  value: survey
+  display_name: Survey data
+  description: |
+    Structured instrument-based phenotypic data (questionnaires and assessment
+    instruments) organized in a subject- and session-resolved directory hierarchy.
