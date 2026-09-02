@@ -35,6 +35,18 @@ sessions: # This file may only exist if session is present in the dataset.
 # parent directory is specified. This most closely matches datatype in the current
 # structure. We also require a stem that can match any value, as there are no
 # constraints on the filename except extension.
+phenotype_tool:
+  level: optional
+  datatypes:
+    - phenotype
+  suffixes:
+    - phenotype
+  extensions:
+    - .tsv
+    - .json
+  entities:
+    tool: required
+
 phenotype:
   level: optional
   datatypes:

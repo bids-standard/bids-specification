@@ -109,3 +109,10 @@ underscores are not allowed in subject labels.
 
 In case of studies such as "Traveling Human Phantom" it is possible to incorporate site within session label.
 For example `sub-human1/ses-NUY`, `sub-human1/ses-MIT`, `sub-phantom1/ses-NUY`, `sub-phantom1/ses-MIT` and so on.
+
+## On tabular phenotypic data across sessions
+
+Read the [tabular phenotypic data guidelines appendix](appendices/phenotype.md)
+or the [phenotypic and assessment data section](modality-agnostic-files/phenotypic-and-assessment-data.md)
+for an explanation of how to use `"IndexColumns"`
+to aggregate longitudinal or multi-session tabular phenotypic data.

@@ -815,6 +815,11 @@ phasediff:
     unique `phasediff` file.
     For instance, this is a common output for the built-in fieldmap sequence of
     Siemens scanners.
+phenotype:
+  value: phenotype
+  display_name: Tabular phenotypic data
+  description: |
+    A table of data in a tab-separated value (TSV) file.
 photo:
   value: photo
   display_name: Photo File
