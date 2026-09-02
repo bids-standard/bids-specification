@@ -343,6 +343,58 @@ Using `remark` to fix some linting errors might introduce some additional change
 
 You might have to revert those or use [interactive staging](https://git-scm.com/book/en/v2/Git-Tools-Interactive-Staging) to make sure you only commit the right chunks of code.
 
+## Proofing the specification with Claude Code
+
+If you have access to [Claude Code](https://claude.ai/code), you can use the `proof-spec` skill
+to comprehensively check specification documents for issues before submitting a pull request.
+
+### What the proofing skill checks
+
+The proofing skill (`.claude/skills/proof-spec/SKILL.md`) performs comprehensive quality checks on
+specification documents, including:
+
+- **Language and grammar**: Detects typos, duplicated words, incorrect word usage, and punctuation issues
+- **American English compliance**: Ensures American English spelling and absence of Latin abbreviations (e.g., i.e., etc.)
+- **Markdown formatting**: Validates compliance with the Markdown Style Guide (same checks as `remark`)
+- **Macro syntax**: Verifies correct usage of mkdocs macros (for example, `{{ MACROS___make_entity_table() }}`)
+- **Content rendering**: Checks proper formatting of images, tables, file trees, and TSV fences
+- **Link integrity**: Validates internal and external links
+- **Build verification**: Optionally tests that the specification builds without errors
+
+### How to use the proofing skill
+
+To proof a specific file using Claude Code:
+
+```bash
+claude-code
+```
+
+Then ask Claude to proof a file:
+
+```
+Please proof src/common-principles.md using the proof-spec skill
+```
+
+Or to proof multiple files:
+
+```
+Please proof all markdown files in src/modality-specific-files/ using the proof-spec skill
+```
+
+The skill will provide a detailed report of issues organized by category (language, formatting, macros, etc.)
+and can optionally fix the issues it finds.
+
+### When to use the proofing skill
+
+- Before submitting a pull request with documentation changes
+- After making substantial edits to specification documents
+- When reviewing pull requests
+- Periodically to catch accumulated issues in the specification
+
+The proofing skill complements the automated `remark` checks and can catch issues that
+automated linters might miss, such as duplicated words, incorrect terminology, or
+rendering problems with macros and custom fences.
+
 ## Adding a figure to the specifications
 
 > A figure is worth a 1000 words!
