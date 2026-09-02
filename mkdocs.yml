@@ -57,6 +57,7 @@ exclude_docs: |
   pregh-changes.md
 theme:
   name: material
+  custom_dir: src/overrides
   favicon: images/favicon.png
   logo: images/logo.png
   features:
