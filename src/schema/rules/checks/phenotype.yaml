@@ -114,7 +114,8 @@ PhenotypeSessionColumnExists:
 ParticipantsSidecarRequired:
   issue:
     code: PARTICIPANT_SIDECAR_DEFINITION_MISSING
-    message: `participants.tsv` is required to have `participant_id` defined in its `JSON` sidecar.
+    message: |
+      `participants.tsv` is required to have `participant_id` defined in its `JSON` sidecar.
     level: error
   selectors:
     - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
