@@ -164,9 +164,9 @@ dimension:
   type: string
 duration:
   name: duration
-  display_name: Event duration
+  display_name: Event or recording duration
   description: |
-    Duration of the event (measured from onset) in seconds.
+    Duration of the event or recording (measured from onset) in seconds.
     Must always be either zero or positive (or `n/a` if unavailable).
     A "duration" value of zero implies that the delta function or event is so
     short as to be effectively modeled as an impulse.
