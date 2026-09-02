@@ -5,8 +5,8 @@ PhenotypeSubjectsMissing:
   issue:
     code: PHENOTYPE_SUBJECTS_MISSING
     message: |
-      A phenotype/ .tsv file lists subjects that were not found in
-      the participant_id column found in the participants.tsv file.
+      A phenotype TSV file contains subjects that were not found in
+      the `participant_id` column of the `participants.tsv` file.
     level: error
   selectors:
     - datatype == 'phenotype'
@@ -20,11 +20,11 @@ PhenotypeSubjectsMissing:
 
 PhenotypeDemographicsFileRequiredByTool:
   issue:
-    code: PHENOTYPE_DEMOGRAPHICS_FILE_REQUIRED
+    code: PHENOTYPE_DEMOGRAPHICS_FILE_REQUIRED_BY_TOOL
     message: |
-      A phenotype TSV file contains a session_id column but no
-      /phenotype/tool-demographics_phenotype.tsv file
-      was found in the /phenotype/ directory.
+      A phenotype TSV file contains a `session_id` column, but no
+      `/phenotype/tool-demographics_phenotype.tsv` file
+      was found in the `/phenotype/` directory.
     level: error
   selectors:
     - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
@@ -37,9 +37,9 @@ PhenotypeDemographicsFileRequiredByTool:
 
 PhenotypeDemographicsFileRequiredBySessionDir:
   issue:
-    code: PHENOTYPE_DEMOGRAPHICS_FILE_REQUIRED
+    code: PHENOTYPE_DEMOGRAPHICS_FILE_REQUIRED_BY_SESSION_DIR
     message: |
-      A phenotype/tool-Demographics_phenotype.tsv file is required when session
+      A `/phenotype/tool-demographics_phenotype.tsv` file is required when session
       directories are present.
     level: error
   selectors:
@@ -49,27 +49,12 @@ PhenotypeDemographicsFileRequiredBySessionDir:
   checks:
     - exists('phenotype/tool-demographics_phenotype.tsv', 'dataset')
 
-PhenotypeSessionLevels:
-  issue:
-    code: PHENOTYPE_SESSION_LEVELS
-    message: |
-      A phenotype tsv sidecar is missing the `Levels` definition for its `session_id` object.
-    level: error
-  selectors:
-    - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
-    - entities.tool == demographics
-    - suffix == 'phenotype'
-    - extension == '.tsv'
-    - type(sidecar.session_id) != 'null'
-  checks:
-    - type(sidecar.session_id.Levels) != 'null'
-
 PhenotypeSessionDirectoryMissing:
   issue:
-    code: SESSION_REQUIRED
+    code: SESSION_DIRECTORIES_REQUIRED
     message: |
-      No subject session directories were found. Session directories are required for all subjects when `session_id`
-      columns are used in any phenotype tsv file.
+      No session directories were found. Session directories are required for all participants
+      when `session_id` columns are used in any phenotype TSV file.
     level: error
   selectors:
     - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
@@ -85,7 +70,8 @@ PhenotypeSessionRequired:
   issue:
     code: SESSION_REQUIRED
     message: |
-      A subjects data file is missing the `ses` entity. Every data file must be in a session directory and use the ses
+      A participant data file is missing the `ses` entity.
+      Every data file must be in a session directory and use the `ses`
       entity when any other multi-session data is used in the dataset.
     level: error
   selectors:
@@ -112,10 +98,10 @@ PhenotypeIndexColumnsRequired:
 
 PhenotypeSessionColumnExists:
   issue:
-    code: PHENOTYPE_SESSION_LEVELS
+    code: PHENOTYPE_SESSION_LEVELS_MISSING
     message: |
-      /phenotype/tool-demographics_phenotype.tsv missing `Levels` definition for `session_id` object in
-      its sidecar.
+      Session directories exist, but a `Levels` definition is missing
+      from the `session_id` object in its sidecar.
     level: error
   selectors:
     - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
@@ -123,13 +109,12 @@ PhenotypeSessionColumnExists:
     - extension == '.tsv'
     - length(glob("sub-*/ses-*")) > 0
   checks:
-    - type(sidecar.session_id) != 'null'
     - type(sidecar.session_id.Levels) != 'null'
 
-ParicipantsSidecarRequired:
+ParticipantsSidecarRequired:
   issue:
     code: PARTICIPANT_SIDECAR_DEFINITION_MISSING
-    message: participants.tsv is required to have `participant_id` defined in its json sidecar.
+    message: `participants.tsv` is required to have `participant_id` defined in its `JSON` sidecar.
     level: error
   selectors:
     - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
@@ -139,10 +124,10 @@ ParicipantsSidecarRequired:
 
 PhenotypeSidecarRequired:
   issue:
-    code: PHENOTYPE_SESSION_LEVELS
+    code: PHENOTYPE_SIDECAR_REQUIRED
     message: |
-      Phenotype tsvs are required to have a sidecar with a MeasurementToolMetadata object with either a `TermURL` or
-      `Description` key defined.
+      Phenotype TSV files are required to have a sidecar with a `MeasurementToolMetadata` object
+      containing either a `TermURL` or `Description` key.
     level: error
   selectors:
     - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
@@ -157,8 +142,8 @@ PhenotypeDemographicsMissingData:
   issue:
     code: PHENOTYPE_DEMOGRAPHICS_MISSING_DATA
     message: |
-      /phenotype/tool-demographics_phenotype.tsv is required to have a `session_id` column defined as well as an
-      `IndexColumns` defined in its sidecar session directories are present.
+      `/phenotype/tool-demographics_phenotype.tsv` is required to have a `session_id` column defined as well as an
+      `IndexColumns` defined in its sidecar when session directories are present.
     level: error
   selectors:
     - intersects(dataset.dataset_description.AdditionalValidation, ["Phenotype"])
