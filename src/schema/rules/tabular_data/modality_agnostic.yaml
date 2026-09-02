@@ -15,6 +15,11 @@ Participants:
     handedness: recommended
     strain: recommended
     strain_rrid: recommended
+    birthdate: optional
+    birthtime: optional
+    deathdate: optional
+    deathtime: optional
+    age_category: optional
     HED: optional
   index_columns: [participant_id]
   additional_columns: allowed
