@@ -1,0 +1,1143 @@
+id: https://bids-specification.readthedocs.io/en/latest/schema
+name: bids_metaschema
+description: >-
+  LinkML metaschema for the Brain Imaging Data Structure (BIDS) schema.
+  This schema defines the structure and constraints for the BIDS schema
+  YAML/JSON files.
+license: https://creativecommons.org/licenses/by/4.0/
+
+prefixes:
+  linkml: https://w3id.org/linkml/
+  bids: https://bids-specification.readthedocs.io/en/latest/schema/
+
+default_prefix: bids
+default_range: string
+
+imports:
+  - linkml:types
+
+enums:
+
+  RequirementLevel:
+    description: >-
+      Requirement levels following RFC 2119.
+    permissible_values:
+      required:
+        description: The element MUST be present.
+      recommended:
+        description: The element SHOULD be present.
+      optional:
+        description: The element MAY be present.
+      deprecated:
+        description: The element SHOULD NOT be present.
+
+  FormatType:
+    description: >-
+      Format identifiers whose patterns are defined in the BIDS schema
+      under objects.formats.
+    permissible_values:
+      index:
+        description: Non-negative integer, possibly zero-padded.
+      label:
+        description: Free-form label with alphanumeric characters.
+      boolean:
+        description: Boolean value.
+      integer:
+        description: Integer value.
+      number:
+        description: Numeric value.
+      string:
+        description: String value.
+      hed_version:
+        description: HED version string.
+      bids_uri:
+        description: BIDS URI.
+      dataset_relative:
+        description: Path relative to the dataset root.
+      date:
+        description: Date in ISO 8601 format.
+      datetime:
+        description: Date and time in ISO 8601 format.
+      file_relative:
+        description: Path relative to the current file.
+      participant_relative:
+        description: Path relative to the participant directory.
+      rrid:
+        description: Research Resource Identifier.
+      stimuli_relative:
+        description: Path relative to the stimuli directory.
+      time:
+        description: Time in ISO 8601 format.
+      unit:
+        description: Unit of measurement.
+      uri:
+        description: Uniform Resource Identifier.
+
+  IssueSeverity:
+    description: >-
+      Severity level for validation issues.
+    permissible_values:
+      error:
+        description: A rule violation that MUST be fixed.
+      warning:
+        description: A rule violation that SHOULD be fixed.
+
+classes:
+
+  GeneralTerm:
+    description: >-
+      Base class for all BIDS schema terms.
+      Every term has a human-readable display name and a description.
+    attributes:
+      display_name:
+        range: string
+        required: true
+        description: A human-friendly name for display in tools.
+      description:
+        range: string
+        required: true
+        description: >-
+          A description of the term. May contain Markdown for rendering.
+
+  # --- objects.* term types ---
+
+  ValueTerm:
+    is_a: GeneralTerm
+    extra_slots:
+      allowed: true
+    description: >-
+      A term whose identity is a single string value.
+      Used for datatypes, extensions, and as a base for suffixes
+      and named enum values.
+    attributes:
+      value:
+        range: string
+        required: true
+        description: The string value of the term.
+
+  Datatype:
+    is_a: ValueTerm
+    description: >-
+      A subdirectory that organizes files by acquisition type,
+      such as anat, eeg, or func.
+
+  Extension:
+    is_a: ValueTerm
+    description: >-
+      A filename component describing the format of the file,
+      including the leading dot.
+
+  Suffix:
+    is_a: ValueTerm
+    extra_slots:
+      allowed: true
+    description: >-
+      A filename suffix describing the contents of a file.
+    attributes:
+      unit:
+        range: string
+        description: Interpretation of numeric values in the file.
+      anyOf:
+        range: JsonSchema
+        multivalued: true
+        inlined_as_list: true
+        description: >-
+          Multiple permissible unit or type descriptions.
+      maxValue:
+        range: float
+        description: Maximum permissible value in a data file.
+      minValue:
+        range: float
+        description: Minimum permissible value in a data file.
+
+  NameValueTerm:
+    is_a: GeneralTerm
+    extra_slots:
+      allowed: true
+    description: >-
+      A term where a name, when present, has a given meaning and its
+      value may be restricted. Base for entities, metadata fields,
+      and columns.
+    attributes:
+      name:
+        range: string
+        required: true
+        description: >-
+          The name of the term as it appears in the specification
+          and in a dataset.
+      type:
+        range: string
+        description: >-
+          The JSON Schema type of the value, such as string, integer,
+          number, object, array, or boolean.
+      format:
+        range: FormatType
+        description: >-
+          The permissible format of the value, from objects.formats.
+      enum:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        description: >-
+          Exclusive list of valid values.
+      anyOf:
+        range: JsonSchema
+        multivalued: true
+        inlined_as_list: true
+        description: >-
+          A list of type constraints, any of which could apply.
+      items:
+        range: JsonSchema
+        description: >-
+          Constraints on array element types.
+      properties:
+        range: JsonSchema
+        description: >-
+          Constraints on object field types. Values are arbitrary
+          JSON Schema objects.
+      additionalProperties:
+        range: JsonSchema
+        description: >-
+          Constraints on values of arbitrary object keys.
+      maximum:
+        range: float
+        description: Maximum for numeric values.
+      minimum:
+        range: float
+        description: Minimum for numeric values.
+      exclusiveMinimum:
+        range: float
+        description: Exclusive minimum for numeric values.
+      maxItems:
+        range: integer
+        description: Maximum number of items in an array.
+      minItems:
+        range: integer
+        description: Minimum number of items in an array.
+      required:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        description: >-
+          List of required property names for object-typed values.
+      recommended:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        description: >-
+          List of recommended property names for object-typed values.
+
+  Entity:
+    is_a: NameValueTerm
+    description: >-
+      A name-value pair appearing in filenames.
+    slot_usage:
+      format:
+        required: true
+
+  MetadataField:
+    is_a: NameValueTerm
+    extra_slots:
+      allowed: true
+    description: >-
+      A name-value pair appearing in JSON sidecar files.
+    attributes:
+      unit:
+        range: string
+        description: Interpretation of numeric values.
+
+  Column:
+    is_a: NameValueTerm
+    extra_slots:
+      allowed: true
+    description: >-
+      A column heading and its value constraints in TSV files.
+    attributes:
+      unit:
+        range: string
+        description: Interpretation of numeric values.
+      pattern:
+        range: string
+        description: Regular expression constraining string values.
+      definition:
+        range: JsonSchema
+        description: >-
+          A JSON object describing the column as in the Tabular files
+          section of Common principles. Mutually exclusive with type.
+
+  Format:
+    is_a: GeneralTerm
+    description: >-
+      Defines the form that values of a given format may take.
+    attributes:
+      pattern:
+        range: string
+        required: true
+        description: Regular expression validating string values.
+
+  FileObject:
+    is_a: GeneralTerm
+    description: >-
+      Files and directories that may appear at the root of a dataset.
+    attributes:
+      file_type:
+        range: string
+        required: true
+        description: >-
+          Whether the file is a regular file or a directory.
+
+  EnumValue:
+    is_a: ValueTerm
+    extra_slots:
+      allowed: true
+    description: >-
+      A named enumerated value with full description,
+      used in objects.enums.
+    attributes:
+      tags:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        description: >-
+          Tags for categorizing the enum value.
+
+  PrivateEnum:
+    description: >-
+      A private (underscore-prefixed) enum definition embedding
+      JSON Schema type and enum constraints. Used for reusable
+      value lists in objects.enums.
+    attributes:
+      type:
+        range: string
+        required: true
+        description: The JSON Schema type (typically string).
+      enum:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        required: true
+        description: The list of permissible values.
+
+  JsonSchema:
+    description: >-
+      An arbitrary JSON Schema fragment. Used for embedded type
+      constraints in metadata fields, columns, and suffixes.
+      This is intentionally loosely typed to allow any valid
+      JSON Schema construct.
+
+  # --- rules.* types ---
+
+  Issue:
+    description: >-
+      A validation issue with a code, message, and severity.
+    attributes:
+      code:
+        range: string
+        required: true
+        description: Issue identifier such as EVENTS_TSV_MISSING.
+      message:
+        range: string
+        required: true
+        description: Message for display to a user.
+      level:
+        range: IssueSeverity
+        description: >-
+          Issue severity. May be omitted when the level is
+          determined by the containing rule.
+
+  FieldSpec:
+    description: >-
+      Specification of a sidecar field or tabular column within a rule.
+      Can be either a plain requirement level string or an object with
+      additional details.
+    attributes:
+      level:
+        range: RequirementLevel
+        required: true
+        description: Requirement level of the field.
+      level_addendum:
+        range: string
+        description: >-
+          Additional text describing when the requirement level changes.
+      description_addendum:
+        range: string
+        description: >-
+          Additional text appended to the field description from objects.
+      issue:
+        range: Issue
+        inlined: true
+        description: >-
+          An issue to raise if this field violates the rule.
+
+  EntityOverride:
+    description: >-
+      An entity constraint within a file rule, specifying the
+      requirement level and optionally restricting valid values.
+    attributes:
+      level:
+        range: RequirementLevel
+        required: true
+        description: Requirement level for the entity.
+      enum:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        description: Exclusive list of valid entity values.
+
+  SuffixRule:
+    description: >-
+      A filename rule specifying valid combinations of suffixes,
+      extensions, datatypes, and entities for BIDS files.
+    attributes:
+      suffixes:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        required: true
+        description: List of valid suffixes.
+      extensions:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        required: true
+        description: List of valid extensions including the leading dot.
+      datatypes:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        description: List of valid datatypes.
+      entities:
+        range: EntityRequirementMap
+        inlined: true
+        description: >-
+          Map from entity name to requirement level or override object.
+      level:
+        range: RequirementLevel
+        description: Requirement level of the file.
+      selectors:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        description: >-
+          Expressions that determine whether this rule applies.
+
+  PathRule:
+    description: >-
+      A rule for a file identified by its exact path relative to
+      the dataset root.
+    attributes:
+      path:
+        range: string
+        required: true
+        description: >-
+          Location of the file relative to the dataset root.
+      level:
+        range: RequirementLevel
+        required: true
+        description: Requirement level of the file.
+      selectors:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        description: >-
+          Expressions that determine whether this rule applies.
+
+  StemRule:
+    description: >-
+      A rule for a file identified by its stem (name without
+      extension) relative to the dataset root.
+    attributes:
+      stem:
+        range: string
+        required: true
+        description: >-
+          Name of the file up to but not including the extension.
+      extensions:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        required: true
+        description: List of valid extensions.
+      level:
+        range: RequirementLevel
+        required: true
+        description: Requirement level of the file.
+      datatypes:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        description: List of valid datatypes.
+      selectors:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        description: >-
+          Expressions that determine whether this rule applies.
+
+  SidecarRule:
+    description: >-
+      A rule specifying required, recommended, or optional metadata
+      fields in JSON sidecar files.
+    attributes:
+      selectors:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        required: true
+        description: >-
+          Expressions that determine whether this rule applies.
+      fields:
+        range: FieldRequirementMap
+        inlined: true
+        description: >-
+          Map from field name to requirement level or FieldSpec.
+
+  TabularDataRule:
+    description: >-
+      A rule specifying required, recommended, or optional columns
+      in TSV files.
+    attributes:
+      selectors:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        required: true
+        description: >-
+          Expressions that determine whether this rule applies.
+      columns:
+        range: FieldRequirementMap
+        inlined: true
+        description: >-
+          Map from column name to requirement level or FieldSpec.
+      additional_columns:
+        range: string
+        required: true
+        description: >-
+          Whether extra columns are permitted.
+          One of allowed, allowed_if_defined, not_allowed, or n/a.
+      initial_columns:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        description: >-
+          Columns that must appear first, in order.
+      index_columns:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        description: >-
+          Columns that uniquely identify a row.
+
+  CheckRule:
+    description: >-
+      A validation rule with selectors, checks, and an issue.
+    attributes:
+      issue:
+        range: Issue
+        inlined: true
+        required: true
+        description: >-
+          The issue to raise when any check expression fails.
+      selectors:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        required: true
+        description: >-
+          Expressions that determine whether this rule applies.
+      checks:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        required: true
+        description: >-
+          Expressions that must all evaluate to true.
+
+  ErrorDefinition:
+    description: >-
+      An error or warning that cannot be expressed purely in the
+      schema but should be reported consistently by validators.
+    attributes:
+      code:
+        range: string
+        description: Error code identifier.
+      message:
+        range: string
+        required: true
+        description: Message for display to a user.
+      level:
+        range: IssueSeverity
+        required: true
+        description: Severity of the error.
+      selectors:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        description: >-
+          Expressions that determine when this error applies.
+
+  ModalityMapping:
+    description: >-
+      Maps a modality to its constituent datatypes.
+    attributes:
+      datatypes:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        required: true
+        description: List of datatypes belonging to this modality.
+
+  DirectoryEntry:
+    extra_slots:
+      allowed: true
+    description: >-
+      A directory entry in the dataset directory structure.
+    attributes:
+      name:
+        range: string
+        description: The directory name.
+      level:
+        range: RequirementLevel
+        description: Requirement level of the directory.
+      opaque:
+        range: boolean
+        description: >-
+          Whether the directory contents are outside BIDS scope.
+      subdirs:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        description: List of subdirectory names.
+      entity:
+        range: string
+        description: Entity associated with this directory level.
+      value:
+        range: string
+        description: Value or pattern for the directory name.
+
+  # --- meta.* types ---
+
+  AssociationTarget:
+    description: >-
+      The target file specification for a file association.
+    attributes:
+      suffix:
+        range: string
+        description: The suffix of the associated file.
+      extension:
+        description: >-
+          The extension(s) of the associated file. Can be a single
+          string or a list of valid extensions.
+      entities:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        description: >-
+          Entities to propagate when finding the associated file.
+
+  Association:
+    description: >-
+      Defines how associated files (such as events.tsv for a BOLD
+      file) are discovered via the inheritance principle.
+    attributes:
+      target:
+        range: AssociationTarget
+        inlined: true
+        required: true
+        description: The target file to look for.
+      selectors:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        description: >-
+          Expressions that determine when this association applies.
+      inherit:
+        range: boolean
+        description: >-
+          Whether to apply the inheritance principle when searching.
+
+  ExpressionTest:
+    description: >-
+      A test case for the expression language, pairing an
+      expression string with its expected result.
+    attributes:
+      expression:
+        range: string
+        required: true
+        description: The expression to evaluate.
+      result:
+        description: >-
+          The expected result of evaluating the expression.
+          Can be any JSON value including null.
+
+  Template:
+    extra_slots:
+      allowed: true
+    description: >-
+      A reusable partial rule fragment, typically containing
+      entity requirements and optional selectors. May also
+      include suffixes and extensions for derivative templates.
+      Note: relevant only to the YAML presentation and not detailed
+      in original metaschema.json. ATM used only for FileRule's, and like
+      "abstract class" or "Interface" which is then mixed in.
+    attributes:
+      entities:
+        range: TemplateEntityMap
+        inlined: true
+        description: >-
+          Map from entity name to requirement level.
+      selectors:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        description: >-
+          Expressions that determine when this template applies.
+      suffixes:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        description: >-
+          List of valid suffixes for this template.
+      extensions:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        description: >-
+          List of valid extensions for this template.
+
+  # --- Map wrapper classes ---
+  # These thin classes model JSON objects with arbitrary string keys
+  # and typed values. LinkML's extra_slots generates the correct
+  # additionalProperties in JSON Schema.
+
+  ColumnMap:
+    extra_slots:
+      range_expression:
+        range: Column
+    description: >-
+      Map from column name to Column definitions.
+
+  GeneralTermMap:
+    extra_slots:
+      range_expression:
+        range: GeneralTerm
+    description: >-
+      Map from term name to GeneralTerm definitions.
+
+  DatatypeMap:
+    extra_slots:
+      range_expression:
+        range: Datatype
+    description: >-
+      Map from datatype name to Datatype definitions.
+
+  EntityMap:
+    extra_slots:
+      range_expression:
+        range: Entity
+    description: >-
+      Map from entity name to Entity definitions.
+
+  ExtensionMap:
+    extra_slots:
+      range_expression:
+        range: Extension
+    description: >-
+      Map from extension name to Extension definitions.
+
+  FileObjectMap:
+    extra_slots:
+      range_expression:
+        range: FileObject
+    description: >-
+      Map from file name to FileObject definitions.
+
+  FormatMap:
+    extra_slots:
+      range_expression:
+        range: Format
+    description: >-
+      Map from format name to Format definitions.
+
+  MetadataFieldMap:
+    extra_slots:
+      range_expression:
+        range: MetadataField
+    description: >-
+      Map from field name to MetadataField definitions.
+
+  SuffixMap:
+    extra_slots:
+      range_expression:
+        range: Suffix
+    description: >-
+      Map from suffix name to Suffix definitions.
+
+  AssociationMap:
+    extra_slots:
+      range_expression:
+        range: Association
+    description: >-
+      Map from association name to Association objects.
+
+  SidecarRuleMap:
+    extra_slots:
+      range_expression:
+        range: SidecarRule
+    description: >-
+      Map from rule name to SidecarRule objects.
+
+  ErrorDefinitionMap:
+    extra_slots:
+      range_expression:
+        range: ErrorDefinition
+    description: >-
+      Map from error name to ErrorDefinition objects.
+
+  ModalityMappingMap:
+    extra_slots:
+      range_expression:
+        range: ModalityMapping
+    description: >-
+      Map from modality name to ModalityMapping objects.
+
+  EnumMap:
+    extra_slots:
+      allowed: true
+    description: >-
+      Map from enum name to EnumValue or PrivateEnum definitions.
+      Uses open additionalProperties since values can be either type.
+
+  # Category 2: Nested map wrapper classes (group -> name -> TypedValue)
+
+  TemplateMap:
+    extra_slots:
+      range_expression:
+        range: Template
+    description: >-
+      Map from template name to Template objects.
+
+  TemplateGroupMap:
+    extra_slots:
+      range_expression:
+        range: TemplateMap
+    description: >-
+      Map from template category to TemplateMap.
+
+  CheckRuleMap:
+    extra_slots:
+      range_expression:
+        range: CheckRule
+    description: >-
+      Map from check rule name to CheckRule objects.
+
+  CheckRuleGroupMap:
+    extra_slots:
+      range_expression:
+        range: CheckRuleMap
+    description: >-
+      Map from check group name to CheckRuleMap.
+
+  DirectoryEntryMap:
+    extra_slots:
+      range_expression:
+        range: DirectoryEntry
+    description: >-
+      Map from directory name to DirectoryEntry objects.
+
+  DirectoryGroupMap:
+    extra_slots:
+      range_expression:
+        range: DirectoryEntryMap
+    description: >-
+      Map from directory group name to DirectoryEntryMap.
+
+  SidecarRuleGroupMap:
+    extra_slots:
+      range_expression:
+        range: SidecarRuleMap
+    description: >-
+      Map from sidecar group name to SidecarRuleMap.
+
+  TabularDataRuleMap:
+    extra_slots:
+      range_expression:
+        range: TabularDataRule
+    description: >-
+      Map from rule name to TabularDataRule objects.
+
+  TabularDataRuleGroupMap:
+    extra_slots:
+      range_expression:
+        range: TabularDataRuleMap
+    description: >-
+      Map from tabular data group name to TabularDataRuleMap.
+
+  SuffixRuleMap:
+    extra_slots:
+      range_expression:
+        range: SuffixRule
+    description: >-
+      Map from suffix rule name to SuffixRule objects.
+
+  SuffixRuleGroupMap:
+    extra_slots:
+      range_expression:
+        range: SuffixRuleMap
+    description: >-
+      Map from file rule group name to SuffixRuleMap.
+
+  FileRuleGroupMap:
+    extra_slots:
+      allowed: true
+    description: >-
+      Map from file rule group name to open map of rules.
+      Used for common file rules where rule structure varies.
+
+  # Category 3: Union-valued map wrapper classes
+
+  EntityRequirementMap:
+    extra_slots:
+      range_expression:
+        any_of:
+          - range: RequirementLevel
+          - range: EntityOverride
+    description: >-
+      Map from entity name to RequirementLevel or EntityOverride.
+
+  FieldRequirementMap:
+    extra_slots:
+      range_expression:
+        any_of:
+          - range: RequirementLevel
+          - range: FieldSpec
+    description: >-
+      Map from field/column name to RequirementLevel or FieldSpec.
+
+  TemplateEntityMap:
+    extra_slots:
+      range_expression:
+        range: RequirementLevel
+    description: >-
+      Map from entity name to RequirementLevel for templates.
+
+  # --- Container classes ---
+
+  MetaSection:
+    description: >-
+      The meta section of the BIDS schema, containing associations,
+      context, expression tests, templates, and version history.
+    attributes:
+      associations:
+        range: AssociationMap
+        inlined: true
+        description: >-
+          Map from association name to Association objects.
+      context:
+        description: >-
+          The context object is itself a JSON Schema defining the
+          namespace available to rule expressions.
+      expression_tests:
+        range: ExpressionTest
+        multivalued: true
+        inlined_as_list: true
+        description: >-
+          Test cases for the expression language.
+      templates:
+        range: TemplateGroupMap
+        inlined: true
+        description: >-
+          Nested map of template category to template name to
+          Template objects.
+      versions:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        description: >-
+          Version history as a list of semantic version strings.
+
+  ObjectsSection:
+    description: >-
+      The objects section containing all term definitions.
+    attributes:
+      columns:
+        range: ColumnMap
+        inlined: true
+        description: >-
+          Map from column name to Column definitions.
+      common_principles:
+        range: GeneralTermMap
+        inlined: true
+        description: >-
+          Map from term name to GeneralTerm definitions.
+      datatypes:
+        range: DatatypeMap
+        inlined: true
+        description: >-
+          Map from datatype name to Datatype definitions.
+      entities:
+        range: EntityMap
+        inlined: true
+        description: >-
+          Map from entity name to Entity definitions.
+      enums:
+        range: EnumMap
+        inlined: true
+        description: >-
+          Map from enum name to EnumValue or PrivateEnum definitions.
+      extensions:
+        range: ExtensionMap
+        inlined: true
+        description: >-
+          Map from extension name to Extension definitions.
+      files:
+        range: FileObjectMap
+        inlined: true
+        description: >-
+          Map from file name to FileObject definitions.
+      formats:
+        range: FormatMap
+        inlined: true
+        description: >-
+          Map from format name to Format definitions.
+      metadata:
+        range: MetadataFieldMap
+        inlined: true
+        description: >-
+          Map from field name to MetadataField definitions.
+      metaentities:
+        range: GeneralTermMap
+        inlined: true
+        description: >-
+          Map from metaentity name to GeneralTerm definitions.
+      modalities:
+        range: GeneralTermMap
+        inlined: true
+        description: >-
+          Map from modality name to GeneralTerm definitions.
+      suffixes:
+        range: SuffixMap
+        inlined: true
+        description: >-
+          Map from suffix name to Suffix definitions.
+
+  FileRulesSection:
+    description: >-
+      Container for all file naming rules, organized by category.
+    attributes:
+      common:
+        range: FileRuleGroupMap
+        inlined: true
+        description: >-
+          Common file rules including core files and tables.
+      raw:
+        range: SuffixRuleGroupMap
+        inlined: true
+        description: >-
+          Raw data file rules, organized by datatype group.
+      deriv:
+        range: SuffixRuleGroupMap
+        inlined: true
+        description: >-
+          Derivative data file rules, organized by datatype group.
+
+  RulesSection:
+    description: >-
+      The rules section containing validation and structural rules.
+    attributes:
+      checks:
+        range: CheckRuleGroupMap
+        inlined: true
+        description: >-
+          Map from check group name to map of check name
+          to CheckRule objects.
+      common_principles:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        description: >-
+          Ordered list of common principle term names.
+      dataset_metadata:
+        range: SidecarRuleMap
+        inlined: true
+        description: >-
+          Sidecar-like rules for dataset-level JSON files.
+      directories:
+        range: DirectoryGroupMap
+        inlined: true
+        description: >-
+          Directory structure rules for BIDS datasets.
+      entities:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        description: >-
+          Ordered list of entity names defining filename order.
+      errors:
+        range: ErrorDefinitionMap
+        inlined: true
+        description: >-
+          Map from error name to ErrorDefinition objects.
+      files:
+        range: FileRulesSection
+        inlined: true
+        description: >-
+          File naming rules organized by common/raw/deriv.
+      json:
+        range: SidecarRuleGroupMap
+        inlined: true
+        description: >-
+          Sidecar-like rules for JSON schema validation.
+      metaentities:
+        range: string
+        multivalued: true
+        inlined_as_list: true
+        description: >-
+          Ordered list of metaentity term names.
+      modalities:
+        range: ModalityMappingMap
+        inlined: true
+        description: >-
+          Map from modality name to ModalityMapping objects.
+      sidecars:
+        range: SidecarRuleGroupMap
+        inlined: true
+        description: >-
+          Map from sidecar group to map of rule name
+          to SidecarRule objects.
+      tabular_data:
+        range: TabularDataRuleGroupMap
+        inlined: true
+        description: >-
+          Map from tabular group to map of rule name
+          to TabularDataRule objects.
+
+  BidsSchema:
+    tree_root: true
+    description: >-
+      Top-level BIDS schema object, as produced by compiling
+      the schema YAML files via bst export.
+    attributes:
+      meta:
+        range: MetaSection
+        inlined: true
+        required: true
+        description: Meta-information about the schema.
+      objects:
+        range: ObjectsSection
+        inlined: true
+        required: true
+        description: All term and object definitions.
+      rules:
+        range: RulesSection
+        inlined: true
+        required: true
+        description: All validation and structural rules.
+      bids_version:
+        range: string
+        required: true
+        description: The BIDS specification version.
+      schema_version:
+        range: string
+        required: true
+        description: The schema structure version.
