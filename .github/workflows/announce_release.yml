@@ -1,0 +1,27 @@
+name: "Announce release on PRs and issues"
+
+# Post a "released in vX.Y.Z" comment on every PR included in a release,
+# and a "fixed in vX.Y.Z" comment on every issue those PRs closed.
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: write
+
+jobs:
+  announce:
+    if: github.repository == 'bids-standard/bids-specification'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - uses: astral-sh/setup-uv@v7
+      - name: Announce release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: tools/announce_release.py --post "${{ github.event.release.tag_name }}"
