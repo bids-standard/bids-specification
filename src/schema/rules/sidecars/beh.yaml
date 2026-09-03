@@ -25,3 +25,17 @@ BEHInstitutionInformation:
     InstitutionName: recommended
     InstitutionAddress: recommended
     InstitutionalDepartmentName: recommended
+
+# Behavioral-specific metadata for media files.
+# General audio/video/image stream properties (codecs, sample rate, dimensions,
+# frame rate, duration) are defined by the common media rules in
+# `rules/sidecars/media.yaml` and apply to these suffixes regardless of datatype.
+AudioVideoImageDevice:
+  selectors:
+    - datatype == "beh"
+    - intersects([suffix], ["audio", "video", "audiovideo", "image"])
+  fields:
+    Device: optional
+    DeviceSerialNumber: optional
+    DevicePosition: optional
+    License: optional
