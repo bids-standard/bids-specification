@@ -173,6 +173,18 @@ duration:
   type: number
   unit: s
   minimum: 0
+duration__scans:
+  name: duration
+  display_name: Scan duration
+  description: |
+    Wallclock duration of the recording in seconds,
+    from the acquisition of the first data sample to the end of the acquisition of the last data sample.
+    MUST be strictly positive.
+    For MRI data, this is equivalent to the `AcquisitionDuration` sidecar metadata field;
+    if both are present for the same file they SHOULD be equal.
+  type: number
+  unit: s
+  exclusiveMinimum: 0
 x_coordinate:
   name: x_coordinate
   display_name: Gaze x-coordinate
