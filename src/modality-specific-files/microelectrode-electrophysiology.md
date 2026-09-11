@@ -1029,6 +1029,7 @@ for practical guidance when curating a new dataset:
 
 -   [`microephys_toy`](https://github.com/bids-standard/bids-examples/tree/master/microephys_toy):
     the toy extracellular and intracellular datasets described above.
+
 -   [`microephys_ecephys_multielectrode_grasp`](https://github.com/bids-standard/bids-examples/tree/master/microephys_ecephys_multielectrode_grasp):
     the extracellular multielectrode array dataset published in
     [Brochier (2018)](https://doi.org/10.1038/sdata.2018.55), reorganized according to this specification
