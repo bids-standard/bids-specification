@@ -2451,14 +2451,14 @@ MicroephysCoordinateUnits:
   display_name: Microephys Coordinate Units
   description: |
     Units of the coordinates of `"MicroephysCoordinateSystem"`.
+    MUST be `"pixels"` if `MicroephysCoordinateSystem` is `Pixels`.
   type: string
-  # TODO: Clarify if units need to be used or enums, if units, define pixels
   enum:
+    - $ref: objects.enums.pixels.value
     - m
     - mm
     - cm
     - um
-    - pixels
 MicroephysCoordinateSystemPhoto:
   name: MicroephysCoordinateSystemPhoto
   display_name: Microephys Coordinate System Photo
