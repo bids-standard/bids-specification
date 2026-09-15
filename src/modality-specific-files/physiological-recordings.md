@@ -24,7 +24,7 @@ corresponding tabular file but with a `.json` extension.
 clock governing an associated continuous recording. Asynchronous events carry no fixed
 temporal relationship to that sampling rate. Their timing precision only needs to be
 sufficient to locate them relative to the surrounding, precisely-timed continuous or
-event-based recordings (e.g., device status messages, calibration outcomes, or triggers).
+event-based recordings (for example, device status messages, calibration outcomes, or triggers).
 
 {{ MACROS___make_filename_template(
        "raw",
