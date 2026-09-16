@@ -424,24 +424,24 @@ each with its own `ReferenceAtlas` and `LocalizationMethod`.
 **Extracellular electrophysiology example (probe-relative coordinates):**
 
 ```tsv
-name	probe_name	hemisphere	x	y	z	impedance	shank_id	size	material	anatomical_location	localization_method
-e001	probe01	L	0	0	0	1.2	0	15	iridium-oxide	MOp	histology
-e002	probe01	L	0	0	25	1.1	0	15	iridium-oxide	MOp	histology
-e003	probe01	L	0	0	50	1.3	0	15	iridium-oxide	MOp	histology
-e004	probe01	L	0	0	75	1.4	0	15	iridium-oxide	MOp	histology
-e005	probe02	R	0	0	0	2.1	n/a	12	tungsten	CA1	histology
-e006	probe02	R	0	0	15	2.3	n/a	12	tungsten	CA1	histology
-e007	probe02	R	0	0	30	1.9	n/a	12	tungsten	CA1	histology
-e008	probe02	R	0	0	45	2.0	n/a	12	tungsten	CA1	histology
+name	probe_name	x	y	z	hemisphere	impedance	shank_id	size	material	anatomical_location	localization_method
+e001	probe01	0	0	0	L	1.2	0	15	iridium-oxide	MOp	histology
+e002	probe01	0	0	25	L	1.1	0	15	iridium-oxide	MOp	histology
+e003	probe01	0	0	50	L	1.3	0	15	iridium-oxide	MOp	histology
+e004	probe01	0	0	75	L	1.4	0	15	iridium-oxide	MOp	histology
+e005	probe02	0	0	0	R	2.1	n/a	12	tungsten	CA1	histology
+e006	probe02	0	0	15	R	2.3	n/a	12	tungsten	CA1	histology
+e007	probe02	0	0	30	R	1.9	n/a	12	tungsten	CA1	histology
+e008	probe02	0	0	45	R	2.0	n/a	12	tungsten	CA1	histology
 ```
 
 **Intracellular electrophysiology example:**
 
 ```tsv
-name	probe_name	hemisphere	x	y	z	impedance	pipette_solution	internal_pipette_diameter	external_pipette_diameter	material	anatomical_location
-patch01	pipette01	L	0	0	0	5.2	K-gluconate	1.5	2.5	borosilicate-glass	VISp2/3
-patch02	pipette02	R	0	0	0	4.8	K-gluconate	1.5	2.5	borosilicate-glass	VISp2/3
-sharp01	pipette03	L	0	0	0	80	3M KCl	0.5	1.0	borosilicate-glass	PL5
+name	probe_name	x	y	z	hemisphere	impedance	pipette_solution	internal_pipette_diameter	external_pipette_diameter	material	anatomical_location
+patch01	pipette01	0	0	0	L	5.2	K-gluconate	1.5	2.5	borosilicate-glass	VISp2/3
+patch02	pipette02	0	0	0	R	4.8	K-gluconate	1.5	2.5	borosilicate-glass	VISp2/3
+sharp01	pipette03	0	0	0	L	80	3M KCl	0.5	1.0	borosilicate-glass	PL5
 ```
 
 ## Probes description (`*_probes.tsv`)
