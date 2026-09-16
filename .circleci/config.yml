@@ -50,6 +50,7 @@ jobs:
                 --ignore-url 'https://rrid.site.*' \
                 --ignore-url 'https://jsr.io/.*' \
                 --ignore-url 'https://www.encodeproject.org/.*' \
+                --ignore-url 'https://scicrunch.org/resolver/.*' \
                 ~/project/site/*html ~/project/site/*/*.html
             else
               echo "Release PR - do nothing"

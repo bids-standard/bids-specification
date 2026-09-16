@@ -1,0 +1,46 @@
+---
+microephys:
+  suffixes:
+    - ecephys
+  extensions:
+    - .nwb
+    # possible future: serialization in .zarr format to accompany .ome.zarr
+    # - .nwb.zarr
+    - .nix
+    - .json
+  datatypes:
+    - ecephys
+  entities:
+    subject: required
+    session: optional
+    sample: optional
+    task: optional
+    acquisition: optional
+    run: optional
+
+# Intracellular recordings are always made from a discrete sample, typically a
+# single cell, so the sample entity is required, as it is for microscopy.
+microephys__icephys:
+  $ref: rules.files.raw.microephys.microephys
+  suffixes:
+    - icephys
+  datatypes:
+    - icephys
+  entities:
+    $ref: rules.files.raw.microephys.microephys.entities
+    sample: required
+
+probes:
+  suffixes:
+    - probes
+  extensions:
+    - .tsv
+    - .json
+  datatypes:
+    - ecephys
+    - icephys
+  entities:
+    subject: required
+    session: optional
+    sample: optional
+    acquisition: optional
