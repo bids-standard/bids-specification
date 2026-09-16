@@ -35,3 +35,27 @@ DuplicateReadmes:
     - match(path, '^/README.*')
   checks:
     - exists(["README", "README.md", "README.rst", "README.txt"], "dataset") == 1
+
+# BIDS Validator Original Issue Code #100
+BrainvisionLinksBroken:
+  issue:
+    code: BRAINVISION_LINKS_BROKEN
+    message: |
+      A BrainVision recording must include matching '.eeg', '.vhdr', and '.vmrk' files.
+    level: error
+  selectors:
+    # Report once per recording: prefer the header, then the marker, then the data file.
+    - |
+      extension == ".vhdr" ||
+      (extension == ".vmrk" &&
+       exists(substr(path, 1, length(path) - length(extension)) + ".vhdr", "dataset") == 0) ||
+      (extension == ".eeg" &&
+       exists(substr(path, 1, length(path) - length(extension)) + ".vhdr", "dataset") == 0 &&
+       exists(substr(path, 1, length(path) - length(extension)) + ".vmrk", "dataset") == 0)
+  checks:
+    - |
+      exists([
+        substr(path, 1, length(path) - length(extension)) + ".eeg",
+        substr(path, 1, length(path) - length(extension)) + ".vhdr",
+        substr(path, 1, length(path) - length(extension)) + ".vmrk"
+      ], "dataset") == 3

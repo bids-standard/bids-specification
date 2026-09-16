@@ -63,7 +63,7 @@ We ask that all contributions to BIDS across all project-related spaces
 [GitHub](https://github.com/bids-standard), and the
 [Google group](https://groups.google.com/forum/#!forum/bids-discussion); see
 [BIDS communication channels](#bids-communication-channels))
-adhere to our [code of conduct](https://github.com/bids-standard/bids-specification/blob/master/CODE_OF_CONDUCT.md).
+adhere to our [code of conduct](https://github.com/bids-standard/.github/blob/main/CODE_OF_CONDUCT.md).
 
 # BIDS communication channels
 
