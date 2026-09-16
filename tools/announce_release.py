@@ -40,7 +40,8 @@ from gql.transport.aiohttp import AIOHTTPTransport
 REPO = "bids-standard/bids-specification"
 TAG_RE = re.compile(r"^v\d+\.\d+\.\d+$")
 
-PR_INFO_QUERY = gql("""\
+PR_INFO_QUERY = gql(
+    """\
 query($owner: String!, $name: String!, $number: Int!, $issue_cursor: String) {
   repository(owner: $owner, name: $name) {
     pullRequest(number: $number) {
@@ -52,9 +53,11 @@ query($owner: String!, $name: String!, $number: Int!, $issue_cursor: String) {
     }
   }
 }
-""")
+"""
+)
 
-COMMENTS_QUERY = gql("""\
+COMMENTS_QUERY = gql(
+    """\
 query($owner: String!, $name: String!, $number: Int!, $after: String) {
   repository(owner: $owner, name: $name) {
     issueOrPullRequest(number: $number) {
@@ -73,7 +76,8 @@ query($owner: String!, $name: String!, $number: Int!, $after: String) {
     }
   }
 }
-""")
+"""
+)
 
 
 @dataclass
