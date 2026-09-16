@@ -109,9 +109,9 @@ def prs_in_range(prev_tag: str | None, tag: str) -> list[int]:
     out = git("log", rev, "--first-parent", "--pretty=%s")
     seen: dict[int, None] = {}  # dict preserves insertion order, dedupes
     for line in out.splitlines():
-        if m := re.search(r"\(#(\d+)\)\s*$", line):
-            seen[int(m.group(1))] = None
-        elif m := re.match(r"Merge pull request #(\d+)", line):
+        if (m := re.search(r"\(#(\d+)\)\s*$", line)) or (
+            m := re.match(r"Merge pull request #(\d+)", line)
+        ):
             seen[int(m.group(1))] = None
     return list(seen)
 
