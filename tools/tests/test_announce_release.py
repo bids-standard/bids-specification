@@ -91,7 +91,7 @@ def test_prs_in_range_squash_and_merge(monkeypatch):
 
     Skips REL: subject (no PR ref) and dedupes repeated PR numbers (insertion-order).
     """
-    fake_log = "\n".join(
+    fake_log = "\n".join(  # noqa: FLY002
         [
             "REL: Version 1.11.1",  # no PR ref, skip
             "[FIX] Add emg to timeseries rule (#2346)",  # squash
@@ -120,7 +120,7 @@ def test_prs_in_range_empty(monkeypatch):
 
 
 def test_release_tags_filters_and_preserves_order(monkeypatch):
-    raw = "\n".join(
+    raw = "\n".join(  # noqa: FLY002
         [
             "schema-1.2.3",
             "v.1.1.2",  # malformed
@@ -145,6 +145,7 @@ def _run_script(*argv):
         [sys.executable, str(SCRIPT), *argv],
         capture_output=True,
         text=True,
+        check=False,
     )
     return proc.returncode, proc.stderr
 
@@ -172,6 +173,7 @@ def test_cli_missing_token(monkeypatch):
         text=True,
         env=env,
         cwd=str(HERE.parent.parent),  # repo root
+        check=False,
     )
     assert proc.returncode == 1
     assert "GITHUB_TOKEN" in proc.stderr
@@ -188,6 +190,7 @@ def test_cli_help_without_token():
         text=True,
         env=env,
         cwd=str(HERE.parent.parent),
+        check=False,
     )
     assert proc.returncode == 0
     assert "usage:" in proc.stdout
@@ -208,6 +211,7 @@ def test_cli_unknown_tag_message_before_token():
         text=True,
         env=env,
         cwd=str(HERE.parent.parent),
+        check=False,
     )
     assert proc.returncode == 1
     assert "not a known release tag" in proc.stderr
