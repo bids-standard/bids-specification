@@ -28,7 +28,7 @@ come in different type. In aaddtion of the classical admonitions show above you 
 
 
 
-!!! example "non ordered list should be handle propeler"
+!!! example "non ordered list should be handle properly"
 
     Let's see
 
