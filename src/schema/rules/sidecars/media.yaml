@@ -1,0 +1,38 @@
+#
+# Groups of related metadata fields for media files
+#
+
+---
+MediaDuration:
+  selectors:
+    - intersects([suffix], ["audio", "video", "audiovideo"])
+  fields:
+    RecordingDuration: recommended
+
+MediaAudioProperties:
+  selectors:
+    - intersects([suffix], ["audio", "audiovideo"])
+  fields:
+    AudioCodec: recommended
+    AudioSampleRate: recommended
+    AudioChannelCount: recommended
+    AudioBitDepth: optional
+    AudioCodecRFC6381: optional
+
+MediaImageProperties:
+  selectors:
+    - intersects([suffix], ["video", "audiovideo", "image"])
+  fields:
+    ImageWidth: recommended
+    ImageHeight: recommended
+    ImagePixelFormat: optional
+    ImageBitDepth: optional
+
+MediaVideoProperties:
+  selectors:
+    - intersects([suffix], ["video", "audiovideo"])
+  fields:
+    VideoCodec: recommended
+    VideoFrameRate: recommended
+    VideoFrameCount: recommended
+    VideoCodecRFC6381: optional
