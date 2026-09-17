@@ -15,11 +15,15 @@
 # 2. Run from a checkout of bids-standard/bids-specification — the script
 #    uses `git log` between tags to discover PRs included in each release.
 #
-# Examples (all default to dry-run; add --post to actually comment):
-#   GITHUB_TOKEN=$(gh auth token) tools/announce_release.py v1.11.0
-#   GITHUB_TOKEN=$(gh auth token) tools/announce_release.py            # latest tag
-#   GITHUB_TOKEN=$(gh auth token) tools/announce_release.py --retroactive --since v1.10.0
-#   GITHUB_TOKEN=$(gh auth token) tools/announce_release.py --post v1.11.1
+
+# Examples (all default to dry-run; add --post to actually comment,
+# assuming GITHUB_TOKEN env var set e.g. via GITHUB_TOKEN=$(gh auth token)
+# and exported
+#
+#   tools/announce_release.py v1.11.0
+#   tools/announce_release.py                                 # latest tag
+#   tools/announce_release.py --retroactive --since v1.10.0
+#   tools/announce_release.py --post v1.11.1
 #
 # Idempotent: skips PRs/issues that already have an identical comment.
 #
