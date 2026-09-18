@@ -396,8 +396,24 @@ pet_pet_volumetric_atlas:
   $ref: rules.files.deriv.imaging.pet_pet_volumetric
   entities:
     $ref:
-      - meta.templates.deriv.volumetric.entities
+      - meta.templates.atlas.base.entities
       - rules.files.deriv.imaging.pet_pet_volumetric.entities
+
+pet_pet_surface:
+  $ref:
+    - meta.templates.deriv.surface_map
+    - rules.files.raw.pet.pet
+  entities:
+    $ref:
+      - meta.templates.deriv.surface_map.entities
+      - rules.files.raw.pet.pet.entities
+
+pet_pet_surface_atlas:
+  $ref: rules.files.deriv.imaging.pet_pet_surface
+  entities:
+    $ref:
+      - meta.templates.atlas.base.entities
+      - rules.files.deriv.imaging.pet_pet_surface.entities
 
 # Masks
 anat_mask:

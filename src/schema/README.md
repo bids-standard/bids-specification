@@ -519,18 +519,21 @@ The convention can be summed up in the following rules:
 #### Valid fields for definitions by sub-namespace
 
 -   `objects.common_principles`
+
     | Field          | Description         |
     | -------------- | ------------------- |
     | `display_name` | Human-friendly name |
     | `description`  | Term definition     |
 
 -   `objects.modalities`
+
     | Field          | Description         |
     | -------------- | ------------------- |
     | `display_name` | Human-friendly name |
     | `description`  | Term definition     |
 
 -   `objects.metaentities`
+
     | Field          | Description         |
     | -------------- | ------------------- |
     | `display_name` | Human-friendly name |
@@ -551,6 +554,7 @@ The convention can be summed up in the following rules:
     applies in certain contexts, that should be written in the specification, and not the schema.
 
 -   `objects.metadata`
+
     | Field          | Description                                                                          |
     | -------------- | ------------------------------------------------------------------------------------ |
     | `display_name` | Human-friendly name                                                                  |
@@ -565,6 +569,7 @@ The convention can be summed up in the following rules:
     | `*`            | JSON-schema fields to further constrain values                                       |
 
 -   `objects.columns`
+
     | Field          | Description                                                         |
     | -------------- | ------------------------------------------------------------------- |
     | `display_name` | Human-friendly name                                                 |
@@ -581,6 +586,7 @@ The convention can be summed up in the following rules:
     | `*`            | JSON-schema fields to further constrain values                      |
 
 -   `objects.datatypes`
+
     | Field          | Description                |
     | -------------- | -------------------------- |
     | `display_name` | Human-friendly name        |
@@ -588,6 +594,7 @@ The convention can be summed up in the following rules:
     | `value`        | String value of `datatype` |
 
 -   `objects.suffixes`
+
     | Field          | Description                                                    |
     | -------------- | -------------------------------------------------------------- |
     | `display_name` | Human-friendly name                                            |
@@ -599,6 +606,7 @@ The convention can be summed up in the following rules:
     | `anyOf`        | Used to describe multiple permissible units                    |
 
 -   `objects.extensions`
+
     | Field          | Description                 |
     | -------------- | --------------------------- |
     | `display_name` | Human-friendly name         |
@@ -606,6 +614,7 @@ The convention can be summed up in the following rules:
     | `value`        | String value of `extension` |
 
 -   `objects.formats`
+
     | Field          | Description                        |
     | -------------- | ---------------------------------- |
     | `display_name` | Human-friendly name                |
@@ -613,6 +622,7 @@ The convention can be summed up in the following rules:
     | `pattern`      | Regular expression defining format |
 
 -   `objects.files`
+
     | Field          | Description                                                                          |
     | -------------- | ------------------------------------------------------------------------------------ |
     | `display_name` | Human-friendly name                                                                  |
@@ -620,6 +630,7 @@ The convention can be summed up in the following rules:
     | `file_type`    | Indicator that the file is a regular file (`"regular"`) or directory (`"directory"`) |
 
 -   `objects.enums`
+
     | Field          | Description            |
     | -------------- | ---------------------- |
     | `display_name` | Human-friendly name    |
@@ -862,9 +873,9 @@ meg_meg_common:
     description: optional
 ```
 
-### Sidecar and tabular data rules
+### JSON and tabular data rules
 
-Tabular data and JSON sidecar files follow a similar pattern:
+Tabular data and JSON files follow a similar pattern:
 
 |      | Name          | Value         |
 | ---- | ------------- | ------------- |
@@ -926,7 +937,7 @@ rule is applied.
 
 #### Valid fields for definitions
 
-1.  `rules.sidecars.*`
+1.  `rules.sidecars.*` and `rules.json.*`
 
     | Field       | Description                                                                                              |
     | ----------- | -------------------------------------------------------------------------------------------------------- |
@@ -972,6 +983,11 @@ MRIFuncVolumeTiming:
 
 An additional check will be required to assert that both are not present,
 but these tables may be combined for rendering purposes.
+
+`rules.json.*` and `rules.sidecars.*` are essentially identical,
+except `rules.json` rules describe the contents of individual JSON files,
+while `rules.sidecars` rules describe the contents of sidecar files,
+accumulated by the inheritance principle.
 
 Here we present an example rule in `rules.tabular_data.eeg`:
 
@@ -1046,9 +1062,6 @@ EventsMissing:
     | Field       | Description                           |
     | ----------- | ------------------------------------- |
     | `datatypes` | List of datatypes mapping to modality |
-
--   `rules.dataset_metadata` - These are similar to `rules.sidecars.*`, for JSON files at the root level.
-    This is likely to go away in favor of other approaches.
 
 -   `rules.errors` - This file describes errors that cannot be expressed in the schema. This provides common
     codes and language that implementing validators can use to ensure the same problems are reported to

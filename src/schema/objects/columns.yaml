@@ -36,13 +36,15 @@ age:
   name: age
   display_name: Subject age
   description: |
-    Numeric value in years (float or integer value).
+    Numeric value (float or integer value).
+    By default expressed using "year" as the unit. Other possible "Units" are described in
+    [Units](SPEC_ROOT/common-principles.md#units).
 
-    For privacy purposes, participant ages should be capped at 89.
+    For privacy purposes, participant ages should be capped at 89 years.
     Using "89+" for ages above 88 is DEPRECATED.
   definition: {
     "LongName": "Subject age",
-    "Description": "Subject age in postnatal years",
+    "Description": "Subject postnatal age",
     "Format": "number",
     "Units": "year",
     "Maximum": 89,

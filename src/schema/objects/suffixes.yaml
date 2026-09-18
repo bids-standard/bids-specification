@@ -652,9 +652,9 @@ events:
     Event timing information from a behavioral task.
 expADC:
   value: expADC
-  display_name: Exponental ADC
+  display_name: Exponential ADC
   description: |
-    Exponental ADC / Attenuation Coefficient / Attenuation Factor map,
+    Exponential ADC / Attenuation Coefficient / Attenuation Factor map,
     as the ratio of trace-weighted to non-diffusion-weighted image intensity
 fieldmap:
   value: fieldmap
@@ -698,7 +698,7 @@ io:
   description: |
     A JSON file containing objects describing input and output data in the context of provenance.
     (See the [`Input and output data`](SPEC_ROOT/modality-agnostic-files/provenance.md#-input-and-output-data)
-    section).  
+    section).
 m0scan:
   value: m0scan
   display_name: M0 image
@@ -746,6 +746,7 @@ meg:
   description: |
     Unprocessed MEG data stored in the native file format of the MEG instrument
     with which the data was collected.
+
 motion:
   value: motion
   display_name: Motion

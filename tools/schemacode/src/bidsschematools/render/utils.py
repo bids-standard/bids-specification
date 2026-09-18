@@ -37,12 +37,13 @@ def _pandas_3_0_options():
     ]
 
     args = []
-    for option in options:
-        try:
-            pd.get_option(option[0])
-        except KeyError:
-            continue
-        args.extend(option)
+    if pd.__version__.split(".", 1)[0] < "3":
+        for option in options:
+            try:
+                pd.get_option(option[0])
+            except KeyError:
+                continue
+            args.extend(option)
     return args
 
 
@@ -282,7 +283,7 @@ def resolve_metadata_type(definition):
             string = "string or number"
     else:
         # This clause should only catch $refs.
-        # The schema should be deferenced by this point, so $refs should not exist.
+        # The schema should be dereferenced by this point, so $refs should not exist.
         raise ValueError(f"Type could not be inferred for {definition['name']}")
 
     return string

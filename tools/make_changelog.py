@@ -17,11 +17,12 @@ import asyncio
 import os
 import re
 import subprocess as sp
+import sys
 from dataclasses import dataclass
-from datetime import date, datetime, timedelta, UTC
+from datetime import UTC, date, datetime, timedelta
 from pathlib import Path
 
-from gql import gql, Client
+from gql import Client, gql
 from gql.transport.aiohttp import AIOHTTPTransport
 
 SEARCH_MERGED_PRS_QUERY = gql("""\
@@ -121,7 +122,7 @@ async def get_merged_prs(
             if not pr:
                 continue
 
-            merged_date = datetime.fromisoformat(pr["mergedAt"].replace("Z", "+00:00"))
+            merged_date = datetime.fromisoformat(pr["mergedAt"])
 
             prs.append(
                 PR(
@@ -138,8 +139,14 @@ async def get_merged_prs(
     return sorted(prs, key=lambda x: (x.category, now - x.merged_date))
 
 
-async def main() -> None:
+def main() -> None:
     github_token = os.getenv("GITHUB_TOKEN")
+    if not github_token:
+        print("GITHUB_TOKEN environment variable is not set.")
+        github_token = input("Please enter your GitHub token: ").strip()
+        if not github_token:
+            sys.exit(1)
+
     transport = AIOHTTPTransport(
         url="https://api.github.com/graphql",
         headers={"Authorization": f"Bearer {github_token}"},
@@ -151,8 +158,12 @@ async def main() -> None:
     repo = get_repo()
     changes = load_changes(repo, tag)
 
-    prs = await get_merged_prs(
-        client, repository="bids-standard/bids-specification", merged_after=start_date
+    prs = asyncio.run(
+        get_merged_prs(
+            client,
+            repository="bids-standard/bids-specification",
+            merged_after=start_date,
+        )
     )
 
     with open(repo / "src/CHANGES.md", "w") as changelog:
@@ -161,4 +172,4 @@ async def main() -> None:
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    main()

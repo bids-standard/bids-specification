@@ -10,6 +10,7 @@ timeseries:
   datatypes:
     - beh
     - eeg
+    - emg
     - ieeg
     - nirs
   entities:

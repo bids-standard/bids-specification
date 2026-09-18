@@ -423,14 +423,10 @@ The decision-making rules are outlined in
 
 ## How is the changelog generated?
 
-The changelog (see `src/CHANGES.md`) is generated automatically using
-[github-changelog-generator](https://github.com/github-changelog-generator/github-changelog-generator).
-You can see the workflow in the following GitHub Actions configuration file: `.github/workflows/changelog_generator.yml`.
+The changelog (see `src/CHANGES.md`) is generated automatically using a custom script:
+[tools/make_changelog.py](./tools/make_changelog.py).
 
-This workflow is triggered for every commit to `master` that contains string `[build changelog]` in its commit message.
-If you push several commits at once, you need to make sure that the "youngest commit" (the HEAD commit) contains that string.
-The workflow will then open a Pull Request to incorporate the updated changelog.
-Check the proposed changes and merge the Pull Request at will.
+The script uses the title of the pull request, so that should be a brief summary of the change.
 
 To exclude pull requests from showing up in the changelog, they have to be labeled with
 the "exclude-from-changelog" label.

@@ -8,10 +8,24 @@ The protocol assumes that you have a [fork](https://help.github.com/en/articles/
 of the bids-standard/bids-specification repository and have [cloned](https://help.github.com/en/articles/cloning-a-repository)
 your fork locally to a directory called `bids-specification`.
 
-### 0. Cleaning up the changelog
+### 0. Generate the changelog
 
-Before you start a release, you have to ensure that the automatically generated changelog is **up to date**.
-See the relevant [section in CONTRIBUTING.md](CONTRIBUTING.md#how-is-the-changelog-generated) for further information.
+```bash
+tools/make_changelog.py
+```
+
+This script will prompt you for a GitHub token with the "Read access to metadata and pull requests"
+permission.
+
+Running the script once will populate a section with the titles of the pull requests merged since
+the most recent tag. Review those titles, and update them on GitHub for style and clarity.
+
+Note that the audience for the changelog is the people reading the specification.
+Many pull requests, although valuable, are not relevant to that audience and should be
+tagged with the `exclude-from-changelog` label.
+
+The script will overwrite any existing changelog since the most recent tag,
+so it can be run repeatedly until it looks right.
 
 ### 1. Fetch the latest version of the [master branch of the BIDS-specification](https://github.com/bids-standard/bids-specification/tree/master)
 
@@ -85,9 +99,7 @@ please follow these steps:
 - be sure not to remove credits if both the contributors appendix AND
   the contributors wiki page have been edited (or the `.tributors` or `.all-contributorsrc` files)
 - add new contributors info to the `tools/new_contributors.tsv` file.
-- make sure that you have installed
-  - all the python packages listed in `tools/requirements.txt`
-  - the [allcontributors](https://allcontributors.org/docs/en/cli/installation) package
+  - Try the `tools/parse_contributors.py` script.
 - run:
 
 ```bash
@@ -100,13 +112,9 @@ make update_contributors
 
 #### 2.3 Update the Changelog
 
-Review `src/CHANGES.md` to ensure that the document produces a changelog that is useful to a
-reader of the specification.
-For example, several small PRs fixing typos might be merged into a single line-item, or less
-important changes might be moved down the list to ensure that large changes are more prominent.
-You can also make use of the `exclude-from-changelog` label.
-Adding this label to PRs in the GitHub web interface will prevent the changelog generator from
-considering this item for inclusion in the changelog.
+Review `src/CHANGES.md` one more time ensure that the document produces a changelog
+that is useful to a reader of the specification.
+Make manual edits, if needed.
 
 ### 3. Commit changes and push to upstream
 

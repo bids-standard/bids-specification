@@ -1,4 +1,4 @@
-site_name: Brain Imaging Data Structure 1.10.2-dev
+site_name: Brain Imaging Data Structure 1.11.2-dev
 site_url: https://bids-specification.readthedocs.io/en/stable/
 repo_url: https://github.com/bids-standard/bids-specification
 nav:
@@ -94,8 +94,8 @@ extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/bids-standard/bids-specification/
-    - icon: fontawesome/brands/x-twitter
-      link: https://x.com/BIDSstandard/
+    - icon: fontawesome/brands/bluesky
+      link: https://bsky.app/profile/bidsstandard.bsky.social
     - icon: fontawesome/brands/mastodon
       link: https://fosstodon.org/@bidsstandard
     - icon: fontawesome/brands/google

@@ -40,7 +40,8 @@ AcquisitionDuration:
   display_name: Acquisition Duration
   description: |
     Duration (in seconds) of scan acquisition, including all volumes for multi-volume scans.
-    Corresponds to [DICOM Tag 0018, 9073](https://dicomlookup.com/dicomtags/(0018,9073)) `Acquisition Duration`.
+    Corresponds to [DICOM Tag (0018,9073)](https://www.dicomlookup.com/dicomtags/(0018,9073))
+    `Acquisition Duration`.
   type: number
   exclusiveMinimum: 0
   unit: s
@@ -177,7 +178,7 @@ AnalyticalApproach:
     Methodology or methodologies used to analyze the `"GeneticLevel"`.
     Values MUST be taken from the
     [database of Genotypes and Phenotypes
-    (dbGaP)](https://www.ncbi.nlm.nih.gov/gap/advanced)
+    (dbGaP)](https://www.ncbi.nlm.nih.gov/gap/advanced_search/)
     under /Study/Molecular Data Type (for example, SNP Genotypes (Array) or
     Methylation (CpG).
   anyOf:
@@ -326,6 +327,8 @@ AttenuationCorrection:
   display_name: Attenuation Correction
   description: |
     Short description of the attenuation correction method used.
+    Corresponds to [DICOM Tag (0054,1101)](https://www.dicomlookup.com/dicomtags/(0054,1101))
+    `Attenuation Correction Method`.
   type: string
 AttenuationCorrectionMethodReference:
   name: AttenuationCorrectionMethodReference
@@ -337,7 +340,7 @@ Authors:
   name: Authors
   display_name: Authors
   description: |
-    List of individuals who contributed to the creation/curation of the dataset.
+    List of contributors to the creation and/or curation of the dataset.
   type: array
   items:
     type: string
@@ -358,8 +361,8 @@ B0FieldIdentifier:
     shared only by the images meant to be used as inputs for the estimation of a
     particular instance of the *B<sub>0</sub> field* estimation.
     It is RECOMMENDED to derive this identifier from DICOM Tags, for example,
-    DICOM tag 0018, 1030 `Protocol Name`, or DICOM tag 0018, 0024 `Sequence Name`
-    when the former is not defined (for example, in GE devices.)
+    DICOM Tag (0018,1030) `Protocol Name`, or DICOM Tag (0018,0024) `Sequence Name`
+    when the former is not defined (for example, on GE devices).
   anyOf:
     - type: string
     - type: array
@@ -447,6 +450,24 @@ BasedOn:
       items:
         type: string
         format: participant_relative
+BigDelta:
+  name: BigDelta
+  display_name: Diffusion Big Delta (Δ)
+  description: |
+    In the context of a diffusion-weighted pulsed gradient spin echo sequence,
+    corresponds to the time between the leading edges of two successive
+    diffusion-encoding gradient pulses (Δ), specified in seconds.
+    The value may be an array, if Δ varies by volume, in which case the number
+    of values MUST correspond to the number of volumes in the data file.
+  anyOf:
+    - type: number
+      unit: s
+      exclusiveMinimum: 0
+    - type: array
+      items:
+        type: number
+        unit: s
+        exclusiveMinimum: 0
 BloodDensity:
   name: BloodDensity
   display_name: Blood Density
@@ -459,6 +480,7 @@ BodyPart:
   display_name: Body Part
   description: |
     Body part of the organ / body region scanned.
+    Corresponds to [DICOM Tag (0018,0015)](https://www.dicomlookup.com/dicomtags/(0018,0015)) `Body Part Examined`.
   type: string
 BodyPartDetails:
   name: BodyPartDetails
@@ -485,7 +507,8 @@ BolusCutOffDelayTime:
     cut-off saturation pulses.
     For Q2TIPS, only the values for the first and last bolus cut-off saturation
     pulses are provided.
-    Based on [DICOM Tag 0018, 925F](https://dicomlookup.com/dicomtags/(0018,925F)) `ASL Bolus Cut-off Delay Time`.
+    Based on [DICOM Tag (0018,925F)](https://www.dicomlookup.com/dicomtags/(0018,925F))
+    `ASL Bolus Cut-off Delay Time`.
   anyOf:
     - type: number
       minimum: 0
@@ -500,14 +523,16 @@ BolusCutOffFlag:
   display_name: Bolus Cut Off Flag
   description: |
     Boolean indicating if a bolus cut-off technique is used.
-    Corresponds to [DICOM Tag 0018, 925C](https://dicomlookup.com/dicomtags/(0018,925C)) `ASL Bolus Cut-off Flag`.
+    Corresponds to [DICOM Tag (0018,925C)](https://www.dicomlookup.com/dicomtags/(0018,925C))
+    `ASL Bolus Cut-off Flag`.
   type: boolean
 BolusCutOffTechnique:
   name: BolusCutOffTechnique
   display_name: Bolus Cut Off Technique
   description: |
     Name of the technique used, for example `"Q2TIPS"`, `"QUIPSS"`, `"QUIPSSII"`.
-    Corresponds to [DICOM Tag 0018, 925E](https://dicomlookup.com/dicomtags/(0018,925E)) `ASL Bolus Cut-off Technique`.
+    Corresponds to [DICOM Tag (0018,925E)](https://www.dicomlookup.com/dicomtags/(0018,925E))
+    `ASL Bolus Cut-off Technique`.
   type: string
 BrainLocation:
   name: BrainLocation
@@ -643,7 +668,8 @@ ChemicalShiftReference:
   display_name: Chemical Shift Reference
   description: |
     The chemical shift at the transmitter frequency, specified in ppm (for example, `2.68`).
-    Corresponds to [DICOM Tag 0018, 9053](https://dicomlookup.com/dicomtags/(0018,9053)) `Chemical Shift Reference`.
+    Corresponds to [DICOM Tag (0018,9053)](https://www.dicomlookup.com/dicomtags/(0018,9053))
+    `Chemical Shift Reference`.
   type: number
   unit: ppm
 ChunkTransformationMatrix:
@@ -704,21 +730,23 @@ CodeValue:
   description: |
     An identifier that is unambiguous within the Coding Scheme
     denoted by Coding Scheme Designator and Coding Scheme Version.
-    Corresponds to [DICOM Tag 0008, 0100](https://dicomlookup.com/dicomtags/(0008,0100)) `Code Value`.
+    Corresponds to [DICOM Tag (0008,0100)](https://www.dicomlookup.com/dicomtags/(0008,0100))
+    `Code Value`.
   type: string
 CodeMeaning:
   name: CodeMeaning
   display_name: Code Meaning
   description: |
     Text that has meaning to a human and conveys the meaning of the term
-    Corresponds to [DICOM Tag 0008, 0104](https://dicomlookup.com/dicomtags/(0008,0104)) `Code Meaning`.
+    Corresponds to [DICOM Tag (0008,0104)](https://www.dicomlookup.com/dicomtags/(0008,0104))
+    `Code Meaning`.
   type: string
 CodingSchemeDesignator:
   name: CodingSchemeDesignator
   display_name: Coding Scheme Designator
   description: |
     The identifier of the coding scheme in which the coded entry is defined.
-    Corresponds to [DICOM Tag 0008, 0102](https://dicomlookup.com/dicomtags/(0008,0102))
+    Corresponds to [DICOM Tag (0008,0102)](https://www.dicomlookup.com/dicomtags/(0008,0102))
     `Coding Scheme Designator`.
   type: string
 CodingSchemeVersion:
@@ -726,7 +754,8 @@ CodingSchemeVersion:
   display_name: Coding Scheme version
   description: |
     An identifier of the version of the coding scheme if necessary to resolve ambiguity.
-    Corresponds to [DICOM Tag 0008, 0103](https://dicomlookup.com/dicomtags/(0008,0103)) `Coding Scheme Version`.
+    Corresponds to [DICOM Tag (0008,0103)](https://www.dicomlookup.com/dicomtags/(0008,0103))
+    `Coding Scheme Version`.
   type: string
 CodeURL:
   name: CodeURL
@@ -819,7 +848,8 @@ ContrastBolusIngredient:
   display_name: Contrast Bolus Ingredient
   description: |
     Active ingredient of agent.
-    Corresponds to [DICOM Tag 0018, 1048](https://dicomlookup.com/dicomtags/(0018,1048)) `Contrast/Bolus Ingredient`.
+    Corresponds to [DICOM Tag (0018,1048)](https://www.dicomlookup.com/dicomtags/(0018,1048))
+    `Contrast/Bolus Ingredient`.
   type: string
   enum:
     - $ref: objects.enums.IODINE.value
@@ -941,6 +971,7 @@ DecayCorrectionFactor:
   display_name: Decay Correction Factor
   description: |
     Decay correction factor for each frame.
+    Corresponds to [DICOM Tag (0054,1321)](https://www.dicomlookup.com/dicomtags/(0054,1321)) `Decay Factor`.
   type: array
   items:
     type: number
@@ -949,7 +980,8 @@ DeidentificationMethod:
   display_name: Deidentification Method
   description: |
     A description of the mechanism or method used to remove the Patient's identity.
-    Corresponds to [DICOM Tag 0012, 0063](https://dicomlookup.com/dicomtags/(0012,0063)) `De-identification Method`.
+    Corresponds to [DICOM Tag (0012,0063)](https://www.dicomlookup.com/dicomtags/(0012,0063))
+    `De-identification Method`.
   type: array
   items:
     type: string
@@ -958,7 +990,7 @@ DeidentificationMethodCodeSequence:
   display_name: Deidentification Method Code Sequence
   description: |
     A sequence of code objects describing the mechanism or method use to remove the Patient's identity.
-    Corresponds to [DICOM Tag 0012, 0064](https://dicomlookup.com/dicomtags/(0012,0064))
+    Corresponds to [DICOM Tag (0012,0064)](https://www.dicomlookup.com/dicomtags/(0012,0064))
     `De-identification Method Code Sequence`.
   type: array
   items:
@@ -1178,7 +1210,8 @@ DoseCalibrationFactor:
   display_name: Dose Calibration Factor
   description: |
     Multiplication factor used to transform raw data (in counts/sec) to meaningful unit (Bq/ml).
-    Corresponds to [DICOM Tag 0054, 1322](https://dicomlookup.com/dicomtags/(0054,1322)) `Dose Calibration Factor`.
+    Corresponds to [DICOM Tag (0054,1322)](https://www.dicomlookup.com/dicomtags/(0054,1322))
+    `Dose Calibration Factor`.
   type: number
 DwellTime:
   name: DwellTime
@@ -1410,7 +1443,8 @@ EchoTime:
   display_name: Echo Time
   description: |
     The echo time (TE) for the acquisition, specified in seconds.
-    Corresponds to [DICOM Tag 0018, 0081](https://dicomlookup.com/dicomtags/(0018,0081)) `Echo Time`
+    Corresponds to [DICOM Tag (0018,0081)](https://www.dicomlookup.com/dicomtags/(0018,0081))
+    `Echo Time`
     (please note that the DICOM term is in milliseconds not seconds).
     The data type number may apply to files from any MRI modality concerned with
     a single value for this field, or to the files in a
@@ -1830,7 +1864,8 @@ FlipAngle:
   display_name: Flip Angle
   description: |
     Flip angle (FA) for the acquisition, specified in degrees.
-    Corresponds to: [DICOM Tag 0018, 1314](https://dicomlookup.com/dicomtags/(0018,1314)) `Flip Angle`.
+    Corresponds to: [DICOM Tag (0018,1314)](https://www.dicomlookup.com/dicomtags/(0018,1314))
+    `Flip Angle`.
     The data type number may apply to files from any MRI modality concerned with
     a single value for this field, or to the files in a
     [file collection](SPEC_ROOT/appendices/file-collections.md)
@@ -1893,7 +1928,7 @@ FrameAcquisitionDuration:
   display_name: Frame Acquisition Duration
   description: |
     Duration (in seconds) of volume acquisition.
-    Corresponds to DICOM Tag 0018, 9220 `Frame Acquisition Duration`.
+    Corresponds to DICOM Tag (0018,9220) `Frame Acquisition Duration`.
   type: number
   exclusiveMinimum: 0
   unit: s
@@ -1902,7 +1937,7 @@ FrameDuration:
   display_name: Frame Duration
   description: |
     Time duration of each frame in default unit seconds.
-    This corresponds to [DICOM Tag 0018, 1242](https://dicomlookup.com/dicomtags/(0018,1242))
+    This corresponds to [DICOM Tag (0018,1242)](https://www.dicomlookup.com/dicomtags/(0018,1242))
     `Actual Frame Duration` converted to seconds.
   type: array
   items:
@@ -2098,7 +2133,7 @@ HardcopyDeviceSoftwareVersion:
   description: |
     Manufacturer's designation of the software of the device that created this
     Hardcopy Image (the printer).
-    Corresponds to [DICOM Tag 0018, 101A](https://dicomlookup.com/dicomtags/(0018,101A))
+    Corresponds to [DICOM Tag (0018,101A)](https://www.dicomlookup.com/dicomtags/(0018,101A))
     `Hardcopy Device Software Version`.
   type: string
 HardwareFilters:
@@ -2321,7 +2356,8 @@ InjectedRadioactivity:
     Total amount of radioactivity injected into the patient (for example, `400`).
     For bolus-infusion experiments, this value should be the sum of all injected
     radioactivity originating from both bolus and infusion.
-    Corresponds to [DICOM Tag 0018, 1074](https://dicomlookup.com/dicomtags/(0018,1074)) `Radionuclide Total Dose`.
+    Corresponds to [DICOM Tag (0018,1074)](https://www.dicomlookup.com/dicomtags/(0018,1074))
+    `Radionuclide Total Dose`.
   type: number
 InjectedRadioactivityUnits:
   name: InjectedRadioactivityUnits
@@ -2341,17 +2377,17 @@ InjectionEnd:
   name: InjectionEnd
   display_name: Injection End
   description: |
-    Time of end of injection with respect to `"TimeZero"` in the default unit
-    seconds.
+    Time of end of injection with respect to `"TimeZero"`, in seconds.
+    Corresponds to [DICOM Tag (0018,1073)](https://www.dicomlookup.com/dicomtags/(0018,1073))
+    `Radiopharmaceutical Stop Time` converted to seconds relative to TimeZero.
   type: number
   unit: s
 InjectionStart:
   name: InjectionStart
   display_name: Injection Start
   description: |
-    Time of start of injection with respect to `"TimeZero"` in the default unit
-    seconds.
-    This corresponds to [DICOM Tag 0018, 1072](https://dicomlookup.com/dicomtags/(0018,1072))
+    Time of start of injection with respect to `"TimeZero"`, in seconds.
+    This corresponds to [DICOM Tag (0018,1072)](https://www.dicomlookup.com/dicomtags/(0018,1072))
     `Contrast/Bolus Start Time` converted to seconds relative to `"TimeZero"`.
   type: number
   unit: s
@@ -2444,7 +2480,8 @@ InversionTime:
     The inversion time (TI) for the acquisition, specified in seconds.
     Inversion time is the time after the middle of inverting RF pulse to middle
     of excitation pulse to detect the amount of longitudinal magnetization.
-    Corresponds to [DICOM Tag 0018, 0082](https://dicomlookup.com/dicomtags/(0018,0082)) `Inversion Time`
+    Corresponds to [DICOM Tag (0018,0082)](https://www.dicomlookup.com/dicomtags/(0018,0082))
+    `Inversion Time`
     (please note that the DICOM term is in milliseconds not seconds).
   type: number
   unit: s
@@ -2492,7 +2529,8 @@ LabelingDuration:
     In case an array of numbers is provided,
     its length should be equal to the number of volumes specified in
     `*_aslcontext.tsv`.
-    Corresponds to [DICOM Tag 0018, 9258](https://dicomlookup.com/dicomtags/(0018,9258)) `ASL Pulse Train Duration`.
+    Corresponds to [DICOM Tag (0018,9258)](https://www.dicomlookup.com/dicomtags/(0018,9258))
+    `ASL Pulse Train Duration`.
   anyOf:
     - type: number
       minimum: 0
@@ -2529,7 +2567,8 @@ LabelingOrientation:
     Orientation of the labeling plane (`(P)CASL`) or slab (`PASL`).
     The direction cosines of a normal vector perpendicular to the ASL labeling
     slab or plane with respect to the patient.
-    Corresponds to [DICOM Tag 0018, 9255](https://dicomlookup.com/dicomtags/(0018,9255)) `ASL Slab Orientation`.
+    Corresponds to [DICOM Tag (0018,9255)](https://www.dicomlookup.com/dicomtags/(0018,9255))
+    `ASL Slab Orientation`.
   type: array
   items:
     type: number
@@ -2591,7 +2630,8 @@ LabelingSlabThickness:
   description: |
     Thickness of the labeling slab in millimeters.
     For non-selective FAIR a zero is entered.
-    Corresponds to [DICOM Tag 0018, 9254](https://dicomlookup.com/dicomtags/(0018,9254)) `ASL Slab Thickness`.
+    Corresponds to [DICOM Tag (0018,9254)](https://www.dicomlookup.com/dicomtags/(0018,9254))
+    `ASL Slab Thickness`.
   type: number
   exclusiveMinimum: 0
   unit: mm
@@ -2734,6 +2774,9 @@ MISCChannelCount:
   display_name: Miscellaneous channel count
   description: |
     Number of miscellaneous channels not covered otherwise.
+
+    Deprecated alias of `MiscChannelCount`. New datasets SHOULD use
+    `MiscChannelCount`.
   type: integer
   minimum: 0
 MotionChannelCount:
@@ -2748,7 +2791,8 @@ MRAcquisitionType:
   display_name: MR Acquisition Type
   description: |
     Type of sequence readout.
-    Corresponds to [DICOM Tag 0018, 0023](https://dicomlookup.com/dicomtags/(0018,0023)) `MR Acquisition Type`.
+    Corresponds to [DICOM Tag (0018,0023)](https://www.dicomlookup.com/dicomtags/(0018,0023))
+    `MR Acquisition Type`.
   type: string
   enum:
     - $ref: objects.enums.OneD.value
@@ -2759,7 +2803,8 @@ MRTransmitCoilSequence:
   display_name: MR Transmit Coil Sequence
   description: |
     This is a relevant field if a non-standard transmit coil is used.
-    Corresponds to [DICOM Tag 0018, 9049](https://dicomlookup.com/dicomtags/(0018,9049)) `MR Transmit Coil Sequence`.
+    Corresponds to [DICOM Tag (0018,9049)](https://www.dicomlookup.com/dicomtags/(0018,9049))
+    `MR Transmit Coil Sequence`.
   type: string
 MTNumberOfPulses:
   name: MTNumberOfPulses
@@ -2811,14 +2856,16 @@ MTState:
   display_name: MT State
   description: |
     Boolean stating whether the magnetization transfer pulse is applied.
-    Corresponds to [DICOM Tag 0018, 9020](https://dicomlookup.com/dicomtags/(0018,9020)) `Magnetization Transfer`.
+    Corresponds to [DICOM Tag (0018,9020)](https://www.dicomlookup.com/dicomtags/(0018,9020))
+    `Magnetization Transfer`.
   type: boolean
 MagneticFieldStrength:
   name: MagneticFieldStrength
   display_name: Magnetic Field Strength
   description: |
     Nominal field strength of MR magnet in Tesla.
-    Corresponds to [DICOM Tag 0018, 0087](https://dicomlookup.com/dicomtags/(0018,0087)) `Magnetic Field Strength`.
+    Corresponds to [DICOM Tag (0018,0087)](https://www.dicomlookup.com/dicomtags/(0018,0087))
+    `Magnetic Field Strength`.
   type: number
 Magnification:
   name: Magnification
@@ -2972,7 +3019,7 @@ MolarActivity:
   display_name: Molar Activity
   description: |
     Molar activity of compound injected.
-    Corresponds to [DICOM Tag 0018, 1077](https://dicomlookup.com/dicomtags/(0018,1077))
+    Corresponds to [DICOM Tag (0018,1077)](https://www.dicomlookup.com/dicomtags/(0018,1077))
     `Radiopharmaceutical Specific Activity`.
   type: number
 MolarActivityMeasTime:
@@ -3245,7 +3292,7 @@ ParallelAcquisitionTechnique:
   display_name: Parallel Acquisition Technique
   description: |
     The type of parallel imaging used (for example `"GRAPPA"`, `"SENSE"`).
-    Corresponds to [DICOM Tag 0018, 9078](https://dicomlookup.com/dicomtags/(0018,9078))
+    Corresponds to [DICOM Tag (0018,9078)](https://www.dicomlookup.com/dicomtags/(0018,9078))
     `Parallel Acquisition Technique`.
   type: string
 ParallelReductionFactorInPlane:
@@ -3255,7 +3302,7 @@ ParallelReductionFactorInPlane:
     The parallel imaging (for instance, GRAPPA) factor in plane.
     Use the denominator of the fraction of k-space encoded for each slice.
     For example, 2 means half of k-space is encoded.
-    Corresponds to [DICOM Tag 0018, 9069](https://dicomlookup.com/dicomtags/(0018,9069))
+    Corresponds to [DICOM Tag (0018,9069)](https://www.dicomlookup.com/dicomtags/(0018,9069))
     `Parallel Reduction Factor In-plane`.
   type: number
 ParallelReductionFactorOutOfPlane:
@@ -3268,7 +3315,7 @@ ParallelReductionFactorOutOfPlane:
     Will typically be 1 for 2D sequences, as each slice in a 2D acquisition is usually fully encoded.
     `ParallelReductionFactorOutOfPlane` should not be confused with `MultibandAccelerationFactor`,
     as they imply different methods of accelerating the acquisition.
-    Corresponds to [DICOM Tag 0018, 9155](https://dicomlookup.com/dicomtags/(0018,9155))
+    Corresponds to [DICOM Tag (0018,9155)](https://www.dicomlookup.com/dicomtags/(0018,9155))
     `Parallel Reduction Factor out-of-plane`.
   type: number
 ParentCoordinateSystem:
@@ -3289,13 +3336,15 @@ PartialFourierDirection:
   display_name: Partial Fourier Direction
   description: |
     The direction where only partial Fourier information was collected.
-    Corresponds to [DICOM Tag 0018, 9036](https://dicomlookup.com/dicomtags/(0018,9036)) `Partial Fourier Direction`.
+    Corresponds to [DICOM Tag (0018,9036)](https://www.dicomlookup.com/dicomtags/(0018,9036))
+    `Partial Fourier Direction`.
   type: string
 PharmaceuticalDoseAmount:
   name: PharmaceuticalDoseAmount
   display_name: Pharmaceutical Dose Amount
   description: |
     Dose amount of administered pharmaceutical.
+    Corresponds to [DICOM Tag (0018,0028)](https://www.dicomlookup.com/dicomtags/(0018,0028)) `Intervention Drug Dose`.
   anyOf:
     - type: number
     - type: array
@@ -3319,6 +3368,9 @@ PharmaceuticalDoseTime:
     the regimen description should be complete enough to enable unambiguous
     interpretation of `"PharmaceuticalDoseTime"`.
     Unit format of the specified pharmaceutical dose time MUST be seconds.
+    Corresponds to a combination of
+    [DICOM Tag (0018,0027)](https://www.dicomlookup.com/dicomtags/(0018,0027)) `Intervention Drug Stop Time` and
+    [DICOM Tag (0018,0035)](https://www.dicomlookup.com/dicomtags/(0018,0035)) `Intervention Drug Start Time`.
   anyOf:
     - type: number
       unit: s
@@ -3338,7 +3390,10 @@ PharmaceuticalName:
   name: PharmaceuticalName
   display_name: Pharmaceutical Name
   description: |
-    Name of pharmaceutical.
+    Name of administered pharmaceutical.
+    Note that this is distinct from any radiotracer or contrast agent used in the scan protocol.
+    This partly matches [DICOM Tag (0018,0034)](https://www.dicomlookup.com/dicomtags/(0018,0034))
+    `Intervention Drug Name`.
   type: string
 PhaseEncodingDirection:
   name: PhaseEncodingDirection
@@ -3450,8 +3505,8 @@ PostLabelingDelay:
     namely each `control` and `label`, in the acquisition order.
     Any image within the time-series without a PLD, for example an `m0scan`,
     is indicated by a zero.
-    Based on DICOM Tags 0018, 9079 `Inversion Times` and 0018, 0082
-    `InversionTime`.
+    Based on DICOM Tags (0018,9079) `Inversion Times` and (0018,0082)
+    `Inversion Time`.
   anyOf:
     - type: number
       minimum: 0
@@ -3601,7 +3656,8 @@ ReceiveCoilName:
   display_name: Receive Coil Name
   description: |
     Information describing the receiver coil.
-    Corresponds to [DICOM Tag 0018, 1250](https://dicomlookup.com/dicomtags/(0018,1250)) `Receive Coil Name`,
+    Corresponds to [DICOM Tag (0018,1250)](https://www.dicomlookup.com/dicomtags/(0018,1250))
+    `Receive Coil Name`,
     although not all vendors populate that DICOM Tag,
     in which case this field can be derived from an appropriate
     private DICOM field.
@@ -3623,6 +3679,8 @@ ReconFilterSize:
   display_name: Recon Filter Size
   description: |
     Kernel size of post-recon filter (FWHM) in default units `"mm"`.
+    This partly matches the [DICOM Tag (0018,1210)](https://www.dicomlookup.com/dicomtags/(0018,1210))
+    `Convolution Kernel`.
   anyOf:
     - type: number
       unit: mm
@@ -3635,6 +3693,8 @@ ReconFilterType:
   display_name: Recon Filter Type
   description: |
     Type of post-recon smoothing (for example, `["Shepp"]`).
+    This partly matches the [DICOM Tag (0018,1210)](https://www.dicomlookup.com/dicomtags/(0018,1210))
+    `Convolution Kernel`.
   anyOf:
     - type: string
     - type: array
@@ -3651,12 +3711,16 @@ ReconMethodName:
   display_name: Recon Method Name
   description: |
     Reconstruction method or algorithm (for example, `"3d-op-osem"`).
+    This partly matches the [DICOM Tag (0054,1103)](https://www.dicomlookup.com/dicomtags/(0054,1103))
+    `Reconstruction Method`.
   type: string
 ReconMethodParameterLabels:
   name: ReconMethodParameterLabels
   display_name: Recon Method Parameter Labels
   description: |
     Names of reconstruction parameters (for example, `["subsets", "iterations"]`).
+    This partly matches the [DICOM Tag (0054,1103)](https://www.dicomlookup.com/dicomtags/(0054,1103))
+    `Reconstruction Method`.
   type: array
   items:
     type: string
@@ -3665,6 +3729,8 @@ ReconMethodParameterUnits:
   display_name: Recon Method Parameter Units
   description: |
     Unit of reconstruction parameters (for example, `["none", "none"]`).
+    This partly matches the [DICOM Tag (0054,1103)](https://www.dicomlookup.com/dicomtags/(0054,1103))
+    `Reconstruction Method`.
   type: array
   items:
     type: string
@@ -3674,6 +3740,8 @@ ReconMethodParameterValues:
   display_name: Recon Method Parameter Values
   description: |
     Values of reconstruction parameters (for example, `[21, 3]`).
+    This partly matches the [DICOM Tag (0054,1103)](https://www.dicomlookup.com/dicomtags/(0054,1103))
+    `Reconstruction Method`.
   type: array
   items:
     type: number
@@ -3740,10 +3808,10 @@ RepetitionTime:
     and the beginning of acquisition of the volume following it (TR).
     When used in the context of functional acquisitions this parameter best
     corresponds to
-    [DICOM Tag 0020, 0110](https://dicomlookup.com/dicomtags/(0020,0110)):
+    [DICOM Tag (0020,0110)](https://www.dicomlookup.com/dicomtags/(0020,0110)):
     the "time delta between images in a
     dynamic of functional set of images" but may also be found in
-    [DICOM Tag 0018, 0080](https://dicomlookup.com/dicomtags/(0018,0080)):
+    [DICOM Tag (0018,0080)](https://www.dicomlookup.com/dicomtags/(0018,0080)):
     "the period of time in msec between the beginning
     of a pulse sequence and the beginning of the succeeding
     (essentially identical) pulse sequence".
@@ -3760,7 +3828,7 @@ RepetitionTimeExcitation:
   display_name: Repetition Time Excitation
   description: |
     The interval, in seconds, between two successive excitations.
-    [DICOM Tag 0018, 0080](https://dicomlookup.com/dicomtags/(0018,0080))
+    [DICOM Tag (0018,0080)](https://www.dicomlookup.com/dicomtags/(0018,0080))
     best refers to this parameter.
     This field may be used together with the `"RepetitionTimePreparation"` for
     certain use cases, such as
@@ -3817,7 +3885,8 @@ ResonantNucleus:
     The isotope of interest of an MR experiment (for example, `"1H"`, `"13C"`, `"31P"`).
     For multi-nuclei experiments such as <sup>1</sup>H-[<sup>13</sup>C] MR,
     an array can be used: `["1H", "13C"]`.
-    Corresponds to [DICOM Tag 0018, 9100](https://dicomlookup.com/dicomtags/(0018,9100)) `Resonant Nucleus`.
+    Corresponds to [DICOM Tag (0018,9100)](https://www.dicomlookup.com/dicomtags/(0018,9100))
+    `Resonant Nucleus`.
   anyOf:
     - type: string
     - type: array
@@ -4017,6 +4086,7 @@ ScanDate:
   display_name: Scan Date
   description: |
     Date of scan in the format `"YYYY-MM-DD[Z]"`.
+    Corresponds to [DICOM Tag (0008,0022)](https://www.dicomlookup.com/dicomtags/(0008,0022)) `Acquisition Date`.
     This field is DEPRECATED, and this metadata SHOULD be recorded in the `acq_time` column of the
     corresponding [Scans file](SPEC_ROOT/modality-agnostic-files/data-summary-files.md#scans-file).
   type: string
@@ -4026,7 +4096,8 @@ ScanOptions:
   display_name: Scan Options
   description: |
     Parameters of ScanningSequence.
-    Corresponds to [DICOM Tag 0018, 0022](https://dicomlookup.com/dicomtags/(0018,0022)) `Scan Options`.
+    Corresponds to [DICOM Tag (0018,0022)](https://www.dicomlookup.com/dicomtags/(0018,0022))
+    `Scan Options`.
   anyOf:
     - type: string
     - type: array
@@ -4044,7 +4115,8 @@ ScanningSequence:
   display_name: Scanning Sequence
   description: |
     Description of the type of data acquired.
-    Corresponds to [DICOM Tag 0018, 0020](https://dicomlookup.com/dicomtags/(0018,0020)) `Scanning Sequence`.
+    Corresponds to [DICOM Tag (0018,0020)](https://www.dicomlookup.com/dicomtags/(0018,0020))
+    `Scanning Sequence`.
   anyOf:
     - type: string
     - type: array
@@ -4065,6 +4137,8 @@ ScatterFraction:
   display_name: Scatter Fraction
   description: |
     Scatter fraction for each frame (Units: 0-100%).
+    Corresponds to [DICOM Tag (0054,1323)](https://www.dicomlookup.com/dicomtags/(0054,1323))
+    `Scatter Fraction Factor`.
   type: array
   items:
     type: number
@@ -4157,14 +4231,16 @@ SequenceName:
   display_name: Sequence Name
   description: |
     Manufacturer's designation of the sequence name.
-    Corresponds to [DICOM Tag 0018, 0024](https://dicomlookup.com/dicomtags/(0018,0024)) `Sequence Name`.
+    Corresponds to [DICOM Tag (0018,0024)](https://www.dicomlookup.com/dicomtags/(0018,0024))
+    `Sequence Name`.
   type: string
 SequenceVariant:
   name: SequenceVariant
   display_name: Sequence Variant
   description: |
     Variant of the ScanningSequence.
-    Corresponds to [DICOM Tag 0018, 0021](https://dicomlookup.com/dicomtags/(0018,0021)) `Sequence Variant`.
+    Corresponds to [DICOM Tag (0018,0021)](https://www.dicomlookup.com/dicomtags/(0018,0021))
+    `Sequence Variant`.
   anyOf:
     - type: string
     - type: array
@@ -4268,6 +4344,24 @@ SliceTiming:
     type: number
     minimum: 0
     unit: s
+SmallDelta:
+  name: SmallDelta
+  display_name: Diffusion Small Delta (δ)
+  description: |
+    In the context of a diffusion-weighted pulsed gradient spin echo sequence,
+    corresponds to the duration of a diffusion-encoding gradient pulse (δ),
+    specified in seconds.
+    The value may be an array, if δ varies by volume, in which case the number
+    of values MUST correspond to the number of volumes in the data file.
+  anyOf:
+    - type: number
+      unit: s
+      exclusiveMinimum: 0
+    - type: array
+      items:
+        type: number
+        unit: s
+        exclusiveMinimum: 0
 Software:
   name: Software
   display_name: Software
@@ -4504,7 +4598,8 @@ SpectralWidth:
   display_name: Spectral Width
   description: |
     The spectral bandwidth of the MR signal that is sampled, specified in Hz.
-    Corresponds to [DICOM Tag 0018, 9052](https://dicomlookup.com/dicomtags/(0018,9052)) `Spectral Width`.
+    Corresponds to [DICOM Tag (0018,9052)](https://www.dicomlookup.com/dicomtags/(0018,9052))
+    `Spectral Width`.
   type: number
   unit: Hz
 SpectrometerFrequency:
@@ -4745,6 +4840,11 @@ TracerName:
   display_name: Tracer Name
   description: |
     Name of the tracer compound used (for example, `"CIMBI-36"`)
+    Corresponds to [DICOM Tag (0054,0300)](https://www.dicomlookup.com/dicomtags/(0054,0300))
+    `Radionuclide Code Sequence`,
+    extracted from the fields [(0008,0122)](https://www.dicomlookup.com/dicomtags/(0008,0122))
+    `Mapping Resource Name`
+    and/or [(0008,0105)](https://www.dicomlookup.com/dicomtags/(0008,0105)) `Mapping Resource`.
   type: string
 TracerRadLex:
   name: TracerRadLex
@@ -4757,6 +4857,11 @@ TracerRadionuclide:
   display_name: Tracer Radionuclide
   description: |
     Radioisotope labeling tracer (for example, `"C11"`).
+    Corresponds to [DICOM Tag (0054,0300)](https://www.dicomlookup.com/dicomtags/(0054,0300))
+    `Radionuclide Code Sequence`,
+    extracted from the fields
+    [(0008,0100)](https://www.dicomlookup.com/dicomtags/(0008,0100)) `Code Value`
+    and/or [(0008,0104)](https://www.dicomlookup.com/dicomtags/(0008,0104)) `Code Meaning`.
   type: string
 TracerSNOMED:
   name: TracerSNOMED
@@ -4878,7 +4983,8 @@ VascularCrushing:
   display_name: Vascular Crushing
   description: |
     Boolean indicating if Vascular Crushing is used.
-    Corresponds to [DICOM Tag 0018, 9259](https://dicomlookup.com/dicomtags/(0018,9259)) `ASL Crusher Flag`.
+    Corresponds to [DICOM Tag (0018,9259)](https://www.dicomlookup.com/dicomtags/(0018,9259))
+    `ASL Crusher Flag`.
   type: boolean
 VascularCrushingVENC:
   name: VascularCrushingVENC
@@ -4888,7 +4994,8 @@ VascularCrushingVENC:
     Specify either one number for the total time-series, or provide an array of
     numbers, for example when using QUASAR, using the value zero to identify
     volumes for which `VascularCrushing` was turned off.
-    Corresponds to [DICOM Tag 0018, 925A](https://dicomlookup.com/dicomtags/(0018,925A)) `ASL Crusher Flow Limit`.
+    Corresponds to [DICOM Tag (0018,925A)](https://www.dicomlookup.com/dicomtags/(0018,925A))
+    `ASL Crusher Flow Limit`.
   anyOf:
     - type: number
       unit: cm/s
