@@ -277,7 +277,7 @@ and a guide for using macros can be found at
                 "Id": "bids::prov#conversion-00f3a18f",
                 "Label": "Dicom to NIfTI conversion",
                 "Command": "dcm2niix -o . -f sub-%i/anat/sub-%i_T1w sourcedata/dicoms",
-                "AssociatedWith": "bids::prov#dcm2niix-khhkm7u1",
+                "AssociatedWith": ["bids::prov#dcm2niix-khhkm7u1"],
                 "Used": [
                     "bids::prov#fedora-uldfv058",
                     "bids::sourcedata/dicoms"
@@ -713,7 +713,7 @@ to describe that the software package was used to compute this activity.
         {
             "Id": "bids::prov#conversion-00f3a18f",
             "Label": "Conversion",
-            "AssociatedWith": "bids::prov#dcm2niix-khhkm7u1"
+            "AssociatedWith": ["bids::prov#dcm2niix-khhkm7u1"]
         }
     ]
 }
