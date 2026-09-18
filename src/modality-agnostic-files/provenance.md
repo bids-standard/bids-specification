@@ -83,12 +83,12 @@ and a guide for using macros can be found at
 
 Provenance of a BIDS dataset (raw, derivative, or study) SHOULD be stored
 inside its `dataset_description.json` file.
-The `dataset_description.json` file of a **BIDS raw dataset** or **BIDS study dataset** MAY
-include the `GeneratedBy` key to describe provenance.
+The `dataset_description.json` file of a **BIDS raw dataset** or **BIDS study dataset**
+SHOULD include the `GeneratedBy` key to describe provenance.
 The `dataset_description.json` file of a **BIDS derivative dataset** MUST
 include the `GeneratedBy` key to describe provenance.
 
-The `GeneratedBy` field MAY contain either of the following values:
+The `GeneratedBy` field MUST contain one of the following values:
 
 -   Identifier(s) of the activity/activities responsible for the creation of the dataset
 (see [Description using identifiers](#description-using-identifiers)).
