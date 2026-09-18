@@ -10,6 +10,7 @@ nav:
           - Data summary files: modality-agnostic-files/data-summary-files.md
           - Phenotypic and assessment data: modality-agnostic-files/phenotypic-and-assessment-data.md
           - Code: modality-agnostic-files/code.md
+          - Provenance: modality-agnostic-files/provenance.md
           - Events: modality-agnostic-files/events.md
       - Modality specific files:
           - Magnetic Resonance Imaging: modality-specific-files/magnetic-resonance-imaging-data.md
@@ -125,6 +126,9 @@ markdown_extensions:
         - name: tsvgz
           class: tsv
           format: !!python/name:bidsschematools.render.tsv.fence
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - admonition
   - pymdownx.details
 plugins:

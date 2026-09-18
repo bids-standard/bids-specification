@@ -35,6 +35,7 @@
 - resolution
 - density
 - label
+- provenance
 # NOTE: there is a current convention to keep description to be the last entity.
 # If to be changed - potentially might need to adjust text in
 # src/derivatives/common-data-types.md

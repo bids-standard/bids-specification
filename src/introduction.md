@@ -196,6 +196,15 @@ For example:
 
 -   (publication forthcoming)
 
+### Other extensions specific publications
+
+#### Provenance
+
+-   Boris Clénet, Yaroslav O Halchenko, Satrajit Ghosh, Camille Maumet (2025).
+    **Extending the Brain Imaging Data Structure specification to provenance metadata**.
+    Distribits, Oct 2025, Germany.
+    [https://hal.science/hal-05406141](https://hal.science/hal-05406141)
+
 ### Research Resource Identifier (RRID)
 
 BIDS has also a
