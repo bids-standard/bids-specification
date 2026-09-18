@@ -727,17 +727,6 @@ meg:
   description: |
     Unprocessed MEG data stored in the native file format of the MEG instrument
     with which the data was collected.
-minIP:
-  value: minIP
-  display_name: Minimum intensity projection
-  description: |
-    In arbitrary units (arbitrary).
-    Minimum intensity projection is a post-processing technique
-    applied to susceptibility weighted images (SWI),
-    where the minimum intensity is projected across a slab
-    of a specified thickness
-    ([Haacke et al., 2004](https://doi.org/10.1002/mrm.20198)).
-  unit: arbitrary
 motion:
   value: motion
   display_name: Motion

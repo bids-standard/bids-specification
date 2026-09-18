@@ -58,7 +58,6 @@ parametric:
 swi:
   suffixes:
     - swi
-    - minIP
   extensions:
     - .nii.gz
     - .nii

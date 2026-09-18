@@ -237,7 +237,6 @@ and a guide for using macros can be found at
          "UNIT1",
          "angio",
          "swi",
-         "minIP",
       ])
 }}
 
@@ -263,7 +262,6 @@ and a guide for using macros can be found at
          "UNIT1",
          "angio",
          "swi",
-         "minIP",
       ]
    )
 }}
