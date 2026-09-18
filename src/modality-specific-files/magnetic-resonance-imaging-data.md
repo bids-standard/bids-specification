@@ -236,6 +236,7 @@ and a guide for using macros can be found at
          "PDT2",
          "UNIT1",
          "angio",
+         "swi",
       ])
 }}
 
@@ -260,6 +261,7 @@ and a guide for using macros can be found at
          "PDT2",
          "UNIT1",
          "angio",
+         "swi",
       ]
    )
 }}

@@ -727,7 +727,6 @@ meg:
   description: |
     Unprocessed MEG data stored in the native file format of the MEG instrument
     with which the data was collected.
-
 motion:
   value: motion
   display_name: Motion
@@ -882,6 +881,17 @@ svs:
   display_name: Single-voxel spectroscopy
   description: |
     MRS acquisitions where the detected MR signal is spatially localized to a single volume.
+swi:
+  value: swi
+  display_name: Susceptibility weighted image
+  description: |
+    In arbitrary units (arbitrary).
+    Susceptibility weighted imaging (SWI) is a contrast mechanism
+    that combines magnitude and phase information from gradient-echo
+    sequences to enhance the visibility of substances with magnetic
+    susceptibility different from surrounding tissues
+    ([Haacke et al., 2004](https://doi.org/10.1002/mrm.20198)).
+  unit: arbitrary
 trace:
   value: trace
   display_name: Trace-weighted diffusion image
