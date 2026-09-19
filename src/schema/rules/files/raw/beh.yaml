@@ -9,3 +9,88 @@ noncontinuous:
     - .json
   datatypes:
     - beh
+  entities:
+    subject: required
+    session: optional
+    task: required
+    acquisition: optional
+    run: optional
+
+# Audio recordings
+audio:
+  suffixes:
+    - audio
+  extensions:
+    - .flac
+    - .mp3
+    - .ogg
+    - .wav
+    - .json
+  datatypes:
+    - beh
+  entities:
+    subject: required
+    session: optional
+    task: optional
+    acquisition: optional
+    run: optional
+    recording: optional
+    split: optional
+
+# Video recordings
+video:
+  suffixes:
+    - video
+  extensions:
+    - .mp4
+    - .mkv
+    - .avi
+    - .json
+  datatypes:
+    - beh
+  entities:
+    subject: required
+    session: optional
+    task: optional
+    acquisition: optional
+    run: optional
+    recording: optional
+    split: optional
+
+# Combined audio-video recordings
+audiovideo:
+  suffixes:
+    - audiovideo
+  extensions:
+    - .mp4
+    - .mkv
+    - .avi
+    - .json
+  datatypes:
+    - beh
+  entities:
+    subject: required
+    session: optional
+    task: optional
+    acquisition: optional
+    run: optional
+    recording: optional
+    split: optional
+
+# Still images
+image:
+  suffixes:
+    - image
+  extensions:
+    - .jpg
+    - .png
+    - .json
+  datatypes:
+    - beh
+  entities:
+    subject: required
+    session: optional
+    task: optional
+    acquisition: optional
+    run: optional
+    recording: optional

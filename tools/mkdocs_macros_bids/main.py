@@ -38,6 +38,7 @@ def define_env(env):
     )
     env.macro(macros.make_glossary, "MACROS___make_glossary")
     env.macro(macros.make_suffix_table, "MACROS___make_suffix_table")
+    env.macro(macros.make_extension_table, "MACROS___make_extension_table")
     env.macro(macros.make_metadata_table, "MACROS___make_metadata_table")
     env.macro(macros.make_json_table, "MACROS___make_json_table")
     env.macro(macros.make_sidecar_table, "MACROS___make_sidecar_table")
