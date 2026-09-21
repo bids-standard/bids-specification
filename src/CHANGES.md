@@ -1,5 +1,19 @@
 # Changelog
 
+## [v1.11.2](https://bids-specification.readthedocs.io/en/v1.11.2/) (tbd)
+
+-   \[ENH] Recommend reporting of BigDelta and SmallDelta for DWI images [#2309](https://github.com/bids-standard/bids-specification/pull/2309) ([kabilar](https://github.com/kabilar))
+-   \[ENH] Add OME-Zarr as a supported format for imaging data [#2392](https://github.com/bids-standard/bids-specification/pull/2392) ([kabilar](https://github.com/kabilar))
+-   \[ENH] Define PET surface map derivatives [#2416](https://github.com/bids-standard/bids-specification/pull/2416) ([bendhouseart](https://github.com/bendhouseart))
+-   \[ENH] Allow for institutions to be listed as Authors [#2397](https://github.com/bids-standard/bids-specification/pull/2397) ([yarikoptic](https://github.com/yarikoptic))
+-   \[ENH] Recommend controlled vocabulary for age Units, clarify that it can be overloaded [#2400](https://github.com/bids-standard/bids-specification/pull/2400) ([yarikoptic](https://github.com/yarikoptic))
+-   \[ENH] Allow rawbids/ in derivative datasets for the raw BIDS source [#2409](https://github.com/bids-standard/bids-specification/pull/2409) ([yarikoptic](https://github.com/yarikoptic))
+-   \[ENH] Add phenotype and rawbids directories to "study" datasets [#2191](https://github.com/bids-standard/bids-specification/pull/2191) ([nikhil153](https://github.com/nikhil153))
+-   \[FIX] Uniformize DICOM tag formatting, URLs [#2485](https://github.com/bids-standard/bids-specification/pull/2485) ([markmikkelsen](https://github.com/markmikkelsen))
+-   \[FIX] Accept MiscChannelCount in EEG/Motion sidecars; deprecate MISCChannelCount alias [#2394](https://github.com/bids-standard/bids-specification/pull/2394) ([bruAristimunha](https://github.com/bruAristimunha))
+-   \[SCHEMA] Require complete BrainVision file triplets [#2501](https://github.com/bids-standard/bids-specification/pull/2501) ([viranovskaya](https://github.com/viranovskaya))
+-   \[SCHEMA] Warn when *_beh.tsv contains onset and duration [#2467](https://github.com/bids-standard/bids-specification/pull/2467) ([viranovskaya](https://github.com/viranovskaya))
+
 ## [v1.11.1](https://bids-specification.readthedocs.io/en/v1.11.1/) (2026-02-19)
 
 -   \[FIX] Add EMG to timeseries rule for physio/stim files [#2346](https://github.com/bids-standard/bids-specification/pull/2346) ([neuromechanist](https://github.com/neuromechanist))
