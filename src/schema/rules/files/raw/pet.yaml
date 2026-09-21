@@ -5,6 +5,7 @@ pet:
   extensions:
     - .nii.gz
     - .nii
+    - .ome.zarr/
     - .json
   datatypes:
     - pet
