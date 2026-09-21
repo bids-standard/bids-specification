@@ -158,7 +158,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 | Ethan Blackwood                                      | 👀📖                                   |
 | Eugene P. Duff                                       | 📖                                     |
 | Ezequiel Mikulan                                     | 📖💻                                   |
-| Fabricio Cravo                                       | 🚧💻                                   |
+| Fabricio Cravo                                       | 💻🚧                                   |
 | Fede Raimondo                                        | 💻                                     |
 | Felipe Orihuela-Espina                               | 📖                                     |
 | Fidel Alfaro Almagro                                 | 💬📖💡🔌                               |
@@ -318,6 +318,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 | Mikaël Naveau                                        | 🐛                                     |
 | Mohammad Torabi                                      | 💻                                     |
 | Monique Denissen                                     | 📖💻                                   |
+| Morgan Montoya                                       | 🤔💬                                   |
 | Murat Bilgel                                         | 📖                                     |
 | Nader Pouratian                                      | 📖                                     |
 | Natalia Petridou                                     | 📖                                     |

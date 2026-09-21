@@ -777,7 +777,7 @@
         "email": "daniel.brady@sheffield.ac.uk",
         "github": "https://github.com/ubdbra001",
         "name": "Dan Brady",
-        "orcid": "0000-0003-4671-0676"
+        "orcid": "https://orcid.org/0000-0003-4671-0676"
     },
     "dlevitas": {
         "affiliation": "Indiana University, Psychological & Brain Sciences, Bloomington, IN, 47405, USA",
@@ -1149,6 +1149,17 @@
         ],
         "name": "Ezequiel Mikulan",
         "orcid": "0000-0001-7259-6120"
+    },
+    "fabriciocravo": {
+        "affiliation": "Northeastern University",
+        "blog": "https://fabriciocravo.github.io/",
+        "contributions": [
+            "code",
+            "maintenance"
+        ],
+        "github": "fabriciocravo",
+        "name": "Fabricio Cravo",
+        "orcid": "0009-0005-8351-7156"
     },
     "fraimondo": {
         "affiliation": "Forschungszentrum Jülich",
@@ -2714,6 +2725,17 @@
         "name": "Monique Denissen",
         "orcid": "0000-0002-7120-1075"
     },
+    "MorgNMont": {
+        "affiliation": "Mayo Clinic",
+        "contributions": [
+            "ideas",
+            "question"
+        ],
+        "email": "montoya.morgan@mayo.edu",
+        "github": "MorgNMont",
+        "name": "Morgan Montoya",
+        "orcid": "[0000-0003-0312-7624](https://orcid.org/0000-0003-0312-7624)"
+    },
     "murat_bilgel": {
         "affiliation": "National Institute on Aging Intramural Research Program",
         "contributions": [
@@ -2917,6 +2939,17 @@
         ],
         "name": "Patrick Park"
     },
+    "psadil": {
+        "affiliation": "Johns Hopkins University",
+        "blog": "https://psadil.github.io/psadil",
+        "contributions": [
+            "bug"
+        ],
+        "email": "psadil1@jh.edu",
+        "github": "psadil",
+        "name": "Patrick Sadil",
+        "orcid": "0000-0003-4141-1343"
+    },
     "pwighton": {
         "affiliation": "Martinos Center @ MGH",
         "contributions": [
@@ -2974,7 +3007,7 @@
         "email": "peyman.najafi@cnrs.fr",
         "github": "https://github.com/Peyman-N",
         "name": "Peyman Najafi",
-        "orcid": "0000-0003-1746-3995"
+        "orcid": "https://orcid.org/0000-0003-1746-3995"
     },
     "prioux": {
         "blog": "https://github.com/prioux",

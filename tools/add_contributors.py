@@ -209,6 +209,8 @@ def listify_contributions(contributions: str):
     contributions = [x.strip() for x in contributions.split(",")]
     tmp = []
     for contribution_ in contributions:
+        if all(emoji.is_emoji(x) for x in contribution_ if x):
+            contribution_ = " ".join(x for x in contribution_ if x)
         tmp.extend(iter(contribution_.split(" ")))
     return tmp
 
