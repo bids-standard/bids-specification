@@ -103,7 +103,7 @@ and a guide for using macros can be found at
 -->
 {{ MACROS___make_json_table("json.genetics.genetic_info") }}
 
-To ensure dataset description consistency, we recommend following [Multi-omics approaches to disease](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-017-1215-1) by Hasin et al. 2017 to determine the `GeneticLevel:`
+To ensure dataset description consistency, we recommend following [Multi-omics approaches to disease](https://doi.org/10.1186/s13059-017-1215-1) by Hasin et al. 2017 to determine the `GeneticLevel:`
 
 -   `Genetic`: data report on a single genetic location (typically directly in the `participants.tsv` file)
 -   `Genomic`:  data link to participants' genome (multiple genetic locations)
