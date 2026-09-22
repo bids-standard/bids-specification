@@ -724,7 +724,7 @@
 -   Make support for uncompressed `.nii` files more explicit.
 -   Added `BIDSVersion` to `dataset.json`.
 -   Remove the statement that `SliceEncodingDirection` is necessary for slice time correction.
--   Change dicom converter recommendation from dcmstack to dcm2nii and dicm2nii following interactions with the community (see <https://github.com/moloney/dcmstack/issues/39> and <https://github.com/neurolabusc/dcm2niix/issues/4>).
+-   Change dicom converter recommendation from dcmstack to dcm2nii and dicm2nii following interactions with the community (see <https://github.com/moloney/dcmstack/issues/39> and <https://github.com/rordenlab/dcm2niix/issues/4>).
 -   Added section on behavioral experiments with no accompanying MRI acquisition.
 -   Add `_magnitude.nii[.gz]` image for GE type fieldmaps.
 -   Replaced EchoTimeDifference with EchoTime1 and EchoTime2 (SPM toolbox requires this input).
