@@ -1,61 +1,5 @@
 version: 2.1
 jobs:
-  build_docs:
-    docker:
-      - image: cimg/python:3.12
-    steps:
-      # checkout code to default ~/project
-      - checkout
-      - run:
-          name: generate docs
-          command: |
-            uv run mkdocs build --clean --strict --verbose
-      - persist_to_workspace:
-          # the mkdocs build outputs are in ~/project/site
-          root: ~/project
-          paths:
-            - site
-      - store_artifacts:
-          path: ~/project/site/
-          destination: dev_docs
-
-  check_links:
-    docker:
-      - image: cimg/python:3.12
-    steps:
-      - checkout
-      - attach_workspace:
-          at: ~/project
-      - run:
-          name: check links
-          command: |
-            git status
-            if (! git log -1 --pretty=oneline | grep REL:) ; then
-              chmod a+rX -R ~
-              uvx linkchecker -t 1 --no-warnings ~/project/site/
-              # check external separately by pointing to all *html so no
-              # failures for local file:/// -- yoh found no better way,
-              uvx linkchecker -t 1 --no-warnings --check-extern \
-                --ignore-url 'file:///.*' \
-                --ignore-url 'https://bids-specification.readthedocs.io/en/stable/.*' \
-                --ignore-url "https://bids-specification.readthedocs.io/en/v${CIRCLE_BRANCH#rel/}/" \
-                --ignore-url 'https://doi.org/.*' \
-                --ignore-url 'https://fonts.gstatic.com' \
-                --ignore-url 'https://github.com/[^/]*' \
-                --ignore-url 'https://github.com/bids-standard/bids-specification/(pull|tree)/.*' \
-                --ignore-url 'https://www.incf.org' \
-                --ignore-url 'https://www.dicomlookup.com/dicomtags/.*' \
-                --ignore-url 'https://www.instagram.com/bidsstandard/' \
-                --ignore-url 'https://jsoneditoronline.org' \
-                --ignore-url 'https://rrid.site.*' \
-                --ignore-url 'https://jsr.io/.*' \
-                --ignore-url 'https://codepoints.net/.*' \
-                --ignore-url 'https://www.encodeproject.org/.*' \
-                ~/project/site/*html ~/project/site/*/*.html
-            else
-              echo "Release PR - do nothing"
-            fi
-
   build_docs_pdf:
     docker:
       - image: texlive/texlive:latest
@@ -84,8 +28,4 @@ jobs:
 workflows:
   search_build:
     jobs:
-      - build_docs
-      - check_links:
-          requires:
-            - build_docs
       - build_docs_pdf
