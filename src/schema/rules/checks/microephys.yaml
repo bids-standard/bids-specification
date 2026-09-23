@@ -85,9 +85,9 @@ MicroephysElectrodeProbeReference:
   issue:
     code: MICROEPHYS_ELECTRODE_PROBE_MISMATCH
     message: |
-      All probe_name values in electrodes.tsv (except "n/a") must match
-      a probe_name entry in the corresponding probes.tsv file.
-    level: warning
+      Every `probe_name` value in `*_electrodes.tsv`, other than `n/a`, MUST match
+      a `probe_name` entry in the corresponding `*_probes.tsv` file.
+    level: error
   selectors:
     - intersects([datatype], ["ecephys", "icephys"])
     - suffix == "electrodes"
@@ -104,9 +104,9 @@ MicroephysChannelElectrodeReference:
   issue:
     code: MICROEPHYS_CHANNEL_ELECTRODE_MISMATCH
     message: |
-      All electrode_name values in channels.tsv (except "n/a") must match
-      a name entry in the corresponding electrodes.tsv file.
-    level: warning
+      Every `electrode_name` value in `*_channels.tsv`, other than `n/a`, MUST match
+      a `name` entry in the corresponding `*_electrodes.tsv` file.
+    level: error
   selectors:
     - intersects([datatype], ["ecephys", "icephys"])
     - suffix == "channels"
