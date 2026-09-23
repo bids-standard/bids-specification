@@ -16,8 +16,11 @@ acq_time__scans:
   name: acq_time
   display_name: Scan acquisition time
   description: |
-    Acquisition time refers to when the first data point in each run was acquired.
-    Furthermore, if this header is provided, the acquisition times of all files
+    The moment the acquisition of the data that resulted in this file started,
+    analogous to the DICOM
+    [Acquisition Time](https://dicom.nema.org/medical/dicom/current/output/chtml/part03/sect_C.7.10.html)
+    attribute ([DICOM Tag (0008,0032)](https://www.dicomlookup.com/dicomtags/(0008,0032))).
+    Furthermore, if this value is provided, the acquisition times of all files
     from the same recording MUST be identical.
     Datetime format and their deidentification are described in
     [Units](SPEC_ROOT/common-principles.md#units).
@@ -27,7 +30,7 @@ acq_time__sessions:
   name: acq_time
   display_name: Session acquisition time
   description: |
-    Acquisition time refers to when the first data point of the first run was acquired.
+    The moment the acquisition of the first data point in this session started.
     Datetime format and their deidentification are described in
     [Units](SPEC_ROOT/common-principles.md#units).
   type: string
