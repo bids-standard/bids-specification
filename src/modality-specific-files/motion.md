@@ -52,7 +52,7 @@ All relevant metadata about a tracking systems is stored in accompanying sidecar
 
 When multiple tracking systems are used to record motion or motion capture is used alongside the recording of other BIDS modalities and recordings should be interpreted together,
 it is advised to provide a possibility to synchronize recordings.
-The preferred way to do so is to use the acquisition time of the first data point of recordings and
+The preferred way to do so is to use the acquisition start time of recordings and
 to store this information in the `acq_time` column of the [`*_scans.tsv`](../modality-agnostic-files/data-summary-files.md#scans-file) file.
 Note that the [BIDS date time format](../common-principles.md#units) allows optional fractional seconds, which SHOULD be used to maximize the precision of the synchronization.
 Only if the precision of the synchronization is not high enough, the `*_events.tsv` file SHOULD be used to synchronize recordings.
