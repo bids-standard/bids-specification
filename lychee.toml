@@ -1,0 +1,19 @@
+cache = true
+method = "head"
+accept = ["100..=103", "200..300"]
+extensions = ["md", "txt", "html", "yaml"]
+# Use a long cache to reduce noise for temporary downtime
+max_cache_age = "1w"
+
+exclude = [
+  # HTTP/1 only
+  "dicom.nema.org",
+  # 403 for headless requests (anti-bot)
+  "www.hhs.gov",
+  "rrid.site",
+]
+
+[hosts."doi.org"]
+# Redirects to 403s are fine; ideally we would accept 302
+# with max-redirect=0 to detect only if a DOI exists.
+accept = ["100..=103", "200..300", "403"]
