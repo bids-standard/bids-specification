@@ -60,3 +60,45 @@ jobs:
         run: uvx cffconvert --validate
       - name: Check for Zenodo compatibility
         run: uv run tools/validate_citation.py
+
+  link-check-source:
+    runs-on: ubuntu-slim
+    steps:
+      - name: Restore lychee cache
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        id: restore-cache
+        with:
+          path: .lycheecache
+          key: lychee-source-${{ github.branch }}-${{ github.sha }}
+          restore-keys: |
+            lychee-source-master-
+            lychee-source-
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: lychee URL checker
+        uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
+        with:
+          lycheeVersion: nightly
+          args: --cache src/
+          format: junit
+          output: results.xml
+          fail: github.event_name != 'pull_request'
+        env:
+          # to be used in case rate limits are surpassed
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+      - name: Save lychee cache
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        if: always()
+        with:
+          path: .lycheecache
+          key: ${{ steps.restore-cache.outputs.cache-primary-key }}
+
+      - name: Publish link check report
+        uses: mikepenz/action-junit-report@a9170d5795813c01ab4901ffb045b52bab4ab09d # v6.5.0
+        if: github.event_name == 'pull_request'
+        with:
+          report_paths: "results.xml"
+          annotate_only: true
+          fail_on_failure: true # only fail in the end
