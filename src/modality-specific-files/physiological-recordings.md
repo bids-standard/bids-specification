@@ -2,7 +2,7 @@
 
 !!! example "Example datasets"
 
-      [Example datasets](https://bids-standard.github.io/bids-examples/#dataset-index)
+      [Example datasets](https://bids.neuroimaging.io/datasets/examples.html#dataset-index)
       with physiological data have been formatted using this specification
       and can be used for practical guidance when curating a new dataset:
 
@@ -437,7 +437,7 @@ the `OnsetSource` is set to `"n/a"` in `sub-01_task-nback_physioevents.json`:
 -->
 !!! example "Example datasets"
 
-    [Example datasets](https://bids-standard.github.io/bids-examples/#dataset-index)
+    [Example datasets](https://bids.neuroimaging.io/datasets/examples.html#dataset-index)
     with eye-tracking data have been formatted using this specification
     and can be used for practical guidance when curating a new dataset:
 

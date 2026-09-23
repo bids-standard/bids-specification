@@ -3,6 +3,7 @@
 from functools import partial
 
 from pyparsing import (
+    DelimitedList,
     Forward,
     Literal,
     Optional,
@@ -10,7 +11,6 @@ from pyparsing import (
     StringStart,
     Suppress,
     common,
-    delimited_list,
     one_of,
     quoted_string,
 )
@@ -75,7 +75,7 @@ notTest = Forward()
 andTest = Forward()
 test = Forward()
 
-testlist = delimited_list(test)
+testlist = DelimitedList(test)
 
 # Numbers and strings are base types, this could be expanded with bools and null
 # if it seems useful

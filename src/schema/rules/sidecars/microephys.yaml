@@ -108,3 +108,13 @@ microephysTaskInformation:
         distinguishing between eyes open and eyes closed paradigms.
     CogAtlasID: optional
     CogPOID: optional
+
+# Metadata for the electrodes table, describing how the anatomical locations in it
+# were determined and which atlas they are taken from.
+microephysElectrodeLocalization:
+  selectors:
+    - intersects([datatype], ["ecephys", "icephys"])
+    - suffix == "electrodes"
+  fields:
+    LocalizationMethod: optional
+    ReferenceAtlas: optional

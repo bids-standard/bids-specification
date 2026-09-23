@@ -88,6 +88,7 @@ deriv:
     extensions:
       - .nii.gz
       - .nii
+      - .ome.zarr/
       - .json
     entities:
       $ref: meta.templates.deriv.spatial.entities
@@ -153,6 +154,13 @@ deriv:
       segmentation: optional
       scale: optional
 
+  surface_map:
+    $ref:
+      - meta.templates.deriv.surface
+    extensions:
+      - .func.gii
+      - .json
+
 # Entities that apply to most atlas files
 # Include thus:
 #
@@ -164,3 +172,4 @@ atlas:
     entities:
       template: required
       cohort: optional
+      atlas: optional

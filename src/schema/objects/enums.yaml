@@ -1363,6 +1363,36 @@ technical_sample:
   display_name: technical sample
   description: |
     A biosample type (`sample_type`): technical sample
+whole_organ:
+  value: whole organ
+  display_name: whole organ
+  description: |
+    A biosample type (`sample_type`): a complete organ removed from an organism,
+    for example, an extracted brain.
+tissue_block:
+  value: tissue block
+  display_name: tissue block
+  description: |
+    A biosample type (`sample_type`): a block of tissue,
+    typically one from which slices are subsequently cut.
+tissue_slice:
+  value: tissue slice
+  display_name: tissue slice
+  description: |
+    A biosample type (`sample_type`): a slice of tissue,
+    for example, an acute brain slice used for patch clamp recordings.
+single_cell:
+  value: single cell
+  display_name: single cell
+  description: |
+    A biosample type (`sample_type`): an individual cell,
+    for example, a cell recorded from in a patch clamp experiment.
+cell_population:
+  value: cell population
+  display_name: cell population
+  description: |
+    A biosample type (`sample_type`): a group of cells recorded or measured together
+    rather than individually.
 good:
   value: good
   display_name: good

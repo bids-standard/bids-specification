@@ -106,18 +106,18 @@ BIDS datasets embedded within a larger BIDS dataset MAY follow some convention (
 ## Filesystem structure
 
 Data for each subject are placed in subdirectories named "`sub-<label>`",
-where string "`<label>`" is substituted with the unique identification
+where "`<label>`" is substituted with the unique identification
 label of each subject.
 Additional information on each participant MAY be provided in a
 [participants file](modality-agnostic-files/data-summary-files.md#participants-file)
 in the root directory of the dataset.
 
-If data for the subject were acquired across multiple sessions, then within
-the subject directory resides subdirectories named "`ses-<label>`",
-where string "`<label>`" is substituted with a unique identification
-label for each session.
+If data for the subject were acquired across multiple sessions,
+then subdirectories named "`ses-<label>`" reside within the subject directory,
+where "`<label>`" is substituted with the unique identification
+label of each session.
 In datasets where at least one subject has more than one session, this
-additional subdirectory later SHOULD be added for all subjects in the dataset.
+additional subdirectory layer SHOULD be added for all subjects in the dataset.
 Additional information on each session MAY be provided in a
 [sessions file](modality-agnostic-files/data-summary-files.md#sessions-file)
 within the subject directory.
@@ -369,9 +369,14 @@ Derivatives can be stored/distributed in two ways:
     dataset is provided with read-only access, for publishing derivatives as
     independent bodies of work, or for describing derivatives that were created
     from more than one source dataset.
-    The `sourcedata/` subdirectory MAY be used to include the source dataset(s)
-    that were used to generate the derivatives.
-    Likewise, any code used to generate the derivatives from the source data
+    If the source is a raw BIDS dataset,
+    it MAY be included under the `rawbids/` subdirectory (see [Study dataset](#study-dataset) for the same convention used at the study level).
+    The `sourcedata/` subdirectory MAY be used to include any other source dataset(s)
+    used to generate the derivatives, including non-BIDS sources and derived BIDS datasets.
+    In particular, derivatives of derivatives MUST place their source derivative
+    dataset(s) under `sourcedata/`, not `rawbids/`,
+    since `rawbids/` is reserved for raw BIDS datasets.
+    Any code used to generate the derivatives from the source data
     MAY be included in the `code/` subdirectory.
     Extra documentation (and relevant images) MAY be included in the `docs/` subdirectory.
     Logs from running the code or other commands MAY be stored under `logs/` subdirectory.
@@ -390,12 +395,11 @@ Derivatives can be stored/distributed in two ways:
                 "hpc_submitter.sh": "",
                 "...": "",
             },
-            "sourcedata": {
-                "raw": {
-                    "sub-01": {},
-                    "sub-02": {},
-                    "...": "",
-                },
+            "rawbids": {
+                "sub-01": {},
+                "sub-02": {},
+                "...": "",
+                "dataset_description.json": "",
             },
             "sub-01": {},
             "sub-02": {},
@@ -431,7 +435,7 @@ datasets and non-compliant derivatives.
 
 ## Study dataset
 
-BIDS allows one to organize the data for the entire study (original source data, raw BIDS, derivatives) as a valid BIDS dataset in the following way
+BIDS allows one to organize the source, raw, and derived data for the entire study as a valid BIDS dataset (see `study` [`DatasetType`](./glossary.md#session-entities)) in the following way
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
@@ -442,14 +446,14 @@ A guide for using macros can be found at
     "study-1": {
         "sourcedata": {
             "dicoms": {},
-            "raw": {
-                "sub-01": {},
-                "sub-02": {},
-                "...": "",
-                "dataset_description.json": "",
-				"...": "",
-            },
             "..." : "",
+        },
+        "rawbids": {
+            "sub-01": {},
+            "sub-02": {},
+            "...": "",
+            "dataset_description.json": "",
+            "...": "",
         },
         "derivatives": {
             "pipeline1-v1": {},
@@ -462,17 +466,20 @@ A guide for using macros can be found at
    }
 ) }}
 
-In this example, `sourcedata/dicoms` is not nested inside
-`sourcedata/raw`, **and only the `sourcedata/raw` subdirectory** is a BIDS-compliant dataset among `sourcedata/` subfolders.
+In this example, `sourcedata`, `rawbids`, and `derivatives` are top-level directories. **Only the `rawbids` directory** is a BIDS-compliant dataset.
+The `rawbids/` subdirectory is reserved for the raw BIDS dataset
+(the same convention applies inside a `derivative` dataset when its source is a raw BIDS dataset;
+see [Storage of derived datasets](#storage-of-derived-datasets)).
 The subdirectories of `derivatives` MAY be BIDS-compliant derivatives datasets
 (see [Non-compliant derivatives](#non-compliant-derivatives) for further discussion).
-The above example is a fully compliant BIDS dataset, providing a convention useful for organizing source, raw BIDS, and derived BIDS data while maintaining overall BIDS compliance.
-When using this convention, `dataset_description.json` MUST have `DatasetType` to be set to `"study"`.  It is also RECOMMENDED to set the `SourceDatasets`
-field in `dataset_description.json` of each subdirectory of `derivatives` to:
+The above example is a fully compliant BIDS dataset, providing a convention useful for organizing source, raw BIDS, and derived BIDS data
+while maintaining conceptual and operational distinctions mentioned in [Source vs. raw vs. derived data](#source-vs-raw-vs-derived-data).
+When using this convention, `dataset_description.json` MUST have `DatasetType` set to `"study"`.
+It is also RECOMMENDED to set the `SourceDatasets` field in `dataset_description.json` of each subdirectory of `derivatives` to:
 
 ```JSON
 {
-  "SourceDatasets": [ {"URL": "../../sourcedata/raw/"} ]
+  "SourceDatasets": [ {"URL": "../../rawbids/"} ]
 }
 ```
 
@@ -480,8 +487,13 @@ field in `dataset_description.json` of each subdirectory of `derivatives` to:
 
 ### Imaging files
 
-All imaging data MUST be stored using the NIfTI file format. We RECOMMEND using
-compressed NIfTI files (.nii.gz), either version 1.0 or 2.0. If using compressed files,
+Imaging data SHOULD be stored using the NIfTI file format.
+Large imaging data MAY instead be stored using the
+[OME-Zarr (OME-NGFF)](https://ngff.openmicroscopy.org/) file format.
+
+#### NIfTI
+
+We RECOMMEND using compressed NIfTI files (.nii.gz), either version 1.0 or 2.0. If using compressed files,
 the gzip header SHOULD lack source filenames and timestamps. Imaging data SHOULD
 be converted to the NIfTI format using a tool that provides as much of the NIfTI
 header information (such as orientation and slice timing information) as
@@ -491,15 +503,33 @@ additional meta information extracted from DICOM files in a sidecar JSON file
 (with the same filename as the `.nii[.gz]` file, but with a `.json` extension).
 Currently defined metadata fields are listed in the [Glossary](./glossary.md).
 Where possible, DICOM Tags are adopted directly as BIDS metadata terms and
-indicated with "**Corresponds to** DICOM Tag ID1, ID2 `DICOM Tag Name`.".
+indicated with "**Corresponds to** DICOM Tag (####,####) `<Attribute Name>`".
 When harmonization has been deemed necessary, this is indicated in the
-BIDS term description with "**Based on** DICOM Tag ID1, ID2 `DICOM Tag Name`.".
+BIDS term description with "**Based on** DICOM Tag (####,####) `<Attribute Name>`".
 Extraction of BIDS compatible metadata can be performed using
 [DICOM to NIfTI converters](https://bids.neuroimaging.io/tools/converters.html)
 such as [dcm2niix](https://github.com/rordenlab/dcm2niix).
 The [BIDS-validator](https://github.com/bids-standard/bids-validator)
 will check for conflicts between the JSON file and the data recorded in the
 NIfTI header.
+
+#### OME-Zarr
+
+[Zarr](https://zarr-specs.readthedocs.io/) is a chunked, cloud-optimized format that provides efficient access to
+large multidimensional datasets without requiring a full download.
+[OME-Zarr](https://ngff.openmicroscopy.org/), developed by the Open Microscopy Environment (OME),
+extends Zarr with bioimaging-specific metadata.
+OME-Zarr is particularly suitable for very large imaging volumes (for example, high-resolution
+ex vivo MRI) where NIfTI would be impractical for streaming or web-based visualization.
+
+OME-Zarr filesets are stored in BIDS with the `.ome.zarr` extension.
+Spatial metadata (such as the axis names and units, and coordinate transformations) SHOULD
+be stored within the OME-Zarr metadata following the
+[OME-Zarr version 0.5 specification](https://ngff.openmicroscopy.org/specifications/0.5/index.html)
+(the latest released version).
+An example dataset containing an OME-Zarr can be found in the
+[BIDS examples repository](https://github.com/bids-standard/bids-examples/tree/master/micr_XPCTzarr)
+and can be used as helpful guidance when curating new datasets.
 
 ### Tabular files
 
@@ -1135,9 +1165,16 @@ Describing dates and timestamps:
     for more information.
 
 -   Age SHOULD be given as the number of years since birth at the time of
-    scanning (or first scan in case of multi session datasets). Using higher
-    accuracy (weeks) should in general be avoided due to privacy protection,
-    unless when appropriate given the study goals, for example, when scanning babies.
+    scanning (or first scan in case of multi session datasets).
+    The default unit is `"year"`, but it MAY be overridden in the JSON sidecar
+    (for example, `participants.json`) by setting `"Units"` to one of the
+    following values based on
+    [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Durations) duration
+    designators: `"year"`, `"month"`, `"week"`, `"day"`, `"hour"`, `"minute"`,
+    or `"second"`.
+    Using higher accuracy (for example, weeks or days) should in general be
+    avoided due to privacy protection, unless when appropriate given the study
+    goals, for example, when scanning babies or animals.
 
 ## Directory structure
 
