@@ -102,3 +102,36 @@ jobs:
           report_paths: "results.xml"
           annotate_only: true
           fail_on_failure: true # only fail in the end
+
+  link-check-site:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Restore lychee cache
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        id: restore-cache
+        with:
+          path: .lycheecache
+          key: lychee-site-${{ github.branch }}-${{ github.sha }}
+          # Prefer site cache, but source cache should include a subset
+          restore-keys: |
+            lychee-site-master-
+            lychee-site-
+            lychee-source-
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
+      - run: uv run mkdocs build -d site/en/stable
+
+      - name: lychee URL checker
+        uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2.9.0
+        with:
+          lycheeVersion: nightly
+          args: >-
+            --cache
+            --root-dir site/
+            --remap "^https://bids-specification\.readthedocs\.io/en/stable/ file://$(pwd)/site/en/stable/"
+            --include-fragments --method get
+            site/
+        env:
+          # to be used in case rate limits are surpassed
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
