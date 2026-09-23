@@ -396,7 +396,7 @@ BodyPartDetailsOntology:
   display_name: Body Part Details Ontology
   description: |
     [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator) of ontology used for
-    BodyPartDetails (for example: `"https://www.ebi.ac.uk/ols/ontologies/uberon"`).
+    BodyPartDetails (for example: `"https://www.ebi.ac.uk/ols4/ontologies/uberon"`).
   type: string
   format: uri
 BolusCutOffDelayTime:
