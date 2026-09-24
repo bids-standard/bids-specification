@@ -502,16 +502,16 @@ tracer:
     Please note that the `<label>` does not need to match the actual value of the field.
   type: string
   format: label
-volume:
-  name: voi
-  display_name: Volume of Interest
+track:
+  name: track
+  display_name: Tractography Method
   description: |
-    The `voi-<label>` entity can be used to distinguish acquisitions localized to different regions.
-    The label SHOULD be the name of the body region or part scanned.
-    If used, the fields `"BodyPart"` and `"BodyPartDetails"` MUST be defined in the JSON file.
-    `BodyPartDetailsOntology` is OPTIONAL to also include.
+    The `track-<label>` entity identifies the tractography method
+    employed to reconstruct white matter fiber streamlines.
   type: string
   format: label
+  anyOf:
+    - $ref: objects.enums._TrackMethod
 tracksys:
   name: tracksys
   display_name: Tracking System
@@ -524,5 +524,26 @@ tracksys:
     This entity corresponds to the `"TrackingSystemName"` metadata field in a *_motion.json file.
     `tracksys-<label>` entity is a concise string whereas `"TrackingSystemName"`
     may be longer and more human readable.
+  type: string
+  format: label
+tract:
+  name: tract
+  display_name: Anatomical Tract
+  description: |
+    The `tract-<label>` entity identifies the white matter fiber
+    anatomical/structural entity that is imaged through a
+    tractogram (for example, `tract-wholebrain` would correspond to a
+    whole-brain tractogram, whereas `tract-ArcuateFasciculus` would
+    correspond to a tractogram of the arcuate fasciculus).
+  type: string
+  format: label
+volume:
+  name: voi
+  display_name: Volume of Interest
+  description: |
+    The `voi-<label>` entity can be used to distinguish acquisitions localized to different regions.
+    The label SHOULD be the name of the body region or part scanned.
+    If used, the fields `"BodyPart"` and `"BodyPartDetails"` MUST be defined in the JSON file.
+    `BodyPartDetailsOntology` is OPTIONAL to also include.
   type: string
   format: label

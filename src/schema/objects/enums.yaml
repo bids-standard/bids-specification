@@ -79,6 +79,18 @@ _iEEGCoordSys:
     - $ref: objects.enums.ACPC.value
     - $ref: objects.enums.ScanRAS.value
     - $ref: objects.enums.Other.value
+_TrackMethod:
+  type: string
+  enum:
+    - $ref: objects.enums.act.value
+    - $ref: objects.enums.eudx.value
+    - $ref: objects.enums.fact.value
+    - $ref: objects.enums.ifod.value
+    - $ref: objects.enums.sdstream.value
+    - $ref: objects.enums.tensor.value
+    - $ref: objects.enums.pft.value
+    - $ref: objects.enums.ptt.value
+    - $ref: objects.enums.set.value
 left_hemisphere:
   value: 'L'
   display_name: Left Hemisphere
@@ -1481,3 +1493,48 @@ PhysioTypeEyetrack:
   display_name: Eye-tracking recording
   description: |
     A specific physiological recording type: eye-tracking.
+act:
+  value: act
+  display_name: Anatomically-constrained tractography
+  description: |
+    Anatomically-constrained tractography (ACT).
+eudx:
+  value: eudx
+  display_name: Euler Delta Crossings
+  description: |
+    Euler Delta Crossings tractography.
+fact:
+  value: fact
+  display_name: Fiber assignment by continuous tracking
+  description: |
+    Fiber assignment by continuous tracking algorithm (FACT).
+ifod:
+  value: ifod
+  display_name: Integration over Fiber Orientation Distributions
+  description: |
+    Integration over Fiber Orientation Distribution (iFOD) tractography.
+sdstream:
+  value: sdstream
+  display_name: Streamlines tractography based on Spherical Deconvolution
+  description: |
+    Streamlines tractography based on Spherical Deconvolution.
+tensor:
+  value: tensor
+  display_name: Tensor-based tractography
+  description: |
+    Tensor-based tractography (deterministic or probabilistic).
+pft:
+  value: pft
+  display_name: Particle Filtering Tractography
+  description: |
+    Particle Filtering Tractography (PFT).
+ptt:
+  value: ptt
+  display_name: Parallel Transport Tractography
+  description: |
+    Parallel Transport Tractography (PTT).
+set:
+  value: set
+  display_name: Surface-enhanced Tractography
+  description: |
+    Surface-enhanced Tractography (SET).
