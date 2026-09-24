@@ -203,6 +203,52 @@ def make_suffix_table(suffixes, src_path=None):
     return table
 
 
+def make_extension_table(extensions, src_path=None):
+    """Generate a markdown table of file extension information.
+
+    Parameters
+    ----------
+    extensions : list of str
+        A list of the extension keys to include in the table.
+        Keys correspond to entries in the schema's objects.extensions
+        (for example, ``["wav", "mp3", "aac", "ogg"]``).
+    src_path : str or None
+        The file where this macro is called, which may be explicitly provided
+        by the "page.file.src_path" variable.
+
+    Returns
+    -------
+    table : str
+        A Markdown-format table containing the extension information.
+    """
+    if src_path is None:
+        src_path = _get_source_path()
+
+    schema_obj = schema.load_schema()
+    ext_objects = schema_obj["objects"]["extensions"]
+
+    # Compute the relative path to the glossary from the calling file
+    src_dir = os.path.dirname(src_path)
+    glossary_path = os.path.relpath("glossary.md", src_dir)
+
+    rows = []
+    for ext_key in extensions:
+        ext = ext_objects[ext_key]
+        value = ext["value"]
+        display_name = ext["display_name"]
+        # Collapse multi-line description to single line
+        description = " ".join(ext["description"].strip().split())
+
+        # Link to glossary anchor
+        link = f"[{value}]({glossary_path}#objects.extensions.{ext_key})"
+
+        rows.append(f"| {display_name} | {link} | {description} |")
+
+    header = "| **Format** | **Extension** | **Description** |"
+    separator = "| --- | --- | --- |"
+    return "\n".join([header, separator] + rows)
+
+
 def make_metadata_table(field_info, src_path=None):
     """Generate a markdown table of metadata field information.
 
