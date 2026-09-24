@@ -1,0 +1,8 @@
+{
+  "ignore": [
+    { "code": "EMPTY_FILE" },
+    { "code": "HED_ERROR"},
+    { "code": "SIDECAR_KEY_REQUIRED"},
+    { "code": "ALL_FILENAME_RULES_HAVE_ISSUES"}
+  ]
+}
