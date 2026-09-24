@@ -1,3 +1,8 @@
+---
+search:
+  boost: -2
+---
+
 # Glossary of schema objects
 
 This section compiles the object definitions in the schema.
