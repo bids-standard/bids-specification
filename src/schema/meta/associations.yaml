@@ -129,3 +129,12 @@ atlas_description:
     suffix: description
     extension: .json
   inherit: true
+
+scans:
+  selectors:
+    - suffix != 'scans'
+    - extension != '.json'
+  target:
+    suffix: scans
+    extension: .tsv
+  inherit: true
