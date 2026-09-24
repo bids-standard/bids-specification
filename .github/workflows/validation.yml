@@ -3,9 +3,9 @@ name: Validation
 
 on:
   push:
-    branches: [master]
+    branches: [master, maint/*, lychee]
   pull_request:
-    branches: [master]
+    branches: [master, maint/*, lychee]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
