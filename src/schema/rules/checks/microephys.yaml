@@ -74,3 +74,47 @@ MicroephysRequiredAnatomicalReferencePoint:
     - columns.AP != null || columns.ML != null || columns.DV != null
   checks:
     - columns.anatomical_reference_point != null
+
+# Cross-file consistency checks for the channels -> electrodes -> probes hierarchy.
+# Direction: child -> parent only (references must resolve).
+# We do not check parent -> child (completeness) because not all electrodes
+# need channels (broken contacts, reference-only) and not all probes need
+# electrodes (subset recordings, run-specific channel selections).
+
+MicroephysElectrodeProbeReference:
+  issue:
+    code: MICROEPHYS_ELECTRODE_PROBE_MISMATCH
+    message: |
+      Every `probe_name` value in `*_electrodes.tsv`, other than `n/a`, MUST match
+      a `probe_name` entry in the corresponding `*_probes.tsv` file.
+    level: error
+  selectors:
+    - intersects([datatype], ["ecephys", "icephys"])
+    - suffix == "electrodes"
+    - extension == ".tsv"
+    - associations.probes.probe_name != null
+    - columns.probe_name != null
+  checks:
+    - |
+      length(intersects(unique(columns.probe_name), associations.probes.probe_name))
+      + count(unique(columns.probe_name), "n/a")
+      >= length(unique(columns.probe_name))
+
+MicroephysChannelElectrodeReference:
+  issue:
+    code: MICROEPHYS_CHANNEL_ELECTRODE_MISMATCH
+    message: |
+      Every `electrode_name` value in `*_channels.tsv`, other than `n/a`, MUST match
+      a `name` entry in the corresponding `*_electrodes.tsv` file.
+    level: error
+  selectors:
+    - intersects([datatype], ["ecephys", "icephys"])
+    - suffix == "channels"
+    - extension == ".tsv"
+    - associations.electrodes.name != null
+    - columns.electrode_name != null
+  checks:
+    - |
+      length(intersects(unique(columns.electrode_name), associations.electrodes.name))
+      + count(unique(columns.electrode_name), "n/a")
+      >= length(unique(columns.electrode_name))

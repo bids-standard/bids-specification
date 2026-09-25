@@ -94,7 +94,7 @@ coordsystem:
 
 electrodes:
   selectors:
-    - intersects([suffix], ['eeg', 'emg', 'ieeg', 'meg', 'ecephys', 'icephys'])
+    - intersects([suffix], ['eeg', 'emg', 'ieeg', 'meg', 'ecephys', 'icephys', 'channels'])
     - extension != '.json'
   target:
     suffix: electrodes
@@ -105,7 +105,7 @@ electrodes:
 
 probes:
   selectors:
-    - intersects([suffix], ['ecephys', 'icephys'])
+    - intersects([suffix], ['ecephys', 'icephys', 'electrodes'])
     - extension != '.json'
   target:
     suffix: probes
