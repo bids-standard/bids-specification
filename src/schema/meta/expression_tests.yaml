@@ -26,6 +26,8 @@
   result: false
 - expression: intersects(null, [])
   result: false
+- expression: glob(null)
+  result: null
 - expression: allequal([], null)
   result: false
 - expression: allequal(null, [])
