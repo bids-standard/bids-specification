@@ -853,7 +853,7 @@ scans:
     Such recordings MUST be documented with one row per file.
     Relative paths to files should be used under a compulsory filename header.
     If acquisition time is included it should be listed under the acq_time header.
-    Acquisition time refers to when the first data point in each run was acquired.
+    Acquisition time refers to the moment the acquisition of the data in each run started.
     Furthermore, if this header is provided, the acquisition times of all files that belong to a
     recording MUST be identical.
     Datetime should be expressed as described in Units.
