@@ -126,6 +126,9 @@ markdown_extensions:
         - name: tsvgz
           class: tsv
           format: !!python/name:bidsschematools.render.tsv.fence
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - admonition
   - pymdownx.details
 plugins:
@@ -138,6 +141,8 @@ plugins:
   - macros:
       module_name: tools/mkdocs_macros_bids/main
       on_error_fail: true
+  - panzoom:
+      full_screen: true
   - redirects:
       redirect_maps:
         "01-introduction.md": "introduction.md"
