@@ -643,8 +643,8 @@ pipette_solution:
   display_name: Pipette solution
   description: |
     The solution used to fill the pipette.
-    See also [openMINDS Pipette]
-    (https://github.com/openMetadataInitiative/openMINDS_ephys/blob/v1/schemas/device/pipetteUsage.schema.tpl.json).
+    See also [openMINDS Pipette](
+    https://github.com/openMetadataInitiative/openMINDS_ephys/blob/v1/schemas/device/pipetteUsage.schema.tpl.json).
   type: string
 internal_pipette_diameter:
   name: internal_pipette_diameter
