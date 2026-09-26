@@ -4,6 +4,7 @@
 - subject
 - template
 - session
+- stimulus
 - cohort
 - sample
 - task
@@ -23,6 +24,7 @@
 - inversion
 - mtransfer
 - part
+- annotation
 - processing
 - hemisphere
 - space
