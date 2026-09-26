@@ -713,10 +713,10 @@ Example of a `*_scans.tsv`:
 
 ```tsv
 filename	acq_time
-ephys/sub-P001_task-pull_run-01_ephys.nix	2018-07-15T09:45:30
-ephys/sub-P001_task-pull_run-02_ephys.nix	2018-07-15T13:24:00
-ephys/sub-P001_task-push_run-01_ephys.nix	2018-07-15T14:24:00
-ephys/sub-P001_task-push_run-02_ephys.nix	2018-07-15T15:24:00
+ecephys/sub-P001_task-pull_run-01_ecephys.nix	2018-07-15T09:45:30
+ecephys/sub-P001_task-pull_run-02_ecephys.nix	2018-07-15T13:24:00
+ecephys/sub-P001_task-push_run-01_ecephys.nix	2018-07-15T14:24:00
+ecephys/sub-P001_task-push_run-02_ecephys.nix	2018-07-15T15:24:00
 ```
 
 It is recommended to accompany the  `*_scans.tsv` file with a corresponding `*_scans.json`
