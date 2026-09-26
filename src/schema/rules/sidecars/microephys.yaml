@@ -51,6 +51,14 @@ microephysSetup:
       level: optional
       level_addendum: recommended if RecordingType is "epoched"
 
+microephysEpochLength:
+  selectors:
+    - intersects([suffix], ["ecephys", "icephys"])
+    - sidecar.RecordingType == "epoched"
+  fields:
+    EpochLength: recommended
+    
+
 microephysProcessing:
   selectors:
     - intersects([datatype], ["ecephys", "icephys"])
