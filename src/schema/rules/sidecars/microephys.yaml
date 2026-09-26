@@ -57,7 +57,7 @@ microephysEpochLength:
     - sidecar.RecordingType == "epoched"
   fields:
     EpochLength: recommended
-    
+
 
 microephysProcessing:
   selectors:
