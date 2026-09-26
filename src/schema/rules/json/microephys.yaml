@@ -39,3 +39,12 @@ microephysCoordsystemOther:
     - json.MicroephysCoordinateSystem == "Other"
   fields:
     MicroephysCoordinateSystemDescription: required
+
+microephysCoordsystemPhotoPixels:
+  selectors:
+    - intersects([datatype], ["ecephys", "icephys"])
+    - suffix == "coordsystem"
+    - '"MicroephysCoordinateSystem" in json'
+    - json.MicroephysCoordinateUnits == "pixels"
+  fields:
+    MicroephysCoordinateSystemPhoto: required
