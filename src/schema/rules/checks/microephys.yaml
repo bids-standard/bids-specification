@@ -80,6 +80,11 @@ MicroephysRequiredAnatomicalReferencePoint:
 # We do not check parent -> child (completeness) because not all electrodes
 # need channels (broken contacts, reference-only) and not all probes need
 # electrodes (subset recordings, run-specific channel selections).
+#
+# intersects() returns false rather than an empty array when nothing matches,
+# so each check handles the all-"n/a" case first and confirms the intersection
+# is an array before taking its length, instead of relying on length(false)
+# (null) behaving as zero in the addition.
 
 MicroephysElectrodeProbeReference:
   issue:
@@ -96,9 +101,13 @@ MicroephysElectrodeProbeReference:
     - columns.probe_name != null
   checks:
     - |
-      length(intersects(unique(columns.probe_name), associations.probes.probe_name))
-      + count(unique(columns.probe_name), "n/a")
-      >= length(unique(columns.probe_name))
+      count(unique(columns.probe_name), "n/a") == length(unique(columns.probe_name))
+      || (
+        type(intersects(unique(columns.probe_name), associations.probes.probe_name)) == "array"
+        && length(intersects(unique(columns.probe_name), associations.probes.probe_name))
+        + count(unique(columns.probe_name), "n/a")
+        >= length(unique(columns.probe_name))
+      )
 
 MicroephysChannelElectrodeReference:
   issue:
@@ -115,6 +124,10 @@ MicroephysChannelElectrodeReference:
     - columns.electrode_name != null
   checks:
     - |
-      length(intersects(unique(columns.electrode_name), associations.electrodes.name))
-      + count(unique(columns.electrode_name), "n/a")
-      >= length(unique(columns.electrode_name))
+      count(unique(columns.electrode_name), "n/a") == length(unique(columns.electrode_name))
+      || (
+        type(intersects(unique(columns.electrode_name), associations.electrodes.name)) == "array"
+        && length(intersects(unique(columns.electrode_name), associations.electrodes.name))
+        + count(unique(columns.electrode_name), "n/a")
+        >= length(unique(columns.electrode_name))
+      )
