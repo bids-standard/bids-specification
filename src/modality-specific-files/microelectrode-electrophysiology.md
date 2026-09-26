@@ -837,7 +837,7 @@ Example `sub-A_ses-20220101_task-nosepoke_ecephys.json`:
   "PharmaceuticalDoseAmount": [10, 1],
   "PharmaceuticalDoseUnits": ["mg/kg", "mg/kg"],
   "BodyPart": "BRAIN",
-  "SampleEnvironment": "in-vivo"
+  "SampleEnvironment": "in vivo"
 }
 ```
 
@@ -862,7 +862,7 @@ Example `sub-A_ses-20220101_task-reachtograsp_ecephys.json`:
   "PharmaceuticalDoseAmount": [10, 1],
   "PharmaceuticalDoseUnits": ["mg/kg", "mg/kg"],
   "BodyPart": "BRAIN",
-  "SampleEnvironment": "in-vivo"
+  "SampleEnvironment": "in vivo"
 }
 ```
 
@@ -887,7 +887,7 @@ Example `sub-A_ses-20220101_task-rest_ecephys.json`:
   "PharmaceuticalDoseAmount": [10, 1],
   "PharmaceuticalDoseUnits": ["mg/kg", "mg/kg"],
   "BodyPart": "BRAIN",
-  "SampleEnvironment": "in-vivo"
+  "SampleEnvironment": "in vivo"
 }
 ```
 
