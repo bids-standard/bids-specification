@@ -92,7 +92,7 @@ microephysElectrodes:
     size__microephys: optional
     electrode_shape: optional
     material: optional
-    anatomical_location: recommended
+    anatomical_location__electrodes: recommended
     localization_method: optional
     pipette_solution: optional
     internal_pipette_diameter: optional

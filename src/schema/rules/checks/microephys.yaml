@@ -17,6 +17,20 @@ MicroephysRequiredCoordsystemWithSpace:
   checks:
     - associations.coordsystem != null
 
+MicroephysPixelsCoordinateUnits:
+  issue:
+    code: MICROEPHYS_PIXELS_COORDINATE_UNITS
+    message: |
+      `MicroephysCoordinateUnits` MUST be `"pixels"` when `MicroephysCoordinateSystem`
+      is `"Pixels"`.
+    level: error
+  selectors:
+    - intersects([datatype], ["ecephys", "icephys"])
+    - suffix == "coordsystem"
+    - json.MicroephysCoordinateSystem == "Pixels"
+  checks:
+    - json.MicroephysCoordinateUnits == "pixels"
+
 # The localization method belongs either in the electrodes table, where it can vary
 # between electrodes, or in the sidecar, where it applies to all of them, but not in both.
 MicroephysLocalizationMethodDuplicated:
@@ -96,9 +110,9 @@ MicroephysElectrodeProbeReference:
     - columns.probe_name != null
   checks:
     - |
-      length(intersects(unique(columns.probe_name), associations.probes.probe_name))
-      + count(unique(columns.probe_name), "n/a")
-      >= length(unique(columns.probe_name))
+      length(unique(columns.probe_name)) == count(unique(columns.probe_name), "n/a")
+      || length(intersects(unique(columns.probe_name), associations.probes.probe_name))
+        == length(unique(columns.probe_name)) - count(unique(columns.probe_name), "n/a")
 
 MicroephysChannelElectrodeReference:
   issue:
@@ -115,6 +129,6 @@ MicroephysChannelElectrodeReference:
     - columns.electrode_name != null
   checks:
     - |
-      length(intersects(unique(columns.electrode_name), associations.electrodes.name))
-      + count(unique(columns.electrode_name), "n/a")
-      >= length(unique(columns.electrode_name))
+      length(unique(columns.electrode_name)) == count(unique(columns.electrode_name), "n/a")
+      || length(intersects(unique(columns.electrode_name), associations.electrodes.name))
+        == length(unique(columns.electrode_name)) - count(unique(columns.electrode_name), "n/a")

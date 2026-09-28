@@ -78,7 +78,10 @@ coordsystem__microephys:
     - icephys
     - ecephys
   entities:
-    $ref: rules.files.raw.channels.coordsystem.entities
+    subject: required
+    session: optional
+    sample: optional
+    acquisition: optional
     space: required
 # emg may have a `recording` entity
 coordsystem__emg:

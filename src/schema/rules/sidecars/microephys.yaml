@@ -102,20 +102,21 @@ microephysTaskInformation:
   selectors:
     - intersects([datatype], ["ecephys", "icephys"])
     - intersects([suffix], ["ecephys", "icephys"])
+    - type(entities.task) != 'null'
   fields:
     TaskName:
-      level: optional
+      level: recommended
       description_addendum: |
         A recommended convention is to name resting state task using labels
         beginning with `rest`.
-    TaskDescription: optional
+    TaskDescription: recommended
     Instructions:
-      level: optional
+      level: recommended
       description_addendum: |
         This is especially important in context of resting state recordings and
         distinguishing between eyes open and eyes closed paradigms.
-    CogAtlasID: optional
-    CogPOID: optional
+    CogAtlasID: recommended
+    CogPOID: recommended
 
 # Metadata for the electrodes table, describing how the anatomical locations in it
 # were determined and which atlas they are taken from.

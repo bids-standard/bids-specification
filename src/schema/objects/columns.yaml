@@ -78,7 +78,7 @@ AP__probes:
     Positive values are anterior to the reference point.
   type: number
   unit: mm
-anatomical_location:
+anatomical_location__electrodes:
   name: anatomical_location
   display_name: Anatomical location
   description: |

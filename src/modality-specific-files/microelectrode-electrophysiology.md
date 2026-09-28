@@ -47,7 +47,6 @@ The entity is REQUIRED for `icephys` data and OPTIONAL for `ecephys` data.
 Intracellular recordings are always made from a discrete sample, so the entity is required even when a subject
 yields only a single sample, and even when the recording is made in vivo,
 because the patched cell is itself the sample.
-Requiring the entity in the single-sample case avoids having to rename files if a second sample is added later.
 Extracellular recordings are frequently made in vivo without an identifiable sample,
 so the entity is kept optional for `ecephys` so that such datasets are not forced to define one.
 It SHOULD be used when an extracellular recording is made from a sample
@@ -102,21 +101,11 @@ and a guide for using macros can be found at
 
 ### icephys
 
-{{ MACROS___make_filename_template(
-"raw",
-datatypes=["icephys"],
-suffixes=["icephys", "events", "channels", "electrodes","scans","probes","coordsystem"]
-)
-}}
+{{ MACROS___make_filename_template("raw", datatypes=["icephys"]) }}
 
 ### ecephys
 
-{{ MACROS___make_filename_template(
-"raw",
-datatypes=["ecephys"],
-suffixes=["ecephys", "events", "channels", "electrodes","scans","probes","coordsystem"]
-)
-}}
+{{ MACROS___make_filename_template("raw", datatypes=["ecephys"]) }}
 
 ## Sidecar JSON (`*_icephys.json` and `*_ecephys.json`)
 
@@ -897,7 +886,7 @@ This dataset contains intracellular data from slices acquired from two subjects 
 
 For the first subject only a single sample (a cell for patch-clamp terminology) was extracted (sample-cell001), on which three different protocol recordings were performed: two runs of current injection to characterize intrinsic properties, and one run of synaptic stimulation. The `scans.tsv` file stores information such as the starting recording times. The detailed information on the recording channel (such as the recording mode used) is stored in the `channels.tsv` which, in this case, is common to all available recordings. The probes and electrodes files provide information on the pipette and solutions used for the recordings and are also shared across data files.
 
-For the second subject two samples (sample-cell002 and sample-cell003) were extracted and recordings of different tasks (current injection and synaptic stimulation) were performed on each of them. Each recording was performed using a different probe (listed in the probes.tsv) having specific electrode and channel information. Therefore, each data file has a dedicated channel and electrode file with the same name as the data file.
+For the second subject two samples (sample-cell002 and sample-cell003) were extracted and recordings of different tasks (current injection and synaptic stimulation) were performed on each of them. Each sample was recorded using a different probe (listed in the probes.tsv) having specific electrode and channel information. Therefore, each sample has dedicated channels and electrodes files, which apply to all recordings from that sample.
 
 {{ MACROS___make_filetree_example(
 
@@ -907,7 +896,7 @@ For the second subject two samples (sample-cell002 and sample-cell003) were extr
 "participants.tsv": "",
 "dataset_description.json": "",
 "sub-20220101A/": {
-"sub-20220101A_sample-cell001_scans.tsv": "",
+"sub-20220101A_scans.tsv": "",
 "icephys/": {
 "sub-20220101A_sample-cell001_task-IVcurve_run-1_icephys.nwb": "",
 "sub-20220101A_sample-cell001_task-IVcurve_run-1_icephys.json": "",
@@ -927,26 +916,22 @@ For the second subject two samples (sample-cell002 and sample-cell003) were extr
 "sub-20220101B/": {
 "sub-20220101B_scans.tsv": "",
 "icephys/": {
+"sub-20220101B_sample-cell002_channels.tsv": "",
+"sub-20220101B_sample-cell002_electrodes.tsv": "",
 "sub-20220101B_sample-cell002_task-IVcurve_icephys.nwb": "",
 "sub-20220101B_sample-cell002_task-IVcurve_icephys.json": "",
 "sub-20220101B_sample-cell002_task-IVcurve_events.tsv": "",
-"sub-20220101B_sample-cell002_task-IVcurve_channels.tsv": "",
-"sub-20220101B_sample-cell002_task-IVcurve_electrodes.tsv": "",
 "sub-20220101B_sample-cell002_task-synaptic_icephys.nwb": "",
 "sub-20220101B_sample-cell002_task-synaptic_icephys.json": "",
 "sub-20220101B_sample-cell002_task-synaptic_events.tsv": "",
-"sub-20220101B_sample-cell002_task-synaptic_channels.tsv": "",
-"sub-20220101B_sample-cell002_task-synaptic_electrodes.tsv": "",
+"sub-20220101B_sample-cell003_channels.tsv": "",
+"sub-20220101B_sample-cell003_electrodes.tsv": "",
 "sub-20220101B_sample-cell003_task-IVcurve_icephys.nwb": "",
 "sub-20220101B_sample-cell003_task-IVcurve_icephys.json": "",
 "sub-20220101B_sample-cell003_task-IVcurve_events.tsv": "",
-"sub-20220101B_sample-cell003_task-IVcurve_channels.tsv": "",
-"sub-20220101B_sample-cell003_task-IVcurve_electrodes.tsv": "",
 "sub-20220101B_sample-cell003_task-synaptic_icephys.nwb": "",
 "sub-20220101B_sample-cell003_task-synaptic_icephys.json": "",
 "sub-20220101B_sample-cell003_task-synaptic_events.tsv": "",
-"sub-20220101B_sample-cell003_task-synaptic_channels.tsv": "",
-"sub-20220101B_sample-cell003_task-synaptic_electrodes.tsv": "",
 "sub-20220101B_probes.tsv": "",
 "sub-20220101B_events.json": ""
 }

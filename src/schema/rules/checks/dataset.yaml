@@ -60,7 +60,8 @@ AgeUnits:
 
 # 214
 # samples.tsv is required whenever the sample entity is used in any filename.
-# Microscopy requires the entity on every file, so this also covers micr.
+# The check runs once per dataset, so it is keyed on the datatypes that require the
+# entity (micr and icephys) and does not catch ecephys datasets that use it optionally.
 # See the description of the samples file in objects/files.yaml.
 SamplesTSVMissing:
   issue:
@@ -72,7 +73,8 @@ SamplesTSVMissing:
       See 'Modality agnostic files' section of the BIDS specification.
     level: error
   selectors:
-    - '"sample" in entities'
+    - path == '/dataset_description.json'
+    - intersects(dataset.datatypes, ["micr", "icephys"])
   checks:
     - exists('samples.tsv', 'dataset')
 
