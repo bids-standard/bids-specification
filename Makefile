@@ -52,3 +52,12 @@ schemacodedocs_build: schemacodedocs_clean
 
 schemacodedocs_serve: schemacodedocs_build
 	uv run python -m http.server -d tools/schemacode/docs/_build
+
+validateschema:
+<<<<<<< HEAD
+	uv run bst export > bep-23_schema.json
+	../bep023/bids-validator/local-run --schema file://${PWD}/bep-23_schema.json ../bep023/bids-examples/petprep/ --config ${PWD}/bep023ValidatorConfig.json --ignoreWarnings --verbose --ignoreNiftiHeaders -r
+=======
+	uv run bst export > local_schema.json
+	../bids-validator/local-run  ../bids-examples/petprep/ --ignoreWarnings --verbose --ignoreNiftiHeaders -r --schema file://${PWD}/local_schema.json --config bep023ValidatorConfig.json
+>>>>>>> 363a844151710b0e2a5b2d7b6dcb9e24700698f6
