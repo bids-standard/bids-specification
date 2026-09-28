@@ -103,25 +103,36 @@ appropriate, and the extensions they should have.
 The [GIFTI][gifti] format is an XML-based structure containing one or more data arrays,
 and is well-suited to describing surface geometry and parcellations.
 
-The following extension table is reproduced in part from Section 9.0 of the
-[GIFTI specification][gifti-spec], indicating the expected extensions of different data arrays
-or combinations of data arrays.
+The following table is derived from Sections 9.0 and 13.0 of the
+[GIFTI specification][gifti-spec],
+mapping two-part extension codes onto the expected data arrays contained
+within a GIFTI file:
 
-| Intent      | Extension     |
-| ----------- | ------------- |
-| Coordinates | `.coord.gii`  |
-| Functional  | `.func.gii`   |
-| Labels      | `.label.gii`  |
-| RGB or RGBA | `.rgba.gii`   |
-| Shape       | `.shape.gii`  |
-| Surface     | `.surf.gii`   |
-| Tensors     | `.tensor.gii` |
-| Time Series | `.time.gii`   |
-| Topology    | `.topo.gii`   |
-| Vector      | `.vector.gii` |
+| Extension    | # Arrays | `NIFTI_TYPE_`      | `NIFTI_INTENT_`           |
+| ------------ | -------- | ------------------ | ------------------------- |
+| `.surf.gii`  | 2        | `FLOAT32`, `INT32` | `POINTSET`, `TRIANGLE`    |
+| `.label.gii` | &ge; 1   | `INT32`            | `LABEL`                   |
+| `.func.gii`  | &ge; 1   | `FLOAT32`          | `NONE` or statistical     |
+| `.shape.gii` | &ge; 1   | `FLOAT32`          | `SHAPE`                   |
+
+!!! note "Intent code enforcement"
+
+    Intent codes for `.func.gii` and `.shape.gii` files are restricted
+    by the GIFTI specification, but this restriction is widely violated in practice
+    and any intent code is accepted for these file types.
+
+This table is limited to a widely-implemented subset of GIFTI file types.
+Some tools require extensions to match the data types,
+as well as the intents for geometry and label files,
+and do not permit the unrestricted bare `.gii` extension.
+Because Section 13.2 admits `NIFTI_INTENT_NONE` ("data intent not specified")
+into a functional file, `.func.gii` serves as a catch-all extension for
+floating point data sampled to a surface.
+Its use does not imply that the data in the file relate to functional MRI.
 
 Unless otherwise stated, bare `.gii` extensions SHOULD NOT be used
 for GIFTI files.
+The remaining Section 9.0 extensions are outside the scope of this specification.
 
 <!-- Link Definitions -->
 

@@ -235,6 +235,17 @@ Verify ReadTheDocs builds complete and publish. If needed, manually
 trigger [builds](https://readthedocs.org/projects/bids-specification/builds/)
 for `stable` and the most recent tag.
 
+Publishing the GitHub release also triggers the
+[`Announce release on PRs and issues`](https://github.com/bids-standard/bids-specification/actions/workflows/announce_release.yml)
+workflow, which posts a "PR released in `vX.Y.Z`" comment on every PR that was
+merged for this release and a "Issue fixed in `vX.Y.Z`" comment on every issue
+those PRs close (`Fixes #N` / `Closes #N`). The workflow is idempotent — if
+re-published, comments are not duplicated.
+
+To back-fill comments on past releases that pre-date this workflow, run
+`tools/announce_release.py` locally (see the script's header for usage). It
+defaults to dry-run; pass `--post` to actually comment.
+
 ### 9. Edit the mkdocs.yml file site_name to set a new development version
 
 Please open a pull request and create a merge commit to `master` with the title `REL: <version>-dev`.

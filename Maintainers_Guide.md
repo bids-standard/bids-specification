@@ -29,6 +29,7 @@ See also: [BIDS governance](https://bids.neuroimaging.io/collaboration/governanc
 | Boris Clénet ([@bclenet](https://github.com/bclenet))                        | 2h/week         |                                       | Jul 2025 |
 | Fabricio Cravo ([@fabriciocravo](https://fabriciocravo.github.io/))          | 2h/week         |                                       | Jul 2025 |
 | Morgan Montoya ([@MorgNMont](https://github.com/MorgNMont))                  | 3h/week         | Communications Maintainer team member | Sep 2026 |
+| Scott Huberty ([@scott-huberty](https://github.com/scott-huberty))           | 2h/week         | BIDS communication team | Sep 2026 |
 
 In addition to the [BIDS Governance](https://bids.neuroimaging.io/collaboration/governance.html#bids-maintainers-group)
 classification of a maintainer, maintainers may declare a limited scope of responsibility.
