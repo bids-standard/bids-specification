@@ -31,9 +31,14 @@ suffix with appropriate migration tooling
 
 ## Supported Formats
 
+The following tables list the media file formats defined in BIDS.
+Each datatype that uses media files specifies, in its own file-naming rules,
+which of these formats it permits.
+A format listed here is not necessarily valid for every datatype.
+
 ### Audio formats
 
-{{ MACROS___make_extension_table(["wav", "flac", "mp3", "aac", "ogg"]) }}
+{{ MACROS___make_extension_table(["wav", "flac", "mp3", "aac", "m4a", "ogg"]) }}
 
 ### Video container formats
 
@@ -41,10 +46,10 @@ suffix with appropriate migration tooling
 
 ### Image formats
 
-{{ MACROS___make_extension_table(["jpg", "png", "svg", "webp", "tif", "tiff"]) }}
+{{ MACROS___make_extension_table(["jpg", "png", "tif", "tiff"]) }}
 
 When choosing a format, consider the trade-off between file size, data fidelity, openness and prevalence of the format in the domain of application.
-Uncompressed or lossless formats (WAV, PNG, TIFF) preserve full quality
+Uncompressed or lossless formats (WAV, FLAC, PNG, TIFF) preserve full quality
 but produce larger files.
 Lossy formats (MP3, AAC, JPEG) significantly reduce file size
 at the cost of some data loss.

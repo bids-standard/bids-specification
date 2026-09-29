@@ -181,6 +181,12 @@ labelgii:
     A GIFTI label/annotation file.
 
     This extension may only be used in derivative datasets.
+m4a:
+  value: .m4a
+  display_name: MPEG-4 Audio
+  description: |
+    An [MPEG-4 Part 14](https://en.wikipedia.org/wiki/MP4_file_format)
+    audio-only container file, typically containing AAC-encoded audio.
 md:
   value: .md
   display_name: Markdown
@@ -304,11 +310,6 @@ snirf:
   display_name: Shared Near Infrared Spectroscopy Format
   description: |
     HDF5 file organized according to the [SNIRF specification](https://github.com/fNIRS/snirf)
-svg:
-  value: .svg
-  display_name: Scalable Vector Graphics
-  description: |
-    A [Scalable Vector Graphics](https://en.wikipedia.org/wiki/SVG) image file.
 sqd:
   value: .sqd
   display_name: SQD
@@ -385,11 +386,6 @@ webm:
   description: |
     A [WebM](https://www.webmproject.org/) media container file,
     typically containing VP8/VP9 video and Vorbis/Opus audio.
-webp:
-  value: .webp
-  display_name: WebP Image
-  description: |
-    A [WebP](https://en.wikipedia.org/wiki/WebP) image file.
 Any:
   value: .*
   display_name: Any Extension

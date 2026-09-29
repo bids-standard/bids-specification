@@ -103,7 +103,9 @@ snapshots of behavioral setups, or individual frames extracted from video record
 
 Audio recordings MUST use one of the following extensions:
 
+-   `.aac` - Advanced Audio Coding
 -   `.flac` - Free Lossless Audio Codec
+-   `.m4a` - MPEG-4 Audio
 -   `.mp3` - MPEG Audio Layer III
 -   `.ogg` - Ogg Vorbis
 -   `.wav` - Waveform Audio File Format
@@ -113,11 +115,15 @@ Video and audio-video recordings MUST use one of the following extensions:
 -   `.mp4` - MPEG-4 Part 14
 -   `.mkv` - Matroska video container
 -   `.avi` - Audio Video Interleave
+-   `.webm` - WebM media container
 
 Image files MUST use one of the following extensions:
 
 -   `.jpg` - JPEG image
 -   `.png` - Portable Network Graphics
+-   `.tif` or `.tiff` - Tag Image File Format
+
+See [Media Files](../appendices/media-files.md) for descriptions of these formats.
 
 ### Entities
 

@@ -521,13 +521,13 @@ audio:
   display_name: Audio file
   description: |
     An audio data file containing one or more audio streams.
-    Common formats include WAV (uncompressed), MP3, AAC, and Ogg Vorbis.
+    See [Media Files](SPEC_ROOT/appendices/media-files.md) for supported formats.
 audiovideo:
   value: audiovideo
   display_name: Audio-video file
   description: |
     A media file containing both audio and video streams.
-    Common containers include MP4, MKV, AVI, and WebM.
+    See [Media Files](SPEC_ROOT/appendices/media-files.md) for supported formats.
 aslcontext:
   value: aslcontext
   display_name: Arterial Spin Labeling Context
@@ -683,7 +683,7 @@ image:
   display_name: Image file
   description: |
     A still image data file.
-    Common formats include JPEG, PNG, SVG, WebP, and TIFF.
+    See [Media Files](SPEC_ROOT/appendices/media-files.md) for supported formats.
 inplaneT1:
   value: inplaneT1
   display_name: Inplane T1
@@ -921,4 +921,4 @@ video:
   display_name: Video file
   description: |
     A video data file containing one or more video streams but no audio.
-    Common containers include MP4, MKV, AVI, and WebM.
+    See [Media Files](SPEC_ROOT/appendices/media-files.md) for supported formats.

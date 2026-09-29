@@ -21,7 +21,9 @@ audio:
   suffixes:
     - audio
   extensions:
+    - .aac
     - .flac
+    - .m4a
     - .mp3
     - .ogg
     - .wav
@@ -45,6 +47,7 @@ video:
     - .mp4
     - .mkv
     - .avi
+    - .webm
     - .json
   datatypes:
     - beh
@@ -65,6 +68,7 @@ audiovideo:
     - .mp4
     - .mkv
     - .avi
+    - .webm
     - .json
   datatypes:
     - beh
@@ -84,6 +88,8 @@ image:
   extensions:
     - .jpg
     - .png
+    - .tif
+    - .tiff
     - .json
   datatypes:
     - beh
