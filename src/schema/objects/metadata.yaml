@@ -4699,6 +4699,8 @@ VideoFrameCount:
     and `RecordingDuration`, but for variable frame rate (VFR) video the
     derivation is undefined, so an explicit value is needed.
     Also useful as an integrity check to detect truncated or corrupted files.
+    For a recording stored across multiple files with the `split` entity,
+    a value in a sidecar that applies to all parts is the total across all parts.
   type: integer
   minimum: 1
 VideoFrameRate:

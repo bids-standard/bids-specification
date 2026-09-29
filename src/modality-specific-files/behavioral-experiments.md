@@ -183,6 +183,15 @@ A guide for using macros can be found at
    }
 ) }}
 
+The parts of a split recording form one continuous recording with a single timeline.
+A sidecar JSON file without the `split` entity applies to all parts
+and describes the recording as a whole:
+`RecordingDuration` and `VideoFrameCount` in that file are totals across all parts.
+Sidecar JSON files with the `split` entity MAY be provided to give values for individual parts,
+following the [inheritance principle](../common-principles.md#the-inheritance-principle).
+If `scans.tsv` is provided, all parts MUST be listed
+and their `acq_time` entries MUST be identical.
+
 ### Sidecar JSON for audio, video, audio-video recordings, and images
 
 The following metadata fields are available for audio, video, audio-video recordings, and images:
