@@ -1,6 +1,6 @@
 # Changelog
 
-## [v1.11.2](https://bids-specification.readthedocs.io/en/v1.11.2/) (tbd)
+## [v1.11.2](https://bids-specification.readthedocs.io/en/v1.11.2/) (2026-09-29)
 
 -   \[ENH] Clarify GIFTI extensions used in practice [#2542](https://github.com/bids-standard/bids-specification/pull/2542) ([effigies](https://github.com/effigies))
 -   \[ENH] Add Open Science Assistant (OSA) BIDS chat widget [#2442](https://github.com/bids-standard/bids-specification/pull/2442) ([neuromechanist](https://github.com/neuromechanist))
