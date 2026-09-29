@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   build_docs:
     docker:
-      - image: cimg/python:3.12
+      - image: cimg/python:3.14
     steps:
       # checkout code to default ~/project
       - checkout
