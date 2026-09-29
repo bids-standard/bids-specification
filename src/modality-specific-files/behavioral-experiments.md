@@ -20,7 +20,10 @@ Audio, video, audio-video, and image recordings MAY be of subjects performing ta
 Audio/video recordings MAY occur simultaneously with other recordings, such as BOLD or EEG.
 Relative timing between files may be determined by consulting the `scans.tsv` file.
 If no `scans.tsv` file is present, the alignment is undefined.
-The `beh` directory MAY also contain event timing files (`_events.tsv`) and their associated metadata (`_events.json`) for behavioral experiments that do not have corresponding neuroimaging or functional data.
+The `beh` directory MAY also contain event timing files (`_events.tsv`) and their associated metadata (`_events.json`),
+for example for behavioral experiments performed with no neural recordings
+or for annotations of audio and video recordings
+(see [Annotations and events](#annotations-and-events)).
 
 Additionally, events files that do not include the mandatory `onset` and `duration` columns MAY be included,
 but MUST be labeled `_beh.tsv` rather than `_events.tsv`.
@@ -286,10 +289,20 @@ For a still image:
 Behavioral annotations or event markers for audio and video recordings
 SHOULD be stored in accompanying `_events.tsv` files following the standard
 [events file format](../modality-agnostic-files/events.md).
-These events files use the same filename entities as the audio/video file they describe,
-but with the `_events` suffix.
+These events files follow the standard events filename rules:
+they share the `task`, `acq`, and `run` entities of the recordings they describe,
+but do not include the `recording` or `split` entities.
+A single events file therefore applies to every recording and every split of a given run.
+Onsets are measured from the start of the first file of the run,
+and the relative timing of recordings within the run is given by `scans.tsv`.
+Audio and video recordings that are annotated with an events file MUST have a `task` label.
 
-For example:
+If annotations were derived from a specific recording
+(for example, behaviors coded from the `face` camera only),
+this MAY be indicated with an additional column,
+such as `recording`, described in the accompanying `_events.json` file.
+
+For example, a single audio recording with its annotations:
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
@@ -303,6 +316,28 @@ A guide for using macros can be found at
          "sub-01_task-speech_audio.json": "",
          "sub-01_task-speech_events.tsv": "",
          "sub-01_task-speech_events.json": "",
+         },
+      },
+   }
+) }}
+
+Simultaneous recordings from two cameras share one events file:
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example(
+   {
+   "sub-01": {
+      "sub-01_scans.tsv": "",
+      "beh": {
+         "sub-01_task-stroop_recording-face_video.mp4": "",
+         "sub-01_task-stroop_recording-face_video.json": "",
+         "sub-01_task-stroop_recording-room_video.mp4": "",
+         "sub-01_task-stroop_recording-room_video.json": "",
+         "sub-01_task-stroop_events.tsv": "",
+         "sub-01_task-stroop_events.json": "",
          },
       },
    }
