@@ -516,18 +516,6 @@ asl:
     The complete ASL time series stored as a 4D NIfTI file in the original
     acquisition order, with possible volume types including: control, label,
     m0scan, deltam, cbf.
-audio:
-  value: audio
-  display_name: Audio file
-  description: |
-    An audio data file containing one or more audio streams.
-    See [Media Files](SPEC_ROOT/appendices/media-files.md) for supported formats.
-audiovideo:
-  value: audiovideo
-  display_name: Audio-video file
-  description: |
-    A media file containing both audio and video streams.
-    See [Media Files](SPEC_ROOT/appendices/media-files.md) for supported formats.
 aslcontext:
   value: aslcontext
   display_name: Arterial Spin Labeling Context
@@ -540,6 +528,18 @@ asllabeling:
     A deidentified screenshot of the planning of the labeling slab/plane
     with respect to the imaging slab or slices.
     This screenshot is based on DICOM macro C.8.13.5.14.
+audio:
+  value: audio
+  display_name: Audio file
+  description: |
+    An audio data file containing one or more audio streams.
+    See [Media Files](SPEC_ROOT/appendices/media-files.md) for supported formats.
+audiovideo:
+  value: audiovideo
+  display_name: Audio-video file
+  description: |
+    A media file containing both audio and video streams.
+    See [Media Files](SPEC_ROOT/appendices/media-files.md) for supported formats.
 beh:
   value: beh
   display_name: Behavioral recording

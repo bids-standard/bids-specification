@@ -990,6 +990,15 @@ Descriptors:
     - type: array
       items:
         type: string
+DevicePosition:
+  name: DevicePosition
+  display_name: Device Position
+  description: |
+    Free-form description of the recording device's placement relative to the subject or scene.
+
+    This applies to any recording device, such as a camera or microphone.
+    Examples include "front", "profile-left", "ceiling", "room-corner", or "overhead".
+  type: string
 DeviceSerialNumber:
   name: DeviceSerialNumber
   display_name: Device Serial Number
@@ -4657,13 +4666,6 @@ VELChannelCount:
     Number of linear velocity channels.
   type: integer
   minimum: 0
-VisionCorrection:
-  name: VisionCorrection
-  display_name: Vision correction
-  description: |
-    Equipment used to correct participant vision during an experiment.
-    Example: "spectacles", "lenses", "none".
-  type: string
 VideoCodec:
   name: VideoCodec
   display_name: Video Codec
@@ -4706,6 +4708,13 @@ VideoFrameRate:
   type: number
   exclusiveMinimum: 0
   unit: Hz
+VisionCorrection:
+  name: VisionCorrection
+  display_name: Vision correction
+  description: |
+    Equipment used to correct participant vision during an experiment.
+    Example: "spectacles", "lenses", "none".
+  type: string
 VolumeTiming:
   name: VolumeTiming
   display_name: Volume Timing
@@ -4844,14 +4853,4 @@ iEEGReference:
     If different channels have a different reference,
     this field should have a general description and the channel specific
     reference should be defined in the `channels.tsv` file.
-  type: string
-
-DevicePosition:
-  name: DevicePosition
-  display_name: Device Position
-  description: |
-    Free-form description of the recording device's placement relative to the subject or scene.
-
-    This applies to any recording device, such as a camera or microphone.
-    Examples include "front", "profile-left", "ceiling", "room-corner", or "overhead".
   type: string

@@ -9,12 +9,6 @@ noncontinuous:
     - .json
   datatypes:
     - beh
-  entities:
-    subject: required
-    session: optional
-    task: required
-    acquisition: optional
-    run: optional
 
 # Audio recordings
 audio:
@@ -31,16 +25,14 @@ audio:
   datatypes:
     - beh
   entities:
-    subject: required
-    session: optional
+    $ref: meta.templates.raw.recording.entities
     task: optional
-    acquisition: optional
-    run: optional
     recording: optional
     split: optional
 
 # Video recordings
 video:
+  $ref: rules.files.raw.beh.audio
   suffixes:
     - video
   extensions:
@@ -49,37 +41,12 @@ video:
     - .avi
     - .webm
     - .json
-  datatypes:
-    - beh
-  entities:
-    subject: required
-    session: optional
-    task: optional
-    acquisition: optional
-    run: optional
-    recording: optional
-    split: optional
 
 # Combined audio-video recordings
 audiovideo:
+  $ref: rules.files.raw.beh.video
   suffixes:
     - audiovideo
-  extensions:
-    - .mp4
-    - .mkv
-    - .avi
-    - .webm
-    - .json
-  datatypes:
-    - beh
-  entities:
-    subject: required
-    session: optional
-    task: optional
-    acquisition: optional
-    run: optional
-    recording: optional
-    split: optional
 
 # Still images
 image:
@@ -94,9 +61,6 @@ image:
   datatypes:
     - beh
   entities:
-    subject: required
-    session: optional
+    $ref: meta.templates.raw.recording.entities
     task: optional
-    acquisition: optional
-    run: optional
     recording: optional

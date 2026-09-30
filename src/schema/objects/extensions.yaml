@@ -192,6 +192,19 @@ md:
   display_name: Markdown
   description: |
     A Markdown file.
+mefd:
+  value: .mefd/
+  display_name: Multiscale Electrophysiology File Format Version 3.0
+  description: |
+    A directory in the [MEF3](https://osf.io/e3sf9/) format.
+
+    Each recording consists of a `.mefd` directory.
+mhd:
+  value: .mhd
+  display_name: ITAB Binary Header
+  description: |
+    Produced by ITAB-ARGOS153 systems. This file a binary header file, and is generated along with a
+    raw data file with the `.raw` extension.
 mkv:
   value: .mkv
   display_name: Matroska Video
@@ -208,19 +221,6 @@ mp4:
   description: |
     An [MPEG-4 Part 14](https://en.wikipedia.org/wiki/MP4_file_format)
     media container file.
-mefd:
-  value: .mefd/
-  display_name: Multiscale Electrophysiology File Format Version 3.0
-  description: |
-    A directory in the [MEF3](https://osf.io/e3sf9/) format.
-
-    Each recording consists of a `.mefd` directory.
-mhd:
-  value: .mhd
-  display_name: ITAB Binary Header
-  description: |
-    Produced by ITAB-ARGOS153 systems. This file a binary header file, and is generated along with a
-    raw data file with the `.raw` extension.
 mrk:
   value: .mrk
   display_name: MRK
