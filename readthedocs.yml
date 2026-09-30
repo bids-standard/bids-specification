@@ -20,7 +20,7 @@ build:
       - >
         VIRTUAL_ENV=$READTHEDOCS_VIRTUALENV_PATH
         UV_CACHE_DIR=$READTHEDOCS_VIRTUALENV_PATH/../../uv_cache
-        uv sync --active --locked
+        uv sync --active --locked --dev
     # Normal pre-build step to inject schema.json into the source directory
     # so schema.json is hosted alongside the specification documents
     pre_build:

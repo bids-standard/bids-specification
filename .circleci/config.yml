@@ -73,7 +73,7 @@ jobs:
       - run:
           name: generate pdf version docs
           command: |
-            uv sync
+            uv sync --dev
             source .venv/bin/activate
             cd ~/project/pdf_build_src
             bash build_pdf.sh
