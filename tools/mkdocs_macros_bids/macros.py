@@ -225,28 +225,8 @@ def make_extension_table(extensions, src_path=None):
         src_path = _get_source_path()
 
     schema_obj = schema.load_schema()
-    ext_objects = schema_obj["objects"]["extensions"]
-
-    # Compute the relative path to the glossary from the calling file
-    src_dir = os.path.dirname(src_path)
-    glossary_path = os.path.relpath("glossary.md", src_dir)
-
-    rows = []
-    for ext_key in extensions:
-        ext = ext_objects[ext_key]
-        value = ext["value"]
-        display_name = ext["display_name"]
-        # Collapse multi-line description to single line
-        description = " ".join(ext["description"].strip().split())
-
-        # Link to glossary anchor
-        link = f"[{value}]({glossary_path}#objects.extensions.{ext_key})"
-
-        rows.append(f"| {display_name} | {link} | {description} |")
-
-    header = "| **Format** | **Extension** | **Description** |"
-    separator = "| --- | --- | --- |"
-    return "\n".join([header, separator] + rows)
+    table = render.make_extension_table(schema_obj, extensions, src_path=src_path)
+    return table
 
 
 def make_metadata_table(field_info, src_path=None):
