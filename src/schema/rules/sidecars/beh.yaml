@@ -30,9 +30,6 @@ BEHInstitutionInformation:
 # General audio/video/image stream properties (codecs, sample rate, dimensions,
 # frame rate, duration) are defined by the common media rules in
 # `rules/sidecars/media.yaml` and apply to these suffixes regardless of datatype.
-# Recording equipment is described with Manufacturer, ManufacturersModelName and
-# DeviceSerialNumber, the same fields EEG, iEEG, MEG and MRI use, rather than a
-# media-specific free-form field, so equipment can be queried across modalities.
 AudioVideoImageDevice:
   selectors:
     - datatype == "beh"
