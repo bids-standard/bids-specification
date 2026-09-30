@@ -281,7 +281,7 @@ tools = [
 dev = [
     { name = "bidsschematools", extras = ["render"], editable = "tools/schemacode" },
     { name = "mkdocs", specifier = ">=1.1.0" },
-    { name = "mkdocs-branchcustomization-plugin", specifier = "~=0.1.3" },
+    { name = "mkdocs-branchcustomization-plugin", specifier = ">=1.0" },
     { name = "mkdocs-macros-plugin" },
     { name = "mkdocs-material", specifier = ">=5.4" },
     { name = "mkdocs-redirects" },
@@ -1298,15 +1298,15 @@ wheels = [
 
 [[package]]
 name = "mkdocs-branchcustomization-plugin"
-version = "0.1.3"
+version = "1.0.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "gitpython" },
     { name = "mkdocs" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/c1/d5/2823c9e878152e5291d7c368c0f30b2df523b4220477eae0d0dc53c859e0/mkdocs-branchcustomization-plugin-0.1.3.tar.gz", hash = "sha256:c34b891a6ab1d8a19c81ac5e2fa1ea435bc17155e4dd733627bc7db98d933870", size = 19034, upload-time = "2019-12-13T18:18:51.293Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/c1/78/fbfd3920619ac9462fea45dd3ad87c7a53a218e79470d6e548f25fd0a7b0/mkdocs_branchcustomization_plugin-1.0.0.tar.gz", hash = "sha256:4a080d25d819c2db5408d266cf7d867bef68e771f7687f1d94628c604e304fb8", size = 4199, upload-time = "2026-09-30T15:45:48.148Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/3f/2d/a3aca81a7a7f23cf8ae3047a274e4f5ff6fd651b10551a098bf2815ff48c/mkdocs_branchcustomization_plugin-0.1.3-py3-none-any.whl", hash = "sha256:b29ebe625b32be042f1ede935490134afac55962458be09bd2bcd746aa54fedf", size = 4120, upload-time = "2019-12-13T18:18:49.797Z" },
+    { url = "https://files.pythonhosted.org/packages/19/89/f6610b4db03443902da7cb75c7b0e3de6be79989f61079d80603c683a5ef/mkdocs_branchcustomization_plugin-1.0.0-py3-none-any.whl", hash = "sha256:0ae7e7f939a62ba2c2d08ff3b7fcd1c7b6f188dae9c42931d7fcc62a1c305505", size = 5028, upload-time = "2026-09-30T15:45:47.139Z" },
 ]
 
 [[package]]
