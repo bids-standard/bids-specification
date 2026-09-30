@@ -104,7 +104,24 @@ def schema_dir() -> Generator[str, None, None]:
 @pytest.fixture(scope="session")
 def schema_obj():
     """Schema object."""
+    import os
+    from pathlib import Path
+
     from bidsschematools import schema
+
+    # Check if we're in the bids-specification repo and use local schema for testing
+    current_dir = Path(__file__).parent
+    local_schema_path = None
+
+    # Look for local schema in the repo structure
+    for parent in current_dir.parents:
+        potential_schema = parent / "src" / "schema"
+        if potential_schema.exists():
+            local_schema_path = str(potential_schema)
+            break
+
+    if local_schema_path and os.getenv("USE_LOCAL_SCHEMA", "true").lower() == "true":
+        return schema.load_schema(local_schema_path)
 
     return schema.load_schema()
 
