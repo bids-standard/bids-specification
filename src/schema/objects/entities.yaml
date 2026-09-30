@@ -490,6 +490,13 @@ template:
     [Coordinate Systems Appendix](SPEC_ROOT/appendices/coordinate-systems.md).
   type: string
   format: label
+tool:
+  name: tool
+  display_name: Tabular measurement tool
+  description: |
+    An alphanumeric name for a phenotypic and assessment data tabular file.
+  type: string
+  format: label
 tracer:
   name: trc
   display_name: Tracer
@@ -500,16 +507,6 @@ tracer:
     Therefore, if the `trc-<label>` entity is present in a filename,
     `"TracerName"` MUST be defined in the associated metadata.
     Please note that the `<label>` does not need to match the actual value of the field.
-  type: string
-  format: label
-volume:
-  name: voi
-  display_name: Volume of Interest
-  description: |
-    The `voi-<label>` entity can be used to distinguish acquisitions localized to different regions.
-    The label SHOULD be the name of the body region or part scanned.
-    If used, the fields `"BodyPart"` and `"BodyPartDetails"` MUST be defined in the JSON file.
-    `BodyPartDetailsOntology` is OPTIONAL to also include.
   type: string
   format: label
 tracksys:
@@ -524,5 +521,15 @@ tracksys:
     This entity corresponds to the `"TrackingSystemName"` metadata field in a *_motion.json file.
     `tracksys-<label>` entity is a concise string whereas `"TrackingSystemName"`
     may be longer and more human readable.
+  type: string
+  format: label
+volume:
+  name: voi
+  display_name: Volume of Interest
+  description: |
+    The `voi-<label>` entity can be used to distinguish acquisitions localized to different regions.
+    The label SHOULD be the name of the body region or part scanned.
+    If used, the fields `"BodyPart"` and `"BodyPartDetails"` MUST be defined in the JSON file.
+    `BodyPartDetailsOntology` is OPTIONAL to also include.
   type: string
   format: label
