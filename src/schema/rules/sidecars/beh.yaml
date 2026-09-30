@@ -39,4 +39,9 @@ AudioVideoImageDevice:
     ManufacturersModelName: optional
     DeviceSerialNumber: optional
     DevicePosition: optional
-    License: optional
+    License:
+      level: optional
+      description_addendum: |
+        In the sidecar of a media file, this field gives the license for that recording,
+        for use when it differs from the license of the dataset.
+        If this field is absent, the `License` in `dataset_description.json` applies.
