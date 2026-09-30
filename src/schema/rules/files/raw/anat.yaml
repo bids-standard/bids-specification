@@ -55,6 +55,19 @@ parametric:
     $ref: meta.templates.raw.mri.entities
     task: optional
 
+swi:
+  suffixes:
+    - swi
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+  datatypes:
+    - anat
+  entities:
+    $ref: meta.templates.raw.mri.entities
+    task: optional
+
 defacemask:
   suffixes:
     - defacemask
