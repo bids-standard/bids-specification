@@ -396,7 +396,7 @@ BodyPartDetailsOntology:
   display_name: Body Part Details Ontology
   description: |
     [URI](SPEC_ROOT/common-principles.md#uniform-resource-indicator) of ontology used for
-    BodyPartDetails (for example: `"https://www.ebi.ac.uk/ols/ontologies/uberon"`).
+    BodyPartDetails (for example: `"https://www.ebi.ac.uk/ols4/ontologies/uberon"`).
   type: string
   format: uri
 BolusCutOffDelayTime:
@@ -1695,7 +1695,7 @@ GeneticLevel:
     `"Transcriptomic"`, `"Metabolomic"`, or `"Proteomic"`.
 
     For more information on these levels, see
-    [Multi-omics approaches to disease](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-017-1215-1)
+    [Multi-omics approaches to disease](https://doi.org/10.1186/s13059-017-1215-1)
     by Hasin et al. 2017.
   anyOf:
     - $ref: objects.enums._GeneticLevelEnum
