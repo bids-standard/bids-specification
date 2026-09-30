@@ -239,7 +239,8 @@ For an audio-video file containing both video and audio streams:
 ```JSON
 {
   "TaskName": "RestingState",
-  "Device": "Sony FDR-AX53",
+  "Manufacturer": "Sony",
+  "ManufacturersModelName": "FDR-AX53",
   "RecordingDuration": 600.5,
   "AudioCodec": "aac",
   "AudioSampleRate": 48000,
@@ -259,7 +260,8 @@ For a video-only recording (no audio stream):
 ```JSON
 {
   "TaskName": "RestingState",
-  "Device": "Sony FDR-AX53",
+  "Manufacturer": "Sony",
+  "ManufacturersModelName": "FDR-AX53",
   "RecordingDuration": 600.5,
   "VideoCodec": "h264",
   "VideoFrameRate": 30.0,
@@ -276,7 +278,8 @@ For an audio-only recording:
 ```JSON
 {
   "TaskName": "Vocalization",
-  "Device": "Zoom H6 Handy Recorder",
+  "Manufacturer": "Zoom",
+  "ManufacturersModelName": "H6 Handy Recorder",
   "RecordingDuration": 300.2,
   "AudioCodec": "flac",
   "AudioSampleRate": 44100,
@@ -292,7 +295,8 @@ For a still image:
 ```JSON
 {
   "TaskName": "Reaching",
-  "Device": "GoPro Hero 10",
+  "Manufacturer": "GoPro",
+  "ManufacturersModelName": "HERO10 Black",
   "ImageWidth": 1920,
   "ImageHeight": 1080,
   "DevicePosition": "overhead"
