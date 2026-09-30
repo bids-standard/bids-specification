@@ -15,7 +15,7 @@ jobs:
     if: github.event.label.name == 'community-meeting'
     steps:
       - name: Add to project
-        uses: actions/add-to-project@v1.0.2
+        uses: actions/add-to-project@5afcf98fcd03f1c2f92c3c83f58ae24323cc57fd # v2.0.0
         with:
           project-url: https://github.com/orgs/bids-standard/projects/23
           github-token: ${{ secrets.ADD_TO_PROJECT_PAT }}

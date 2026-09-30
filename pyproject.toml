@@ -1,7 +1,14 @@
 [project]
 name = "bids-specification"
 requires-python = ">=3.11"
-dependencies = [
+dependencies = []
+dynamic = ["version"]
+
+[tool.uv.sources]
+bidsschematools = { path = "tools/schemacode", editable = true }
+
+[dependency-groups]
+dev = [
   "bidsschematools[render]",
   "mkdocs>=1.1.0",
   "mkdocs-material>=5.4",
@@ -11,12 +18,6 @@ dependencies = [
   "mkdocs-redirects",
   "numpy",
 ]
-dynamic = ["version"]
-
-[tool.uv.sources]
-bidsschematools = { path = "tools/schemacode", editable = true }
-
-[dependency-groups]
 doc = [
   "bidsschematools[expressions]",
   "sphinx>=7.2.2",
