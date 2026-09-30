@@ -203,6 +203,32 @@ def make_suffix_table(suffixes, src_path=None):
     return table
 
 
+def make_extension_table(extensions, src_path=None):
+    """Generate a markdown table of file extension information.
+
+    Parameters
+    ----------
+    extensions : list of str
+        A list of the extension keys to include in the table.
+        Keys correspond to entries in the schema's objects.extensions
+        (for example, ``["wav", "mp3", "aac", "ogg"]``).
+    src_path : str or None
+        The file where this macro is called, which may be explicitly provided
+        by the "page.file.src_path" variable.
+
+    Returns
+    -------
+    table : str
+        A Markdown-format table containing the extension information.
+    """
+    if src_path is None:
+        src_path = _get_source_path()
+
+    schema_obj = schema.load_schema()
+    table = render.make_extension_table(schema_obj, extensions, src_path=src_path)
+    return table
+
+
 def make_metadata_table(field_info, src_path=None):
     """Generate a markdown table of metadata field information.
 

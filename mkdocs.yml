@@ -47,6 +47,7 @@ nav:
           - Coordinate systems: appendices/coordinate-systems.md
           - Quantitative MRI: appendices/qmri.md
           - Arterial Spin Labeling: appendices/arterial-spin-labeling.md
+          - Media files: appendices/media-files.md
           - Cross modality correspondence: appendices/cross-modality-correspondence.md
       - Changelog: CHANGES.md
   - The BIDS Website:
