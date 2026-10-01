@@ -42,3 +42,6 @@ nirs:
 mrs:
   display_name: Magnetic Resonance Spectroscopy
   description: Data acquired with MRS.
+microephys:
+  display_name: Microelectrode Electrophysiology
+  description: Electrophysiological data acquired using microelectodes.

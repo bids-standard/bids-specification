@@ -13,7 +13,7 @@ Events:
       level: optional
       description_addendum: |
         Note that this column only applies to data types where
-        channels are specified, such as EEG, iEEG, MEG or NIRS.
+        channels are specified, such as EEG, iEEG, MEG, NIRS or microephys.
   additional_columns: allowed
   initial_columns:
     - onset
