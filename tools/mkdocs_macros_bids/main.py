@@ -11,7 +11,7 @@ import sys
 code_path = os.path.abspath(os.path.join(os.path.dirname(__file__)))
 sys.path.append(code_path)
 
-import macros  # noqa: E402
+import macros
 
 
 def define_env(env):

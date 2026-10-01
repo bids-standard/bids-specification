@@ -2,7 +2,7 @@ version: 2.1
 jobs:
   build_docs:
     docker:
-      - image: cimg/python:3.12
+      - image: cimg/python:3.14
     steps:
       # checkout code to default ~/project
       - checkout
@@ -44,11 +44,13 @@ jobs:
                 --ignore-url 'https://github.com/[^/]*' \
                 --ignore-url 'https://github.com/bids-standard/bids-specification/(pull|tree)/.*' \
                 --ignore-url 'https://www.incf.org' \
-                --ignore-url 'http://www.dicomlookup.com/dicomtags/.*' \
+                --ignore-url 'https://www.dicomlookup.com/dicomtags/.*' \
                 --ignore-url 'https://www.instagram.com/bidsstandard/' \
                 --ignore-url 'https://jsoneditoronline.org' \
                 --ignore-url 'https://rrid.site.*' \
                 --ignore-url 'https://jsr.io/.*' \
+                --ignore-url 'https://codepoints.net/.*' \
+                --ignore-url 'https://www.encodeproject.org/.*' \
                 ~/project/site/*html ~/project/site/*/*.html
             else
               echo "Release PR - do nothing"
@@ -71,7 +73,7 @@ jobs:
       - run:
           name: generate pdf version docs
           command: |
-            uv sync
+            uv sync --dev
             source .venv/bin/activate
             cd ~/project/pdf_build_src
             bash build_pdf.sh

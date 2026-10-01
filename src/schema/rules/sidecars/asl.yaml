@@ -176,7 +176,7 @@ MRIASLPaslSpecificBolusCutOffFlagTrue:
           monotonically increasing, depending on the number of bolus cut-off
           saturation pulses. For Q2TIPS, only the values for the first and last
           bolus cut-off saturation pulses are provided. Based on DICOM Tag
-          0018,925F ASL Bolus Cut-off Delay Time.
+          (0018,925F) `ASL Bolus Cut-off Delay Time`.
     BolusCutOffTechnique:
       level: required
       issue:
@@ -186,7 +186,7 @@ MRIASLPaslSpecificBolusCutOffFlagTrue:
           when `BolusCutOffFlag` is set to `true`. `BolusCutOffTechnique`,
           is the name of the technique used
           (for example, Q2TIPS, QUIPSS or QUIPSSII).
-          Corresponds to DICOM Tag 0018,925E `ASL Bolus Cut-off Technique`.
+          Corresponds to DICOM Tag (0018,925E) `ASL Bolus Cut-off Technique`.
 
 # m0scan metadata fields
 MRIASLM0Scan:

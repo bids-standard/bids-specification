@@ -1,0 +1,8 @@
+---
+
+Phenotype:
+  selectors:
+    - datatype == 'phenotype'
+  fields:
+    MeasurementToolMetadata: optional
+    Derivative: optional

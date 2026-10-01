@@ -158,6 +158,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 | Ethan Blackwood                                      | 👀📖                                   |
 | Eugene P. Duff                                       | 📖                                     |
 | Ezequiel Mikulan                                     | 📖💻                                   |
+| Fabricio Cravo                                       | 💻🚧                                   |
 | Fede Raimondo                                        | 💻                                     |
 | Felipe Orihuela-Espina                               | 📖                                     |
 | Fidel Alfaro Almagro                                 | 💬📖💡🔌                               |
@@ -317,6 +318,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 | Mikaël Naveau                                        | 🐛                                     |
 | Mohammad Torabi                                      | 💻                                     |
 | Monique Denissen                                     | 📖💻                                   |
+| Morgan Montoya                                       | 🤔💬                                   |
 | Murat Bilgel                                         | 📖                                     |
 | Nader Pouratian                                      | 📖                                     |
 | Natalia Petridou                                     | 📖                                     |
@@ -339,6 +341,7 @@ If you contributed to the BIDS ecosystem and your name is not listed, please add
 | Parul Sethi                                          | 📖🔧⚠️💻                               |
 | Patricia Clement                                     | 💬🐛💻📖🔣💡📋🤔📆⚠️📢                 |
 | Patrick Park                                         | 📖💡💬💻                               |
+| Patrick Sadil                                        | 🐛                                     |
 | Paul Wighton                                         | 📖                                     |
 | Paule-Joanne Toussaint                               | 📖                                     |
 | Peer Herholz                                         | 💬📖👀🔧✅📢                           |

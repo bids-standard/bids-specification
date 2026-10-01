@@ -14,7 +14,7 @@ ADMONITION_DELIMITERS = ["!!!", "???", "???+"]
 
 
 def remove_admonitions(
-    input_folder: str | Path, output_folder: str | Path, indent: str = None
+    input_folder: str | Path, output_folder: str | Path, indent: str | None = None
 ):
     if indent is None:
         indent = INDENT

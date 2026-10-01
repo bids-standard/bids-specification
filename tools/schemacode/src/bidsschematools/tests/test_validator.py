@@ -99,12 +99,16 @@ def test_write_report(tmp_path):
         }
     ]
     validation_result["path_tracking"] = [
-        "/home/chymera/.data2/datalad/000026/"
-        "noncompliant/sub-EXC022/anat/sub-EXC022_ses-MRI_flip-1_VFA.nii.gz"
+        (
+            "/home/chymera/.data2/datalad/000026/"
+            "noncompliant/sub-EXC022/anat/sub-EXC022_ses-MRI_flip-1_VFA.nii.gz"
+        )
     ]
     validation_result["path_listing"] = [
-        "/home/chymera/.data2/datalad/000026/"
-        "noncompliant/sub-EXC022/anat/sub-EXC022_ses-MRI_flip-1_VFA.nii.gz"
+        (
+            "/home/chymera/.data2/datalad/000026/"
+            "noncompliant/sub-EXC022/anat/sub-EXC022_ses-MRI_flip-1_VFA.nii.gz"
+        )
     ]
 
     report_path = tmp_path / "output_bids_validator_xs_write.log"

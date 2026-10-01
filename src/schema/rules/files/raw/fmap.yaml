@@ -11,6 +11,7 @@ fieldmaps:
   extensions:
     - .nii.gz
     - .nii
+    - .ome.zarr/
     - .json
   datatypes:
     - fmap
@@ -25,6 +26,7 @@ pepolar:
   extensions:
     - .nii.gz
     - .nii
+    - .ome.zarr/
     - .json
     - .bval
     - .bvec
@@ -38,6 +40,7 @@ pepolar_m0scan:
   extensions:
     - .nii.gz
     - .nii
+    - .ome.zarr/
     - .json
   datatypes:
     - fmap
@@ -48,6 +51,7 @@ TB1DAM:
   extensions:
     - .nii.gz
     - .nii
+    - .ome.zarr/
     - .json
   datatypes:
     - fmap
@@ -63,6 +67,7 @@ TB1EPI:
   extensions:
     - .nii.gz
     - .nii
+    - .ome.zarr/
     - .json
   datatypes:
     - fmap
@@ -82,6 +87,7 @@ RFFieldMaps:
   extensions:
     - .nii.gz
     - .nii
+    - .ome.zarr/
     - .json
   datatypes:
     - fmap
@@ -98,6 +104,7 @@ TB1SRGE:
   extensions:
     - .nii.gz
     - .nii
+    - .ome.zarr/
     - .json
   datatypes:
     - fmap
@@ -116,6 +123,7 @@ parametric:
   extensions:
     - .nii.gz
     - .nii
+    - .ome.zarr/
     - .json
   datatypes:
     - fmap
