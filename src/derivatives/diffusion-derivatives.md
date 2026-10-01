@@ -539,7 +539,7 @@ Contents of JSON file "`sub-01_model-csd_param-wm_dwimap.json`":
 {
     "Model": {
         "Description": "Multi-Shell Multi-Tissue (MSMT) Constrained Spherical Deconvolution (CSD)",
-        "URL": "https://mrtrix.readthedocs.io/en/latest/constrained_spherical_deconvolution/multi_shell_multi_tissue_csd.html",
+        "URL": "https://mrtrix.readthedocs.io/en/latest/constrained_spherical_deconvolution/multi_shell_multi_tissue_csd.html"
     },
     "Description": "White matter",
     "NonNegativity": "constrained",
@@ -548,7 +548,7 @@ Contents of JSON file "`sub-01_model-csd_param-wm_dwimap.json`":
         "Reference": "xyz",
         "SphericalHarmonicBasis": "MRtrix3",
         "SphericalHarmonicDegree": 8,
-        "Type": "sh",
+        "Type": "sh"
     },
     "ParameterURL": "http://www.sciencedirect.com/science/article/pii/S1053811911012092",
     "ResponseFunction": {
@@ -569,7 +569,7 @@ Contents of JSON file "`sub-01_model-csd_param-gm_dwimap.json`":
 {
     "Model": {
         "Description": "Multi-Shell Multi-Tissue (MSMT) Constrained Spherical Deconvolution (CSD)",
-        "URL": "https://mrtrix.readthedocs.io/en/latest/constrained_spherical_deconvolution/multi_shell_multi_tissue_csd.html",
+        "URL": "https://mrtrix.readthedocs.io/en/latest/constrained_spherical_deconvolution/multi_shell_multi_tissue_csd.html"
     },
     "Description": "Gray matter",
     "NonNegativity": "constrained",
@@ -578,7 +578,7 @@ Contents of JSON file "`sub-01_model-csd_param-gm_dwimap.json`":
         "Reference": "xyz",
         "SphericalHarmonicBasis": "MRtrix3",
         "SphericalHarmonicDegree": 0,
-        "Type": "sh",
+        "Type": "sh"
     },
     "ResponseFunction": {
         "Coefficients": [
@@ -598,7 +598,7 @@ Contents of JSON file "`sub-01_model-csd_param-csf_dwimap.json`":
 {
     "Model": {
         "Description": "Multi-Shell Multi-Tissue (MSMT) Constrained Spherical Deconvolution (CSD)",
-        "URL": "https://mrtrix.readthedocs.io/en/latest/constrained_spherical_deconvolution/multi_shell_multi_tissue_csd.html",
+        "URL": "https://mrtrix.readthedocs.io/en/latest/constrained_spherical_deconvolution/multi_shell_multi_tissue_csd.html"
     },
     "Description": "Cerebro-spinal fluid",
     "NonNegativity": "constrained",
@@ -654,7 +654,7 @@ A fit of the model using the AMICO software.
                     "sub-01_model-noddi_param-odi_dwimap.nii.gz": "",
                     "sub-01_model-noddi_param-odi_dwimap.json": "",
                     "sub-01_model-noddi_param-icvf_dwimap.nii.gz": "",
-                    "sub-01_model-noddi_param-icvf_dwimap.json": "",
+                    "sub-01_model-noddi_param-icvf_dwimap.json": ""
                 },
             },
         },
@@ -677,14 +677,14 @@ Contents of JSON file "`sub-01_model-noddi_param-direction_dwimap.json`":
         "Parameters": {
             "ParallelDiffusivity": 0.0017,
             "IsotropicDiffusivity": 0.003
-            },
+            }
     },
     "Description": "Direction",
     "OrientationEncoding": {
         "EncodingAxis": 3,
         "Type": "unit3vector",
-        "Reference": "xyz",
-    },
+        "Reference": "xyz"
+    }
 }
 ```
 
@@ -698,7 +698,7 @@ Contents of JSON file "`sub-01_model-noddi_param-odi_dwimap.json`":
         "Parameters": {
             "ParallelDiffusivity": 0.0017,
             "IsotropicDiffusivity": 0.003
-            },
+            }
     },
     "Description": "Orientation dispersion index",
     "ParameterURL": "https://doi.org/10.1016/j.neuroimage.2012.03.072"
@@ -715,7 +715,7 @@ Contents of JSON file "`sub-01_model-noddi_param-icvf_dwimap.json`":
         "Parameters": {
             "ParallelDiffusivity": 0.0017,
             "IsotropicDiffusivity": 0.003
-            },
+            }
         },
     "Description": "Intra-cellular volume fraction CVF",
     "ParameterURL": "https://doi.org/10.1016/j.neuroimage.2012.03.072"
@@ -753,7 +753,7 @@ A guide for using macros can be found at
                     "sub-01_model-bs_desc-merged_param-polar_dwimap.nii.gz": "",
                     "sub-01_model-bs_desc-merged_param-polar_dwimap.json": "",
                     "sub-01_model-bs_desc-merged_param-vf_dwimap.nii.gz": "",
-                    "sub-01_model-bs_desc-merged_param-vf_dwimap.json": "",
+                    "sub-01_model-bs_desc-merged_param-vf_dwimap.json": ""
                 },
             },
         },
