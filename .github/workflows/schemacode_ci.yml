@@ -83,6 +83,7 @@ jobs:
         run: |
           max_attempts=3
           delay=10
+          success=""
           for attempt in $(seq 1 "${max_attempts}"); do
             git submodule sync --recursive
             if git submodule update --init --recursive; then
@@ -90,7 +91,9 @@ jobs:
               break
             fi
             echo "Submodule fetch failed (attempt ${attempt}/${max_attempts}); retrying..."
-            sleep "${delay}"
+            if [ "${attempt}" -lt "${max_attempts}" ]; then
+              sleep "${delay}"
+            fi
           done
           if [ -z "${success}" ]; then
             echo "::error::Failed to fetch submodules after ${max_attempts} attempts"
