@@ -321,6 +321,21 @@ properties:
           path:
             description: 'Path to associated atlas description file'
             type: string
+      scans:
+        description: 'Row from the scans.tsv file corresponding to the current file'
+        type: object
+        required: [path]
+        additionalProperties: false
+        properties:
+          path:
+            description: 'Path to associated scans file'
+            type: string
+          duration:
+            description: 'Value of the duration column for the current file, if present'
+            type: number
+          acq_time:
+            description: 'Value of the acq_time column for the current file, if present'
+            type: string
   # The following properties are populated if the current file is of an appropriate type
   columns:
     description: 'TSV columns, indexed by column header, values are arrays with column contents'
