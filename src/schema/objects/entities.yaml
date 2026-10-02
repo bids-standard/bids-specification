@@ -264,6 +264,13 @@ processing:
     exploited.
   type: string
   format: label
+provenance:
+  name: prov
+  display_name: Provenance group
+  description: |
+    The `prov-<label>` entity allows to group related provenance files, using an arbitrary value for `<label>`.
+  type: string
+  format: label
 reconstruction:
   name: rec
   display_name: Reconstruction

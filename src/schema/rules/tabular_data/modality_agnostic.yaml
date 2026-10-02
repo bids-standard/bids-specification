@@ -74,3 +74,19 @@ Phenotype:
     HED: optional
   index_columns: [participant_id]
   additional_columns: allowed
+
+Provenance:
+  selectors:
+    - datatype == 'prov'
+    - suffix == 'provenance'
+    - extension == '.tsv'
+  initial_columns:
+    - provenance_id
+  columns:
+    provenance_id:
+      level: required
+      description_addendum: |
+        There MUST be exactly one row for each `prov-<label>` entity.
+    description__provenance: optional
+  index_columns: [provenance_id]
+  additional_columns: allowed_if_defined
