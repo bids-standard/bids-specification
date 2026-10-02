@@ -28,7 +28,7 @@ and a guide for using macros can be found at
     "deriv",
     placeholders=True,
     show_entities=["space", "model", "parameter", "description", "resolution"],
-    suffixes=["dwimap", "dwi"],
+    suffixes=["dwimap", "dwi"]
 ) }}
 
 Manual:
