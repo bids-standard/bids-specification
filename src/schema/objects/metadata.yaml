@@ -3569,12 +3569,12 @@ SampleCoordinateSystem:
   name: SampleCoordinateSystem
   display_name: Coordinate System of the Gaze Position
   description: |
-    Coordinate system of the gaze position recordings.
-    Generally eye-trackers are set to use `"gaze-on-screen"` coordinate system, but you may use
-    `"eye-in-head"` or `"gaze-in-world"`.
-    If none of the three default options properly describe the coordinate system, the
-    `"custom"` keyword MUST be employed and the coordinate system MUST be described
-    using additional metadata entries.
+    Coordinate system of the gaze position recordings:
+    `"gaze-on-screen"`  for gaze position expressed in screen coordinates (for example, pixels).
+    `"eye-in-head"`     for gaze direction relative to the head direction, independent of any screen.
+    `"gaze-in-world"`   for gaze position relative to the external scene (for example, as recorded by scene-camera systems)
+    `"custom"`          for any other coordinate system, which must be described using additional metadata entries.
+    Generally eye-trackers are set to use `"gaze-on-screen"` coordinate system.
   type: string
   enum:
     - gaze-on-screen
