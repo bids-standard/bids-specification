@@ -39,7 +39,7 @@ ParticipantIDMismatch:
   checks:
     - |
       allequal(
-        sorted(intersects(columns.participant_id, dataset.subjects.sub_dirs)),
+        sorted(intersects(dataset.subjects.participant_id, dataset.subjects.sub_dirs)),
         sorted(dataset.subjects.sub_dirs)
       )
 
