@@ -542,13 +542,13 @@ export interface Schema {
        * via the `patternProperty` "^[a-zA-Z0-9_]+$".
        */
       [k: string]: {
-        selectors?: ExpressionList;
+        selectors: ExpressionList;
         target: {
           entities?: string[];
           suffix?: string;
           extension: string | string[];
         };
-        inherit?: boolean;
+        inherit: boolean;
       };
     };
     context: CoreAndValidationSpecificationsMetaSchema;
@@ -750,9 +750,6 @@ export interface Schema {
     tabular_data: {};
     metaentities: string[];
     common_principles: string[];
-    dataset_metadata: {
-      [k: string]: unknown;
-    };
     directories: {
       [k: string]: unknown;
     };
