@@ -243,6 +243,10 @@ part:
 
     When there is only a magnitude image of a given type, the `part` entity MAY be
     omitted.
+
+    For stimulus files, `part-<label>` can be used to distinguish different parts of a single stimulus, such as
+    chapters in an audiobook or segments of a long movie (for example, `part-1`, `part-2`, `part-epilog`,
+    `part-chapter1`).
   type: string
   format: label
   enum:
@@ -446,6 +450,18 @@ stain:
     and/or `"SampleSecondaryAntibodies"` metadata fields, as appropriate.
   type: string
   format: label
+stimulus:
+  name: stim
+  display_name: Stimulus
+  description: |
+    The `stim-<label>` entity identifies a single stimulus in the `/stimuli`
+    directory. The label is a unique identifier shared by all files that
+    belong to the same stimulus (the stimulus file itself, its JSON metadata,
+    and any annotation files), and corresponds to the `stimulus_id` values
+    listed in the `stimuli.tsv` file and the `stim_id` values referenced
+    in `events.tsv` files.
+  type: string
+  format: label
 subject:
   name: sub
   display_name: Subject
@@ -524,5 +540,16 @@ tracksys:
     This entity corresponds to the `"TrackingSystemName"` metadata field in a *_motion.json file.
     `tracksys-<label>` entity is a concise string whereas `"TrackingSystemName"`
     may be longer and more human readable.
+  type: string
+  format: label
+annotation:
+  name: annot
+  display_name: Annotation
+  description: |
+    The `annot-<label>` entity accommodates multiple annotations for a single
+    (usually, but not necessarily, time-varying) stimulus. Similar to `stimuli.tsv`,
+    there can be a single `annotations.tsv` file with `annot_id` values listing all
+    annotations in the directory, or separate `stim-<label>_annotations.tsv` files
+    for each stimulus.
   type: string
   format: label

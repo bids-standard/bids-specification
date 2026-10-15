@@ -1,0 +1,50 @@
+---
+# The stim_id values in events.tsv are identifiers (stim-<label>), not file
+# paths, so their existence in /stimuli cannot be verified with exists().
+# Verifying that each stim_id has a matching stimulus file or stimuli.tsv
+# entry requires cross-file column access (a stimuli association) and is
+# left to future validator support. Value patterns for stim_id and
+# stimulus_id are enforced through the column definitions in
+# objects/columns.yaml.
+StimuliTsvForStimId:
+  issue:
+    code: STIMULI_TSV_MISSING
+    message: |
+      The stim_id column is used in an events.tsv file, but no stimuli.tsv
+      file is present at the /stimuli root. A dataset-wide stimuli.tsv,
+      even a sparse one listing only the stimulus_id of every stimulus,
+      is RECOMMENDED as the entry point for resolving stim_id references.
+    level: warning
+  selectors:
+    - suffix == "events"
+    - columns.stim_id != null
+  checks:
+    - exists("stimuli.tsv", "stimuli") == 1
+
+StimuliTsvAtRoot:
+  issue:
+    code: STIMULI_TSV_NOT_AT_ROOT
+    message: |
+      A scoped stimuli.tsv or stimuli.json file was found in a subdirectory of
+      /stimuli, but there is no dataset-wide stimuli.tsv at the /stimuli root.
+      A root stimuli.tsv is RECOMMENDED, even a sparse one listing only the
+      stimulus_id of every stimulus: it provides a single entry point for
+      tools and readers, and scoped subdirectory catalogs amend or override it.
+    level: warning
+  selectors:
+    - match(path, '^/stimuli/.+/stimuli\.(tsv|json)$')
+  checks:
+    - exists("stimuli.tsv", "stimuli") == 1
+
+StimuliDirectoryStructure:
+  issue:
+    code: INVALID_STIMULUS_FILENAME
+    message: |
+      Stimulus files in the /stimuli directory must follow the BIDS naming convention
+      with the format stim-<label>[_part-<label>]_<suffix>.<extension>
+    level: warning
+  selectors:
+    - datatype == "stimuli"
+    - suffix in ["audio", "video", "audiovideo", "image"]
+  checks:
+    - entities.stimulus != null
