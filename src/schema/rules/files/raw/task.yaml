@@ -49,6 +49,16 @@ timeseries__anat:
     part: optional
     modality: optional
 
+# microephys allows the sample entity, and task is optional as for the data files
+timeseries__microephys:
+  $ref: rules.files.raw.task.timeseries
+  datatypes:
+    - ecephys
+    - icephys
+  entities:
+    $ref: rules.files.raw.microephys.microephys.entities
+    recording: optional
+
 timeseries__func:
   $ref: rules.files.raw.task.timeseries
   datatypes:
