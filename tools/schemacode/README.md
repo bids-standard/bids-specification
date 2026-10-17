@@ -12,6 +12,7 @@ Features:
 * lightweight
 * reference schema parsing implementation used for schema testing
 * simple CLI bindings (e.g. `bst export`)
+* dataset migration tools to adopt new BIDS conventions (e.g. `bst migrate`)
 
 If you have questions, you can post them in one of several channels where BIDS members are active:
   - the [NeuroStars](https://neurostars.org/tags/bids) discourse forum
