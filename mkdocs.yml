@@ -29,6 +29,7 @@ nav:
           - BIDS Derivatives: derivatives/introduction.md
           - Common data types and metadata: derivatives/common-data-types.md
           - Imaging data types: derivatives/imaging.md
+          - Positron Emission Tomography: derivatives/positron-emmision-tomography.md
           - Templates and atlases: derivatives/atlas.md
       - Longitudinal and multi-site studies: longitudinal-and-multi-site-studies.md
       - Glossary: glossary.md
