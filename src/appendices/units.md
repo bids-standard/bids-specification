@@ -15,7 +15,7 @@ Earlier versions of the BIDS standard listed the following Unicode symbols, and
 these are still included for backwards compatibility:
 
 1.  [`U+03BC` (μ)](https://codepoints.net/U+03BC) or [`U+00B5` (µ)](https://codepoints.net/U+00B5)
-1.  [`U+03A9` (Ω)](https://codepoints.net/U+03A9) or [`U+2126` (Ω)](https://codepoints.net/U+2126)
+1.  [`U+03A9` (Ω)](https://codepoints.net/U+03A9) or [`U+2126` (Ω)](https://codepoints.net/U+2126)
 1.  [`U+00B0` (°)](https://codepoints.net/U+00B0)
 
 Note that for the first two entries in this list, two characters are permissible
@@ -83,51 +83,70 @@ Examples for CMIXF-12 (including the five unicode symbols mentioned above):
 
 ### Multiples
 
-| **Prefix name** | **Prefix symbol** | **Factor**      |
-| --------------- | ----------------- | --------------- |
-| [deca][]        | da                | 10<sup>1</sup>  |
-| [hecto][]       | h                 | 10<sup>2</sup>  |
-| [kilo][]        | k                 | 10<sup>3</sup>  |
-| [mega][]        | M                 | 10<sup>6</sup>  |
-| [giga][]        | G                 | 10<sup>9</sup>  |
-| [tera][]        | T                 | 10<sup>12</sup> |
-| [peta][]        | P                 | 10<sup>15</sup> |
-| [exa][]         | E                 | 10<sup>18</sup> |
-| [zetta][]       | Z                 | 10<sup>21</sup> |
-| [yotta][]       | Y                 | 10<sup>24</sup> |
+| **Prefix name** | **Prefix symbol** | **Factor** |
+| --------------- | ----------------- | ---------- |
+| [deca][]        | da                | $10^1$     |
+| [hecto][]       | h                 | $10^2$     |
+| [kilo][]        | k                 | $10^3$     |
+| [mega][]        | M                 | $10^6$     |
+| [giga][]        | G                 | $10^9$     |
+| [tera][]        | T                 | $10^{12}$  |
+| [peta][]        | P                 | $10^{15}$  |
+| [exa][]         | E                 | $10^{18}$  |
+| [zetta][]       | Z                 | $10^{21}$  |
+| [yotta][]       | Y                 | $10^{24}$  |
 
 ### Submultiples
 
-| **Prefix name** | **Prefix symbol** | **Factor**       |
-| --------------- | ----------------- | ---------------- |
-| [deci][]        | d                 | 10<sup>-1</sup>  |
-| [centi][]       | c                 | 10<sup>-2</sup>  |
-| [milli][]       | m                 | 10<sup>-3</sup>  |
-| [micro][]       | u                 | 10<sup>-6</sup>  |
-| [nano][]        | n                 | 10<sup>-9</sup>  |
-| [pico][]        | p                 | 10<sup>-12</sup> |
-| [femto][]       | f                 | 10<sup>-15</sup> |
-| [atto][]        | a                 | 10<sup>-18</sup> |
-| [zepto][]       | z                 | 10<sup>-21</sup> |
-| [yocto][]       | y                 | 10<sup>-24</sup> |
+| **Prefix name** | **Prefix symbol** | **Factor** |
+| --------------- | ----------------- | ---------- |
+| [deci][]        | d                 | $10^{-1}$  |
+| [centi][]       | c                 | $10^{-2}$  |
+| [milli][]       | m                 | $10^{-3}$  |
+| [micro][]       | u                 | $10^{-6}$  |
+| [nano][]        | n                 | $10^{-9}$  |
+| [pico][]        | p                 | $10^{-12}$ |
+| [femto][]       | f                 | $10^{-15}$ |
+| [atto][]        | a                 | $10^{-18}$ |
+| [zepto][]       | z                 | $10^{-21}$ |
+| [yocto][]       | y                 | $10^{-24}$ |
 
 [deca]: https://en.wikipedia.org/wiki/Deca-
+
 [hecto]: https://en.wikipedia.org/wiki/Hecto-
+
 [kilo]: https://en.wikipedia.org/wiki/Kilo-
+
 [mega]: https://en.wikipedia.org/wiki/Mega-
+
 [giga]: https://en.wikipedia.org/wiki/Giga-
+
 [tera]: https://en.wikipedia.org/wiki/Tera-
+
 [peta]: https://en.wikipedia.org/wiki/Peta-
+
 [exa]: https://en.wikipedia.org/wiki/Exa-
+
 [zetta]: https://en.wikipedia.org/wiki/Zetta-
+
 [yotta]: https://en.wikipedia.org/wiki/Yotta-
+
 [deci]: https://en.wikipedia.org/wiki/Deci-
+
 [centi]: https://en.wikipedia.org/wiki/Centi-
+
 [milli]: https://en.wikipedia.org/wiki/Milli-
+
 [micro]: https://en.wikipedia.org/wiki/Micro-
+
 [nano]: https://en.wikipedia.org/wiki/Nano-
+
 [pico]: https://en.wikipedia.org/wiki/Pico-
+
 [femto]: https://en.wikipedia.org/wiki/Femto-
+
 [atto]: https://en.wikipedia.org/wiki/Atto-
+
 [zepto]: https://en.wikipedia.org/wiki/Zepto-
+
 [yocto]: https://en.wikipedia.org/wiki/Yocto-
