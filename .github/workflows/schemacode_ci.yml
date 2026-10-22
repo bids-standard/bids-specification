@@ -79,6 +79,27 @@ jobs:
         with:
           submodules: recursive
 
+      - name: Initialize test-data submodules
+        run: |
+          max_attempts=3
+          delay=10
+          success=""
+          for attempt in $(seq 1 "${max_attempts}"); do
+            git submodule sync --recursive
+            if git submodule update --init --recursive; then
+              success=1
+              break
+            fi
+            echo "Submodule fetch failed (attempt ${attempt}/${max_attempts}); retrying..."
+            if [ "${attempt}" -lt "${max_attempts}" ]; then
+              sleep "${delay}"
+            fi
+          done
+          if [ -z "${success}" ]; then
+            echo "::error::Failed to fetch submodules after ${max_attempts} attempts"
+            exit 1
+          fi
+
       - name: Set up Python ${{ matrix.python-version }} (uv)
         uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10.2.0
         with:
