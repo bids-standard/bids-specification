@@ -2967,6 +2967,7 @@ PartialFourier:
   display_name: Partial Fourier
   description: |
     The fraction of partial Fourier information collected.
+    A value of 1 indicates full Fourier sampling.
   type: number
 PartialFourierDirection:
   name: PartialFourierDirection
