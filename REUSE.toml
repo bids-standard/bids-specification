@@ -1,0 +1,22 @@
+version = 1
+
+# Default: everything in this repository is under CC-BY-4.0 (see LICENSE)
+[[annotations]]
+path = "**"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2016-2026 BIDS Contributors"
+SPDX-License-Identifier = "CC-BY-4.0"
+
+# bidsschematools Python package (see tools/schemacode/LICENSE)
+[[annotations]]
+path = "tools/schemacode/**"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2020-2026 Brain Imaging Data Structure"
+SPDX-License-Identifier = "MIT"
+
+# Animated logo (see BIDS_logo/README.md)
+[[annotations]]
+path = "BIDS_logo/bids-animated.webm"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2021 Adina Wagner"
+SPDX-License-Identifier = "CC-BY-SA-4.0"
