@@ -229,11 +229,11 @@ part:
   name: part
   display_name: Part
   description: |
-    This entity is used to indicate which component of the complex
+    For MRI data, this entity is used to indicate which component of the complex
     representation of the MRI signal is represented in voxel data.
     The `part-<label>` entity is associated with the DICOM Tag
     (0008,9208).
-    Allowed label values for this entity are `phase`, `mag`, `real` and `imag`,
+    For MRI data, allowed label values for this entity are `phase`, `mag`, `real` and `imag`,
     which are typically used in `part-mag`/`part-phase` or
     `part-real`/`part-imag` pairs of files.
 
@@ -243,13 +243,12 @@ part:
 
     When there is only a magnitude image of a given type, the `part` entity MAY be
     omitted.
+
+    For stimulus files, `part-<label>` distinguishes parts of a single stimulus,
+    such as chapters in an audiobook or segments of a long movie
+    (for example, `part-1`, `part-2`, `part-epilog`, `part-chapter1`).
   type: string
   format: label
-  enum:
-    - $ref: objects.enums.magnitude.value
-    - $ref: objects.enums.phase.value
-    - $ref: objects.enums.real.value
-    - $ref: objects.enums.imaginary.value
 processing:
   name: proc
   display_name: Processed (on device)
@@ -446,6 +445,23 @@ stain:
     and/or `"SampleSecondaryAntibodies"` metadata fields, as appropriate.
   type: string
   format: label
+stimulus:
+  name: stim
+  display_name: Stimulus
+  description: |
+    The `stim-<label>` entity identifies a stimulus.
+    In the `/stimuli` directory, the label is shared by all files that
+    belong to the same stimulus (the stimulus files, their JSON metadata,
+    and any annotation files), and corresponds to the `stimulus_id` values
+    listed in the `stimuli.tsv` file and the `stim_id` values referenced
+    in `events.tsv` files.
+    In a subject-level filename, the entity marks the file as a stimulus
+    presented to the participant and names that stimulus.
+
+    This entity is distinct from the `stim` suffix of continuously sampled
+    stimulus signals (`*_stim.tsv.gz`).
+  type: string
+  format: label
 subject:
   name: sub
   display_name: Subject
@@ -524,5 +540,16 @@ tracksys:
     This entity corresponds to the `"TrackingSystemName"` metadata field in a *_motion.json file.
     `tracksys-<label>` entity is a concise string whereas `"TrackingSystemName"`
     may be longer and more human readable.
+  type: string
+  format: label
+annotation:
+  name: annot
+  display_name: Annotation
+  description: |
+    The `annot-<label>` entity accommodates multiple annotations for a single
+    (usually, but not necessarily, time-varying) stimulus. Similar to `stimuli.tsv`,
+    there can be a single `annotations.tsv` file with `annot_id` values listing all
+    annotations in the directory, or separate `stim-<label>_annotations.tsv` files
+    for each stimulus.
   type: string
   format: label

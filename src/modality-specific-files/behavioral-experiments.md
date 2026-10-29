@@ -25,6 +25,12 @@ metadata (`_events.json`),
 physiological (`_physio.tsv.gz`, `_physio.json`)
 and other continuous recordings (`_stim.tsv.gz`, `_stim.json`)
 as for tasks performed during MRI, electrophysiological or other neural recordings.
+
+Note that `*_stim.tsv.gz` files contain subject-specific, continuously-sampled stimulus-related signals
+(such as audio waveforms, video parameters, electrical, mechanical, or optical stimuli),
+which is distinct from stimulus files stored in the [`/stimuli` directory](../modality-agnostic-files/stimuli.md)
+and from [subject-specific stimulus files](../modality-agnostic-files/stimuli.md#subject-specific-stimulus-files)
+named with the `stim-<label>` entity.
 Additionally, events files
 that do not include the mandatory `onset` and `duration` columns
 MAY be included,

@@ -59,7 +59,8 @@ TB1DAM:
     $ref: meta.templates.raw.mri.entities
     flip: required
     inversion: optional
-    part: optional
+    part:
+      $ref: meta.templates.raw.mri_part
 
 TB1EPI:
   suffixes:
@@ -76,7 +77,8 @@ TB1EPI:
     echo: required
     flip: required
     inversion: optional
-    part: optional
+    part:
+      $ref: meta.templates.raw.mri_part
 
 RFFieldMaps:
   suffixes:
@@ -96,7 +98,8 @@ RFFieldMaps:
     echo: optional
     flip: optional
     inversion: optional
-    part: optional
+    part:
+      $ref: meta.templates.raw.mri_part
 
 TB1SRGE:
   suffixes:
@@ -113,7 +116,8 @@ TB1SRGE:
     echo: optional
     flip: required
     inversion: required
-    part: optional
+    part:
+      $ref: meta.templates.raw.mri_part
 
 parametric:
   $ref: meta.templates.raw.mri

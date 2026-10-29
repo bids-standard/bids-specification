@@ -1,7 +1,15 @@
 """Tests for the bidsschematools package."""
 
+import sys
+from pathlib import Path
+
 from bidsschematools.render import tables
 from bidsschematools.render.utils import normalize_requirements
+
+# Make mkdocs_macros_bids importable
+_macros_dir = Path(__file__).parents[5] / "tools" / "mkdocs_macros_bids"
+if str(_macros_dir) not in sys.path:
+    sys.path.insert(0, str(_macros_dir))
 
 
 def test_make_entity_table(schema_obj):
@@ -145,3 +153,39 @@ def test_make_columns_table(schema_obj):
         assert level.upper() in render_row
         assert level_addendum.split("\n")[0] in render_row
         assert description_addendum.split("\n")[0] in render_row
+
+
+def test_make_extension_table(schema_obj):
+    """Test whether expected extensions are present and listed correctly.
+
+    This tests the make_extension_table macro from mkdocs_macros_bids.
+    """
+    import macros as mkdocs_macros  # type: ignore[import-not-found]
+
+    target_extensions = ["wav", "mp4", "jpg"]
+    table = mkdocs_macros.make_extension_table(
+        target_extensions,
+        src_path="appendices/media-files.md",
+    )
+
+    rendered_lines = table.split("\n")
+
+    # Header and separator
+    assert rendered_lines[0].startswith("| **Format**")
+    assert rendered_lines[1].startswith("| ---")
+
+    # One data row per extension
+    assert len(rendered_lines) == len(target_extensions) + 2
+
+    # Check each extension is rendered with correct display name and value
+    expected = {
+        "wav": (".wav", "Waveform Audio"),
+        "mp4": (".mp4", "MPEG-4 Part 14"),
+        "jpg": (".jpg", "Joint Photographic Experts Group"),
+    }
+    for ext_key, render_row in zip(target_extensions, rendered_lines[2:]):
+        value, display_name = expected[ext_key]
+        assert display_name in render_row
+        assert value in render_row
+        # Glossary link
+        assert f"glossary.md#objects.extensions.{ext_key}" in render_row

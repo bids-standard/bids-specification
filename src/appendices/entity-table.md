@@ -61,3 +61,7 @@ while entity definitions are in the [Entities Appendix](entities.md).
 ## Motion
 
 {{ MACROS___make_entity_table(datatypes=["motion"]) }}
+
+## Stimuli
+
+{{ MACROS___make_entity_table(datatypes=["stimuli"]) }}

@@ -24,7 +24,8 @@ nonparametric:
     $ref: meta.templates.raw.mri.entities
     task: optional
     echo: optional
-    part: optional
+    part:
+      $ref: meta.templates.raw.mri_part
 
 parametric:
   suffixes:
@@ -84,7 +85,8 @@ megre:
     $ref: meta.templates.raw.mri.entities
     task: optional
     echo: required
-    part: optional
+    part:
+      $ref: meta.templates.raw.mri_part
 
 mese:
   suffixes:
@@ -101,7 +103,8 @@ mese:
     task: optional
     direction: optional
     echo: required
-    part: optional
+    part:
+      $ref: meta.templates.raw.mri_part
 
 multiflip:
   suffixes:
@@ -118,7 +121,8 @@ multiflip:
     task: optional
     echo: optional
     flip: required
-    part: optional
+    part:
+      $ref: meta.templates.raw.mri_part
 
 multiinversion:
   suffixes:
@@ -134,7 +138,8 @@ multiinversion:
     $ref: meta.templates.raw.mri.entities
     task: optional
     inversion: required
-    part: optional
+    part:
+      $ref: meta.templates.raw.mri_part
 
 mp2rage:
   suffixes:
@@ -152,7 +157,8 @@ mp2rage:
     echo: optional
     flip: optional
     inversion: required
-    part: optional
+    part:
+      $ref: meta.templates.raw.mri_part
 
 vfamt:
   suffixes:
@@ -171,7 +177,8 @@ vfamt:
     echo: optional
     flip: required
     mtransfer: required
-    part: optional
+    part:
+      $ref: meta.templates.raw.mri_part
 
 mtr:
   suffixes:
@@ -187,4 +194,5 @@ mtr:
     $ref: meta.templates.raw.mri.entities
     task: optional
     mtransfer: required
-    part: optional
+    part:
+      $ref: meta.templates.raw.mri_part
