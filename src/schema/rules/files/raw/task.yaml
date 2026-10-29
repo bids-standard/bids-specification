@@ -46,7 +46,8 @@ timeseries__anat:
       - rules.files.raw.task.timeseries.entities
       - meta.templates.raw.mri.entities
     echo: optional
-    part: optional
+    part:
+      $ref: meta.templates.raw.mri_part
     modality: optional
 
 timeseries__func:

@@ -9,6 +9,7 @@
 StimulusPresentation:
   selectors:
     - suffix == "events"
+    - datatype != "stimuli"
   fields:
     StimulusPresentation: recommended
     VisionCorrection: optional

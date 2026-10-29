@@ -214,6 +214,15 @@ filename:
     Relative paths to files.
   type: string
   format: participant_relative
+filename__stimuli:
+  name: filename
+  display_name: Stimulus filename
+  description: |
+    Path to the main file of the stimulus, relative to the `/stimuli` directory
+    (for example, `stim-face01_image.png`).
+    Further files of the stimulus share its `stim-<label>` entity.
+  type: string
+  format: stimuli_relative
 group__channel:
   name: group
   display_name: Channel group
@@ -692,14 +701,31 @@ stim_file:
   description: |
     Represents the location of the stimulus file (such as an image, video, or
     audio file) presented at the given onset time.
-    There are no restrictions on the file formats of the stimuli files,
-    but they should be stored in the `/stimuli/` directory
-    (under the root directory of the dataset; with optional subdirectories).
+    The stimulus files should be stored in the `/stimuli/` directory
+    (under the root directory of the dataset).
     The values under the `stim_file` column correspond to a path relative to
     `/stimuli`.
     For example `images/cat03.jpg` will be translated to `/stimuli/images/cat03.jpg`.
+    If the `/stimuli` directory contains a `stimuli.tsv` file,
+    it follows the [Stimuli](SPEC_ROOT/modality-agnostic-files/stimuli.md) specification:
+    its files are stored directly in `/stimuli`, in the formats listed there,
+    and `stim_file` values name those files (for example, `stim-cat03_image.jpg`).
+    Otherwise, there are no restrictions on the file formats of the stimulus files,
+    and subdirectories MAY be used.
   type: string
   format: stimuli_relative
+stim_id:
+  name: stim_id
+  display_name: Stimulus identifier
+  description: |
+    Represents a unique identifier for the stimulus presented at the given onset
+    time, of the form `stim-<label>`. The `stim_id` refers to all files with the
+    same `stim-<label>` entity (stimulus files in the `/stimuli` directory or in
+    the participant's directories, and annotation files in the `/stimuli`
+    directory), and to the information about the stimulus present in the
+    `stimuli.tsv` file.
+  type: string
+  pattern: ^stim-[0-9a-zA-Z+]+$
 strain:
   name: strain
   display_name: Strain
@@ -971,3 +997,76 @@ template_z:
   description: |
     Assumed or ideal position along the z axis.
   type: number
+stimulus_id:
+  name: stimulus_id
+  display_name: Stimulus Identifier
+  description: |
+    Unique identifier for a specific stimulus, of the form `stim-<label>`,
+    matching the `stim-<label>` entity of the stimulus files it describes.
+  type: string
+  pattern: ^stim-[0-9a-zA-Z+]+$
+annot_id:
+  name: annot_id
+  display_name: Annotation Identifier
+  description: |
+    Unique identifier for a specific annotation set applying to a stimulus or group of stimuli,
+    equal to the label of the `annot-<label>` entity of the annotation files it describes
+    (for example, `pitch` for `*_annot-pitch_events.tsv`).
+  type: string
+  pattern: ^[0-9a-zA-Z+]+$
+copyright:
+  name: copyright
+  display_name: Stimulus Copyright
+  description: |
+    Copyright information for the stimulus file, typically including year and holder.
+  type: string
+license:
+  name: license
+  display_name: Stimulus License
+  description: |
+    License under which the stimulus file is distributed.
+    SHOULD use identifiers from recognized lists like SPDX or Creative Commons.
+    Use `n/a` if the license is unknown or the stimulus is not licensed for sharing.
+  type: string
+partDescription__stimuli:
+  name: partDescription
+  display_name: Stimulus Part Description
+  description: |
+    Free-form text description of how the stimulus is split into multiple files
+    using the `part` entity (for example, the chapters of an audiobook).
+    Metadata of individual parts is given in their `stim-<label>_part-<label>_<suffix>.json` sidecars.
+  type: string
+present:
+  name: present
+  display_name: Stimulus File Present
+  description: |
+    Indicates whether the stimulus file corresponding to the `stimulus_id` is physically present in the dataset,
+    as `true` or `false`.
+  type: boolean
+URL:
+  name: URL
+  display_name: Stimulus URL
+  description: |
+    Uniform Resource Locator pointing to the stimulus file, particularly useful
+    if the stimulus file is not distributed with the dataset.
+  type: string
+  format: uri
+description__stimuli:
+  name: description
+  display_name: Stimulus Description
+  description: |
+    Free-form text description of the stimulus identified by `stimulus_id`.
+  type: string
+description__annot:
+  name: description
+  display_name: Annotation Description
+  description: |
+    Free-form text description of the annotation identified by `annot_id`.
+  type: string
+type__stimuli:
+  name: type
+  display_name: Stimulus type
+  description: |
+    Type of stimulus (for example, image, audio, video).
+    Refers to the suffix of the stimulus file if present.
+  type: string
