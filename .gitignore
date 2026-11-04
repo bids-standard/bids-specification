@@ -161,3 +161,5 @@ dmypy.json
 cython_debug/
 
 .*.swp
+
+.lycheecache

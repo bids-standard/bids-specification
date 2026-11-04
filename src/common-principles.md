@@ -8,7 +8,7 @@ The BIDS specification is written in American English.
 
 The keywords "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD",
 "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be
-interpreted as described in [[RFC2119](https://www.ietf.org/rfc/rfc2119.txt)].
+interpreted as described in [[RFC2119](https://www.rfc-editor.org/info/rfc2119/)].
 
 Based on these keywords, we define three requirement levels for specifying data or metadata:
 REQUIRED, RECOMMENDED, and OPTIONAL.
@@ -680,7 +680,7 @@ so established by the specifications.
 Rules for formatting plain-text tabular files apply to TSVGZ files with three exceptions:
 
 1.  The contents of TSVGZ files MUST be compressed with
-    [gzip](https://datatracker.ietf.org/doc/html/rfc1952).
+    [gzip](https://www.rfc-editor.org/info/rfc1952/).
 
 1.  Compressed tabular files MUST NOT contain a header in the first row
     indicating the column names.
@@ -712,7 +712,7 @@ The above example, if stored as a TSVGZ file would have the following decompress
 JavaScript Object Notation (JSON) files MUST be used for storing key-value
 pairs. JSON files MUST be in UTF-8 encoding. Extensive documentation of the
 format can be found at [https://www.json.org/](https://www.json.org/),
-and at [https://tools.ietf.org/html/std90](https://tools.ietf.org/html/std90).
+and at <https://www.rfc-editor.org/info/rfc8259/>.
 Several editors have built-in support for JSON syntax highlighting that aids
 manual creation of such files.
 An online editor for JSON with built-in validation is available at
@@ -995,7 +995,7 @@ as specified in the respective descriptions of metadata fields that require the 
 
 A Uniform Resource Indicator (URI) is a string referring to a resource and SHOULD
 have the form `<scheme>:[//<authority>]<path>[?<query>][#<fragment>]`, as specified
-in [RFC 3986](https://tools.ietf.org/html/rfc3986).
+in [RFC 3986](https://www.rfc-editor.org/info/rfc3986/).
 This applies to URLs and other common URIs, including Digital Object Identifiers (DOIs),
 which may be fully specified as `doi:<path>`,
 for example, [doi:10.5281/zenodo.10175845](https://doi.org/10.5281/zenodo.10175845).
@@ -1125,7 +1125,7 @@ Describing dates and timestamps:
 -   Date time information MUST be expressed in the following format
     `YYYY-MM-DDThh:mm:ss[.000000][Z|+hh:mm|-hh:mm]` (year, month, day, hour (24h),
     minute, second, optional fractional seconds, and optional time offset).
-    This is almost equivalent to the [RFC3339](https://tools.ietf.org/html/rfc3339)
+    This is almost equivalent to the [RFC3339](https://www.rfc-editor.org/info/rfc3339/)
     "date-time" format, with the exception that UTC offsets are OPTIONAL.
     If no time offset is indicated,
     time zone is always assumed to be the local time of the dataset viewer.
