@@ -180,8 +180,8 @@ ScansAcquisitionDurationConsistency:
     message: |
       The 'duration' column in the scans.tsv file does not match the
       'AcquisitionDuration' sidecar metadata field for this file.
-      Both fields record total acquisition duration in seconds and SHOULD be equal.
-    level: warning
+      Both fields record total acquisition duration in seconds and MUST be equal.
+    level: error
   selectors:
     - modality == "mri"
     - match(extension, "^\.nii(\.gz)?$")
