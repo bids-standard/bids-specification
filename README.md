@@ -622,3 +622,15 @@ Thanks goes to these wonderful people.
 <!-- prettier-ignore-end -->
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
+
+# Licensing
+
+The BIDS specification is licensed under [CC BY 4.0](LICENSE).
+The [`bidsschematools`](tools/schemacode/) package is licensed under [MIT](tools/schemacode/LICENSE).
+
+This repository follows the [REUSE specification](https://reuse.software/)
+for machine-readable copyright and licensing information:
+full license texts are in [`LICENSES/`](LICENSES/),
+and [`REUSE.toml`](REUSE.toml) declares which license applies to which files.
+Compliance is checked by `pre-commit run reuse --all-files`
+(or `uvx --from reuse reuse lint`).

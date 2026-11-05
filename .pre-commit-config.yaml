@@ -79,6 +79,10 @@ repos:
     rev: 99470f5e12208ff0fb17ab81c3c494f7620a1d8d  # frozen: v0.11.0
     hooks:
       - id: shellcheck
+  - repo: https://codeberg.org/fsfe/reuse-tool
+    rev: a1bb792acda6fd0724936b4ebbdbc8eceb9c0459  # frozen: v6.2.0
+    hooks:
+      - id: reuse
   - repo: local
     hooks:
       - id: check-embedded-json
