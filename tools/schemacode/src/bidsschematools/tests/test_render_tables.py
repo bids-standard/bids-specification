@@ -145,3 +145,38 @@ def test_make_columns_table(schema_obj):
         assert level.upper() in render_row
         assert level_addendum.split("\n")[0] in render_row
         assert description_addendum.split("\n")[0] in render_row
+
+
+def test_make_extension_table(schema_obj):
+    """Test whether expected extensions are present and listed correctly."""
+    target_extensions = ["wav", "mp4", "jpg"]
+    table = tables.make_extension_table(
+        schema_obj,
+        target_extensions,
+        src_path="appendices/media-files.md",
+    )
+
+    rendered_lines = table.split("\n")
+
+    # Header and separator
+    assert "**Format**" in rendered_lines[0]
+    assert set(rendered_lines[1]) <= set("|-: ")
+
+    # One data row per extension
+    assert len(rendered_lines) == len(target_extensions) + 2
+
+    for ext_key, render_row in zip(target_extensions, rendered_lines[2:]):
+        ext = schema_obj.objects.extensions[ext_key]
+        assert ext.display_name in render_row
+        # Glossary link is relative to the calling page, with POSIX separators
+        assert f"[{ext.value}](../glossary.md#objects.extensions.{ext_key})" in render_row
+        assert "SPEC_ROOT" not in render_row
+
+
+def test_make_extension_table_spec_root(schema_obj):
+    """SPEC_ROOT in extension descriptions is replaced with a relative path."""
+    # The bvec description links to SPEC_ROOT/appendices/coordinate-systems.md
+    table = tables.make_extension_table(schema_obj, ["bvec"], src_path="a/b/page.md")
+    assert "SPEC_ROOT" not in table
+    assert "../../appendices/coordinate-systems.md" in table
+    assert "../../glossary.md#objects.extensions.bvec" in table

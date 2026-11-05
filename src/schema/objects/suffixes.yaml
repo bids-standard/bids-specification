@@ -528,6 +528,18 @@ asllabeling:
     A deidentified screenshot of the planning of the labeling slab/plane
     with respect to the imaging slab or slices.
     This screenshot is based on DICOM macro C.8.13.5.14.
+audio:
+  value: audio
+  display_name: Audio file
+  description: |
+    An audio data file containing one or more audio streams.
+    See [Media Files](SPEC_ROOT/appendices/media-files.md) for supported formats.
+audiovideo:
+  value: audiovideo
+  display_name: Audio-video file
+  description: |
+    A media file containing both audio and video streams.
+    See [Media Files](SPEC_ROOT/appendices/media-files.md) for supported formats.
 beh:
   value: beh
   display_name: Behavioral recording
@@ -666,6 +678,12 @@ ieeg:
   display_name: Intracranial Electroencephalography
   description: |
     Intracranial electroencephalography recording data.
+image:
+  value: image
+  display_name: Image file
+  description: |
+    A still image data file.
+    See [Media Files](SPEC_ROOT/appendices/media-files.md) for supported formats.
 inplaneT1:
   value: inplaneT1
   display_name: Inplane T1
@@ -898,3 +916,9 @@ unloc:
   description: |
     MRS acquisitions run without localization.
     This includes signals detected using coil sensitivity only.
+video:
+  value: video
+  display_name: Video file
+  description: |
+    A video data file containing one or more video streams but no audio.
+    See [Media Files](SPEC_ROOT/appendices/media-files.md) for supported formats.

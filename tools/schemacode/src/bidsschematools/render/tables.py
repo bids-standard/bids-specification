@@ -404,6 +404,49 @@ def make_suffix_table(schema, suffixes, src_path=None, tablefmt="github"):
     return table_str
 
 
+def make_extension_table(schema, extensions, src_path=None, tablefmt="github"):
+    """Produce extension table (markdown) based on requested extensions.
+
+    Parameters
+    ----------
+    schema : dict
+    extensions : list of str
+        Keys of the requested extensions in ``objects.extensions``
+        (for example, ``["wav", "mp4", "jpg"]``).
+    src_path : str or None
+        The file where this macro is called, which may be explicitly provided
+        by the "page.file.src_path" variable.
+    tablefmt : str
+
+    Returns
+    -------
+    table_str : str
+        Tabulated table as a string.
+    """
+    table_type = "extensions"
+    subschema = schema["objects"][table_type]
+
+    extensions_not_found = set(extensions) - set(subschema)
+    if extensions_not_found:
+        raise Exception(
+            "Warning: Missing extensions: {}".format(", ".join(sorted(extensions_not_found)))
+        )
+
+    rows = []
+    for key in extensions:
+        ext = subschema[key]
+        link = f"[{ext['value']}]({GLOSSARY_PATH}.md#objects.{table_type}.{key})"
+        description = " ".join(ext["description"].split())
+        rows.append([ext["display_name"], link, description])
+
+    table_str = tabulate(
+        rows, headers=["**Format**", "**Extension**", "**Description**"], tablefmt=tablefmt
+    )
+    # Spec internal links need to be replaced
+    table_str = table_str.replace("SPEC_ROOT", utils.get_relpath(src_path))
+    return table_str
+
+
 def make_json_table(
     schema: Namespace,
     table_name: str | list[str],
