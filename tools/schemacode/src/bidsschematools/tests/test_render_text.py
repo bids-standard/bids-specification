@@ -1,6 +1,7 @@
 """Tests for the bidsschematools package."""
 
 import os
+import re
 
 import pytest
 
@@ -95,6 +96,13 @@ sub-<label>/
         for rule in schema_obj.rules.files.raw.values(level=2)
         for datatype in rule.datatypes
     }
+    # Datatypes in named directories at the dataset root (for example, stimuli)
+    # are not rendered under sub-<label>/[ses-<label>/]
+    layout = schema_obj.rules.directories.raw
+    root_dirs = {layout[key].name for key in layout.root.subdirs if "name" in layout[key]}
+    assert "stimuli" in datatypes & root_dirs
+    assert "        stimuli/" not in filename_template.split("\n")
+    datatypes -= root_dirs
 
     datatype_count = len(datatypes)
     datatype_bases = [f"        {i}/" for i in datatypes]
@@ -162,6 +170,43 @@ sub-<label>/
 
     # In this case events is not defined for all datatypes
     assert datatype_bases_found < datatype_count
+
+
+def _template_lines(schema_obj, pdf_format, **kwargs):
+    """Render a raw filename template and return its lines without HTML markup."""
+    template = text.make_filename_template("raw", schema_obj, pdf_format=pdf_format, **kwargs)
+    if not pdf_format:
+        # HTML output escapes placeholders and wraps names in links
+        template = re.sub(r"<[^>]+>", "", template).replace("&lt;", "<").replace("&gt;", ">")
+    return template.split("\n")
+
+
+@pytest.mark.parametrize("pdf_format", [True, False])
+def test_make_filename_template_root_datatype(schema_obj, pdf_format):
+    """Root-level datatype directories render at the dataset root when requested."""
+    lines = _template_lines(schema_obj, pdf_format, datatypes=["stimuli"])
+    assert "stimuli/" in lines
+    assert not any(line.startswith("sub-<label>") for line in lines)
+    # Dataset-level tables come from the common rules and precede the stimulus files
+    audio = "    stim-<label>[_part-<label>]_audio.json"
+    assert lines.index("    stimuli.tsv") < lines.index(audio)
+    assert "    annotations.tsv" in lines
+    assert "    stim-<label>[_part-<label>]_annot-<label>_events.tsv" in lines
+    # No other common stem rules (such as phenotype's "*") are picked up
+    assert not any(line.startswith("    *") for line in lines)
+
+    # Mixed with a subject-level datatype, both trees are shown, the root one last
+    lines = _template_lines(schema_obj, pdf_format, datatypes=["stimuli", "eeg"])
+    assert lines.index("sub-<label>/") < lines.index("        eeg/") < lines.index("stimuli/")
+
+    # The catalog tables have no suffix, so a suffix filter leaves them out
+    lines = _template_lines(schema_obj, pdf_format, datatypes=["stimuli"], suffixes=["audio"])
+    assert "stimuli/" in lines
+    assert "    stimuli.tsv" not in lines
+
+    # Root-level directories are not shown unless requested
+    lines = _template_lines(schema_obj, pdf_format, datatypes=["eeg"])
+    assert "stimuli/" not in lines
 
 
 def test_define_common_principles(schema_obj):

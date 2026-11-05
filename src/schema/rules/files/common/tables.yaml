@@ -43,3 +43,22 @@ phenotype:
   extensions:
     - .tsv
     - .json
+
+# The stimulus catalog tables live directly in the root-level /stimuli
+# directory, which plays the role of a datatype directory (as phenotype does).
+stimuli:
+  level: recommended
+  datatypes:
+    - stimuli
+  stem: stimuli
+  extensions:
+    - .tsv
+    - .json
+annotations:
+  level: optional
+  datatypes:
+    - stimuli
+  stem: annotations
+  extensions:
+    - .tsv
+    - .json

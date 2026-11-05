@@ -1,0 +1,46 @@
+---
+# Sidecar fields for stimulus files.
+# Stimuli applies to media files in /stimuli; SubjectStimulusSources to
+# subject-level stimulus files; AnnotationSources to annotation events files.
+# stimuli.json and annotations.json need no additional fields, as their
+# columns are defined in the tabular data rules.
+# Selectors use the short entity names (stim, annot), which is how the
+# validator keys context.entities.
+
+Stimuli:
+  selectors:
+    - datatype == "stimuli"
+    - intersects([suffix], ["audio", "video", "audiovideo", "image"])
+  fields:
+    StimulusLicense: optional
+    Copyright: optional
+    StimulusURL: optional
+    Description: optional
+
+SubjectStimulusSources:
+  selectors:
+    - datatype != "stimuli"
+    - intersects([suffix], ["audio", "video", "audiovideo", "image"])
+    - entities.stim != null
+  fields:
+    Sources:
+      level: optional
+      level_addendum: recommended if the presented stimulus is stored in the `/stimuli` directory
+      description_addendum: |
+        For a subject-level stimulus file, `Sources` lists the stimulus files
+        in the `/stimuli` directory whose presentation this file records,
+        rather than the inputs of a derivative
+        (for example, `["bids::stimuli/stim-movie01_audiovideo.mp4"]`).
+
+AnnotationSources:
+  selectors:
+    - suffix == "events"
+    - entities.annot != null
+  fields:
+    Sources:
+      level: optional
+      level_addendum: recommended if more than one stimulus file shares the `stim-<label>` entity
+      description_addendum: |
+        For a stimulus annotation file, `Sources` lists the stimulus files
+        that the annotations describe, rather than the inputs of a derivative
+        (for example, `["bids::stimuli/stim-movie01_audiovideo.mp4"]`).

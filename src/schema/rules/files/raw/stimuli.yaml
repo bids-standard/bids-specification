@@ -1,0 +1,159 @@
+---
+# Stimulus files in the root-level /stimuli directory.
+# The dataset-wide catalog tables (stimuli.tsv, annotations.tsv) are stem rules
+# in rules/files/common/tables.yaml, following the phenotype pattern.
+stimulus_audio:
+  level: optional
+  datatypes:
+    - stimuli
+  suffixes:
+    - audio
+  extensions:
+    - .json
+    - .wav
+    - .flac
+    - .mp3
+    - .aac
+    - .ogg
+  entities:
+    stimulus: required
+    part: optional
+
+stimulus_image:
+  level: optional
+  datatypes:
+    - stimuli
+  suffixes:
+    - image
+  extensions:
+    - .json
+    - .jpg
+    - .jpeg
+    - .png
+    - .svg
+    - .webp
+    - .tif
+    - .tiff
+  entities:
+    stimulus: required
+    part: optional
+
+stimulus_video:
+  level: optional
+  datatypes:
+    - stimuli
+  suffixes:
+    - video
+  extensions:
+    - .json
+    - .mp4
+    - .avi
+    - .mkv
+    - .webm
+  entities:
+    stimulus: required
+    part: optional
+
+stimulus_audiovideo:
+  level: optional
+  datatypes:
+    - stimuli
+  suffixes:
+    - audiovideo
+  extensions:
+    - .json
+    - .mp4
+    - .avi
+    - .mkv
+    - .webm
+  entities:
+    stimulus: required
+    part: optional
+
+# stim-<label>_annot-<label>_events.tsv
+stimulus_annotation_events:
+  level: optional
+  datatypes:
+    - stimuli
+  suffixes:
+    - events
+  extensions:
+    - .json
+    - .tsv
+  entities:
+    stimulus: required
+    annotation: required
+    part: optional
+
+# stim-<label>_annotations.tsv
+stimulus_annotations:
+  level: optional
+  datatypes:
+    - stimuli
+  suffixes:
+    - annotations
+  extensions:
+    - .json
+    - .tsv
+  entities:
+    stimulus: required
+
+# Subject-level stimulus files: a stimulus as presented to a participant,
+# stored next to the data it aligns with.
+subject_stimulus_audio:
+  $ref: rules.files.raw.stimuli.stimulus_audio
+  datatypes:
+    - beh
+    - eeg
+    - emg
+    - func
+    - ieeg
+    - meg
+    - motion
+    - nirs
+  entities:
+    $ref: meta.templates.raw.task.entities
+    stimulus: required
+    part: optional
+
+subject_stimulus_image:
+  $ref: rules.files.raw.stimuli.stimulus_image
+  datatypes:
+    - beh
+    - eeg
+    - emg
+    - func
+    - ieeg
+    - meg
+    - motion
+    - nirs
+  entities:
+    $ref: rules.files.raw.stimuli.subject_stimulus_audio.entities
+
+subject_stimulus_video:
+  $ref: rules.files.raw.stimuli.stimulus_video
+  datatypes:
+    - beh
+    - eeg
+    - emg
+    - func
+    - ieeg
+    - meg
+    - motion
+    - nirs
+  entities:
+    $ref: rules.files.raw.stimuli.subject_stimulus_audio.entities
+
+subject_stimulus_audiovideo:
+  $ref: rules.files.raw.stimuli.stimulus_audiovideo
+  datatypes:
+    - beh
+    - eeg
+    - emg
+    - func
+    - ieeg
+    - meg
+    - motion
+    - nirs
+  entities:
+    $ref: rules.files.raw.stimuli.subject_stimulus_audio.entities

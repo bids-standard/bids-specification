@@ -165,7 +165,11 @@ def _split_inheritance_rules(rule: dict) -> list[dict]:
             **{
                 "extensions": list(sidecar_exts),
                 "datatypes": [""] + rule.get("datatypes", []),
-                "entities": {ent: "optional" for ent in rule["entities"]},
+                # Sidecars may omit any entity, but keep per-rule constraints such as enums
+                "entities": {
+                    ent: {**val, "level": "optional"} if isinstance(val, Mapping) else "optional"
+                    for ent, val in rule["entities"].items()
+                },
             },
         }
     )

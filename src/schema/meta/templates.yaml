@@ -39,7 +39,17 @@ raw:
     entities:
       $ref: meta.templates.raw.mri.entities
       direction: optional
-      part: optional
+      part:
+        $ref: meta.templates.raw.mri_part
+
+  # The part entity restricted to the components of the complex MRI signal
+  mri_part:
+    level: optional
+    enum:
+      - $ref: objects.enums.magnitude.value
+      - $ref: objects.enums.phase.value
+      - $ref: objects.enums.real.value
+      - $ref: objects.enums.imaginary.value
 
   pet:
     entities:

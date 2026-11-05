@@ -1,0 +1,26 @@
+---
+# The stim_id values in events.tsv are identifiers (stim-<label>), not file
+# paths, so their existence in /stimuli cannot be verified with exists().
+# Verifying that each stim_id has a matching stimulus file or stimuli.tsv
+# entry requires cross-file column access (a stimuli association) and is
+# left to future validator support. Value patterns for stim_id and
+# stimulus_id are enforced through the column definitions in
+# objects/columns.yaml.
+StimuliTsvForStimId:
+  issue:
+    code: STIMULI_TSV_MISSING
+    message: |
+      The stim_id column is used in an events.tsv file and the dataset has a
+      /stimuli directory, but no stimuli.tsv file is present in it.
+      A stimuli.tsv file listing every stimulus in /stimuli with its REQUIRED
+      columns (stimulus_id, type, license, and present) is RECOMMENDED as the
+      entry point for resolving stim_id references.
+    level: warning
+  selectors:
+    - suffix == "events"
+    - columns.stim_id != null
+    # Matches the /stimuli directory itself: the reference validator resolves
+    # exists() paths against the file tree, where directories are found too.
+    - exists("stimuli", "dataset") == 1
+  checks:
+    - exists("stimuli.tsv", "stimuli") == 1
