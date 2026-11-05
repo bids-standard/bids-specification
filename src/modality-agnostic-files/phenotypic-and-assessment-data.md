@@ -54,9 +54,7 @@ The `"IndexColumns"` field defines a list of column names to be used
 as a "joint index".
 This means, for the relevant tabular data file, each row must have a
 unique combination of values for the columns specified by
-`"IndexColumns"`. This replaces the implicit constraint on the
-[`participant_id`](../glossary.md#participants-files])
-column that its values MUST be unique.
+`"IndexColumns"`.
 
 As an example, consider the contents of a file called
 `phenotype/tool-ACDSAdult_phenotype.json` in a multi-session dataset:

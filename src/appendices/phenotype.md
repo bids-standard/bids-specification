@@ -23,7 +23,7 @@ aggregate phenotypic and assessment data across all sessions
 into one tabular tab-separated value (TSV) file per measurement tool.
 In order to aggregate, you MUST use the `"IndexColumns"` list/array field
 in the corresponding JavaScript Object Notation (JSON) sidecar file.
-In order to validate correctly, use `session_id` as your session column's name.
+To validate correctly, use `session_id` as your session column's name.
 There are two examples of this usage [below in this appendix](#examples).
 Store each of the TSV and JSON files in the `/phenotype` directory
 using the file-naming template `/phenotype/tool-<ToolName>_phenotype.tsv`.
@@ -43,7 +43,7 @@ See the [Tabular files section](../common-principles.md#tabular-files) for more 
 
 It is REQUIRED to add `MeasurementToolMetadata` to
 each `phenotype/tool-<ToolName>_phenotype.json` data dictionary.
-One of either the `TermURL` or `Description` MUST be defined.
+Either the `TermURL` or `Description` MUST be defined.
 This improves reusability and provides clarity about the measurement tool.
 See [`MeasurementToolMetadata` in the glossary](../glossary.md#measurementtoolmetadata-metadata) for more.
 
