@@ -187,7 +187,9 @@ ScansAcquisitionDurationConsistency:
     - match(extension, "^\.nii(\.gz)?$")
     - '"AcquisitionDuration" in sidecar'
     - type(associations.scans) != "null"
-    - '"duration" in associations.scans'
+    # Not '"duration" in associations.scans': an implementation may populate
+    # the key with a null/undefined value (e.g., n/a, or file not listed).
+    - type(associations.scans.duration) != "null"
     # Exclude BOLD/ASL + VolumeTiming: there AcquisitionDuration was used (and is now
     # deprecated) as a per-volume measure, not total-scan duration.
     - '!intersects([suffix], ["bold", "asl"]) || type(sidecar.VolumeTiming) == "null"'
