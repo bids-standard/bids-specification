@@ -173,3 +173,23 @@ SmallDeltaNotConsistent:
     - type(nifti_header) != "null"
   checks:
     - length(sidecar.SmallDelta) == nifti_header.dim[4]
+
+ScansAcquisitionDurationConsistency:
+  issue:
+    code: SCANS_DURATION_MISMATCH_ACQUISITION_DURATION
+    message: |
+      The 'duration' column in the scans.tsv file does not match the
+      'AcquisitionDuration' sidecar metadata field for this file.
+      Both fields record total acquisition duration in seconds and SHOULD be equal.
+    level: warning
+  selectors:
+    - modality == "mri"
+    - match(extension, "^\.nii(\.gz)?$")
+    - '"AcquisitionDuration" in sidecar'
+    - type(associations.scans) != "null"
+    - '"duration" in associations.scans'
+    # Exclude BOLD/ASL + VolumeTiming: there AcquisitionDuration was used (and is now
+    # deprecated) as a per-volume measure, not total-scan duration.
+    - '!intersects([suffix], ["bold", "asl"]) || type(sidecar.VolumeTiming) == "null"'
+  checks:
+    - associations.scans.duration == sidecar.AcquisitionDuration
