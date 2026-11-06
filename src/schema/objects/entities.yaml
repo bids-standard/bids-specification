@@ -150,6 +150,35 @@ flip:
     not the `"FlipAngle"` value of the separate JSON file.
   type: string
   format: index
+from:
+  name: from
+  display_name: From
+  description: |
+    The `from-<label>` entity is used to indicate the source of a file.
+    This entity is typically used in files that are derived from other files,
+    such as derivatives of raw data or derivatives of other derivatives.
+    The label should be descriptive of the source, such as `from-anat` or `from-func`.
+  type: string
+  format: label
+to:
+  name: to
+  display_name: To
+  description: |
+    The `to-<label>` entity is used to indicate the target of a file.
+    This entity is typically used in files that are derived from other files,
+    such as derivatives of raw data or derivatives of other derivatives.
+    The label should be descriptive of the target, such as `to-anat` or `to-func`.
+  type: string
+  format: label
+mode:
+  name: mode
+  display_name: Transform Mode
+  description: |
+    Specifies the domain of a transformation, for example `image`.
+  type: string
+  format: label
+  enum:
+    - $ref: objects.enums.image_mode.value
 hemisphere:
   name: hemi
   display_name: Hemisphere
