@@ -21,7 +21,7 @@ dataset_description:
     EthicsApprovals: optional
     ReferencesAndLinks: optional
     DatasetDOI: optional
-    GeneratedBy: recommended
+    GeneratedBy__Dataset: recommended
     SourceDatasets: recommended
 
 dataset_authors:
@@ -43,4 +43,4 @@ derivative_description:
     - path == "/dataset_description.json"
     - json.DatasetType == "derivative"
   fields:
-    GeneratedBy: required
+    GeneratedBy__Dataset: required

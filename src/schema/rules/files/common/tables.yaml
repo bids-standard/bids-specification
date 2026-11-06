@@ -5,6 +5,12 @@ participants:
   extensions:
     - .tsv
     - .json
+provenance:
+  level: optional
+  stem: provenance
+  extensions:
+    - .tsv
+    - .json
 samples:
   level: optional
   stem: samples
