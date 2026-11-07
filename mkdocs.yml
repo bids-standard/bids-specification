@@ -18,6 +18,7 @@ nav:
           - Intracranial Electroencephalography: modality-specific-files/intracranial-electroencephalography.md
           - Physiological recordings: modality-specific-files/physiological-recordings.md
           - Behavioral experiments (with no neural recordings): modality-specific-files/behavioral-experiments.md
+          - Survey data (instrument-based phenotypic): modality-specific-files/survey.md
           - Genetic Descriptor: modality-specific-files/genetic-descriptor.md
           - Positron Emission Tomography: modality-specific-files/positron-emission-tomography.md
           - Microscopy: modality-specific-files/microscopy.md
