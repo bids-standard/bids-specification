@@ -1,18 +1,32 @@
 ---
 ResInSidecar:
+  issue:
+    code: MISSING_RESOLUTION_DESCRIPTION
+    message: |
+      The Resolution metadata object does not contain an entry for the file's
+      res-<label> entity.
+    level: error
   selectors:
     - dataset.dataset_description.DatasetType == "derivative"
     - intersects([modality], ["mri", "pet"])
     - match(extension, '^\.nii(\.gz)?$')
+    - type(entities.resolution) != 'null'
     - type(sidecar.Resolution) == "object"
   checks:
     - entities.resolution in sidecar.Resolution
 
 DenInSidecar:
+  issue:
+    code: MISSING_DENSITY_DESCRIPTION
+    message: |
+      The Density metadata object does not contain an entry for the file's
+      res-<label> entity.
+    level: error
   selectors:
     - dataset.dataset_description.DatasetType == "derivative"
     - intersects([modality], ["mri", "pet"])
     - match(extension, '^\.nii(\.gz)?$')
+    - type(entities.density) != 'null'
     - type(sidecar.Density) == "object"
   checks:
     - entities.density in sidecar.Density

@@ -15,9 +15,9 @@ REQUIRED, RECOMMENDED, and OPTIONAL.
 The guiding principles for when particular data is placed under a given requirement level
 can be loosely described as below:
 
-* REQUIRED: Data cannot be be interpreted without this information (or the ambiguity is unacceptably high)
-* RECOMMENDED: Interpretation/utility would be dramatically improved with this information
-* OPTIONAL: Users and/or tools might find it useful to have this information
+-   REQUIRED: Data cannot be interpreted without this information (or the ambiguity is unacceptably high)
+-   RECOMMENDED: Interpretation/utility would be dramatically improved with this information
+-   OPTIONAL: Users and/or tools might find it useful to have this information
 
 Throughout this specification we use a list of terms and abbreviations.
 To avoid misunderstanding we clarify them here.
@@ -49,7 +49,7 @@ Each entity has the following attributes:
     1.  *Index*: A non-negative integer, potentially zero-padded for
         consistent width.
 
-    1.  *Label*: An alphanumeric string.
+    1.  *Label*: An alphanumeric (and possibly including `+` character(s)) string.
         Note that labels MUST not collide when casing is ignored
         (see [Case collision intolerance](#case-collision-intolerance)).
 
@@ -85,7 +85,7 @@ saved under a particular filename specified in the standard. This standard
 aspires to describe a majority of datasets, but acknowledges that there will be
 cases that do not fit. In such cases one can include additional files and
 subdirectories to the existing directory structure following common sense. For example
-one may want to include eye tracking data in a vendor specific format that is
+one may want to include eye-tracking data in a vendor specific format that is
 not covered by this standard. The most sensible place to put it is next to the
 continuous recording file with the same naming scheme but different extensions.
 The solutions will change from case to case and publicly available datasets will
@@ -93,7 +93,7 @@ be reviewed to include common data types in the future releases of the BIDS
 specification.
 
 It is RECOMMENDED that non-compulsory metadata fields (like `notch` in `channels.tsv` files)
-and/or files (like `events.tsv`) are fully omitted *when they are unavailable or unapplicable*,
+and/or files (like `events.tsv`) are fully omitted *when they are unavailable or inapplicable*,
 instead of specified with an `n/a` value, or included as an empty file
 (for example an empty `events.tsv` file with only the headers included).
 
@@ -106,20 +106,20 @@ BIDS datasets embedded within a larger BIDS dataset MAY follow some convention (
 ## Filesystem structure
 
 Data for each subject are placed in subdirectories named "`sub-<label>`",
-where string "`<label>`" is substituted with the unique identification
+where "`<label>`" is substituted with the unique identification
 label of each subject.
 Additional information on each participant MAY be provided in a
-[participants file](modality-agnostic-files.md#participants-file)
+[participants file](modality-agnostic-files/data-summary-files.md#participants-file)
 in the root directory of the dataset.
 
-If data for the subject were acquired across multiple sessions, then within
-the subject directory resides subdirectories named "`ses-<label>`",
-where string "`<label>`" is substituted with a unique identification
-label for each session.
+If data for the subject were acquired across multiple sessions,
+then subdirectories named "`ses-<label>`" reside within the subject directory,
+where "`<label>`" is substituted with the unique identification
+label of each session.
 In datasets where at least one subject has more than one session, this
-additional subdirectory later SHOULD be added for all subjects in the dataset.
+additional subdirectory layer SHOULD be added for all subjects in the dataset.
 Additional information on each session MAY be provided in a
-[sessions file](modality-agnostic-files.md#sessions-file)
+[sessions file](modality-agnostic-files/data-summary-files.md#sessions-file)
 within the subject directory.
 
 Within the session subdirectory (or the subject subdirectory if no
@@ -127,6 +127,12 @@ session subdirectories are present) are subdirectories named according to
 data type as defined above.
 A data type directory SHOULD NOT be defined if there are no files to be placed
 in that directory.
+
+**Specific structure of derived data**.
+In the case of [storing derived data (see below)](#source-vs-raw-vs-derived-data),
+template (`tpl-<label>`) directories may be found at the root of the dataset,
+and these may include cohort (`cohort-<label>`) subdirectories.
+These directories are described in [Templates and atlases](derivatives/atlas.md).
 
 ### Other top level directories
 
@@ -202,6 +208,11 @@ as the labels would collide on a case-insensitive filesystem.
 Additionally, because the suffix `eeg` is defined,
 then the suffix `EEG` will not be added to future versions of the standard.
 
+### Dotfiles
+
+Files and directories starting with a dot (`.`) are reserved for system use and no valid recognized BIDS file or directory can start with a `.`.
+Any file or directory starting with a `.` present in a BIDS dataset is considered hidden and not subject to BIDS validation.
+
 ## Uniqueness of data files
 
 Data files MUST be uniquely identified by BIDS path components
@@ -270,49 +281,6 @@ However, in the case that these data are to be included:
     We RECOMMEND including the PDF print-out with the actual sequence
     parameters generated by the scanner in the `sourcedata`  directory.
 
-Alternatively one can organize their data in the following way
-
-<!-- This block generates a file tree.
-A guide for using macros can be found at
- https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
--->
-{{ MACROS___make_filetree_example(
-    {
-    "my_project-1": {
-        "sourcedata": {
-            "dicoms": {},
-            "raw": {
-                "sub-01": {},
-                "sub-02": {},
-                "...": "",
-                "dataset_description.json": "",
-				"...": "",
-            },
-            "..." : "",
-        },
-        "derivatives": {
-            "pipeline_1": {},
-            "pipeline_2": {},
-            "...": "",
-        }
-    }
-   }
-) }}
-
-In this example, `sourcedata/dicoms` is not nested inside
-`sourcedata/raw`, **and only the `sourcedata/raw` subdirectory** is a BIDS-compliant dataset among `sourcedata/` subfolders.
-The subdirectories of `derivatives` MAY be BIDS-compliant derivatives datasets
-(see [Non-compliant derivatives](#non-compliant-derivatives) for further discussion).
-The above example is just a convention useful for organizing source, raw BIDS, and derived BIDS data while maintaining BIDS compliance of the raw data directory.
-When using this convention it is RECOMMENDED to set the `SourceDatasets`
-field in `dataset_description.json` of each subdirectory of `derivatives` to:
-
-```JSON
-{
-  "SourceDatasets": [ {"URL": "../../sourcedata/raw/"} ]
-}
-```
-
 !!! danger "Caution"
 
     Sharing source data may help amend errors and missing data discovered
@@ -335,6 +303,15 @@ field in `dataset_description.json` of each subdirectory of `derivatives` to:
     through the `sourcedata/` directory mechanism.
     In the case of source data, these aspects are likely more stringent.
 
+**Templates and atlases as derived data.**
+Templates and atlases are key neuroscientific tools to carry out group-level inferences
+and also employed in many atlas-based methodologies (such as atlas-based segmentation).
+Original templates and atlases employed as primary data to the analysis MAY be stored
+within the `sourcedata/atlases/` directory.
+Atlases and artifacts derived from atlases are considered derived data
+and MUST be stored as derivative datasets,
+as described in the next section.
+
 ### Storage of derived datasets
 
 Derivatives can be stored/distributed in two ways:
@@ -347,7 +324,7 @@ Derivatives can be stored/distributed in two ways:
     Different components of a pipeline can, however, also be stored under different
     subdirectories.
     There are few restrictions on the directory names;
-    it is RECOMMENDED to use the format `<pipeline>-<variant>` in cases where
+    it is RECOMMENDED to use the format `<pipeline-name>-<variant>` in cases where
     it is anticipated that the same pipeline will output more than one variant
     (for example, `AFNI-blurring` and `AFNI-noblurring`).
     For the sake of consistency, the subdirectory name SHOULD be
@@ -370,6 +347,15 @@ Derivatives can be stored/distributed in two ways:
     <dataset>/derivatives/spm-stats/sub-0001
     ```
 
+    Example of an atlas-generating pipeline, including outputs for individual subjects
+    prior to aggregation in the
+    [`MNI152NLin2009cAsym` standard space](appendices/coordinate-systems.md):
+
+    ```Plain
+    <dataset>/derivatives/atlasgenerator/sub-0001
+    <dataset>/derivatives/atlasgenerator/tpl-MNI152NLin2009cAsym
+    ```
+
     Example of a pipeline with nested derivative directories:
 
     ```Plain
@@ -383,12 +369,19 @@ Derivatives can be stored/distributed in two ways:
     dataset is provided with read-only access, for publishing derivatives as
     independent bodies of work, or for describing derivatives that were created
     from more than one source dataset.
-    The `sourcedata/` subdirectory MAY be used to include the source dataset(s)
-    that were used to generate the derivatives.
-    Likewise, any code used to generate the derivatives from the source data
+    If the source is a raw BIDS dataset,
+    it MAY be included under the `rawbids/` subdirectory (see [Study dataset](#study-dataset) for the same convention used at the study level).
+    The `sourcedata/` subdirectory MAY be used to include any other source dataset(s)
+    used to generate the derivatives, including non-BIDS sources and derived BIDS datasets.
+    In particular, derivatives of derivatives MUST place their source derivative
+    dataset(s) under `sourcedata/`, not `rawbids/`,
+    since `rawbids/` is reserved for raw BIDS datasets.
+    Any code used to generate the derivatives from the source data
     MAY be included in the `code/` subdirectory.
+    Extra documentation (and relevant images) MAY be included in the `docs/` subdirectory.
+    Logs from running the code or other commands MAY be stored under `logs/` subdirectory.
 
-    Example of a derivative dataset including the raw dataset as source:
+    Example of a derivative dataset including the BIDS raw dataset as source:
 
     <!-- This block generates a file tree.
     A guide for using macros can be found at
@@ -402,10 +395,11 @@ Derivatives can be stored/distributed in two ways:
                 "hpc_submitter.sh": "",
                 "...": "",
             },
-            "sourcedata": {
+            "rawbids": {
                 "sub-01": {},
                 "sub-02": {},
                 "...": "",
+                "dataset_description.json": "",
             },
             "sub-01": {},
             "sub-02": {},
@@ -417,16 +411,19 @@ Derivatives can be stored/distributed in two ways:
 
 Throughout this specification, if a section applies particularly to derivatives,
 then Case 1 will be assumed for clarity in templates and examples, but removing
-`/derivatives/<pipeline>` from the template name will provide the equivalent for
+`/derivatives/<pipeline-name>[-<variant>]` from the template name will provide the equivalent for
 Case 2.
 In both cases, every derivatives dataset is considered a BIDS dataset and must
 include a `dataset_description.json` file at the root level (see
 [Dataset description][dataset-description]).
-Consequently, files should be organized to comply with BIDS to the full extent
+Consequently, files SHOULD be organized to comply with BIDS to the full extent
 possible (that is, unless explicitly contradicted for derivatives).
-Any subject-specific derivatives should be housed within each subject's directory;
-if session-specific derivatives are generated, they should be deposited under a
+Any subject-specific derivatives SHOULD be housed within each subject's directory;
+if session-specific derivatives are generated, they SHOULD be deposited under a
 session subdirectory within the corresponding subject directory; and so on.
+Likewise, any template-specific derivatives SHOULD be housed within each template's directory;
+if cohort-specific derivatives are generated, they SHOULD be deposited under a
+cohort subdirectory within the corresponding template directory; and so on.
 
 ### Non-compliant derivatives
 
@@ -436,12 +433,67 @@ In particular, if a BIDS dataset contains a `derivatives/` subdirectory,
 the contents of that directory may be a heterogeneous mix of BIDS Derivatives
 datasets and non-compliant derivatives.
 
+## Study dataset
+
+BIDS allows one to organize the source, raw, and derived data for the entire study as a valid BIDS dataset (see `study` [`DatasetType`](./glossary.md#session-entities)) in the following way
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example(
+    {
+    "study-1": {
+        "sourcedata": {
+            "dicoms": {},
+            "..." : "",
+        },
+        "rawbids": {
+            "sub-01": {},
+            "sub-02": {},
+            "...": "",
+            "dataset_description.json": "",
+            "...": "",
+        },
+        "derivatives": {
+            "pipeline1-v1": {},
+            "pipeline2": {},
+            "...": "",
+        },
+        "dataset_description.json": "",
+        "...": "",
+    }
+   }
+) }}
+
+In this example, `sourcedata`, `rawbids`, and `derivatives` are top-level directories. **Only the `rawbids` directory** is a BIDS-compliant dataset.
+The `rawbids/` subdirectory is reserved for the raw BIDS dataset
+(the same convention applies inside a `derivative` dataset when its source is a raw BIDS dataset;
+see [Storage of derived datasets](#storage-of-derived-datasets)).
+The subdirectories of `derivatives` MAY be BIDS-compliant derivatives datasets
+(see [Non-compliant derivatives](#non-compliant-derivatives) for further discussion).
+The above example is a fully compliant BIDS dataset, providing a convention useful for organizing source, raw BIDS, and derived BIDS data
+while maintaining conceptual and operational distinctions mentioned in [Source vs. raw vs. derived data](#source-vs-raw-vs-derived-data).
+When using this convention, `dataset_description.json` MUST have `DatasetType` set to `"study"`.
+It is also RECOMMENDED to set the `SourceDatasets` field in `dataset_description.json` of each subdirectory of `derivatives` to:
+
+```JSON
+{
+  "SourceDatasets": [ {"URL": "../../rawbids/"} ]
+}
+```
+
 ## File format specification
 
 ### Imaging files
 
-All imaging data MUST be stored using the NIfTI file format. We RECOMMEND using
-compressed NIfTI files (.nii.gz), either version 1.0 or 2.0. If using compressed files,
+Imaging data SHOULD be stored using the NIfTI file format.
+Large imaging data MAY instead be stored using the
+[OME-Zarr (OME-NGFF)](https://ngff.openmicroscopy.org/) file format.
+
+#### NIfTI
+
+We RECOMMEND using compressed NIfTI files (.nii.gz), either version 1.0 or 2.0. If using compressed files,
 the gzip header SHOULD lack source filenames and timestamps. Imaging data SHOULD
 be converted to the NIfTI format using a tool that provides as much of the NIfTI
 header information (such as orientation and slice timing information) as
@@ -451,14 +503,33 @@ additional meta information extracted from DICOM files in a sidecar JSON file
 (with the same filename as the `.nii[.gz]` file, but with a `.json` extension).
 Currently defined metadata fields are listed in the [Glossary](./glossary.md).
 Where possible, DICOM Tags are adopted directly as BIDS metadata terms and
-indicated with "**Corresponds to** DICOM Tag ID1, ID2 `DICOM Tag Name`.".
+indicated with "**Corresponds to** DICOM Tag (####,####) `<Attribute Name>`".
 When harmonization has been deemed necessary, this is indicated in the
-BIDS term description with "**Based on** DICOM Tag ID1, ID2 `DICOM Tag Name`.".
-Extraction of BIDS compatible metadata can be performed using [dcm2niix](https://github.com/rordenlab/dcm2niix)
-and [dicm2nii](https://www.mathworks.com/matlabcentral/fileexchange/42997-xiangruili-dicm2nii)
-DICOM to NIfTI converters. The [BIDS-validator](https://github.com/bids-standard/bids-validator)
+BIDS term description with "**Based on** DICOM Tag (####,####) `<Attribute Name>`".
+Extraction of BIDS compatible metadata can be performed using
+[DICOM to NIfTI converters](https://bids.neuroimaging.io/tools/converters.html)
+such as [dcm2niix](https://github.com/rordenlab/dcm2niix).
+The [BIDS-validator](https://github.com/bids-standard/bids-validator)
 will check for conflicts between the JSON file and the data recorded in the
 NIfTI header.
+
+#### OME-Zarr
+
+[Zarr](https://zarr-specs.readthedocs.io/) is a chunked, cloud-optimized format that provides efficient access to
+large multidimensional datasets without requiring a full download.
+[OME-Zarr](https://ngff.openmicroscopy.org/), developed by the Open Microscopy Environment (OME),
+extends Zarr with bioimaging-specific metadata.
+OME-Zarr is particularly suitable for very large imaging volumes (for example, high-resolution
+ex vivo MRI) where NIfTI would be impractical for streaming or web-based visualization.
+
+OME-Zarr filesets are stored in BIDS with the `.ome.zarr` extension.
+Spatial metadata (such as the axis names and units, and coordinate transformations) SHOULD
+be stored within the OME-Zarr metadata following the
+[OME-Zarr version 0.5 specification](https://ngff.openmicroscopy.org/specifications/0.5/index.html)
+(the latest released version).
+An example dataset containing an OME-Zarr can be found in the
+[BIDS examples repository](https://github.com/bids-standard/bids-examples/tree/master/micr_XPCTzarr)
+and can be used as helpful guidance when curating new datasets.
 
 ### Tabular files
 
@@ -479,6 +550,7 @@ with two exceptions:
 1.  [compressed tabular files](#compressed-tabular-files),
     for which column names are defined in a sidecar metadata
     [JSON object](https://www.json.org/json-en.html) described below; and
+
 1.  [motion recording data](modality-specific-files/motion.md),
     which use plain-text TSV and columns are defined as described
     in its corresponding section of the specifications.
@@ -489,8 +561,8 @@ first letter in lower case (for example, `variable_name`, not `Variable_name`).
 Column names defined in the header MUST be separated with tabs as for the data contents.
 Furthermore, column names MUST NOT be blank (that is, an empty string) and MUST NOT
 be duplicated within a single TSV file.
-String values containing tabs MUST be escaped using double quotes.
 Missing and non-applicable values MUST be coded as `n/a`.
+String values containing tabs MUST be escaped using double quotes.
 Numerical values MUST employ the dot (`.`) as decimal separator and MAY be specified
 in scientific notation, using `e` or `E` to separate the significand from the
 exponent.
@@ -498,18 +570,18 @@ TSV files MUST be in UTF-8 encoding.
 
 Example:
 
-```Text
-onset   duration    response_time   trial_type        trial_extra
-200     20.0        15.8            word              中国人
-240     5.0         17.34e-1        visual            n/a
+```tsv {linenums="1"}
+onset	duration	response_time	trial_type	trial_extra
+200	20.0	15.8	word	中国人
+240	5.0	17.34e-1	visual	n/a
 ```
 
 !!! warning "Attention"
 
     The TSV examples in this document (like the one above this note) are occasionally
-    formatted using space characters instead of tabs to improve human readability.
-    Directly copying and then pasting these examples from the specification
-    for use in new BIDS datasets can lead to errors and is discouraged.
+    formatted with the addition of the row indices as first column.
+    Those indices are presented for visual reference and
+    are not part of the tabular data file's content.
 
 Tabular files MAY be optionally accompanied by a simple data dictionary
 in the form of a JSON [object](https://www.json.org/json-en.html)
@@ -536,16 +608,21 @@ and a guide for using macros can be found at
             "RECOMMENDED",
             "The description of the column.",
         ),
+        "Format": "OPTIONAL",
         "Levels": "RECOMMENDED",
         "Units": "RECOMMENDED",
         "Delimiter": "OPTIONAL",
         "TermURL": "RECOMMENDED",
         "HED": "OPTIONAL",
+        "Maximum": "OPTIONAL",
+        "Minimum": "OPTIONAL",
    }
 ) }}
 
 Please note that while both `Units` and `Levels` are RECOMMENDED, typically only one
 of these two fields would be specified for describing a single TSV file column.
+In the absence of `Format`, `Units` implies the column contains numeric values,
+and `Levels` implies the column contains strings.
 
 Example:
 
@@ -554,6 +631,7 @@ Example:
   "test": {
     "LongName": "Education level",
     "Description": "Education level, self-rated by participant",
+    "Format": "integer",
     "Levels": {
       "1": "Finished primary school",
       "2": "Finished secondary school",
@@ -563,14 +641,16 @@ Example:
   },
   "bmi": {
     "LongName": "Body mass index",
+    "Format": "number",
     "Units": "kg/m^2",
+    "Minimum": 0,
     "TermURL": "https://purl.bioontology.org/ontology/SNOMEDCT/60621009"
   }
 }
 ```
 
 Each level can be described with a string as in the example above,
-or with an object containing the fields [`Description`](./glossary.md#description-metadata)
+or with an object containing the fields [`Description`](./glossary.md#description-sense-1-metadata)
 and [`TermURL`](./glossary.md#termurl-metadata)
 like in the example below.
 
@@ -601,14 +681,16 @@ Rules for formatting plain-text tabular files apply to TSVGZ files with three ex
 
 1.  The contents of TSVGZ files MUST be compressed with
     [gzip](https://datatracker.ietf.org/doc/html/rfc1952).
+
 1.  Compressed tabular files MUST NOT contain a header in the first row
     indicating the column names.
+
 1.  TSVGZ files MUST have an associated JSON file that defines the columns in the tabular file.
 
 !!! warning "Attention"
 
     In contrast to plain-text TSV files,
-    compressed tabular files files MUST NOT include a header line.
+    compressed tabular files MUST NOT include a header line.
     Column names MUST be provided in the JSON file with the
     [`Columns`](glossary.md#columns-metadata) field.
     Each column MAY additionally be described with a column description,
@@ -617,6 +699,13 @@ Rules for formatting plain-text tabular files apply to TSVGZ files with three ex
     TSVGZ are header-less to improve compatibility with existing software
     (for example, FSL, or PNM), and to facilitate the support for other file formats
     in the future.
+
+The above example, if stored as a TSVGZ file would have the following decompressed content:
+
+```tsvgz {linenums="1"}
+200	20.0	15.8	word	中国人
+240	5.0	17.34e-1	visual	n/a
+```
 
 ### Key-value files (dictionaries)
 
@@ -647,7 +736,7 @@ Example of a hypothetical `*_bold.json` file, accompanying a `*_bold.nii` file:
 Example of a hypothetical `*_events.json` file, accompanying an
 `*_events.tsv` file. Note that the JSON file contains a key describing an
 *arbitrary* column `stim_presentation_side` in the TSV file it accompanies.
-See [task events section](modality-specific-files/task-events.md)
+See [events section](modality-agnostic-files/events.md)
 for more information.
 
 ```JSON
@@ -674,7 +763,10 @@ to which the metadata contained within are not applicable.
 The Inheritance Principle defines a systematized set of rules
 to determine which metadata files to associate with which data files.
 Further, because multiple metadata files may apply to an individual data file,
-the Principle defines the *order of precedence* of such metadata files contents.
+the Principle defines the *order of precedence* of such metadata content;
+this is necessary for resolution of conflicts if the same metadata field
+contains different values in different metadata files
+(though it is RECOMMENDED to avoid such overloading).
 
 ### Rules
 
@@ -739,9 +831,11 @@ A guide for using macros can be found at
             "sub-01_task-rest_acq-default_bold.nii.gz": "",
             "sub-01_task-rest_acq-longtr_bold.nii.gz": "",
             "sub-01_task-rest_acq-longtr_bold.json": "",
-            }
+            },
+        "sub-01_scans.tsv": "",
         },
     "task-rest_bold.json": "",
+    "scans.json": ""
     }
 ) }}
 
@@ -772,6 +866,10 @@ entity "`acq-longtr`" that is absent from the image path (rule 2.c). When readin
 the value for field "`RepetitionTime`" is therefore overridden to the value `3.0`.
 The value for field "`EchoTime`" remains applicable to that image, and is not unset by its
 absence in the metadata file at the lower level (rule 5.b; corollary 3).
+
+A single `scans.json`, without any entity in the filename at the top level,
+is applicable to describe columns of the `sub-01_scans.tsv`
+and any other `_scans.tsv` potentially present in the dataset for other subjects.
 
 Example 2: Impermissible use of multiple metadata files at one directory level (rule 4)
 
@@ -841,6 +939,28 @@ A guide for using macros can be found at
     }
 ) }}
 
+Example 5: Generalization of Examples 1 and 4 for a sidecar file without entities
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example(
+    {
+    "sub-01": {
+        "anat": {},
+        "func": {
+            "sub-01_task-xyz_acq-test1_run-1_bold.nii.gz": "",
+            "sub-01_task-xyz_acq-test1_run-2_bold.nii.gz": "",
+            }
+        },
+    "bold.json": "",
+    }
+) }}
+
+where `bold.json` in top directory would be applicable to all `_bold.nii.gz`
+regardless of any other entity in their filename.
+
 ## Participant names and other labels
 
 BIDS allows for custom user-defined `<label>`s and `<index>`es for example,
@@ -878,7 +998,7 @@ have the form `<scheme>:[//<authority>]<path>[?<query>][#<fragment>]`, as specif
 in [RFC 3986](https://tools.ietf.org/html/rfc3986).
 This applies to URLs and other common URIs, including Digital Object Identifiers (DOIs),
 which may be fully specified as `doi:<path>`,
-for example, [doi:10.5281/zenodo.3686061](https://doi.org/10.5281/zenodo.3686061).
+for example, [doi:10.5281/zenodo.10175845](https://doi.org/10.5281/zenodo.10175845).
 A given resource may have multiple URIs.
 When selecting URIs to add to dataset metadata, it is important to consider
 specificity and persistence.
@@ -923,7 +1043,7 @@ The dataset root is the nearest parent directory that contains a valid
 `dataset_description.json`.
 
 All other dataset names MUST be specified in the `DatasetLinks` object in
-[dataset_description.json][], which maps dataset names to URIs that point
+[dataset_description.json][dataset-description], which maps dataset names to URIs that point
 to BIDS dataset locations.
 If the scheme is omitted from a URI in `DatasetLinks`,
 that path is resolved relative to the current dataset root
@@ -1003,16 +1123,15 @@ For additional rules, see below:
 Describing dates and timestamps:
 
 -   Date time information MUST be expressed in the following format
-    `YYYY-MM-DDThh:mm:ss[.000000][Z]` (year, month, day, hour (24h), minute,
-    second, optional fractional seconds, and optional UTC time indicator).
+    `YYYY-MM-DDThh:mm:ss[.000000][Z|+hh:mm|-hh:mm]` (year, month, day, hour (24h),
+    minute, second, optional fractional seconds, and optional time offset).
     This is almost equivalent to the [RFC3339](https://tools.ietf.org/html/rfc3339)
-    "date-time" format, with the exception that UTC indicator `Z` is optional and
-    non-zero UTC offsets are not indicated.
-    If `Z` is not indicated, time zone is always assumed to be the local time of the
-    dataset viewer.
+    "date-time" format, with the exception that UTC offsets are OPTIONAL.
+    If no time offset is indicated,
+    time zone is always assumed to be the local time of the dataset viewer.
     No specific precision is required for fractional seconds, but the precision
     SHOULD be consistent across the dataset.
-    For example `2009-06-15T13:45:30`.
+    For example `2009-06-15T13:45:30+01:00`.
 
 -   Time stamp information MUST be expressed in the following format:
     `hh:mm:ss[.000000]`
@@ -1029,7 +1148,7 @@ Describing dates and timestamps:
 -   Dates can be shifted by a random number of days for privacy protection
     reasons.
     To distinguish real dates from shifted dates,
-    is is RECOMMENDED to set shifted dates to the year 1925 or earlier.
+    it is RECOMMENDED to set shifted dates to the year 1925 or earlier.
     Note that some data formats do not support arbitrary recording dates.
     For example, the [EDF](https://www.edfplus.info/)
     data format can only contain recording dates after 1985.
@@ -1046,9 +1165,16 @@ Describing dates and timestamps:
     for more information.
 
 -   Age SHOULD be given as the number of years since birth at the time of
-    scanning (or first scan in case of multi session datasets). Using higher
-    accuracy (weeks) should in general be avoided due to privacy protection,
-    unless when appropriate given the study goals, for example, when scanning babies.
+    scanning (or first scan in case of multi session datasets).
+    The default unit is `"year"`, but it MAY be overridden in the JSON sidecar
+    (for example, `participants.json`) by setting `"Units"` to one of the
+    following values based on
+    [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Durations) duration
+    designators: `"year"`, `"month"`, `"week"`, `"day"`, `"hour"`, `"minute"`,
+    or `"second"`.
+    Using higher accuracy (for example, weeks or days) should in general be
+    avoided due to privacy protection, unless when appropriate given the study
+    goals, for example, when scanning babies or animals.
 
 ## Directory structure
 
@@ -1106,7 +1232,7 @@ A guide for using macros can be found at
 Additional files and directories containing raw data MAY be added as needed for
 special cases.
 All non-standard file entities SHOULD conform to BIDS-style naming conventions, including
-alphabetic entities and suffixes and alphanumeric labels/indices.
+alphabetic entities and suffixes and alphanumeric (and possibly including `+` character(s)) labels/indices.
 Non-standard suffixes SHOULD reflect the nature of the data, and existing
 entities SHOULD be used when appropriate.
 For example, an ASSET calibration scan might be named
@@ -1121,8 +1247,7 @@ to suppress warnings or provide interpretations of your filenames.
 
 <!-- Link Definitions -->
 
-[dataset-description]: modality-agnostic-files.md#dataset-description
-[dataset_description.json]: modality-agnostic-files.md#dataset_descriptionjson
-[derived-dataset-description]: modality-agnostic-files.md#derived-dataset-and-pipeline-description
+[dataset-description]: modality-agnostic-files/dataset-description.md#dataset_descriptionjson
+[derived-dataset-description]: modality-agnostic-files/dataset-description.md#derived-dataset-and-pipeline-description
 [deprecated]: #definitions
 [uris]: #uniform-resource-indicator

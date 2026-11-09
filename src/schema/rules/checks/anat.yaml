@@ -39,4 +39,4 @@ PDT2Echos:
     - nifti_header.dim[0] == 4
   checks:
     - type(sidecar.EchoTime) == 'array'
-    - len(sidecar.EchoTime) == nifti_header.dim[4]
+    - length(sidecar.EchoTime) == nifti_header.dim[4]

@@ -25,7 +25,7 @@ A guide for using macros can be found at
 Preprocessed `bold` NIfTI file in the original coordinate space of the original run.
 The location of the file in the original datasets is encoded in the `Sources` metadata,
 and [`_desc-<label>`](../appendices/entities.md#desc)
-is used to prevent clashing with the original filename.
+is used (the last entity before the suffix) to prevent clashing with the original filename.
 
 <!-- This block generates a file tree.
 A guide for using macros can be found at
@@ -74,9 +74,9 @@ and the raw original file.
 ```JSON
 {
     "Sources": [
-        "bids::sub-01/anat/sub-01_desc-preproc_T1w.nii.gz"
+        "bids::sub-01/anat/sub-01_desc-preproc_T1w.nii.gz",
         "bids:raw:sub-01/func/sub-01_task-rest_bold.nii.gz"
-    ],
+    ]
 }
 ```
 
@@ -178,10 +178,11 @@ A guide for using macros can be found at
 Template:
 
 ```Text
-<pipeline_name>/
+<pipeline-name>/
     sub-<label>/
-        <datatype>/
-            <source_entities>[_space-<space>][_desc-<label>]_<suffix>.<extension>
+        [ses-<label>/]
+            <datatype>/
+                <source-entities>[_space-<space>][_desc-<label>]_<suffix>.<extension>
 ```
 
 Data is considered to be *preprocessed* or *cleaned* if the data type of the input,
@@ -328,11 +329,12 @@ A guide for using macros can be found at
 
 Contents of the `descriptions.tsv` file:
 
-| desc_id | description                                                                                     |
-| ------- | ----------------------------------------------------------------------------------------------- |
-| Filt    | low-pass filtered at 30Hz                                                                       |
-| FiltDs  | low-pass filtered at 30Hz, downsampled to 250Hz                                                 |
-| preproc | low-pass filtered at 30Hz, downsampled to 250Hz, and rereferenced to a common average reference |
+```tsv
+desc_id	description
+desc-Filt	low-pass filtered at 30Hz
+desc-FiltDs	low-pass filtered at 30Hz, downsampled to 250Hz
+desc-preproc	low-pass filtered at 30Hz, downsampled to 250Hz, and rereferenced to a common average reference
+```
 
 <!-- Link Definitions -->
 

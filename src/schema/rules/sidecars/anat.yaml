@@ -19,7 +19,7 @@ MRIAnatomyCommonMetadataFields:
 TaskMetadata:
   selectors:
     - datatype == "anat"
-    - entity.task != null
+    - entities.task != null
     - match(extension, "^\.nii(\.gz)?$")
   fields:
     TaskName:

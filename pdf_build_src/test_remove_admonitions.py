@@ -12,7 +12,6 @@ def test_remove_admonitions(tmp_path):
     generated_files = list(tmp_path.glob("**/*.md"))
 
     for file in generated_files:
-
         expected = expected_folder / file.relative_to(tmp_path)
 
         with open(expected, "r", encoding="utf8") as f:

@@ -1,5 +1,11 @@
 ---
 SubjectRelativeIntendedForString:
+  issue:
+    code: INTENDED_FOR
+    message: |
+      'IntendedFor' field needs to point to an existing file.
+      Files must be subject-relative paths or BIDS URIs.
+    level: error
   selectors:
     - datatype != "ieeg"
     - type(sidecar.IntendedFor) == "string"
@@ -7,6 +13,12 @@ SubjectRelativeIntendedForString:
     - exists(sidecar.IntendedFor, "bids-uri") + exists(sidecar.IntendedFor, "subject") == 1
 
 SubjectRelativeIntendedForArray:
+  issue:
+    code: INTENDED_FOR
+    message: |
+      'IntendedFor' field needs to point to an existing file.
+      Files must be subject-relative paths or BIDS URIs.
+    level: error
   selectors:
     - datatype != "ieeg"
     - type(sidecar.IntendedFor) == "array"
@@ -14,6 +26,12 @@ SubjectRelativeIntendedForArray:
     - exists(sidecar.IntendedFor, "bids-uri") + exists(sidecar.IntendedFor, "subject") == length(sidecar.IntendedFor)
 
 DatasetRelativeIntendedForString:
+  issue:
+    code: INTENDED_FOR
+    message: |
+      'IntendedFor' field needs to point to an existing file.
+      Files must be dataset-relative paths or BIDS URIs.
+    level: error
   selectors:
     - datatype == "ieeg"
     - type(sidecar.IntendedFor) == "string"
@@ -21,6 +39,12 @@ DatasetRelativeIntendedForString:
     - exists(sidecar.IntendedFor, "bids-uri") + exists(sidecar.IntendedFor, "dataset") == 1
 
 DatasetRelativeIntendedForArray:
+  issue:
+    code: INTENDED_FOR
+    message: |
+      'IntendedFor' field needs to point to an existing file.
+      Files must be dataset-relative paths or BIDS URIs.
+    level: error
   selectors:
     - datatype == "ieeg"
     - type(sidecar.IntendedFor) == "array"
@@ -28,6 +52,12 @@ DatasetRelativeIntendedForArray:
     - exists(sidecar.IntendedFor, "bids-uri") + exists(sidecar.IntendedFor, "dataset") == length(sidecar.IntendedFor)
 
 AssociatedEmptyRoomString:
+  issue:
+    code: ASSOCIATED_EMPTY_ROOM
+    message: |
+      'AssociatedEmptyRoom' field needs to point to an existing file.
+      Files must be dataset-relative paths or BIDS URIs.
+    level: error
   selectors:
     - datatype == "meg"
     - type(sidecar.AssociatedEmptyRoom) == "string"
@@ -35,6 +65,12 @@ AssociatedEmptyRoomString:
     - exists(sidecar.AssociatedEmptyRoom, "bids-uri") + exists(sidecar.AssociatedEmptyRoom, "dataset") == 1
 
 AssociatedEmptyRoomArray:
+  issue:
+    code: ASSOCIATED_EMPTY_ROOM
+    message: |
+      'AssociatedEmptyRoom' field needs to point to an existing file.
+      Files must be dataset-relative paths or BIDS URIs.
+    level: error
   selectors:
     - datatype == "meg"
     - type(sidecar.AssociatedEmptyRoom) == "array"
@@ -44,6 +80,12 @@ AssociatedEmptyRoomArray:
       == length(sidecar.AssociatedEmptyRoom)
 
 Sources:
+  issue:
+    code: SOURCE_FILE_EXIST
+    message: |
+      'Sources' field needs to point to existing files.
+      Files must be dataset-relative paths or BIDS URIs.
+    level: error
   selectors:
     - dataset.dataset_description.DatasetType == "derivatives"
     - type(sidecar.Sources) != "null"

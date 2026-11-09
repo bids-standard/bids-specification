@@ -1,3 +1,16 @@
+#!/usr/bin/env python3
+# /// script
+# requires-python = ">=3.13"
+# dependencies = [
+#     "cffconvert",
+#     "emoji",
+#     "pandas",
+#     "requests",
+#     "rich",
+#     "ruamel-yaml",
+# ]
+# ///
+
 """Add new contributors listed in `new_contributors.tsv` to `.tributors` file.
 
 The `.tributors` file is then used to update:
@@ -25,9 +38,9 @@ from __future__ import annotations
 
 import json
 import logging
+import os
 from collections import OrderedDict
 from pathlib import Path
-from typing import Optional
 
 import emoji
 import pandas as pd
@@ -45,8 +58,8 @@ LOG_LEVEL = "DEBUG"  # 'DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'
 # Set to True to update the avatars
 # update with your GitHub username and path to a file with GitHub token
 UPDATE_AVATARS = False
-GH_USERNAME = "Remi-Gau"
-TOKEN_FILE = None
+GH_USERNAME = os.environ.get("GH_USERNAME")
+GH_TOKEN = os.environ.get("GH_TOKEN")
 # if you not want traceback from rich
 # https://rich.readthedocs.io/en/stable/traceback.html
 # set this to False
@@ -78,6 +91,7 @@ log = logger(log_level=LOG_LEVEL)
 
 yaml = ruamel.yaml.YAML()
 yaml.indent(mapping=2, sequence=4, offset=2)
+yaml.width = 4096
 
 
 def root_dir() -> Path:
@@ -120,7 +134,7 @@ def emoji_map(reverse=False) -> dict[str, str]:
 
 def return_this_contributor(
     df: pd.DataFrame, name: str, contribution_needed=True
-) -> dict[str, Optional[str]]:
+) -> dict[str, str | None]:
     """Get and validate the data for a given contributor."""
     name = name.strip()
 
@@ -139,7 +153,7 @@ def return_this_contributor(
     contributions = df[mask].contributions.values[0]
     log.debug(f"contributions for {name}: '{contributions}'")
     if pd.isna(contributions):
-        contributions is None
+        contributions = None
     if contribution_needed and contributions is None:
         raise ValueError(f"Contributions for {name} not defined in input file.")
     if contributions is not None:
@@ -155,6 +169,9 @@ def return_this_contributor(
         orcid = orcid.replace("http://", "https://")
 
     website = df[mask].website.values[0]
+    if not pd.isna(website) and "://" not in website:
+        # Reasonable guess
+        website = f"https://{website}"
     affiliation = df[mask].affiliation.values[0]
     email = df[mask].email.values[0]
 
@@ -173,9 +190,7 @@ def return_this_contributor(
     for key, value in this_contributor.items():
         if value is None:
             continue
-        if not isinstance(this_contributor[key], (list)) and pd.isna(
-            this_contributor[key]
-        ):
+        if not isinstance(value, (list)) and pd.isna(value):
             this_contributor[key] = None
         elif isinstance(this_contributor[key], (str)):
             this_contributor[key] = this_contributor[key].strip()
@@ -194,6 +209,8 @@ def listify_contributions(contributions: str):
     contributions = [x.strip() for x in contributions.split(",")]
     tmp = []
     for contribution_ in contributions:
+        if all(emoji.is_emoji(x) for x in contribution_ if x):
+            contribution_ = " ".join(x for x in contribution_ if x)
         tmp.extend(iter(contribution_.split(" ")))
     return tmp
 
@@ -221,7 +238,7 @@ def canonicalize_contributions(contributions: list) -> list:
         contributions[contributions.index(contribution_)] = contribution_.replace(
             ":", ""
         )
-    contributions = sorted(list(set(contributions)))
+    contributions = sorted(set(contributions))
 
     return contributions
 
@@ -234,9 +251,8 @@ def update_key(
         return contributor
     log.info(f"updating {contributor['name']} - {key}")
     if key == "contributions":
-        for contribution in value:
-            if contribution not in contributor[key]:
-                contributor[key].append(contribution)
+        contributions = contributor.setdefault(key, [])
+        contributions.extend(set(value) - set(contributions))
     else:
         contributor[key] = value
     return contributor
@@ -247,8 +263,7 @@ def update_key(
 
 def load_tributors(tributors_file: Path) -> dict:
     """Load `.tributors` file."""
-    with open(tributors_file, "r", encoding="utf8") as tributors_file:
-        return json.load(tributors_file)
+    return json.loads(tributors_file.read_text())
 
 
 def write_tributors(tributors_file: Path, tributors: dict[str, dict]) -> None:
@@ -256,6 +271,7 @@ def write_tributors(tributors_file: Path, tributors: dict[str, dict]) -> None:
     tributors = sort_tributors(tributors)
     with open(tributors_file, "w", encoding="utf8") as output_file:
         json.dump(tributors, output_file, indent=4, ensure_ascii=False)
+        output_file.write(os.linesep)
 
 
 def return_missing_from_tributors(tributors_file: Path, names: list[str]) -> list[str]:
@@ -265,13 +281,13 @@ def return_missing_from_tributors(tributors_file: Path, names: list[str]) -> lis
     for i, name in enumerate(names):
         names[i] = name.strip()
     missing_from_tributors = set(names) - set(tributors_names)
-    return sorted(list(missing_from_tributors))
+    return sorted(missing_from_tributors)
 
 
 def sort_tributors(tributors: dict[str, dict]) -> dict[str, dict]:
     """Sort `.tributors` alphabetically by name of contributor."""
-    for key in tributors:
-        tributors[key] = dict(OrderedDict(sorted(tributors[key].items())))
+    for key, value in tributors.items():
+        tributors[key] = dict(sorted(value.items()))
     return dict(sorted(tributors.items(), key=lambda item: item[1]["name"]))
 
 
@@ -343,6 +359,7 @@ def write_allcontrib(allcontrib_file: Path, allcontrib: dict) -> None:
     allcontrib = sort_all_contrib(allcontrib)
     with open(allcontrib_file, "w", encoding="utf8") as output_file:
         json.dump(allcontrib, output_file, indent=4, ensure_ascii=False)
+        output_file.write(os.linesep)
 
 
 def sort_all_contrib(allcontrib: dict) -> dict:
@@ -374,7 +391,10 @@ def update_allcontrib(allcontrib: dict, this_contributor: dict[str, str]) -> dic
                 value=value,
             )
 
-        if allcontrib["contributors"][index_allcontrib][key] != value:
+        if (
+            key not in allcontrib["contributors"][index_allcontrib]
+            or allcontrib["contributors"][index_allcontrib][key] != value
+        ):
             allcontrib["contributors"][index_allcontrib] = update_key(
                 contributor=allcontrib["contributors"][index_allcontrib],
                 key=key,
@@ -396,6 +416,9 @@ def get_gh_avatar(gh_username: str, auth_username: str, auth_token: str) -> str:
     response = requests.get(url, auth=(auth_username, auth_token))
     if response.status_code == 200:
         avatar_url = response.json()["avatar_url"]
+        log.info(f" got avatar: {avatar_url}\n")
+    else:
+        log.error(" FAIL\n")
 
     return avatar_url
 
@@ -434,9 +457,16 @@ def write_citation(citation_file: Path, citation: dict) -> None:
         return yaml.dump(citation, output_file)
 
 
-def return_author_list_for_cff(tributors_file: Path) -> list[dict[str, str]]:
+def return_author_list_for_cff(
+    tributors_file: Path, authors: list[dict[str, str]]
+) -> list[dict[str, str]]:
     """Create an dict to be used for the authors in the `CITATION.cff` file."""
     tributors = load_tributors(tributors_file)
+
+    name_map = {
+        f"{author.get('given-names')} {author.get('family-names')}": author
+        for author in authors
+    }
 
     author_list = []
 
@@ -445,20 +475,28 @@ def return_author_list_for_cff(tributors_file: Path) -> list[dict[str, str]]:
 
         name = this_tributor["name"]
 
-        # take as given name the first part of the name and anything ending with a dot
-        # suboptimal for people with multiple given names
-        given_names = name.split()[0]
-        str_index = 1
-        while str_index < len(name.split()) and name.split()[str_index].endswith("."):
-            given_names += f" {name.split()[str_index]}"
-            str_index += 1
+        new_contrib = {}
+        if name in name_map:
+            # Accept given-names and family-names already in CITATION.cff as authoritative
+            new_contrib["given-names"] = name_map[name]["given-names"]
+            new_contrib["family-names"] = name_map[name]["family-names"]
+            # Do not just new_contrib.update(name_map[name]), to let entries be removed
+            # by removing from tributors
+        else:
+            # take as given name the first part of the name and anything ending with a dot
+            # suboptimal for people with multiple given names
+            given_names = name.split()[0]
+            str_index = 1
+            while str_index < len(name.split()) and name.split()[str_index].endswith(
+                "."
+            ):
+                given_names += f" {name.split()[str_index]}"
+                str_index += 1
 
-        new_contrib = {
-            "given-names": given_names,
-        }
+            new_contrib["given-names"] = given_names
 
-        if family_names := " ".join(name.split()[str_index:]):
-            new_contrib["family-names"] = family_names
+            if family_names := " ".join(name.split()[str_index:]):
+                new_contrib["family-names"] = family_names
 
         if this_tributor.get("blog") is not None:
             new_contrib["website"] = this_tributor["blog"]
@@ -481,11 +519,6 @@ def return_author_list_for_cff(tributors_file: Path) -> list[dict[str, str]]:
 
 
 def main():
-    token = None
-    if TOKEN_FILE is not None:
-        with open(Path(TOKEN_FILE)) as f:
-            token = f.read().strip()
-
     log.debug(f"Reading: {INPUT_FILE}")
     df = pd.read_csv(INPUT_FILE, sep="\t", encoding="utf8")
     log.debug(f"\n{df.head()}")
@@ -504,9 +537,16 @@ def main():
 
     # sanity checks to make sure no contributor was added manually
     assert len(tributors_names) == len(set(tributors_names))
-    assert len(allcontrib_names) == len(set(allcontrib_names))
-    assert len(tributors_names) == len(allcontrib_names)
-    assert len(tributors_names) == len(citation["authors"])
+    assert len(allcontrib_names) == len(set(allcontrib_names)), (
+        f"{allcontrib_names=}, {len(set(allcontrib_names))=}"
+    )
+    # We might be removing duplicates etc, thus let's not verify
+    # assert len(tributors_names) >= len(allcontrib_names), print(
+    #     f"{len(tributors_names)=}, {len(allcontrib_names)=}"
+    # )
+    # assert len(tributors_names) >= len(citation["authors"]), print(
+    #     f"{len(tributors_names)=}, {len(citation['authors'])=}"
+    # )
 
     new_contrib_names = df.name.to_list()
 
@@ -548,10 +588,15 @@ def main():
         this_contributor["login"] = github_username
         this_contributor = rename_keys_for_allcontrib(this_contributor)
 
-        if UPDATE_AVATARS:
-            avatar_url = get_gh_avatar(
-                this_contributor["github_username"], GH_USERNAME, token
+        if (
+            UPDATE_AVATARS
+            and "avatar_url" not in this_contributor
+            and (
+                avatar_url := get_gh_avatar(
+                    this_contributor["login"], GH_USERNAME, GH_TOKEN
+                )
             )
+        ):
             this_contributor["avatar_url"] = avatar_url
 
         allcontrib = update_allcontrib(allcontrib, this_contributor)
@@ -560,7 +605,9 @@ def main():
 
     log.info("UPDATING CITATION.cff")
     citation = load_citation(citation_file)
-    citation["authors"] = return_author_list_for_cff(tributors_file)
+    citation["authors"] = return_author_list_for_cff(
+        tributors_file, citation["authors"]
+    )
     write_citation(citation_file, citation)
 
     log.info("VALIDATING CITATION.cff")

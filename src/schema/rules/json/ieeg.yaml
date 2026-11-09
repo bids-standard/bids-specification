@@ -1,0 +1,50 @@
+#
+# Groups of related metadata fields
+#
+# Assumptions: never need disjunction of selectors
+# Assumptions: top-to-bottom overrides is sufficient logic
+
+---
+# General fields
+iEEGCoordsystemGeneral:
+  selectors:
+    - datatype == "ieeg"
+    - suffix == "coordsystem"
+  fields:
+    IntendedFor__ds_relative:
+      level: optional
+      description_addendum: |
+        If only a surface reconstruction is available, this should point to
+        the surface reconstruction file.
+        Note that this file should have the same coordinate system
+        specified in `iEEGCoordinateSystem`.
+        For example, **T1**: `'bids::sub-<label>/ses-<label>/anat/sub-01_T1w.nii.gz'`
+        **Surface**: `'bids::derivatives/surfaces/sub-<label>/ses-<label>/anat/
+        sub-01_hemi-R_desc-T1w_pial.surf.gii'`
+        **Operative photo**: `'bids::sub-<label>/ses-<label>/ieeg/
+        sub-0001_ses-01_acq-photo1_photo.jpg'`
+        **Talairach**: `'bids::derivatives/surfaces/sub-Talairach/ses-01/anat/
+        sub-Talairach_hemi-R_pial.surf.gii'`
+
+# Fields relating to the iEEG electrode positions
+iEEGCoordsystemPositions:
+  selectors:
+    - datatype == "ieeg"
+    - suffix == "coordsystem"
+  fields:
+    iEEGCoordinateSystem: required
+    iEEGCoordinateUnits: required
+    iEEGCoordinateSystemDescription:
+      level: recommended
+      level_addendum: required if `iEEGCoordinateSystem` is `"Other"`
+    iEEGCoordinateProcessingDescription: recommended
+    iEEGCoordinateProcessingReference: recommended
+
+iEEGCoordsystemOther:
+  selectors:
+    - datatype == "ieeg"
+    - suffix == "coordsystem"
+    - '"iEEGCoordinateSystem" in json'
+    - json.iEEGCoordinateSystem == "Other"
+  fields:
+    iEEGCoordinateSystemDescription: required

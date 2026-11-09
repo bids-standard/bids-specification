@@ -5,6 +5,14 @@ Contents
 ========
 
 .. toctree::
+   :caption: Tutorial
+
+   quickstart
+   doc_to_schema
+
+
+.. toctree::
+   :caption: Reference
    :maxdepth: 2
 
    description

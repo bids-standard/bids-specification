@@ -1,3 +1,7 @@
+---
+render_macros: false
+---
+
 # Using MkDocs macros in the BIDS specification
 
 We use [mkdocs-macros](https://mkdocs-macros-plugin.readthedocs.io/en/latest/)
@@ -8,23 +12,6 @@ in the specification.
 
 Below you will find answers to frequently asked questions regarding using macros
 in the BIDS specification.
-
-- [Using MkDocs macros in the BIDS specification](#using-mkdocs-macros-in-the-bids-specification)
-   - [What are macros and why use them?](#what-are-macros-and-why-use-them)
-   - [What kind of input information are required by macros?](#what-kind-of-input-information-are-required-by-macros)
-   - [What macros are available?](#what-macros-are-available)
-   - [When should I use a macro?](#when-should-i-use-a-macro)
-   - [Do I need learn how to program to use those macros?](#do-i-need-learn-how-to-program-to-use-those-macros)
-   - [Anything else I need to know if I need to insert a new macro call?](#anything-else-i-need-to-know-if-i-need-to-insert-a-new-macro-call)
-   - [How-To and Examples](#how-to-and-examples)
-      - [Writing directory content examples](#writing-directory-content-examples)
-      - [Generating tables](#generating-tables)
-         - [Modifying a term in the table](#modifying-a-term-in-the-table)
-         - [Why would you NOT want to modify the content of the yml file directly ?](#why-would-you-not-want-to-modify-the-content-of-the-yml-file-directly-)
-         - [Adding a new term to the table](#adding-a-new-term-to-the-table)
-         - [Should I create a macro if I need a new kind of table?](#should-i-create-a-macro-if-i-need-a-new-kind-of-table)
-   - [Why use macros at all?](#why-use-macros-at-all)
-   - [Links and references](#links-and-references)
 
 ## What are macros and why use them?
 
@@ -42,7 +29,7 @@ layouts in the documentation. The macro takes a single parameter, the directory
 tree to be displayed in JSON format. If you insert the following in the BIDS
 markdown document:
 
-```python
+```jinja
 {{ MACROS___make_filetree_example(
 
    {
@@ -127,9 +114,6 @@ when you get back to the document you just edited) is to leave a comment before
 the macro to quickly explain what it does and where to find more information
 about it.
 
-<!-- - [ ] TODO for maintainers: actually add those comments in the current
-      specification. -->
-
 It could for example look like this:
 
 ```markdown
@@ -178,7 +162,7 @@ To do this get this output, your macro call would look like this:
 ```
 
 When you have complex files and directory structure, we suggest you use this
-[Jupyter notebook](tools/filetree_example.ipynb) for sandboxing your example
+[Jupyter notebook](https://github.com/bids-standard/bids-specification/blob/master/tools/filetree_example.ipynb) for sandboxing your example
 before you insert the macro call into the markdown document.
 
 ### Generating tables
@@ -188,11 +172,11 @@ the PET page.
 
 The HTML version of the this section is here:
 
-https://bids-specification.readthedocs.io/en/stable/04-modality-specific-files/09-positron-emission-tomography.html#reconstruction
+https://bids-specification.readthedocs.io/en/stable/modality-specific-files/positron-emission-tomography.html#reconstruction
 
 In the markdown document, it is here:
 
-https://github.com/bids-standard/bids-specification/blob/master/src/04-modality-specific-files/09-positron-emission-tomography.md#reconstruction
+https://github.com/bids-standard/bids-specification/blob/master/src/modality-specific-files/positron-emission-tomography.md#reconstruction
 
 GitHub's way of directly rendering markdown documents makes it a bit harder to
 read, so if you opened the markdown document in your code editor it would look
@@ -246,7 +230,7 @@ The macro will create the different columns of the table:
 
 A general description of that macro call would look like this:
 
-```python
+```jinja
 {{ MACROS___make_metadata_table(
    {
       "TermToRender": "REQUIREMENT_LEVEL plus anything else after", "Extra content you want to append after the description of that term."
@@ -280,7 +264,7 @@ If you wanted to add some extra content to that table, but without modifying the
 definition in the schema, then you could just add some extra content into the
 macro call.
 
-```python
+```jinja
 #### Reconstruction
 
 {{ MACROS___make_metadata_table(
@@ -309,7 +293,7 @@ contains an entry for `MoonPhase`. If this is the case because the term already
 exists and is used somewhere in the BIDS specification, you are in luck and you
 can just stop there.
 
-```python
+```jinja
 #### Reconstruction
 
 {{ MACROS___make_metadata_table(
@@ -339,7 +323,7 @@ As a rule of thumb, no, unless it is clear that this kind of table will reappear
 many times in the future in the specification. But this is usually hard to
 predict so better start with a table in Markdown.
 
-If later we see that the same type of table keeps reoccuring the specification
+If later we see that the same type of table keeps reoccurring the specification
 we could create a macro to generate them.
 
 ## Why use macros at all?

@@ -12,7 +12,7 @@ For example, if a file has an acquisition and reconstruction label, the
 acquisition entity must precede the reconstruction entity.
 REQUIRED and OPTIONAL entities for a given file type are denoted;
 empty cells imply that entities MUST NOT be specified.
-Entity formats indicate whether the value is alphanumeric
+Entity formats indicate whether the value is alphanumeric (and possibly including `+` character(s))
 (`<label>`) or numeric (`<index>`).
 
 A general introduction to entities is given in the section on
@@ -42,6 +42,14 @@ while entity definitions are in the [Entities Appendix](entities.md).
 
 {{ MACROS___make_entity_table(datatypes=["pet"]) }}
 
+## Near-Infrared Spectroscopy  (NIRS)
+
+{{ MACROS___make_entity_table(datatypes=["nirs"]) }}
+
+## Magnetic Resonance Spectroscopy (MRS)
+
+{{ MACROS___make_entity_table(datatypes=["mrs"]) }}
+
 ## Behavioral Data
 
 {{ MACROS___make_entity_table(datatypes=["beh"]) }}
@@ -49,3 +57,7 @@ while entity definitions are in the [Entities Appendix](entities.md).
 ## Microscopy
 
 {{ MACROS___make_entity_table(datatypes=["micr"]) }}
+
+## Motion
+
+{{ MACROS___make_entity_table(datatypes=["motion"]) }}

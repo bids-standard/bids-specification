@@ -47,6 +47,12 @@ DF:
   display_name: Dark-field microscopy
   description: |
     Dark-field microscopy imaging data
+FA:
+  value: FA
+  display_name: Fractional Anisotropy image
+  description: |
+    Scanner-generated derivative parametric map
+    reflecting the anisotropy of the diffusion tensor
 FLAIR:
   value: FLAIR
   display_name: Fluid attenuated inversion recovery image
@@ -286,16 +292,25 @@ RB1map:
   unit: arbitrary
 S0map:
   value: S0map
-  display_name: Observed signal amplitude (S0) image
+  display_name: Projected baseline signal amplitude (S0) image
   description: |
     In arbitrary units (arbitrary).
-    For a multi-echo (typically fMRI) sequence, S0 maps index the baseline signal
-    before exponential (T2-star) signal decay.
+    This represents a model-based estimate of signal intensity
+    in the absence of the contrast under investigation.
+    For a multi-echo sequence
+    (for example, multi-echo spin echo T2 relaxometry or multi-echo fMRI),
+    S0 maps index the baseline signal at a hypothetical echo time of zero
+    (that is, in the absence of any T2 or T2-star decay).
     In other words: the exponential of the intercept for a linear decay model
     across log-transformed echos. For more information, please see, for example,
     [the tedana documentation](https://tedana.readthedocs.io/en/latest/\
     approach.html#monoexponential-decay-model-fit).
     S0 maps are RECOMMENDED to use this suffix if derived from an ME-FMRI dataset.
+    For a diffusion-weighted sequence,
+    S0 maps represent the model-based estimate of the signal intensity
+    in the absence of any diffusion weighting;
+    in other words, the image intensity at *b*=0
+    as estimated by a diffusion model fit.
 SEM:
   value: SEM
   display_name: Scanning electron microscopy
@@ -465,11 +480,6 @@ TEM:
   display_name: Transmission electron microscopy
   description: |
     Transmission electron microscopy imaging data
-TRACE:
-  value: TRACE
-  display_name: Trace diffusion weighted image
-  description: |
-    Diffusion images proportional to the trace of the diffusion tensor
 UNIT1:
   value: UNIT1
   display_name: Homogeneous (flat) T1-weighted MP2RAGE image
@@ -547,6 +557,15 @@ channels:
   display_name: Channels File
   description: |
     Channel information.
+colFA:
+  value: colFA
+  display_name: Colored Fractional Anisotropy image
+  description: |
+    Scanner-derived parametric map encoding both the anisotropy and principal direction of the diffusion tensor.
+    Image intensity is proportional to the Fractional Anisotropy (FA) measure;
+    image color is determined by the principal eigenvector of the diffusion tensor,
+    where red encodes the magnitude of the left-right component of that orientation,
+    with green and blue similarly encoding the anterior-posterior and inferior-superior components respectively.
 coordsystem:
   value: coordsystem
   display_name: Coordinate System File
@@ -559,6 +578,15 @@ defacemask:
   description: |
     A binary mask that was used to remove facial features from an anatomical MRI
     image.
+description:
+  value: description
+  display_name: Description file
+  description: |
+    A JSON file describing the entities that occur in the filename.
+
+    At present, this is used for atlas descriptions.
+
+    This file MUST be located at the root of the dataset.
 descriptions:
   value: descriptions
   display_name: Description Entity Definitions
@@ -592,7 +620,12 @@ electrodes:
   value: electrodes
   display_name: Electrodes
   description: |
-    File that gives the location of (i)EEG electrodes.
+    File that gives the location of (i)EEG or EMG electrodes.
+emg:
+  value: emg
+  display_name: Electromyography
+  description: |
+    Electromyography recording data.
 epi:
   value: epi
   display_name: EPI
@@ -605,6 +638,12 @@ events:
   display_name: Events
   description: |
     Event timing information from a behavioral task.
+expADC:
+  value: expADC
+  display_name: Exponential ADC
+  description: |
+    Exponential ADC / Attenuation Coefficient / Attenuation Factor map,
+    as the ratio of trace-weighted to non-diffusion-weighted image intensity
 fieldmap:
   value: fieldmap
   display_name: Fieldmap
@@ -688,11 +727,24 @@ meg:
   description: |
     Unprocessed MEG data stored in the native file format of the MEG instrument
     with which the data was collected.
+
 motion:
   value: motion
   display_name: Motion
   description: |
     Data recorded from a tracking system store.
+mrsi:
+  value: mrsi
+  display_name: Magnetic resonance spectroscopy imaging
+  description: |
+    MRS acquisitions where additional imaging gradients are used
+    to detect the MR signal from 1, 2, or 3 spatial dimensions.
+mrsref:
+  value: mrsref
+  display_name: MRS reference acquisition
+  description: |
+    An MRS acquisition collected to serve as a concentration reference for absolute quantification
+    or as a calibration reference for preprocessing (for example, eddy-current correction).
 nirs:
   value: nirs
   display_name: Near Infrared Spectroscopy
@@ -773,6 +825,12 @@ physio:
   display_name: Physiological recording
   description: |
     Physiological recordings such as cardiac and respiratory signals.
+physioevents:
+  value: physioevents
+  display_name: Physiological events and asynchronous data
+  description: |
+    Event timing information corresponding to physiological recordings and other
+    asynchronous data such as messages.
 probseg:
   value: probseg
   display_name: Probabilistic Segmentation
@@ -796,7 +854,7 @@ scans:
     Such recordings MUST be documented with one row per file.
     Relative paths to files should be used under a compulsory filename header.
     If acquisition time is included it should be listed under the acq_time header.
-    Acquisition time refers to when the first data point in each run was acquired.
+    Acquisition time refers to the moment the acquisition of the data in each run started.
     Furthermore, if this header is provided, the acquisition times of all files that belong to a
     recording MUST be identical.
     Datetime should be expressed as described in Units.
@@ -819,8 +877,24 @@ stim:
   display_name: Continuous recording
   description: |
     Continuous measures, such as parameters of a film or audio stimulus.
+svs:
+  value: svs
+  display_name: Single-voxel spectroscopy
+  description: |
+    MRS acquisitions where the detected MR signal is spatially localized to a single volume.
+trace:
+  value: trace
+  display_name: Trace-weighted diffusion image
+  description: |
+    Trace-weighted image, as the mean intensity of diffusion-weighted images
 uCT:
   value: uCT
   display_name: Micro-CT
   description: |
     Micro-CT imaging data
+unloc:
+  value: unloc
+  display_name: Unlocalized spectroscopy
+  description: |
+    MRS acquisitions run without localization.
+    This includes signals detected using coil sensitivity only.

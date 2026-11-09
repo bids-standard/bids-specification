@@ -17,6 +17,12 @@
                 "target": {
                   "type": "object",
                   "properties": {
+                    "entities": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
                     "suffix": {
                       "type": "string"
                     },
@@ -41,8 +47,43 @@
                   "type": "boolean"
                 }
               },
-              "required": ["target"],
-              "additionalProperties": false
+              "required": ["selectors", "target", "inherit"],
+              "additionalProperties": false,
+              "if": {
+                "properties": {
+                  "target": {
+                    "properties": {
+                      "extension": {
+                        "oneOf": [
+                          {
+                            "enum": [".json", ".tsv", ".bval", ".bvec"]
+                          },
+                          {
+                            "type": "array",
+                            "items": {
+                              "enum": [".json", ".tsv", ".bval", ".bvec"]
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              },
+              "then": {
+                "properties": {
+                  "inherit": {
+                    "const": true
+                  }
+                }
+              },
+              "else": {
+                "properties": {
+                  "inherit": {
+                    "const": false
+                  }
+                }
+              }
             }
           },
           "additionalProperties": false
@@ -65,9 +106,13 @@
             "additionalProperties": false
           }
         },
+        "templates": {
+          "type": "object"
+        },
         "versions": {
           "type": "array",
           "items": {
+            "type": "string",
             "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
           }
         }
@@ -242,6 +287,16 @@
           },
           "additionalProperties": false
         },
+        "metaentities": {
+          "type": "object",
+          "patternProperties": {
+            "^[a-zA-Z0-9_]+$": {
+              "$ref": "#/definitions/termTypes/general",
+              "unevaluatedProperties": false
+            },
+            "additionalProperties": false
+          }
+        },
         "modalities": {
           "type": "object",
           "patternProperties": {
@@ -287,6 +342,7 @@
         "files",
         "formats",
         "metadata",
+        "metaentities",
         "modalities",
         "suffixes"
       ],
@@ -315,7 +371,7 @@
                       "$ref": "#/definitions/ruleTypes/expressionList"
                     }
                   },
-                  "required": ["checks", "selectors"],
+                  "required": ["checks", "selectors", "issue"],
                   "additionalProperties": false
                 }
               }
@@ -386,19 +442,26 @@
           "required": ["common", "deriv", "raw"],
           "additionalProperties": false
         },
+        "json": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/json"
+          }
+        },
         "sidecars": {
           "type": "object",
           "patternProperties": {
             "^derivatives$": {
               "type": "object",
               "properties": {
-                "common_derivatives": { "$ref": "#/definitions/sidecar" }
+                "atlas": { "$ref": "#/definitions/json" },
+                "common_derivatives": { "$ref": "#/definitions/json" }
               },
-              "required": ["common_derivatives"],
+              "required": ["atlas", "common_derivatives"],
               "additionalProperties": false
             },
             "^(?!derivatives$)[a-z_]+$": {
-              "$ref": "#/definitions/sidecar"
+              "$ref": "#/definitions/json"
             },
             "additionalProperties": false
           },
@@ -423,12 +486,13 @@
           },
           "additionalProperties": false
         },
-        "common_principles": {
+        "metaentities": {
           "type": "array",
           "items": { "type": "string" }
         },
-        "dataset_metadata": {
-          "type": "object"
+        "common_principles": {
+          "type": "array",
+          "items": { "type": "string" }
         },
         "directories": {
           "type": "object"
@@ -464,7 +528,7 @@
               "properties": {
                 "datatypes": {
                   "type": "array",
-                  "items": { "pattern": "^[a-z]+$" }
+                  "items": { "type": "string", "pattern": "^[a-z]+$" }
                 }
               },
               "required": ["datatypes"],
@@ -476,10 +540,11 @@
       "required": [
         "entities",
         "files",
+        "json",
         "sidecars",
         "tabular_data",
+        "metaentities",
         "common_principles",
-        "dataset_metadata",
         "directories",
         "errors",
         "modalities"
@@ -565,8 +630,7 @@
             },
             "required": ["level"],
             "additionalProperties": false
-          },
-          { "type": "string", "pattern": "recommended.*" }
+          }
         ]
       },
       "issue": {
@@ -586,7 +650,7 @@
         }
       }
     },
-    "sidecar": {
+    "json": {
       "type": "object",
       "patternProperties": {
         "^[a-zA-Z0-9_]+$": {
@@ -626,7 +690,8 @@
               "additionalProperties": false
             },
             "additional_columns": {
-              "type": "string"
+              "type": "string",
+              "enum": ["allowed", "allowed_if_defined", "not_allowed", "n/a"]
             },
             "index_columns": { "type": "array", "items": { "type": "string" } },
             "initial_columns": {
@@ -634,7 +699,7 @@
               "items": { "type": "string" }
             }
           },
-          "required": ["selectors", "columns"],
+          "required": ["selectors", "columns", "additional_columns"],
           "additionalProperties": false
         }
       }
@@ -642,6 +707,7 @@
     "pathRule": {
       "type": "object",
       "properties": {
+        "selectors": { "$ref": "#/definitions/ruleTypes/expressionList" },
         "level": { "enum": ["optional", "required"] },
         "path": { "type": "string" }
       },
@@ -651,10 +717,11 @@
     "stemRule": {
       "type": "object",
       "properties": {
+        "selectors": { "$ref": "#/definitions/ruleTypes/expressionList" },
         "level": { "enum": ["optional", "recommended", "required"] },
         "datatypes": {
           "type": "array",
-          "items": { "pattern": "^[a-z]+$" }
+          "items": { "type": "string", "pattern": "^[a-z]+$" }
         },
         "stem": { "type": "string" },
         "extensions": { "type": "array", "items": { "type": "string" } }
@@ -665,14 +732,15 @@
     "suffixRule": {
       "type": "object",
       "properties": {
+        "selectors": { "$ref": "#/definitions/ruleTypes/expressionList" },
         "level": { "enum": ["optional", "recommended", "required"] },
         "datatypes": {
           "type": "array",
-          "items": { "pattern": "^[a-z]+$" }
+          "items": { "type": "string", "pattern": "^[a-z]+$" }
         },
         "suffixes": {
           "type": "array",
-          "items": { "pattern": "^[a-zA-Z0-9]+$" }
+          "items": { "type": "string", "pattern": "^[a-zA-Z0-9]+$" }
         },
         "extensions": { "type": "array", "items": { "type": "string" } },
         "entities": {

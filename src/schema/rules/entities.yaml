@@ -2,11 +2,15 @@
 # This file simply defines the order in which entities should appear within filenames.
 # Entity definitions appear in the `objects/entities.yaml` file.
 - subject
+- template
 - session
+- cohort
 - sample
 - task
 - tracksys
 - acquisition
+- nucleus
+- volume
 - ceagent
 - tracer
 - stain
@@ -25,8 +29,14 @@
 - split
 - recording
 - chunk
+- atlas
 - segmentation
+- scale
 - resolution
 - density
 - label
+# NOTE: there is a current convention to keep description to be the last entity.
+# If to be changed - potentially might need to adjust text in
+# src/derivatives/common-data-types.md
+# See https://github.com/bids-standard/bids-specification/pull/1915
 - description

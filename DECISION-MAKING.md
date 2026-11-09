@@ -6,8 +6,7 @@ In October 2019, the BIDS community [voted](https://github.com/bids-standard/bid
 to ratify a governance structure and to elect five members as a *Steering Group*
 to oversee the development and adoption of the standard.
 
-The document outlining our governance structure is hosted on the BIDS website:
-[https://bids.neuroimaging.io/governance.html](https://bids.neuroimaging.io/governance.html)
+The document outlining our governance structure is hosted [on the BIDS website](https://bids.neuroimaging.io/collaboration/governance.html)
 
 In the following, we list the current members of subgroups detailed in the
 BIDS governance.
@@ -15,19 +14,19 @@ BIDS governance.
 ### Steering Group
 
 Current and past members of the steering group can be found in the
-[BIDS governance](https://bids.neuroimaging.io/governance.html#bids-steering-group).
+[BIDS governance](https://bids.neuroimaging.io/collaboration/governance.html#bids-steering-group).
 
 ### Maintainers Group
 
 Current and past members of the maintainers group can be found in the
-[BIDS governance](https://bids.neuroimaging.io/governance.html#bids-maintainers-group),
+[BIDS governance](https://bids.neuroimaging.io/collaboration/governance.html#bids-maintainers-group),
 and in the
 [Maintainers Guide](Maintainers_Guide.md).
 
 ### BEP Leads Group
 
 Leaders of BIDS Extension Proposals are listed in the
-[table of BEPs](https://bids.neuroimaging.io/get_involved.html#extending-the-bids-specification).
+[table of BEPs](https://bids.neuroimaging.io/extensions/beps.html).
 
 ### Contributors Group
 
@@ -42,7 +41,7 @@ according to the instructions listed there.
 
 The following groups are not described in detail.
 Please learn more about these groups from the
-[BIDS governance](https://bids.neuroimaging.io/governance.html).
+[BIDS governance](https://bids.neuroimaging.io/collaboration/governance.html).
 
 - BEP working groups
 - Advisory Group

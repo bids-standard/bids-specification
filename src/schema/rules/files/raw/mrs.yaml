@@ -1,0 +1,17 @@
+---
+mrs:
+  suffixes:
+    - svs
+    - mrsi
+    - unloc
+    - mrsref
+  extensions:
+    - .nii.gz
+    - .nii
+    - .json
+  datatypes:
+    - mrs
+  entities:
+    $ref: meta.templates.raw.mrs.entities
+    echo: optional
+    inversion: optional

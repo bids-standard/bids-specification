@@ -8,6 +8,7 @@
 # Metadata for either beh or events files
 BEHTaskInformation:
   selectors:
+    - datatype == "beh"
     - intersects([suffix], ["beh", "events"])
   fields:
     TaskName: recommended
@@ -18,6 +19,7 @@ BEHTaskInformation:
 
 BEHInstitutionInformation:
   selectors:
+    - datatype == "beh"
     - intersects([suffix], ["beh", "events"])
   fields:
     InstitutionName: recommended

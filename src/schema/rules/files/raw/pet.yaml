@@ -5,16 +5,12 @@ pet:
   extensions:
     - .nii.gz
     - .nii
+    - .ome.zarr/
     - .json
   datatypes:
     - pet
   entities:
-    subject: required
-    session: optional
-    task: optional
-    tracer: optional
-    reconstruction: optional
-    run: optional
+    $ref: meta.templates.raw.pet.entities
 
 blood:
   suffixes:
@@ -25,10 +21,5 @@ blood:
   datatypes:
     - pet
   entities:
-    subject: required
-    session: optional
-    task: optional
-    tracer: optional
-    reconstruction: optional
-    run: optional
+    $ref: meta.templates.raw.pet.entities
     recording: required

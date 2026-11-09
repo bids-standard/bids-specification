@@ -1,0 +1,141 @@
+#
+# Groups of related metadata fields
+#
+# Assumptions: never need disjunction of selectors
+# Assumptions: top-to-bottom overrides is sufficient logic
+
+---
+# MEG and EEG sensors
+MEGCoordsystemWithEEG:
+  selectors:
+    - datatype == "meg"
+    - suffix == "coordsystem"
+  fields:
+    MEGCoordinateSystem: required
+    MEGCoordinateUnits: required
+    MEGCoordinateSystemDescription:
+      level: optional
+      level_addendum: required if `MEGCoordinateSystem` is `Other`
+    EEGCoordinateSystem:
+      level: optional
+      description_addendum: |
+        See [Recording EEG simultaneously with MEG]
+        (/modality-specific-files/magnetoencephalography.html#recording-ieeg-simultaneously-with-meg).
+        Preferably the same as the `MEGCoordinateSystem`.
+    EEGCoordinateUnits: optional
+    EEGCoordinateSystemDescription:
+      level: optional
+      level_addendum: required if `EEGCoordinateSystem` is `Other`
+      description_addendum: |
+        See [Recording EEG simultaneously with MEG]
+        (/modality-specific-files/magnetoencephalography.html#recording-ieeg-simultaneously-with-meg).
+
+MEGCoordsystemWithEEGMEGCoordinateSystem:
+  selectors:
+    - datatype == "meg"
+    - suffix == "coordsystem"
+    - '"MEGCoordinateSystem" in json'
+    - json.MEGCoordinateSystem == "Other"
+  fields:
+    MEGCoordinateSystemDescription: required
+
+# NOTE: Not sure if this requires simult. EEG
+MEGCoordsystemWithEEGEEGCoordinateSystem:
+  selectors:
+    - datatype == "meg"
+    - suffix == "coordsystem"
+    - '"EEGCoordinateSystem" in json'
+    - json.EEGCoordinateSystem == "Other"
+  fields:
+    EEGCoordinateSystemDescription: required
+
+# Head localization coils
+MEGCoordsystemHeadLocalizationCoils:
+  selectors:
+    - datatype == "meg"
+    - suffix == "coordsystem"
+  fields:
+    HeadCoilCoordinates: optional
+    HeadCoilCoordinateSystem: optional
+    HeadCoilCoordinateUnits: optional
+    HeadCoilCoordinateSystemDescription:
+      level: optional
+      level_addendum: required if `HeadCoilCoordinateSystem` is `Other`
+
+MEGCoordsystemHeadLocalizationCoilsHeadCoilCoordinateSystem:
+  selectors:
+    - datatype == "meg"
+    - suffix == "coordsystem"
+    - '"HeadCoilCoordinateSystem" in json'
+    - json.HeadCoilCoordinateSystem == "Other"
+  fields:
+    HeadCoilCoordinateSystemDescription: required
+
+# Digitized head points
+MEGCoordsystemDigitizedHeadPoints:
+  selectors:
+    - datatype == "meg"
+    - suffix == "coordsystem"
+  fields:
+    DigitizedHeadPoints__coordsystem: optional
+    DigitizedHeadPointsCoordinateSystem: optional
+    DigitizedHeadPointsCoordinateUnits: optional
+    DigitizedHeadPointsCoordinateSystemDescription:
+      level: optional
+      level_addendum: required if `DigitizedHeadPointsCoordinateSystem` is `Other`
+
+MEGCoordsystemDigitizedHeadPointsDigitizedHeadPointsCoordinateSystem:
+  selectors:
+    - datatype == "meg"
+    - suffix == "coordsystem"
+    - '"DigitizedHeadPointsCoordinateSystem" in json'
+    - json.DigitizedHeadPointsCoordinateSystem == "Other"
+  fields:
+    DigitizedHeadPointsCoordinateSystemDescription: required
+
+# Anatomical MRI
+MEGCoordsystemAnatomicalMRI:
+  selectors:
+    - datatype == "meg"
+    - suffix == "coordsystem"
+    - intersects(dataset.datatypes, ["anat"])
+  fields:
+    IntendedFor:
+      level: optional
+      description_addendum: |
+        This is used to identify the structural MRI(s),
+        possibly of different types if a list is specified,
+        to be used with the MEG recording.
+
+# Anatomical landmarks
+MEGCoordsystemAnatomicalLandmarks:
+  selectors:
+    - datatype == "meg"
+    - suffix == "coordsystem"
+  fields:
+    AnatomicalLandmarkCoordinates: optional
+    AnatomicalLandmarkCoordinateSystem:
+      level: optional
+      description_addendum: |
+        Preferably the same as the `MEGCoordinateSystem`.
+    AnatomicalLandmarkCoordinateUnits: optional
+    AnatomicalLandmarkCoordinateSystemDescription:
+      level: optional
+      level_addendum: required if `AnatomicalLandmarkCoordinateSystem` is `Other`
+
+MEGCoordsystemAnatomicalLandmarksAnatomicalLandmarkCoordinateSystem:
+  selectors:
+    - datatype == "meg"
+    - suffix == "coordsystem"
+    - '"AnatomicalLandmarkCoordinateSystem" in json'
+    - json.AnatomicalLandmarkCoordinateSystem == "Other"
+  fields:
+    AnatomicalLandmarkCoordinateSystemDescription: required
+
+# Fiducials information
+MEGCoordsystemFiducialsInformation:
+  selectors:
+    - datatype == "meg"
+    - suffix == "coordsystem"
+  fields:
+    FiducialsDescription: optional

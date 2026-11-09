@@ -1,0 +1,104 @@
+---
+# Anatomical qMRI sequences
+VariableFlipAngleMetadata:
+  selectors:
+    - suffix == "VFA"
+    - match(extension, "^\.nii(\.gz)?$")
+  fields:
+    FlipAngle: required
+    PulseSequenceType: required
+    RepetitionTimeExcitation: required
+
+InversionRecoveryT1Metadata:
+  selectors:
+    - suffix == "IRT1"
+    - match(extension, "^\.nii(\.gz)?$")
+  fields:
+    InversionTime: required
+
+MP2RAGEMetadata:
+  selectors:
+    - suffix == "MP2RAGE"
+    - match(extension, "^\.nii(\.gz)?$")
+  fields:
+    FlipAngle: required
+    InversionTime: required
+    RepetitionTimeExcitation: required
+    RepetitionTimePreparation: required
+    NumberShots: required
+    MagneticFieldStrength: required
+
+MESpinEchoMetadata:
+  selectors:
+    - suffix == "MESE"
+    - match(extension, "^\.nii(\.gz)?$")
+  fields:
+    EchoTime: required
+
+MEGradientEchoMetadata:
+  selectors:
+    - suffix == "MEGRE"
+    - match(extension, "^\.nii(\.gz)?$")
+  fields:
+    EchoTime: required
+
+MTRatioMetadata:
+  selectors:
+    - suffix == "MTR"
+    - match(extension, "^\.nii(\.gz)?$")
+  fields:
+    MTState: required
+
+MTSaturationMetadata:
+  selectors:
+    - suffix == "MTS"
+    - match(extension, "^\.nii(\.gz)?$")
+  fields:
+    FlipAngle: required
+    MTState: required
+    RepetitionTimeExcitation: required
+
+MultiParametricMappingMetadata:
+  selectors:
+    - suffix == "MPM"
+    - match(extension, "^\.nii(\.gz)?$")
+  fields:
+    FlipAngle: required
+    MTState: required
+    RepetitionTimeExcitation: required
+
+# Field mapping qMRI sequences
+TB1DAMMetadata:
+  selectors:
+    - suffix == "TB1DAM"
+    - match(extension, "^\.nii(\.gz)?$")
+  fields:
+    FlipAngle: required
+
+TB1EPIMetadata:
+  selectors:
+    - suffix == "TB1EPI"
+    - match(extension, "^\.nii(\.gz)?$")
+  fields:
+    EchoTime: required
+    FlipAngle: required
+    TotalReadoutTime: required
+    MixingTime: required
+
+TB1AFIMetadata:
+  selectors:
+    - suffix == "TB1AFI"
+    - match(extension, "^\.nii(\.gz)?$")
+  fields:
+    RepetitionTimeExcitation: required
+
+TB1SRGEMetadata:
+  selectors:
+    - suffix == "TB1SRGE"
+    - match(extension, "^\.nii(\.gz)?$")
+  fields:
+    FlipAngle: required
+    InversionTime: required
+    RepetitionTimeExcitation: required
+    RepetitionTimePreparation: required
+    NumberShots: required

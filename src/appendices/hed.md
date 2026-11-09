@@ -14,7 +14,7 @@ Individual terms are comma-separated and may be grouped using parentheses to ind
 association.
 See the [HED Schema Browser](https://www.hedtags.org/display_hed.html)
 to view the HED schema and the
-[HED resources](https://www.hed-resources.org/en/latest/) site for additional information.
+[HED resources](https://www.hedtags.org/hed-resources/) site for additional information.
 
 Starting with HED version 8.0.0, HED allows users to annotate using individual
 terms or partial paths in the HED vocabulary (for example, `Red` or `Visual-presentation`)
@@ -34,7 +34,7 @@ on GitHub.
 
 Event-related data in BIDS appears in tab-separated value (`events.tsv`)
 files in various places in the dataset hierarchy
-(see [Events](../modality-specific-files/task-events.md)).
+(see [Events](../modality-agnostic-files/events.md)).
 
 `events.tsv` files MUST have `onset` and `duration` columns.
 Dataset curators MAY also include additional columns and define their
@@ -44,10 +44,10 @@ meanings in associated JSON sidecar files (`events.json`).
 (`trial_type`, `response_time`, and `stim_file`) in addition to
 the required `onset` and `duration` columns.
 
-```Text
-onset  duration  trial_type  response_time stim_file
-1.2    0.6       go          1.435         images/red_square.jpg
-5.6    0.6       stop        n/a           images/blue_square.jpg
+```tsv
+onset	duration	trial_type	response_time	stim_file
+1.2	0.6	go	1.435	images/red_square.jpg
+5.6	0.6	stop	n/a	images/blue_square.jpg
 ```
 
 The `trial_type` column in the above example contains a limited number of distinct
@@ -168,7 +168,7 @@ This allows for properly validating the HED annotations
 (for example, using the `bids-validator`).
 
 **Example:** The following `dataset_description.json` file specifies that the
-[`HED8.2.0.xml`](https://github.com/hed-standard/hed-schemas/blob/main/standard_schema/hedxml/HED8.2.0.xml)
+[`HED8.4.0.xml`](https://github.com/hed-standard/hed-schemas/blob/main/standard_schema/hedxml/HED8.4.0.xml)
 file from the `standard_schema/hedxml` directory of the
 [`hed-schemas`](https://github.com/hed-standard/hed-schemas)
 repository on GitHub should be used to validate the study event annotations.
@@ -176,8 +176,8 @@ repository on GitHub should be used to validate the study event annotations.
 ```JSON
 {
   "Name": "A great experiment",
-  "BIDSVersion": "1.8.0",
-  "HEDVersion": "8.2.0"
+  "BIDSVersion": "1.10.1",
+  "HEDVersion": "8.4.0"
 }
 ```
 
@@ -193,7 +193,7 @@ along with or instead of the standard vocabulary.
 These specialized vocabularies are developed by communities of users
 and are available in the
 [hed-schemas](https://github.com/hed-standard/hed-schemas) GitHub repository.
-A library schema is specified in the form `<library-name<_>library-version>`.
+A library schema is specified in the form `<library-name>_<library-version>`.
 
 #### Partnered library schemas
 
@@ -210,8 +210,8 @@ A given library schema version is either partnered or standalone.
 unpartnered is fixed when the library is released and cannot be changed.
 For example,
 [HED-SCORE version 1.0.0](https://github.com/hed-standard/hed-schemas/blob/main/library_schemas/score/hedwiki/HED_score_1.0.0.mediawiki)
-is unpartnered, but [HED-SCORE version 1.1.0](https://github.com/hed-standard/hed-schemas/blob/main/library_schemas/score/hedwiki/HED_score_1.1.0.mediawiki)
-is partnered with standard schema version 8.2.0.
+is unpartnered, but [HED-SCORE version 2.1.0](https://github.com/hed-standard/hed-schemas/blob/main/library_schemas/score/hedwiki/HED_score_2.1.0.mediawiki)
+is partnered with standard schema version 8.4.0.
 
 ##### Unpartnered library schema example
 
@@ -224,8 +224,8 @@ for clinical neurological annotation located at
 ```JSON
 {
   "Name": "A great experiment",
-  "BIDSVersion": "1.7.0",
-  "HEDVersion": ["8.1.0", "sc:score_1.0.0"]
+  "BIDSVersion": "1.10.1",
+  "HEDVersion": ["8.4.0", "sc:score_1.0.0"]
 }
 ```
 The `sc:` is a user-chosen prefix used to distinguish the source schemas
@@ -250,7 +250,7 @@ The following `dataset_description.json` indicates that only the HED-SCORE libra
 ```JSON
 {
   "Name": "A great experiment",
-  "BIDSVersion": "1.7.0",
+  "BIDSVersion": "1.10.1",
   "HEDVersion": "score_1.0.0"
 }
 ```
@@ -265,20 +265,19 @@ Eye-blink-artifact, Seizure-PNES
 
 The following `dataset_description.json` file specifies that
 the HED-SCORE library schema
-[version 1.1.0](https://github.com/hed-standard/hed-schemas/blob/main/library_schemas/score/hedwiki/HED_score_1.1.0.mediawiki) is used.
+[version 2.1.0](https://github.com/hed-standard/hed-schemas/blob/main/library_schemas/score/hedwiki/HED_score_2.1.0.mediawiki) is used.
 This particular library schema version is partnered with the standard schema version
-[8.2.0](https://github.com/hed-standard/hed-schemas/blob/main/standard_schema/hedxml/HED8.2.0.xml).
+[8.4.0](https://github.com/hed-standard/hed-schemas/blob/main/standard_schema/hedxml/HED8.4.0.xml).
 
 ```JSON
 {
   "Name": "A great experiment",
-  "BIDSVersion": "1.8.0",
-  "HEDVersion": "score_1.1.0"
+  "BIDSVersion": "1.10.1",
+  "HEDVersion": "score_2.1.0"
 }
 ```
 The corresponding annotations in the dataset use tags from the
-HED-SCORE library schema (`Eye-blink-artifact` and `Seizure-PNES`) and from the standard HED (`Data-feature`)
-as follows:
+HED-SCORE library schema (`Seizure-PNES`) and from the standard HED (`Data-feature` and `Eye-blink-artifact`) as follows:
 
 ```Text
 Data-feature, Eye-blink-artifact, Seizure-PNES

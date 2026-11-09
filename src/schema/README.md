@@ -167,21 +167,43 @@ references (the cases in which they are used will be presented later):
     (which are in turn references to individual values), and the references inside `GeneticLevel.anyOf` indicate that there may be a single
     such value or a list of values.
 
-1.  In [`rules.files.deriv.preprocessed_data`](./rules/files/deriv/preprocessed_data.yaml):
+1.  In [`rules.files.deriv.imaging`](./rules/files/deriv/imaging.yaml):
     ```YAML
-    anat_nonparametric_common:
-      $ref: rules.files.raw.anat.nonparametric
+    anat_parametric_volumetric:
+      $ref: rules.files.raw.anat.parametric
       entities:
-        $ref: rules.files.raw.anat.nonparametric.entities
-        space: optional
-        description: optional
+        $ref:
+          - meta.templates.deriv.volumetric.entities
+          - rules.files.raw.anat.parametric.entities
     ```
     Here, the derivative datatype rule starts by copying the raw datatype rule
     `rules.files.raw.anat.nonparametric`.
     It then *overrides* the `entities` portion of that rule with a new object.
-    To *extend* the original `entities`, it again begins
-    by referencing `rules.files.raw.anat.nonparametric.entities`,
-    and adding the new entities `space` and `description`.
+    To *extend* the original `entities`, it composes
+    `meta.templates.deriv.volumetric.entities`
+    and `rules.files.raw.anat.nonparametric.entities`.
+    When multiple references are aggregated, the first reference takes
+    precedence.
+
+    Note also that `value: null` can be used to "delete" a key from a template.
+    For example, in `rules.files.raw.events`:
+
+    ```YAML
+    events__pet:
+      $ref: rules.files.raw.events.events
+      datatypes:
+        - pet
+      entities:
+        $ref: meta.templates.raw.task.entities
+        tracer: optional
+        reconstruction: optional
+        # Most events allow acquisition, PET doesn't
+        acquisition: null
+    ```
+
+    This technique should be used judiciously, preferring semantic clarity to brevity.
+    Templates should be expected to grow as BIDS evolves,
+    and should thus be used only where those changes should propagate.
 
 ### Expressions
 
@@ -259,20 +281,37 @@ The following operators should be defined by an interpreter:
 
 The following functions should be defined by an interpreter:
 
-| Function                                        | Definition                                                                                                                                                 | Example                                                | Note                                                                           |
-| ----------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `count(arg: array, val: any)`                   | Number of elements in an array equal to `val`                                                                                                              | `count(columns.type, "EEG")`                           | The number of times "EEG" appears in the column "type" of the current TSV file |
-| `exists(arg: str \| array, rule: str) -> int`   | Count of files in an array that exist in the dataset. String is array with length 1. Rules include `"bids-uri"`, `"dataset"`, `"subject"` and `"stimuli"`. | `exists(sidecar.IntendedFor, "subject")`               | True if all files in `IntendedFor` exist, relative to the subject directory.   |
-| `index(arg: array, val: any)`                   | Index of first element in an array equal to `val`, `null` if not found                                                                                     | `index(["i", "j", "k"], axis)`                         | The number, from 0-2 corresponding to the string `axis`                        |
-| `intersects(a: array, b: array) -> bool`        | `true` if arguments contain any shared elements                                                                                                            | `intersects(dataset.modalities, ["pet", "mri"])`       | True if either PET or MRI data is found in dataset                             |
-| `allequal(a: array, b: array) -> bool`          | `true` if arrays have the same length and paired elements are equal                                                                                        | `intersects(dataset.modalities, ["pet", "mri"])`       | True if either PET or MRI data is found in dataset                             |
-| `length(arg: array) -> int`                     | Number of elements in an array                                                                                                                             | `length(columns.onset) > 0`                            | True if there is at least one value in the onset column                        |
-| `match(arg: str, pattern: str) -> bool`         | `true` if `arg` matches the regular expression `pattern` (anywhere in string)                                                                              | `match(extension, ".gz$")`                             | True if the file extension ends with `.gz`                                     |
-| `max(arg: array) -> number`                     | The largest non-`n/a` value in an array                                                                                                                    | `max(columns.onset)`                                   | The time of the last onset in an events.tsv file                               |
-| `min(arg: array) -> number`                     | The smallest non-`n/a` value in an array                                                                                                                   | `min(sidecar.SliceTiming) == 0`                        | A check that the onset of the first slice is 0s                                |
-| `sorted(arg: array, method: str) -> array`      | The sorted values of the input array; defaults to type-determined sort. If method is "lexical", or "numeric" use lexical or numeric sort.                  | `sorted(sidecar.VolumeTiming) == sidecar.VolumeTiming` | True if `sidecar.VolumeTiming` is sorted                                       |
-| `substr(arg: str, start: int, end: int) -> str` | The portion of the input string spanning from start position to end position                                                                               | `substr(path, 0, length(path) - 3)`                    | `path` with the last three characters dropped                                  |
-| `type(arg: Any) -> str`                         | The name of the type, including `"array"`, `"object"`, `"null"`                                                                                            | `type(datatypes)`                                      | Returns `"array"`                                                              |
+| Function                                          | Definition                                                                                                                                | Example                                                     | Note                                                                           |
+| ------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| `allequal(a: array, b: array) -> bool`            | `true` if arrays have the same length and paired elements are equal                                                                       | `allequal(sorted(columns.onset, "numeric"), columns.onset)` | True if the array columns.onset is sorted numerically.                         |
+| `count(arg: array, val: any) -> int`              | Number of elements in an array equal to `val`                                                                                             | `count(columns.type, "EEG")`                                | The number of times "EEG" appears in the column "type" of the current TSV file |
+| `exists(arg: str \| array, rule: str) -> int`     | Count of files in an array that exist in the dataset. String is array with length 1. See following section for the meanings of rules.     | `exists(sidecar.IntendedFor, "subject")`                    | True if all files in `IntendedFor` exist, relative to the subject directory.   |
+| `index(arg: array, val: any) -> int`              | Index of first element in an array equal to `val`, `null` if not found                                                                    | `index(["i", "j", "k"], axis)`                              | The number, from 0-2 corresponding to the string `axis`                        |
+| `intersects(a: array, b: array) -> array \| bool` | The intersection of arrays `a` and `b`, or `false` if there are no shared values.                                                         | `intersects(dataset.modalities, ["pet", "mri"])`            | Non-empty array if either PET or MRI data is found in dataset, otherwise false |
+| `length(arg: array) -> int`                       | Number of elements in an array                                                                                                            | `length(columns.onset) > 0`                                 | True if there is at least one value in the onset column                        |
+| `match(arg: str, pattern: str) -> bool`           | `true` if `arg` matches the regular expression `pattern` (anywhere in string)                                                             | `match(extension, ".gz$")`                                  | True if the file extension ends with `.gz`                                     |
+| `max(arg: array) -> number`                       | The largest non-`n/a` value in an array                                                                                                   | `max(columns.onset)`                                        | The time of the last onset in an events.tsv file                               |
+| `min(arg: array) -> number`                       | The smallest non-`n/a` value in an array                                                                                                  | `min(sidecar.SliceTiming) == 0`                             | A check that the onset of the first slice is 0s                                |
+| `sorted(arg: array, method: str) -> array`        | The sorted values of the input array; defaults to type-determined sort. If method is "lexical", or "numeric" use lexical or numeric sort. | `sorted(sidecar.VolumeTiming) == sidecar.VolumeTiming`      | True if `sidecar.VolumeTiming` is sorted                                       |
+| `substr(arg: str, start: int, end: int) -> str`   | The portion of the input string spanning from start position to end position                                                              | `substr(path, 0, length(path) - 3)`                         | `path` with the last three characters dropped                                  |
+| `type(arg: Any) -> str`                           | The name of the type, including `"array"`, `"object"`, `"null"`                                                                           | `type(datatypes)`                                           | Returns `"array"`                                                              |
+| `unique(arg: array) -> array)`                    | The unique values of the input array, retaining their input order. Equal float and int values are not considered distinct.                | `length(unique(columns.X)) == length(columns.X)`            | True if column `X` contains no duplicate values.                               |
+
+#### The `exists()` function
+
+In various places, BIDS datasets may declare links between files.
+In order to validate these links,
+the `exists()` function returns a count of files that can be found within the dataset.
+To accommodate the various ways of declaring these links,
+the following rules are defined:
+
+| `rule`       | Definition                                                                                                | Example                                                                               |
+| ------------ | --------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `"dataset"`  | A path relative to the root of the dataset.                                                               | `exists('participants.tsv', 'dataset')`                                               |
+| `"subject"`  | A path relative to the current subject directory.                                                         | `exists('ses-1/anat/sub-01_ses-1_T1w.nii.gz', 'subject')`                             |
+| `"stimuli"`  | A path relative to the `/stimuli` directory.                                                              | For `events.tsv`: `exists(columns.stim_file, 'stimuli') == length(columns.stim_file)` |
+| `"file"`     | A path relative to the directory containing the current file.                                             | For `scans.tsv`: `exists(columns.filename, 'file') == length(columns.stim_file)`      |
+| `"bids-uri"` | A URI of the form `bids:<dataset>:<relative-path>`. If `<dataset>` is empty, the current dataset is used. | `exists('bids::participants.tsv', 'bids-uri')`                                        |
 
 #### The special value `null`
 
@@ -309,6 +348,7 @@ Most operations involving `null` simply resolve to `null`:
 | `index([], val)`           | `null` |
 | `min(null)`                | `null` |
 | `max(null)`                | `null` |
+| `unique(null)`             | `null` |
 | `exists(null, "bids-uri")` | `null` |
 | `exists("/path", null)`    | `null` |
 
@@ -353,6 +393,7 @@ The namespaces are:
 | --------------------------- | ----------------------------------------------------------------------------------- | ---------------- |
 | `objects.common_principles` | Terms that are used throughout BIDS                                                 | General terms    |
 | `objects.modalities`        | Broad categories of data represented in BIDS, roughly matching recording instrument | General terms    |
+| `objects.metaentities`      | Placeholders and wildcards to reduce verbosity of some templates in BIDS            | General terms    |
 | `objects.entities`          | Name-value pairs appearing in filenames                                             | Name/value terms |
 | `objects.metadata`          | Name-value pairs appearing in JSON files                                            | Name/value terms |
 | `objects.columns`           | Column headings and values appearing in TSV files                                   | Name/value terms |
@@ -382,6 +423,13 @@ These objects additionally have the field:
 | `name`   | For terms that can take on multiple values (such as entities, metadata fields), the name of the term as it appears in the specification and in a dataset; must be alphanumeric; mutually exclusive with `value` |
 | `type`   | The type (such as `string`, `integer`, `object`) of values the term describes                                                                                                                                   |
 | `format` | The format of the term (defined in `objects.formats`)                                                                                                                                                           |
+
+`objects.columns` additionally permit a `definition` field that may take any value permissible
+for the definition of a column in a JSON sidecar:
+
+| Field        | Description                                                                                                                                                                                                   |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `definition` | A JSON object that describes the column as in [Common principles - Tabular files][tabular files]. This is mutually exclusive with the `type` field, and is used for fields that have overridable definitions. |
 
 Value terms groups (`datatypes`, `suffixes`, `extensions`) define terms where a field
 can take on multiple values.
@@ -423,7 +471,7 @@ arrays or objects:
 | `properties`           | The object described has a given set of fields; the values of these fields may be constrained |
 | `additionalProperties` | The object described has constraints on its values, but not the names                         |
 
-### On re-used objects with different definitions
+### On reused objects with different definitions
 
 In a few cases, two objects with the same name appear multiple times in the specification.
 When this happens, it is preferred to find a common definition, and clarify it in the rules (see below).
@@ -471,12 +519,21 @@ The convention can be summed up in the following rules:
 #### Valid fields for definitions by sub-namespace
 
 -   `objects.common_principles`
+
     | Field          | Description         |
     | -------------- | ------------------- |
     | `display_name` | Human-friendly name |
     | `description`  | Term definition     |
 
 -   `objects.modalities`
+
+    | Field          | Description         |
+    | -------------- | ------------------- |
+    | `display_name` | Human-friendly name |
+    | `description`  | Term definition     |
+
+-   `objects.metaentities`
+
     | Field          | Description         |
     | -------------- | ------------------- |
     | `display_name` | Human-friendly name |
@@ -497,6 +554,7 @@ The convention can be summed up in the following rules:
     applies in certain contexts, that should be written in the specification, and not the schema.
 
 -   `objects.metadata`
+
     | Field          | Description                                                                          |
     | -------------- | ------------------------------------------------------------------------------------ |
     | `display_name` | Human-friendly name                                                                  |
@@ -511,11 +569,13 @@ The convention can be summed up in the following rules:
     | `*`            | JSON-schema fields to further constrain values                                       |
 
 -   `objects.columns`
+
     | Field          | Description                                                         |
     | -------------- | ------------------------------------------------------------------- |
     | `display_name` | Human-friendly name                                                 |
     | `description`  | Term definition                                                     |
     | `name`         | Name of column in TSV file (in `snake_case`)                        |
+    | `definition`   | JSON definition of a column, according to [Tabular files][]         |
     | `unit`         | Interpretation of numeric values                                    |
     | `type`         | Type of value                                                       |
     | `format`       | Permissible format of values, from definitions in `objects.formats` |
@@ -526,6 +586,7 @@ The convention can be summed up in the following rules:
     | `*`            | JSON-schema fields to further constrain values                      |
 
 -   `objects.datatypes`
+
     | Field          | Description                |
     | -------------- | -------------------------- |
     | `display_name` | Human-friendly name        |
@@ -533,6 +594,7 @@ The convention can be summed up in the following rules:
     | `value`        | String value of `datatype` |
 
 -   `objects.suffixes`
+
     | Field          | Description                                                    |
     | -------------- | -------------------------------------------------------------- |
     | `display_name` | Human-friendly name                                            |
@@ -544,6 +606,7 @@ The convention can be summed up in the following rules:
     | `anyOf`        | Used to describe multiple permissible units                    |
 
 -   `objects.extensions`
+
     | Field          | Description                 |
     | -------------- | --------------------------- |
     | `display_name` | Human-friendly name         |
@@ -551,6 +614,7 @@ The convention can be summed up in the following rules:
     | `value`        | String value of `extension` |
 
 -   `objects.formats`
+
     | Field          | Description                        |
     | -------------- | ---------------------------------- |
     | `display_name` | Human-friendly name                |
@@ -558,6 +622,7 @@ The convention can be summed up in the following rules:
     | `pattern`      | Regular expression defining format |
 
 -   `objects.files`
+
     | Field          | Description                                                                          |
     | -------------- | ------------------------------------------------------------------------------------ |
     | `display_name` | Human-friendly name                                                                  |
@@ -565,6 +630,7 @@ The convention can be summed up in the following rules:
     | `file_type`    | Indicator that the file is a regular file (`"regular"`) or directory (`"directory"`) |
 
 -   `objects.enums`
+
     | Field          | Description            |
     | -------------- | ---------------------- |
     | `display_name` | Human-friendly name    |
@@ -617,6 +683,7 @@ as part of a larger rule.
 In these cases, the `level` field should be omitted from the issue
 to avoid duplication or conflict.
 
+(filename-construction-rules)=
 ### Filename construction rules
 
 A significant portion of BIDS is devoted to the naming of files,
@@ -806,9 +873,9 @@ meg_meg_common:
     description: optional
 ```
 
-### Sidecar and tabular data rules
+### JSON and tabular data rules
 
-Tabular data and JSON sidecar files follow a similar pattern:
+Tabular data and JSON files follow a similar pattern:
 
 |      | Name          | Value         |
 | ---- | ------------- | ------------- |
@@ -870,7 +937,7 @@ rule is applied.
 
 #### Valid fields for definitions
 
-1.  `rules.sidecars.*`
+1.  `rules.sidecars.*` and `rules.json.*`
 
     | Field       | Description                                                                                              |
     | ----------- | -------------------------------------------------------------------------------------------------------- |
@@ -917,6 +984,11 @@ MRIFuncVolumeTiming:
 An additional check will be required to assert that both are not present,
 but these tables may be combined for rendering purposes.
 
+`rules.json.*` and `rules.sidecars.*` are essentially identical,
+except `rules.json` rules describe the contents of individual JSON files,
+while `rules.sidecars` rules describe the contents of sidecar files,
+accumulated by the inheritance principle.
+
 Here we present an example rule in `rules.tabular_data.eeg`:
 
 ```YAML
@@ -952,7 +1024,7 @@ They additionally have a `checks` list, and an explicit issue.
 
 | Field       | Description                                                                                    |
 | ----------- | ---------------------------------------------------------------------------------------------- |
-| `issue`     | Issue code object (see [Issues](#issues)                                                       |
+| `issue`     | Issue code object (see [Issues](#issues))                                                      |
 | `selectors` | List of expressions; any evaluating false indicate rule does not apply                         |
 | `checks`    | List of expressions; any evaluating false indicate rule is violated and issue should be raised |
 
@@ -980,15 +1052,16 @@ EventsMissing:
 -   `rules.common_principles` - This file contains a list of terms that appear in `objects.common_principles`
     that determines the order they appear in the specification
 
+-   `rules.metaentities` - This file contains a list of terms that appear in `objects.metaentities`
+    that determines the order they appear in the specification
+
 ### One-off rules
 
 -   `rules.modalities` - The keys in this file are the modalities, the values objects with the following field:
+
     | Field       | Description                           |
     | ----------- | ------------------------------------- |
     | `datatypes` | List of datatypes mapping to modality |
-
--   `rules.dataset_metadata` - These are similar to `rules.sidecars.*`, for JSON files at the root level.
-    This is likely to go away in favor of other approaches.
 
 -   `rules.errors` - This file describes errors that cannot be expressed in the schema. This provides common
     codes and language that implementing validators can use to ensure the same problems are reported to
@@ -1035,3 +1108,5 @@ formalize the allowable directories, files, fields and values of the BIDS schema
 ensuring consistency across the entire schema directory. Validation of the schema is
 incorporated into the CI, so any changes that are inconsistent will be flagged before
 inclusion.
+
+[tabular files]: https://bids-specification.readthedocs.io/en/stable/common-principles.html#tabular-files

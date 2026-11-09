@@ -3,17 +3,28 @@
 # WARNING: The terms are presented here in alphabetical order!
 # The order in which these terms are presented in the specification is defined in `rules/common_principles.yaml`,
 # rather than this file (`objects/common_principles.yaml`).
+atlas:
+  display_name: Atlas
+  description: |
+    An *atlas* is structured neuroanatomical or neurofunctional information expressed as spatial annotations,
+    such as anatomical landmarks, segmentations, parcellations, probabilistic maps, or feature maps,
+    typically defined in relation to a *space* engendered by a specific *template*.
+    Within BIDS, atlases provide standardized spatially-organized knowledge to label, localize,
+    and interpret data features.
+    Atlases often rely on or embed templates as their reference framework.
+    In BIDS, templates establish the spatial coordinate frames for atlases,
+    independently of whether or not they are considered part of specific atlases' outcomes.
 data_acquisition:
   display_name: Data acquisition
   description: |
-    A continuous uninterrupted block of time during which a brain scanning instrument was acquiring data according to
-    particular scanning sequence/protocol.
+    A continuous uninterrupted block of time during which a brain scanning instrument
+    or an electromyography recording device was acquiring data
+    according to a particular scanning sequence/protocol.
 data_type:
   display_name: Data type
   description: |
     A functional group of different types of data.
     Data files are contained in a directory named for the data type.
-    In raw datasets, the data type directory is nested inside subject and (optionally) session directories.
     BIDS defines the following data types:
 
         1.  `func` (task based and resting state functional MRI)
@@ -41,6 +52,19 @@ data_type:
         12. `nirs` (near infrared spectroscopy)
 
         13. `motion` (motion)
+
+        14. `mrs` (magnetic resonance spectroscopy)
+
+        15. `phenotype` (measurement and survey data)
+
+        16. `emg` (electromyography)
+
+    For files that are subject- and session- specific, the data type directory
+    is nested inside those directories.
+    `phenotype` data files are aggregated across subjects and sessions,
+    and so the `phenotype/` directory is placed in the dataset root.
+
+
 dataset:
   display_name: Dataset
   description: |
@@ -83,7 +107,8 @@ index:
 label:
   display_name: label
   description: |
-    An alphanumeric value, possibly prefixed with arbitrary number of 0s for consistent indentation,
+    An alphanumeric (and possibly including `+` character(s)) value, possibly prefixed with arbitrary
+    number of 0s for consistent indentation,
     for example, it is `rest` in `task-rest` following `task-<label>` specification.
     Note that labels MUST not collide when casing is ignored
     (see [Case collision intolerance](SPEC_ROOT/common-principles.md#case-collision-intolerance)).
@@ -133,6 +158,12 @@ session:
     often in the case of some intervention between sessions (for example, training).
     In the [PET](SPEC_ROOT/modality-specific-files/positron-emission-tomography.md) context,
     a session may also indicate a group of related scans, taken in one or more visits.
+space:
+  display_name: Space
+  description: |
+    A space in BIDS is a reference [coordinate system](SPEC_ROOT/appendices/coordinate-systems.md)
+    defined by neuroimaging data, which may originate from an individual participant (native space)
+    or a standardized reference derived from multiple participants (template space).
 suffix:
   display_name: suffix
   description: |
@@ -154,3 +185,11 @@ task:
     In the context of brain scanning, a task is always tied to one data acquisition.
     Therefore, even if during one acquisition the subject performed multiple conceptually different behaviors
     (with different sets of instructions) they will be considered one (combined) task.
+template:
+  display_name: Template
+  description: |
+    A template (sometimes called an *atlas template*) is any aggregation of data across subjects.
+    Templates MAY operationalize the notion of a common spatial frame of reference
+    (see *space*) beyond individual subjects.
+    In practical BIDS usage, templates can be recognized (via the `tpl-` entity) as
+    standard spaces that enable analyses of data from multiple individuals.

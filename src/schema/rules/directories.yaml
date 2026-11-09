@@ -1,5 +1,5 @@
 ---
-# This file defines layouts of directories.
+# This file defines layouts of directories for each DatasetType
 #
 # A layout defines a collection of directory specifiers.
 # Each specifier has a naming convention, requirement level, opacity, and subdirectories.
@@ -16,11 +16,52 @@
 # The special "root" specifier describes the root of the dataset and only defines subdirectories.
 # No naming convention applies, and the requirement level and opacity would be superfluous.
 #
+study:
+  root:
+    subdirs:
+      - code
+      - docs
+      - rawbids
+      - derivatives
+      - logs
+      - sourcedata
+      - phenotype
+  code:
+    name: code
+    level: optional
+    opaque: true
+  docs:
+    name: docs
+    level: optional
+    opaque: true
+  rawbids:
+    name: rawbids
+    level: optional
+    opaque: true
+  derivatives:
+    name: derivatives
+    level: optional
+    opaque: true
+  logs:
+    name: logs
+    level: optional
+    opaque: true
+  sourcedata:
+    name: sourcedata
+    level: optional
+    opaque: true
+  phenotype:
+    name: phenotype
+    level: optional
+    opaque: false
+
 raw:
   root:
     subdirs:
       - code
+      - docs
       - derivatives
+      - logs
       - phenotype
       - sourcedata
       - stimuli
@@ -31,6 +72,14 @@ raw:
     opaque: true
   derivatives:
     name: derivatives
+    level: optional
+    opaque: true
+  docs:
+    name: docs
+    level: optional
+    opaque: true
+  logs:
+    name: logs
     level: optional
     opaque: true
   phenotype:
@@ -68,17 +117,39 @@ derivative:
   root:
     subdirs:
       - code
+      - docs
+      - rawbids
       - derivatives
+      - logs
       - phenotype
       - sourcedata
       - stimuli
       - subject
+      - template
   code:
     name: code
     level: optional
     opaque: true
+  cohort:
+    entity: cohort
+    level: optional
+    opaque: false
+    subdirs:
+      - datatype
+  docs:
+    name: docs
+    level: optional
+    opaque: true
+  rawbids:
+    name: rawbids
+    level: optional
+    opaque: true
   derivatives:
     name: derivatives
+    level: optional
+    opaque: true
+  logs:
+    name: logs
     level: optional
     opaque: true
   phenotype:
@@ -105,6 +176,13 @@ derivative:
     level: optional
     opaque: false
     subdirs:
+      - datatype
+  template:
+    entity: template
+    level: optional
+    opaque: false
+    subdirs:
+      - cohort
       - datatype
   datatype:
     value: datatype

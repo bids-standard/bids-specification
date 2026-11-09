@@ -8,7 +8,7 @@ context of the academic literature.
 
 !!! example "Example datasets"
 
-    Several [example EEG datasets](https://bids-standard.github.io/bids-examples/#eeg)
+    Several [example EEG datasets](https://bids.neuroimaging.io/datasets/examples.html#eeg)
     have been formatted using this specification
     and can be used for practical guidance when curating a new dataset.
 
@@ -200,7 +200,7 @@ A guide for using macros can be found at
 ```
 
 Note that the date and time information SHOULD be stored in the Study key file
-([`scans.tsv`](../modality-agnostic-files.md#scans-file)).
+([`scans.tsv`](../modality-agnostic-files/data-summary-files.md#scans-file)).
 Date time information MUST be expressed as indicated in [Units](../common-principles.md#units)
 
 ## Channels description (`*_channels.tsv`)
@@ -272,14 +272,14 @@ Examples of free-form text for field `description`
 
 ### Example `*_channels.tsv`
 
-See also the corresponding [`electrodes.tsv` example](#example-electrodestsv).
+See also the corresponding [`electrodes.tsv` example](#example-_electrodestsv).
 
-```Text
-name     type  units  description                     reference     status  status_description
-VEOG     VEOG  uV     left eye                        VEOG-, VEOG+  good    n/a
-FDI      EMG   uV     left first dorsal interosseous  FDI-, FDI+    good    n/a
-Cz       EEG   uV     n/a                             REF           bad     high frequency noise
-UADC001  MISC  n/a    envelope of audio signal        n/a           good    n/a
+```tsv
+name	type	units	description	reference	status	status_description
+VEOG	VEOG	uV	left eye	VEOG-, VEOG+	good	n/a
+FDI	EMG	uV	left first dorsal interosseous	FDI-, FDI+	good	n/a
+Cz	EEG	uV	n/a	REF	bad	high frequency noise
+UADC001	MISC	n/a	envelope of audio signal	n/a	good	n/a
 ```
 
 ## Electrodes description (`*_electrodes.tsv`)
@@ -316,17 +316,17 @@ If electrodes are repositioned, it is RECOMMENDED to use multiple sessions to in
 
 ### Example `*_electrodes.tsv`
 
-See also the corresponding [`electrodes.tsv` example](#example-channelstsv).
+See also the corresponding [`channels.tsv` example](#example-_channelstsv).
 
-```Text
-name   x        y	       z        type     material
-VEOG+  n/a      n/a      n/a      cup      Ag/AgCl
-VEOG-  n/a      n/a      n/a      cup      Ag/AgCl
-FDI+   n/a      n/a      n/a      cup      Ag/AgCl
-FDI-   n/a      n/a      n/a      cup      Ag/AgCl
-GND    -0.0707  0.0000   -0.0707  clip-on  Ag/AgCl
-Cz     0.0000   0.0714   0.0699   cup      Ag/AgCl
-REF    -0.0742  -0.0200  -0.0100  cup      Ag/AgCl
+```tsv
+name	x	y	z	type	material
+VEOG+	n/a	n/a	n/a	cup	Ag/AgCl
+VEOG-	n/a	n/a	n/a	cup	Ag/AgCl
+FDI+	n/a	n/a	n/a	cup	Ag/AgCl
+FDI-	n/a	n/a	n/a	cup	Ag/AgCl
+GND	-0.0707	0.0000	-0.0707	clip-on	Ag/AgCl
+Cz	0.0000	0.0714	0.0699	cup	Ag/AgCl
+REF	-0.0742	-0.0200	-0.0100	cup	Ag/AgCl
 ```
 
 The [`acq-<label>`](../appendices/entities.md#acq) entity can be used to
@@ -384,49 +384,49 @@ General fields:
 
 <!-- This block generates a metadata table.
 These tables are defined in
-  src/schema/rules/sidecars
+  src/schema/rules/json
 The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("eeg.EEGCoordsystemGeneral") }}
+{{ MACROS___make_json_table("json.eeg.EEGCoordsystemGeneral") }}
 
 Fields relating to the EEG electrode positions:
 
 <!-- This block generates a metadata table.
 These tables are defined in
-  src/schema/rules/sidecars
+  src/schema/rules/json
 The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("eeg.EEGCoordsystemPositions") }}
+{{ MACROS___make_json_table("json.eeg.EEGCoordsystemPositions") }}
 
 Fields relating to the position of fiducials measured during an EEG session/run:
 
 <!-- This block generates a metadata table.
 These tables are defined in
-  src/schema/rules/sidecars
+  src/schema/rules/json
 The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("eeg.EEGCoordsystemFiducials") }}
+{{ MACROS___make_json_table("json.eeg.EEGCoordsystemFiducials") }}
 
 Fields relating to the position of anatomical landmark measured during an EEG session/run:
 
 <!-- This block generates a metadata table.
 These tables are defined in
-  src/schema/rules/sidecars
+  src/schema/rules/json
 The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table(["eeg.EEGCoordsystemLandmark", "eeg.EEGCoordsystemLandmarkDescriptionRec"]) }}
+{{ MACROS___make_json_table(["json.eeg.EEGCoordsystemLandmark", "json.eeg.EEGCoordsystemLandmarkDescriptionRec"]) }}
 
 If the position of anatomical landmarks is measured using the same system or
 device used to measure electrode positions, and if thereby the anatomical
@@ -438,6 +438,12 @@ Anatomical landmarks or fiducials measured on an anatomical MRI  that match the
 landmarks or fiducials during an EEG session/run, must be stored separately in
 the corresponding `*_T1w.json` or `*_T2w.json` file and should be expressed in
 voxels (starting from `[0, 0, 0]`).
+
+`*_coordsystem.json` files SHOULD NOT be duplicated for each data file,
+for example, across multiple tasks.
+The [inheritance principle](../common-principles.md#the-inheritance-principle) MUST
+be used to find the appropriate coordinate system description for a given data file.
+If electrodes are repositioned, it is RECOMMENDED to use multiple sessions to indicate this.
 
 ### Example `*_coordsystem.json`
 

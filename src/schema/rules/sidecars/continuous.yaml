@@ -14,12 +14,51 @@ Continuous:
     StartTime: required
     Columns: required
 
-# Other recommended metadata for physiological data
 PhysioHardware:
   selectors:
     - suffix == "physio"
   fields:
-    Manufacturer: recommended
-    ManufacturersModelName: recommended
-    SoftwareVersions: recommended
-    DeviceSerialNumber: recommended
+    DeviceSerialNumber: optional
+    Manufacturer: optional
+    ManufacturersModelName: optional
+    SoftwareVersions: optional
+
+PhysioTypeRecommended:
+  selectors:
+    - suffix == "physio"
+  fields:
+    PhysioType: recommended
+
+PhysioTypeRequired:
+  selectors:
+    # Avoid automated validation; this is for the sake of rendering a table.
+    - "false"
+  fields:
+    PhysioType: required
+
+PhysioEvents:
+  selectors:
+    - suffix == "physioevents"
+  fields:
+    Columns: required
+    Description: recommended
+    OnsetSource: required
+
+# Eye-tracking
+EyeTrack:
+  selectors:
+    - suffix == "physio"
+    - sidecar.PhysioType == "eyetrack"
+  fields:
+    RecordedEye: required
+    SampleCoordinateSystem: required
+    AverageCalibrationError: optional
+    CalibrationCount: optional
+    CalibrationPosition: optional
+    CalibrationType: optional
+    CalibrationUnit: optional
+    EyeTrackerDistance: optional
+    EyeTrackingMethod: optional
+    MaximalCalibrationError: optional
+    PupilFitMethod: optional
+    RawDataFilters: optional

@@ -11,55 +11,39 @@ fieldmaps:
   extensions:
     - .nii.gz
     - .nii
+    - .ome.zarr/
     - .json
   datatypes:
     - fmap
   entities:
-    subject: required
-    session: optional
-    acquisition: optional
-    run: optional
+    $ref: meta.templates.raw.recording.entities
     chunk: optional
 
 pepolar:
+  $ref: meta.templates.raw.epi
   suffixes:
     - epi
   extensions:
     - .nii.gz
     - .nii
+    - .ome.zarr/
     - .json
     - .bval
     - .bvec
   datatypes:
     - fmap
-  entities:
-    subject: required
-    session: optional
-    acquisition: optional
-    ceagent: optional
-    direction: required
-    run: optional
-    part: optional
-    chunk: optional
 
 pepolar_m0scan:
+  $ref: meta.templates.raw.epi
   suffixes:
     - m0scan
   extensions:
     - .nii.gz
     - .nii
+    - .ome.zarr/
     - .json
   datatypes:
     - fmap
-  entities:
-    subject: required
-    session: optional
-    acquisition: optional
-    ceagent: optional
-    direction: required
-    run: optional
-    part: optional
-    chunk: optional
 
 TB1DAM:
   suffixes:
@@ -67,20 +51,15 @@ TB1DAM:
   extensions:
     - .nii.gz
     - .nii
+    - .ome.zarr/
     - .json
   datatypes:
     - fmap
   entities:
-    subject: required
-    session: optional
-    acquisition: optional
-    ceagent: optional
-    reconstruction: optional
-    run: optional
+    $ref: meta.templates.raw.mri.entities
     flip: required
     inversion: optional
     part: optional
-    chunk: optional
 
 TB1EPI:
   suffixes:
@@ -88,21 +67,16 @@ TB1EPI:
   extensions:
     - .nii.gz
     - .nii
+    - .ome.zarr/
     - .json
   datatypes:
     - fmap
   entities:
-    subject: required
-    session: optional
-    acquisition: optional
-    ceagent: optional
-    reconstruction: optional
-    run: optional
+    $ref: meta.templates.raw.mri.entities
     echo: required
     flip: required
     inversion: optional
     part: optional
-    chunk: optional
 
 RFFieldMaps:
   suffixes:
@@ -113,21 +87,16 @@ RFFieldMaps:
   extensions:
     - .nii.gz
     - .nii
+    - .ome.zarr/
     - .json
   datatypes:
     - fmap
   entities:
-    subject: required
-    session: optional
-    acquisition: optional
-    ceagent: optional
-    reconstruction: optional
-    run: optional
+    $ref: meta.templates.raw.mri.entities
     echo: optional
     flip: optional
     inversion: optional
     part: optional
-    chunk: optional
 
 TB1SRGE:
   suffixes:
@@ -135,37 +104,26 @@ TB1SRGE:
   extensions:
     - .nii.gz
     - .nii
+    - .ome.zarr/
     - .json
   datatypes:
     - fmap
   entities:
-    subject: required
-    session: optional
-    acquisition: optional
-    ceagent: optional
-    reconstruction: optional
-    run: optional
+    $ref: meta.templates.raw.mri.entities
     echo: optional
     flip: required
     inversion: required
     part: optional
-    chunk: optional
 
 parametric:
+  $ref: meta.templates.raw.mri
   suffixes:
     - TB1map
     - RB1map
   extensions:
     - .nii.gz
     - .nii
+    - .ome.zarr/
     - .json
   datatypes:
     - fmap
-  entities:
-    subject: required
-    session: optional
-    acquisition: optional
-    ceagent: optional
-    reconstruction: optional
-    run: optional
-    chunk: optional
