@@ -5,6 +5,7 @@
 [![Mastodon Follow](https://img.shields.io/mastodon/follow/109520103085644521?domain=https%3A%2F%2Ffosstodon.org%2F)](https://fosstodon.org/@bidsstandard)
 [![@BIDSstandard](https://img.shields.io/twitter/follow/bidsstandard.svg?style=social)](https://x.com/BIDSstandard)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10175845.svg)](https://doi.org/10.5281/zenodo.10175845)
+[![SWH](https://archive.softwareheritage.org/badge/swh:1:dir:4ebbc7265c140db5c82e718da0cba51558c26e08/)](https://archive.softwareheritage.org/swh:1:dir:4ebbc7265c140db5c82e718da0cba51558c26e08;origin=https://github.com/bids-standard/bids-specification;visit=swh:1:snp:a354689be0375f2571856dffb3e6278d997cc07b;anchor=swh:1:rev:f9d3b8accc48ed8838fc816d16e021d26dd5865a)
 
 <img src="./BIDS_logo/BIDS_logo_white_transparent_background_crop.png#gh-dark-mode-only" alt="bids-logo" width="600"/>
 <img src="./BIDS_logo/BIDS_logo_black_transparent_background_crop.png#gh-light-mode-only" alt="bids-logo" width="600"/>
