@@ -111,6 +111,45 @@ SingleSourceCitationFields:
     - '!("License" in dataset.dataset_description)'
     - '!("ReferencesAndLinks" in dataset.dataset_description)'
 
+LicenseREUSEFileMissing:
+  issue:
+    code: LICENSE_REUSE_FILE_MISSING
+    level: error
+    message: |
+      The "License" field of 'dataset_description.json' is "REUSE.toml",
+      but no 'REUSE.toml' file is present at the root of the dataset.
+  selectors:
+    - path == '/dataset_description.json'
+    - json.License == "REUSE.toml"
+  checks:
+    - exists('REUSE.toml', 'dataset') == 1
+
+REUSELicensesDirectoryMissing:
+  issue:
+    code: REUSE_LICENSES_DIRECTORY_MISSING
+    level: error
+    message: |
+      'REUSE.toml' file found, but there is no 'LICENSES/' directory
+      with the texts of the licenses it refers to.
+  selectors:
+    - path == '/REUSE.toml'
+  checks:
+    - exists('LICENSES', 'dataset') == 1
+
+REUSELicenseField:
+  issue:
+    code: REUSE_LICENSE_FIELD
+    level: warning
+    message: |
+      'REUSE.toml' file found.
+      The "License" field of 'dataset_description.json', if present,
+      should be "REUSE.toml" to avoid inconsistency.
+  selectors:
+    - path == '/REUSE.toml'
+    - '"License" in dataset.dataset_description'
+  checks:
+    - dataset.dataset_description.License == "REUSE.toml"
+
 ScansTSVScans:
   issue:
     code: SCANS_FILENAME_NOT_MATCH_DATASET

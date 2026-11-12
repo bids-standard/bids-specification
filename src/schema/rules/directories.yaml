@@ -19,6 +19,7 @@
 study:
   root:
     subdirs:
+      - LICENSES
       - code
       - docs
       - rawbids
@@ -26,6 +27,10 @@ study:
       - logs
       - sourcedata
       - phenotype
+  LICENSES:
+    name: LICENSES
+    level: optional
+    opaque: true
   code:
     name: code
     level: optional
@@ -58,6 +63,7 @@ study:
 raw:
   root:
     subdirs:
+      - LICENSES
       - code
       - docs
       - derivatives
@@ -66,6 +72,10 @@ raw:
       - sourcedata
       - stimuli
       - subject
+  LICENSES:
+    name: LICENSES
+    level: optional
+    opaque: true
   code:
     name: code
     level: optional
@@ -116,6 +126,7 @@ raw:
 derivative:
   root:
     subdirs:
+      - LICENSES
       - code
       - docs
       - rawbids
@@ -126,6 +137,10 @@ derivative:
       - stimuli
       - subject
       - template
+  LICENSES:
+    name: LICENSES
+    level: optional
+    opaque: true
   code:
     name: code
     level: optional
