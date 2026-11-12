@@ -190,11 +190,11 @@ All such included additional fields SHOULD be documented in an accompanying
 Example `_scans.tsv`:
 
 ```tsv
-filename	acq_time
-func/sub-control01_task-nback_bold.nii.gz	1877-06-15T13:45:30
-func/sub-control01_task-motor_bold.nii.gz	1877-06-15T13:55:33
-meg/sub-control01_task-rest_split-01_meg.nii.gz	1877-06-15T12:15:27
-meg/sub-control01_task-rest_split-02_meg.nii.gz	1877-06-15T12:15:27
+filename	acq_time	duration
+func/sub-control01_task-nback_bold.nii.gz	1877-06-15T13:45:30	420
+func/sub-control01_task-motor_bold.nii.gz	1877-06-15T13:55:33	390
+meg/sub-control01_task-rest_split-01_meg.nii.gz	1877-06-15T12:15:27	600
+meg/sub-control01_task-rest_split-02_meg.nii.gz	1877-06-15T12:15:27	600
 ```
 
 ## Sessions file
