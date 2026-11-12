@@ -27,6 +27,12 @@ LICENSE:
     - .md
     - .rst
     - .txt
+REUSE:
+  level: optional
+  path: REUSE.toml
+LICENSES:
+  level: optional
+  path: LICENSES
 genetic_info:
   level: optional
   path: genetic_info.json

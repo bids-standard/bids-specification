@@ -7,6 +7,8 @@ Templates:
 -   `CITATION.cff`
 -   `CHANGES`
 -   `LICENSE[.md|.rst|.txt]`
+-   `REUSE.toml`
+-   `LICENSES/<identifier>.<extension>`
 
 ## `dataset_description.json`
 
@@ -200,3 +202,98 @@ A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 {{ MACROS___render_text("objects.files.LICENSE.description") }}
+
+## `REUSE.toml`
+
+<!-- This block generates a description.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___render_text("objects.files.REUSE.description") }}
+
+If `REUSE.toml` is present, the `"License"` field of `dataset_description.json`,
+if specified, SHOULD have the value `"REUSE.toml"` to avoid inconsistency.
+Conversely, if the `"License"` field has the value `"REUSE.toml"`,
+the `REUSE.toml` file MUST be present.
+
+Each `[[annotations]]` table of `REUSE.toml` associates the files matching its `path`
+(relative to the directory containing `REUSE.toml`)
+with an [SPDX license expression](https://spdx.github.io/spdx-spec/v2.3/SPDX-license-expressions/)
+(`SPDX-License-Identifier`) and copyright holder(s) (`SPDX-FileCopyrightText`).
+If multiple tables match a file, the last matching table applies.
+
+Example of a `REUSE.toml` for a dataset in which the data are released into the public domain,
+the code is distributed under the terms of the MIT license,
+and the stimuli were obtained from a third party under the terms of CC-BY-4.0:
+
+```TOML
+version = 1
+
+[[annotations]]
+path = "**"
+SPDX-FileCopyrightText = "2026 The Mother of all Experiments Consortium"
+SPDX-License-Identifier = "CC0-1.0"
+
+[[annotations]]
+path = "code/**"
+SPDX-FileCopyrightText = "2026 Paul Broca"
+SPDX-License-Identifier = "MIT"
+
+[[annotations]]
+path = "stimuli/**"
+SPDX-FileCopyrightText = "2024 Carl Wernicke"
+SPDX-License-Identifier = "CC-BY-4.0"
+```
+
+with the corresponding `dataset_description.json` containing
+
+```JSON
+{
+  "Name": "The mother of all experiments",
+  "BIDSVersion": "1.10.1",
+  "License": "REUSE.toml"
+}
+```
+
+BIDS validation only verifies the presence of `REUSE.toml` and `LICENSES/`.
+Compliance with the REUSE specification can be verified
+using the [REUSE tool](https://reuse.readthedocs.io/) (`reuse lint`).
+
+## `LICENSES/`
+
+Template: `LICENSES/<identifier>.<extension>`
+
+<!-- This block generates a description.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___render_text("objects.files.LICENSES.description") }}
+
+Example of the root of a dataset following the REUSE specification:
+
+<!-- This block generates a file tree.
+A guide for using macros can be found at
+ https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
+-->
+{{ MACROS___make_filetree_example(
+    {
+    "LICENSES": {
+        "CC-BY-4.0.txt": "",
+        "CC0-1.0.txt": "",
+        "MIT.txt": "",
+    },
+    "code": {
+        "...": "",
+    },
+    "stimuli": {
+        "...": "",
+    },
+    "sub-01": {
+        "...": "",
+    },
+    "CHANGES": "",
+    "README.md": "",
+    "REUSE.toml": "",
+    "dataset_description.json": "",
+    }
+) }}

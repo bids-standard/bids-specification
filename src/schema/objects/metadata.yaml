@@ -2310,6 +2310,12 @@ License:
     (see [Licenses](SPEC_ROOT/appendices/licenses.md)).
     The corresponding full license text MAY be specified in an additional
     `LICENSE` file.
+    If the licensing of the dataset is described following the
+    [REUSE specification](https://reuse.software/spec/),
+    which permits different licenses for different files of the dataset,
+    the value SHOULD be `"REUSE.toml"`, in which case the
+    [`REUSE.toml`](SPEC_ROOT/glossary.md#reuse-files) file
+    MUST be present at the root of the dataset.
   type: string
 LongName:
   name: LongName

@@ -31,6 +31,26 @@ LICENSE:
     `.md` ([Markdown](https://www.markdownguide.org/)),
     `.rst` ([reStructuredText](https://docutils.sourceforge.io/rst.html)),
     or `.txt`.
+    If the dataset follows the [REUSE specification](https://reuse.software/spec/)
+    (see [`REUSE.toml`](SPEC_ROOT/glossary.md#reuse-files)),
+    the `LICENSE` file MAY still be provided,
+    for example with the text of the license covering the bulk of the dataset
+    or with a summary of the licensing terms,
+    and MUST NOT contradict `REUSE.toml`.
+LICENSES:
+  display_name: License texts
+  file_type: directory
+  description: |
+    A directory with the full texts of all licenses which apply to the content of the dataset,
+    following the [REUSE specification](https://reuse.software/spec/).
+    Each license text MUST be stored in a file named `<identifier>.<extension>`
+    (for example, `LICENSES/CC0-1.0.txt`), where `<identifier>` is the
+    [SPDX license identifier](https://spdx.org/licenses/) of the license,
+    or a custom identifier of the form `LicenseRef-<label>` for a license
+    that is not in the SPDX license list (for example, a data use agreement).
+    This directory MUST be present if the dataset contains
+    a [`REUSE.toml`](SPEC_ROOT/glossary.md#reuse-files) file.
+    The contents of this directory are not validated by BIDS.
 README:
   display_name: README
   file_type: regular
@@ -49,6 +69,21 @@ README:
     even if the used format is not rendered.
     A guideline for creating a good `README` file can be found in the
     [bids-starter-kit](https://github.com/bids-standard/bids-starter-kit/tree/main/templates/).
+REUSE:
+  display_name: REUSE.toml
+  file_type: regular
+  description: |
+    A description of the licensing and copyright information for the content of the dataset,
+    following the [REUSE specification](https://reuse.software/spec/).
+    Unlike the `"License"` field of
+    [dataset_description.json](SPEC_ROOT/glossary.md#dataset_description-files),
+    which can only name a single license for the entire dataset,
+    `REUSE.toml` permits associating different licenses and copyright holders
+    with different files of the dataset,
+    for example when the code under `code/` or the stimuli under `stimuli/`
+    are licensed differently from the data.
+    The full text of every license referenced in `REUSE.toml` MUST be provided
+    in the [`LICENSES/`](SPEC_ROOT/glossary.md#licenses-files) directory.
 dataset_description:
   display_name: Dataset Description
   file_type: regular

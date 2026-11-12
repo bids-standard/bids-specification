@@ -14,6 +14,11 @@ obtained from participants and any institutional limitations on distribution.
 | [PDDL][pddl]   | Open Data Commons Public Domain Dedication and License | License to assign public domain like permissions without giving up the copyright.                                              |
 | [CC0][cc0]     | Creative Commons Zero 1.0 Universal.                   | Use this if you are a holder of copyright or database rights, and you wish to waive all your interests in your work worldwide. |
 
+Datasets whose content is covered by more than one license
+(for example, data, code and stimuli under different terms)
+can describe their licensing following the [REUSE specification](https://reuse.software/spec/),
+see [`REUSE.toml`](../modality-agnostic-files/dataset-description.md#reusetoml).
+
 <!-- Link Definitions -->
 
 [pddl]: https://opendatacommons.org/licenses/pddl/
