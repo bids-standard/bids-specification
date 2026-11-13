@@ -40,7 +40,10 @@ def main() -> None:
             input("Output TSV file [new_contributors.tsv]: ").strip()
             or "new_contributors.tsv"
         )
-    text = input("Paste new contributors from wiki:\n").strip()
+    print(
+        "Paste new contributors from wiki text. End with Ctrl-D (or Ctrl-Z on Windows)."
+    )
+    text = sys.stdin.read().strip()
     entries = text.split("### ")[1:]
     records = [
         {

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{#
+  Open Science Assistant (OSA) BIDS chat widget.
+
+  Self-contained floating assistant rendered by a single script served from the
+  OSA project's own domain. No iframe, no extra CSS, and chat history persists in
+  localStorage across page navigation. The widget is configured entirely from the
+  BIDS community YAML config in the OSA repository
+  (https://github.com/OpenScience-Collective/osa); the only per-site setting is the
+  community id below.
+
+  The script URL is intentionally unpinned so the BIDS community always gets the
+  latest assistant without needing to merge a new PR here. Push access to the OSA
+  deployment is restricted to the BIDS community maintainer(s) and OSA admins.
+  Security-sensitive deployments may pin a tagged release with Subresource
+  Integrity; see https://github.com/OpenScience-Collective/osa/releases
+#}
+{% block scripts %}
+  {{ super() }}
+  <script src="https://demo.osc.earth/osa-chat-widget.js"></script>
+  <script>
+    OSAChatWidget.setConfig({ communityId: 'bids' });
+  </script>
+{% endblock %}

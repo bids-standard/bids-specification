@@ -167,16 +167,6 @@ EmptyFile:
     Empty files not allowed.
   level: error
 
-# BIDS Validator Original Issue Code #100
-BrainvisionLinksBroken:
-  code: BRAINVISION_LINKS_BROKEN
-  message: |
-    Internal file pointers in BrainVision file triplet (*.eeg, *.vhdr,
-    and *.vmrk) are broken or some files do not exist.
-  level: error
-  selectors:
-    - intersects([extension], [".eeg", ".vhdr", ".vmrk"])
-
 # BIDS Validator Original Issue Code #104
 HedError:
   code: HED_ERROR

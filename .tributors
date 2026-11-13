@@ -1150,6 +1150,17 @@
         "name": "Ezequiel Mikulan",
         "orcid": "0000-0001-7259-6120"
     },
+    "fabriciocravo": {
+        "affiliation": "Northeastern University",
+        "blog": "https://fabriciocravo.github.io/",
+        "contributions": [
+            "code",
+            "maintenance"
+        ],
+        "github": "fabriciocravo",
+        "name": "Fabricio Cravo",
+        "orcid": "0009-0005-8351-7156"
+    },
     "fraimondo": {
         "affiliation": "Forschungszentrum Jülich",
         "blog": "https://fraimondo.github.io",
@@ -2714,6 +2725,17 @@
         "name": "Monique Denissen",
         "orcid": "0000-0002-7120-1075"
     },
+    "MorgNMont": {
+        "affiliation": "Mayo Clinic",
+        "contributions": [
+            "ideas",
+            "question"
+        ],
+        "email": "montoya.morgan@mayo.edu",
+        "github": "MorgNMont",
+        "name": "Morgan Montoya",
+        "orcid": "0000-0003-0312-7624"
+    },
     "murat_bilgel": {
         "affiliation": "National Institute on Aging Intramural Research Program",
         "contributions": [
@@ -2916,6 +2938,17 @@
             "code"
         ],
         "name": "Patrick Park"
+    },
+    "psadil": {
+        "affiliation": "Johns Hopkins University",
+        "blog": "https://psadil.github.io/psadil",
+        "contributions": [
+            "bug"
+        ],
+        "email": "psadil1@jh.edu",
+        "github": "psadil",
+        "name": "Patrick Sadil",
+        "orcid": "0000-0003-4141-1343"
     },
     "pwighton": {
         "affiliation": "Martinos Center @ MGH",

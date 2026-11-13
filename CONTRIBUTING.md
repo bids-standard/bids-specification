@@ -202,7 +202,7 @@ The simplest way to prepare a Python environment for building the specification 
 with [uv](https://docs.astral.sh/uv/).
 
 ```bash
-uv sync
+uv sync --dev
 ```
 
 (If you use `uv run` in the next section, this will be run implicitly.)
@@ -245,7 +245,7 @@ is to use the `requirements.txt` file contained in this repository as follows:
 
 ```bash
 pip install -U pip
-pip install -r requirements.txt
+pip install --group dev
 ```
 
 The first command ensures you are using an up-to-date version of `pip`,

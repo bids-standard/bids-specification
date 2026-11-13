@@ -185,9 +185,7 @@ class WarningsFilter:
     # Only using one positional arg for now. This type can get more complex.
     def __init__(
         self,
-        *filters: tuple[
-            lt.Literal["default", "error", "ignore", "always", "all", "module", "once"]
-        ],
+        *filters: tuple[lt.Literal["default", "error", "ignore", "always", "module", "once"]],
     ) -> None:
         self.filters = filters
 

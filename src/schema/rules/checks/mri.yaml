@@ -145,3 +145,31 @@ RepetitionTimePreparationNotConsistent:
     - type(nifti_header) != "null"
   checks:
     - length(sidecar.RepetitionTimePreparation) == nifti_header.dim[4]
+
+BigDeltaNotConsistent:
+  issue:
+    code: BIGDELTA_NOT_CONSISTENT
+    message: |
+      The number of values for 'BigDelta' for this file does
+      not match the 4th dimension of the NIfTI header.
+    level: error
+  selectors:
+    - suffix == "dwi"
+    - type(sidecar.BigDelta) == "array"
+    - type(nifti_header) != "null"
+  checks:
+    - length(sidecar.BigDelta) == nifti_header.dim[4]
+
+SmallDeltaNotConsistent:
+  issue:
+    code: SMALLDELTA_NOT_CONSISTENT
+    message: |
+      The number of values for 'SmallDelta' for this file does
+      not match the 4th dimension of the NIfTI header.
+    level: error
+  selectors:
+    - suffix == "dwi"
+    - type(sidecar.SmallDelta) == "array"
+    - type(nifti_header) != "null"
+  checks:
+    - length(sidecar.SmallDelta) == nifti_header.dim[4]

@@ -1103,6 +1103,15 @@
             "name": "Ezequiel Mikulan"
         },
         {
+            "contributions": [
+                "code",
+                "maintenance"
+            ],
+            "login": "fabriciocravo",
+            "name": "Fabricio Cravo",
+            "profile": "https://fabriciocravo.github.io/"
+        },
+        {
             "avatar_url": [
                 "https://avatars.githubusercontent.com/u/4493699?v=4"
             ],
@@ -2613,6 +2622,14 @@
         },
         {
             "contributions": [
+                "ideas",
+                "question"
+            ],
+            "login": "MorgNMont",
+            "name": "Morgan Montoya"
+        },
+        {
+            "contributions": [
                 "doc"
             ],
             "login": "murat_bilgel",
@@ -2811,6 +2828,14 @@
             "login": "Park-Patrick",
             "name": "Patrick Park",
             "profile": "https://github.com/Park-Patrick"
+        },
+        {
+            "contributions": [
+                "bug"
+            ],
+            "login": "psadil",
+            "name": "Patrick Sadil",
+            "profile": "https://psadil.github.io/psadil"
         },
         {
             "contributions": [

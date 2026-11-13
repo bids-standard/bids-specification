@@ -47,7 +47,7 @@ CheckAge89:
       https://www.hhs.gov/hipaa/for-professionals/privacy/special-topics/de-identification/#standard.
     level: warning
   selectors:
-    - path == 'participants.tsv'
+    - path == '/participants.tsv'
     - columns.age != null
   checks:
     - max(columns.age) < 89
