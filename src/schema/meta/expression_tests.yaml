@@ -108,6 +108,10 @@
   result: [1]
 - expression: intersects([1], [])
   result: false
+- expression: 'intersects({"a": 1}, {"b": 2})'
+  result: false
+- expression: 'intersects({"a": 1}, {"a": 2, "b": 3})'
+  result: ["a"]
 - expression: length([1, 2, 3])
   result: 3
 - expression: length([])

@@ -105,3 +105,15 @@ ScansTSVScans:
     - extension == '.tsv'
   checks:
     - exists(columns.filename, "file") == length(columns.filename)
+
+SessionParticipantOverlap:
+  issue:
+    code: SESSION_PARTICIPANT_OVERLAP
+    level: error
+    message: |
+      Columns in a sessions.tsv file duplicate columns in /participants.tsv
+  selectors:
+    - suffix == 'sessions'
+    - extension == '.tsv'
+  checks:
+    - '!intersects(columns, dataset.participants_tsv)'
