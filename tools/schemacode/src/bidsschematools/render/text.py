@@ -1,9 +1,7 @@
 """Functions for rendering portions of the schema as text."""
 
-from pathlib import Path
-
 import yaml
-from jinja2 import Template
+from jinja2 import Environment, PackageLoader, StrictUndefined
 from markdown_it import MarkdownIt
 
 from bidsschematools.render import utils
@@ -29,7 +27,16 @@ TYPE_CONVERTER = {
     "suffixes": "suffix",
 }
 
-TEMPLATE_DIR = Path(__file__).parent / "templates"
+# Templates render Markdown, so HTML autoescaping must stay off.
+# StrictUndefined makes a typo in a template variable fail loudly
+# instead of silently rendering an empty string.
+JINJA_ENV = Environment(
+    loader=PackageLoader("bidsschematools.render", "templates"),
+    autoescape=False,
+    undefined=StrictUndefined,
+    trim_blocks=True,
+    lstrip_blocks=True,
+)
 
 
 def make_entity_definitions(schema, src_path=None):
@@ -55,32 +62,23 @@ def make_entity_definitions(schema, src_path=None):
     text = ""
     for entity in entity_order:
         entity_info = entity_definitions[entity]
-        text += _make_entity_definition(entity_info)
+        text += "\n" + _make_entity_definition(entity_info)
 
     return text.replace("SPEC_ROOT", utils.get_relpath(src_path))
 
 
 def _make_entity_definition(entity_info):
     """Generate markdown description for an entity."""
-    # Prepare data for template rendering
-    entity_info.format = entity_info.get("format", "label")
-
-    # Prepare enum values if present
-    allowed_values = []
-    if "enum" in entity_info:
-        for value in entity_info["enum"]:
-            if isinstance(value, str):
-                allowed_values.append(value)
-            elif isinstance(value, dict) and "name" in value:
-                allowed_values.append(value["name"])
-            else:
-                allowed_values.append(str(value))  # Fallback to string
-    entity_info.allowed_values = allowed_values
-
-    with (TEMPLATE_DIR / "entity_definition.jinja").open("r") as f:
-        template_str = f.read()
-    template = Template(template_str)
-    return template.render(entity=entity_info)
+    allowed_values = [
+        value if isinstance(value, str) else value["name"] for value in entity_info.get("enum", [])
+    ]
+    return JINJA_ENV.get_template("entity_definition.jinja").render(
+        name=entity_info["name"],
+        display_name=entity_info["display_name"],
+        format=entity_info.get("format", "label"),
+        allowed_values=allowed_values,
+        description=entity_info["description"],
+    )
 
 
 def make_glossary(schema, src_path=None):
@@ -103,9 +101,6 @@ def make_glossary(schema, src_path=None):
     """
     all_objects = {}
     schema = schema.to_dict()
-
-    with (TEMPLATE_DIR / "glossary.jinja").open("r") as f:
-        template_str = f.read()
 
     for group, group_objects in schema["objects"].items():
         group_obj_keys = list(group_objects.keys())
@@ -142,18 +137,29 @@ def make_glossary(schema, src_path=None):
             all_objects[new_name]["type"] = TYPE_CONVERTER.get(group, group)
             all_objects[new_name]["definition"] = group_objects[key]
 
+    template = JINJA_ENV.get_template("glossary.jinja")
+    keys_to_drop = [
+        "description",
+        "display_name",
+        "name",
+        "value",
+        "pattern",
+        "enum",
+        "definition",
+    ]
+
     text = ""
     for obj_key in sorted(all_objects.keys()):
         obj = all_objects[obj_key]
-
+        obj_marker = obj["key"]
         obj_def = obj.get("definition", None)
         if obj_def is None:
-            raise ValueError(f"{obj['key']} has no definition.")
+            raise ValueError(f"{obj_marker} has no definition.")
 
         # Clean up the text description
         obj_desc = obj_def.get("description", None)
         if obj_desc is None:
-            raise ValueError(f"{obj_key} has no description.")
+            raise ValueError(f"{obj_marker} has no description.")
         # A backslash before a newline means continue a string
         obj_desc = obj_desc.replace("\\\n", "")
         # Two newlines should be respected
@@ -161,45 +167,24 @@ def make_glossary(schema, src_path=None):
         # Otherwise a newline corresponds to a space
         obj_desc = obj_desc.replace("\n", " ")
 
-        if "sense 1" in obj_key:
-            text += f'\n<a name="{obj_key.split("__", 1)[0]}"></a>'
-        text += f'\n<a name="{obj_key}"></a>'
-        text += f"\n## {obj_key}\n\n"
-        text += f"**Name**: {obj_def['display_name']}\n\n"
-        text += f"**Type**: {obj['type'].title()}\n\n"
-
+        # Levels are only defined for columns, under definition.Levels
         levels = list(obj_def.get("enum", []) or obj_def.get("definition", {}).get("Levels", {}))
-        if levels:
-            levels = [level["name"] if isinstance(level, dict) else level for level in levels]
-
-        keys_to_drop = [
-            "description",
-            "display_name",
-            "name",
-            "value",
-            "pattern",
-            "enum",
-            "definition",
-        ]
-        levels = list(obj_def.get("enum", []) or obj_def.get("definition", {}).get("Levels", {}))
-        if levels:
-            levels = [level["name"] if isinstance(level, dict) else level for level in levels]
-            text += f"**Allowed values**: `{'`, `'.join(levels)}`\n\n"
-
-        text += f"**Description**:\n{obj_desc}\n\n"
+        levels = [level["name"] if isinstance(level, dict) else level for level in levels]
 
         reduced_obj_def = {k: v for k, v in obj_def.items() if k not in keys_to_drop}
-        if reduced_obj_def:
-            reduced_obj_def = yaml.dump(reduced_obj_def)
 
-        template = Template(template_str)
-        text += template.render(
+        text += "\n" + template.render(
+            # multi-sense objects also get an anchor without the sense suffix
+            sense_anchor=obj_marker.split("__", 1)[0] if "sense 1" in obj_key else None,
+            anchor=obj_marker,
             obj_key=obj_key,
-            obj=obj,
-            obj_def=obj_def,
-            obj_desc=obj_desc,
+            display_name=obj_def["display_name"],
+            obj_type=obj["type"],
+            value=obj_def.get("value"),
+            pattern=obj_def.get("pattern"),
             levels=levels,
-            reduced_obj_def=reduced_obj_def,
+            description=obj_desc,
+            schema_info=yaml.dump(reduced_obj_def) if reduced_obj_def else None,
         )
 
     # Spec internal links need to be replaced
@@ -563,18 +548,11 @@ def define_common_principles(schema, src_path=None):
     string : str
         The definitions of the common principles in a multiline string.
     """
-    # reorder the principles according to the order
     common_principles = schema["objects"]["common_principles"]
     order = schema["rules"]["common_principles"]
-    principles = []
-    for principle in order:
-        principles.append(common_principles.get(principle))
-
-    with (TEMPLATE_DIR / "common_principle.jinja").open("r") as f:
-        template_str = f.read()
-    template = Template(template_str)
-    text = template.render(principles=principles)
-
+    text = JINJA_ENV.get_template("common_principles.jinja").render(
+        principles=[common_principles[principle] for principle in order]
+    )
     return text.replace("SPEC_ROOT", utils.get_relpath(src_path))
 
 

@@ -5,6 +5,7 @@ import os
 import pytest
 
 from bidsschematools.render import text
+from bidsschematools.types import Namespace
 
 
 def test_make_entity_definitions(schema_obj):
@@ -35,6 +36,40 @@ def test_make_entity_definitions(schema_obj):
         assert expected_format in schema_text
 
     assert "**Definition**: A person or animal participating in the study." in schema_text
+    # Each allowed value gets its own code span
+    assert "**Allowed values**: `on`, `off`" in schema_text
+
+
+def test_make_entity_definitions_snapshot():
+    """Check the exact markdown rendered for a minimal schema."""
+    schema = Namespace.build(
+        {
+            "objects": {
+                "entities": {
+                    "foo": {"name": "foo", "display_name": "Foo", "description": "A foo."},
+                    "bar": {
+                        "name": "bar",
+                        "display_name": "Bar",
+                        "format": "index",
+                        "enum": ["a", {"name": "b"}],
+                        "description": "See [x](SPEC_ROOT/x.md).",
+                    },
+                }
+            },
+            "rules": {"entities": ["foo", "bar"]},
+        }
+    )
+    assert text.make_entity_definitions(schema) == (
+        "\n## foo\n\n"
+        "**Full name**: Foo\n\n"
+        "**Format**: `foo-<label>`\n\n"
+        "**Definition**: A foo."
+        "\n## bar\n\n"
+        "**Full name**: Bar\n\n"
+        "**Format**: `bar-<index>`\n\n"
+        "**Allowed values**: `a`, `b`\n\n"
+        "**Definition**: See [x](./x.md)."
+    )
 
 
 def test_make_glossary(schema_obj, schema_dir):
@@ -66,6 +101,69 @@ def test_make_glossary(schema_obj, schema_dir):
             assert any(line.startswith(f'<a name="objects.{i}.') for i in object_files)
             # Are rules loaded incorrectly?
             assert not any(line.startswith(f'<a name="objects.{i}.') for i in rules_only)
+
+    # Each object is rendered exactly once
+    headers = [line for line in glossary.split("\n") if line.startswith("## ")]
+    assert len(headers) == len(set(headers))
+
+    # Multi-sense objects get an extra anchor without the sense suffix
+    assert '<a name="objects.columns.acq_time"></a>' in glossary
+    assert '<a name="objects.columns.acq_time__scans"></a>' in glossary
+
+
+def test_make_glossary_snapshot():
+    """Check the exact markdown rendered for a minimal schema."""
+    schema = Namespace.build(
+        {
+            "objects": {
+                "suffixes": {
+                    "bold": {
+                        "value": "bold",
+                        "display_name": "BOLD",
+                        "description": "Line one\\\ncontinued.\n\nNew paragraph.",
+                    },
+                },
+                "columns": {
+                    "kind": {
+                        "name": "kind",
+                        "display_name": "Kind",
+                        "description": "A kind.",
+                        "definition": {"Levels": {"x": "X", "y": "Y"}},
+                        "type": "string",
+                    },
+                },
+            }
+        }
+    )
+    assert text.make_glossary(schema) == (
+        '\n<a name="objects.suffixes.bold"></a>\n'
+        "## bold (suffixes)\n\n"
+        "**Name**: BOLD\n\n"
+        "**Type**: Suffix\n\n"
+        "**Format**: `<entities>_bold.<extension>`\n\n"
+        "**Description**:\nLine onecontinued.<br>New paragraph.\n\n"
+        '\n<a name="objects.columns.kind"></a>\n'
+        "## kind (columns)\n\n"
+        "**Name**: Kind\n\n"
+        "**Type**: Column\n\n"
+        "**Allowed values**: `x`, `y`\n\n"
+        "**Description**:\nA kind.\n\n"
+        "**Schema information**:\n```yaml\ntype: string\n\n```"
+    )
+
+
+def test_define_common_principles_snapshot():
+    """Check the exact markdown rendered for a minimal schema."""
+    schema = {
+        "objects": {
+            "common_principles": {
+                "a": {"display_name": "A", "description": "First."},
+                "b": {"display_name": "B", "description": "Second."},
+            }
+        },
+        "rules": {"common_principles": ["b", "a"]},
+    }
+    assert text.define_common_principles(schema) == "1. **B** - Second.\n\n2. **A** - First."
 
 
 @pytest.mark.parametrize("placeholders", [True, False])

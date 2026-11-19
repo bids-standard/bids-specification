@@ -1,28 +1,32 @@
-
-<a name="{{ obj['key'] }}"></a>
+{% if sense_anchor %}
+<a name="{{ sense_anchor }}"></a>
+{% endif %}
+<a name="{{ anchor }}"></a>
 ## {{ obj_key }}
 
-**Name**: {{ obj_def['display_name'] }}
+**Name**: {{ display_name }}
 
-**Type**: {{ obj['type'].title() }}
-{% if obj["type"] == "suffix" %}
-**Format**: `<entities>_{{ obj_def['value'] }}.<extension>`
-{% elif obj["type"] == "extension" %}
-**Format**: `<entities>_<suffix>{{ obj_def['value'] }}`
-{% elif obj["type"] == "format" %}
-**Regular expression**: `{{ obj_def['pattern'] }}`
+**Type**: {{ obj_type | title }}
+
+{% if obj_type == "suffix" %}
+**Format**: `<entities>_{{ value }}.<extension>`
+
+{% elif obj_type == "extension" %}
+**Format**: `<entities>_<suffix>{{ value }}`
+
+{% elif obj_type == "format" %}
+**Regular expression**: `{{ pattern }}`
+
 {% endif %}
-
 {% if levels %}
-**Allowed values**: `{% for level in levels %}{{ level }}{% if not loop.last %}`, `{% endif %}{% endfor %}`
-{% endif %}
+**Allowed values**: `{{ levels | join("`, `") }}`
 
+{% endif %}
 **Description**:
-{{ obj_desc }}
+{{ description }}
 
-{% if reduced_obj_def %}
+{% if schema_info %}
 **Schema information**:
-```yml
-{{ reduced_obj_def }}
-```
-{% endif %}
+```yaml
+{{ schema_info }}
+```{% endif %}
