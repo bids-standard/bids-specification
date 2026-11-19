@@ -1,0 +1,32 @@
+{% if sense_anchor %}
+<a name="{{ sense_anchor }}"></a>
+{% endif %}
+<a name="{{ anchor }}"></a>
+## {{ obj_key }}
+
+**Name**: {{ display_name }}
+
+**Type**: {{ obj_type | title }}
+
+{% if obj_type == "suffix" %}
+**Format**: `<entities>_{{ value }}.<extension>`
+
+{% elif obj_type == "extension" %}
+**Format**: `<entities>_<suffix>{{ value }}`
+
+{% elif obj_type == "format" %}
+**Regular expression**: `{{ pattern }}`
+
+{% endif %}
+{% if levels %}
+**Allowed values**: `{{ levels | join("`, `") }}`
+
+{% endif %}
+**Description**:
+{{ description }}
+
+{% if schema_info %}
+**Schema information**:
+```yaml
+{{ schema_info }}
+```{% endif %}

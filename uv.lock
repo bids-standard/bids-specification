@@ -313,6 +313,7 @@ expressions = [
     { name = "pyparsing" },
 ]
 render = [
+    { name = "jinja2" },
     { name = "markdown-it-py" },
     { name = "numpy", version = "2.4.6", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version < '3.12'" },
     { name = "numpy", version = "2.5.3", source = { registry = "https://pypi.org/simple" }, marker = "python_full_version >= '3.12'" },
@@ -326,6 +327,7 @@ requires-dist = [
     { name = "acres", specifier = ">=0.5" },
     { name = "bidsschematools", extras = ["expressions", "render", "validation"], marker = "extra == 'all'" },
     { name = "click", specifier = ">=8.1" },
+    { name = "jinja2", marker = "extra == 'render'", specifier = ">=3.1.6" },
     { name = "jsonschema", extras = ["format"], marker = "extra == 'validation'", specifier = ">=4.22" },
     { name = "markdown-it-py", marker = "extra == 'render'", specifier = ">=3.0" },
     { name = "numpy", marker = "extra == 'render'", specifier = ">=1.26" },

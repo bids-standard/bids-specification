@@ -65,6 +65,7 @@ repos:
           - acres
           - click
           - markdown-it-py
+          - jinja2
           - pandas-stubs
           - pyparsing
           - pytest

@@ -1,0 +1,6 @@
+{% for principle in principles %}
+{{ loop.index }}. **{{ principle.display_name }}** - {{ principle.description }}{% if not loop.last %}
+
+
+{% endif %}
+{% endfor %}

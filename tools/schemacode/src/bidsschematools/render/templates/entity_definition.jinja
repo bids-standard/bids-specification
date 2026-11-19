@@ -1,0 +1,11 @@
+## {{ name }}
+
+**Full name**: {{ display_name }}
+
+**Format**: `{{ name }}-<{{ format }}>`
+
+{% if allowed_values %}
+**Allowed values**: `{{ allowed_values | join("`, `") }}`
+
+{% endif %}
+**Definition**: {{ description }}
