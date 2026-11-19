@@ -153,7 +153,7 @@ def make_glossary(schema, src_path=None):
         # Clean up the text description
         obj_desc = obj_def.get("description", None)
         if obj_desc is None:
-            raise ValueError(f"{obj_marker} has no description.")
+            raise ValueError(f"{obj_key} has no description.")
         # A backslash before a newline means continue a string
         obj_desc = obj_desc.replace("\\\n", "")
         # Two newlines should be respected
@@ -162,8 +162,8 @@ def make_glossary(schema, src_path=None):
         obj_desc = obj_desc.replace("\n", " ")
 
         if "sense 1" in obj_key:
-            text += f'\n<a name="{obj_marker.split("__", 1)[0]}"></a>'
-        text += f'\n<a name="{obj_marker}"></a>'
+            text += f'\n<a name="{obj_key.split("__", 1)[0]}"></a>'
+        text += f'\n<a name="{obj_key}"></a>'
         text += f"\n## {obj_key}\n\n"
         text += f"**Name**: {obj_def['display_name']}\n\n"
         text += f"**Type**: {obj['type'].title()}\n\n"
