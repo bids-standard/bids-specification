@@ -49,6 +49,16 @@ README:
     even if the used format is not rendered.
     A guideline for creating a good `README` file can be found in the
     [bids-starter-kit](https://github.com/bids-standard/bids-starter-kit/tree/main/templates/).
+datacite:
+  display_name: datacite.yml
+  file_type: regular
+  description: |
+    A description of the citation information for the dataset, following the
+    [DataCite Metadata Schema v4](https://schema.datacite.org/meta/kernel-4/)
+    (or higher) schema.
+    This file permits more detailed and structured descriptions than
+    [dataset_description.json](SPEC_ROOT/glossary.md#dataset_description-files),
+    suitable for submission to DataCite to generate a DOI.
 dataset_description:
   display_name: Dataset Description
   file_type: regular
