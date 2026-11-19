@@ -1,12 +1,14 @@
-# Task events
+# Events
 
 The purpose of this file is to describe timing and other properties of events
-recorded during a run.
-Events are, for example, stimuli presented to the participant or participant responses
-(see [Definitions](../common-principles.md#definitions)).
+recorded during data acquisition.
+Events may include stimuli presented to the participant, participant responses
+that are associated with tasks, or markers of other incidents that occurred
+during the execution of the experiment.
+See the [definition of Event](../common-principles.md#definitions) for a more detailed explanation.
 A single event file MAY include any combination of stimulus, response, and other events.
 Events MAY overlap in time.
-Please mind that this does not imply that only so called "event related" study designs
+Please keep in mind that this does not imply that only so called "event related" study designs
 are supported (in contrast to "block" designs) - each "block of events" can be
 represented by an individual row in the `events.tsv` file (with a long
 duration).
@@ -18,10 +20,10 @@ duration).
    )
 }}
 
-Each task events file REQUIRES a corresponding task data file.
-It is also possible to have a single `events.tsv` file describing events
-for all participants and runs (see
-[Inheritance Principle](../common-principles.md#the-inheritance-principle)).
+Each `events.tsv` file REQUIRES at least one corresponding data file.
+Through the [Inheritance Principle](../common-principles.md#the-inheritance-principle),
+a single `events.tsv` file MAY describe events for multiple participants,
+sessions, and runs.
 As with all other tabular data, `events.tsv` files MAY be accompanied
 by a JSON file describing the columns in detail
 (see [Tabular Files](../common-principles.md#tabular-files)).
@@ -35,7 +37,7 @@ The definitions of these fields can be found in
 and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_columns_table("task.TaskEvents") }}
+{{ MACROS___make_columns_table("events.Events") }}
 
 The content of  `events.tsv` files SHOULD be sorted by values in the `onset` column.
 
@@ -48,7 +50,7 @@ SHOULD be documented in an accompanying JSON sidecar file.
 !!! note "Regarding the precision of numeric metadata"
 
     For the precision of numeric metadata,
-    it is RECOMMENDENDED that dataset curators specify numeric metadata like `onset` and
+    it is RECOMMENDED that dataset curators specify numeric metadata like `onset` and
     `duration` with as much decimal precision as is reasonable in the context of the experiment.
     For example in an EEG experiment with devices operating at 1000 Hz sampling frequency,
     dataset curators SHOULD specify **at least** 3 figures after the decimal point.
@@ -59,7 +61,7 @@ SHOULD be documented in an accompanying JSON sidecar file.
     if any acquired scans have been discarded before forming the imaging data file,
     ensure that an `onset` of 0 corresponds to the time the first image was stored.
     For example in case there is an in scanner training phase that
-    begins before the scanning sequence has started events from this sequence should
+    begins before the scanning sequence has started, events from this sequence should
     have negative onset time counting down to the beginning of the acquisition of
     the first volume.
 
@@ -206,11 +208,11 @@ A guide for using macros can be found at
 
 Example of the content of the TSV file:
 
-```Text
-onset duration  trial_type  identifier  database  response_time
-1.2 0.6 afraid  AF01AFAF  kdef  1.435
-5.6 0.6 angry AM01AFAN  kdef  1.739
-5.6 0.6 sad AF01ANSA  kdef  1.739
+```tsv
+onset	duration	trial_type	identifier	database	response_time
+1.2	0.6	afraid	AF01AFAF	kdef	1.435
+5.6	0.6	angry	AM01AFAN	kdef	1.739
+5.6	0.6	sad	AF01ANSA	kdef	1.739
 ```
 
 The `trial_type` and `identifier` columns from the `events.tsv` files might be described
@@ -261,6 +263,22 @@ and a guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
 {{ MACROS___make_subobject_table("metadata.StimulusPresentation") }}
+
+!!! warning "Important"
+
+    Some metadata of the `StimulusPresentation` object become REQUIRED with the presence of
+    "gaze-on-screen"
+    [eye-tracking data](../modality-specific-files/physiological-recordings.md#eye-tracking),
+    as identified by the `"SampleCoordinateSystem"` metadata.
+
+    The following fields pertaining to `<matches>_events.json` of tasks that were acquired
+    with the simultaneous recording of eye-tracking escalate to REQUIRED as they are considered
+    essential in eye-tracking data analysis:
+
+    -   `StimulusPresentation.ScreenDistance`,
+    -   `StimulusPresentation.ScreenOrigin`,
+    -   `StimulusPresentation.ScreenResolution`,
+    -   `StimulusPresentation.ScreenSize`.
 
 The operating system description SHOULD include the following attributes:
 
@@ -315,7 +333,7 @@ in the accompanying JSON sidecar as follows (based on the example of the previou
 
 !!! example "Example datasets"
 
-      The following [BIDS-Examples](https://bids-standard.github.io/bids-examples/#dataset-index)
+      The following [BIDS-Examples](https://bids.neuroimaging.io/datasets/examples.html#dataset-index)
       showcase stimulus-related signals and may be used as a reference
       when curating a new dataset:
 

@@ -142,6 +142,8 @@ SidecarWithoutDatafile:
   level: error
   selectors:
     - extension == ".json"
+    - suffix != "coordsystem" || modality != "emg"
+    # ↑ EMG allows multiple coordsys files per data file (distinguished via `space` entity)
 
 # BIDS Validator Original Issue Code #97
 MissingSession:
@@ -164,16 +166,6 @@ EmptyFile:
   message: |
     Empty files not allowed.
   level: error
-
-# BIDS Validator Original Issue Code #100
-BrainvisionLinksBroken:
-  code: BRAINVISION_LINKS_BROKEN
-  message: |
-    Internal file pointers in BrainVision file triplet (*.eeg, *.vhdr,
-    and *.vmrk) are broken or some files do not exist.
-  level: error
-  selectors:
-    - intersects([extension], [".eeg", ".vhdr", ".vmrk"])
 
 # BIDS Validator Original Issue Code #104
 HedError:

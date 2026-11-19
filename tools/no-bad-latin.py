@@ -14,6 +14,7 @@ import re
 from pull_files import filter_files
 
 ABSOLUTE_HERE = os.path.dirname(os.path.dirname(__file__))
+DEFAULT_SRC_DIR = os.path.join(ABSOLUTE_HERE, "src")
 IGNORE_LIST = ["CHANGES.md", "01-contributors.md", "pregh-changes.md"]
 
 
@@ -129,7 +130,7 @@ def read_and_check_files(files):
     return failing_files
 
 
-def get_all_files(directory=os.path.join(ABSOLUTE_HERE, "src")):
+def get_all_files(directory=DEFAULT_SRC_DIR):
     """Get a list of files to be checked. Ignores images, javascript, css files.
 
     Keyword Arguments:
@@ -162,7 +163,7 @@ def main():
 
     if bool(failing_files):
         error_message = construct_error_message(failing_files)
-        raise Exception(error_message)
+        raise RuntimeError(error_message)
 
 
 if __name__ == "__main__":

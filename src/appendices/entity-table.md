@@ -42,6 +42,14 @@ while entity definitions are in the [Entities Appendix](entities.md).
 
 {{ MACROS___make_entity_table(datatypes=["pet"]) }}
 
+## Near-Infrared Spectroscopy  (NIRS)
+
+{{ MACROS___make_entity_table(datatypes=["nirs"]) }}
+
+## Magnetic Resonance Spectroscopy (MRS)
+
+{{ MACROS___make_entity_table(datatypes=["mrs"]) }}
+
 ## Behavioral Data
 
 {{ MACROS___make_entity_table(datatypes=["beh"]) }}
@@ -49,3 +57,7 @@ while entity definitions are in the [Entities Appendix](entities.md).
 ## Microscopy
 
 {{ MACROS___make_entity_table(datatypes=["micr"]) }}
+
+## Motion
+
+{{ MACROS___make_entity_table(datatypes=["motion"]) }}

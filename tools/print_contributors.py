@@ -1,3 +1,15 @@
+#!/usr/bin/env python3
+# /// script
+# requires-python = ">=3.13"
+# dependencies = [
+#     "cffconvert",
+#     "emoji",
+#     "pandas",
+#     "requests",
+#     "rich",
+#     "ruamel-yaml",
+# ]
+# ///
 """Update the table of contributors in the specification appendix.
 
 
@@ -42,8 +54,16 @@ def main():
 
     max_name_length = len(max(allcontrib_names, key=len))
     max_contrib_length = (
-        max(len(x["contributions"]) for x in allcontrib["contributors"]) * 2
+        max(len(x.get("contributions", [])) for x in allcontrib["contributors"]) * 2
     )
+    no_contributions_contributors = [
+        x["name"] for x in allcontrib["contributors"] if not x.get("contributions")
+    ]
+    if no_contributions_contributors:
+        print(
+            f"WARNING: found {len(no_contributions_contributors)} contributors without "
+            f"contributions: {', '.join(no_contributions_contributors)}"
+        )
 
     with open(output_file, "r", encoding="utf8") as f:
         content = f.readlines()

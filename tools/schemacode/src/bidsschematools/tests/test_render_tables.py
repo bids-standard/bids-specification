@@ -1,6 +1,7 @@
 """Tests for the bidsschematools package."""
 
 from bidsschematools.render import tables
+from bidsschematools.render.utils import normalize_requirements
 
 
 def test_make_entity_table(schema_obj):
@@ -71,15 +72,15 @@ def test_make_sidecar_table(schema_obj):
         assert render_row.startswith(f"| [{field}](")
         spec = fields[field]
         if isinstance(spec, str):
-            level = spec
+            level = normalize_requirements(spec)
             level_addendum = ""
             description_addendum = ""
         else:
-            level = spec["level"]
-            level_addendum = spec.get("level_addendum", "").replace("required", "REQUIRED")
+            level = normalize_requirements(spec["level"])
+            level_addendum = normalize_requirements(spec.get("level_addendum", ""))
             description_addendum = spec.get("description_addendum", "")
 
-        assert level.upper() in render_row
+        assert f"| {level}" in render_row
         assert level_addendum.split("\n")[0] in render_row
         assert description_addendum.split("\n")[0] in render_row
 

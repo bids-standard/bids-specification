@@ -80,11 +80,6 @@ properties:
             type: array
             items:
               type: string
-          phenotype:
-            description: 'The union of participant_id columns in phenotype files'
-            type: array
-            items:
-              type: string
   subject:
     description: 'Properties and contents of the current subject'
     type: object
@@ -106,11 +101,6 @@ properties:
               type: string
           session_id:
             description: 'The session_id column of sessions.tsv'
-            type: array
-            items:
-              type: string
-          phenotype:
-            description: 'The union of session_id columns in phenotype files'
             type: array
             items:
               type: string
@@ -166,6 +156,9 @@ properties:
             type: array
             items:
               type: string
+          sidecar:
+            description: 'Sidecar metadata constructed via the inheritance principle'
+            type: object
       aslcontext:
         description: 'ASL context file'
         type: object
@@ -269,14 +262,64 @@ properties:
             type: array
             items:
               type: string
+      electrodes:
+        description: 'Electrodes file'
+        type: object
+        required: [path]
+        additionalProperties: false
+        properties:
+          path:
+            description: 'Path to associated electrodes.tsv file'
+            type: string
       coordsystem:
-        description: 'Coordinate system file'
+        description: 'Coordinate system file (first found)'
         type: object
         required: [path]
         additionalProperties: false
         properties:
           path:
             description: 'Path to associated coordsystem file'
+            type: string
+      coordsystems:
+        description: 'Coordinate system files (all)'
+        type: object
+        required: [paths, spaces, ParentCoordinateSystems]
+        additionalProperties: false
+        properties:
+          paths:
+            description: 'Paths to associated coordsystem files'
+            type: array
+            items:
+              type: string
+          spaces:
+            description: 'Space entity labels extracted from file names'
+            type: array
+            items:
+              type: string
+          ParentCoordinateSystems:
+            description: 'ParentCoordinateSystem fields loaded from files'
+            type: array
+            items:
+              type: string
+      physio:
+        description: 'Physiological recording file'
+        type: object
+        required: [path]
+        properties:
+          path:
+            description: 'Path to associated physio file'
+            type: string
+          sidecar:
+            description: 'Sidecar metadata constructed via the inheritance principle'
+            type: object
+      atlas_description:
+        description: 'Atlas description file'
+        type: object
+        required: [path]
+        additionalProperties: false
+        properties:
+          path:
+            description: 'Path to associated atlas description file'
             type: string
   # The following properties are populated if the current file is of an appropriate type
   columns:
@@ -317,6 +360,7 @@ properties:
       - xyzt_units
       - qform_code
       - sform_code
+      - axis_codes
     additionalProperties: false
     properties:
       dim_info:
@@ -405,6 +449,17 @@ properties:
         name: 'sform code'
         description: 'Use of the affine fields.'
         type: integer
+      axis_codes:
+        name: 'axis codes'
+        description: >
+          Orientation labels indicating primary direction of data axes defined
+          with respect to the object of interest.
+        type: array
+        minItems: 3
+        maxItems: 3
+        items:
+          type: string
+          enum: ['R', 'L', 'A', 'P', 'S', 'I']
       mrs:
         name: 'NIfTI-MRS extension'
         description: 'NIfTI-MRS JSON fields'

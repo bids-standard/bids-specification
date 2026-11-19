@@ -13,7 +13,6 @@ with open(LOGFILE, "r") as fin:
 # go through the logs (list of dicts)
 duplicate_link_refs = []
 for log_dict in logs:
-
     # Check for DuplicateLinkReference
     logtype = log_dict.get("type", None)
     logverbosity = log_dict.get("verbosity", None)

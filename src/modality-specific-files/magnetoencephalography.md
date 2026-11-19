@@ -14,7 +14,7 @@ context of the academic literature.
     -   [`multimodal MEG and MRI`](https://github.com/bids-standard/bids-examples/tree/master/ds000117)
 
     Further datasets are available from
-    the [BIDS examples repository](https://bids-standard.github.io/bids-examples/#meg).
+    the [BIDS examples repository](https://bids.neuroimaging.io/datasets/examples.html#meg).
 
 ## MEG recording data
 
@@ -66,7 +66,7 @@ with split files.
 If there are multiple parts of a recording and the optional `scans.tsv` is provided,
 remember to list all files separately in `scans.tsv` and that the entries for the
 `acq_time` column in `scans.tsv` MUST all be identical, as described in
-[Scans file](../modality-agnostic-files.md#scans-file).
+[Scans file](../modality-agnostic-files/data-summary-files.md#scans-file).
 
 The Neuromag/Elekta/Megin system may also produce datasets that require a set of
 `crosstalk` and `calibration` files to be used properly (see also filename templates above).
@@ -234,7 +234,7 @@ A guide for using macros can be found at
 ```
 
 Note that the date and time information SHOULD be stored in the Study key file
-(`scans.tsv`), see [Scans file](../modality-agnostic-files.md#scans-file).
+(`scans.tsv`), see [Scans file](../modality-agnostic-files/data-summary-files.md#scans-file).
 Date time information MUST be expressed as indicated in [Units](../common-principles.md#units)
 
 ## Channels description (`*_channels.tsv`)
@@ -337,7 +337,7 @@ MEG and EEG sensors:
 
 <!-- This block generates a metadata table.
 These tables are defined in
-  src/schema/rules/sidecars
+  src/schema/rules/json
 The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
 A guide for using macros can be found at
@@ -349,7 +349,7 @@ Head localization coils:
 
 <!-- This block generates a metadata table.
 These tables are defined in
-  src/schema/rules/sidecars
+  src/schema/rules/json
 The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
 A guide for using macros can be found at
@@ -361,7 +361,7 @@ Digitized head points:
 
 <!-- This block generates a metadata table.
 These tables are defined in
-  src/schema/rules/sidecars
+  src/schema/rules/json
 The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
 A guide for using macros can be found at
@@ -373,7 +373,7 @@ Anatomical MRI:
 
 <!-- This block generates a metadata table.
 These tables are defined in
-  src/schema/rules/sidecars
+  src/schema/rules/json
 The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
 A guide for using macros can be found at
@@ -385,7 +385,7 @@ Anatomical landmarks:
 
 <!-- This block generates a metadata table.
 These tables are defined in
-  src/schema/rules/sidecars
+  src/schema/rules/json
 The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
 A guide for using macros can be found at
@@ -413,7 +413,7 @@ Fiducials information:
 
 <!-- This block generates a metadata table.
 These tables are defined in
-  src/schema/rules/sidecars
+  src/schema/rules/json
 The definitions of the fields specified in these tables may be found in
   src/schema/objects/metadata.yaml
 A guide for using macros can be found at

@@ -1,8 +1,12 @@
+src/schema.json
+
 site/
 .DS_Store
 .idea
 venvs
 .vscode/
+
+.~lock*
 
 pdf_build_src/bids-spec.pdf
 pdf_build_src/bids-spec_pandoc_log.json
@@ -10,8 +14,6 @@ pdf_build_src/src_copy
 pdf_build_src/tests/data/output
 
 # JS/NPM
-package-lock.json
-package.json
 node_modules/
 
 # Python gitignore
@@ -42,9 +44,6 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
-
-# Poetry requirements / packaging
-/pyproject.toml
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -145,6 +144,7 @@ venv.bak/
 
 # schema docs documentation
 tools/schemacode/build/*
+_build/
 
 # mypy
 .mypy_cache/

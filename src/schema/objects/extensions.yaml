@@ -20,7 +20,7 @@ bval:
   value: .bval
   display_name: FSL-Format Gradient Amplitudes
   description: |
-    A space-delimited file containing gradient directions (b-vectors) of diffusion measurement.
+    A space-delimited file containing diffusion-encoding weightings (b-values).
 
     The `bval` file contains the *b*-values (in s/mm<sup>2</sup>) corresponding to the
     volumes in the relevant NIfTI file, with 0 designating *b*=0 volumes.
@@ -28,7 +28,7 @@ bvec:
   value: .bvec
   display_name: FSL-Format Gradient Directions
   description: |
-    A space-delimited file containing gradient directions (b-vectors) of diffusion measurement.
+    A space-delimited file containing diffusion-encoding gradients (b-vectors).
 
     The `bvec` file contains 3 rows with *N* space-delimited floating-point numbers,
     corresponding to the *N* volumes in the corresponding NIfTI file.
@@ -114,6 +114,22 @@ fif:
   display_name: Functional Imaging File Format
   description: |
     An MEG file format used by Neuromag, Elekta, and MEGIN.
+funcgii:
+  value: .func.gii
+  display_name: GIFTI functional file
+  description: |
+    A GIFTI functional file.
+
+    Per the GIFTI standard: "[A] functional file contains one or more DataArrays
+    with Intent set to NIFTI_INTENT_NONE or one of the statistical intent values.
+    Each DataArray has DataType set to NIFTI_TYPE_FLOAT32.
+    Dimensionality is one with the first dimension set to the number of nodes."
+
+    In practice, this extension is used as a catch-all for scalar data sampled
+    to a surface, with the exceptions of labels (`.label.gii`) and
+    morphometry (`.shape.gii`).
+
+    This extension may only be used in derivative datasets.
 jpg:
   value: .jpg
   display_name: Joint Photographic Experts Group Format
@@ -153,14 +169,6 @@ md:
   display_name: Markdown
   description: |
     A Markdown file.
-medd:
-  value: .medd/
-  display_name: Multiscale Electrophysiology Data Format
-  description: |
-    A directory in the [MED](https://medformat.org/) format.
-    Successor to the MEF 3.0 format.
-
-    Each recording consists of a `.medd` directory.
 mefd:
   value: .mefd/
   display_name: Multiscale Electrophysiology File Format Version 3.0

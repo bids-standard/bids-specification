@@ -1,9 +1,9 @@
 ---
 ieeg:
+  $ref: meta.templates.raw.task
   suffixes:
     - ieeg
   extensions:
-    - .medd/
     - .mefd/
     - .json
     - .edf
@@ -15,9 +15,3 @@ ieeg:
     - .nwb
   datatypes:
     - ieeg
-  entities:
-    subject: required
-    session: optional
-    task: required
-    acquisition: optional
-    run: optional

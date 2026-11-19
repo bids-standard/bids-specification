@@ -1,0 +1,14 @@
+---
+iEEGElectrodesRequired:
+  issue:
+    code: IEEG_ELECTRODES_REQUIRED
+    message: |
+      iEEG data files must have an associated electrodes.tsv.
+      A single electrodes file may apply to multiple data files
+      via the inheritance principle.
+    level: error
+  selectors:
+    - suffix == "ieeg"
+    - extension != ".json"
+  checks:
+    - associations.electrodes.path != ""

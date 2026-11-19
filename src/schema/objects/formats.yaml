@@ -47,9 +47,7 @@ hed_version:
   display_name: HED Version
   description: |
     The version string of the used HED schema.
-  pattern: '^(?:[a-zA-Z]+:)?(?:[a-zA-Z]+_)?(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\
-    (?:-(?:(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?\
-    (?:\+(?:[0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$'
+  pattern: "(?:[a-zA-Z]+:)?(?:[a-zA-Z]+_)?(?:0|[1-9][0-9]*)\\.(?:0|[1-9][0-9]*)\\.(?:0|[1-9][0-9]*)"
 bids_uri:
   display_name: BIDS uniform resource indicator
   description: |
@@ -58,7 +56,7 @@ bids_uri:
     The validation for this format is minimal.
     It simply ensures that the value is a string with any characters that may appear in a valid URI,
     starting with "bids:".
-  pattern: 'bids:[0-9a-zA-Z/#:\?\_\-\.]+'
+  pattern: 'bids:[0-9a-zA-Z/#:?_\-.]+'
 dataset_relative:
   display_name: Path relative to the BIDS dataset directory
   description: |
@@ -67,7 +65,7 @@ dataset_relative:
     The validation for this format is minimal.
     It simply ensures that the value is a string with any characters that may appear in a valid path,
     without starting with "/" (an absolute path).
-  pattern: '(?!/)[0-9a-zA-Z+/\_\-\.]+'
+  pattern: '(?!/)[0-9a-zA-Z+/_\-.]+'
 date:
   display_name: Date
   description: |
@@ -77,10 +75,15 @@ date:
 datetime:
   display_name: Datetime
   description: |
-    A datetime in the form `"YYYY-MM-DDThh:mm:ss[.000000][Z]"`,
-    where `[.000000]` is an optional subsecond resolution between 1 and 6 decimal points,
-    and `[Z]` is an optional literal character `Z` that indicates
-    Coordinated Universal Time (UTC).
+    An [RFC 3339](https://doi.org/10.17487/RFC3339) timestamp, with OPTIONAL time offset.
+    Datetimes take the form `"YYYY-MM-DDThh:mm:ss[.000000][Z|+hh:mm|-hh:mm]"`,
+    where `[.000000]` is an OPTIONAL subsecond resolution between 1 and 6 decimal points,
+    and `[Z|+hh:mm|-hh:mm]` is a time offset.
+    The character `Z` indicates Coordinated Universal Time (UTC),
+    or else an integral number of minutes may be specified.
+
+    For simplicity, this format validates RFC3339-invalid dates such as 2024-02-31,
+    but implementations SHOULD error on non-existent dates and times.
   pattern: "\
     [0-9]{4}\
     -(?:0[1-9]|1[0-2])\
@@ -89,7 +92,7 @@ datetime:
     :[0-5][0-9]\
     :(?:[0-5][0-9]|60)\
     (?:\\.[0-9]{1,6})?\
-    Z?"
+    (?:Z|[+-](?:2[0-3]|[01][0-9]):[0-5][0-9])?"
 file_relative:
   display_name: Path relative to the parent file
   description: |
@@ -98,7 +101,7 @@ file_relative:
     The validation for this format is minimal.
     It simply ensures that the value is a string with any characters that may appear in a valid path,
     without starting with "/" (an absolute path).
-  pattern: '(?!/)[0-9a-zA-Z+/\_\-\.]+'
+  pattern: '(?!/)[0-9a-zA-Z+/_\-.]+'
 participant_relative:
   display_name: Path relative to the participant directory
   description: |
@@ -108,7 +111,7 @@ participant_relative:
     It simply ensures that the value is a string with any characters that may appear in a valid path,
     without starting with "/" (an absolute path) or "sub/"
     (a relative path starting with the participant directory, rather than relative to that directory).
-  pattern: '(?!/)(?!sub-)[0-9a-zA-Z+/\_\-\.]+'
+  pattern: '(?!/)(?!sub-)[0-9a-zA-Z+/_\-.]+'
 rrid:
   display_name: Research resource identifier
   description: |
@@ -123,7 +126,7 @@ stimuli_relative:
     It simply ensures that the value is a string with any characters that may appear in a valid path,
     without starting with "/" (an absolute path) or "stimuli/"
     (a relative path starting with the stimuli directory, rather than relative to that directory).
-  pattern: '(?!/)(?!stimuli/)[0-9a-zA-Z+/\_\-\.]+'
+  pattern: '(?!/)(?!stimuli/)[0-9a-zA-Z+/_\-.]+'
 time:
   display_name: Time
   description: |

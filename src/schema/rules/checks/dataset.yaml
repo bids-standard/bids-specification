@@ -6,12 +6,25 @@ SubjectFolders:
   issue:
     code: SUBJECT_FOLDERS
     message: |
-      There are no subject directories (labeled "sub-*") in the root of this dataset.
-    level: error
+      There are no subject directories (labeled "sub-*") in the root of this BIDS dataset.
+    level: warning
   selectors:
     - path == '/dataset_description.json'
+    - dataset.dataset_description.DatasetType != "study"
   checks:
     - length(dataset.subjects.sub_dirs) > 0
+
+NoSubjectFolders:
+  issue:
+    code: NOSUBJECT_FOLDERS
+    message: |
+      There should be no subject directories (labeled "sub-*") in the root of this study BIDS dataset.
+    level: warning
+  selectors:
+    - path == '/dataset_description.json'
+    - dataset.dataset_description.DatasetType == "study"
+  checks:
+    - length(dataset.subjects.sub_dirs) == 0
 
 # 49
 ParticipantIDMismatch:
@@ -26,27 +39,24 @@ ParticipantIDMismatch:
   checks:
     - |
       allequal(
-        sorted(intersects(columns.participant_id, dataset.subjects.sub_dirs)),
+        sorted(intersects(dataset.subjects.participant_id, dataset.subjects.sub_dirs)),
         sorted(dataset.subjects.sub_dirs)
       )
 
-# 51
-PhenotypeSubjectsMissing:
+AgeUnits:
   issue:
-    code: PHENOTYPE_SUBJECTS_MISSING
+    code: AGE_UNITS
     message: |
-      A phenotype/ .tsv file lists subjects that were not found in
-      the participant_id column found in the participants.tsv file.
-    level: error
+      The "Units" value for age in 'participants.json' is not a valid
+      ISO 8601-based duration unit.
+      Allowed values are "year", "month", "week", "day", "hour", "minute",
+      or "second".
+    level: warning
   selectors:
     - path == '/participants.tsv'
-    - type(dataset.subjects.phenotype) != 'null'
+    - '"Units" in sidecar.age'
   checks:
-    - |
-      allequal(
-        sorted(intersects(columns.participant_id, dataset.subjects.phenotype)),
-        sorted(dataset.subjects.phenotype)
-      )
+    - intersects([sidecar.age.Units], ["year", "month", "week", "day", "hour", "minute", "second"])
 
 # 214
 SamplesTSVMissing:
@@ -92,7 +102,7 @@ SingleSourceCitationFields:
     level: warning
     message: |
       CITATION.cff file found.
-      The "HowToAckowledge", "License", and "ReferencesAndLinks" fields of
+      The "HowToAcknowledge", "License", and "ReferencesAndLinks" fields of
       'dataset_description.json' should be removed to avoid inconsistency.
   selectors:
     - path == '/CITATION.cff'

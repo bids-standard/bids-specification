@@ -153,8 +153,20 @@ def make_glossary(schema, src_path=None):
         # Clean up the text description
         obj_desc = obj_def.get("description", None)
         if obj_desc is None:
-            raise ValueError(f"{obj['key']} has no description.")
-        obj_desc = MarkdownIt().render(f"{obj_desc}")
+            raise ValueError(f"{obj_marker} has no description.")
+        # A backslash before a newline means continue a string
+        obj_desc = obj_desc.replace("\\\n", "")
+        # Two newlines should be respected
+        obj_desc = obj_desc.replace("\n\n", "<br>")
+        # Otherwise a newline corresponds to a space
+        obj_desc = obj_desc.replace("\n", " ")
+
+        if "sense 1" in obj_key:
+            text += f'\n<a name="{obj_marker.split("__", 1)[0]}"></a>'
+        text += f'\n<a name="{obj_marker}"></a>'
+        text += f"\n## {obj_key}\n\n"
+        text += f"**Name**: {obj_def['display_name']}\n\n"
+        text += f"**Type**: {obj['type'].title()}\n\n"
 
         levels = list(obj_def.get("enum", []) or obj_def.get("definition", {}).get("Levels", {}))
         if levels:
@@ -169,6 +181,13 @@ def make_glossary(schema, src_path=None):
             "enum",
             "definition",
         ]
+        levels = list(obj_def.get("enum", []) or obj_def.get("definition", {}).get("Levels", {}))
+        if levels:
+            levels = [level["name"] if isinstance(level, dict) else level for level in levels]
+            text += f"**Allowed values**: `{'`, `'.join(levels)}`\n\n"
+
+        text += f"**Description**:\n{obj_desc}\n\n"
+
         reduced_obj_def = {k: v for k, v in obj_def.items() if k not in keys_to_drop}
         if reduced_obj_def:
             reduced_obj_def = yaml.dump(reduced_obj_def)
@@ -261,7 +280,7 @@ def make_filename_template(
         If True, placeholder meta-entities will replace keyword-value entities in the
         filename.
         If ``dstype`` is ``"raw"``, the placeholder meta-entity is ``<matches>``.
-        If ``dstype`` is ``"derivatives"``, the placeholder meta-entity is ``<source_entities>``.
+        If ``dstype`` is ``"derivatives"``, the placeholder meta-entity is ``<source-entities>``.
         Default is False.
     empty_dirs: bool, optional
         If False, empty datatype directories are not included. If ``placeholders`` is True,
@@ -328,7 +347,7 @@ def make_filename_template(
     entity_list = schema.rules.entities
     start_string = ""
     if placeholders:
-        metaentity_name = "matches" if dstype == "raw" else "source_entities"
+        metaentity_name = "matches" if dstype == "raw" else "source-entities"
         start_string = (
             lt
             + utils._link_with_html(
@@ -496,7 +515,7 @@ def append_filename_template_legend(text, pdf_format=False):
     legend = f"""{info_str}
 - `<matches>` is a placeholder to denote an arbitrary (and valid) sequence of entities
   and labels at the beginning of the filename (only BIDS "raw").
-- `<source_entities>` is a placeholder to denote an arbitrary sequence of entities and labels
+- `<source-entities>` is a placeholder to denote an arbitrary sequence of entities and labels
   at the beginning of the filename matching a source file from which the file derives
   (only BIDS-Derivatives).
 - Filename entities or directories between square brackets

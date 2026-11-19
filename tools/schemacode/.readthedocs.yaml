@@ -1,14 +1,20 @@
 version: 2
 
 build:
-  os: ubuntu-22.04
+  os: ubuntu-lts-latest
   tools:
-    python: "3.11"
+    python: '3.13'
+  jobs:
+    create_environment:
+      - asdf plugin add uv https://github.com/asdf-community/asdf-uv.git
+      - asdf install uv latest
+      - asdf global uv latest
+      - VIRTUAL_ENV=$READTHEDOCS_VIRTUALENV_PATH uv venv
+    install:
+      - >
+        VIRTUAL_ENV=$READTHEDOCS_VIRTUALENV_PATH
+        UV_CACHE_DIR=$READTHEDOCS_VIRTUALENV_PATH/../../uv_cache
+        uv sync --active --locked --group=doc
 
 sphinx:
   configuration: tools/schemacode/docs/conf.py
-
-python:
-  install:
-    - requirements: requirements.txt
-    - requirements: tools/schemacode/docs/requirements.txt

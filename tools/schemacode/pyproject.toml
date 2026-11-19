@@ -1,57 +1,70 @@
 [build-system]
-build-backend = "setuptools.build_meta"
-requires = ["setuptools"]
+requires = ["pdm-backend", "acres", "pyyaml"]
+build-backend = "pdm.backend"
 
 [project]
 name = "bidsschematools"
-description = " Python tools for working with the BIDS schema."
-authors = [{name = "bids-standard developers"}]
-maintainers = [{name = "bids-standard developers", email = " bids.maintenance@gmail.com"}]
-license = {text = "MIT"}
+description = "Python tools for working with the BIDS schema."
+authors = [{ name = "bids-standard developers" }]
+maintainers = [
+  { name = "bids-standard developers", email = "bids.maintenance@gmail.com" },
+]
+license = { text = "MIT" }
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 dependencies = [
-    "click",
-    "pyyaml",
-    "jsonschema"
+  "acres>=0.5",
+  "click>=8.1",
+  "pyyaml>=6.0",
 ]
 classifiers = [
-    "Development Status :: 4 - Beta",
-    "License :: OSI Approved :: MIT License",
-    "Intended Audience :: Science/Research",
-    "Topic :: Scientific/Engineering :: Information Analysis",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
-    "Programming Language :: Python :: 3.12",
-    "Programming Language :: Python :: 3.13"
+  "Development Status :: 4 - Beta",
+  "License :: OSI Approved :: MIT License",
+  "Intended Audience :: Science/Research",
+  "Topic :: Scientific/Engineering :: Information Analysis",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
 ]
 dynamic = ["version"]
 
 [project.optional-dependencies]
-expressions = ["pyparsing"]
+expressions = [
+  "pyparsing>=3.2",
+]
 render = [
-    "tabulate",
-    "pandas",
-    "markdown-it-py",
-    "jinja2"
+  "jinja2",
+  "tabulate>=0.9",
+  "numpy>=1.26",
+  "pandas>=2.0",
+  "markdown-it-py>=3.0",
+  "pymdown-extensions>=10.21.2",
+]
+validation = [
+  "jsonschema[format]>=4.22",
+]
+all = ["bidsschematools[expressions,render,validation]"]
+
+[dependency-groups]
+dev = [
 ]
 tests = [
-    "bidsschematools[expressions,render]",
-    "codecov",
-    "coverage[toml]",
-    "flake8",
-    "flake8-black",
-    "flake8-isort",
-    "pytest>6",
-    "pytest-cov"
+  "bidsschematools[all]",
+  "check-jsonschema>=0.36.2",
+  "coverage[toml]>=7.10.7",
+  "pytest>=8.4.2",
+  "pytest-cov>=7.0.0",
+  "pytest-xdist>=3.8.0",
 ]
-doc = [
-    "sphinx>=1.5.3",
-    "sphinx_rtd_theme"
-]
-all = [
-    "bidsschematools[doc,tests]"
+types = [
+  "lxml>=6.0.2",
+  "mypy>=1.18.2",
+  "pandas-stubs>=2.2.2.240807",
+  "types-jsonschema>=4.25.1.20251009",
+  "types-pyyaml>=6.0.12.20250915",
+  "types-tabulate>=0.9.0.20241207",
 ]
 
 [project.scripts]
@@ -60,61 +73,39 @@ bst = "bidsschematools.__main__:cli"
 [project.urls]
 Homepage = "https://github.com/bids-standard/bids-specification"
 
-[tool.setuptools.dynamic]
-version = {file = "src/bidsschematools/data/schema/SCHEMA_VERSION"}
-
-[tool.setuptools.package-data]
-bidsschematools = [
-    "data/metaschema.json",
-    "data/schema/BIDS_VERSION",
-    "data/schema/SCHEMA_VERSION",
-    "data/schema/**/*.yaml",
-    "tests/data/*",
-    "render/templates/*"
+[tool.pdm.build]
+excludes = [
+  ".gitignore",
+  "**/.gitignore",
 ]
 
 [tool.black]
-line-length = 99
-include = '\.pyi?$'
-exclude = '''
-(
-  /(
-      \.eggs         # exclude a few common directories in the
-    | \.git          # root of the project
-    | \.github
-    | \.hg
-    | \.pytest_cache
-    | _build
-    | build
-    | dist
-  )/
-)
-'''
-
-[tool.isort]
-multi_line_output = 3
-profile = "black"
+exclude = "*"
 
 [tool.pytest.ini_options]
 addopts = "-ra --strict-markers --strict-config"
 log_cli = true
 log_cli_level = "INFO"
 markers = [
-    "validate_schema: tests that validate the schema itself"
+  "validate_schema: tests that validate the schema itself",
 ]
 minversion = "6.0"
 xfail_strict = true
 
-[tool.coverage]
 
 [tool.coverage.paths]
 source = [
-    "src/bidsschematools",
-    "**/site-packages/bidsschematools"
+  "src/bidsschematools",
+  "**/site-packages/bidsschematools",
 ]
 
 [tool.coverage.run]
 parallel = true
+
+[tool.coverage.report]
+exclude_also = [
+  "if.*TYPE_CHECKING:",
+]
 
 # Release process:
 # cd tools/schemacode
@@ -124,7 +115,7 @@ parallel = true
 # uvx bump-my-version bump <patch|minor|major>
 # git push upstream <current-branch>
 [tool.bumpversion]
-current_version = "1.1.0-dev"
+current_version = "2.1.0-dev"
 parse = """(?x)
     (?P<major>[0-9]+)
     \\.(?P<minor>[0-9]+)
@@ -145,3 +136,34 @@ optional_value = "final"
 
 [[tool.bumpversion.files]]
 filename = "../../src/schema/SCHEMA_VERSION"
+
+[tool.ruff]
+line-length = 99
+
+[tool.ruff.lint]
+# Recognize imports from _lazytypes as coming from typing
+typing-modules = ["bidsschematools._lazytypes"]
+select = [
+  "E",   # pycodestyle errors
+  "W",   # pycodestyle warnings
+  "F",   # pyflakes
+  "PLE", # pylint errors
+  "I",   # isort
+  "LOG", # flake8-logging
+  "G",   # flake8-logging-format
+  "Q",   # flake8-quotes
+  "YTT", # flake8-2020
+  "ISC", # implicit-string-concatenation
+  "UP",  # pyupgrade
+
+  # Intend to evaluate these for inclusion
+  # "PD",  # pandas-vet
+  # "B",  # flake8-bugbear (likely bugs)
+  # "S",  # flake8-bandit (security)
+  # "N",  # pep8-naming (naming conventions)
+  # "C4",  # flake8-comprehensions (comprehension)
+  # "PLW",  # pylint warnings
+]
+
+[tool.ruff.lint.extend-per-file-ignores]
+"*/__init__.py" = ["F401"]

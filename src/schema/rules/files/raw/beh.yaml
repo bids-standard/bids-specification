@@ -1,6 +1,7 @@
 ---
 # Non-continuous data
 noncontinuous:
+  $ref: meta.templates.raw.task
   suffixes:
     - beh
   extensions:
@@ -8,9 +9,3 @@ noncontinuous:
     - .json
   datatypes:
     - beh
-  entities:
-    subject: required
-    session: optional
-    task: required
-    acquisition: optional
-    run: optional
