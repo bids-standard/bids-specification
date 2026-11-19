@@ -1,7 +1,6 @@
 # Contributors
 
-Legend (source:
-<https://github.com/all-contributors/all-contributors/blob/master/docs/emoji-key.md>)
+Legend (source: <https://allcontributors.org/en/reference/emoji-key/>)
 
 | **Emoji** | **Represents**                                                                         |
 | --------- | -------------------------------------------------------------------------------------- |
