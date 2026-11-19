@@ -201,7 +201,7 @@ MRISpatialEncoding:
     PartialFourier: optional
     PartialFourierDirection:
       level: optional
-      level_addendum: recommended if PartialFourier is defined
+      level_addendum: recommended if `PartialFourier` is less than 1
     EffectiveEchoSpacing:
       level: optional
       level_addendum: recommended if corresponding fieldmap data present
@@ -215,6 +215,7 @@ MRIPartialFourier:
     - modality == "mri"
     - match(extension, "^\.nii(\.gz)?$")
     - type(sidecar.PartialFourier) != "null"
+    - sidecar.PartialFourier < 1
   fields:
     PartialFourierDirection: recommended
 
