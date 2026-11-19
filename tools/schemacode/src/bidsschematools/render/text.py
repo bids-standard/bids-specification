@@ -1,5 +1,7 @@
 """Functions for rendering portions of the schema as text."""
 
+import re
+
 import yaml
 from jinja2 import Environment, PackageLoader, StrictUndefined
 from markdown_it import MarkdownIt
@@ -79,6 +81,36 @@ def _make_entity_definition(entity_info):
         allowed_values=allowed_values,
         description=entity_info["description"],
     )
+
+
+def _dedent_orphan_blocks(text, indent=4):
+    """Dedent indented blocks of markdown that have no parent list item.
+
+    Some descriptions indent content (e.g., a list) so that it nests correctly
+    when the description is itself rendered inside a list item,
+    as in the common principles.
+    Rendered at the top level, as in the glossary,
+    that indentation would turn the content into a code block.
+    """
+    prefix = " " * indent
+    list_item = re.compile(r"^\s*([-*+]|\d+[.)])\s")
+    lines = text.split("\n")
+    in_fence = False
+    dedent = False
+    parent = ""  # last non-blank line that is not indented
+    for i, line in enumerate(lines):
+        if line.lstrip().startswith("```"):
+            in_fence = not in_fence
+        if in_fence or not line.strip():
+            continue
+        if line.startswith(prefix):
+            if dedent or not list_item.match(parent):
+                dedent = True
+                lines[i] = line[indent:]
+        else:
+            dedent = False
+            parent = line
+    return "\n".join(lines)
 
 
 def make_glossary(schema, src_path=None):
@@ -162,10 +194,9 @@ def make_glossary(schema, src_path=None):
             raise ValueError(f"{obj_marker} has no description.")
         # A backslash before a newline means continue a string
         obj_desc = obj_desc.replace("\\\n", "")
-        # Two newlines should be respected
-        obj_desc = obj_desc.replace("\n\n", "<br>")
-        # Otherwise a newline corresponds to a space
-        obj_desc = obj_desc.replace("\n", " ")
+        # Otherwise keep the description as is: it is markdown that mkdocs renders,
+        # and flattening newlines would break block elements like code fences or lists.
+        obj_desc = _dedent_orphan_blocks(obj_desc.strip())
 
         # Levels are only defined for columns, under definition.Levels
         levels = list(obj_def.get("enum", []) or obj_def.get("definition", {}).get("Levels", {}))

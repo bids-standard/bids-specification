@@ -120,7 +120,11 @@ def test_make_glossary_snapshot():
                     "bold": {
                         "value": "bold",
                         "display_name": "BOLD",
-                        "description": "Line one\\\ncontinued.\n\nNew paragraph.",
+                        "description": (
+                            "Line one\\\ncontinued.\n\n"
+                            "Example:\n\n```Text\na\nb\n```\n\n"
+                            "Types:\n\n    1.  `x`\n\n    2.  `y`\n"
+                        ),
                     },
                 },
                 "columns": {
@@ -141,7 +145,11 @@ def test_make_glossary_snapshot():
         "**Name**: BOLD\n\n"
         "**Type**: Suffix\n\n"
         "**Format**: `<entities>_bold.<extension>`\n\n"
-        "**Description**:\nLine onecontinued.<br>New paragraph.\n\n"
+        "**Description**:\nLine onecontinued.\n\n"
+        # code fences survive
+        "Example:\n\n```Text\na\nb\n```\n\n"
+        # lists indented to nest in the common principles are not code blocks here
+        "Types:\n\n1.  `x`\n\n2.  `y`\n\n"
         '\n<a name="objects.columns.kind"></a>\n'
         "## kind (columns)\n\n"
         "**Name**: Kind\n\n"
@@ -150,6 +158,21 @@ def test_make_glossary_snapshot():
         "**Description**:\nA kind.\n\n"
         "**Schema information**:\n```yaml\ntype: string\n\n```"
     )
+
+
+@pytest.mark.parametrize(
+    ("desc", "expected"),
+    [
+        # orphan indented list is dedented
+        ("Intro:\n\n    1. a\n\n    2. b\n\nOutro.", "Intro:\n\n1. a\n\n2. b\n\nOutro."),
+        # nested list keeps its indentation
+        ("- a\n    - b\n\n    continued", "- a\n    - b\n\n    continued"),
+        # code fences are left alone
+        ("```\n    code\n```", "```\n    code\n```"),
+    ],
+)
+def test_dedent_orphan_blocks(desc, expected):
+    assert text._dedent_orphan_blocks(desc) == expected
 
 
 def test_define_common_principles_snapshot():
