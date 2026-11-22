@@ -322,7 +322,7 @@ properties:
             description: 'Path to associated atlas description file'
             type: string
       scans:
-        description: |
+        description: >
           Row from the scans.tsv file corresponding to the current file.
           The row is the one whose `filename` value equals the path of the current file
           relative to the directory containing the scans.tsv file.
