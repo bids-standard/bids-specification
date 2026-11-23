@@ -45,3 +45,30 @@ AudioVideoImageDevice:
         In the sidecar of a media file, this field gives the license for that recording,
         for use when it differs from the license of the dataset.
         If this field is absent, the `License` in `dataset_description.json` applies.
+
+# Timing of audio, video and audio-video recordings relative to time zero of the run.
+AudioVideoTiming:
+  selectors:
+    - datatype == "beh"
+    - intersects([suffix], ["audio", "video", "audiovideo"])
+  fields:
+    StartTime:
+      level: recommended
+      level_addendum: required if the `recording` entity is present
+      description_addendum: |
+        For audio, video, and audio-video recordings, this is the start of the first
+        data sample of the recording, relative to time zero of the run.
+        If the run has an events file, its `onset` values are measured from the same time zero.
+        If absent, a value of `0` is assumed.
+        See [Timing of recordings](SPEC_ROOT/modality-specific-files/behavioral-experiments.md#timing-of-recordings).
+
+# Simultaneous recordings of one run need their relative timing, with or without an events file.
+AudioVideoTimingMultipleRecordings:
+  selectors:
+    - datatype == "beh"
+    - intersects([suffix], ["audio", "video", "audiovideo"])
+    - entities.recording != null
+  fields:
+    StartTime:
+      level: required
+      level_addendum: if the `recording` entity is present

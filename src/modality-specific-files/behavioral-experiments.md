@@ -18,8 +18,10 @@ and a guide for using macros can be found at
 The `beh` directory MAY store behavioral recordings such as audio (`_audio.*`), video (`_video.*`), combined audio-video (`_audiovideo.*`), and still image (`_image.*`) recordings, physiological (`_physio.*`) recordings, and other continuous recordings (`_stim.tsv.gz`, `_stim.json`).
 Audio, video, audio-video, and image recordings MAY be of subjects performing tasks, resting-state behavior, or recordings of stimuli being presented to the subject.
 Audio/video recordings MAY occur simultaneously with other recordings, such as BOLD or EEG.
-Relative timing between files may be determined by consulting the `scans.tsv` file.
-If no `scans.tsv` file is present, the alignment is undefined.
+The start of an audio, video, or audio-video recording relative to the other data of its run
+is given by the `StartTime` field of its sidecar JSON file
+(see [Timing of recordings](#timing-of-recordings)).
+The absolute acquisition time of each file MAY be given in the `scans.tsv` file.
 The `beh` directory MAY also contain event timing files (`_events.tsv`) and their associated metadata (`_events.json`),
 for example for behavioral experiments performed with no neural recordings
 or for annotations of audio and video recordings
@@ -191,6 +193,8 @@ Sidecar JSON files with the `split` entity MAY be provided to give values for in
 following the [inheritance principle](../common-principles.md#the-inheritance-principle).
 If `scans.tsv` is provided, all parts MUST be listed
 and their `acq_time` entries MUST be identical.
+`StartTime` describes the start of the first part
+and SHOULD be given in the sidecar JSON file without the `split` entity.
 
 ### Sidecar JSON for audio, video, audio-video recordings, and images
 
@@ -204,7 +208,10 @@ The definitions of the fields specified in these tables may be found in
 A guide for using macros can be found at
  https://github.com/bids-standard/bids-specification/blob/master/macros_doc.md
 -->
-{{ MACROS___make_sidecar_table("beh.AudioVideoImageDevice") }}
+{{ MACROS___make_sidecar_table([
+   "beh.AudioVideoImageDevice",
+   "beh.AudioVideoTiming",
+   ]) }}
 
 !!! note "Licensing for recordings containing participants"
 
@@ -312,8 +319,8 @@ These events files follow the standard events filename rules:
 they share the `task`, `acq`, and `run` entities of the recordings they describe,
 but do not include the `recording` or `split` entities.
 A single events file therefore applies to every recording and every split of a given run.
-Onsets are measured from the start of the first file of the run,
-and the relative timing of recordings within the run is given by `scans.tsv`.
+Onsets keep their usual meaning, and each recording gives its own start relative to them
+in its `StartTime` field (see [Timing of recordings](#timing-of-recordings)).
 Audio and video recordings that are annotated with an events file MUST have a `task` label.
 
 If annotations were derived from a specific recording
@@ -361,6 +368,61 @@ A guide for using macros can be found at
       },
    }
 ) }}
+
+### Timing of recordings
+
+Each run has a single time zero.
+When the run includes a neural or other task data file,
+time zero is the first data point of that file, as defined for [`onset`](../modality-agnostic-files/events.md).
+When the run includes only audio, video, or audio-video recordings,
+time zero is a reference point chosen for the run, such as the start of the earliest recording.
+If the run has an events file, its `onset` values are measured from this same time zero.
+
+`StartTime` gives the start of the first data sample of an audio, video, or audio-video recording,
+in seconds relative to time zero of its run.
+Values MAY be negative and MAY have sub-second precision.
+`StartTime` is REQUIRED for a recording that has the `recording` entity,
+because the run then has several simultaneous recordings whose relative timing must be known.
+For other recordings it is RECOMMENDED, and a missing value is equivalent to `0`.
+
+If `scans.tsv` lists files from the same run,
+then for every file in the run, its `acq_time` minus its `StartTime` MUST give the same moment,
+to within the precision of the recorded values.
+Task data files that do not have a `StartTime` are treated as having a `StartTime` of `0`.
+This keeps the absolute times in `scans.tsv` and the relative times in the sidecar files consistent,
+so either can be used to align recordings.
+
+For example, in the two-camera recording above,
+the `room` camera started at time zero and the `face` camera started 0.2 seconds later.
+The sidecar JSON files contain:
+
+```JSON
+{
+  "TaskName": "Stroop",
+  "StartTime": 0.0
+}
+```
+
+for `sub-01_task-stroop_recording-room_video.json`, and
+
+```JSON
+{
+  "TaskName": "Stroop",
+  "StartTime": 0.2
+}
+```
+
+for `sub-01_task-stroop_recording-face_video.json`.
+The corresponding `sub-01_scans.tsv` file, if provided, contains:
+
+```tsv
+filename	acq_time
+beh/sub-01_task-stroop_recording-room_video.mp4	1877-06-15T11:00:00.0
+beh/sub-01_task-stroop_recording-face_video.mp4	1877-06-15T11:00:00.2
+```
+
+An event in `sub-01_task-stroop_events.tsv` with an `onset` of 1.2
+occurs 1.2 seconds into the `room` video and 1.0 second into the `face` video.
 
 ## Example `_beh.tsv`
 
