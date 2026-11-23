@@ -77,7 +77,7 @@ ses-postdrug	2009-06-16T13:45:30	100
 ```JSON
 {
     "acq_time":{
-        "Description": "Date and time of acquistion for the session",
+        "Description": "Date and time of acquisition for the session",
         "Format": "datetime"
     },
     "systolic_blood_pressure":{

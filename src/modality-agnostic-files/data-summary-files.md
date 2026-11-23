@@ -218,7 +218,7 @@ different from group level participant key column names in the
 [`participants.tsv` file](./data-summary-files.md#participants-file).
 
 It is RECOMMENDED to accompany each `sessions.tsv` file with a sidecar
-`sessions.json` file (e.g. `sessions.json` at the dataset root, or at
+`sessions.json` file (for example, `sessions.json` at the dataset root, or at
 `sub-<label>/sub-<label>_sessions.json`), to describe the TSV column names and
 properties of their values (see also the
 [section on tabular files](../common-principles.md#tabular-files)).
@@ -244,7 +244,7 @@ ses-followup	2009-06-17T13:45:30	110
 ```JSON
 {
     "acq_time":{
-        "Description": "Date and time of acquistion for the session",
+        "Description": "Date and time of acquisition for the session",
         "Format": "datetime"
     },
     "systolic_blood_pressure":{
