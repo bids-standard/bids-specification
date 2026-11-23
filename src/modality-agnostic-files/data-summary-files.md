@@ -204,6 +204,7 @@ Template:
 ```Text
 sub-<label>/
     sub-<label>_sessions.tsv
+    sub-<label>_sessions.json
 ```
 
 Optional: Yes
