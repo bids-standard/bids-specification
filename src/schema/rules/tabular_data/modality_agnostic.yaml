@@ -43,7 +43,7 @@ Scans:
       description_addendum: |
         There MUST be exactly one row for each file.
     acq_time__scans: optional
-    duration__scans: recommended
+    duration__scans: optional
     HED: optional
   index_columns: [filename]
   additional_columns: allowed
