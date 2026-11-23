@@ -9,3 +9,58 @@ noncontinuous:
     - .json
   datatypes:
     - beh
+
+# Audio recordings
+audio:
+  suffixes:
+    - audio
+  extensions:
+    - .aac
+    - .flac
+    - .m4a
+    - .mp3
+    - .ogg
+    - .wav
+    - .json
+  datatypes:
+    - beh
+  entities:
+    $ref: meta.templates.raw.recording.entities
+    task: optional
+    recording: optional
+    split: optional
+
+# Video recordings
+video:
+  $ref: rules.files.raw.beh.audio
+  suffixes:
+    - video
+  extensions:
+    - .mp4
+    - .mkv
+    - .avi
+    - .webm
+    - .json
+
+# Combined audio-video recordings
+audiovideo:
+  $ref: rules.files.raw.beh.video
+  suffixes:
+    - audiovideo
+
+# Still images
+image:
+  suffixes:
+    - image
+  extensions:
+    - .jpg
+    - .png
+    - .tif
+    - .tiff
+    - .json
+  datatypes:
+    - beh
+  entities:
+    $ref: meta.templates.raw.recording.entities
+    task: optional
+    recording: optional
