@@ -209,12 +209,19 @@ sub-<label>/
 
 Optional: Yes
 
-In case of multiple sessions there is an option of adding additional
-`sessions.tsv` files describing variables changing between sessions.
-In such case one file per participant SHOULD be added.
-These files MUST include a `session_id` column and describe each session by one and only one row.
-Column names in `sessions.tsv` files MUST be different from group level participant key column names in the
+In case of multiple sessions, variables that change between sessions of a participant
+(for example `acq_time`) cannot be described in `participants.tsv`, which has one row per
+participant. In such cases, one one `sessions.tsv` file per participant SHOULD be added,
+with one row per session. These files MUST include a `session_id` column and describe
+each session by one and only one row. Column names in `sessions.tsv` files MUST be
+different from group level participant key column names in the
 [`participants.tsv` file](./data-summary-files.md#participants-file).
+
+It is RECOMMENDED to accompany each `sessions.tsv` file with a sidecar
+`sessions.json` file (e.g. `sessions.json` at the dataset root, or at
+`sub-<label>/sub-<label>_sessions.json`), to describe the TSV column names and
+properties of their values (see also the
+[section on tabular files](../common-principles.md#tabular-files)).
 
 <!-- This block generates a columns table.
 The definitions of these fields can be found in
@@ -231,4 +238,18 @@ session_id	acq_time	systolic_blood_pressure
 ses-predrug	2009-06-15T13:45:30	120
 ses-postdrug	2009-06-16T13:45:30	100
 ses-followup	2009-06-17T13:45:30	110
+```
+`sessions.json` example:
+
+```JSON
+{
+    "acq_time":{
+        "Description": "Date and time of acquistion for the session",
+        "Format": "datetime"
+    },
+    "systolic_blood_pressure":{
+        "Description": "Systolic blood pressure measured at the beginning of the session",
+        "TermURL":  "https://purl.bioontology.org/ontology/SNOMEDCT/271649006"
+    }
+}
 ```
