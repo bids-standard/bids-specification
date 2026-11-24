@@ -176,12 +176,16 @@ SmallDeltaNotConsistent:
 
 ScansAcquisitionDurationConsistency:
   issue:
-    code: SCANS_DURATION_MISMATCH_ACQUISITION_DURATION
+    code: SCANS_DURATION_EXCEEDS_ACQUISITION_DURATION
     message: |
-      The 'duration' column in the scans.tsv file does not match the
+      The 'duration' column in the scans.tsv file is longer than the
       'AcquisitionDuration' sidecar metadata field for this file.
-      Both fields record total acquisition duration in seconds and MUST be equal.
-    level: error
+      'duration' is of the data stored in the file,
+      whereas 'AcquisitionDuration' is of the entire acquisition as reported by the scanner,
+      which can also include preparation, reference and discarded scans.
+      Check that both are in seconds, and that 'AcquisitionDuration'
+      is not the duration of a single volume.
+    level: warning
   selectors:
     - modality == "mri"
     - match(extension, "^\.nii(\.gz)?$")
@@ -194,4 +198,5 @@ ScansAcquisitionDurationConsistency:
     # deprecated) as a per-volume measure, not total-scan duration.
     - '!intersects([suffix], ["bold", "asl"]) || type(sidecar.VolumeTiming) == "null"'
   checks:
-    - associations.scans.duration == sidecar.AcquisitionDuration
+    # allow for the values having been rounded to a millisecond
+    - associations.scans.duration - sidecar.AcquisitionDuration <= 0.001

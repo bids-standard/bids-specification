@@ -178,10 +178,28 @@ duration__scans:
   display_name: Scan duration
   description: |
     Wallclock duration of the recording in seconds,
-    from the acquisition of the first data sample to the end of the acquisition of the last data sample.
+    from the acquisition of the first data sample to the end of the acquisition of the last data sample
+    which are stored in the file.
+    It thus starts at `acq_time`, if that is provided,
+    and does not include anything which precedes the first stored data sample
+    or follows the last one,
+    such as preparation, calibration or reference scans,
+    or volumes discarded by the scanner ("dummy scans")
+    or by the user before including the file in the dataset.
+    For a recording which got interrupted,
+    it is the duration of the data which was acquired, not of what was planned.
+    As for `acq_time`, the durations of all files from the same recording
+    (for example, those with the [`split`](SPEC_ROOT/appendices/entities.md#split) entity)
+    MUST be identical, and be that of the entire recording.
     MUST be strictly positive.
-    For MRI data, this is equivalent to the `AcquisitionDuration` sidecar metadata field;
-    if both are present for the same file they MUST be equal.
+
+    For MRI data, this is not necessarily the `AcquisitionDuration` sidecar metadata field,
+    which is the duration reported by the scanner and,
+    depending on the vendor and the sequence, can also include
+    preparation, reference and discarded scans,
+    or be the duration which was planned for an acquisition which got interrupted.
+    If both are present for the same file,
+    `duration` SHOULD NOT be longer than `AcquisitionDuration`.
   type: number
   unit: s
   exclusiveMinimum: 0
