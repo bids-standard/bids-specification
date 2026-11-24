@@ -211,7 +211,7 @@ Optional: Yes
 
 In case of multiple sessions, variables that change between sessions of a participant
 (for example `acq_time`) cannot be described in `participants.tsv`, which has one row per
-participant. In such cases, one one `sessions.tsv` file per participant SHOULD be added,
+participant. In such cases, one `sessions.tsv` file per participant SHOULD be added,
 with one row per session. These files MUST include a `session_id` column and describe
 each session by one and only one row. Column names in `sessions.tsv` files MUST be
 different from group level participant key column names in the
