@@ -69,7 +69,7 @@ swi:
 
 mask:
   suffixes:
-    - mask 
+    - mask
   extensions:
     - .nii.gz
     - .nii
