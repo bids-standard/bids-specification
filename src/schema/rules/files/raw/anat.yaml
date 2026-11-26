@@ -66,7 +66,20 @@ swi:
     - anat
   entities:
     $ref: meta.templates.raw.mri.entities
-    task: optional
+
+mask:
+  suffixes:
+    - mask 
+  extensions:
+    - .nii.gz
+    - .nii
+    - .ome.zarr/
+    - .json
+  datatypes:
+    - anat
+  entities:
+    $ref: meta.templates.raw.mri.entities
+    modality: required
 
 defacemask:
   suffixes:

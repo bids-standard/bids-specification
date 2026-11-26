@@ -719,8 +719,7 @@ mask:
   display_name: Binary Mask
   description: |
     A binary mask that functions as a discrete "label" for a single structure.
-
-    This suffix may only be used in derivative datasets.
+    In raw data, a mask must include the `mod` entity naming the acquisition it applies to.
 meg:
   value: meg
   display_name: Magnetoencephalography
